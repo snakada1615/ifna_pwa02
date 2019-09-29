@@ -1,0 +1,162 @@
+{% extends 'myApp/base.html' %}
+
+{% block content %}
+	<h5>{{categ}}</h5>
+    <table class="table table-bordered table-striped table-sm table-responsive">
+			<thead>
+				<tr class="table-primary">
+					<td>food item</td>
+					<td>protein</td>
+					<td>Fe</td>
+					<td>Vit-A</td>
+				</tr>
+			</thead>
+			<tbody>
+        {% for food in foods1 %}
+          <tr>
+						<td>{{ food.Food_name }}</td>
+            <td>{{ food.Protein }}</td>
+						<td>{{ food.FE }}</td>
+            <td>{{ food.VITA_RAE }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+		&nbsp;&nbsp;
+
+
+		<ul class="pagination">
+		    <!-- 前へ の部分 -->
+		    {% if page_obj.has_previous %}
+		        <li class="page-item">
+		            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+		                <span aria-hidden="true">&laquo;</span>
+		            </a>
+		        </li>
+		    {% endif %}
+
+		    <!-- 数字の部分 -->
+		    {% for num in page_obj.paginator.page_range %}
+		        {% if page_obj.number == num %}
+		            <li class="page-item active"><a class="page-link" href="#!">{{ num }}</a></li>
+		        {% else %}
+		            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+		        {% endif %}
+		    {% endfor %}
+
+		    <!-- 次へ の部分 -->
+		    {% if page_obj.has_next %}
+		        <li class="page-item">
+		            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+		                <span aria-hidden="true">&raquo;</span>
+		            </a>
+		        </li>
+		    {% endif %}
+		</ul>
+
+		<hr>
+		{% if categ_id == 1 %}
+			<h4> sort key: </h4>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 1 0 %}">Food_name</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 1 1 %}">Protein</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 1 2 %}">FE</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 1 3 %}">VITA_RAE</a>
+		{% endif %}<form class="" action="index.html" method="post">
+
+		</form>
+		{% if categ_id == 2 %}
+			<h4> sort key: </h4>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 2 0 %}">Food_name</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 2 1 %}">Protein</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 2 2 %}">FE</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 2 3 %}">VITA_RAE</a>
+		{% endif %}
+		{% if categ_id == 3 %}
+			<h4> sort key: </h4>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 3 0 %}">Food_name</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 3 1 %}">Protein</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 3 2 %}">FE</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 3 3 %}">VITA_RAE</a>
+		{% endif %}
+		{% if categ_id == 4 %}
+			<h4> sort key: </h4>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 4 0 %}">Food_name</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 4 1 %}">Protein</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 4 2 %}">FE</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 4 3 %}">VITA_RAE</a>
+		{% endif %}
+		{% if categ_id == 5 %}
+			<h4> sort key: </h4>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 5 0 %}">Food_name</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 5 1 %}">Protein</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 5 2 %}">FE</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 5 3 %}">VITA_RAE</a>
+		{% endif %}
+		{% if categ_id == 6 %}
+			<h4> sort key: </h4>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 6 0 %}">Food_name</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 6 1 %}">Protein</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 6 2 %}">FE</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 6 3 %}">VITA_RAE</a>
+		{% endif %}
+		{% if categ_id == 7 %}
+			<h4> sort key: </h4>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 7 0 %}">Food_name</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 7 1 %}">Protein</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 7 2 %}">FE</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 7 3 %}">VITA_RAE</a>
+		{% endif %}
+		{% if categ_id == 8 %}
+			<h4> sort key: </h4>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 8 0 %}">Food_name</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 8 1 %}">Protein</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 8 2 %}">FE</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 8 3 %}">VITA_RAE</a>
+		{% endif %}
+		{% if categ_id == 9 %}
+			<h4> sort key: </h4>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 9 0 %}">Food_name</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 9 1 %}">Protein</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 9 2 %}">FE</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 9 3 %}">VITA_RAE</a>
+		{% endif %}
+		{% if categ_id == 10 %}
+			<h4> sort key: </h4>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 10 0 %}">Food_name</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 10 1 %}">Protein</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 10 2 %}">FE</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 10 3 %}">VITA_RAE</a>
+		{% endif %}
+		{% if categ_id == 11 %}
+			<h4> sort key: </h4>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 11 0 %}">Food_name</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 11 1 %}">Protein</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 11 2 %}">FE</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 11 3 %}">VITA_RAE</a>
+		{% endif %}
+		{% if categ_id == 12 %}
+			<h4> sort key: </h4>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 12 0 %}">Food_name</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 12 1 %}">Protein</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 12 2 %}">FE</a>
+			<a class="btn btn-outline-success" href="{% url 'FCT_show' 12 3 %}">VITA_RAE</a>
+		{% endif %}
+
+		<hr>
+
+		<h4> Category: </h4>
+		<a class="btn btn-outline-info" href="{% url 'FCT_show' 1 0 %}">Cereals</a>
+		<a class="btn btn-outline-info" href="{% url 'FCT_show' 2 0 %}">Roots and tubers</a>
+		<a class="btn btn-outline-info" href="{% url 'FCT_show' 3 0 %}">Legumes</a>
+		<a class="btn btn-outline-info" href="{% url 'FCT_show' 4 0 %}">Vegetables</a>
+		<a class="btn btn-outline-info" href="{% url 'FCT_show' 5 0 %}">Fruits</a>
+		<a class="btn btn-outline-info" href="{% url 'FCT_show' 6 0 %}">Nuts and Seeds</a>
+		<a class="btn btn-outline-info" href="{% url 'FCT_show' 7 0 %}">Meat and poultry</a>
+		<a class="btn btn-outline-info" href="{% url 'FCT_show' 8 0 %}">Eggs</a>
+		<a class="btn btn-outline-info" href="{% url 'FCT_show' 9 0 %}">Fish</a>
+		<a class="btn btn-outline-info" href="{% url 'FCT_show' 10 0 %}">Milk</a>
+		<a class="btn btn-outline-info" href="{% url 'FCT_show' 11 0 %}">Bevarages</a>
+		<a class="btn btn-outline-info" href="{% url 'FCT_show' 12 0 %}">Miscellaneous</a>
+
+{% endblock %}
