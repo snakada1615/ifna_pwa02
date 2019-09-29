@@ -15,7 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'myApp/templates/myApp', 'serviceworker.js')
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'myApp', 'serviceworker.js')
+# PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'myApp', 'serviceworker.js')
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'myApp/static/js', 'serviceworker.js')
 
 
 # Quick-start development settings - unsuitable for production
@@ -128,8 +129,8 @@ PWA_APP_DESCRIPTION = "Tool to identify priority commodity for nutrition improve
 PWA_APP_THEME_COLOR = '#0A0302'
 PWA_APP_BACKGROUND_COLOR = '#ffffff'
 PWA_APP_DISPLAY = 'standalone'
-PWA_APP_SCOPE = '/',
 PWA_APP_ORIENTATION = 'any'
+PWA_APP_SCOPE = '/'
 PWA_APP_START_URL = '/'
 PWA_APP_ICONS = [
     {
@@ -168,9 +169,9 @@ PWA_APP_ICONS = [
 ]
 
 PWA_APP_SPLASH_SCREEN = [
-{
-'src': '/static/img/icons/mother and child 640.png',
-'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
-}
+    {
+        'src': '/static/img/icons/mother and child 640.png',
+        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+    }
 ]
 PWA_APP_LANG = 'en-US'
