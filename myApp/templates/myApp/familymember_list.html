@@ -1,0 +1,125 @@
+{% extends 'myApp/base.html' %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-4">
+				Family
+			</div>
+			<div class="col-4 text-danger">
+				{{name}}
+			</div>
+		</div>
+	</div>
+
+	<div class="container text-white">
+		<div class="row bg-primary">
+			<div class="col-4 border">
+				Nutrients
+			</div>
+			<div class="col-4 border">
+				DRI
+			</div>
+			<div class="col-4 border">
+				Current
+			</div>
+		</div>
+		<div class="row">
+				<div class="col-4 border bg-secondary">
+					protein(g/day)
+				</div>
+				<div class="col-4 border bg-secondary">
+					{{dri_p|floatformat:2}}
+				</div>
+				{% if dri_p > sum_p %}
+					<div class="col-4 border text-warning bg-secondary">
+				{% else %}
+					<div class="col-4 border text-white bg-secondary">
+				{% endif %}
+					{{sum_p|floatformat:2}}
+				</div>
+		</div>
+		<div class="row">
+				<div class="col-4 border bg-secondary">
+					vit-A(μg/day)
+				</div>
+				<div class="col-4 border bg-secondary">
+					{{dri_v|intcomma}}
+				</div>
+				{% if dri_v > sum_v %}
+					<div class="col-4 border text-warning bg-secondary">
+				{% else %}
+					<div class="col-4 border text-white bg-secondary">
+				{% endif %}
+					{{sum_v|intcomma}}
+				</div>
+		</div>
+		<div class="row">
+				<div class="col-4 border bg-secondary">
+					Fe(mg/day)
+				</div>
+				<div class="col-4 border bg-secondary">
+					{{dri_f|floatformat:2}}
+				</div>
+				{% if dri_f > sum_f %}
+					<div class="col-4 border text-warning bg-secondary">
+				{% else %}
+					<div class="col-4 border text-white bg-secondary">
+				{% endif %}
+					{{sum_f|floatformat:2}}
+				</div>
+		</div>
+		<div class="row">
+		</div>
+	</div>
+
+			<hr>
+
+	<div class="container text-white">
+		<div class="row bg-primary">
+			<div class="col-6 border">
+				sex
+			</div>
+			<div class="col-2 border">
+				age
+			</div>
+			<div class="col-2 border">
+				edit
+			</div>
+			<div class="col-2 border">
+				del
+			</div>
+		</div>
+		{% for family in families %}
+			<div class="row bg-success">
+				<div class="col-6 border">
+					{{ family.get_sex_display }}
+				</div>
+				<div class="col-2 border">
+					{{ family.age }}
+				</div>
+				<div class="col-2 border align-items-center bg-white">
+					<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'family_update' pk=family.pk familyid=family.familyid %}">edit</a></span>
+				</div>
+				<div class="col-2 border align-items-center bg-white">
+					<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'family_delete' pk=family.pk familyid=family.familyid %}">del</a></span>
+				</div>
+			</div>
+		{% endfor %}
+		<hr>
+
+		<td><a class="btn btn-outline-secondary" href="{% url 'family_create' familyid=myid %}">add family member</a></td>
+
+		<hr>
+		<div class="container">
+		 <div class="card bg-secondary text-white">
+		   <div class="card-body">
+		     <div>Family composition:</div>
+				   here you can add, edit or delete family member you work on.
+					 please click button as you require
+		   </div>
+		 </div>
+		</div>
+
+
+{% endblock %}
