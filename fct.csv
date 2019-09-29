@@ -1,0 +1,473 @@
+FCT_id,food_grp_id,food_item_id,Food_grp,Food_name,Crop_ref,Edible,Energy,WATER,Protein,Fat,Carbohydrate,Fiber,ASH,CA,FE,MG,P,K,NA,ZN,CU,VITA_RAE,RETOL,B_Cart_eq,VITD,VITE,THIA,RIBF,NIA,VITB6C,FOL,VITB12,VITC
+1001,1,1,Cereals and their products,"Fonio, white, whole grain, raw",https://en.wikipedia.org/wiki/Fonio,1,1470,11.1,7,,69.3,7.4,2.1,40,8.5,430,191,337,7,1.5,0.44,0,0,0,0,0.05,0.25,0.1,1.7,0.73,29,0,0
+1002,1,2,Cereals and their products,"Fonio, black, whole grain, raw",https://en.wikipedia.org/wiki/Fonio,1,1490,10.3,8.9,,69.4,6.2,2.2,51,10,434,234,340,8,3.8,0.44,0,0,0,0,0.05,0.26,0.1,1.7,0.74,29,0,0
+1003,1,3,Cereals and their products,"Fonio, white, whole grain, boiled* (without salt)",https://en.wikipedia.org/wiki/Fonio,1,613,63,2.9,,28.9,3.1,0.9,17,3.5,179,77,110,2,0.61,0.18,0,0,0,0,0.02,0.07,0.03,0.6,0.19,9,0,0
+1004,1,4,Cereals and their products,"Maize, white, whole kernel, dried, raw",,1,1470,11.4,9.2,4.1,63.9,9.7,1.8,19,3.1,82,246,310,11,1.55,0.18,0,0,0,0,1.3,0.35,0.1,2.1,0.2,26,0,0
+1005,1,5,Cereals and their products,"Maize, white, whole kernel, boiled* (without salt)",,1,566,65.9,3.5,1.6,24.6,3.7,0.7,7,1.2,31,92,93,3,0.58,0.07,0,0,0,0,0.5,0.09,0.03,0.6,0.05,7,0,0
+1006,1,6,Cereals and their products,"Maize, yellow, whole kernel, dried, raw",,1,1490,11.3,9,4.5,64.3,9.7,1.3,12,3.5,121,242,295,11,1.7,0.24,50,0,597,0,1.3,0.33,0.15,2.2,0.4,26,0,0
+1007,1,7,Cereals and their products,"Maize, yellow, whole kernel, boiled* (without salt)",,1,573,65.9,3.5,1.7,24.7,3.7,0.5,5,1.3,46,90,88,3,0.63,0.09,17,0,207,0,0.5,0.09,0.04,0.7,0.1,7,0,0
+1008,1,8,Cereals and their products,"Maize, Gougba variety, whole kernel, dried, raw (Benin) n=1",,1,1450,13.1,8.7,4,63.5,9.7,1,18,3,80,241,304,11,1.52,0.17,,0,,0,1.3,0.34,0.1,2,0.2,26,0,0
+1009,1,9,Cereals and their products,"Maize, Gba?v? variety, whole kernel, dried, raw (Benin) n=1",,1,1450,13,8.1,4,64,9.7,1.2,18,3,80,241,305,11,1.52,0.17,,0,,0,1.3,0.34,0.1,2,0.2,26,0,0
+1010,1,10,Cereals and their products,"Maize, DMR-ESR-W variety, whole kernel, dried, raw (Benin) n=1",,1,1450,13.2,8.8,4,63.3,9.7,1.1,18,3,80,240,304,11,1.52,0.17,,0,,0,1.3,0.34,0.1,2,0.2,25,0,0
+1011,1,11,Cereals and their products,"Maize, POZA - RICA 7843 - SR variety, whole kernel, dried, raw (Benin) n=1",,1,1450,13.4,9,4,62.9,9.7,1,18,3,80,240,303,11,1.51,0.17,,0,,0,1.3,0.34,0.1,2,0.2,25,0,0
+1012,1,12,Cereals and their products,"Maize, TZPB-SR variety, whole kernel, dried, raw (Benin) n=1",,1,1440,14,8.8,4,62.4,9.7,1.1,18,3,79,238,301,11,1.5,0.17,,0,,0,1.3,0.33,0.1,2,0.19,25,0,0
+1013,1,13,Cereals and their products,"Maize, Gnonli variety, whole kernel, dried, raw (Benin) n=1",,1,1440,13.6,7.6,4,64,9.7,1.2,18,3,80,239,302,11,1.51,0.17,,0,,0,1.3,0.34,0.1,2,0.19,25,0,0
+1014,1,14,Cereals and their products,"Maize, combined varieties, whole kernel, dried, raw (Benin)",,1,1450,13.4,8.5,4,63.3,9.7,1.1,18,3,80,240,303,11,1.51,0.17,,0,,0,1.3,0.34,0.1,2,0.2,25,0,0
+1015,1,15,Cereals and their products,"Millet, whole grain, raw",,1,1470,11.6,10.9,4.1,62.6,8.8,2,35,9.5,273,311,380,19,1.47,0.52,,0,,0,0.05,0.3,0.13,1.7,0.73,29,0,0
+1016,1,16,Cereals and their products,"Millet, whole grain, boiled*(without salt)",,1,613,63.2,3.9,1.7,26.1,3.7,0.8,14,3.9,114,126,124,6,0.59,0.21,,0,,0,0.02,0.09,0.04,0.6,0.19,8,0,0
+1017,1,17,Cereals and their products,"Pearl millet, whole grain, raw (with bran)",https://en.wikipedia.org/wiki/Pearl_millet,1,1540,10.1,8.8,5.8,64.8,9,1.5,14,7.6,97,207,401,19,2.83,0.45,0,0,3,0,0.07,0.32,0.27,2.4,0.74,30,0,0
+1018,1,18,Cereals and their products,"Pearl millet, variety ikmv 8201, whole grain, raw (Burkina Faso) n=1",https://en.wikipedia.org/wiki/Pearl_millet,1,1610,7.5,10.3,7.4,63.8,9.5,1.7,14,7.8,101,215,415,19,2.93,0.47,,0,,0,0.09,0.19,0.12,2.5,0.76,30,0,0
+1019,1,19,Cereals and their products,"Pearl millet, variety ikmp 1, whole grain, raw (Burkina Faso) n=1",https://en.wikipedia.org/wiki/Pearl_millet,1,1570,10.1,9.5,6.9,63.8,8.1,1.6,14,7.6,98,209,404,19,2.85,0.45,,0,,0,0.08,0.25,0.16,2.4,0.74,30,0,0
+1020,1,20,Cereals and their products,"Pearl millet, variety ikmp 2, whole grain, raw (Burkina Faso) n=1",https://en.wikipedia.org/wiki/Pearl_millet,1,1570,9.4,9,7.1,63.7,9.1,1.6,14,7.7,99,210,407,19,2.87,0.46,,0,,0,0.08,0.23,0.15,2.4,0.74,30,0,0
+1021,1,21,Cereals and their products,"Pearl millet, variety ikmp 3, whole grain, raw (Burkina Faso) n=1",https://en.wikipedia.org/wiki/Pearl_millet,1,1640,6.7,14.5,9,56.9,11.3,1.7,14,7.9,102,217,419,19,2.96,0.47,,0,,0,0.11,0.17,0.11,2.5,0.77,31,0,0
+1022,1,22,Cereals and their products,"Pearl millet, variety ikmp 4, whole grain, raw (Burkina Faso) n=1",https://en.wikipedia.org/wiki/Pearl_millet,1,1610,9.1,13.4,9,57.2,9.7,1.6,14,7.7,99,211,408,19,2.88,0.46,,0,,0,0.11,0.23,0.14,2.4,0.75,30,0,0
+1023,1,23,Cereals and their products,"Pearl millet, variety ikmp 5, whole grain, raw (Burkina Faso) n=1",https://en.wikipedia.org/wiki/Pearl_millet,1,1660,6,14.2,10.2,55.5,12.4,1.7,14,7.9,102,218,422,19,2.98,0.47,,0,,0,0.12,0.15,0.09,2.5,0.77,31,0,0
+1024,1,24,Cereals and their products,"Pearl millet, variety ikmp 6, whole grain, raw (Burkina Faso) n=1",https://en.wikipedia.org/wiki/Pearl_millet,1,1580,8.8,16,6.9,58.4,8.4,1.6,14,7.7,99,212,409,19,2.89,0.46,,0,,0,0.08,0.22,0.14,2.4,0.75,30,0,0
+1025,1,25,Cereals and their products,"Pearl millet, variety ikmp 7, whole grain, raw (Burkina Faso) n=1",https://en.wikipedia.org/wiki/Pearl_millet,1,1620,6.4,11.7,6.8,64.3,9.2,1.7,14,7.9,102,217,420,19,2.96,0.47,,0,,0,0.08,0.16,0.1,2.5,0.77,31,0,0
+1026,1,26,Cereals and their products,"Pearl millet, variety ikmp 8, whole grain, raw (Burkina Faso) n=1",https://en.wikipedia.org/wiki/Pearl_millet,1,1630,6,8.4,7.2,67.9,8.8,1.7,14,7.9,102,218,422,19,2.98,0.47,,0,,0,0.09,0.15,0.1,2.5,0.77,31,0,0
+1027,1,27,Cereals and their products,"Pearl millet, variety ikmp 9, whole grain, raw (Burkina Faso) n=1",https://en.wikipedia.org/wiki/Pearl_millet,1,1640,6.5,10.6,8.4,62.6,10.1,1.7,14,7.9,102,217,420,19,2.96,0.47,,0,,0,0.1,0.16,0.1,2.5,0.77,31,0,0
+1028,1,28,Cereals and their products,"Pearl millet, variety ikmp 10, whole grain, raw (Burkina Faso) n=1",https://en.wikipedia.org/wiki/Pearl_millet,1,1560,10.5,8.7,7.8,61.8,9.6,1.6,14,7.6,98,208,402,19,2.83,0.45,,0,,0,0.09,0.26,0.17,2.4,0.74,29,0,0
+1029,1,29,Cereals and their products,"Pearl millet, variety ikmp 11, whole grain, raw (Burkina Faso) n=1",https://en.wikipedia.org/wiki/Pearl_millet,1,1580,9.2,8.1,7.7,63.3,10.1,1.6,14,7.7,99,211,408,19,2.88,0.46,,0,,0,0.09,0.23,0.14,2.4,0.75,30,0,0
+1030,1,30,Cereals and their products,"Pearl millet, variety ikmp 12, whole grain, raw (Burkina Faso) n=1",https://en.wikipedia.org/wiki/Pearl_millet,1,1620,6.6,10.4,7.4,64.2,9.6,1.7,14,7.9,102,217,419,19,2.96,0.47,,0,,0,0.09,0.16,0.1,2.5,0.77,31,0,0
+1031,1,31,Cereals and their products,"Pearl millet, variety ikmp 13, whole grain, raw (Burkina Faso) n=1",https://en.wikipedia.org/wiki/Pearl_millet,1,1630,6.6,10.2,7.6,64.8,9.1,1.7,14,7.9,102,217,419,19,2.96,0.47,,0,,0,0.09,0.17,0.1,2.5,0.77,31,0,0
+1032,1,32,Cereals and their products,"Pearl millet, combined varieties, whole grain, raw (Burkina Faso)",https://en.wikipedia.org/wiki/Pearl_millet,1,1610,7.8,11.1,7.8,62,9.6,1.7,14,7.8,100,214,414,19,2.92,0.46,,0,,0,0.09,0.2,0.12,2.5,0.76,30,0,0
+1033,1,33,Cereals and their products,"Pearl millet, whole grain, boiled* (without salt)",https://en.wikipedia.org/wiki/Pearl_millet,1,640,62.8,3.7,2.4,27,3.8,0.6,6,3.1,41,84,130,6,1.14,0.18,0,0,1,0,0.03,0.09,0.08,0.8,0.19,9,0,0
+1034,1,34,Cereals and their products,"Rice, brown, raw",,1,1490,11.9,7.8,2.2,73.8,3,1.3,22,1.9,143,277,249,6,2.02,0.28,0,0,0,0,0.6,0.38,0.07,5,0.51,40,0,0
+1035,1,35,Cereals and their products,"Rice, brown, boiled* (without salt)",,1,1490,64.8,3.1,0.9,29.5,1.2,0.5,9,0.7,57,105,80,2,0.77,0.11,0,0,0,0,0.24,0.08,0.02,1.5,0.1,11,0,0
+1036,1,36,Cereals and their products,"Rice, white, polished, raw",,1,1500,11,6.1,0.5,80.6,1.1,0.7,11,0.7,35,108,95,3,1.1,0.17,0,0,0,0,0.03,0.07,0.03,0.4,0.13,20,0,0
+1037,1,37,Cereals and their products,"Rice, white, raw",,1,1480,12.1,6.9,0.6,78.3,1.4,0.7,12,1.4,35,115,98,5,1.16,0.18,0,0,0,0,0.11,0.07,0.04,1.3,0.2,20,0,0
+1038,1,38,Cereals and their products,"Rice, white, boiled* (without salt)",,1,570,66.2,2.6,0.2,30.1,0.5,0.3,5,0.5,13,42,30,2,0.42,0.07,0,0,0,0,0.04,0.01,0.01,0.4,0.04,5,0,0
+1039,1,39,Cereals and their products,"Sorghum, whole grain, raw ",,1,1450,10.9,10.5,3.3,63.1,9.9,2.4,24,3.7,311,297,377,14,1.79,0.38,1,0,17,0,1.1,0.36,0.16,3.3,0.25,29,0,0
+1040,1,40,Cereals and their products,"Sorghum, whole grain, white, raw",,1,1550,9.4,9.3,3.9,65.5,9.9,2,24,3.9,311,249,298,14,2.08,0.18,0,0,0,0,1.1,0.36,0.17,3.4,0.25,30,0,0
+1041,1,41,Cereals and their products,"Sorghum, whole grain, red, raw",,1,1470,10.1,10.5,3.5,63.6,9.9,2.4,24,3.4,311,297,387,14,1.97,0.26,,0,,0,1.1,0.36,0.16,3.3,0.25,30,0,0
+1042,1,42,Cereals and their products,"Sorghum, whole grain, boiled* (without salt)",,1,606,62.9,4.4,1.4,26.3,4.1,1,10,1.5,129,120,122,5,0.72,0.16,1,0,6,0,0.46,0.1,0.05,1.1,0.07,9,0,0
+1043,1,43,Cereals and their products,"Wheat flour, white",,1,1490,11.8,10.4,1.5,72.5,3.2,0.6,19,2,60,110,135,3,1.8,0.15,0,0,1,0,0.3,0.28,0.1,1.2,0.2,24,0,0
+1044,1,44,Cereals and their products,"Bread, maize flour, yellow, with milk and egg",,1,1040,50.4,7.6,11.3,28.2,1.2,1.3,70,0.7,35,150,189,192,0.76,0.06,45,0,534,2.1,2.17,0.16,0.18,0.4,0.05,17,0.6,0
+1045,1,45,Cereals and their products,"Bread/rolls, white",,1,1120,34.3,9.1,2.7,49.6,2.7,1.7,26,1.2,23,98,139,518,0.8,0.13,0,0,0,0,0.4,0.18,0.06,1.7,0.04,28,0,0
+1046,1,46,Cereals and their products,"Bread, wheat, white",,1,1050,36.5,8.4,1.8,48.4,3.1,1.9,28,1.2,23,93,117,547,0.6,0.16,0,0,0,0,0.5,0.16,0.05,1.5,0.06,29,0,0
+1047,1,47,Cereals and their products,"Bread, wheat, white for toasting",,1,1070,37.1,8,2.7,47.5,3.3,1.5,44,0.9,18,79,108,439,0.56,0.1,0,0,0,0,0.5,0.12,0.07,1.4,0.05,28,0,0
+1048,1,48,Cereals and their products,"Bread, wheat, wholemeal",,1,990,39.1,8.9,2.3,41.5,6.2,2.1,49,2,53,235,226,499,1.4,0.23,0,0,0,0,0.3,0.23,0.09,3.2,0.13,45,,0
+1049,1,49,Cereals and their products,"Fonio, black, whole grain, boiled* (without salt)",https://en.wikipedia.org/wiki/Fonio,1,622,62.6,3.7,,28.9,2.6,0.9,21,4.1,181,95,111,3,1.54,0.18,0,0,0,0,0.02,0.07,0.03,0.6,0.19,8,0,0
+1050,1,50,Cereals and their products,"Fonio, husked grains, raw (bran removed)",https://en.wikipedia.org/wiki/Fonio,1,1470,12.4,6.9,1.2,76.1,2.2,1.2,28,1.8,121,104,178,14,2.02,0.43,0,0,1,0,0.05,0.17,0.22,1.1,0.74,29,0,0
+1051,1,51,Cereals and their products,"Fonio, husked grains, boiled* (without salt)",https://en.wikipedia.org/wiki/Fonio,1,614,63.5,2.9,0.5,31.7,0.9,0.5,12,0.7,50,42,58,5,0.82,0.18,0,0,0,0,0.02,0.05,0.07,0.4,0.19,8,0,0
+1052,1,52,Cereals and their products,"Macaroni, dried",https://en.wikipedia.org/wiki/Durum,1,1520,9.5,12.5,1.5,72,3.7,0.9,23,1.2,53,182,216,4,1.41,0.29,0,0,0,0,0.11,0.16,0.03,1.2,0.13,17,0,0
+1053,1,53,Cereals and their products,"Macaroni, boiled* (without salt)",https://en.wikipedia.org/wiki/Durum,1,661,60.6,5.4,0.7,31.3,1.6,0.4,10,0.5,23,77,73,1,0.59,0.12,0,0,0,0,0,0.05,0.01,0.4,0.03,5,0,0
+1054,1,54,Cereals and their products,"Maize, yellow, flour of whole-grain",,1,1490,11.3,9.3,4.4,64.3,9.4,1.3,18,3,123,241,346,5,1.73,0.23,28,0,336,0,1.3,0.44,0.13,1.9,0.3,10,0,0
+1055,1,55,Cereals and their products,"Maize, yellow, grit, degermed",,1,1490,11,7.6,0.7,76.6,3.4,0.7,8,0.3,27,73,137,1,0.4,0.08,10,0,123,0,0.1,0.07,0.04,0.6,0.15,5,0,0
+1056,1,56,Cereals and their products,"Maize, yellow, soft porridge* (without salt)",,1,204,87.8,1,0.1,10.5,0.5,0.1,1,0,4,10,15,,0.05,0.01,1,0,15,0,0.01,0.01,0.004,0.1,0.01,,0,0
+1057,1,57,Cereals and their products,"Maize, white, flour of whole grain",,1,1480,11.5,9.7,4,64.5,9,1.4,18,3.8,93,198,315,11,1.73,0.23,0,0,1,0,1.3,0.5,0.12,1.4,0.37,25,0,0
+1058,1,58,Cereals and their products,"Maize, white, flour refined",,1,1500,11.6,7.6,2.9,71.6,5.5,0.8,6,1.2,83,105,180,7,1.53,0.22,0,0,0,0,0.49,0.38,0.05,1.6,0.37,29,0,0
+1059,1,59,Cereals and their products,"Maize, white, flour degermed ",,1,1530,10,7.1,1.5,78.6,2.2,0.5,4,1,32,92,143,2,0.51,0.11,0,0,0,0,0.42,0.13,0.04,0.8,0.08,10,0,0
+1060,1,60,Cereals and their products,"Maize, white, grit, degermed",,1,1510,9.5,8.8,0.6,77.1,3.4,0.7,4,0.3,27,73,137,1,0.43,0.1,0,0,0,0,0.1,0.09,0.19,0.8,0.1,5,0,0
+1061,1,61,Cereals and their products,"Maize, white, soft porridge* (without salt)",,1,207,87.6,1.2,0.1,10.6,0.5,0.1,1,0,4,10,15,,0.06,0.01,0,0,0,0,0.02,0.01,0.02,0.1,0.01,1,0,0
+1062,1,62,Cereals and their products,"Maize, combined varieties, whole kernel, boiled* (without salt)",,1,556,66.7,3.3,1.5,24.4,3.7,0.4,7,1.1,31,90,91,3,0.57,0.06,,0,,0,0.5,0.09,0.03,0.6,0.05,7,0,0
+1063,1,63,Cereals and their products,"Pearl millet, flour (without bran)",https://en.wikipedia.org/wiki/Pearl_millet,1,1500,12,7.4,3.2,72.1,4.6,0.8,13,5.8,,,,19,2.91,,0,0,3,0,0.03,0.18,0.14,1.3,,,0,0
+1064,1,64,Cereals and their products,"Pearl millet, combined varieties, whole grain, boiled* (without salt)",https://en.wikipedia.org/wiki/Pearl_millet,1,670,61.6,4.6,3.3,25.8,4,0.7,6,3.2,42,86,135,6,1.18,0.19,,0,,0,0.03,0.06,0.04,0.8,0.2,9,0,0
+1065,1,65,Cereals and their products,"Rice, red native, hulled, raw",,1,1520,11.3,7.4,,77.3,0.4,1.4,38,2.8,,294,,,,,0,0,0,0,,0.34,0.1,6.5,,,0,0
+1066,1,66,Cereals and their products,"Rice, red native, hulled, boiled* (without salt)",,1,610,64.5,3,,30.9,0.2,0.6,15,1.1,,112,,,,,0,0,0,0,,0.07,0.03,2,,,0,0
+1067,1,67,Cereals and their products,"Rice, red native,  milled, raw",,1,1500,11.4,6.3,,81.4,0.2,0.4,22,1.7,,98,194,,,,0,0,0,0,,0.06,0.1,2,,,0,0
+1068,1,68,Cereals and their products,"Rice, red native, milled, boiled* (without salt)",,1,601,64.6,2.5,,32.6,0.1,0.2,9,0.7,,37,62,,,,0,0,,0,,0.01,0.03,0.6,,,0,0
+1069,1,69,Cereals and their products,"Rice, white, polished, boiled* (without salt)",,1,580,65.8,2.4,0.2,31,0.4,0.3,4,0.3,13,39,20,1,0.4,0.06,0,0,0,0,0.01,0.01,0.01,0.1,0.02,5,0,0
+1070,1,70,Cereals and their products,"Sorghum, whole grain, red, boiled* (without salt)",,1,612,62.5,4.4,1.5,26.5,4.1,1,10,1.4,130,120,126,5,0.8,0.11,,0,,0,0.46,0.1,0.05,1.1,0.07,9,0,0
+1071,1,71,Cereals and their products,"Sorghum, whole grain, white, boiled* (without salt)",,1,623,62.3,3.9,1.6,27.3,4.1,0.8,10,1.6,130,101,97,5,0.84,0.07,0,0,0,0,0.46,0.1,0.05,1.1,0.07,9,0,0
+1072,1,72,Cereals and their products,"Sorghum, flour, degermed",,1,1470,11,10.4,1.7,70.4,4.7,1.9,12,3.8,119,285,308,14,2.14,0.22,0,0,1,0,0.26,0.18,0.12,1.4,0.25,25,0,0
+1073,1,73,Cereals and their products,"Wheat, bran",,1,1170,9,15.9,4.8,23.2,41.5,5.6,74,14.8,546,1030,1260,15,7.49,1.05,0,0,3,0,1.6,0.71,0.47,21.6,1.34,110,0,0
+1074,1,74,Cereals and their products,"Wheat, whole grains, raw",,1,1380,13.4,12.4,2.2,58.7,10.8,2.6,30,4.7,140,386,424,3,1.7,,0,0,3,0,0.7,0.47,0.1,5.6,0.29,45,0,0
+1075,1,75,Cereals and their products,"Maize, yellow, stiff porridge* (without salt)",,1,550,67,2.8,0.3,28.4,1.3,0.1,3,0.1,10,26,40,,0.14,0.03,3,0,41,0,0.04,0.02,0.01,0.2,0.03,1,0,0
+1076,1,76,Cereals and their products,"Maize, white, stiff porridge* (without salt)",,1,559,66.5,3.3,0.2,28.5,1.3,0.2,2,0.1,10,26,40,,0.15,0.04,0,0,0,0,0.04,0.02,0.05,0.3,0.02,1,0,0
+2077,2,77,"Starchy roots, tubers and their products","Cassava, tuber, raw",,0.84,648,60.3,1.2,0.3,35.6,1.8,1,43,0.7,21,47,271,14,0.34,0.1,1,0,15,0,0.19,0.04,0.05,0.7,0.09,24,0,30
+2078,2,78,"Starchy roots, tubers and their products","Cassava, tuber, dried",,1,1470,9.4,2.1,0.6,81.4,4,2.5,102,1.6,47,98,609,31,0.76,0.22,,0,,0,0.43,0.08,0.11,1.5,0.18,47,0,5
+2079,2,79,"Starchy roots, tubers and their products","Cassava, tuber, boiled* (without salt)",,1,682,58.2,1.2,0.3,37.4,1.9,1,43,0.7,20,46,228,12,0.32,0.09,1,0,15,0,0.2,0.03,0.05,0.5,0.07,16,0,22
+2080,2,80,"Starchy roots, tubers and their products",Cassava flour,,1,1420,12.7,1.9,0.5,78.8,3.9,2.2,138,1.5,45,102,587,30,0.74,0.22,,0,,0,0.35,0.07,0.11,1.2,0.17,47,0,4
+2081,2,81,"Starchy roots, tubers and their products","Cocoyam, tuber, raw ",,0.81,547,64.7,2.4,0.2,27.4,4.1,1.2,11,0.6,13,58,457,7,0.38,0.16,,0,,0,2.4,0.1,0.03,0.8,0.24,22,0,8
+2082,2,82,"Starchy roots, tubers and their products","Cocoyam, tuber, boiled* (without salt)",,1,576,63.2,2.5,0.2,28.9,4.3,1.3,11,0.6,12,57,384,6,0.36,0.15,,0,,0,2.53,0.08,0.03,0.6,0.19,15,0,5.9
+2083,2,83,"Starchy roots, tubers and their products","Potato, raw",,0.84,338,77.8,1.9,0.1,16.9,1.8,1.5,11,0.9,27,50,551,7,0.35,0.09,1,0,14,0,0.06,0.08,0.12,1.2,0.27,18,0,17.3
+2084,2,84,"Starchy roots, tubers and their products","Potato, boiled* (without salt)",,1,338,77.8,1.9,0.1,16.9,1.8,1.5,10,0.8,25,46,440,6,0.31,0.08,1,0,13,0,0.06,0.07,0.1,0.9,0.2,11,0,12.1
+2085,2,85,"Starchy roots, tubers and their products","Sweet potato, deep yellow, raw",,0.84,475,69.8,1.5,0.3,24.5,3,0.9,26,1.1,16,40,330,19,0.39,0.13,397,0,4770,0,0.23,0.09,0.05,0.7,0.2,52,0,31
+2086,2,86,"Starchy roots, tubers and their products","Sweet potato, deep yellow, boiled* (without salt)",,1,475,69.2,1.5,0.3,24.5,3,0.9,24,1,14,38,264,15,0.35,0.12,377,0,4530,0,0.23,0.07,0.04,0.5,0.15,33,0,21.7
+2087,2,87,"Starchy roots, tubers and their products","Sweet potato, yellow, raw",,0.84,490,68.9,1.5,0.2,25.5,3,0.9,36,1.1,16,38,461,23,0.39,0.13,135,0,1620,0,0.19,0.09,0.04,0.7,0.27,52,0,32.7
+2088,2,88,"Starchy roots, tubers and their products","Sweet potato, yellow, boiled* (without salt)",,1,490,68.9,1.5,0.2,25.5,3,0.9,34,1,14,35,369,19,0.35,0.12,128,0,1540,0,0.19,0.07,0.03,0.5,0.2,33,0,22.9
+2089,2,89,"Starchy roots, tubers and their products","Taro, tuber, raw",,0.86,389,74,1.7,0.1,19,4.1,1.1,33,0.9,22,88,399,12,0.42,0.2,2,0,23,0,1.19,0.1,0.03,0.8,0.24,22,0,8
+2090,2,90,"Starchy roots, tubers and their products","Taro, tuber, boiled* (without salt)",,1,410,72.6,1.8,0.1,20,4.3,1.1,33,0.9,21,86,336,10,0.4,0.19,2,0,23,0,1.25,0.08,0.03,0.6,0.19,15,0,5.9
+2091,2,91,"Starchy roots, tubers and their products","Water yam, tuber, raw",,0.81,529,65.5,2.4,0.1,26.5,4.1,1.4,15,0.8,21,69,816,6,0.43,0.21,2,0,30,0,0.3,0.05,0.03,0.5,0.33,26,0,15
+2092,2,92,"Starchy roots, tubers and their products","Water yam, tuber, boiled* (without salt)",,1,557,63.7,2.5,0.1,27.9,4.3,1.4,15,0.8,20,68,687,5,0.41,0.2,2,0,30,0,0.28,0.04,0.03,0.4,0.26,17,0,11.1
+2093,2,93,"Starchy roots, tubers and their products","Yam tuber, raw",,0.81,540,65.2,1.9,0.2,27.5,4.1,1.1,26,0.8,12,53,816,5,0.64,0.11,2,0,30,0,0.46,0.32,0.07,0.4,0.34,26,0,12.8
+2094,2,94,"Starchy roots, tubers and their products","Yam tuber, boiled* (without salt)",,1,569,63.4,2,0.2,28.9,4.3,1.1,26,0.8,12,52,687,4,0.6,0.11,2,0,30,0,0.49,0.27,0.06,0.3,0.26,17,0,9.5
+2095,2,95,"Starchy roots, tubers and their products","Cassava sweet, tuber, dried",,1,1480,8.7,1.3,0.5,82.5,4.1,2.9,121,1.6,48,118,614,32,0.77,0.23,,0,,0,0.43,0.08,0.11,1.5,0.18,48,0,4.7
+2096,2,96,"Starchy roots, tubers and their products","Sweet potato, pale yellow, raw",,0.84,486,69.2,1.5,0.2,25.3,3,0.9,27,1.1,16,51,457,20,0.39,0.13,3,0,39,0,0.17,0.09,0.04,0.6,0.27,52,0,22.3
+2097,2,97,"Starchy roots, tubers and their products","Sweet potato, pale yellow, boiled* (without salt)",,1,486,69.2,1.5,0.2,25.3,3,0.9,26,1,14,48,366,16,0.35,0.12,3,0,37,0,0.17,0.07,0.04,0.5,0.2,33,0,15.6
+2098,2,98,"Starchy roots, tubers and their products","Tiger nut, tuber, raw",https://en.wikipedia.org/wiki/Cyperus_esculentus,0.9,1270,38.7,3.5,15.5,34.3,6.9,1.1,20,2.6,141,179,265,18,0.4,0.1,0,0,0,0,5.3,0.28,0.09,1.3,,,0,17
+2099,2,99,"Starchy roots, tubers and their products","Tiger nut, tuber, boiled* (without salt)",https://en.wikipedia.org/wiki/Cyperus_esculentus,1,1340,35.5,3.7,16.3,36.1,7.2,1.2,20,2.5,134,175,223,15,0.38,0.09,0,0,0,0,5.6,0.23,0.08,1,,,0,12.5
+2100,2,100,"Starchy roots, tubers and their products","Tiger nut, tuber dried",https://en.wikipedia.org/wiki/Cyperus_esculentus,1,1950,9,4.9,26.3,47.8,10.2,1.8,40,3.9,210,219,415,27,0.59,0.15,0,0,0,0,4.7,0.35,0.13,1.8,,,0,2.1
+2101,2,101,"Starchy roots, tubers and their products","Yam  tuber, Isu akoko, raw (Nigeria) n=1",,0.81,598,61.3,2,0.2,30.2,5.2,1,12,0.3,8,54,816,5,0.43,0.19,,0,,0,0.4,0.36,0.08,0.5,0.33,29,0,14.3
+2102,2,102,"Starchy roots, tubers and their products","Yam tuber, Isu oko,raw (Nigeria) n=1",,0.81,488,68.4,1.6,0.1,24.9,4.3,0.8,9,0.3,8,51,816,5,0.38,0.16,,0,,0,0.26,0.3,0.06,0.4,0.3,24,0,11.7
+2103,2,103,"Starchy roots, tubers and their products","Yam,  tuber, Amara, raw (Nigeria) n=1",,0.81,621,59.8,1.9,0.2,31.7,5.4,1,10,0.4,9,76,816,4,0.48,0.2,,0,,0,0.33,0.38,0.08,0.5,0.39,30,0,14.8
+2104,2,104,"Starchy roots, tubers and their products","Yam, tuber, Chika, kundu, raw (Nigeria) n=1",,0.81,542,64.8,1.6,0.1,27.8,4.7,0.9,7,0.4,8,37,816,6,0.39,0.14,,0,,0,0.22,0.33,0.07,0.4,0.34,27,0,13
+2105,2,105,"Starchy roots, tubers and their products","Yam, tuber, Isu Abuja, raw (Nigeria) n=1",,0.81,458,70.4,1.6,0.1,23.2,4,0.7,10,0.2,7,58,816,3,0.36,0.15,,0,,0,0.24,0.28,0.06,0.3,0.29,22,0,10.9
+2106,2,106,"Starchy roots, tubers and their products","Yam, tuber, Pepa, raw (Nigeria) n=1",,0.81,589,61.8,2,0.2,29.9,5.1,1,10,0.3,8,88,816,5,0.46,0.15,,0,,0,0.31,0.36,0.07,0.4,0.37,29,0,14.1
+2107,2,107,"Starchy roots, tubers and their products","Yam, tuber, Giwa, raw (Nigeria) n=1",,0.81,571,63.1,1.9,0.2,29,5,0.9,8,0.3,10,52,816,5,0.41,0.15,,0,,0,0.38,0.35,0.07,0.4,0.36,28,0,13.6
+2108,2,108,"Starchy roots, tubers and their products","Yam tuber, combined cultivars, raw (Nigeria)",,0.81,522,64.2,1.8,0.1,28.1,4.8,0.9,9,0.3,8,59,816,5,0.4,0.16,,0,,0,0.31,0.33,0.07,0.4,0.34,27,0,13.2
+2109,2,109,"Starchy roots, tubers and their products","Yam tuber, combined cultivars, boiled (Nigeria)* (without salt)",,1,582,62.3,1.9,0.2,29.6,5.1,1,9,0.3,8,58,687,4,0.39,0.15,,0,,0,0.32,0.27,0.06,0.3,0.27,18,0,9.7
+2110,2,110,"Starchy roots, tubers and their products","Yam tuber, flour",,1,1320,14,3.4,0.4,67.9,11.6,2.7,64,1.9,31,110,2310,25,1.57,0.28,,0,,0,0.82,0.1,0.08,1.1,0.83,51,0,3.2
+3111,3,111,Legumes and their products,"Bambara groundnut, dried, raw ",,1,1590,8.4,20.1,5.9,58.9,3.7,3.1,65,3.3,199,275,1190,29,3.38,0.89,2,0,20,0,,0.38,0.12,1.9,,,0,
+3112,3,112,Legumes and their products,"Bambara groundnut, red, dried, raw",,1,1590,8.1,18.4,6,60.7,3.7,3.2,35,3.3,178,272,1290,28,2.02,0.64,,0,,0,,0.39,0.12,1.9,,,0,
+3113,3,113,Legumes and their products,"Bambara groundnuts, white, raw",,1,1610,7.9,20,6.5,58.5,3.7,3.1,50,3.3,185,309,1370,28,2.39,0.82,,0,,0,,0.39,0.12,1.9,,,0,
+3114,3,114,Legumes and their products,"Cowpea, dried, raw",,1,1340,11.8,21.2,1.3,47.2,15.3,3.2,82,7.3,187,387,1210,19,4.61,0.68,3,0,32,0,0.42,0.71,0.15,3.1,0.36,417,0,0.8
+3115,3,115,Legumes and their products,"Cowpea, black, dried, raw",,1,1270,12.7,21.1,1.6,40,21,3.6,69,5.5,202,402,1380,19,3.89,0.6,,0,,0,0.39,0.7,0.15,3,0.35,412,0,0.8
+3116,3,116,Legumes and their products,"Cowpea, white, dried, raw",,1,1350,13.3,19.2,1.5,52,10.6,3.5,69,8.5,232,357,1020,25,4.58,0.97,,0,,0,0.39,0.69,0.15,3,0.35,410,0,0.8
+3117,3,117,Legumes and their products,"Cowpea, boiled* (without salt)",,1,494,67.3,7.9,0.5,17.5,5.7,1.2,26,2.3,59,129,336,5,1.54,0.18,1,0,12,0,0.14,0.17,0.04,0.7,0.09,77,0,0.2
+3118,3,118,Legumes and their products,"Soya bean, dried, raw",,1,1720,9.3,32,17,27.6,9.3,4.9,232,7.8,245,468,1740,5,4.73,1.48,1,0,13,0,0.72,0.7,0.28,2,0.82,375,0,
+3119,3,119,Legumes and their products,"African locust bean, seeds, dried",,0.3,1860,7,32.3,19.5,33,4.1,4.1,291,33.2,,384,,,,,,0,,0,,0.3,0.2,3,,,0,6
+3120,3,120,Legumes and their products,"African yam bean, dried, raw",,,1310,13.3,18.9,1.5,47.1,16.7,2.6,40,4.1,,253,1290,2,2,,,0,,0,,0.69,,,,,0,
+3121,3,121,Legumes and their products,"African yam bean, boiled* (without salt)",,,485,67.9,7,0.6,17.4,6.2,1,13,1.3,,84,357,1,0.67,,,0,,0,,0.17,,,,,0,
+3122,3,122,Legumes and their products,"Bambara groundnut, boiled* (without salt)",,1,589,66.1,7.4,2.2,21.8,1.4,1.1,21,1,63,92,330,8,1.13,0.23,1,0,7,0,,0.09,0.03,0.5,,,0,
+3123,3,123,Legumes and their products,"Bambara groundnut, black-white-eye, dried, raw (Ghana) n=1",,1,1540,9.5,24.5,4.3,54.7,3.7,3.3,62,6,197,283,1170,28,3.34,0.88,,0,,0,,0.38,0.12,1.9,,,0,
+3124,3,124,Legumes and their products,"Bambara groundnut, brown white-eye, dried, raw (Ghana) n=1",,1,1560,9.8,20.6,5.8,56.6,3.7,3.5,64,4.1,196,236,1170,28,3.33,0.88,,0,,0,,0.38,0.12,1.9,,,0,
+3125,3,125,Legumes and their products,"Bambara groundnut, Cream black-eye, dried, raw (Ghana) n=1",,1,1580,8.8,17.6,6.1,60.6,3.7,3.2,73,3,198,262,1180,28,3.36,0.89,,0,,0,,0.38,0.12,1.9,,,0,
+3126,3,126,Legumes and their products,"Bambara groundnut, Cream pink-eye, dried, raw (Ghana) n=1",,1,1550,8.9,23.2,4.7,56,3.7,3.4,63,3.6,198,305,1180,28,3.36,0.89,,0,,0,,0.38,0.12,1.9,,,0,
+3127,3,127,Legumes and their products,"Bambara groundnut, maroon white-eye, dried, raw (Ghana) n=1",,1,1570,9.8,18.1,6.3,58.7,3.7,3.4,57,5.6,196,284,1170,28,3.33,0.88,,0,,0,,0.38,0.12,1.9,,,0,
+3128,3,128,Legumes and their products,"Bambara groundnut, combined varieties, dried, raw (Ghana)",,1,1560,9.4,20.8,5.5,57.3,3.7,3.4,64,4.5,197,274,1170,28,3.34,0.88,,0,,0,,0.38,0.12,1.9,,,0,
+3129,3,129,Legumes and their products,"Bambara groundnut, combined varieties, boiled* (Ghana)(without salt)",,1,578,66.4,7.7,2,21.2,1.4,1.2,20,1.4,62,91,326,8,1.11,0.23,,0,,0,,0.09,0.03,0.5,,,0,
+3130,3,130,Legumes and their products,"Bambara groundnut, red, boiled*(without salt)",,1,591,65.9,6.8,2.2,22.5,1.4,1.2,11,1,56,91,359,8,0.67,0.17,,0,,0,,0.09,0.03,0.5,,,0,
+3131,3,131,Legumes and their products,"Bambara groundnuts, white, boiled* (without salt)",,1,596,65.9,7.4,2.4,21.8,1.4,1.2,16,1,58,103,380,8,0.8,0.21,,0,,0,,0.09,0.03,0.5,,,0,
+3132,3,132,Legumes and their products,"Beans, white, dried",,1,1420,8.9,22.1,1.5,53.2,10.3,3.9,74,5.7,186,429,1550,18,3.77,0.47,15,0,179,0,0.19,0.89,0.11,1.6,0.51,395,0,0
+3133,3,133,Legumes and their products,"Beans, white, boiled* (without salt)",,1,525,66.3,8.2,0.5,19.7,3.8,1.5,23,1.8,59,143,429,6,1.26,0.12,6,0,66,0,0.06,0.21,0.03,0.4,0.13,73,0,0
+3134,3,134,Legumes and their products,"Broad beans, dried, raw",,1,1260,11,26.1,1.8,31.7,26.3,3.1,102,6.1,191,506,1080,12,3.1,0.82,3,0,32,0,0.05,0.53,0.3,2.7,0.37,423,0,
+3135,3,135,Legumes and their products,"Broad beans,  boiled* (without salt)",,1,504,64.4,10.4,0.7,12.7,10.5,1.2,35,2.1,65,182,323,4,1.1,0.23,1,0,13,0,0,0.14,0.09,0.7,0.1,85,0,
+3136,3,136,Legumes and their products,"Cowpea, black, boiled* (without salt)",,1,469,67.7,7.8,0.6,14.8,7.8,1.3,22,1.7,64,134,383,5,1.3,0.16,,0,,0,0.13,0.17,0.04,0.7,0.09,76,0,0.2
+3137,3,137,Legumes and their products,"Cowpea, brown, dried, raw",,1,1340,12.5,21.2,1.6,47.3,14.2,3,76,8.7,202,422,1120,22,4.37,1.12,,0,,0,0.51,0.7,0.15,3,0.35,413,0,0.8
+3138,3,138,Legumes and their products,"Cowpea, brown, boiled* (without salt)",,1,496,67.6,7.9,0.6,17.5,5.3,1.1,24,2.7,111,141,312,6,1.46,0.29,,0,,0,0.17,0.17,0.04,0.7,0.09,77,0,0.2
+3139,3,139,Legumes and their products,"Cowpea, white, boiled* (without salt)",,1,500,67.9,7.1,0.6,19.3,3.9,1.3,22,2.7,73,119,284,7,1.53,0.25,,0,,0,0.13,0.17,0.04,0.7,0.09,76,0,0.2
+3140,3,140,Legumes and their products,"Lentils, dried, raw",,1,1240,10.3,25.4,1.8,29.4,30.5,2.5,61,7,103,391,855,9,3.9,0.74,3,0,42,0,0.49,0.59,0.23,2.3,0.68,295,0,
+3141,3,141,Legumes and their products,"Lentils, boiled* (without salt)",,1,456,67.1,9.3,0.7,10.8,11.2,0.9,19,2.2,32,129,235,2,1.29,0.19,1,0,15,0,0.16,0.14,0.06,0.5,0.17,54,0,
+3142,3,142,Legumes and their products,"Pigeon pea, dried, raw",,1,1260,13.4,18.4,1.5,43.2,20.2,3.3,140,4.7,183,269,1390,17,1.96,1.02,1,0,12,0,,0.62,0.18,2.9,0.27,456,0,
+3143,3,143,Legumes and their products,"Pigeon pea, boiled* (without salt)",,1,469,67.9,6.8,0.6,16,7.5,1.2,44,1.5,58,90,387,5,0.65,0.27,0,0,4,0,,0.15,0.05,0.7,0.07,84,,
+3144,3,144,Legumes and their products,"Soya bean, boiled* (without salt)",,1,746,60.6,13.9,7.4,12,4,2.1,86,2.9,91,183,569,2,1.85,0.45,0,0,6,0,0.28,0.2,0.09,0.6,0.25,82,0,
+3145,3,145,Legumes and their products,"Soybean, Salintuya-1, dried, raw (Ghana) n=1",,1,1730,8.1,35.5,16.1,26.6,9.3,4.3,219,8.3,248,601,1770,5,4.79,1.5,1,0,10,0,0.69,0.71,0.28,2,0.83,380,0,
+3146,3,146,Legumes and their products,"Soybean, Anidaso, dried, raw (Ghana) n=1",,1,1720,8.1,35.9,15.8,26.5,9.3,4.4,208,7.3,248,577,1770,5,4.79,1.5,1,0,10,0,0.67,0.71,0.28,2,0.83,380,0,
+3147,3,147,Legumes and their products,"Soybean, Quarshie,dried, raw (Ghana) n=1",,1,1710,6.6,35.4,13.1,32.5,9.5,3,197,3.9,253,400,1780,5,4.87,1.52,1,0,9,0,0.56,0.73,0.28,2.1,0.84,386,0,
+3148,3,148,Legumes and their products,"Soybean, Jenguma, dried, raw (Ghana) n=1",,1,1770,8.8,31.9,18.6,27.5,9.3,4,201,6.5,247,566,1750,5,4.75,1.49,1,0,12,0,0.79,0.71,0.28,2,0.82,377,0,
+3149,3,149,Legumes and their products,"Soya bean, combined varieties, dried, raw (Ghana)",,1,1730,7.9,34.7,15.9,28.3,9.4,3.9,206,6.5,249,536,1770,5,4.8,1.5,1,0,10,0,0.68,0.72,0.28,2,0.83,381,0,
+3150,3,150,Legumes and their products,"Soya bean, combined varieties, boiled* (Ghana)(without salt)",,1,753,60,15.1,6.9,12.3,4.1,1.7,76,2.4,92,210,578,2,1.88,0.46,0,0,4,0,0.26,0.2,0.09,0.6,0.25,83,0,
+4151,4,151,Vegetables and their products,"Baobab, leaves,  raw",,0.82,300,76.7,3.5,0.5,9.2,7.2,2.8,313,3.9,52,85,391,6,0.9,0.18,197,0,2360,0,1.42,0.03,0.04,1.9,0.3,118,0,47
+4152,4,152,Vegetables and their products,"Baobab leaves, dried",,1,1140,7.5,13.7,2.1,35.2,28.6,12.9,1240,15.4,206,355,1550,24,3.6,0.72,130,0,1560,0,5.63,0.1,0.15,6.1,1.1,364,0,19
+4153,4,153,Vegetables and their products,"Beans, green raw",,0.83,167,87.9,3.1,0.2,5,2.5,1.2,47,1.1,25,56,242,2,0.27,0.08,24,0,286,0,0.28,0.1,0.1,0.7,0.2,62,0,17.5
+4154,4,154,Vegetables and their products,"Okra leaves, raw",,0.8,169,86.2,2.7,0.3,4.3,4.9,1.6,297,0.6,38,73,199,4,0.88,0.01,56,0,672,0,0.73,0.16,0.41,0.2,0.3,118,0,36
+4155,4,155,Vegetables and their products,"Cabbage, raw",,0.8,115,91.2,1.6,0.1,3.8,2.6,0.8,41,0.6,12,37,317,12,0.2,0.02,8,0,100,0,0.15,0.05,0.04,0.3,0.1,48,0,54
+4156,4,156,Vegetables and their products,"Carrot, raw",,0.89,149,88.8,1,0.3,5.7,3.1,1.1,35,0.7,12,42,266,42,0.26,0.06,713,0,8560,0,0.47,0.06,0.05,0.7,0.23,31,0,7
+4157,4,157,Vegetables and their products,"Carrot, boiled* (without salt)",,1,158,88.1,1,0.3,6.1,3.3,1.2,35,0.6,8,40,127,24,0.2,0.06,683,0,8200,0,0.49,0.04,0.04,0.5,0.17,17,0,3
+4158,4,158,Vegetables and their products,"Cassava, leaves, raw",,0.85,411,73.2,7.5,0.9,12.9,4,1.8,276,5.5,58,106,605,6,0.69,0.16,286,0,3430,0,2.4,0.25,0.46,1.6,0.3,118,0,39
+4159,4,159,Vegetables and their products,"Cocoyam, leaves, raw",,0.6,145,90.2,3.2,0.7,3.1,1.6,1.3,63,2.4,64,60,418,3,0.41,0.27,376,0,4510,0,2.02,0.21,0.42,1.2,0.15,126,0,37
+4160,4,160,Vegetables and their products,"Cowpea, leaves, raw",,0.8,174,86.6,4.6,0.3,3.3,3.6,1.6,265,5.1,60,61,475,6,0.5,0.27,150,0,1800,0,2.36,0.2,0.37,1.6,0.24,129,0,57
+4161,4,161,Vegetables and their products,"Drumstick  leaves, raw",,0.8,364,76.5,8.3,1.2,9.6,2,2.4,434,6.1,70,101,404,7,0.9,0.16,738,0,8850,0,3.07,0.23,0.73,2.7,1.2,205,0,164
+4162,4,162,Vegetables and their products,"Eggplant, raw",,0.81,125,90.9,1.1,0.2,4.6,2.6,0.6,13,0.9,12,24,264,4,0.14,0.09,3,0,30,0,0.03,0.05,0.05,0.6,0.09,26,0,6.3
+4163,4,163,Vegetables and their products,"Eggplant leaves, raw",,0.8,188,87.1,4.4,0.7,4.2,1.9,1.7,332,4.3,58,44,437,6,0.73,0.18,296,0,3550,0,1.95,0.15,0.4,1.4,0.3,118,0,79
+4164,4,164,Vegetables and their products,"False sesame, leaves, dried",,1,1270,13.6,17.7,3.4,45.7,8.1,11.5,1310,14.2,285,284,1800,27,4.23,2.2,,0,,0,8.98,0.6,1.72,6,1.24,410,0,13
+4165,4,165,Vegetables and their products,"Garlic, raw",,0.87,572,64.3,6.8,0.4,25,2.3,1.3,32,1.6,21,158,533,11,0.79,0.15,0,0,0,0,0.01,0.17,0.06,0.5,0.79,4,0,18
+4166,4,166,Vegetables and their products,"Roselle leaves, raw",,0.8,166,86.7,2.8,0.2,4.1,5,1.2,212,4.1,58,65,437,6,0.9,0.18,215,0,2580,0,1.9,0.17,0.45,1.2,0.3,117,0,33
+4167,4,167,Vegetables and their products,"Okra fruit, raw",,0.86,138,89.8,1.7,0.2,4.4,3.2,0.7,84,0.8,13,40,303,8,0.6,0.09,26,0,313,0,0.36,0.04,0.08,0.7,0.22,88,0,28
+4168,4,168,Vegetables and their products,"Onion, raw",,0.91,154,89.5,1.1,0.1,6.9,1.8,0.6,25,0.3,10,39,183,4,0.26,0.04,0,0,1,0,0.04,0.05,0.04,0.2,0.1,16,0,10.3
+4169,4,169,Vegetables and their products,"Tamarind, leaves, raw",,0.8,416,74.3,4,2.1,13.9,4.1,1.6,403,5.2,71,81,292,4,0.72,0.07,21,0,250,0,,0.17,0.11,3.5,0.3,117,0,5
+4170,4,170,Vegetables and their products,"Taro, leaves, raw",,0.6,191,85.7,4.7,0.7,3.3,3.7,1.9,105,2.2,45,56,649,3,0.66,0.27,324,0,3890,0,2.02,0.19,0.4,1.2,0.15,126,0,52
+4171,4,171,Vegetables and their products,"Tomato, red, ripe, raw",,0.91,91,93.5,1,0.2,3.3,1.4,0.6,13,0.6,13,32,255,7,0.7,0.15,52,0,624,0,0.9,0.06,0.04,0.6,0.09,21,0,29.6
+4172,4,172,Vegetables and their products,"Vernonia, leaves, raw",,0.8,231,82.8,4.4,0.6,5.5,5.1,1.6,162,2.8,58,67,437,6,1.01,0.18,241,0,2900,0,1.56,0.16,0.41,1.4,0.3,113,0,27
+4173,4,173,Vegetables and their products,"Amaranth leaves, raw",,0.94,164,87.8,3.8,0.3,4.6,1.4,2.1,380,6.2,93,58,602,13,0.72,0.15,241,0,2890,0,0.24,0.04,0.33,0.9,0.19,79,0,45
+4174,4,174,Vegetables and their products,"Amaranth leaves, boiled* (without salt)",,1,173,87.1,4.6,0.3,4.8,1.5,2.2,380,4.9,58,54,317,10,0.57,0.15,228,0,2740,0,0.25,0.03,0.23,0.6,0.13,42,0,19
+4175,4,175,Vegetables and their products,"Baobab, leaves, boiled* (without salt)",,1,310,75.5,3.7,0.6,9.7,7.6,2.9,313,3.1,33,80,206,5,0.7,0.18,186,0,2230,0,1.49,0.02,0.03,1.3,0.21,62,0,20
+4176,4,176,Vegetables and their products,"Beans, green, boiled* (without salt)",,1,184,86.7,3.4,0.3,5.5,2.7,1.3,48,1,21,56,181,2,0.26,0.07,25,0,302,0,0.3,0.08,0.08,0.5,0.16,37,0,11.7
+4177,4,177,Vegetables and their products,"Cabbage, boiled* (without salt)",,1,118,91,1.6,0.1,3.9,2.7,0.8,40,0.4,7,34,162,9,0.15,0.02,8,0,91,0,0.15,0.03,0.02,0.2,0.07,25,0,22
+4178,4,178,Vegetables and their products,"Cassava, leaves, boiled* (without salt)",,1,432,71.7,7.9,0.9,13.6,3.8,1.9,276,4.4,36,100,318,5,0.54,0.16,271,0,3250,0,2.53,0.17,0.31,1.1,0.21,62,0,16
+4179,4,179,Vegetables and their products,"Cocoyam, leaves, boiled* (without salt)",,1,153,89.7,3.3,0.8,3.2,1.6,1.4,63,1.9,40,57,220,2,0.32,0.27,356,0,4270,0,2.13,0.14,0.29,0.8,0.1,66,0,16
+4180,4,180,Vegetables and their products,"Cowpea, leaves, boiled* (without salt)",,1,184,85.9,4.8,0.3,3.5,3.8,1.7,265,4,38,58,250,5,0.39,0.27,142,0,1700,0,2.48,0.14,0.25,1.1,0.16,68,0,24
+4181,4,181,Vegetables and their products,"Cowpea leaves, dried",,1,1180,10.3,24.4,1.9,29.8,24.1,9.5,1060,34,401,364,2850,40,3.35,1.81,201,0,2407,0,15.8,1.15,2.35,10.2,1.49,673,0,38
+4182,4,182,Vegetables and their products,"Cucumber, raw",,0.81,63,95.5,0.7,0.1,2.5,0.7,0.5,13,0.5,12,26,134,10,0.17,0.07,3,0,35,0,0.03,0.02,0.01,0.3,0.04,6,0,14
+4183,4,183,Vegetables and their products,"Drumstick leaves, boiled* (without salt)",,1,383,75.3,8.8,1.2,10.1,2.1,2.5,434,4.8,44,96,212,5,0.7,0.16,699,0,8380,0,3.23,0.16,0.5,1.9,0.82,108,0,69
+4184,4,184,Vegetables and their products,"Eggplant, boiled* (without salt)",,1,135,90.2,1.2,0.2,5,2.8,0.6,13,0.8,10,23,193,3,0.13,0.08,3,0,31,0,0.03,0.04,0.04,0.4,0.07,15,0,4.1
+4185,4,185,Vegetables and their products,"Eggplant leaves, boiled* (without salt)",,1,198,86.4,4.6,0.8,4.4,2,1.8,332,3.4,37,41,230,5,0.58,0.18,280,0,3360,0,2.05,0.1,0.27,0.9,0.21,62,0,33
+4186,4,186,Vegetables and their products,"False sesame, leaves, raw",,0.8,287,80.6,5.3,0.8,9.1,1.8,2.4,442,3.2,58,63,404,6,0.95,0.49,,0,,0,2.02,0.16,0.41,1.4,0.3,118,0,28
+4187,4,187,Vegetables and their products,"False sesame, leaves, boiled* (without salt)",,1,303,79.6,5.6,0.8,9.6,1.9,2.6,465,3.4,58,49,255,6,0.5,0.39,,0,,0,2.13,0.17,0.43,1,0.21,81,0,21
+4188,4,188,Vegetables and their products,"Jute (bush-okra) leaves, raw",,0.8,248,82.9,3.9,0.3,9.1,2,1.8,360,4.2,58,122,437,6,0.44,0.18,261,0,3130,0,0.79,0.15,0.53,1.2,0.3,118,0,80
+4189,4,189,Vegetables and their products,"Jute (bush-okra) leaves, boiled* (without salt)",,1,261,82,4.2,0.3,9.5,2.1,1.9,360,3.3,37,116,230,5,0.35,0.18,247,0,2960,0,0.83,0.1,0.36,0.8,0.21,62,0,34
+4190,4,190,Vegetables and their products,"Lettuce, raw",,0.7,75,94.5,1,0.2,2.3,1.2,0.8,27,0.8,9,28,204,10,0.29,0.05,93,0,1120,0,0.6,0.06,0.15,0.4,0.2,89,0,5.3
+4191,4,191,Vegetables and their products,"Okra leaves, boiled* (without salt)",,1,178,85.5,2.8,0.3,4.6,5.2,1.7,297,0.5,24,69,105,3,0.7,0.01,53,0,637,0,0.77,0.11,0.28,0.1,0.21,62,0,15.2
+4192,4,192,Vegetables and their products,"Okra fruit, boiled* (without salt)",,1,158,88.4,1.9,0.3,5,3.6,0.7,87,0.8,12,42,234,7,0.58,0.09,28,0,341,0,0.4,0.03,0.07,0.5,0.17,54,0,19
+4193,4,193,Vegetables and their products,"Onion, boiled* (without salt)",,1,88,87.2,1.4,0.1,8.4,2.2,0.8,29,0.3,7,43,101,3,0.24,0.05,0,0,1,0,0.05,0.04,0.04,0.2,0.08,10,0,4.2
+4194,4,194,Vegetables and their products,"Onions, dried",,1,1500,4.2,9.6,1.1,71.1,10.7,3.4,239,2.1,64,282,1510,21,1.8,0.42,1,0,11,0,0.4,0.37,0.1,0.9,1.6,166,0,54
+4195,4,195,Vegetables and their products,"Parsley, fresh",,0.95,199,84.9,3.5,0.4,5.7,3.3,2.2,217,4.9,27,58,600,28,0.77,0.16,583,0,7000,0,0.75,0.14,0.21,1.3,0.22,170,0,175
+4196,4,196,Vegetables and their products,"Peppers, chilli, raw",,0.73,191,87.3,1.9,0.3,7.6,2.2,0.7,16,1.1,24,43,331,8,0.29,0.15,53,0,640,0,0.69,0.08,0.09,1.1,0.39,23,0,193.1
+4197,4,197,Vegetables and their products,"Pepper, sweet, red, raw",,0.83,140,90.3,1.3,0.3,5.2,2.1,0.8,12,0.4,12,39,267,6,0.33,0.05,191,0,2300,0,1.73,0.07,0.09,1.2,0.32,45,0,161.2
+4198,4,198,Vegetables and their products,"Pepper, sweet, red, boiled* (without salt)",,1,161,88.8,1.5,0.4,6,2.4,0.9,13,0.4,11,40,208,5,0.32,0.05,211,0,2530,0,1.93,0.05,0.08,0.9,0.25,28,0,113
+4199,4,199,Vegetables and their products,"Pepper, sweet, green, raw",,0.83,109,92.2,0.9,0.2,4.1,2,0.5,17,0.3,9,31,239,6,0.12,0.07,29,0,353,0,0.7,0.08,0.09,0.5,0.28,26,0,112.9
+4200,4,200,Vegetables and their products,"Pepper, sweet, green, boiled* (without salt)",,1,125,91.1,1,0.3,4.7,2.3,0.6,17,0.3,8,32,187,5,0.12,0.07,32,0,390,0,0.78,0.07,0.08,0.4,0.22,16,0,79.1
+4201,4,201,Vegetables and their products,"Pumpkin, squash, raw",,0.7,121,91.9,1,0.1,5.6,0.8,0.7,19,1.2,14,33,280,8,0.32,0.13,100,0,1200,0,1.06,0.05,0.02,0.5,0.1,8,0,8
+4202,4,202,Vegetables and their products,"Pumpkin, squash, boiled* (without salt)",,1,132,91.2,1.1,0.1,6.1,0.8,0.8,19,1.1,12,33,207,7,0.3,0.12,104,0,1250,0,1.12,0.04,0.02,0.4,0.08,5,0,5.3
+4203,4,203,Vegetables and their products,"Pumpkin leaves, raw",,0.41,115,90.4,3.7,0.3,1.3,2.4,1.9,39,2.2,38,125,468,11,0.2,0.13,192,0,2300,0,0.96,0.09,0.08,0.6,0.21,36,0,11
+4204,4,204,Vegetables and their products,"Pumpkin leaves, boiled* (without salt)",,1,121,89.9,3.9,0.3,1.4,2.5,2,39,1.8,24,118,246,9,0.16,0.13,182,0,2180,0,1.01,0.06,0.06,0.4,0.14,19,0,4.6
+4205,4,205,Vegetables and their products,"Pumpkin leaves, dried",,1,1060,19,34.5,2.3,14.5,18,11.7,330,18.8,322,1058,3690,93,1.69,1.13,324,0,3890,0,8.12,0.63,0.66,5,1.65,238,0,9.3
+4206,4,206,Vegetables and their products,"Roselle leaves, boiled* (without salt)",,1,175,86,3,0.3,4.3,5.3,1.2,212,3.2,37,61,230,5,0.71,0.18,204,0,2450,0,2,0.12,0.31,0.8,0.21,62,0,14
+4207,4,207,Vegetables and their products,"Spinach, raw",,0.72,115,90.9,2.8,0.6,1.7,2.2,1.8,133,3.1,53,45,502,87,0.8,0.08,409,0,6040,0,2.31,0.08,0.17,0.9,0.19,176,0,36
+4208,4,208,Vegetables and their products,"Spinach, boiled* (without salt)",,1,122,90.5,2.9,0.6,1.8,2.3,1.9,133,2.5,33,43,264,68,0.61,0.08,387,0,4650,0,3.1,0.06,0.21,0.6,0.13,93,0,15
+4209,4,209,Vegetables and their products,"Sweet potato, leaves, raw",,0.8,215,84.7,4.4,0.2,6.7,2.3,1.8,37,3.6,61,87,522,9,0.29,0.04,489,0,5870,0,0.96,0.13,0.31,1,0.19,80,0,11
+4210,4,210,Vegetables and their products,"Sweet potato leaves, boiled* (without salt)",,1,226,83.3,4.6,0.2,7,2.4,1.9,37,2.8,39,83,291,7,0.23,0.04,463,0,5560,0,1.01,0.09,0.21,0.7,0.13,42,0,5
+4211,4,211,Vegetables and their products,"Tamarind, leaves, boiled* (without salt)",,1,436,72.9,4.2,2.2,14.6,4.3,1.7,403,4.1,45,77,153,3,0.57,0.07,20,0,237,0,,0.12,0.07,2.4,0.21,62,0,2
+4212,4,212,Vegetables and their products,"Tamarind, leaves, dried",,1,1560,3.9,14,8,53.3,15.3,5.5,1500,19.4,265,302,1090,14,2.7,0.26,16,0,187,0,,0.55,0.37,12.3,1.04,341,0,1.7
+4213,4,213,Vegetables and their products,"Taro, leaves, boiled* (without salt)",,1,201,84.9,4.9,0.7,3.5,3.9,2,105,1.7,28,53,342,2,0.52,0.27,307,0,3690,0,2.13,0.13,0.28,0.8,0.1,66,0,22
+4214,4,214,Vegetables and their products,"Tomato, red, ripe, boiled* (without salt)",,1,117,91.7,1.3,0.2,4.2,1.8,0.7,15,0.6,13,37,222,7,0.76,0.16,64,0,768,0,1.12,0.05,0.04,0.5,0.08,15,0,23.2
+4215,4,215,Vegetables and their products,"Tomatoes, canned, packed in juice",,1,83,94.1,1,0.2,3,1,0.7,25,0.8,11,19,209,108,0.2,0.08,22,0,261,0,0.96,0.05,0.04,0.7,0.11,17,0,10.9
+4216,4,216,Vegetables and their products,"Tomato paste, concentrated",,1,376,73.5,4.3,0.5,14.8,4.1,2.8,64,3,60,86,1010,98,0.4,0.3,75,0,901,0,4.6,0.06,0.15,3.1,0.22,10,0,17.8
+4217,4,217,Vegetables and their products,"Tomato, powder",,1,1360,3.1,12.9,0.4,58.2,16.5,8.9,166,4.6,178,295,1930,134,1.71,1.24,862,0,10348,0,12.25,0.91,0.76,9.1,0.46,120,0,116.7
+4218,4,218,Vegetables and their products,"Turnip, raw ",,0.81,117,91.3,0.9,0.2,4.4,2.5,0.7,41,0.3,15,35,262,44,0.22,0.1,3,0,36,0,,0.04,0.04,0.8,0.08,24,0,23.7
+4219,4,219,Vegetables and their products,"Turnip, boiled* (without salt)",,1,130,90.3,1.1,0.2,4.9,2.8,0.8,41,0.2,13,35,198,37,0.2,0.09,3,0,38,0,,0.03,0.03,0.6,0.06,14,0,16
+4220,4,220,Vegetables and their products,"Vernonia, leaves, boiled* (without salt)",,1,244,81.8,4.6,0.6,5.8,5.4,1.7,162,2.2,37,63,230,5,0.8,0.18,229,0,2740,0,1.64,0.11,0.28,1,0.21,62,0,11
+5221,5,221,Fruits and their products,"African locust bean, fruit, pulp, raw",,,1280,15.9,3.3,0.9,64,12.6,3.2,118,3.6,88,123,1670,5,0.8,0.02,203,0,2430,0,,1.07,0.7,1.3,,,0,234
+5222,5,222,Fruits and their products,"Avocado, pulp, raw",,0.74,634,76.5,1.7,14.7,1.4,4.7,1.1,15,0.8,32,46,492,4,0.51,0.23,6,0,68,0,1.6,0.06,0.15,1.8,0.35,35,0,14
+5223,5,223,Fruits and their products,"Banana, white flesh, raw",,0.64,421,73.6,1.2,0.2,22.1,2,0.8,7,0.3,29,24,369,2,0.17,0.08,4,0,50,0,0.37,0.04,0.04,0.6,0.34,19,0,10.4
+5224,5,224,Fruits and their products,"Baobab, fruit/Monkey bread, pulp, raw",,0.28,1280,17.7,2.4,0.6,68.2,6.8,4.3,276,5.5,91,83,1020,,3.6,0.7,6,0,70,0,,0.37,0.06,2.1,0.02,,0,247
+5225,5,225,Fruits and their products,"Breadfruit, raw",,0.8,456,71.7,1.5,0.3,23.9,1.9,0.9,29,2,,34,422,13,,,1,0,15,0,,0.09,0.05,1,,,0,27.7
+5226,5,226,Fruits and their products,"Cashew apple, pulp, raw",,1,235,85.8,1,0.7,10.7,1.5,0.4,11,1.2,10,35,140,6,,,25,0,296,0,,0.03,0.12,0.3,,,0,241
+5227,5,227,Fruits and their products,"Dattock, pulp, raw",,0.47,530,66.9,1.9,0.4,27.3,2.3,1.2,27,0.5,20,48,345,2,0.17,0.1,14,0,165,0,0.04,0.13,0.05,0.6,0.1,21,0,1130
+5228,5,228,Fruits and their products,"Dattock, dried pulp, raw",,1,1360,14,3.4,1,71.2,7.1,3.3,110,1.4,53,125,807,5,0.44,0.24,7,0,86,0,0.11,0.27,0.12,1.4,0.25,33,0,294
+5229,5,229,Fruits and their products,"Guava, fruit, raw",,0.78,238,82.9,1,0.4,9.5,5.6,0.6,23,0.7,13,32,270,4,0.32,0.06,35,0,419,0,0.32,0.05,0.04,1.2,0.14,7,0,261
+5230,5,230,Fruits and their products,"Gumvine, raw",,0.32,319,80.4,0.7,0.2,17.1,1.3,0.4,53,1.3,116,32,,4,,0.03,,0,,0,,0.13,0.03,0.7,0.02,,0,36
+5231,5,231,Fruits and their products,"Jujube, raw",,0.93,387,76.3,1.5,0.3,20,1.5,0.5,32,0.8,10,24,255,3,0.07,0.07,2,0,22,0,,0.02,0.03,1,0.08,,0,62.8
+5232,5,232,Fruits and their products,"Landolphia, pulp, raw",,0.36,266,83.7,0.8,0.1,14.5,0.3,0.6,14,1.2,45,29,180,,0.52,0.03,,0,,0,,0.04,0.03,0.1,0.06,,0,35.6
+5233,5,233,Fruits and their products,"Lemon, raw",,0.64,150,90.2,0.4,0.5,6.3,2.1,0.3,21,0.6,16,20,156,5,0.1,0.04,1,0,9,0,0.15,0.04,0.02,0.3,0.05,11,0,45.5
+5234,5,234,Fruits and their products,"Mango, orange flesh,  raw",,0.71,272,82.7,0.6,0.2,13.9,2.1,0.5,17,0.7,9,18,180,3,0.11,0.06,168,0,2020,0,1.05,0.03,0.05,0.4,0.11,25,0,36.3
+5235,5,235,Fruits and their products,"Orange, raw",,0.73,190,87.8,0.7,0.3,8.9,1.7,0.5,31,0.2,11,19,166,2,0.1,0.05,8,0,90,0,0.28,0.04,0.03,0.2,0.07,33,0,46.8
+5236,5,236,Fruits and their products,"Papaya, fruit, ripe, raw",,0.62,151,89.8,0.5,0.1,7.3,1.9,0.4,20,0.7,19,15,210,3,0.12,0.02,80,0,996,0,0.13,0.03,0.03,0.4,0.02,25,0,58
+5237,5,237,Fruits and their products,"Pineapple, pulp, raw",,0.51,228,85.8,0.4,0.2,12,1.3,0.3,20,0.5,12,12,205,2,0.11,0.2,5,0,61,0,0.1,0.07,0.03,0.2,0.09,12,0,29.8
+5238,5,238,Fruits and their products,"Soapberry, fruit, raw",,0.57,465,71.4,1.6,,25.5,0.5,1,23,3,2,90,,,,0.05,30,0,360,0,,0.03,0.04,,,,0,51.5
+5239,5,239,Fruits and their products,"Tamarind, immature fruit, raw",,,250,80.1,2.2,0.2,8.1,8.4,1,60,0.7,19,61,308,3,0.03,0.02,1,0,10,0,0.03,0.24,0.07,0.5,0.02,4,0,9.5
+5240,5,240,Fruits and their products,"Tamarind, fruit, ripe, raw",,0.47,1050,26.9,4.2,0.6,47.6,18.3,2.4,151,2.2,68,103,648,11,0.11,0.09,1,0,7,0,0.09,0.26,0.14,1,0.07,15,0,3.5
+5241,5,241,Fruits and their products,"Watermelon, fruit, raw",,0.56,124,92.5,0.5,0.2,6.2,0.3,0.3,7,0.3,10,9,109,3,0.1,0.03,42,0,503,0,0.05,0.03,0.04,0.1,0.07,4,0,7.2
+5242,5,242,Fruits and their products,"African fan palm, fruit, pulp, raw",,,185,87.6,0.8,0.1,8.9,2,0.6,27,1,,30,54,1,,,,0,,0,,0.04,0.02,0.3,,,0,4
+5243,5,243,Fruits and their products,"African locust bean, flour from fruit, pulp",,1,1410,7.7,4.6,1.3,69,13.3,4.1,162,4,96,135,1650,6,1.1,0.02,44,0,533,0,,0.94,0.74,1.2,,,0,26
+5244,5,244,Fruits and their products,"Akee, pulp, raw",,,845,69.2,6.8,18.2,2.7,1.6,1.6,26,2.7,97,51,340,,,,46,0,555,0,,0.13,0.14,1.4,,,0,26
+5245,5,245,Fruits and their products,"Apple, with skin, raw",,0.9,224,85.6,0.3,0.2,11.4,2.4,0.2,6,0.1,5,11,107,1,0.04,0.03,3,0,33,0,0,0.02,0.03,0.1,0.04,3,0,4.6
+5246,5,246,Fruits and their products,"Apple, without skin, raw",,0.77,215,86.7,0.3,0.1,11.5,1.3,0.2,5,0.1,4,11,90,0,0.05,0.03,2,0,24,0,0,0.02,0.03,0.1,0.04,0,0,4
+5247,5,247,Fruits and their products,"Banana, yellow flesh, raw",,0.64,448,72,1.4,0.2,23.6,2,0.8,6,0.3,29,25,376,2,0.2,0.08,119,0,1430,0,0.37,0.03,0.04,0.6,0.34,17,0,13.4
+5248,5,248,Fruits and their products,"Clementine, raw",,0.77,201,87,0.9,0.1,9.9,1.7,0.4,31,0.1,10,20,154,3,0.08,0.03,6,0,75,0,0,0.09,0.04,0.5,0.07,21,0,51.4
+5249,5,249,Fruits and their products,"Dates, raw",,0.9,632,60.7,1.5,0.1,34.2,2.7,0.8,24,0.3,24,28,410,2,0.2,0.12,2,0,18,0,0.05,0.06,0.07,0.7,0.12,25,0,14
+5250,5,250,Fruits and their products,"Dates, dried",,1,1300,18.7,2.3,0.3,70.1,6.9,1.6,46,1.1,45,56,669,4,0.36,0.28,1,0,7,0,0.1,0.06,0.08,1.6,0.2,36,0,3
+5251,5,251,Fruits and their products,"Fig, raw ",,0.99,297,80.9,1.1,0.3,14.5,2.6,0.7,44,0.5,17,17,221,2,0.24,0.07,4,0,50,0,0,0.06,0.06,0.6,0.11,7,0,2
+5252,5,252,Fruits and their products,"Fig, dried ",,0.99,1170,25.7,3.4,1.1,58.4,9.6,1.9,202,2.1,80,80,887,10,0.72,0.28,2,0,23,0,0,0.08,0.09,0.7,0.14,10,0,1.2
+5253,5,253,Fruits and their products,"Fruit cocktail, canned in syrup",,1,304,81.1,0.4,0.1,16.4,1.7,0.2,6,0.3,5,11,93,5,0.09,0.05,5,0,54,0,0.6,0.02,0.02,0.4,0.04,3,0,3
+5254,5,254,Fruits and their products,"Grapefruit, pulp, raw",,0.49,141,90.7,0.7,0.1,6.8,1.2,0.5,20,0.3,9,16,164,2,0.07,0.05,1,0,18,0,0.25,0.05,0.02,0.2,0.04,12,0,36.1
+5255,5,255,Fruits and their products,"Mango, deep orange flesh",,0.71,323,79.7,0.4,0.2,17.3,2.1,0.3,12,0.7,9,14,157,2,0.1,0.09,393,0,4720,0,1.05,0.09,0.03,0.4,0.13,29,0,65.5
+5256,5,256,Fruits and their products,"Mango, pale flesh, raw",,0.71,221,85.5,0.5,0.2,11.1,2.1,0.3,8,0.6,7,14,138,,0.1,0.06,59,0,708,0,1.05,0.04,0.03,0.3,0.09,21,0,7.9
+5257,5,257,Fruits and their products,"Melon, honeydew, raw",,0.46,123,92,0.6,0.1,6,0.8,0.6,7,0.3,9,16,228,27,0.09,0.03,3,0,31,0,0.08,0.03,0.01,0.5,0.07,12,0,14.2
+5258,5,258,Fruits and their products,"Melon, cantaloup, raw",,0.51,140,90.8,0.7,0.2,6.7,0.9,0.7,13,0.2,12,22,248,13,0.18,0.04,158,0,1900,0,0.07,0.04,0.02,0.7,0.08,16,0,30.2
+5259,5,259,Fruits and their products,"Palm nuts, pulp, raw",,0.4,2180,28.7,1.8,50.7,14.1,3.8,1,53,4.8,,56,,,,,,0,,,,0.2,0.1,1.4,,,0,12
+5260,5,260,Fruits and their products,"Pomegranate, raw",,0.56,330,78.7,1.4,0.6,14.8,4,0.5,12,0.7,9,33,243,3,0.38,0.14,2,0,23,0,0.6,0.07,0.05,0.3,0.13,24,0,15.1
+5261,5,261,Fruits and their products,"Plantain, ripe, raw",,0.65,593,63.3,1.2,0.3,32,2.3,1,7,0.9,37,34,500,4,0.12,0.08,43,0,518,0,0.2,0.07,0.05,0.7,0.3,22,0,18.4
+5262,5,262,Fruits and their products,"Plantain, ripe, boiled* (without salt)",,1,564,65,1.1,0.3,30.5,2.2,0.9,6,0.8,32,30,381,3,0.1,0.07,39,0,469,0,0.19,0.05,0.04,0.5,0.21,13,0,12.2
+5263,5,263,Fruits and their products,"Shea fruit pulp, raw",,1,413,73.3,1.5,0.9,19.1,3.7,1.5,37,1.8,6,26,13,3,0.18,0.08,66,0,795,0,,0.01,0.03,1,,,0,19.1
+5264,5,264,Fruits and their products,"Sweet apple, fruit, raw",,0.6,387,75.7,1.4,0.2,20.2,1.7,0.9,24,0.7,21,33,264,9,,,0,0,3,0,,0.11,0.13,0.9,0.2,,0,36
+6265,6,265,"Nuts, seeds and their products","Cashew nut, raw",,1,2430,5.3,17.7,44.4,27,3.1,2.5,44,6.4,267,509,641,14,4.59,2.15,0,0,3,0,0.78,0.6,0.18,1.5,0.45,46,0,0.3
+6266,6,266,"Nuts, seeds and their products","Coconut, mature kernel, fresh, raw",,0.7,1600,43.1,3.6,36.9,6.2,9.3,1,17,2.4,38,106,415,22,0.84,0.42,0,0,0,0,0.73,0.04,0.02,0.5,0.05,27,0,2.2
+6267,6,267,"Nuts, seeds and their products","Coconut, immature kernel, fresh, raw",,0.3,668,74,1.6,13.5,6.7,3.3,0.8,19,2.2,17,111,218,8,0.39,0.19,0,0,0,0,0.27,0.07,0.05,0.6,0.02,12,0,2
+6268,6,268,"Nuts, seeds and their products","Coconut, kernel, dried, raw",,1,2500,8.6,5.9,56.4,10.2,17,1.9,32,3.4,74,177,617,33,1.5,0.8,0,0,0,0,1.2,0.08,0.08,0.9,0.08,26,0,0.3
+6269,6,269,"Nuts, seeds and their products",Coconut milk ,,1,902,71.1,2.1,22.1,1.7,2.2,0.7,17,2.7,43,97,234,14,0.64,0.23,0,0,0,0,0.7,0.03,0.02,0.7,0.03,15,0,1.6
+6270,6,270,"Nuts, seeds and their products",Coconut water,,1,85,94.3,0.4,0.3,3.5,1.1,0.4,24,0.2,24,23,270,86,0.1,0.04,0,0,0,0,0,0.03,0.07,0.1,0.03,3,0,2.1
+6271,6,271,"Nuts, seeds and their products","Dikanut, kernel, dried, raw",,1,2900,5.3,7.9,66.9,16.4,2.2,1.3,164,3.4,,202,,2,0.29,0.14,,0,,0,,0.18,0.09,0.7,,,0,
+6272,6,272,"Nuts, seeds and their products","Groundnut, shelled, dried, raw",,1,2390,6.3,22.4,45.9,14.6,8.5,2.3,47,3.9,191,359,727,6,2.5,0.86,0,0,0,0,10.9,0.87,0.14,15.5,0.59,110,0,0
+6273,6,273,"Nuts, seeds and their products","Groundnut, rose, shelled, dried, raw (Benin)",,1,2350,6.2,20.4,43.2,20.3,7.7,2.2,34,3.7,195,336,711,6,3.65,1.12,0,0,0,0,10.09,0.87,0.14,15.5,0.59,110,0,0
+6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",,1,2390,5.1,21.7,45.1,16.5,9.4,2.3,44,2.3,193,335,791,6,2.84,1.04,0,0,0,0,10.09,0.87,0.14,15.5,0.59,110,0,0
+6275,6,275,"Nuts, seeds and their products","Melon seeds, slightly salted, raw",,0.37,2460,6.4,27.5,47.9,11.3,3.2,3.7,112,6.1,510,867,648,99,7.12,1.54,,0,,0,,0.1,0.12,2.8,0.09,58,0,
+6276,6,276,"Nuts, seeds and their products","Sesame seeds, whole, dried, raw",,1,2380,5.1,18.2,48.9,10,11.8,6,983,11.8,351,643,468,11,7.75,4.08,3,0,30,0,0.25,0.68,0.19,3.4,0.79,97,0,
+6277,6,277,"Nuts, seeds and their products","Shea nut, seed kernel, dried, raw",,0.72,2430,6.3,6.8,46.4,32.5,5.5,2.5,100,3.4,,82,,,,,,0,,0,,0.52,,,,,0,
+6278,6,278,"Nuts, seeds and their products","Colanut, raw",,,684,58.2,2.9,0.4,35.5,1.9,1.1,44,2,71,86,,,,0.15,0,0,0,0,,0.04,0.02,0.7,,,0,
+6279,6,279,"Nuts, seeds and their products","Colanut, dried, raw",,,1450,11.5,5.8,1.5,74.3,4,2.9,108,6,150,176,,,,0.32,1,0,,0,,0.06,0.05,1.3,,,0,
+6280,6,280,"Nuts, seeds and their products","Groundnut, Sinkarzie, shelled, dried,  raw (Ghana); n=1",,1,2420,7.5,20.6,48.8,11.7,8.4,3,56,7.4,191,415,718,6,2.5,0.85,0,0,0,0,11.59,0.86,0.13,15.3,0.58,109,0,0
+6281,6,281,"Nuts, seeds and their products","Groundnut, F-mix, shelled, dried,  raw (Ghana); n=1",,1,2380,9,22.3,47.6,10.4,8.3,2.5,49,5.3,191,400,706,6,2.5,0.84,0,0,0,0,11.3,0.85,0.13,15,0.57,107,0,0
+6282,6,282,"Nuts, seeds and their products","Groundnut, JL 24, shelled, dried, raw (Ghana); n=1",,1,2200,8,25.2,38.1,17.6,8.4,2.7,50,6.7,191,411,714,6,2.5,0.84,0,0,0,0,6.68,0.86,0.13,15.2,0.58,108,0,0
+6283,6,283,"Nuts, seeds and their products","Groundnut, Chinese, shelled, dried, raw (Ghana); n=1",,1,2330,4.5,20.5,41.1,22.9,8.7,2.3,48,3.2,191,396,742,6,2.6,0.88,0,0,0,0,9.78,0.89,0.14,15.8,0.6,112,0,0
+6284,6,284,"Nuts, seeds and their products","Groundnut, Manipintar, shelled, dried, raw (Ghana); n=1",,1,2390,7.1,23.3,46.7,11.6,8.5,2.8,53,8.2,191,347,721,6,2.5,0.85,0,0,0,0,11.1,0.87,0.13,15.3,0.58,109,0,0
+6285,6,285,"Nuts, seeds and their products","Groundnut, combined varieties, shelled, dried, raw (Ghana)",,1,2350,7.2,22.4,44.5,14.8,8.5,2.6,51,6.2,191,394,720,6,2.5,0.85,0,0,0,0,10.09,0.87,0.13,15.3,0.58,109,0,0
+6286,6,286,"Nuts, seeds and their products",Groundnut paste,,1,2460,7.2,25,47.2,16.5,1.5,2.6,61,4,191,349,720,17,2,0.42,0,0,0,0,10.09,0.39,0.14,15.3,0.59,110,0,0
+6287,6,287,"Nuts, seeds and their products","Groundnut flour, with fat",,1,2430,4.3,26.6,46.4,10.6,9.9,2.1,41,4,195,366,743,6,2.6,0.88,0,0,0,0,11.03,0.89,0.14,9.9,0.6,112,0,0
+6288,6,288,"Nuts, seeds and their products","Groundnut flour, defatted",,1,1710,5,42.5,9.9,35.3,3.1,4.2,60,4,194,364,737,6,2.55,0.87,0,0,0,0,2.35,0.89,0.14,15.7,0.6,111,0,0
+6289,6,289,"Nuts, seeds and their products","Palm nut kernel, shelled, raw",,,2520,13.5,6.1,55.3,19.6,4,1.5,91,9,232,239,270,,2.37,1.49,,0,,0,,,,,,,0,
+6290,6,290,"Nuts, seeds and their products","Roselle, red, seed, dried ",,1,1760,7,16.8,17.8,42.5,11,4.9,373,4.2,,462,,,0.6,,,0,,0,,0.11,0.37,1.3,,,0,
+7291,7,291,Meat and poultry and their products,"Beef liver, raw",,1,558,71,19.4,4.4,3.9,0,1.3,7,8.8,18,369,313,69,3.5,9.76,4970,4950,245,1.2,0.38,0.19,1.56,13.2,1.08,290,59.3,1.3
+7292,7,292,Meat and poultry and their products,"Beef, meat, 15-20  % fat, boneless, raw",,1,978,64.3,18.4,18,0,0,1,8,2.9,25,182,305,70,3.4,0.12,16,16,0,0.6,0.35,0.06,0.28,5.6,0.32,6,1.1,0
+7293,7,293,Meat and poultry and their products,"Chicken, dark meat, flesh, raw",,0.44,563,72.9,20.4,5.9,0,0,1,11,1.1,24,194,276,84,1.36,0.05,17,17,0,0.2,0.26,0.09,0.16,7,0.34,16,0.4,0
+7294,7,294,Meat and poultry and their products,"Lamb/mutton, meat, moderately fat, raw",,0.82,1060,60.6,16.5,21.2,0,0,1,10,2.1,22,149,250,76,3.33,0.11,10,10,0,0.3,0.21,0.13,0.19,3.5,0.4,2,2.9,0
+7295,7,295,Meat and poultry and their products,"Pork, meat, approx. 40 % fat, boneless, raw",,1,1640,46.6,12.3,38.8,0,0,1.2,11,1.8,16,165,300,60,3.6,0.1,0,0,0,1,0.1,0.6,0.17,3.6,0.38,3,0.7,0
+7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless, raw",,1,1100,60.1,16.8,22,0,0,1.1,10,1.4,20,170,301,68,3.6,0.1,0,0,0,0.7,0.1,0.72,0.22,3.8,0.32,2,0.8,0
+7297,7,297,Meat and poultry and their products,"Rabbit, flesh only, raw",,0.76,536,72.7,21.6,4.8,0,0,1,16,1.2,27,212,351,60,1.7,0.15,10,10,0,0,0.8,0.11,0.15,9.5,0.57,5,10,0
+7298,7,298,Meat and poultry and their products,"Ant flying, dried",, ,2490,2.9,38.8,46.9,5.5,,5.9,91,35.2,,609,476,1970,,,,,,,,0.13,4.5,5.7,,,,
+7299,7,299,Meat and poultry and their products,"Beef, meat, lean, boneless, raw",,1,528,73.2,21.7,4.3,0,0,1,5,2.1,22,170,360,50,3.6,0.09,0,0,0,0.4,0.23,0.06,0.19,6.2,0.23,7,1.4,0
+7300,7,300,Meat and poultry and their products,"Beef, meat, lean, boiled *(without salt)",,1,880,55.3,36.2,7.2,0,0,1.7,7,3.5,22,184,300,38,6,0.14,0,0,0,0.5,0.29,0.04,0.26,5.2,0.15,8,1.4,0
+7301,7,301,Meat and poultry and their products,"Beef, meat, lean, grilled *(without salt and fat)",,1,743,62.8,30.1,6,0,0,1.4,6,2.8,26,213,425,59,5,0.12,0,0,0,0.3,0.18,0.05,0.24,6.9,0.19,8,1.6,0
+7302,7,302,Meat and poultry and their products,"Beef, meat, 15-20  % fat, boiled* (without salt)",,1,1310,49.1,30.6,21.3,0,0,1.6,11,4.8,25,197,254,52,5.7,0.19,19,19,0,0.8,0.44,0.04,0.37,4.7,0.21,6,1.1,0
+7303,7,303,Meat and poultry and their products,"Beef, meat, 15-20  % fat, grilled* (without salt and fat)",,1,1170,55.4,25.5,19.9,0,0,1.3,10,3.8,30,228,359,82,4.7,0.16,16,16,0,0.5,0.27,0.06,0.35,6.2,0.27,6,1.6,0
+7304,7,304,Meat and poultry and their products,"Beef, meat, approx. 30 % fat, boneless, raw",,1,1330,54.2,16.4,28.4,0,0,0.8,4,1.6,17,170,272,62,3.9,0.06,42,42,0,0.9,0.9,0.03,0.14,5,0.32,7,1.4,0
+7305,7,305,Meat and poultry and their products,"Beef, meat, approx. 30 % fat, boiled* (without salt)",,1,1900,32.3,27.3,38.7,0,0,1.3,5,2.7,17,184,227,47,6.5,0.1,53,53,0,1.1,1.13,0.02,0.18,4.2,0.21,7,1.4,0
+7306,7,306,Meat and poultry and their products,"Beef, meat, approx. 30 % fat, grilled* (without salt and fat)",,1,1660,41.4,22.8,34.4,0,0,1.1,5,2.1,20,213,321,73,5.4,0.08,44,44,0,0.7,0.69,0.03,0.17,5.6,0.27,8,1.6,0
+7307,7,307,Meat and poultry and their products,"Beef, meat, lean, cured, dried",,1,755,53.8,31.1,1.9,9.1,0,4.1,8,2.4,19,181,235,2790,4.93,0.07,0,0,0,0,0.38,0.07,0.16,5.2,0.39,10,1.6,0
+7308,7,308,Meat and poultry and their products,"Beef liver, boiled* (without salt)",,1,845,56.2,29.4,6.6,5.9,0,2,9,12.6,22,391,285,63,5.3,14.78,6020,6000,297,1.6,0.52,0.2,3.34,10,0.74,286,53.9,1.4
+7309,7,309,Meat and poultry and their products,"Beef, kidney, raw",,0.84,415,77.9,17.4,3.1,0.3,0,1.3,13,4.6,17,257,262,182,1.92,0.43,419,419,0,1.1,0.22,0.36,2.84,8,0.67,98,27.5,9.4
+7310,7,310,Meat and poultry and their products,"Beef, kidney, stewed *(without salt)",,1,659,64.9,27.6,4.9,0.5,0,2.1,21,6.9,23,326,291,202,3.05,0.68,532,532,0,1.6,0.31,0.48,4.28,10.8,0.84,101,31,11.2
+7311,7,311,Meat and poultry and their products,"Beef, tripe, raw",,1,342,84.2,12.1,3.7,0,0,0.6,69,0.6,13,64,67,97,1.42,0.07,0,0,0,0,0.09,0,0.06,0.9,0.01,5,1.4,0
+7312,7,312,Meat and poultry and their products,"Beef, tripe, boiled* (without salt)",,1,481,77.7,17,5.2,0,0,0.8,78,0.8,15,63,57,82,2,0.1,0,0,0,0,0.11,0,0.07,0.6,0.01,5,1,0
+7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",,1,710,69.5,20.1,10,0,0,1,12,2.2,20,184,321,66,4.79,0.07,0,0,0,0.1,0.32,0.04,0.16,5.1,0.37,6,2.2,0
+7314,7,314,Meat and poultry and their products,"Beef, ground stewed* (without salt)",,1,885,60.4,27.8,11.2,0,0,1.4,13,3.1,17,166,223,41,6.65,0.1,0,0,0,0.1,0.33,0.02,0.17,3.5,0.21,5,1.8,0
+7315,7,315,Meat and poultry and their products,"Beef, meat, cured, corned, canned",,1,1010,57.7,27.1,14.9,0,0,2.9,12,2.1,14,111,136,1010,3.57,0.06,0,0,0,0.2,0.15,0.02,0.15,2.4,0.13,9,1.6,0
+7316,7,316,Meat and poultry and their products,"Bamboo caterpillar, deep fried",,,2670,4.5,25.5,55.3,11,,3.7,4,2.7,,356,674,609,,,,,,,,,,,,,,
+7317,7,317,Meat and poultry and their products,"Game meat, dried",,1,1390,23.4,66.7,7,0,0,3.4,15,9.9,67,586,923,2210,6.06,0.73,0,0,0,,0.58,0.64,1.39,18.5,1.07,12,18.3,0
+7318,7,318,Meat and poultry and their products,"Chicken, dark meat, flesh, boiled* (without salt)",,0.37,663,66.5,26.8,5.6,0,0,1.3,12,1.1,22,178,145,44,1.79,0.07,12,12,0,0.1,0.18,0.06,0.2,5.5,0.27,10,0.2,0
+7319,7,319,Meat and poultry and their products,"Chicken, dark meat, flesh, grilled* (without salt and fat)",,0.41,653,67.2,26.1,5.6,0,0,1.3,13,1.2,23,199,283,86,1.74,0.06,16,16,0,0.1,0.26,0.07,0.19,7.2,0.26,12,0.3,0
+7320,7,320,Meat and poultry and their products,"Chicken, dark meat, flesh and skin, raw",,0.65,962,65.4,16.7,18.3,0,0,0.8,11,1,19,136,178,73,1.58,0.05,49,49,0,0.2,0.3,0.06,0.15,5.2,0.25,7,0.3,0
+7321,7,321,Meat and poultry and their products,"Chicken, dark meat, flesh and skin, boiled* (without salt)",,0.59,1110,58.6,22,20,0,0,1,12,1,18,125,94,38,2.08,0.07,35,35,0,0.1,0.22,0.04,0.18,4.1,0.2,5,0.2,0
+7322,7,322,Meat and poultry and their products,"Chicken, dark meat, flesh and skin, grilled* (without salt and fat)",,0.59,1100,59.3,21.4,19.8,0,0,1,13,1.1,18,139,183,75,2.03,0.07,47,47,0,0.2,0.31,0.05,0.17,5.3,0.19,5,0.2,0
+7323,7,323,Meat and poultry and their products,"Chicken, light meat, flesh, raw",,0.55,452,74.5,23.6,1.4,0,0,1,9,0.6,28,204,305,64,0.84,0.05,8,8,0,0.2,0.18,0.1,0.12,10.7,0.53,9,,0
+7324,7,324,Meat and poultry and their products,"Chicken, light meat, flesh, boiled* (without salt)",,0.48,595,66.5,31.1,1.8,0,0,1.3,10,0.6,26,187,160,34,1.1,0.06,6,6,0,0.1,0.13,0.07,0.15,8.4,0.41,6,0.3,0
+7325,7,325,Meat and poultry and their products,"Chicken, light meat, flesh, grilled* (without salt and fat)",,0.49,580,67.3,30.3,1.8,0,0,1.3,10,0.7,27,209,312,66,1.07,0.05,8,8,0,0.2,0.18,0.08,0.13,10.9,0.4,7,0.3,0
+7326,7,326,Meat and poultry and their products,"Chicken, light meat, flesh and skin, raw",,0.72,755,69.1,19.5,11.4,0,0,0.9,11,0.7,23,155,243,71,0.92,0.04,19,19,0,0.2,0.24,0.08,0.12,8.5,0.42,14,0.4,0
+7327,7,327,Meat and poultry and their products,"Chicken, light meat, flesh and skin, boiled* (without salt)",,0.66,911,61.6,25.7,12.8,0,0,1.2,12,0.7,21,143,128,37,1.21,0.05,14,14,0,0.1,0.17,0.05,0.14,6.7,0.33,9,0.3,0
+7328,7,328,Meat and poultry and their products,"Chicken, light meat, flesh and skin, grilled* (without salt and fat)",,0.67,895,62.4,25,12.7,0,0,1.1,13,0.8,22,159,249,72,1.18,0.05,18,18,0,0.2,0.24,0.06,0.13,8.7,0.32,11,0.3,0
+7329,7,329,Meat and poultry and their products,"Chicken giblets, raw",,1,554,73.9,17.5,6.3,1.3,0,1,10,6.3,18,184,239,80,3.06,0.29,4080,4080,0,,0.71,0.1,0.56,6.3,0.36,438,11.4,14.1
+7330,7,330,Meat and poultry and their products,"Chicken, giblets, braised* (without salt)",,1,686,65.3,25.3,6,1.9,0,1.4,14,8.6,22,213,242,81,4.43,0.42,4730,4730,0,,0.93,0.12,0.77,7.7,0.41,412,11.6,15.3
+7331,7,331,Meat and poultry and their products,"Chicken, liver, raw",,1,492,74.4,19,4,1.3,0,1.4,11,8.7,19,304,241,71,3.04,0.5,7890,7450,37,0.2,0.49,0.39,2.46,9.8,0.82,792,24,22.2
+7332,7,332,Meat and poultry and their products,"Chicken liver, braised* (without salt)",,1,713,62.8,27.5,5.8,1.9,0,2,15,12,23,353,244,72,4.41,0.73,9150,8640,43,0.2,0.64,0.48,3.39,12,0.95,746,24,24.2
+7333,7,333,Meat and poultry and their products,"Mole cricket, blanched",,,544,71.2,15.4,6.3,1.5,2.9,2.7,76,41.7,,254,268,97,,,,,,,,0.2,1.89,4.8,,,,
+7334,7,334,Meat and poultry and their products,"Crocodile, raw",,,507,71.7,19.4,4.8,0,0,1,,,,,,,,,,,,,,,,,,,,
+7335,7,335,Meat and poultry and their products,"Crocodile, boiled* (without salt)",,,875,51.2,33.4,8.3,0,0,1.7,,,,,,,,,,,,,,,,,,,,
+7336,7,336,Meat and poultry and their products,"Goat, meat, raw",,0.74,689,68,17.5,10.6,0,0,1.1,11,2.4,27,150,385,82,3.45,0.16,0,0,0,,0.18,0.18,0.29,6.1,0.4,5,1.1,0
+7337,7,337,Meat and poultry and their products,"Goat, meat, boiled* (without salt)",,0.66,900,55.7,26.1,12.3,0,0,1.6,13,3.5,26,179,316,73,5.15,0.24,0,0,0,,0.21,0.11,0.24,4.6,0.24,4,1,0
+7338,7,338,Meat and poultry and their products,"Goat, meat, grilled* (without salt and fat)",,0.66,882,56.8,25.4,12.2,0,0,1.6,16,3.3,33,185,474,101,5,0.21,0,0,0,,0.21,0.16,0.38,7.1,0.38,5,1.3,0
+7339,7,339,Meat and poultry and their products,"Lamb/mutton, meat, moderately fat, boiled* (without salt)",,0.75,1350,47.5,24.6,25.2,0,0,1.5,12,3.1,21,178,205,68,4.97,0.16,12,12,0,0.3,0.25,0.08,0.15,2.6,0.24,2,2.6,0
+7340,7,340,Meat and poultry and their products,"Lamb/mutton, meat, moderately fat, grilled* (without salt and salt)",,0.76,1340,48.7,23.9,24.9,0,0,1.4,14,2.9,27,183,308,93,4.83,0.14,11,11,0,0.3,0.24,0.12,0.24,4,0.2,2,3.4,0
+7341,7,341,Meat and poultry and their products,"Lamb, brain, raw",,0.98,494,79.2,10.4,8.6,0,0,1.3,9,1.8,12,270,296,112,1.17,0.24,0,0,0,,,0.13,0.3,3.9,0.29,3,11.3,16
+7342,7,342,Meat and poultry and their products,"Lamb, brain, braised* (without salt)",,0.98,553,75.8,13,9,0,0,1.7,11,2.1,13,270,259,98,1.46,0.3,0,0,0,,,0.14,0.36,4.1,0.29,2,10,15
+7343,7,343,Meat and poultry and their products,"Lamb, liver, raw",,1,552,71.4,20.2,4.5,2.5,0,1.4,9,8.7,19,364,313,70,4.66,6.98,4970,4950,244,1.2,0.77,0.32,3.07,13,0.9,230,90.1,4
+7344,7,344,Meat and poultry and their products,"Lamb, liver, boiled* (without salt)",,1,837,56.6,30.6,6.8,3.8,0,2.2,10,13.2,19,441,261,64,7.06,10.57,6020,6000,296,1.5,0.93,0.19,2.55,9.9,0.55,209,81.9,6.1
+7345,7,345,Meat and poultry and their products,"Locust, raw",,,407,76.7,14,3.3,0.9,4,1.1,28,3,22,150,217,32,3.5,0.87,,,,,,0.2,1.5,3.9,,,,
+7346,7,346,Meat and poultry and their products,"Mopanie worm, canned",,,406,77.3,14.1,3.6,0.7,2.6,1.7,39,7,36,123,232,234,3.18,0.21,,,,,,0.13,1.13,2.7,,,,0
+7347,7,347,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boiled* (without salt)",,1,1440,45.7,25.9,26.9,0,0,1.6,12,2.1,18,157,232,47,5.54,0.15,0,0,0,0.8,0.1,0.33,0.24,2.9,0.22,2,0.7,0
+7348,7,348,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, grilled* (without salt and fat)",,1,1370,48.6,24,25.9,0,0,1.5,10,1.6,27,219,366,87,5.14,0.14,0,0,0,0.8,0.1,0.72,0.27,4.3,0.3,2,0.8,0
+7349,7,349,Meat and poultry and their products,"Pork, meat, approx. 40 % fat, boiled* (without salt)",,1,2270,24.9,18.9,52.7,0,0,1.8,13,2.8,15,153,231,42,5.5,0.15,0,0,0,1.2,0.1,0.37,0.18,2.7,0.26,3,0.6,0
+7350,7,350,Meat and poultry and their products,"Pork, meat, approx. 40 % fat, grilled* (without salt and fat)",,1,2140,29.3,17.6,49.9,0,0,1.7,12,2.1,21,213,364,77,5.1,0.14,0,0,0,1.2,0.1,0.8,0.21,4.1,0.35,3,0.8,0
+7351,7,351,Meat and poultry and their products,"Rabbit, meat, stewed* (without salt)",,0.68,776,59.1,31.4,6.6,0,0,1.4,19,1.7,25,245,280,52,2.46,0.22,12,12,0,0,0.9,0.06,0.12,6.9,0.33,4,8.7,0
+7352,7,352,Meat and poultry and their products,"Rabbit, meat, grilled* (without salt and fat)",,0.68,776,60.5,31.4,6.6,0,0,1.4,23,1.6,33,261,432,74,2.46,0.2,11,11,0,0,0.9,0.1,0.2,11,0.53,5,12,0
+7353,7,353,Meat and poultry and their products,"Sausage, wiener (beef, pork, chicken) canned",,1,941,64.9,10.5,19.4,2.6,0,2.6,10,0.9,7,49,101,969,1.6,0.03,0,0,0,0.6,0.22,0.09,0.11,1.6,0.12,4,1,0
+8354,8,354,Eggs and their products,"Egg, chicken, raw",,0.88,578,76.2,12.6,9.5,0.7,0,1.1,56,1.8,12,198,138,142,1.29,0.07,160,160,5,2,1.05,0.04,0.46,0.1,0.17,47,0.9,0
+8355,8,355,Eggs and their products,"Egg, chicken, boiled* (without salt)",,0.88,578,76.2,12.6,9.5,0.7,0,1.1,53,1.7,11,188,131,135,1.23,0.07,152,152,5,1.9,1.05,0.03,0.37,0.1,0.14,38,0.7,0
+8356,8,356,Eggs and their products,"Egg, chicken, fried",,1,794,69.5,13.6,14.8,0.8,0,1.3,62,1.9,13,215,152,207,1.39,0.08,219,216,40,2.2,1.31,0.04,0.5,0.1,0.18,51,1,0
+8357,8,357,Eggs and their products,Omelette,,1,622,76.1,10.6,11.7,0.6,0,1,48,1.5,11,167,117,155,1.09,0.06,172,169,32,1.7,1.29,0.03,0.39,0.1,0.14,39,1,0
+9358,9,358,Fish and their products,"Anchovy, fillet, raw",,1,461,72.8,19.1,3.7,0,0,1.4,109,3.1,32,204,438,104,1.74,0.22,15,15,0,2.9,0.57,0.06,0.26,17,0.14,9,0.6,
+9359,9,359,Fish and their products,"Barracuda, raw",,0.64,350,78.7,19,0.7,0,0,1.3,26,0.9,31,175,252,89,0.51,0.06,7,7,0,0.6,0.19,0.12,0.09,4.1,0.31,9,2.1,
+9360,9,360,Fish and their products,"Mackerel, raw",,0.71,521,72.5,19.7,5,0,0,1.4,28,0.8,33,210,446,59,0.49,0.06,39,39,0,7.3,0.69,0.14,0.14,5.3,0.4,1,2.4,
+9361,9,361,Fish and their products,"Sardine, raw",,0.52,436,74.9,19.4,2.9,0,0,2.5,71,1.8,35,281,499,77,1.57,0.07,19,18,6,11,0.73,0.02,0.21,9.4,0.96,4,11,
+9362,9,362,Fish and their products,"Tuna, raw",,0.58,568,70.4,23.3,5.1,0,0,1.5,14,1.1,40,249,349,51,0.45,0.08,26,26,0,6.5,1.1,0.16,0.14,13.5,0.69,15,5.1,
+9363,9,363,Fish and their products,"White grouper, raw",,0.6,368,77.9,19.4,1,0,0,1.3,31,1.2,33,175,483,53,0.89,0.03,43,43,0,0.8,0.26,0.07,0.03,3.4,0.3,9,1,
+9364,9,364,Fish and their products,"African carp, raw",,0.54,289,78.9,15.7,0.6,0,0,1.3,13,0.7,33,144,313,57,1.3,0.05,1,1,0,2.6,0.07,0.09,0.06,1.9,0.16,14,1.6,
+9365,9,365,Fish and their products,"African carp, steamed* (without salt)",,0.5,340,75.1,18.5,0.7,0,0,1.6,15,0.7,33,144,276,57,1.5,0.06,1,1,0,2.8,0.08,0.08,0.05,1.5,0.13,11,1.5,
+9366,9,366,Fish and their products,"African carp, grilled* (without salt and fat)",,0.45,419,69.3,22.8,0.9,0,0,2,19,0.9,43,188,386,70,1.9,0.07,1,1,0,3.5,0.1,0.12,0.07,2.2,0.21,16,2.1,
+9367,9,367,Fish and their products,"Anchovy, fillet, steamed* (without salt)",,1,542,67.9,22.4,4.3,0,0,1.7,129,2.9,32,204,386,104,2.05,0.23,16,16,0,3.1,0.67,0.06,0.22,14,0.12,7,0.6,
+9368,9,368,Fish and their products,"Anchovy, fillet, grilled* (without salt and fat)",,1,668,60.5,27.6,5.4,0,0,2.1,158,3.8,41,265,539,128,2.53,0.3,20,20,0,3.8,0.83,0.08,0.3,19.7,0.19,10,0.8,
+9369,9,369,Fish and their products,"Anchovy, canned in oil (drained solids)",,1,850,50.3,28.9,9.7,0,0,11.1,232,4.6,69,252,544,3670,2.44,0.34,12,12,0,1.7,3.33,0.08,0.36,19.9,0.2,13,0.9,
+9370,9,370,Fish and their products,"Barracuda, steamed* (without salt)",,0.61,412,74.9,22.4,0.9,0,0,1.5,31,0.8,31,175,222,89,0.6,0.06,8,8,0,0.6,0,0.11,0.07,3.4,0.26,7,2,
+9371,9,371,Fish and their products,"Barracuda, grilled* (without salt and fat)",,0.55,508,69.1,27.5,1.1,0,0,1.8,38,1.1,40,228,,63,0.93,0.08,9,9,0,1.2,0,0.24,0.06,1.3,0.34,9,2.3,
+9372,9,372,Fish and their products,"Bayad, raw",,0.6,335,79.8,17.1,1.2,0,0,1.2,61,1.2,28,197,est,51,0.64,0.06,2,2,0,0.9,0.3,0.19,0.05,1.2,0.26,8,1.8,
+9373,9,373,Fish and their products,"Bayad, steamed* (without salt)",,0.56,394,76.3,20.1,1.4,0,0,1.4,72,1.1,28,197,278,51,0.76,0.06,2,2,0,1,0.36,0.16,0.04,0.9,0.22,6,1.7,
+9374,9,374,Fish and their products,"Bayad, grilled* (without salt and fat)",,0.51,486,70.8,24.8,1.7,0,0,1.7,88,1.5,37,257,389,63,0.93,0.08,3,3,0,1.2,0.44,0.24,0.06,1.3,0.34,9,2.3,
+9375,9,375,Fish and their products,"Catfish, raw",,0.52,488,76.5,16.3,5.7,0,0,1,38,0.9,30,191,304,48,0.6,0.05,25,25,0,8.6,0.58,0.12,0.06,1.4,0.29,8,2.3,
+9376,9,376,Fish and their products,"Catfish, steamed* (without salt)",,0.55,529,73.6,19.2,5.5,0,0,1.2,45,0.9,30,191,268,48,0.7,0.05,21,21,0,7.1,0,0.11,0.05,1.2,0.24,7,2.2,
+9377,9,377,Fish and their products,"Catfish, grilled* (without salt and fat)",,0.43,591,69.1,23.6,5.1,0,0,1.5,55,1.2,39,249,375,59,0.9,0.07,29,29,0,9.9,1,0.16,0.08,1.8,0.37,10,3,
+9378,9,378,Fish and their products,"Carp, raw",,0.54,499,76.6,17.2,5.6,0,0,1.3,44,1.1,33,328,347,46,1.24,0.06,9,9,0,24.7,0.63,0.1,0.06,2.1,0.18,15,1.8,
+9379,9,379,Fish and their products,"Carp, steamed* (without salt)",,0.5,542,73.7,20.2,5.4,0,0,1.5,52,1,33,328,306,46,1.46,0.06,7,7,0,20.3,0.52,0.09,0.05,1.7,0.15,12,1.7,
+9380,9,380,Fish and their products,"Carp, grilled* (without salt and fat)",,0.45,607,69.2,24.9,5,0,0,1.9,64,1.3,42,427,427,57,1.8,0.08,10,10,0,28.6,0.73,0.13,0.08,2.7,0.23,17,2.3,
+9381,9,381,Fish and their products,"Mackerel,  boiled* (without salt)",,0.63,789,58.3,29.8,7.6,0,0,2.2,42,1,43,270,507,76,0.74,0.08,41,41,0,7.7,0.73,0.15,0.15,5.6,0.42,1,2.9,
+9382,9,382,Fish and their products,"Mackerel, grilled* (without salt and fat)",,0.64,755,60.1,28.5,7.3,0,0,2.1,40,1,43,273,549,73,0.71,0.08,45,45,0,8.5,0.8,0.18,0.18,6.8,0.52,1,3.1,
+9383,9,383,Fish and their products,"Mormyrids, raw",,0.52,350,79.5,17.8,1.3,0,0,1.1,123,1.1,29,268,321,41,0.6,0.06,12,12,0,1,0.32,0.05,0.09,0.9,0.3,9,2,
+9384,9,384,Fish and their products,"Mormyrids, steamed* (without salt)",,0.48,411,75.8,21,1.5,0,0,1.2,145,1,29,268,284,41,0.7,0.06,13,13,0,1.1,0.38,0.05,0.07,0.8,0.25,7,1.9,
+9385,9,385,Fish and their products,"Mormyrids, grilled* (without salt and fat)",,0.43,507,70.2,25.8,1.8,0,0,1.5,178,1.4,38,350,396,50,0.8,0.08,16,16,0,1.3,0.46,0.07,0.1,1.1,0.39,10,2.6,
+9386,9,386,Fish and their products,"Mudfish, raw",,0.52,401,78.6,17,3,0,0,1,44,0.7,21,180,242,41,0.65,0.13,7,7,0,2.4,0.34,0.04,0.07,1.3,0.08,9,2.1,
+9387,9,387,Fish and their products,"Mudfish, steamed*(without salt)",,0.55,471,74.8,20,3.6,0,0,1.2,52,0.7,21,180,213,41,0.76,0.13,7,7,0,2.5,0.4,0.03,0.05,1.1,0.07,8,2,
+9388,9,388,Fish and their products,"Mudfish, grilled*(without salt and fat)",,0.43,581,69,24.6,4.4,0,0,1.5,64,0.9,28,235,298,50,0.94,0.17,9,9,0,3.1,0.49,0.05,0.08,1.5,0.1,11,2.8,
+9389,9,389,Fish and their products,"Perch, Nile, raw",,0.61,413,76.1,19.9,2,0,0,1.2,89,0.7,39,176,300,58,1.1,0.09,6,6,0,1.2,1.9,0.07,0.07,2.8,0.12,5,1.9,
+9390,9,390,Fish and their products,"Perch, Nile, steamed* (without salt)",,0.51,486,71.9,23.4,2.4,0,0,1.5,105,0.7,39,176,264,58,1.29,0.09,6,6,0,1.3,2.2,0.06,0.06,2.3,0.1,4,1.8,
+9391,9,391,Fish and their products,"Perch, Nile, grilled* (without salt and fat)",,0.52,598,65.3,28.8,2.9,0,0,1.8,129,0.9,51,229,369,71,1.59,0.12,7,7,0,1.6,2.7,0.09,0.08,3.2,0.16,6,2.5,
+9392,9,392,Fish and their products,"Sardine, steamed* (without salt)",,0.48,513,70.5,22.8,3.4,0,0,3,84,1.7,35,281,441,77,1.84,0.07,20,20,7,11.6,0.86,0.02,0.17,7.7,0.79,3,10.4,
+9393,9,393,Fish and their products,"Sardine, grilled* (without salt and fat)",,0.43,632,63.6,28,4.2,0,0,3.7,103,2.3,46,367,615,95,2.27,0.09,25,24,8,14.3,1.06,0.03,0.24,10.9,1.25,5,14.3,
+9394,9,394,Fish and their products,"Sardines in oil, canned (drained solids with bone)",,1,919,57.9,24.7,13.5,0,0,3.5,382,2.9,39,490,397,505,1.31,0.19,32,32,0,12,2.04,0.08,0.23,5.2,0.17,10,8.9,
+9395,9,395,Fish and their products,"Shiny-nose, raw",,0.6,362,78.3,19.8,0.7,0,0,1.6,177,0.2,31,148,340,74,0.51,0.06,7,7,0,0.5,0.17,0.08,0.1,3.5,0.32,9,2.2,
+9396,9,396,Fish and their products,"Shiny-nose, steamed* (without salt)",,0.56,426,74.5,23.3,0.8,0,0,1.9,208,0.2,31,148,300,74,0.6,0.07,7,7,0,0.6,0.2,0.07,0.09,2.9,0.26,8,2,
+9397,9,397,Fish and their products,"Shiny-nose, grilled* (without salt and fat)",,0.51,525,68.6,28.7,1,0,0,2.3,257,0.2,40,193,418,92,0.75,0.09,9,9,0,0.7,0.25,0.11,0.12,4.1,0.41,11,2.8,
+9398,9,398,Fish and their products,"Tilapia, raw",,0.65,419,76.5,18.8,2.7,0,0,1.7,17,1.3,36,275,378,52,0.83,0.06,26,26,0,3.1,0.4,0.04,0.06,3.5,0.24,24,1.6,
+9399,9,399,Fish and their products,"Tilapia, steamed*(without salt)",,0.61,493,72.4,22.1,3.2,0,0,2,20,1.2,36,275,333,52,0.97,0.06,28,28,0,3.3,0,0.03,0.05,2.9,0.2,20,1.5,
+9400,9,400,Fish and their products,"Tilapia, grilled* (without salt and fat)",,0.56,607,66,27.2,3.9,0,0,2.4,25,1.6,46,359,465,64,1.2,0.08,34,34,0,4,1,0.05,0.07,4.1,0.31,28,2.1,
+9401,9,401,Fish and their products,"Tuna, boiled* (without salt)",,0.54,667,64.8,29.2,4.6,0,0,1.7,18,1.1,43,264,327,54,0.56,0.09,23,23,0,5.6,0.96,0.15,0.12,12.1,0.61,13,5.1,
+9402,9,402,Fish and their products,"Tuna, grilled* (without salt and fat)",,0.49,732,60.3,33.8,4.6,0,0,2,20,1.4,52,324,430,63,0.65,0.11,30,30,0,7.5,1.28,0.2,0.18,18,0.9,17,6.6,
+9403,9,403,Fish and their products,"White grouper, steamed* (without salt)",,0.56,432,74,22.8,1.2,0,0,1.5,36,1.1,33,175,426,53,1.05,0.03,46,46,0,0.9,0.31,0.06,0.03,2.8,0.25,7,0.6,
+9404,9,404,Fish and their products,"White grouper, grilled* (without salt and fat)",,0.51,533,68,28.1,1.5,0,0,1.9,44,1.4,43,228,595,65,1.29,0.04,56,56,0,1.1,0.38,0.09,0.04,3.9,0.39,10,0.8,
+10405,10,405,Milk and their products,"Milk, cow, whole, 3.5 % fat (includes pasteurised, sterilised and UHT)",,1,271,87.7,3.4,3.7,4.4,0,0.8,120,0.1,11,92,153,45,0.39,0.01,33,31,18,0.1,0.09,0.04,0.18,0.1,0.05,10,0.6,1.5
+10406,10,406,Milk and their products,"Milk, cow, powder, whole",,1,2070,3.7,25.9,26.6,37.9,0,5.9,968,0.7,91,735,1160,370,3.51,0.06,228,218,129,1.2,0.5,0.3,1.32,0.7,0.25,39,3.3,11.3
+10407,10,407,Milk and their products,"Milk, goat, raw",,1,319,85.8,3.4,4.5,5.5,0,0.8,142,0.1,14,119,215,48,0.3,0.02,33,33,0,0.1,0.03,0.06,0.17,0.3,0.04,1,0.1,1.5
+10408,10,408,Milk and their products,"Milk, human, mature, raw",,1,293,86.8,1.2,3.7,8.1,0,0.3,30,0.1,3,16,59,12,0.3,0.04,60,58,24,,0.34,0.02,0.04,0.5,0.01,5,0.1,3.3
+10409,10,409,Milk and their products,"Yoghurt, whole milk, plain",,1,304,85.3,3.8,3.4,6.8,0,0.8,152,0.1,15,127,209,64,0.58,0.02,30,29,16,0.1,0.09,0.04,0.2,0.1,0.04,12,0.3,0.7
+10410,10,410,Milk and their products,Cheddar,,1,1640,37.4,24.7,32.3,1.7,0,3.9,788,0.8,30,532,82,487,3.78,0.07,265,258,85,0.3,1.15,0.03,0.38,0.1,0.07,18,0.8,
+10411,10,411,Milk and their products,"Cheese, goat, hard type",,1,1860,29,30.5,35.6,1.2,0,3.7,895,1.9,54,729,48,346,1.59,0.63,486,478,91,0.7,0.31,0.14,1.19,2.4,0.08,4,0.1,0
+10412,10,412,Milk and their products,"Cheese, Gouda",,1,1520,41,24.8,29.5,0.7,0,3.9,753,0.5,30,556,96,665,3.82,0.05,165,164,0,0.4,1.23,0.04,0.33,0.1,0.08,21,1.5,
+10413,10,413,Milk and their products,"Cream, whipping, 38 % fat",,1,1480,57.1,2.1,38,2.3,0,0.5,67,0.1,7,57,93,28,0.24,0.01,333,319,168,0.4,0.97,0.03,0.16,0.1,0.02,11,0.4,0.8
+10414,10,414,Milk and their products,"Cream, 13 % fat",,1,625,78.5,2.9,13.5,4.5,0,0.6,104,0,11,79,136,39,0.37,0.01,120,115,59,0.2,0.34,0.04,0.19,0.1,0.05,12,0.4,1
+10415,10,415,Milk and their products,"Infant formula, powder, for 3 months",,1,2170,2,11.9,27.7,55.6,0,2.8,358,9.3,31,280,482,140,3.9,0.37,467,467,0,7.8,5,0.52,0.78,3.9,0.33,39,1,43
+10416,10,416,Milk and their products,"Infant formula, powder, for 6 months",,1,1980,2,17.6,19.7,56.1,0,4.6,810,8.5,66,458,704,225,3.5,0.41,488,488,0,8.5,5.1,0.57,0.85,4.3,0.34,42,0.9,46
+10417,10,417,Milk and their products,"Milk, cow, partly skimmed, 1.5 % fat",,1,200,89.3,3.5,1.6,4.8,0,0.8,122,0,12,96,153,43,0.41,0.01,14,13,7,0.1,0.04,0.05,0.18,0.1,0.05,12,0.5,1.3
+10418,10,418,Milk and their products,"Milk, cow,  skimmed, 0.5 % fat",,1,158,90.6,3.5,0.5,4.7,0,0.7,124,0,12,97,157,44,0.41,0.01,4,4,2,0.1,0.01,0.04,0.17,0.1,0.05,6,0.5,1.3
+10419,10,419,Milk and their products,"Milk, cow, canned, condensed, sweetened",,1,1380,27.2,7.9,8.7,54.4,0,1.8,284,0.2,26,253,371,127,0.94,0.02,74,73,14,0.2,0,0.09,0.42,0.2,0.05,11,0.4,2.6
+10420,10,420,Milk and their products,"Milk, cow, canned, evaporated",,1,566,74,6.8,7.6,10,0,1.6,261,0.2,24,203,303,106,0.77,0.02,65,64,15,0.1,0,0.05,0.32,0.2,0.05,8,0.2,1.9
+10421,10,421,Milk and their products,"Milk, cow powder, skimmed",,1,1530,3.2,36.2,0.8,52,0,7.9,1260,0.3,110,968,1790,535,4.08,0.04,15,15,7,0,0.04,0.42,1.55,1,0.36,50,4,6.8
+10422,10,422,Milk and their products,"Milk, camel, raw (average of different breeds)",,1,241,88.5,3.1,3,4.7,0,0.8,116,0.2,13,86,151,61,0.56,0.15,,,,,,,0.06,,,,,1.9
+10423,10,423,Milk and their products,"Milk, human, colostrum, raw",,1,242,88.2,2,2.6,6.6,0,0.6,28,,3,14,70,47,0.6,0.05,166,155,135,,1.3,,0.03,0.8,0,2,0.1,7
+10424,10,424,Milk and their products,Vacherin cheese,,1,1320,51.1,17.3,27.8,0,0,2.8,700,0.4,30,430,120,450,8,0.07,166,158,100,0.2,0.6,0,0.3,0.1,0.06,12,1.5,0
+10425,10,425,Milk and their products,"Yoghurt, whole milk, with fruits",,1,372,80.6,3.3,3.2,11.4,0.5,1,118,0.1,12,88,152,41,0.47,0.01,28,27,14,0.1,0.08,0.04,0.16,0.1,0.04,23,0.2,0.7
+10426,10,426,Milk and their products,"Butter, from cow's milk (without salt)",,1,2960,19.2,0.8,79.6,0.2,0,0.3,17,0,2,21,19,16,0.12,0.01,696,675,262,1.1,2.11,0.01,0.03,0.1,,3,0.1,0
+10427,10,427,Milk and their products,Coconut oil,,1,3700,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.66,0,0,0,0,0,0,0
+10428,10,428,Milk and their products,Groundnut oil,,1,3700,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17.2,0,0,0,0,0,0,0
+10429,10,429,Milk and their products,"Palm oil, red",,1,3700,0,0,100,0,0,0,0,0,0,0,0,0,0,0,5720,0,68680,0,15.94,0,0,0,0,0,0,0
+10430,10,430,Milk and their products,Cottonseed oil,,1,3700,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,35.3,0,0,0,0,0,0,0
+10431,10,431,Milk and their products,"Margarine, fortified",,1,3000,16.5,0.2,80.7,0.7,0,1.9,3,0.1,3,5,18,751,0,0,819,768,610,0,9,0.01,0.04,0.02,0.01,1,0.1,0.2
+10432,10,432,Milk and their products,"Palm oil, refined",,1,3700,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15.94,0,0,0,0,0,0,0
+10433,10,433,Milk and their products,Shea butter,,1,3700,0,0,100,0,0,0,0,0,0,0,0,0,0,,0,0,0,0,0,0,0,0,0,0,0,0
+10434,10,434,Milk and their products,Soya oil,,1,3700,0,0,100,0,0,0,0,0.1,0,0,0,0,0,0,0,0,0,0,8.18,0,0,0,0,0,0,0
+10435,10,435,Milk and their products,Vegetable oil,,1,3700,0,0,100,0,0,0,0,0,0,0,0,0,0,0,,0,,0,39.22,0,0,0,0,0,0,0
+11436,11,436,Beverages,Beer european (4.4 % alcohol),,1,147,93.9,0.3,0,2,0,0.1,8,0.1,7,14,32,6,0.01,0.01,0,0,0,0,0,,0.03,0.7,0.07,5,,0
+11437,11,437,Beverages,"Beer, maize  (est. 3 % alcohol)",,1,140,93.2,0.6,,3.3,0.1,0.3,4,0.2,14,6,31,2,0.14,0.02,0,0,0,0,0,0.02,0.04,0.3,,,,0
+11438,11,438,Beverages,"Beer, millet (est. 3 % alcohol)",,1,182,91,0.7,,5.7,0.1,0.3,8,0.2,14,16,31,2,0.14,0.02,0,0,0,0,0,0.02,0.04,0.3,,,,0
+11439,11,439,Beverages,"Beer, sorghum (est. 3% alcohol)",,1,128,94,0.5,,2.7,0.1,0.2,8,0.2,14,25,31,2,0.14,0.02,0,0,0,0,0,0.02,0.04,0.3,,,,0
+11440,11,440,Beverages,"Coffee, instant, powder",,1,1510,3.1,15.4,0.4,72.4,0,8.8,146,4.4,324,303,3640,38,0.73,0.38,0,0,,0,,0.02,0.08,28.2,0.03,2,0,0
+11441,11,441,Beverages,Palm wine (est. 3.8 % alcohol),,1,143,93.7,0.4,,2.5,0,0.2,2,0.5,9,5,,,,0.01,0,0,0,0,,0.03,0.01,0.3,,,0,4
+11442,11,442,Beverages,"Sap, palm, fresh (0.3 % alcohol)",,1,197,88.4,0.3,0,10.8,0,0.2,2,0.4,,6,,,,,,0,,0,,0.02,0.01,4,,,0,14
+11443,11,443,Beverages,"Tea, infusion",,1,2,99.8,0.1,0,0,0,0,2,0.1,1,1,18,,0.03,0.03,0,0,0,0,0,0,0.02,0.1,,5,0,0
+11444,11,444,Beverages,"Coffee, liquid",,1,10,99.2,0.1,0,0.5,0,0.2,4,0,4,3,30,4,0.01,0.01,0,0,0,0,0,0,0,0.2,0,0,0,0
+11445,11,445,Beverages,"Juice, lemon, unsweetened",,1,143,91.3,0.4,0.1,7.8,0.2,0.3,7,0.2,6,8,129,1,0.08,0.04,1,0,7,0,0.08,0.03,0.01,0.1,0.05,14,0,40.6
+11446,11,446,Beverages,"Juice, orange, unsweetened",,1,185,88.9,0.7,0.2,9.8,0.1,0.4,12,0.3,11,16,186,1,0.05,0.05,8,0,100,0,0.2,0.08,0.03,0.3,0.06,34,0,42.7
+11447,11,447,Beverages,"Juice, apple, canned or bottled",,1,204,87.9,0.1,0.1,11.7,0,0.2,9,0.3,5,6,80,10,0.04,0.01,0,0,0,0,0.01,0.02,0.02,0.1,0.03,,0,0.9
+11448,11,448,Beverages,"Juice, grapefruit, canned, unsweetened",,1,143,91.3,0.3,0.1,7.9,0,0.4,9,0.1,8,12,112,14,0.06,0.04,0,0,0,0,0,0.04,0.01,0.2,0.01,2,0,28
+11449,11,449,Beverages,"Nectar, Mango, canned",,1,224,86.6,0.1,0.1,12.8,0.3,0.1,17,0.4,3,2,24,5,0.02,0.02,35,0,415,0,0,,,0.1,0.02,7,0,15.2
+11450,11,450,Beverages,Ovaltine beverage with whole milk (without sugar; fortified),,1,375,81.1,3.7,3.3,11.1,0.2,0.6,117,0.2,19,117,196,57,0.45,0.09,93,,,0.2,0.1,0.1,0.25,1.3,0.03,5,1,1
+11451,11,451,Beverages,Ovaltine beverage with partly skimmed milk (without sugar; fortified),,1,331,82.3,3.8,2.1,11,0.2,0.6,119,0.2,19,116,191,55,0.45,0.09,72,,,0.18,0.06,0.1,0.25,1.3,0.03,5,1,1
+11452,11,452,Beverages,Ovaltine beverage with skimmed milk (without sugar; fortified),,1,271,83.7,3.8,0.4,11.2,0.2,0.7,120,0.2,18,127,204,61,0.45,0.09,51,,,0.17,0.04,0.12,0.23,1.3,0.04,5,1,1
+11453,11,453,Beverages,"Ovaltine powder, fortified",,1,1640,2,9,2.7,80.2,2.5,3.6,83,1.9,96,430,640,160,1.2,1,625,,,2.1,,1,1.3,15,,,,0
+11454,11,454,Beverages,"Water, tap",,1,0,100,0,0,0,0,0.1,1,,2,0,1,3,0.01,0.01,0,0,0,0,0,0,0,0,0,0,0,0
+12455,12,455,Miscellaneous,Honey,,1,1380,18.2,0.4,0,81,0.2,0.3,9,0.5,2,4,52,4,0.22,0.04,0,0,0,0,0,0,0.04,0.2,0.02,2,0,0.5
+12456,12,456,Miscellaneous,Sugar,,1,1700,0,0,0,99.99,0,0.01,1,0.1,0,0,2,1,0.01,0.01,0,0,0,0,0,0,0.02,0,0,0,0,0
+12457,12,457,Miscellaneous,Vinegar,,1,19,98.7,0.4,0,0.4,0,0.2,12,0.5,21,29,90,20,0.01,0.01,0,0,0,0,0,0,0,0,0,0,0,0
+12458,12,458,Miscellaneous,Anis seed,,1,1610,9.5,17.6,15.9,35.4,14.6,7,646,37,170,440,1440,16,5.3,0.91,16,0,192,0,,0.34,0.29,3.1,0.65,10,0,21
+12459,12,459,Miscellaneous,"Bay leaf, dried",,1,1480,5.4,7.6,8.4,48.7,26.3,3.6,834,43,120,113,529,23,3.7,0.42,309,0,3710,0,,0.01,0.42,2,1.74,180,0,46.5
+12460,12,460,Miscellaneous,"Chilli pepper, dried",,1,1330,9.4,14.2,12.6,23.1,28.8,11.8,240,17.3,149,278,1950,1640,2.75,1,1480,0,17790,0,38.14,0.25,0.94,11.6,2.09,28,0,0.7
+12461,12,461,Miscellaneous,"Cinnamon, ground",,1,1010,10.6,4,1.2,27.5,53.1,3.6,1000,8.3,60,64,431,10,1.83,0.34,15,0,177,0,2.32,0.02,0.04,1.3,0.16,6,0,3.8
+12462,12,462,Miscellaneous,"Cube, beef, dry",,1,716,3.3,17.3,4,16.1,0,59.3,60,2.2,50,225,403,24000,0.21,0,0,0,0,0,0,0.2,0.24,3.3,0.2,32,1,0
+12463,12,463,Miscellaneous,"Cumin, seed",,1,1780,8.1,17.8,22.3,33.7,10.5,7.6,931,66.4,366,499,1790,168,4.8,0.87,64,0,762,0,3.33,0.63,0.33,4.6,0.44,10,0,7.7
+12464,12,464,Miscellaneous,"Ginger, root, raw",,0.93,343,78.9,1.8,0.8,15.7,2,0.8,16,0.6,43,34,415,13,0.34,0.23,0,0,0,0,0.26,0.03,0.03,0.8,0.16,11,0,5
+12465,12,465,Miscellaneous,"Ginger, roots, dried",,1,1450,10.1,7.7,2.9,67.4,8.5,3.3,65,2.6,183,145,1770,55,1.45,0.96,0,0,0,0,1.1,0.16,0.27,3,0.61,37,0,2
+12466,12,466,Miscellaneous,"Mustard, powder",,1,2150,5.3,26.1,36.2,15.9,12.2,4.3,266,9.2,370,828,738,13,6.08,0.65,,0,,0,5.07,0.81,0.26,4.7,0.4,162,0,7.1
+12467,12,467,Miscellaneous,"Mustard, prepared, yellow",,1,284,82.7,4.4,4,2,3.3,3.6,58,1.5,49,106,138,1140,0.64,0.09,,0,,0,0.4,0.34,0.03,0.5,0.06,7,0,1.5
+12468,12,468,Miscellaneous,"Pepper, black",,1,1260,11.5,10.7,3.3,44.3,25.9,4.4,440,19.3,183,166,1290,32,1.31,1.23,19,0,231,0,0.88,0.11,0.21,1.1,0.32,14,0,10.5
+12469,12,469,Miscellaneous,Salt,,1,0,0.5,0,0,0,0,99.8,216,1.2,39,5,5,38760,0.1,0.08,0,0,0,0,0,0,0,0,0,0,0,0
+12470,12,470,Miscellaneous,"Spices, mix, ground",,1,1460,8.5,6.1,8.7,50.5,21.6,4.7,661,7.1,135,113,1040,77,1.01,0.55,27,0,324,0,,0.1,0.06,2.9,0.21,36,0,39.2
+12471,12,471,Miscellaneous,"Yeast, dried",,1,1330,5,35.6,1.5,29.9,19.7,8.3,80,20,230,1290,2000,50,8,5,0,0,0,0,0,2.33,4,36,2,4000,,0
+12472,12,472,Miscellaneous,"Yeast extract, Marmite",,1,646,37,27.8,0,8.8,3,23.4,86,3.7,180,104,2600,3600,2.1,0.3,0,0,0,0,0,9.7,14.3,97,1.3,1010,0.5,0
