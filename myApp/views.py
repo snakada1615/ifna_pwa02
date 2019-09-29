@@ -9,6 +9,9 @@ from .forms import Order_Key_Form
 class TestView(TemplateView):
     template_name = "myApp/index.html"
 
+class OfflineView(TemplateView):
+    template_name = "myApp/offline.html"
+
 class FCT_show(LoginRequiredMixin, ListView):
     template_name = 'myApp/FCT_view.html'  # この行でテンプレート指定
     context_object_name = 'foods1'
