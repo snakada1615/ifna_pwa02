@@ -72,10 +72,35 @@ class Family(models.Model):
         unique = True,
     )
 
-    country = models.CharField(max_length=200)
-    region = models.CharField(max_length=200)
-    province = models.CharField(max_length=200)
-    community = models.CharField(max_length=200)
+    country = models.CharField(
+        max_length=200,
+        blank = True
+    )
+    region = models.CharField(
+        max_length=200,
+        blank = True
+    )
+    province = models.CharField(
+        max_length=200,
+        blank = True
+    )
+    community = models.CharField(
+        max_length=200,
+        blank = True
+    )
+
+    month_start = models.IntegerField(
+        default=0,
+    )
+    month_end = models.IntegerField(
+        default=0,
+    )
+
+    remark = models.CharField(
+        verbose_name='remark',
+        max_length=600,
+        blank = True
+    )
 
     protein = models.FloatField(
         verbose_name='protein',
@@ -104,12 +129,6 @@ class Family(models.Model):
     size = models.IntegerField(
         default=0,
     )
-    month_start = models.IntegerField(
-        default=0,
-    )
-    month_end = models.IntegerField(
-        default=0,
-    )
     remark = models.CharField(
         verbose_name='remark',
         max_length=600,
@@ -120,11 +139,13 @@ class Family(models.Model):
         auto_now_add=True
     )
 
+
     def __str__(self):
         return self.name
 
 
-class FamilyMember(models.Model):
+class Person(models.Model):
+    # bookid : INTEGER型で、主キー
     AGE_CHOICES = (
         (1, '0 <= age < 0.5'),
         (2, '0.5 <= age < 1'),
@@ -195,17 +216,17 @@ class FamilyMember(models.Model):
 
     protein = models.FloatField(
         verbose_name='protein',
-        default=0
+        default=0,
     )
 
     vita = models.FloatField(
         verbose_name='Vit-A',
-        default=0
+        default=0,
     )
 
     fe = models.FloatField(
         verbose_name='iron',
-        default=0
+        default=0,
     )
 
     created_at = models.DateTimeField(
@@ -220,6 +241,7 @@ class FamilyMember(models.Model):
     class Meta:
         verbose_name = 'Family information'
         verbose_name_plural = 'Family information'
+
 
 class Crop(models.Model):
     choices_DRI_realistic = (
