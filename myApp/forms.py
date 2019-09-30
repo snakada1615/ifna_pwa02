@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.admin import widgets
 from django.db.models import Q, Sum
-from .models import FamilyMember, Family, DRI, DRI_women, Crop, FCT
+from .models import Family
 
 Choice_FoodGrp = {
     ('0','food name'),
@@ -22,3 +22,9 @@ class Order_Key_Form(forms.Form):
         choices= Choice_FoodGrp,
         initial=1,
         )
+
+class FamilyForm(forms.ModelForm):
+
+    class Meta:
+        model = Family
+        fields = ("name", "remark")

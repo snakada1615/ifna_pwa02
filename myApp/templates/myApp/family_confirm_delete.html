@@ -1,0 +1,29 @@
+{% extends "myApp/base.html" %}
+<!--  -->
+{% block content %}
+<div class="container">
+    <h2 class="text-center">Delete data</h2>
+    <p>Deta will be deleted. Are you OK?</p>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-12">
+                <div class="float-right">
+                    <a class="btn btn-outline-secondary" href="{% url 'Family_index' %}">return</a>
+                    <input type="submit" class="btn btn-outline-secondary" value="delete" name="confirm_delete" />
+                </div>
+            </div>
+        </div>
+        {% include "myApp/Family_card.html" %}
+        <div class="row">
+            <div class="col-12">
+                <div class="float-right">
+                  <a class="btn btn-outline-secondary" href="{% url 'Family_index' %}">return</a>
+                  <input type="submit" class="btn btn-outline-secondary" value="delete" name="confirm_delete"  />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% for group, options, index in widget.optgroups %}
+    {% for option in options %}
+        <div class="form-check form-check-inline">
+            <input  class="form-check-input"  type="radio" name="inlineRadioOptions"
+                   id="{{ option.attrs.id }}" value="{{ option.value }}" {% if option.attrs.checked %}checked{% endif %}
+                   {% if widget.required %}required{% endif %}>
+            <label  class="form-check-label" for="{{ option.attrs.id }}">{{ option.label }}</label>
+        </div>
+    {% endfor %}
+{% endfor %}
+
+
+<!-- Radio Buttons -->

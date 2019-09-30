@@ -1,13 +1,18 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView
+from django.urls import reverse
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import FCT, FamilyMember, DRI, DRI_women, Family, Crop
-from .forms import Order_Key_Form
+from .models import FCT, Person, DRI, DRI_women, Family, Crop
+from .forms import Order_Key_Form, FamilyForm
 
 
 # Create your views here.
 class TestView(TemplateView):
     template_name = "myApp/index.html"
+
+class OfflineView(TemplateView):
+    template_name = "myApp/offline.html"
 
 class FCT_show(LoginRequiredMixin, ListView):
     template_name = 'myApp/FCT_view.html'  # この行でテンプレート指定
@@ -46,3 +51,25 @@ class FCT_show(LoginRequiredMixin, ListView):
         context['categ_id'] = self.kwargs['categ']
         context['categ'] = self.Categ_FoodGrp[self.kwargs['categ']]
         return context
+
+class Family_ListView(LoginRequiredMixin, ListView):
+    model = Family
+    context_object_name = "mylist"
+    template_name = 'myApp/family_list.html'
+
+class Family_DeleteView(LoginRequiredMixin, DeleteView):
+    model = Family
+    template_name = 'myApp/family_confirm_delete.html'
+    success_url = reverse_lazy('Family_index')
+
+class Family_CreateView(LoginRequiredMixin, CreateView):
+    model = Family
+    form_class = FamilyForm
+    template_name = 'myApp/family_form.html'
+    success_url = reverse_lazy('Family_index')
+
+class Family_UpdateView(LoginRequiredMixin, UpdateView):
+    model = Family
+    form_class = FamilyForm
+    template_name = 'myApp/family_form.html'
+    success_url = reverse_lazy('Family_index')
