@@ -256,7 +256,7 @@ class Crop_ListView(LoginRequiredMixin, ListView):
 class Crop_DeleteView(LoginRequiredMixin, DeleteView):
     model = Crop
     template_name = 'myApp/crop_confirm_delete.html'
-    success_url = reverse_lazy('Crop_list')
+    success_url = reverse_lazy('crop_list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -268,7 +268,7 @@ class Crop_CreateView(LoginRequiredMixin, CreateView):
     model = Crop
     form_class = CropForm
     template_name = 'myApp/crop_form.html'
-    success_url = reverse_lazy('Crop_list')
+    success_url = reverse_lazy('crop_list')
 
     def get_context_data(self, **kwargs):
         myid = self.kwargs['familyid']
@@ -282,7 +282,7 @@ class Crop_UpdateView(LoginRequiredMixin, UpdateView):
     model = Crop
     form_class = CropForm
     template_name = 'myApp/crop_form.html'
-    success_url = reverse_lazy('Crop_list')
+    success_url = reverse_lazy('crop_list')
 
     def get_context_data(self, **kwargs):
         myid = self.kwargs['familyid']
