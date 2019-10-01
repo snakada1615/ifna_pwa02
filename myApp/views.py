@@ -270,15 +270,6 @@ class Crop_CreateView(LoginRequiredMixin, CreateView):
     template_name = 'myApp/crop_form.html'
     success_url = reverse_lazy('Crop_list')
 
-    def get_form_kwargs(self):
-        """This method is what injects forms with their keyword
-            arguments."""
-        # grab the current set of form #kwargs
-        kwargs = super().get_form_kwargs()
-        # Update the kwargs with the user_id
-        kwargs['myid'] = self.kwargs['familyid']
-        return kwargs
-
     def get_context_data(self, **kwargs):
         myid = self.kwargs['familyid']
         context = super().get_context_data(**kwargs)
@@ -292,3 +283,9 @@ class Crop_UpdateView(LoginRequiredMixin, UpdateView):
     form_class = CropForm
     template_name = 'myApp/crop_form.html'
     success_url = reverse_lazy('Crop_list')
+
+    def get_context_data(self, **kwargs):
+        myid = self.kwargs['familyid']
+        context = super().get_context_data(**kwargs)
+        context['myid'] = myid
+        return context
