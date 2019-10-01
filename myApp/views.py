@@ -55,7 +55,7 @@ class FCT_show(LoginRequiredMixin, ListView):
 class Family_ListView(LoginRequiredMixin, ListView):
     model = Family
     context_object_name = "mylist"
-    template_name = 'myApp/family_list.html'
+    template_name = 'myApp/family_list_test.html'
 
 class Family_DeleteView(LoginRequiredMixin, DeleteView):
     model = Family

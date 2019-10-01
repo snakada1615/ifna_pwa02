@@ -1,0 +1,34 @@
+{% extends 'myApp/base.html' %}
+{% load static %}
+
+{% block content %}
+<h5> registered farmily list </h5>
+
+<div class="container">
+	{% for family in mylist %}
+		<div class="card border-primary col-12 mt-2" style="max-width: 540px;">
+		  <div class="row">
+		    <div class="col-4">
+		      <img src="{% static 'img/foods/icon_155810_256.png' %}" class="card-img">
+		    </div>
+		    <div class="col-8">
+		      <div class="card-body bg-light p-2">
+		        <h5 class="card-title">
+							{{ family.name }}
+						</h5>
+						<p class="card-text">
+							{{ family.size }}
+						</p>
+						<p class="card-text">
+							{{ family.remark }}
+						</p>
+							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_update' pk=family.pk %}">edit</a></span>
+							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_delete' pk=family.pk %}">del</a></span>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		{% endfor %}
+	</div>
+
+{% endblock %}
