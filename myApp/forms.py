@@ -103,6 +103,14 @@ class CropForm(forms.ModelForm):
 
     class Meta:
         model = Crop
-        fields = ("Food_name", "feas_DRI", "feas_soc_acceptable",
+        fields = ("familyid", "Food_name", "feas_DRI", "feas_soc_acceptable",
             "feas_prod_skill", "feas_tech_service", "feas_invest_fixed",
             "feas_invest_variable", "feas_availability")
+
+    def __init__(self, *args, **kwargs):
+        self.myid = kwargs.pop('myid')
+        super(CropForm, self).__init__(*args, **kwargs)
+
+    def clean_familyid(self):
+        familyid = self.myid
+        return familyid
