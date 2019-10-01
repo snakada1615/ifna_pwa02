@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import FCT, Person, DRI, DRI_women, Family, Crop
-from .forms import Order_Key_Form, FamilyForm, Person_Create_Form
+from .forms import Order_Key_Form, FamilyForm, Person_Create_Form, CropForm
 from django.db.models import Q, Sum
 
 
@@ -237,3 +237,58 @@ class Person_DeleteView(LoginRequiredMixin, DeleteView):
             rec.save()
 
         return HttpResponseRedirect(success_url)
+
+class Crop_ListView(LoginRequiredMixin, ListView):
+    model = Crop
+    context_object_name = "mylist"
+    template_name = 'myApp/crop_list.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(familyid = self.kwargs['familyid'])
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['name'] = Family.objects.get(id = self.kwargs['familyid'])
+        context['myid'] = Family.objects.get(id = self.kwargs['familyid']).id
+        return context
+
+class Crop_DeleteView(LoginRequiredMixin, DeleteView):
+    model = Crop
+    template_name = 'myApp/crop_confirm_delete.html'
+    success_url = reverse_lazy('Crop_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['familyid'] = self.kwargs['familyid']
+        return context
+
+
+class Crop_CreateView(LoginRequiredMixin, CreateView):
+    model = Crop
+    form_class = CropForm
+    template_name = 'myApp/crop_form.html'
+    success_url = reverse_lazy('Crop_list')
+
+    def get_form_kwargs(self):
+        """This method is what injects forms with their keyword
+            arguments."""
+        # grab the current set of form #kwargs
+        kwargs = super().get_form_kwargs()
+        # Update the kwargs with the user_id
+        kwargs['myid'] = self.kwargs['familyid']
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        myid = self.kwargs['familyid']
+        context = super().get_context_data(**kwargs)
+        context['myid'] = myid
+        return context
+
+
+
+class Crop_UpdateView(LoginRequiredMixin, UpdateView):
+    model = Crop
+    form_class = CropForm
+    template_name = 'myApp/crop_form.html'
+    success_url = reverse_lazy('Crop_list')

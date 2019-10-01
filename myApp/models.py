@@ -301,8 +301,14 @@ class Crop(models.Model):
 
     familyid = models.IntegerField(default=0)
     food_item_id = models.IntegerField(default=1)
-    food_grp = models.CharField(max_length=200)
-    Food_name = models.CharField(max_length=200)
+    food_grp = models.CharField(
+        max_length=200,
+        blank = True
+    )
+    Food_name = models.CharField(
+        max_length=200,
+        blank = True
+    )
     food_wt = models.FloatField(
         verbose_name='weight',
         default=0

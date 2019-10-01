@@ -5,11 +5,12 @@
 
 	<div class="container float-left" style="max-width: 540px;">
 		<div class="row">
-			<div class="col-8 text-danger">
+			<div class="col-7 text-danger">
 				{{name}}
 			</div>
-			<div class="col-4">
-					<a class="btn btn-outline-secondary" href="{% url 'person_create' familyid=myid %}">add</a>
+			<div class="col-5">
+					<span><a class="btn  badge btn-outline-secondary" href="{% url 'Family_index' %}">back</a></span>
+					<span><a class="btn  badge btn-outline-secondary" href="{% url 'person_create' familyid=myid %}">add</a></span>
 			</div>
 		</div>
 	</div>

@@ -98,3 +98,11 @@ class Person_Create_Form(forms.ModelForm):
             except:
                 fe = v1.female_fe
         return fe
+
+class CropForm(forms.ModelForm):
+
+    class Meta:
+        model = Crop
+        fields = ("Food_name", "feas_DRI", "feas_soc_acceptable",
+            "feas_prod_skill", "feas_tech_service", "feas_invest_fixed",
+            "feas_invest_variable", "feas_availability")

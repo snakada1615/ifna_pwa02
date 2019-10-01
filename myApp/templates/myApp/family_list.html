@@ -8,7 +8,7 @@
 				<h5> registered area</h5>
 		</div>
 		<div class="col-4">
-				<a class="btn btn-outline-secondary" href="{% url 'Family_create' %}">add</a>
+				<a class="btn btn-outline-secondary badge" href="{% url 'Family_create' %}">add</a>
 		</div>
 	</div>
 </div>
@@ -37,7 +37,7 @@
 						</p>
 						<p>
 							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'person_list' familyid=family.pk %}">trgt</a></span>
-							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_delete' pk=family.pk %}">crop</a></span>
+							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_list' familyid=family.pk %}">crop</a></span>
 						</p>
 		      </div>
 		    </div>
