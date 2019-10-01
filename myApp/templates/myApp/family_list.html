@@ -1,66 +1,49 @@
 {% extends 'myApp/base.html' %}
+{% load static %}
+
 {% block content %}
-	<div class="container text-white">
-		<div class="row bg-primary">
-			<div class="col-5 border">
-				family name
-			</div>
-			<div class="col-3 border">
-				size
-			</div>
-			<div class="col-2 border">
-				edit
-			</div>
-			<div class="col-2 border">
-				del
-			</div>
+<div class="container" style="max-width: 540px;">
+	<div class="row">
+		<div class="col-8">
+				<h5> registered area</h5>
 		</div>
-		{% for family in mylist %}
-			<div class="row bg-success">
-				<div class="col-8">
-					<div class="row">
-						<div class="col-8">
+		<div class="col-4">
+				<a class="btn btn-outline-secondary" href="{% url 'Family_create' %}">add</a>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	{% for family in mylist %}
+		<div class="card border-primary col-12 mt-2" style="max-width: 540px;">
+		  <div class="row">
+		    <div class="col-4 d-flex align-items-center">
+		      <img src="{% static 'img/church96.png' %}" class="card-img">
+		    </div>
+		    <div class="col-8">
+		      <div class="card-body bg-light p-2">
+		        <h5 class="card-title">
 							{{ family.name }}
-						</div>
-						<div class="col-4">
+						</h5>
+						<p class="card-text">
 							{{ family.size }}
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-8">
+						</p>
+						<p class="card-text">
 							{{ family.remark }}
-						</div>
-					</div>
-				</div>
-				<div class="col-2 border align-items-center bg-white">
-					<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_update' pk=family.pk %}">edit</a></span>
-				</div>
-				<div class="col-2 border align-items-center bg-white">
-					<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_delete' pk=family.pk %}">del</a></span>
-				</div>
-			</div>
+						</p>
+						<p>
+							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_update' pk=family.pk %}">info</a></span>
+							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_delete' pk=family.pk %}">del </a></span>
+						</p>
+						<p>
+							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'person_list' familyid=family.pk %}">trgt</a></span>
+							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_delete' pk=family.pk %}">crop</a></span>
+						</p>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 		{% endfor %}
-
-		<hr>
-		<div class="row">
-			<div class="col-3">
-				<td><a class="btn btn-outline-secondary" href="{% url 'Family_create' %}">register new family</a></td>
-			</div>
-		</div>
-
-		<br>
-
-		<hr>
-		<div class="container">
-		 <div class="card bg-secondary text-white">
-		   <div class="card-body">
-		     <div>Family registration:</div>
-				   here you can add, edit or delete family (or individual) infromation you work on.
-					 please click button as you require
-		   </div>
-		 </div>
-		</div>
-
 	</div>
 
 {% endblock %}

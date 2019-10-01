@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-3">
+        <p>name</p>
+    </div>
+    <div class="col-9">
+        <p>{{ object.family_name }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        <p>age</p>
+    </div>
+    <div class="col-9">
+        <p>{{ object.get_age_display }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        <p>sex</p>
+    </div>
+    <div class="col-9">
+        <p>{{ object.get_sex_display }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        <p>women status</p>
+    </div>
+    <div class="col-9">
+        <p>{{ object.get_women_s_display }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        <p>register date</p>
+    </div>
+    <div class="col-9">
+        <p>{{ object.created_at|date:"Y/m/d G:i:s" }}</p>
+    </div>
+</div>
