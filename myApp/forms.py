@@ -158,9 +158,9 @@ class CropForm(forms.ModelForm):
             self.cleaned_data['food_wt_p'] = 0
 
         if myfood.VITA_RAE > 0:
-            self.cleaned_data['food_wt_va'] = 0
-        else:
             self.cleaned_data['food_wt_va'] = mytarget.vita / myfood.VITA_RAE
+        else:
+            self.cleaned_data['food_wt_va'] = 0
 
         if myfood.FE > 0:
             self.cleaned_data['food_wt_fe'] = mytarget.fe / myfood.FE
