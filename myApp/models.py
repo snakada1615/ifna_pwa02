@@ -117,11 +117,6 @@ class Family(models.Model):
     size = models.IntegerField(
         default=0,
     )
-    remark = models.CharField(
-        verbose_name='remark',
-        max_length=600,
-        blank = True
-    )
     created_at = models.DateTimeField(
         verbose_name='record_date',
         auto_now_add=True
@@ -135,29 +130,29 @@ class Family(models.Model):
 class Person(models.Model):
     # bookid : INTEGER型で、主キー
     AGE_CHOICES = (
-        (1, '0 <= age < 0.5'),
-        (2, '0.5 <= age < 1'),
-        (3, '1 <= age < 1.5'),
-        (4, '1.5 <= age < 2'),
-        (5, '2 <= age < 3'),
-        (6, '3 <= age < 4'),
-        (7, '4 <= age < 5'),
-        (8, '5 <= age < 6'),
-        (9, '6 <= age < 7'),
-        (10, '7 <= age < 8'),
-        (11, '8 <= age < 9'),
-        (11, '9 <= age < 10'),
-        (12, '10 <= age < 11'),
-        (13, '11 <= age < 12'),
-        (14, '12 <= age < 13'),
-        (15, '13 <= age < 14'),
-        (16, '14 <= age < 15'),
-        (17, '15 <= age < 16'),
-        (18, '16 <= age < 17'),
-        (19, '17 <= age < 18'),
-        (20, '18 <= age < 19'),
-        (21, '19 <= age < 65'),
-        (22, '65 <= age'),
+        (1, 'less than 6 mon'),
+        (2, '6 mon to age 1'),
+        (3, 'age 1 to 1.5'),
+        (4, 'age 1.5 to 2'),
+        (5, 'age 2 to 3'),
+        (6, 'age 3 to 4'),
+        (7, 'age 4 to 5'),
+        (8, 'age 5 to 6'),
+        (9, 'age 6 to 7'),
+        (10, 'age 7 to 8'),
+        (11, 'age 8 to 9'),
+        (11, 'age 9 to 10'),
+        (12, 'age 10 to 11'),
+        (13, 'age 11 to 12'),
+        (14, 'age 12 to 13'),
+        (15, 'age 13 to 14'),
+        (16, 'age 14 to 15'),
+        (17, 'age 15 to 16'),
+        (18, 'age 16 to 17'),
+        (19, 'age 17 to 18'),
+        (20, 'age 18 to 19'),
+        (21, 'age 19 to 65'),
+        (22, 'age 65 <= age'),
     )
 
     SEX_CHOICES = (

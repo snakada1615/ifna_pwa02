@@ -14,7 +14,6 @@ class BS4RadioSelect(forms.RadioSelect):
     input_type = 'radio'
     template_name = 'myApp/widgets/bs4_radio.html'
 
-
 class Order_Key_Form(forms.Form):
     key1 = forms.ChoiceField(
         label='Order_key',
@@ -24,16 +23,30 @@ class Order_Key_Form(forms.Form):
         )
 
 class FamilyForm(forms.ModelForm):
-
     class Meta:
         model = Family
-        fields = ("name", "remark")
+        fields = (
+            "name", "remark", "country", "region", "province", "community",
+            "month_start", "month_end", "protein", "vita", "fe", "size"
+        )
+        widgets = {
+            'protein': forms.HiddenInput(),
+            'vita': forms.HiddenInput(),
+            'fe': forms.HiddenInput(),
+            'size': forms.HiddenInput(),
+        }
 
 class Person_Create_Form(forms.ModelForm):
     class Meta:
         model = Person
         fields = ("familyid", "name" ,"age", "sex", "women_s", "protein", "vita", "fe")
-        widgets = {'name': forms.HiddenInput(),'familyid': forms.HiddenInput(),'protein': forms.HiddenInput(), 'vita': forms.HiddenInput(), 'fe': forms.HiddenInput()}
+        widgets = {
+            'name': forms.HiddenInput(),
+            'familyid': forms.HiddenInput(),
+            'protein': forms.HiddenInput(),
+            'vita': forms.HiddenInput(),
+            'fe': forms.HiddenInput(),
+            }
 
     def __init__(self, *args, **kwargs):
         self.myid = kwargs.pop('myid')

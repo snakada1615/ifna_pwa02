@@ -7,12 +7,12 @@ from .views import Crop_UpdateView, Crop_DeleteView, Crop_ListView, Crop_CreateV
 from .views import WhoamI_View, Usage_View
 
 urlpatterns = [
-    path('test/',  TestView.as_view(), name='test'),
+    path('',  TestView.as_view(), name='test'),
     path('who/',  WhoamI_View.as_view(), name='who'),
     path('usage/',  Usage_View.as_view(), name='usage'),
     path('off/', OfflineView.as_view(), name='off'),
     path('fct/<int:categ>/<int:order>/',  FCT_show.as_view(), name='FCT_show'),
-    path('Family/list/',  Family_ListView.as_view(), name='Family_index'),
+    path('Family/list/', Family_ListView.as_view(), name='Family_index'),
     path('Family/create/', Family_CreateView.as_view(), name='Family_create'),
     path('Family/update/<int:pk>/', Family_UpdateView.as_view(), name='Family_update'),
     path('Family/delete/<int:pk>/', Family_DeleteView.as_view(), name='Family_delete'),

@@ -1,7 +1,38 @@
 {% extends 'myApp/base.html' %}
-{% block content %}
 {% load static %}
-<br><br><br>
-hellow django
+{% block content %}
+
+<div class="container float-left" style="max-width: 540px;">
+	<div class="row">
+		<div class="col text-danger">
+			<h5>Welcome to NFA tool!</h5>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+				<a class="btn btn-outline-secondary" href="{% url 'Family_index' %}">Start Application</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col text-danger">
+			<h5></h5>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+				<a class="btn btn-outline-secondary" href="{% url 'usage' %}">How to use?</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col text-danger">
+			<h5></h5>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+				<a class="btn btn-outline-secondary" href="{% url 'who' %}">who we are</a>
+		</div>
+	</div>
+</div>
 
 {% endblock %}
