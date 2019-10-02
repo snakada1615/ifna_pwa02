@@ -100,9 +100,6 @@ class Person_ListView(LoginRequiredMixin, ListView):
         context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
         context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
-        context['sum_p'] = Family.objects.get(id = self.kwargs['familyid']).protein_s
-        context['sum_v'] = Family.objects.get(id = self.kwargs['familyid']).vita_s
-        context['sum_f'] = Family.objects.get(id = self.kwargs['familyid']).fe_s
         return context
 
 # 登録画面
@@ -257,6 +254,9 @@ class Crop_ListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['name'] = Family.objects.get(id = self.kwargs['familyid'])
         context['myid'] = Family.objects.get(id = self.kwargs['familyid']).id
+        context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
+        context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
+        context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
         return context
 
 class Crop_DeleteView(LoginRequiredMixin, DeleteView):
@@ -269,6 +269,9 @@ class Crop_DeleteView(LoginRequiredMixin, DeleteView):
         context['familyid'] = self.kwargs['familyid']
         return context
 
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('crop_list', kwargs = {'familyid': self.kwargs['familyid']})
+
 
 class Crop_CreateView(LoginRequiredMixin, CreateView):
     model = Crop
@@ -279,6 +282,9 @@ class Crop_CreateView(LoginRequiredMixin, CreateView):
         myid = self.kwargs['familyid']
         context = super().get_context_data(**kwargs)
         context['myid'] = myid
+        context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
+        context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
+        context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
         return context
 
     def get_form_kwargs(self):
@@ -303,6 +309,9 @@ class Crop_UpdateView(LoginRequiredMixin, UpdateView):
         myid = self.kwargs['familyid']
         context = super().get_context_data(**kwargs)
         context['myid'] = myid
+        context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
+        context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
+        context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
         return context
 
     def get_form_kwargs(self):

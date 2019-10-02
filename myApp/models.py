@@ -288,7 +288,7 @@ class Crop(models.Model):
     )
     diet_choices = (
         (1, 'conventional'),
-        (2, 'recommended'),
+        (2, 'new crop'),
     )
 
     familyid = models.IntegerField(default=0)

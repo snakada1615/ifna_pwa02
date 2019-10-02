@@ -19,32 +19,77 @@
 		</div>
 	</div>
 
-			<div class="container">
-				{% for crop in mylist %}
-					<div class="card border-primary col-12 mt-2" style="max-width: 540px;">
-					  <div class="row">
-					    <div class="col-4 d-flex align-items-center">
-					      <img src="{% static 'img/foods/icon_113490_256.png' %}" class="card-img">
-					    </div>
-					    <div class="col-8">
-					      <div class="card-body bg-light p-2">
-					        <h5 class="card-title">
-										{{crop.Food_name}}
-									</h5>
-									<p class="card-text">
-										group: {{ crop.food_grp }}
-									</p>
-									<p class="card-text">
-										score: {{ crop.crop_score }}
-									</p>
-										<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_update' familyid=crop.familyid pk=crop.pk %}">edit</a></span>
-										<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_delete' familyid=crop.familyid pk=crop.pk %}">del</a></span>
-					      </div>
-					    </div>
-					  </div>
+	<div class="container text-white">
+			<div class="card border-primary bg-info col-12 mt-2" style="max-width: 540px;">
+				<div class="row">
+					<div class="col-12">
+						<div class="card-body p-2">
+							<div class="row">
+								<div class="col-7 ">
+									Nutrients
+								</div>
+								<div class="col-5 ">
+									Target
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-7 ">
+									protein(g/day)
+								</div>
+								<div class="col-5 ">
+									{{dri_p|floatformat:2}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-7 ">
+									vit-A(μg/day)
+								</div>
+								<div class="col-5 ">
+									{{dri_v|intcomma}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-7 ">
+									Fe(mg/day)
+								</div>
+								<div class="col-5 ">
+									{{dri_f|floatformat:2}}
+								</div>
+							</div>
+						</div>
 					</div>
-					{% endfor %}
 				</div>
+			</div>
+		</div>
+
+
+
+		<div class="container">
+			{% for crop in mylist %}
+				<div class="card border-primary col-12 mt-2" style="max-width: 540px;">
+				  <div class="row">
+				    <div class="col-4 d-flex align-items-center">
+				      <img src="{% static 'img/foods/icon_113490_256.png' %}" class="card-img">
+				    </div>
+				    <div class="col-8">
+				      <div class="card-body bg-light p-2">
+				        <h5 class="card-title">
+									{{crop.Food_name}}
+								</h5>
+								<p class="card-text">
+									group: {{ crop.food_grp }}
+								</p>
+								<p class="card-text">
+									score: {{ crop.crop_score }}
+								</p>
+									<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_update' familyid=crop.familyid pk=crop.pk %}">edit</a></span>
+									<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_delete' familyid=crop.familyid pk=crop.pk %}">del</a></span>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				{% endfor %}
+			</div>
 
 
 {% endblock %}

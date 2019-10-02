@@ -1,13 +1,15 @@
 {% extends "myApp/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+{% load humanize %}
 {{ form.certifications.errors }}
+
 <div class="container">
   <form method="post" id="myform">
     {% csrf_token %}
     <div class="row">
         <div class="col-12">
-            <h2 class="text-center">data input</h2>
+            <h3 class="text-center">crop feasibility assessment</h3>
         </div>
     </div>
     <div class="row">

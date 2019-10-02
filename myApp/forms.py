@@ -103,18 +103,14 @@ class CropForm(forms.ModelForm):
 
     class Meta:
         model = Crop
-        fields = ("familyid", "Food_name", "feas_DRI", "feas_soc_acceptable",
-            "feas_prod_skill", "feas_tech_service", "feas_invest_fixed",
-            "feas_invest_variable", "feas_availability",
-            "diet_type", "food_item_id", "food_grp", "protein", "vita", "fe", "crop_score",
-            "food_wt_p", "food_wt_va", "food_wt_fe"
+        fields = ("familyid", "Food_name", "food_wt_p", "food_wt_va", "food_wt_fe",
+            "feas_DRI", "feas_soc_acceptable","feas_prod_skill", "feas_tech_service",
+            "feas_invest_fixed", "feas_invest_variable", "feas_availability",
+            "diet_type", "food_item_id", "food_grp", "protein", "vita", "fe", "crop_score"
             )
         widgets = {
             'familyid': forms.HiddenInput(),
             'food_grp': forms.HiddenInput(),
-            'food_wt_p': forms.HiddenInput(),
-            'food_wt_va': forms.HiddenInput(),
-            'food_wt_fe': forms.HiddenInput(),
             'diet_type': forms.RadioSelect(),
             'food_item_id': forms.HiddenInput(),
             'protein': forms.HiddenInput(),
@@ -122,12 +118,28 @@ class CropForm(forms.ModelForm):
             'fe': forms.HiddenInput(),
             'crop_score': forms.HiddenInput(),
         }
+        labels = {
+            "food_wt_p": "required amount (for protein)",
+            "food_wt_va": "required amount (for VitA)",
+            "food_wt_fe": "required amount (for Iron)",
+            "feas_DRI": "Is required amount feasible?",
+            "feas_soc_acceptable": "Is there any social bariier to consume this crop?",
+            "feas_prod_skill": "does target beneficiary has enough skill to grow this crop?",
+            "feas_tech_service": "Is technical servece available for this crop?",
+            "feas_invest_fixed": "Is there need for specific infrastructure (irrigation / postharvest)?",
+            "feas_invest_variable": "Is production input become burden for small farmer?",
+            "feas_availability": "How long is this crop available during a year?",
+            "diet_type": "is this crop new for target area?",
+        }
 
     def __init__(self, *args, **kwargs):
         self.myid = kwargs.pop('myid')
         super(CropForm, self).__init__(*args, **kwargs)
         myquery = FCT.objects.all()
         self.fields['Food_name'] = forms.ModelChoiceField(queryset=myquery, empty_label='select food', to_field_name='Food_name')
+        self.fields['food_wt_p'].widget.attrs['readonly'] = True
+        self.fields['food_wt_va'].widget.attrs['readonly'] = True
+        self.fields['food_wt_fe'].widget.attrs['readonly'] = True
 
     def clean(self):
         cleaned_data = super(CropForm, self).clean()
@@ -139,13 +151,27 @@ class CropForm(forms.ModelForm):
         self.cleaned_data['vita'] = myfood.VITA_RAE
         self.cleaned_data['fe'] = myfood.FE
         self.cleaned_data['familyid'] = self.myid
-        self.cleaned_data['food_wt_p'] = mytarget.protein / myfood.Protein
-        self.cleaned_data['food_wt_va'] = mytarget.vita / myfood.VITA_RAE
-        self.cleaned_data['food_wt_fe'] = mytarget.fe / myfood.FE
+
+        if myfood.Protein >0:
+            self.cleaned_data['food_wt_p'] = mytarget.protein / myfood.Protein
+        else:
+            self.cleaned_data['food_wt_p'] = 0
+
+        if myfood.VITA_RAE > 0:
+            self.cleaned_data['food_wt_va'] = 0
+        else:
+            self.cleaned_data['food_wt_va'] = mytarget.vita / myfood.VITA_RAE
+
+        if myfood.FE > 0:
+            self.cleaned_data['food_wt_fe'] = mytarget.fe / myfood.FE
+        else:
+            self.cleaned_data['food_wt_fe'] = 0
+
         self.cleaned_data['crop_score'] = self.cleaned_data['feas_soc_acceptable'] \
             + self.cleaned_data['feas_DRI'] + self.cleaned_data['feas_prod_skill'] \
             + self.cleaned_data['feas_availability'] \
             + self.cleaned_data['feas_invest_fixed'] \
             + self.cleaned_data['feas_tech_service'] \
             + self.cleaned_data['feas_invest_variable']
+
         return cleaned_data
