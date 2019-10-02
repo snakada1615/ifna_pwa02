@@ -15,6 +15,12 @@ from django.db.models import Q, Sum
 class TestView(TemplateView):
     template_name = "myApp/index.html"
 
+class WhoamI_View(TemplateView):
+    template_name = "myApp/acknowledge.html"
+
+class Usage_View(TemplateView):
+    template_name = "myApp/usage.html"
+
 class OfflineView(TemplateView):
     template_name = "myApp/offline.html"
 

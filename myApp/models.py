@@ -114,18 +114,6 @@ class Family(models.Model):
         verbose_name='iron',
         default=0
     )
-    protein_s = models.FloatField(
-        verbose_name='protein_s',
-        default=0
-    )
-    vita_s = models.FloatField(
-        verbose_name='Vit-A_s',
-        default=0
-    )
-    fe_s = models.FloatField(
-        verbose_name='iron_s',
-        default=0
-    )
     size = models.IntegerField(
         default=0,
     )
@@ -239,8 +227,8 @@ class Person(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Family information'
-        verbose_name_plural = 'Family information'
+        verbose_name = 'Person informatin'
+        verbose_name_plural = 'Person information'
 
 
 class Crop(models.Model):
@@ -321,6 +309,18 @@ class Crop(models.Model):
         verbose_name='weight',
         default=0
     )
+    food_wt_p = models.FloatField(
+        verbose_name='weight_prot',
+        default=0
+    )
+    food_wt_va = models.FloatField(
+        verbose_name='weight_vitA',
+        default=0
+    )
+    food_wt_fe = models.FloatField(
+        verbose_name='weight_Iron',
+        default=0
+    )
     protein = models.FloatField(
         verbose_name='protein',
         default=0
@@ -369,4 +369,8 @@ class Crop(models.Model):
         verbose_name='feas_availability',
         choices=choices_availability,
         default=1,
+    )
+    crop_score = models.IntegerField(
+        verbose_name='crop_score',
+        default=0,
     )

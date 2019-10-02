@@ -6,7 +6,7 @@
 	<div class="container float-left" style="max-width: 540px;">
 		<div class="row">
 			<div class="col text-danger">
-				Priority commodities for {{name}}
+				<h5>Priority commodities for {{name}}</h5>
 			</div>
 		</div>
 		<div class="row">
@@ -32,10 +32,10 @@
 										{{crop.Food_name}}
 									</h5>
 									<p class="card-text">
-										{{ crop.food_grp }}
+										group: {{ crop.food_grp }}
 									</p>
 									<p class="card-text">
-										{{ crop.protein }}
+										score: {{ crop.crop_score }}
 									</p>
 										<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_update' familyid=crop.familyid pk=crop.pk %}">edit</a></span>
 										<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_delete' familyid=crop.familyid pk=crop.pk %}">del</a></span>

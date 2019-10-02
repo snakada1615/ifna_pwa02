@@ -59,10 +59,13 @@
 		  		<ul class="navbar-nav mr-auto">
 
 		  			<li class="nav-item active">
-			        	<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			        	<a class="nav-link" href="{% url 'Family_index' %}">main<span class="sr-only">(current)</span></a>
 			      	</li>
-			      	<li class="nav-item active">
-			        	<a class="nav-link" href="#">About us</a>
+							<li class="nav-item active">
+			        	<a class="nav-link" href="{% url 'usage' %}">How to use?</a>
+			      	</li>
+							<li class="nav-item active">
+			        	<a class="nav-link" href="{% url 'who' %}">About us</a>
 			      	</li>
 
 		  		</ul>
