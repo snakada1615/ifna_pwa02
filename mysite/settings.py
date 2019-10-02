@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'myApp',
     'crispy_forms',
     'django.contrib.humanize',
+    'pwa',
 ]
 
 MIDDLEWARE = [
