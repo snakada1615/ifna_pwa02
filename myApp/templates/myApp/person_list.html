@@ -5,8 +5,12 @@
 
 	<div class="container float-left" style="max-width: 540px;">
 		<div class="row">
-			<div class="col-7 text-danger">
-				{{name}}
+			<div class="col text-danger">
+				nutrition target for {{name}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-7">
 			</div>
 			<div class="col-5">
 					<span><a class="btn  badge btn-outline-secondary" href="{% url 'Family_index' %}">back</a></span>
@@ -15,68 +19,53 @@
 		</div>
 	</div>
 
-	<div class="container float-left" style="max-width: 540px;">
-		<div class="row bg-primary">
-			<div class="col-4 border">
-				Nutrients
+	<hr>
+
+	<div class="container text-white">
+			<div class="card border-primary bg-info col-12 mt-2" style="max-width: 540px;">
+				<div class="row">
+					<div class="col-12">
+						<div class="card-body p-2">
+							<div class="row">
+								<div class="col-7 ">
+									Nutrients
+								</div>
+								<div class="col-5 ">
+									Target
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-7 ">
+									protein(g/day)
+								</div>
+								<div class="col-5 ">
+									{{dri_p|floatformat:2}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-7 ">
+									vit-A(μg/day)
+								</div>
+								<div class="col-5 ">
+									{{dri_v|intcomma}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-7 ">
+									Fe(mg/day)
+								</div>
+								<div class="col-5 ">
+									{{dri_f|floatformat:2}}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="col-4 border">
-				Target
-			</div>
-			<div class="col-4 border">
-				Current
-			</div>
 		</div>
-		<div class="row">
-				<div class="col-4 border bg-secondary">
-					protein(g/day)
-				</div>
-				<div class="col-4 border bg-secondary">
-					{{dri_p|floatformat:2}}
-				</div>
-				{% if dri_p > sum_p %}
-					<div class="col-4 border text-warning bg-secondary">
-				{% else %}
-					<div class="col-4 border text-white bg-secondary">
-				{% endif %}
-					{{sum_p|floatformat:2}}
-				</div>
-		</div>
-		<div class="row">
-				<div class="col-4 border bg-secondary">
-					vit-A(μg/day)
-				</div>
-				<div class="col-4 border bg-secondary">
-					{{dri_v|intcomma}}
-				</div>
-				{% if dri_v > sum_v %}
-					<div class="col-4 border text-warning bg-secondary">
-				{% else %}
-					<div class="col-4 border text-white bg-secondary">
-				{% endif %}
-					{{sum_v|intcomma}}
-				</div>
-		</div>
-		<div class="row">
-				<div class="col-4 border bg-secondary">
-					Fe(mg/day)
-				</div>
-				<div class="col-4 border bg-secondary">
-					{{dri_f|floatformat:2}}
-				</div>
-				{% if dri_f > sum_f %}
-					<div class="col-4 border text-warning bg-secondary">
-				{% else %}
-					<div class="col-4 border text-white bg-secondary">
-				{% endif %}
-					{{sum_f|floatformat:2}}
-				</div>
-		</div>
-		<div class="row">
-		</div>
-	</div>
 
 			<hr>
+
 
 			<div class="container">
 				{% for family in families %}
@@ -87,14 +76,14 @@
 					    </div>
 					    <div class="col-8">
 					      <div class="card-body bg-light p-2">
-					        <h5 class="card-title">
-										{{name}}
-									</h5>
 									<p class="card-text">
-										{{ family.get_sex_display }}
+										sex: {{ family.get_sex_display }}
 									</p>
 									<p class="card-text">
-										{{ family.age }}
+										age: {{ family.age }}
+									</p>
+									<p class="card-text">
+										other: {{ family.get_women_s_display }}
 									</p>
 										<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'person_update' familyid=family.familyid pk=family.pk %}">edit</a></span>
 										<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'person_delete' familyid=family.familyid pk=family.pk %}">del</a></span>

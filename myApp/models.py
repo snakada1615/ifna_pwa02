@@ -298,6 +298,10 @@ class Crop(models.Model):
         (3, 'maybe yes'),
         (4, 'yes'),
     )
+    diet_choices = (
+        (1, 'conventional'),
+        (2, 'recommended'),
+    )
 
     familyid = models.IntegerField(default=0)
     food_item_id = models.IntegerField(default=1)
@@ -308,6 +312,10 @@ class Crop(models.Model):
     Food_name = models.CharField(
         max_length=200,
         blank = True
+    )
+    diet_type = models.IntegerField(
+        default=1,
+        choices=diet_choices,
     )
     food_wt = models.FloatField(
         verbose_name='weight',

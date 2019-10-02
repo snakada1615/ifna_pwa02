@@ -105,12 +105,30 @@ class CropForm(forms.ModelForm):
         model = Crop
         fields = ("familyid", "Food_name", "feas_DRI", "feas_soc_acceptable",
             "feas_prod_skill", "feas_tech_service", "feas_invest_fixed",
-            "feas_invest_variable", "feas_availability")
+            "feas_invest_variable", "feas_availability",
+            "diet_type", "food_item_id", "protein", "vita", "fe"
+            )
+        widgets = {
+            'familyid': forms.HiddenInput(),
+            'diet_type': forms.RadioSelect(),
+            'food_item_id': forms.HiddenInput(),
+            'protein': forms.HiddenInput(),
+            'vita': forms.HiddenInput(),
+            'fe': forms.HiddenInput(),
+        }
 
     def __init__(self, *args, **kwargs):
         self.myid = kwargs.pop('myid')
         super(CropForm, self).__init__(*args, **kwargs)
+        myquery = FCT.objects.all()
+        self.fields['Food_name'] = forms.ModelChoiceField(queryset=myquery, empty_label='select food', to_field_name='Food_name')
 
-    def clean_familyid(self):
-        familyid = self.myid
-        return familyid
+    def clean(self):
+        cleaned_data = super(CropForm, self).clean()
+        myfood = FCT.objects.get(Food_name = self.cleaned_data['Food_name'])
+        self.cleaned_data['food_item_id'] = myfood.food_item_id
+        self.cleaned_data['protein'] = myfood.Protein
+        self.cleaned_data['vita'] = myfood.VITA_RAE
+        self.cleaned_data['fe'] = myfood.FE
+        self.cleaned_data['familyid'] = self.myid
+        return cleaned_data
