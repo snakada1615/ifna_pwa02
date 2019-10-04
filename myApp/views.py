@@ -325,3 +325,9 @@ class Crop_UpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self, **kwargs):
         return reverse_lazy('crop_list', kwargs = {'familyid': self.kwargs['familyid']})
+
+
+def getdata(request, myStore):
+    results = app.get_model(myStore).objects.all()
+    jsondata = serializers.serialize('json',results)
+    return HttpResponse(jsondata)

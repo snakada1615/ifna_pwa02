@@ -22,9 +22,11 @@ const RUNTIME = 'runtime';
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
 //  '/css/django-pwa-app.css',
+  'test/',
   '/static/css/bootstrap.min.css',
   '/static/js/bootstrap.bundle.min.js',
   '/static/js/jquery-3.4.1.min.js',
+  '/static/js/vue.js',
   '/static/img/icons/chef72.png',
   '/static/img/icons/chef96.png',
   '/static/img/icons/chef128.png',
@@ -65,8 +67,6 @@ self.addEventListener('activate', event => {
 // from the network before returning it to the page.
 self.addEventListener('fetch', event => {
   // Skip cross-origin requests, like those for Google Analytics.
-  const url = new URL(event.request.url);
-  console.log(url.pathname);
   if (event.request.url.startsWith(self.location.origin)) {
     event.respondWith(
       caches.match(event.request).then(cachedResponse => {

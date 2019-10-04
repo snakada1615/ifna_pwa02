@@ -7,7 +7,7 @@ from .views import Crop_UpdateView, Crop_DeleteView, Crop_ListView, Crop_CreateV
 from .views import WhoamI_View, Usage_View
 
 urlpatterns = [
-    path('',  TestView.as_view(), name='test'),
+    path('test/',  TestView.as_view(), name='test'),
     path('who/',  WhoamI_View.as_view(), name='who'),
     path('usage/',  Usage_View.as_view(), name='usage'),
     path('off/', OfflineView.as_view(), name='off'),
@@ -24,4 +24,5 @@ urlpatterns = [
     path('crop/create/<int:familyid>/', Crop_CreateView.as_view(), name='crop_create'),
     path('crop/update/<int:familyid>/<int:pk>/', Crop_UpdateView.as_view(), name='crop_update'),
     path('crop/delete/<int:familyid>/<int:pk>/', Crop_DeleteView.as_view(), name='crop_delete'),
+    path('getdata/<str:myStore>',  views.getdata, name='getdata'),
 ]
