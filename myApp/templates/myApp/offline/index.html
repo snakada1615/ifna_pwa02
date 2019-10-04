@@ -1,0 +1,18 @@
+{% extends 'myApp/base.html' %}
+{% load static %}
+{% block content %}
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script type="text/javascript" src="{% static 'js/idbtest.js' %}"></script>
+    </head>
+    <body>
+        <input type="text" id="todo-text" value="" />
+        <input type="submit" value="add" onclick="module.add();" />
+        <ul id="todo-list">
+        </ul>
+    </body>
+</html>
+
+{% endblock %}

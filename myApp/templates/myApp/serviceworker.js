@@ -23,6 +23,7 @@ const RUNTIME = 'runtime';
 const PRECACHE_URLS = [
 //  '/css/django-pwa-app.css',
   'test/',
+  'offline/',
   '/static/css/bootstrap.min.css',
   '/static/js/bootstrap.bundle.min.js',
   '/static/js/jquery-3.4.1.min.js',

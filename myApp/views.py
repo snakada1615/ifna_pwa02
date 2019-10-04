@@ -12,6 +12,9 @@ from django.db.models import Q, Sum
 
 
 # Create your views here.
+class TestOfflineView(TemplateView):
+    template_name = "myApp/offline/index.html"
+
 class TestView(TemplateView):
     template_name = "myApp/index.html"
 
