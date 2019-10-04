@@ -23,6 +23,8 @@ const RUNTIME = 'runtime';
 const PRECACHE_URLS = [
 //  '/css/django-pwa-app.css',
   'test/',
+  'usage/',
+  'who/',
   'offline/',
   '/static/css/bootstrap.min.css',
   '/static/js/bootstrap.bundle.min.js',
@@ -38,6 +40,43 @@ const PRECACHE_URLS = [
   '/static/img/icons/chef512.png',
   '/static/img/mother and child 640.png'
 ];
+
+/**
+ * Returns a promise that resolves with an ID token if available.
+ * @return {!Promise<?string>} The promise that resolves with an ID token if
+ *     available. Otherwise, the promise resolves with null.
+ */
+const getIdToken = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      unsubscribe();
+      if (user) {
+        user.getIdToken().then((idToken) => {
+          resolve(idToken);
+        }, (error) => {
+          resolve(null);
+        });
+      } else {
+        resolve(null);
+      }
+    });
+  });
+};
+
+const getOriginFromUrl = (url) => {
+  // https://stackoverflow.com/questions/1420881/how-to-extract-base-url-from-a-string-in-javascript
+  const pathArray = url.split('/');
+  const protocol = pathArray[0];
+  const host = pathArray[2];
+  return protocol + '//' + host;
+};
+
+/**
+ * Returns a promise that resolves with an ID token if available.
+ * @return {!Promise<?string>} The promise that resolves with an ID token if
+ *     available. Otherwise, the promise resolves with null.
+ */
+
 
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {
@@ -62,30 +101,79 @@ self.addEventListener('activate', event => {
   );
 });
 
+self.addEventListener('fetch', function(event) {
+  // every request from our site, passes through the fetch handler
+  // I have proof
+  console.log('I am a request with url: ',
+   event.request.clone().url)
 
-// The fetch handler serves responses for same-origin resources from a cache.
-// If no response is found, it populates the runtime cache with the response
-// from the network before returning it to the page.
-self.addEventListener('fetch', event => {
-  // Skip cross-origin requests, like those for Google Analytics.
-  if (event.request.url.startsWith(self.location.origin)) {
+  if (event.request.clone().method === 'GET') {
     event.respondWith(
-      caches.match(event.request).then(cachedResponse => {
-        if (cachedResponse) {
-          return cachedResponse;
+      // check all the caches in the browser and find
+      // out whether our request is in any of them
+      caches.match(event.request.clone())
+        .then(function(response) {
+          if (response) {
+            // if we are here, that means there's a match
+            //return the response stored in browser
+            return response;
+          }
+          // no match in cache, use the network instead
+          return fetch(event.request.clone());
         }
-
-        return caches.open(RUNTIME).then(cache => {
-          return fetch(event.request).then(response => {
-            // Put a copy of the response in the runtime cache.
-            return cache.put(event.request, response.clone()).then(() => {
-              return response;
-            });
-          });
-        });
-      })
+      )
     );
-  }
+  } else if (event.request.clone().method === 'POST') {
+    // attempt to send request normally
+
+     //*
+     //*
+     //*
+     const requestProcessor = (idToken) => {
+       let req = event.request;
+       // For same origin https requests, append idToken to header.
+       if (self.location.origin == getOriginFromUrl(event.request.url) &&
+           (self.location.protocol == 'https:' ||
+            self.location.hostname == 'localhost') &&
+           idToken) {
+         // Clone headers as request headers are immutable.
+         const headers = new Headers();
+         for (let entry of req.headers.entries()) {
+           headers.append(entry[0], entry[1]);
+         }
+         // Add ID token to header.
+         headers.append('Authorization', 'Bearer ' + idToken);
+         try {
+           req = new Request(req.url, {
+             method: req.method,
+             headers: headers,
+             mode: 'same-origin',
+             credentials: req.credentials,
+             cache: req.cache,
+             redirect: req.redirect,
+             referrer: req.referrer,
+             body: req.body,
+             bodyUsed: req.bodyUsed,
+             context: req.context
+           });
+         } catch (e) {
+           // This will fail for CORS requests. We just continue with the
+           // fetch caching logic below and do not pass the ID token.
+         }
+       }
+     };
+
+    //*
+    //*
+    //*
+
+    event.respondWith(fetch(req).catch(function
+    (error) {
+      // only save post requests in browser, if an error occurs
+      //savePostRequests(event.request.clone().url, form_data)
+      console.log('local save function not available')
+    }))
+  };
 });
 
 /*
