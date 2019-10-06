@@ -4,11 +4,13 @@ from .views import TestView, FCT_show, OfflineView
 from .views import Family_UpdateView, Family_DeleteView, Family_ListView, Family_CreateView
 from .views import Person_UpdateView, Person_DeleteView, Person_ListView, Person_CreateView
 from .views import Crop_UpdateView, Crop_DeleteView, Crop_ListView, Crop_CreateView
-from .views import WhoamI_View, Usage_View, TestOfflineView
+from .views import WhoamI_View, Usage_View, TestOfflineView, off_FCT_view, off_Family_ListView
 
 urlpatterns = [
     path('test/',  TestView.as_view(), name='test'),
     path('offline/', TestOfflineView.as_view(), name='offline'),
+    path('offline/fct/<int:categ>/<int:order>/',  off_FCT_view.as_view(), name='off_FCT_view'),
+    path('offline/Family/list/', off_Family_ListView.as_view(), name='off_Family_index'),
     path('who/',  WhoamI_View.as_view(), name='who'),
     path('usage/',  Usage_View.as_view(), name='usage'),
     path('fct/<int:categ>/<int:order>/',  FCT_show.as_view(), name='FCT_show'),
@@ -24,5 +26,5 @@ urlpatterns = [
     path('crop/create/<int:familyid>/', Crop_CreateView.as_view(), name='crop_create'),
     path('crop/update/<int:familyid>/<int:pk>/', Crop_UpdateView.as_view(), name='crop_update'),
     path('crop/delete/<int:familyid>/<int:pk>/', Crop_DeleteView.as_view(), name='crop_delete'),
-    path('getdata/<str:myStore>',  views.getdata, name='getdata'),
+    path('getdata/',  views.getdata, name='getdata'),
 ]

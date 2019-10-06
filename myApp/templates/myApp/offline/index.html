@@ -6,12 +6,21 @@
     <head>
         <meta charset="utf-8" />
         <script type="text/javascript" src="{% static 'js/idbtest.js' %}"></script>
+        <title>nakano-Home</title>
     </head>
     <body>
         <input type="text" id="todo-text" value="" />
         <input type="submit" value="add" onclick="module.add();" />
         <ul id="todo-list">
         </ul>
+        <ul id="offlinedata">
+        </ul>
+
+    		<script type="text/javascript" src="{% static 'js/openDB.js' %}"></script>
+        <p><button type="button" onclick="initDB('NFA-db','FCT')">FCT create</button></p>
+        <p><button type="button" onclick="importIDB('NFA-db','FCT')">FCT add</button></p>
+        <a class="btn btn-outline-secondary" href="{% url 'off_FCT_view' 1 1 %}">fct</a>
+
     </body>
 </html>
 

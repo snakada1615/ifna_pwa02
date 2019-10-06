@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
+from django.core import serializers
 
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -14,6 +15,12 @@ from django.db.models import Q, Sum
 # Create your views here.
 class TestOfflineView(TemplateView):
     template_name = "myApp/offline/index.html"
+
+class off_FCT_view(TemplateView):
+    template_name = "myApp/offline/off_FCT_view.html"
+
+class off_Family_ListView(TemplateView):
+    template_name = "myApp/offline/off_family_list.html"
 
 class TestView(TemplateView):
     template_name = "myApp/index.html"
@@ -329,8 +336,7 @@ class Crop_UpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self, **kwargs):
         return reverse_lazy('crop_list', kwargs = {'familyid': self.kwargs['familyid']})
 
-
-def getdata(request, myStore):
-    results = app.get_model(myStore).objects.all()
-    jsondata = serializers.serialize('json',results)
-    return HttpResponse(jsondata)
+def getdata(request):
+ results = FCT.objects.all()
+ jsondata = serializers.serialize('json',results)
+ return HttpResponse(jsondata)
