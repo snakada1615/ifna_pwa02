@@ -1,3 +1,4 @@
+var DBexists = true;
 
 function initDB(db_name) {
     var request = indexedDB.open(db_name);
@@ -11,6 +12,7 @@ function initDB(db_name) {
     };
 
     request.onupgradeneeded = function (evt) {
+        DBexists = false;
         var objectStore = evt.currentTarget.result.createObjectStore(
                               'FCT',
                               {keyPath:'pk', autoIncrement: true}
@@ -90,4 +92,23 @@ function importIDB(dname, sname, sid) {
      alert("Enable to access IndexedDB, " + e.target.errorCode)
     }
   })
+}
+
+function importAll() {
+  importIDB('NFA-db','FCT', '1');
+  importIDB('NFA-db','DRI', '2');
+  importIDB('NFA-db','DRI_w', '3');
+  importIDB('NFA-db','Person', '4');
+  importIDB('NFA-db','Crop', '5');
+  importIDB('NFA-db','Family', '6');
+}
+
+var req = initDB('NFA-db');
+if (req) {
+  if (DBexists == false) {
+    console.log('new store create');
+    importAll();
+  } else {
+    console.log('database already exists');
+  };
 }

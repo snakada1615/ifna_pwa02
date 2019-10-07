@@ -16,15 +16,9 @@
         <ul id="offlinedata">
         </ul>
 
+        <input type="button" value="import all" onclick="importAll()">
     		<script type="text/javascript" src="{% static 'js/openDB.js' %}"></script>
-        <p><button type="button" onclick="initDB('NFA-db')">FCT create</button></p>
-        <p><button type="button" onclick="importIDB('NFA-db','FCT', '1')">FCT add</button></p>
-        <p><button type="button" onclick="importIDB('NFA-db','DRI', '2')">DRI add</button></p>
-        <p><button type="button" onclick="importIDB('NFA-db','DRI_w', '3')">DRI women add</button></p>
-        <p><button type="button" onclick="importIDB('NFA-db','Person', '4')">Person add</button></p>
-        <p><button type="button" onclick="importIDB('NFA-db','Crop', '5')">Crop add</button></p>
-        <p><button type="button" onclick="importIDB('NFA-db','Family', '6')">Famkily add</button></p>
-        <a class="btn btn-outline-secondary" href="{% url 'off_FCT_view' 1 1 %}">fct</a>
+        <a class="btn btn-outline-secondary" href="{% url 'off_family_list' %}">fct</a>
 
     </body>
 </html>
