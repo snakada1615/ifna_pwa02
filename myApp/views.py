@@ -340,3 +340,21 @@ def getdata(request):
  results = FCT.objects.all()
  jsondata = serializers.serialize('json',results)
  return HttpResponse(jsondata)
+
+def getNFA(request, store_id):
+    results = FCT.objects.all()
+    if store_id == 1:
+        results = FCT.objects.all()
+    if store_id == 2:
+        results = DRI.objects.all()
+    if store_id == 3:
+        results = DRI_women.objects.all()
+    if store_id == 4:
+        results = Person.objects.all()
+    if store_id == 5:
+        results = Crop.objects.all()
+    if store_id == 6:
+        results = Family.objects.all()
+
+    jsondata = serializers.serialize('json',results)
+    return HttpResponse(jsondata)

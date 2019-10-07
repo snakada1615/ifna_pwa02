@@ -1,12 +1,5 @@
 
-function contentLoaded() {
-    db_name = "NFA-db";
-    store_name = "FCT";
-    key = 'pk';
-    initDb();
-}
-
-function initDB(db_name, store_name) {
+function initDB(db_name) {
     var request = indexedDB.open(db_name);
     request.onsuccess = function (evt) {
         console.log('database opened');
@@ -19,7 +12,42 @@ function initDB(db_name, store_name) {
 
     request.onupgradeneeded = function (evt) {
         var objectStore = evt.currentTarget.result.createObjectStore(
-                              store_name,
+                              'FCT',
+                              {keyPath:'pk', autoIncrement: true}
+                          );
+        if (objectStore) {
+          console.log("store created");
+        }
+        var objectStore = evt.currentTarget.result.createObjectStore(
+                              'DRI',
+                              {keyPath:'pk', autoIncrement: true}
+                          );
+        if (objectStore) {
+          console.log("store created");
+        }
+        var objectStore = evt.currentTarget.result.createObjectStore(
+                              'DRI_w',
+                              {keyPath:'pk', autoIncrement: true}
+                          );
+        if (objectStore) {
+          console.log("store created");
+        }
+        var objectStore = evt.currentTarget.result.createObjectStore(
+                              'Person',
+                              {keyPath:'pk', autoIncrement: true}
+                          );
+        if (objectStore) {
+          console.log("store created");
+        }
+        var objectStore = evt.currentTarget.result.createObjectStore(
+                              'Crop',
+                              {keyPath:'pk', autoIncrement: true}
+                          );
+        if (objectStore) {
+          console.log("store created");
+        }
+        var objectStore = evt.currentTarget.result.createObjectStore(
+                              'Family',
                               {keyPath:'pk', autoIncrement: true}
                           );
         if (objectStore) {
@@ -29,7 +57,7 @@ function initDB(db_name, store_name) {
 }
 
 
-function importIDB(dname, sname) {
+function importIDB(dname, sname, sid) {
   return new Promise(function(resolve) {
     var r = window.indexedDB.open(dname)
     r.onupgradeneeded = function() {
@@ -40,7 +68,7 @@ function importIDB(dname, sname) {
     r.onsuccess = function() {
 
       //collect latest post from server and store in idb.
-      fetch('http://127.0.0.1:8000/getdata').then(function(response){
+      fetch('http://127.0.0.1:8000/getNFA/' + sid+ '/').then(function(response){
         return response.json();
       }).then(function(arr){
 

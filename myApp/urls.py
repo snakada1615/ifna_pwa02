@@ -27,4 +27,5 @@ urlpatterns = [
     path('crop/update/<int:familyid>/<int:pk>/', Crop_UpdateView.as_view(), name='crop_update'),
     path('crop/delete/<int:familyid>/<int:pk>/', Crop_DeleteView.as_view(), name='crop_delete'),
     path('getdata/',  views.getdata, name='getdata'),
+    path('getNFA/<int:store_id>/',  views.getNFA, name='getnfa'),
 ]
