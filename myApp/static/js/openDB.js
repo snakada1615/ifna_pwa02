@@ -18,42 +18,42 @@ function initDB(db_name) {
                               {keyPath:'pk', autoIncrement: true}
                           );
         if (objectStore) {
-          console.log("store created");
+          console.log("FCT store created");
         }
         var objectStore = evt.currentTarget.result.createObjectStore(
                               'DRI',
                               {keyPath:'pk', autoIncrement: true}
                           );
         if (objectStore) {
-          console.log("store created");
+          console.log("DRI store created");
         }
         var objectStore = evt.currentTarget.result.createObjectStore(
                               'DRI_w',
                               {keyPath:'pk', autoIncrement: true}
                           );
         if (objectStore) {
-          console.log("store created");
+          console.log("DRI_w store created");
         }
         var objectStore = evt.currentTarget.result.createObjectStore(
                               'Person',
                               {keyPath:'pk', autoIncrement: true}
                           );
         if (objectStore) {
-          console.log("store created");
+          console.log("person store created");
         }
         var objectStore = evt.currentTarget.result.createObjectStore(
                               'Crop',
                               {keyPath:'pk', autoIncrement: true}
                           );
         if (objectStore) {
-          console.log("store created");
+          console.log("crop store created");
         }
         var objectStore = evt.currentTarget.result.createObjectStore(
                               'Family',
                               {keyPath:'pk', autoIncrement: true}
                           );
         if (objectStore) {
-          console.log("store created");
+          console.log("family store created");
         }
     };
 }
