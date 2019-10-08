@@ -117,8 +117,12 @@ class CropForm(forms.ModelForm):
     class Meta:
         model = Crop
         fields = ("familyid", "Food_name", "food_wt_p", "food_wt_va", "food_wt_fe",
-            "feas_DRI", "feas_soc_acceptable","feas_prod_skill", "feas_tech_service",
-            "feas_invest_fixed", "feas_invest_variable", "feas_availability",
+            "feas_DRI_p", "feas_DRI_a", "feas_DRI_f", "feas_soc_acceptable",
+            "feas_soc_acceptable_wo", "feas_soc_acceptable_c5",
+            "feas_prod_skill", "feas_workload", "feas_tech_service",
+            "feas_invest_fixed",
+            "feas_invest_variable", "feas_availability_non", "feas_availability_prod",
+            "feas_affordability", "feas_storability",
             "diet_type", "food_item_id", "food_grp", "protein", "vita", "fe", "crop_score"
             )
         widgets = {
@@ -135,13 +139,21 @@ class CropForm(forms.ModelForm):
             "food_wt_p": "required amount (for protein)",
             "food_wt_va": "required amount (for VitA)",
             "food_wt_fe": "required amount (for Iron)",
-            "feas_DRI": "Is required amount feasible?",
-            "feas_soc_acceptable": "Is there any social bariier to consume this crop?",
-            "feas_prod_skill": "does target beneficiary has enough skill to grow this crop?",
+            "feas_DRI_p": "Is required amount for protein target feasible?",
+            "feas_DRI_a": "Is required amount for vit-A target feasible?",
+            "feas_DRI_f": "Is required amount for Iron target feasible?",
+            "feas_soc_acceptable": "Is there any social bariier to consume this crop in general?",
+            "feas_soc_acceptable_wo": "Is there any social bariier to consume this crop for women?",
+            "feas_soc_acceptable_c5": "Is there any social bariier to consume this crop for child?",
+            "feas_prod_skill": "do target beneficiary have enough skill to grow this crop?",
+            "feas_workload": "Does this crop imply incremental workload for women?",
             "feas_tech_service": "Is technical servece available for this crop?",
             "feas_invest_fixed": "Is there need for specific infrastructure (irrigation / postharvest)?",
-            "feas_invest_variable": "Is production input become burden for small farmer?",
-            "feas_availability": "How long is this crop available during a year?",
+            "feas_invest_variable": "Is production input (fertilizer, seed) become burden for small farmer?",
+            "feas_availability_non": "How many month is this crop NOT available in a year?",
+            "feas_availability_prod": "When is this crop available in a year?",
+            "feas_affordability": "Is this crop affordable for ordinary population?",
+            "feas_storability": "Are there any feasible storage medhod available for this crop?",
             "diet_type": "is this crop new for target area?",
         }
 
@@ -166,17 +178,17 @@ class CropForm(forms.ModelForm):
         self.cleaned_data['familyid'] = self.myid
 
         if myfood.Protein >0:
-            self.cleaned_data['food_wt_p'] = mytarget.protein *100 / myfood.Protein
+            self.cleaned_data['food_wt_p'] = round(mytarget.protein *100 / myfood.Protein, 1)
         else:
             self.cleaned_data['food_wt_p'] = 0
 
         if myfood.VITA_RAE > 0:
-            self.cleaned_data['food_wt_va'] = mytarget.vita *100 / myfood.VITA_RAE
+            self.cleaned_data['food_wt_va'] = round(mytarget.vita *100 / myfood.VITA_RAE, 1)
         else:
             self.cleaned_data['food_wt_va'] = 0
 
         if myfood.FE > 0:
-            self.cleaned_data['food_wt_fe'] = mytarget.fe *100 / myfood.FE
+            self.cleaned_data['food_wt_fe'] = round(mytarget.fe *100 / myfood.FE, 1)
         else:
             self.cleaned_data['food_wt_fe'] = 0
 

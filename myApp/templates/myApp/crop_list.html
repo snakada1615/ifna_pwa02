@@ -80,13 +80,13 @@
 									amont to meet target
 								</p>
 								<p class="card-text">
-									protein: {{ crop.food_wt_p }}
+									protein: {{ crop.food_wt_p|floatformat:1}}
 								</p>
 								<p class="card-text">
-									vit-A: {{ crop.food_wt_va }}
+									vit-A: {{ crop.food_wt_va|floatformat:1 }}
 								</p>
 								<p class="card-text">
-									Iron: {{ crop.food_wt_fe }}
+									Iron: {{ crop.food_wt_fe|floatformat:1 }}
 								</p>
 								<p class="card-text">
 									score: {{ crop.crop_score }}

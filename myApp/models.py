@@ -335,13 +335,43 @@ class Crop(models.Model):
         choices=choices_DRI_realistic,
         default=1,
     )
+    feas_DRI_p = models.IntegerField(
+        verbose_name='feas_DRI_p',
+        choices=choices_DRI_realistic,
+        default=1,
+    )
+    feas_DRI_a = models.IntegerField(
+        verbose_name='feas_DRI_a',
+        choices=choices_DRI_realistic,
+        default=1,
+    )
+    feas_DRI_f = models.IntegerField(
+        verbose_name='feas_DRI_f',
+        choices=choices_DRI_realistic,
+        default=1,
+    )
     feas_soc_acceptable = models.IntegerField(
-        verbose_name='feas_social',
+        verbose_name='feas_social_wo',
+        choices=choices_social_acceptability,
+        default=1,
+    )
+    feas_soc_acceptable_wo = models.IntegerField(
+        verbose_name='feas_social_wo',
+        choices=choices_social_acceptability,
+        default=1,
+    )
+    feas_soc_acceptable_c5 = models.IntegerField(
+        verbose_name='feas_social_c5',
         choices=choices_social_acceptability,
         default=1,
     )
     feas_prod_skill = models.IntegerField(
         verbose_name='feas_prod_skill',
+        choices=choices_prod_skill,
+        default=1,
+    )
+    feas_workload = models.IntegerField(
+        verbose_name='feas_workload',
         choices=choices_prod_skill,
         default=1,
     )
@@ -360,8 +390,23 @@ class Crop(models.Model):
         choices=choices_invest_variable,
         default=1,
     )
-    feas_availability = models.IntegerField(
-        verbose_name='feas_availability',
+    feas_availability_non = models.IntegerField(
+        verbose_name='feas_availability_non',
+        choices=choices_availability,
+        default=1,
+    )
+    feas_availability_prod = models.IntegerField(
+        verbose_name='feas_availability_prod',
+        choices=choices_availability,
+        default=1,
+    )
+    feas_affordability = models.IntegerField(
+        verbose_name='feas_affordability',
+        choices=choices_availability,
+        default=1,
+    )
+    feas_storability = models.IntegerField(
+        verbose_name='feas_storability',
         choices=choices_availability,
         default=1,
     )
