@@ -336,11 +336,6 @@ class Crop_UpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self, **kwargs):
         return reverse_lazy('crop_list', kwargs = {'familyid': self.kwargs['familyid']})
 
-def getdata(request):
- results = FCT.objects.all()
- jsondata = serializers.serialize('json',results)
- return HttpResponse(jsondata)
-
 def getNFA(request, store_id):
     results = FCT.objects.all()
     if store_id == 1:

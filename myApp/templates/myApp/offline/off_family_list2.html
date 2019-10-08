@@ -1,14 +1,15 @@
 {% extends 'myApp/base.html' %}
 {% load static %}
-
 {% block content %}
+<script type="text/javascript" src="{% static 'js/vue.js' %}"></script>
+
 <div class="container" style="max-width: 540px;">
 	<div class="row">
 		<div class="col-8">
 				<h5> target area</h5>
 		</div>
 		<div class="col-4">
-				<a class="btn btn-outline-secondary badge" href="{% url 'Family_create' %}">add new target area</a>
+				<a class="btn btn-outline-secondary badge" href="{% url 'Family_create' %}">add</a>
 		</div>
 	</div>
 </div>
@@ -22,21 +23,15 @@
 		    </div>
 		    <div class="col-8">
 		      <div class="card-body bg-light p-2">
-		        <h5 class="card-title">
-							{{ family.name }}
+		        <h5 id="app" class="card-title">
+							{{ message }}
 						</h5>
-						<p class="card-text">
-							{{ family.size }}
-						</p>
-						<p class="card-text">
-							{{ family.remark }}
+						<p>
+							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_update' pk=family.pk %}">info</a></span>
+							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_delete' pk=family.pk %}">del </a></span>
 						</p>
 						<p>
-							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_update' pk=family.pk %}">basic info</a></span>
-							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_delete' pk=family.pk %}">delete all</a></span>
-						</p>
-						<p>
-							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'person_list' familyid=family.pk %}">member profile</a></span>
+							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'person_list' familyid=family.pk %}">trgt</a></span>
 							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_list' familyid=family.pk %}">crop</a></span>
 						</p>
 		      </div>
@@ -46,4 +41,16 @@
 		{% endfor %}
 	</div>
 
+	<script>
+	 document.addEventListener("DOMContentLoaded", function(event) {
+	  var app = new Vue({
+	   el: '#app',
+	   data: {
+			 message1: 'Hello 1 World!',
+	     message2: 'Hello 2 World!',
+	     message3: 'Hello 3 World!'
+	   }
+	  })
+	 });
+	</script>
 {% endblock %}
