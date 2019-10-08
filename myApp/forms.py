@@ -193,10 +193,15 @@ class CropForm(forms.ModelForm):
             self.cleaned_data['food_wt_fe'] = 0
 
         self.cleaned_data['crop_score'] = self.cleaned_data['feas_soc_acceptable'] \
-            + self.cleaned_data['feas_DRI'] + self.cleaned_data['feas_prod_skill'] \
-            + self.cleaned_data['feas_availability'] \
+            + self.cleaned_data['feas_soc_acceptable_wo'] +self.cleaned_data['feas_soc_acceptable_c5'] \
+            + self.cleaned_data['feas_DRI_p'] +self.cleaned_data['feas_DRI_a'] \
+            + self.cleaned_data['feas_DRI_f'] +  self.cleaned_data['feas_prod_skill'] \
+            + self.cleaned_data['feas_workload'] \
             + self.cleaned_data['feas_invest_fixed'] \
             + self.cleaned_data['feas_tech_service'] \
-            + self.cleaned_data['feas_invest_variable']
+            + self.cleaned_data['feas_invest_variable']\
+            + self.cleaned_data['feas_availability_non']\
+            + self.cleaned_data['feas_availability_prod']\
+            + self.cleaned_data['feas_storability']
 
         return cleaned_data
