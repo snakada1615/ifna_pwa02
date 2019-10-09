@@ -29,7 +29,6 @@ const PRECACHE_URLS = [
   '/static/css/bootstrap.min.css',
   '/static/js/bootstrap.bundle.min.js',
   '/static/js/jquery-3.4.1.min.js',
-  '/static/js/vue.js',
   '/static/img/icons/chef72.png',
   '/static/img/icons/chef96.png',
   '/static/img/icons/chef128.png',

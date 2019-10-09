@@ -36,7 +36,7 @@ var Familydat = {
         var div = document.createElement('div');
         div.className = 'container';
         div.innerHTML = d;
-        document.getElementById("Family-list").appendChild(div);
+        document.getElementById("family_list").appendChild(div);
     }
 };
 
@@ -163,8 +163,8 @@ Familydat.addTodo = function(jsondata) {
 
 // TODOをすべて取得するメソッドを定義してみる
 Familydat.getAll = function(renderer) {
-    if (renderer) document.getElementById('Family-list').innerHTML = '';
-    // このへんは同じ
+    if (renderer) document.getElementById('family_list').innerHTML = '';
+    // このへんは同じ,,,,,,,,,,,,
     var db = Familydat.db;
     var tx = db.transaction(["Family"],"readwrite");
     var store = tx.objectStore("Family");

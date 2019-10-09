@@ -1,20 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
- <meta charset="UTF-8">
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
-<body>
-<div id="app">
- {{ message }}
+{% extends 'myApp/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container" style="max-width: 540px;">
+	<div class="row">
+		<div class="col-8">
+				<h5> target area</h5>
+		</div>
+		<div class="col-4">
+				<a class="btn btn-outline-secondary badge" href="{% url 'Family_create' %}">add</a>
+		</div>
+	</div>
 </div>
-<script>
- var app = new Vue({
-  el: '#app',
-  data: {
-   message: 'テキスト表示'
-  }
- })
-</script>
-</body>
-</html>
+
+<div id="family_list" class="container" style="max-width: 540px;"></div>
+<script type="text/javascript" src="{% static 'js/family_list2.js' %}"></script>
+
+{% endblock %}
