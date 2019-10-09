@@ -52,7 +52,7 @@ Familydat.initDB = function(db_name) {
         console.log('database opened');
         Familydat.db = (evt.target) ? evt.target.result : evt.result;
         // ま、ついでだしgetAllすっか
-        Familydat.getAll(Familydat.renderer);
+        //Familydat.getAll(Familydat.renderer);
     };
 
     request.onerror = function (evt) {
@@ -162,40 +162,12 @@ Familydat.addTodo = function(jsondata) {
 };
 
 
-// フォームからデータを読み込んでIDBに保存
-Familydat.add = function() {
-    JSONdata = JSON.stringify( $( 'form' ).serializeArray());
-    var text = document.getElementById('todo-text').value;
-    Familydat.addTodo(text);
-};
 
-// TODOをすべて取得するメソッドを定義してみる
-Familydat.getAll = function(renderer) {
-    if (renderer) document.getElementById('family_list').innerHTML = '';
-    // このへんは同じ,,,,,,,,,,,,
-    var db = Familydat.db;
-    var tx = db.transaction(["Family"],"readwrite");
-    var store = tx.objectStore("Family");
-    // keyPathに対して検索をかける範囲を取得
-    var range = IDBKeyRange.lowerBound(0);
-    // その範囲を走査するカーソルリクエストを生成
-    var cursorRequest = store.openCursor(range);
-    // カーソルリクエストが成功したら...
-    cursorRequest.onsuccess = function(e) {
-        var result = e.target.result;
-        // 注）走査すべきObjectがこれ以上無い場合
-        //     result == null となります！
-        if (!!result == false) return;
-        // ここにvalueがくる！
-        console.log(result.value);
-        if (renderer) renderer(result.value);
-        // カーソルを一個ずらす
-        result.continue();
-    }
-    // カーソルリクエストが失敗したら...
-    cursorRequest.onerror = function(err) {
-        console.log("XXX3", err);
-    }
+Familydat.add = function() {
+    var data = $('myform').serializeArray();
+    console.log(data);
+
+//    Familydat.addTodo(text);
 };
 
 var req = Familydat.initDB('NFA-db');
@@ -207,3 +179,13 @@ if (req) {
     console.log('database already exists');
   };
 }
+
+Familydat.test = function() {
+  var jsondat = {}
+  var text = document.getElementById('text_name').value;
+  jsondat.text_name = text;
+  var text = document.getElementById('text_name').value;
+  jsondat.text_remark = text;
+  alert(jsondat);
+  console.log(jsondat);
+  }

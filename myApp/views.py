@@ -14,7 +14,7 @@ from django.db.models import Q, Sum
 
 # Create your views here.
 class Trial_View(TemplateView):
-    template_name = "myApp/trial.html"
+    template_name = "myApp/offline/family_form.html"
 
 class TestOfflineView(TemplateView):
     template_name = "myApp/offline/index.html"
