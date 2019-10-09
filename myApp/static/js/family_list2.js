@@ -1,4 +1,5 @@
 //----------------------------------
+
 var Familydat = {
     db: null,
     renderer: function(Familydat) {
@@ -6,7 +7,7 @@ var Familydat = {
         d += "        <div class='card border-primary col-12 mt-2' style='max-width: 540px;'>";
         d += "    		  <div class='row'>";
         d += "    		    <div class='col-4 d-flex align-items-center'>";
-        d += "    		      <img src='{% static 'img/152053house192.png' %}' class='card-img'>";
+        d += "    		      <img src='../../../static/img/152053house192.png' %}" +" class='card-img'>";
         d += "    		    </div>";
         d += "    		    <div class='col-8'>";
         d += "    		      <div class='card-body bg-light p-2'>";

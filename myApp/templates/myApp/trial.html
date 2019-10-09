@@ -1,0 +1,14 @@
+{% extends 'myApp/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div id="edit_area"></div>
+
+
+        <script>
+            var src = "<img src=" + "{% static 'img/152053house192.png' %}"+ ">"
+            document.getElementById('edit_area').innerHTML = src ;
+        </script>
+
+{% endblock %}
