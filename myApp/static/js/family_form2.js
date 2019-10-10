@@ -107,7 +107,7 @@ Familydat.initDB = function(db_name) {
     };
 }
 
-Familydat.addIDB = function(dname, sname, sid) {
+Familydat.addIDB_web = function(dname, sname, sid) {
   return new Promise(function(resolve) {
     var r = window.indexedDB.open(dname)
     r.onupgradeneeded = function() {
@@ -145,30 +145,48 @@ Familydat.addIDB = function(dname, sname, sid) {
 
 
 // TODOを追加するメソッドを定義してみる
-Familydat.addTodo = function(jsondata) {
+Familydat.addIDB_form = function(jsondata) {
     var db = Familydat.db;
     // DBからObjectStoreへのトランザクションを生成する
     // この段階で"todo"というObjectStoreをつくってないと
     // 当然、Table name not found に似たエラーを吐く
     var tx = db.transaction(["Family"],"readwrite");
     // このトランザクション内でアクティブなObjectを生成する
-    var store = tx.objectStore("Family");
+    var store = tx.objectStore("Family", {keyPath: "pk", autoIncrement: true});
     // putするリクエストを生成
     var req = store.put(jsondata);
     // 「putするリクエスト」が成功したら...
-    tx.oncomplete = function() { Familydat.getAll(Familydat.renderer); };
+    tx.oncomplete = function() { console.log("noroi");; };
     // 「putするリクエスト」が失敗したら...
     tx.onerror = function(err) { console.log("xxx2", err); };
 };
 
+Familydat.test = function() {
+  var formdat = {}
+  var jsondat = {}
+  var text = document.getElementById('name').value;
+  formdat.name = text;
+  var text = document.getElementById('country').value;
+  formdat.county = text;
+  var text = document.getElementById('region').value;
+  formdat.region = text;
+  var text = document.getElementById('province').value;
+  formdat.province = text;
+  var text = document.getElementById('community').value;
+  formdat.community = text;
+  var text = document.getElementById('month_start').value;
+  formdat.month_start = text;
+  var text = document.getElementById('month_end').value;
+  formdat.month_end = text;
+  var text = document.getElementById('remark').value;
+  formdat.remark = text;
+  jsondat.model = "myApp.family";
+  jsondat.fields = formdat;
+  console.log(formdat);
+  console.log(jsondat);
+  Familydat.addIDB_form(jsondat);
+  }
 
-
-Familydat.add = function() {
-    var data = $('myform').serializeArray();
-    console.log(data);
-
-//    Familydat.addTodo(text);
-};
 
 var req = Familydat.initDB('NFA-db');
 if (req) {
@@ -179,13 +197,3 @@ if (req) {
     console.log('database already exists');
   };
 }
-
-Familydat.test = function() {
-  var jsondat = {}
-  var text = document.getElementById('text_name').value;
-  jsondat.text_name = text;
-  var text = document.getElementById('text_name').value;
-  jsondat.text_remark = text;
-  alert(jsondat);
-  console.log(jsondat);
-  }
