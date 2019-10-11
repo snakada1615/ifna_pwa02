@@ -103,8 +103,6 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', function(event) {
   // every request from our site, passes through the fetch handler
   // I have proof
-  console.log('I am a request with url: ',
-   event.request.clone().url)
 
   if (event.request.clone().method === 'GET') {
     event.respondWith(

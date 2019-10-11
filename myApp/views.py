@@ -23,7 +23,10 @@ class off_FCT_view(TemplateView):
     template_name = "myApp/offline/off_FCT_view.html"
 
 class off_Family_ListView(TemplateView):
-    template_name = "myApp/offline/off_family_list.html"
+    template_name = "myApp/offline/family_list.html"
+
+class off_Family_CreateView(TemplateView):
+    template_name = "myApp/offline/family_form.html"
 
 class TestView(TemplateView):
     template_name = "myApp/index.html"

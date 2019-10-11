@@ -2,7 +2,18 @@
 
 var Familydat = {
     db: null,
-    renderer: function(Familydat) {
+    formItem: [
+      'name',
+      'country',
+      'region',
+      'province',
+      'community',
+      'month_start',
+      'month_end',
+      'remark'
+    ],
+
+    renderer_list: function(Familydat) {
         var d = '';
         d += "        <div class='card border-primary col-12 mt-2' style='max-width: 540px;'>";
         d += "    		  <div class='row'>";
@@ -33,11 +44,36 @@ var Familydat = {
         d += "    		  </div>";
         d += "    		</div>";
 
-
         var div = document.createElement('div');
         div.className = 'container';
         div.innerHTML = d;
         document.getElementById("family_list").appendChild(div);
+    },
+
+    renderer_form: function(Familydat){
+      console.log(this.formItem[0]);
+      console.log(this.formItem[1]);
+      console.log(this.formItem[2]);
+      console.log(this.formItem[3]);
+      console.log(this.formItem[4]);
+      console.log(this.formItem[5]);
+      console.log(this.formItem[6]);
+      console.log(this.formItem[7]);
+        for (var i=0; i<8; i++) {
+          var d = '';
+          d += "<div class='row'>";
+          d += "<div class='col-3'>";
+          d += "<p>" + this.formItem[i] + "</p>";
+          d += "</div>";
+          d += "<div class='col-9'>";
+          d += "<input id='" + this.formItem[i] + "' type='text' placeholder='put information here' >";
+          d += "</div>";
+          d += "</div>";
+
+          var div = document.createElement('div');
+          div.innerHTML = d;
+          document.getElementById("family_form").appendChild(div);
+        }
     }
 };
 
@@ -51,8 +87,15 @@ Familydat.initDB = function(db_name) {
     request.onsuccess = function (evt) {
         console.log('database opened');
         Familydat.db = (evt.target) ? evt.target.result : evt.result;
+
         // ま、ついでだしgetAllすっか
-        //Familydat.getAll(Familydat.renderer);
+        if (Familydat.getHTML_name() == "Family/list") {
+          Familydat.getAll_list(Familydat.renderer_list);
+        } else {
+          if (Familydat.getHTML_name() == "Family/create") {
+            Familydat.getAll_form(Familydat.renderer_form);
+          }
+        }
     };
 
     request.onerror = function (evt) {
@@ -134,7 +177,7 @@ Familydat.addIDB_web = function(dname, sname, sid) {
           }
           resolve(idb)
       })
-      module.getAll(module.renderer);
+      Familydat.getData_form(Familydat.renderer_list);
     }
 
     r.onerror = function (e) {
@@ -156,12 +199,13 @@ Familydat.addIDB_form = function(jsondata) {
     // putするリクエストを生成
     var req = store.put(jsondata);
     // 「putするリクエスト」が成功したら...
-    tx.oncomplete = function() { console.log("noroi");; };
+    tx.oncomplete = function() { console.log("data put successful");; };
     // 「putするリクエスト」が失敗したら...
     tx.onerror = function(err) { console.log("xxx2", err); };
 };
 
-Familydat.test = function() {
+Familydat.getData_form = function() {
+
   var formdat = {}
   var jsondat = {}
   var text = document.getElementById('name').value;
@@ -182,9 +226,49 @@ Familydat.test = function() {
   formdat.remark = text;
   jsondat.model = "myApp.family";
   jsondat.fields = formdat;
-  console.log(formdat);
   console.log(jsondat);
   Familydat.addIDB_form(jsondat);
+  }
+
+
+  // TODOをすべて取得するメソッドを定義してみる
+  Familydat.getAll_list = function(renderer_list) {
+      if (renderer_list) document.getElementById('family_list').innerHTML = '';
+      // このへんは同じ,,,,,,,,,,,,
+      var db = Familydat.db;
+      var tx = db.transaction(["Family"],"readwrite");
+      var store = tx.objectStore("Family");
+      // keyPathに対して検索をかける範囲を取得
+      var range = IDBKeyRange.lowerBound(0);
+      // その範囲を走査するカーソルリクエストを生成
+      var cursorRequest = store.openCursor(range);
+      // カーソルリクエストが成功したら...
+      cursorRequest.onsuccess = function(e) {
+          var result = e.target.result;
+          // 注）走査すべきObjectがこれ以上無い場合
+          //     result == null となります！
+          if (!!result == false) return;
+          // ここにvalueがくる！
+          console.log(result.value);
+          if (renderer_list) renderer_list(result.value);
+          // カーソルを一個ずらす
+          result.continue();
+      }
+      // カーソルリクエストが失敗したら...
+      cursorRequest.onerror = function(err) {
+          console.log("XXX3", err);
+      }
+  };
+
+  // TODOをすべて取得するメソッドを定義してみる
+  Familydat.getAll_form = function() {
+      return this.renderer_form();
+  };
+
+
+  // URL末端の取得
+  Familydat.getHTML_name = function() {
+      return window.location.href.split('/')[4]+'/'+window.location.href.split('/')[5];
   }
 
 
