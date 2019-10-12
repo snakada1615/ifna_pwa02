@@ -13,7 +13,7 @@ var Familydat = {
       'remark'
     ],
 
-    renderer_list: function(Familydat) {
+    renderer_list: function(myDat) {
         var d = '';
         d += "        <div class='card border-primary col-12 mt-2' style='max-width: 540px;'>";
         d += "    		  <div class='row'>";
@@ -23,13 +23,13 @@ var Familydat = {
         d += "    		    <div class='col-8'>";
         d += "    		      <div class='card-body bg-light p-2'>";
         d += "    		        <h5 class='card-title'>";
-        d +=     							Familydat.fields.name;
+        d +=     							myDat.fields.name;
         d += "    						</h5>";
         d += "    						<p class='card-text'>";
-        d +=     							Familydat.fields.size;
+        d +=     							myDat.fields.size;
         d += "    						</p>";
         d += "    						<p class='card-text'>";
-        d +=     							Familydat.fields.remark;
+        d +=     							myDat.fields.remark;
         d += "    						</p>";
         d += "    						<p>";
         d += "    							<span><a class='btn btn-light btn-sm align-middle badge badge-secondary' href='{% url 'Family_update' pk=family.pk %}'>info</a></span>";
@@ -50,16 +50,8 @@ var Familydat = {
         document.getElementById("family_list").appendChild(div);
     },
 
-    renderer_form: function(Familydat){
-      console.log(this.formItem[0]);
-      console.log(this.formItem[1]);
-      console.log(this.formItem[2]);
-      console.log(this.formItem[3]);
-      console.log(this.formItem[4]);
-      console.log(this.formItem[5]);
-      console.log(this.formItem[6]);
-      console.log(this.formItem[7]);
-        for (var i=0; i<8; i++) {
+    renderer_form: function(myKey){
+        for (var i=0; i<this.formItem.length; i++) {
           var d = '';
           d += "<div class='row'>";
           d += "<div class='col-3'>";
@@ -69,6 +61,12 @@ var Familydat = {
           d += "<input id='" + this.formItem[i] + "' type='text' placeholder='put information here' >";
           d += "</div>";
           d += "</div>";
+
+          if (myKey != "") {
+            var myVal = Familydat.getRecord("Family", myKey);
+            console.log("myDat");
+            console.log(myVal);
+          }
 
           var div = document.createElement('div');
           div.innerHTML = d;
@@ -93,7 +91,7 @@ Familydat.initDB = function(db_name) {
           Familydat.getAll_list(Familydat.renderer_list);
         } else {
           if (Familydat.getHTML_name() == "Family/create") {
-            Familydat.getAll_form(Familydat.renderer_form);
+            Familydat.getAll_form();
           }
         }
     };
@@ -262,7 +260,7 @@ Familydat.getData_form = function() {
 
   // TODOをすべて取得するメソッドを定義してみる
   Familydat.getAll_form = function() {
-      return this.renderer_form();
+      return this.renderer_form(5);
   };
 
 
@@ -271,6 +269,34 @@ Familydat.getData_form = function() {
       return window.location.href.split('/')[4]+'/'+window.location.href.split('/')[5];
   }
 
+
+
+//特定のレコードを抽出
+
+Familydat.getRecord = function(store_name, key_value) {
+  var myRecord =""
+  try {
+     var db = Familydat.db;
+     var store = db.transaction(store_name).objectStore(store_name);
+     store.get(key_value).onsuccess = function(event) {
+      myRecord = event.target.result;
+      if (myRecord == null) {
+         console.log("myRecord not found");
+      }
+      else {
+        console.log(myRecord);
+        return 1;
+      }
+     };
+  }
+  catch(e){
+     console.log(e);
+  }
+  return myRecord;
+}
+
+
+///初期動作
 
 var req = Familydat.initDB('NFA-db');
 if (req) {
