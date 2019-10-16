@@ -2,20 +2,19 @@
 <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
-<script type="text/javascript" src="{% static 'js/expdat.js' %}"></script>
 
 
 <script>
 $(document).ready(function() {
   $('#example').DataTable( {
-    "ajax": "{% static 'DataTables/data/mydat.txt' %}",
+    "ajax": "{% static 'DataTables/data/FCT.txt' %}",
     "columns": [
-        { "data": "name[, ]" },
-        { "data": "hr.0" },
-        { "data": "office" },
-        { "data": "extn" },
-        { "data": "hr.2" },
-        { "data": "hr.1" }
+        { "data": "Food_name" },
+        { "data": "Food_grp" },
+        { "data": "Protein" },
+        { "data": "VITA_RAE" },
+        { "data": "FE" },
+        { "data": "Energy" }
     ]
   } );
 
