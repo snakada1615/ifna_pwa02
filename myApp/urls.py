@@ -5,9 +5,10 @@ from .views import Family_UpdateView, Family_DeleteView, Family_ListView, Family
 from .views import Person_UpdateView, Person_DeleteView, Person_ListView, Person_CreateView
 from .views import Crop_UpdateView, Crop_DeleteView, Crop_ListView, Crop_CreateView
 from .views import WhoamI_View, Usage_View, TestOfflineView, off_FCT_view, off_Family_ListView
-from .views import Trial_View, off_Family_CreateView
+from .views import Trial_View, off_Family_CreateView, FCTdatable_View
 
 urlpatterns = [
+    path('FCTdata/',  FCTdatable_View.as_view(), name='trial'),
     path('trial/',  Trial_View.as_view(), name='trial'),
     path('test/',  TestView.as_view(), name='test'),
     path('offline/', TestOfflineView.as_view(), name='offline'),

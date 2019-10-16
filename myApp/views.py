@@ -13,6 +13,9 @@ from django.db.models import Q, Sum
 
 
 # Create your views here.
+class FCTdatable_View(TemplateView):
+    template_name = "myApp/FCT_datable.html"
+
 class Trial_View(TemplateView):
     template_name = "myApp/trial.html"
 
