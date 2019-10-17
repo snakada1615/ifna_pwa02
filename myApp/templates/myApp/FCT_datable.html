@@ -1,10 +1,19 @@
+{% extends 'myApp/base.html' %}
 {% load static %}
-<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+
+{% block content %}
 <script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
+<link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
 
 
 <script>
+// URLパラメータの取得
+getHTML_name = function() {
+    return window.location.href.split('/')[4]+'/'+window.location.href.split('/')[5];
+}
+
 $(document).ready(function() {
   var table = $('#example').DataTable( {
     "ajax": "{% static 'DataTables/data/FCT.txt' %}",
@@ -20,14 +29,30 @@ $(document).ready(function() {
         $(this).toggleClass('selected');
     } );
 
-    $('#button').click( function () {
-        alert( table.rows('.selected').data().length +' row(s) selected' );
+    $('#button2').click( function () {
+      table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+        var data = this.data();
+        if (data.FCT_id == '1003') {
+          this.select();
+        }
+          // ... do something with data(), or this.node(), etc
+      } );
+    } );
 
+
+    $('#button').click( function () {
+        var s = "";
+        var n = "";
         table.rows('.selected').every( function ( rowIdx, tableLoop, rowLoop ) {
             var data = this.data();
-            console.log(data.FCT_id);
+            s += data.Food_name + "\n";
+            n += "-" + data.FCT_id;
+
             // ... do something with data(), or this.node(), etc
         } );
+        n = n.substring(1);
+        window.confirm(s);
+        window.confirm(n);
 
     } );
 } );
@@ -35,22 +60,24 @@ $(document).ready(function() {
 
 
 <button type="button" id="button" >select count</button>
+<button type="button" id="button2" >select count</button>
 <table id="example" class="display compact" cellspacing="0" width="100%">
     <thead>
         <tr>
             <th>Name</th>
-            <th>Protein</th>
-            <th>Vitamine-A</th>
-            <th>Iron</th>
+            <th>Pr</th>
+            <th>VA</th>
+            <th>Fe</th>
         </tr>
     </thead>
 
     <tfoot>
         <tr>
           <th>Name</th>
-          <th>Protein</th>
-          <th>Vitamine-A</th>
-          <th>Iron</th>
+          <th>Pr</th>
+          <th>VA</th>
+          <th>Fe</th>
         </tr>
     </tfoot>
 </table>
+{% endblock %}
