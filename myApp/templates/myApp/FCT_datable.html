@@ -6,7 +6,7 @@
 
 <script>
 $(document).ready(function() {
-  $('#example').DataTable( {
+  var table = $('#example').DataTable( {
     "ajax": "{% static 'DataTables/data/FCT.txt' %}",
     "columns": [
         { "data": "Food_name" },
@@ -27,7 +27,7 @@ $(document).ready(function() {
 </script>
 
 
-
+<button type="button" id="button" >select count</button>
 <table id="example" class="display compact" cellspacing="0" width="100%">
     <thead>
         <tr>
