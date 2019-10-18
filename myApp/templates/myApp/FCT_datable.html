@@ -35,7 +35,18 @@ $(document).ready(function() {
         { "data": "Protein" },
         { "data": "VITA_RAE" },
         { "data": "FE" },
-    ]
+    ],
+
+    "initComplete": function(settings, json) {
+      getHTML_param();
+      table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+        var data = this.data();
+        if (items.indexOf(data.FCT_id) >= 0) {
+          this.select();
+        }
+      } );
+    }
+
   } );
 
     $('#example tbody').on( 'click', 'tr', function () {
@@ -58,18 +69,6 @@ $(document).ready(function() {
         window.confirm(n);
 
     } );
-
-// select rows depending on url parameter;
-    getHTML_param();
-    console.log('i am he');
-    table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
-      var data = this.data();
-      if (items.indexOf(data.FCT_id) >= 0) {
-        this.select();
-      }
-    } );
-// select rows depending on url parameter;
-
 
 } );
 </script>
