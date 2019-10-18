@@ -10,8 +10,21 @@
 
 <script>
 // URLパラメータの取得
-getHTML_name = function() {
-    return window.location.href.split('/')[4]+'/'+window.location.href.split('/')[5];
+var items = ['1003', '1005', '1008'];
+
+getHTML_param = function() {
+  var url_tmp = window.location.href.split('/');
+  var tmp1 = url_tmp[url_tmp.length-3];
+  var tmp2 = url_tmp[url_tmp.length-2];
+  items.length = 0;
+  if (tmp2 == '0') {
+    items.push('0');
+  } else if (tmp2.indexOf('-') < 0) {
+    items.push(tmp2);
+  } else {
+    items = tmp2.split('-');
+  }
+  return tmp1;
 }
 
 $(document).ready(function() {
@@ -27,16 +40,6 @@ $(document).ready(function() {
 
     $('#example tbody').on( 'click', 'tr', function () {
         $(this).toggleClass('selected');
-    } );
-
-    $('#button2').click( function () {
-      table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
-        var data = this.data();
-        if (data.FCT_id == '1003') {
-          this.select();
-        }
-          // ... do something with data(), or this.node(), etc
-      } );
     } );
 
 
@@ -55,12 +58,25 @@ $(document).ready(function() {
         window.confirm(n);
 
     } );
+
+// select rows depending on url parameter;
+    getHTML_param();
+    console.log('i am he');
+    table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+      var data = this.data();
+      if (items.indexOf(data.FCT_id) >= 0) {
+        this.select();
+      }
+    } );
+// select rows depending on url parameter;
+
+
 } );
 </script>
 
 
 <button type="button" id="button" >select count</button>
-<button type="button" id="button2" >select count</button>
+<button type="button" id="button2" >select dynamic</button>
 <table id="example" class="display compact" cellspacing="0" width="100%">
     <thead>
         <tr>

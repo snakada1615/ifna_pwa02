@@ -8,7 +8,7 @@ from .views import WhoamI_View, Usage_View, TestOfflineView, off_FCT_view, off_F
 from .views import Trial_View, off_Family_CreateView, FCTdatable_View
 
 urlpatterns = [
-    path('FCTdata/',  FCTdatable_View.as_view(), name='trial'),
+    path('FCTdata/<int:familyid>/<str:items>/',  FCTdatable_View.as_view(), name='trial'),
     path('trial/',  Trial_View.as_view(), name='trial'),
     path('test/',  TestView.as_view(), name='test'),
     path('offline/', TestOfflineView.as_view(), name='offline'),
