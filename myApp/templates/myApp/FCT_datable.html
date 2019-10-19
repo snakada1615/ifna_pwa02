@@ -1,5 +1,6 @@
 {% extends 'myApp/base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
 <script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
@@ -74,6 +75,106 @@ $(document).ready(function() {
 } );
 </script>
 
+<div class="container" style="max-width: 540px;">
+  <div class="row">
+    <div class="col text-danger">
+      <h5>nutrition target for {{name}}</h5>
+    </div>
+  </div>
+</div>
+
+<div class="container text-white" style="max-width: 540px;">
+    <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
+      <div class="row">
+        <div class="col-12">
+          <div class="card-body py-0 px-0">
+            <h5 class="card-title my-0">
+              {{ name }}
+            </h5>
+            <p class="card-text my-0">
+              {{ country }}
+            </p>
+            <p class="card-text my-0">
+              {{ region }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container text-white" style="max-width: 540px;">
+    <div class="card border-primary bg-info col-12 mt-2" style="max-width: 540px;">
+      <div class="row">
+        <div class="col-12">
+          <div class="card-body py-0 px-0">
+            <div class="row">
+              <div class="col-7 ">
+                Nutrients
+              </div>
+              <div class="col-5 ">
+                Target
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-7 ">
+                protein(g/day)
+              </div>
+              <div class="col-5 ">
+                {{dri_p|floatformat:2}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-7 ">
+                vit-A(μg/day)
+              </div>
+              <div class="col-5 ">
+                {{dri_v|intcomma}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-7 ">
+                Fe(mg/day)
+              </div>
+              <div class="col-5 ">
+                {{dri_f|floatformat:2}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container text-white" style="max-width: 540px;">
+      <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
+        <div class="row">
+          <div class="col-12">
+            <div class="card-body py-0 px-0">
+              <h5 class="card-title my-0">
+                selected commodities
+              </h5>
+              <p class="card-text my-0">
+                {{ country }}
+              </p>
+              <p class="card-text my-0">
+                {{ region }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+            <span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'Family_index' %}">back</a></span>
+            <span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_create' familyid=familyid %}">+</a></span>
+            <span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'fctdata' familyid=familyid items=items %}">move next</a></span>
+        </div>
+      </div>
+    </div>
+
+
+  <hr>
 
 <button type="button" id="button" >select count</button>
 <table id="example" class="display compact" cellspacing="0" width="100%">

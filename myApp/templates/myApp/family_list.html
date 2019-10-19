@@ -4,11 +4,11 @@
 {% block content %}
 <div class="container" style="max-width: 540px;">
 	<div class="row">
-		<div class="col-8 mb-0">
+		<div class="col-10 my-0 px-1">
 				<h5> target area</h5>
 		</div>
-		<div class="col-4 mb-0">
-				<a class="btn btn-outline-secondary badge" href="{% url  'Family_create' pk='0' %}">add new target area</a>
+		<div class="col-2 my-0 px-1">
+				<a class="btn btn-outline-secondary badge text-wrap" href="{% url  'Family_create' pk='0' %}">+</a>
 		</div>
 	</div>
 </div>
@@ -18,21 +18,19 @@
 		<div class="card border-primary col-12 mt-2 py-0" style="max-width: 540px;">
 		  <div class="row">
 		    <div class="col-12">
-		      <div class="card-body bg-light p-2">
-		        <h5 class="card-title mb-0">
+		      <div class="card-body bg-light py-1 px-0">
+		        <h5 class="card-title my-0">
 							{{ family.name }}
 						</h5>
-						<p class="card-text mb-0">
-							{{ family.size }}
+						<p class="card-text my-0">
+							{{ family.country }}
 						</p>
-						<p class="card-text mb-0">
-							{{ family.remark }}
-							{{crp_list.5}}
+						<p class="card-text my-0">
+							{{ family.region }}
 						</p>
-							<span><a class="btn mb-0 btn-light btn-sm align-middle badge badge-secondary" href="{% url 'fctdata' familyid=family.pk items=family.crop_list %}">basic info</a></span>
-							<span><a class="btn mb-0 btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_delete' pk=family.pk %}">delete all</a></span>
-							<span><a class="btn mb-0 btn-light btn-sm align-middle badge badge-secondary" href="{% url 'person_list' familyid=family.pk %}">member profile</a></span>
-							<span><a class="btn mb-0 btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_list' familyid=family.pk %}">crop</a></span>
+							<span><a class="btn my-0 btn-outline-secondary btn-sm align-middle badge" href="{% url 'Family_update' pk=family.pk %}">basic info</a></span>
+							<span><a class="btn my-0 btn-outline-secondary btn-sm align-middle badge " href="{% url 'Family_delete' pk=family.pk %}">delete all</a></span>
+							<span><a class="btn my-0 btn-outline-secondary btn-sm align-middle badge" href="{% url 'person_list' familyid=family.pk %}">member profile</a></span>
 		      </div>
 		    </div>
 		  </div>

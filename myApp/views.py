@@ -16,6 +16,19 @@ from django.db.models import Q, Sum
 class FCTdatable_View(TemplateView):
     template_name = "myApp/FCT_datable.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['name'] = Family.objects.get(id = self.kwargs['familyid'])
+        context['myid'] = Family.objects.get(id = self.kwargs['familyid']).id
+        context['country'] = Family.objects.get(id = self.kwargs['familyid']).country
+        context['region'] = Family.objects.get(id = self.kwargs['familyid']).region
+        context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
+        context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
+        context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
+        context['crop_list'] = Family.objects.get(id = self.kwargs['familyid']).crop_list
+        return context
+
+
 class Trial_View(TemplateView):
     template_name = "myApp/trial.html"
 
@@ -136,9 +149,12 @@ class Person_ListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['name'] = Family.objects.get(id = self.kwargs['familyid'])
         context['myid'] = Family.objects.get(id = self.kwargs['familyid']).id
+        context['country'] = Family.objects.get(id = self.kwargs['familyid']).country
+        context['region'] = Family.objects.get(id = self.kwargs['familyid']).region
         context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
         context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
+        context['crop_list'] = Family.objects.get(id = self.kwargs['familyid']).crop_list
         return context
 
 # 登録画面
