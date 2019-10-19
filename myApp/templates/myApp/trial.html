@@ -1,49 +1,33 @@
+{% extends 'myApp/base.html' %}
 {% load static %}
-<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
 
+{% block content %}
+<div class="container" style="max-width: 540px;">
+		<div class="card border-primary col-12 mt-2" style="max-width: 540px;">
+		  <div class="row">
+		    <div class="col-4 d-flex align-items-center">
+		      <img src="{% static 'img/152053house192.png' %}" class="card-img">
+		    </div>
+		    <div class="col-8">
+		      <div class="card-body bg-light p-2">
+		        <h5 class="card-title">
+							family.name
+						</h5>
+						<p class="card-text  text-wrap">
+              <div class="h-25">Height 25%</div>
+              <div class="h-150">Height 150%</div>
+              <div class="h-25">
+							  family.sizeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+              </div>
+						</p>
+						<p class="card-text">
+							family.remark
+							crp_list.5
+						</p>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
 
-<script>
-$(document).ready(function() {
-  $('#example').DataTable( {
-    "ajax": "{% static 'DataTables/data/FCT.txt' %}",
-    "columns": [
-        { "data": "Food_name" },
-        { "data": "Protein" },
-        { "data": "VITA_RAE" },
-        { "data": "FE" },
-    ]
-  } );
-
-    $('#example tbody').on( 'click', 'tr', function () {
-        $(this).toggleClass('selected');
-    } );
-
-    $('#button').click( function () {
-        alert( table.rows('.selected').data().length +' row(s) selected' );
-    } );
-} );
-</script>
-
-
-
-<table id="example" class="display compact" cellspacing="0" width="100%">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Protein</th>
-            <th>Vitamine-A</th>
-            <th>Iron</th>
-        </tr>
-    </thead>
-
-    <tfoot>
-        <tr>
-          <th>Name</th>
-          <th>Protein</th>
-          <th>Vitamine-A</th>
-          <th>Iron</th>
-        </tr>
-    </tfoot>
-</table>
+{% endblock %}

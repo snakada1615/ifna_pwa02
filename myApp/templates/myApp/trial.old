@@ -1,0 +1,51 @@
+{% load static %}
+<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
+
+
+<script>
+$(document).ready(function() {
+  $('#example').DataTable( {
+    "ajax": "{% static 'DataTables/data/FCT.txt' %}",
+    "columns": [
+        { "data": "Food_name" },
+        { "data": "Protein" },
+        { "data": "VITA_RAE" },
+        { "data": "FE" },
+    ]
+  } );
+
+    $('#example tbody').on( 'click', 'tr', function () {
+        $(this).toggleClass('selected');
+    } );
+
+    $('#button').click( function () {
+        alert( table.rows('.selected').data().length +' row(s) selected' );
+    } );
+} );
+</script>
+
+
+
+<table id="example" class="display compact" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Protein</th>
+            <th>Vitamine-A</th>
+            <th>Iron</th>
+        </tr>
+    </thead>
+
+    <tfoot>
+        <tr>
+          <th>Name</th>
+          <th>Protein</th>
+          <th>Vitamine-A</th>
+          <th>Iron</th>
+        </tr>
+    </tfoot>
+</table>
+
+{% endblock %}
