@@ -27,19 +27,39 @@ class FamilyForm(forms.ModelForm):
         model = Family
         fields = (
             "name", "remark", "country", "region", "province", "community",
-            "month_start", "month_end", "protein", "vita", "fe", "size"
+            "month_start", "month_end", "protein", "vita", "fe", "size",
+            "crop_list", "id"
         )
         widgets = {
             'protein': forms.HiddenInput(),
             'vita': forms.HiddenInput(),
             'fe': forms.HiddenInput(),
             'size': forms.HiddenInput(),
+            'crop_list': forms.HiddenInput(),
+            'id': forms.HiddenInput(),
         }
+
+    def __init__(self, *args, **kwargs):
+        self.myid = kwargs.pop('myid')
+        super(FamilyForm, self).__init__(*args, **kwargs)
+
+    def clean_crop_list(self):
+        d='0'
+        if self.myid != '0':
+            d = ''
+            for crp in Crop.objects.filter(familyid = self.myid):
+                d += "-" + str(crp.food_item_id)
+            if d[0] == '-':
+                d = d[1:]
+        crop_list = d
+        return crop_list
+
 
 class Person_Create_Form(forms.ModelForm):
     class Meta:
         model = Person
-        fields = ("familyid", "name" ,"age", "sex", "women_s", "protein", "vita", "fe")
+        fields = ("familyid", "name" ,"age", "sex", "women_s",
+            "protein", "vita", "fe")
         widgets = {
             'name': forms.HiddenInput(),
             'familyid': forms.HiddenInput(),

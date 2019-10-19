@@ -10,7 +10,8 @@
 
 <script>
 // URLパラメータの取得
-var items = ['1003', '1005', '1008'];
+var myFamily = '';
+var items = [];
 
 getHTML_param = function() {
   var url_tmp = window.location.href.split('/');
@@ -41,7 +42,7 @@ $(document).ready(function() {
       getHTML_param();
       table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
         var data = this.data();
-        if (items.indexOf(data.FCT_id) >= 0) {
+        if (items.indexOf(data.food_item_id) >= 0) {
           this.select();
         }
       } );
@@ -75,7 +76,6 @@ $(document).ready(function() {
 
 
 <button type="button" id="button" >select count</button>
-<button type="button" id="button2" >select dynamic</button>
 <table id="example" class="display compact" cellspacing="0" width="100%">
     <thead>
         <tr>

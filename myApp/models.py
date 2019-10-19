@@ -88,6 +88,10 @@ class Family(models.Model):
         max_length=200,
         blank = True
     )
+    crop_list = models.CharField(
+        max_length=1000,
+        default='0',
+    )
 
     month_start = models.IntegerField(
         default=0,

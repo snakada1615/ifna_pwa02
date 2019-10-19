@@ -97,11 +97,31 @@ class Family_CreateView(LoginRequiredMixin, CreateView):
     template_name = 'myApp/family_form.html'
     success_url = reverse_lazy('Family_index')
 
+    def get_form_kwargs(self):
+        """This method is what injects forms with their keyword
+            arguments."""
+        # grab the current set of form #kwargs
+        kwargs = super(Family_CreateView, self).get_form_kwargs()
+        # Update the kwargs with the user_id
+        kwargs['myid'] = '0'
+        return kwargs
+
+
 class Family_UpdateView(LoginRequiredMixin, UpdateView):
     model = Family
     form_class = FamilyForm
     template_name = 'myApp/family_form.html'
     success_url = reverse_lazy('Family_index')
+
+    def get_form_kwargs(self):
+        """This method is what injects forms with their keyword
+            arguments."""
+        # grab the current set of form #kwargs
+        kwargs = super(Family_UpdateView, self).get_form_kwargs()
+        # Update the kwargs with the user_id
+        kwargs['myid'] = self.kwargs['pk']
+        return kwargs
+
 
 class Person_ListView(LoginRequiredMixin, ListView):
     template_name = 'myApp/person_list.html'  # この行でテンプレート指定

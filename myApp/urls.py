@@ -8,7 +8,7 @@ from .views import WhoamI_View, Usage_View, TestOfflineView, off_FCT_view, off_F
 from .views import Trial_View, off_Family_CreateView, FCTdatable_View
 
 urlpatterns = [
-    path('FCTdata/<int:familyid>/<str:items>/',  FCTdatable_View.as_view(), name='trial'),
+    path('FCTdata/<int:familyid>/<str:items>/',  FCTdatable_View.as_view(), name='fctdata'),
     path('trial/',  Trial_View.as_view(), name='trial'),
     path('test/',  TestView.as_view(), name='test'),
     path('offline/', TestOfflineView.as_view(), name='offline'),
@@ -19,7 +19,7 @@ urlpatterns = [
     path('usage/',  Usage_View.as_view(), name='usage'),
     path('fct/<int:categ>/<int:order>/',  FCT_show.as_view(), name='FCT_show'),
     path('Family/list/', Family_ListView.as_view(), name='Family_index'),
-    path('Family/create/', Family_CreateView.as_view(), name='Family_create'),
+    path('Family/create/<int:pk>/', Family_CreateView.as_view(), name='Family_create'),
     path('Family/update/<int:pk>/', Family_UpdateView.as_view(), name='Family_update'),
     path('Family/delete/<int:pk>/', Family_DeleteView.as_view(), name='Family_delete'),
     path('person/list/<int:familyid>',  Person_ListView.as_view(), name='person_list'),

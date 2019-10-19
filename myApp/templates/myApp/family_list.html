@@ -8,7 +8,7 @@
 				<h5> target area</h5>
 		</div>
 		<div class="col-4">
-				<a class="btn btn-outline-secondary badge" href="{% url 'Family_create' %}">add new target area</a>
+				<a class="btn btn-outline-secondary badge" href="{% url  'Family_create' pk='0' %}">add new target area</a>
 		</div>
 	</div>
 </div>
@@ -30,9 +30,10 @@
 						</p>
 						<p class="card-text">
 							{{ family.remark }}
+							{{crp_list.5}}
 						</p>
 						<p>
-							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_update' pk=family.pk %}">basic info</a></span>
+							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'fctdata' familyid=family.pk items=family.crop_list %}">basic info</a></span>
 							<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'Family_delete' pk=family.pk %}">delete all</a></span>
 						</p>
 						<p>
