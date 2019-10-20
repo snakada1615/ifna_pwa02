@@ -6,7 +6,7 @@
 	<div class="container" style="max-width: 540px;">
 		<div class="row">
 			<div class="col text-danger">
-				<h5>nutrition target for {{name}}</h5>
+				<h5>step2: agree on nutrition target for {{name}}</h5>
 			</div>
 		</div>
 	</div>
@@ -16,9 +16,9 @@
 			  <div class="row">
 			    <div class="col-12">
 			      <div class="card-body py-0 px-0">
-			        <h5 class="card-title my-0">
+			        <p class="card-text text-danger my-0">
 								{{ name }}
-							</h5>
+							</p>
 							<p class="card-text my-0">
 								{{ country }}
 							</p>
@@ -37,15 +37,15 @@
 					<div class="col-12">
 						<div class="card-body py-0 px-0">
 							<div class="row">
-								<div class="col-7 ">
+								<div class="col-7  text-danger ">
 									Nutrients
 								</div>
-								<div class="col-5 ">
+								<div class="col-5 text-danger ">
 									Target
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-7 ">
+								<div class="col-7">
 									protein(g/day)
 								</div>
 								<div class="col-5 ">
@@ -78,7 +78,7 @@
 				<div class="col-12">
 						<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'Family_index' %}">back</a></span>
 						<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_create' familyid=myid %}">+</a></span>
-						<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'fctdata' familyid=myid items=crop_list %}">move next</a></span>
+						<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'fctdata' familyid=myid items=crop_list %}">next step</a></span>
 				</div>
 			</div>
 		</div>

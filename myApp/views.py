@@ -25,7 +25,12 @@ class FCTdatable_View(TemplateView):
         context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
         context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
-        context['crop_list'] = Family.objects.get(id = self.kwargs['familyid']).crop_list
+        tmp = Family.objects.get(id = self.kwargs['familyid']).crop_list
+        crops = []
+        if ('-' in tmp):
+            for crop in tmp.split('-'):
+                crops.append(FCT.objects.get(food_item_id = crop).Food_name)
+        context['crop_list'] = crops
         return context
 
 
@@ -309,9 +314,20 @@ class Crop_ListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['name'] = Family.objects.get(id = self.kwargs['familyid'])
         context['myid'] = Family.objects.get(id = self.kwargs['familyid']).id
+        context['country'] = Family.objects.get(id = self.kwargs['familyid']).country
+        context['region'] = Family.objects.get(id = self.kwargs['familyid']).region
         context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
         context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
+
+        tmp = Family.objects.get(id = self.kwargs['familyid']).crop_list
+        context['crop_list2'] = tmp
+
+        crops = []
+        if ('-' in tmp):
+            for crop in tmp.split('-'):
+                crops.append(FCT.objects.get(food_item_id = crop).Food_name)
+        context['crop_list'] = crops
         return context
 
 class Crop_DeleteView(LoginRequiredMixin, DeleteView):

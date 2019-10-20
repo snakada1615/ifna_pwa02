@@ -6,92 +6,125 @@
 	<div class="container " style="max-width: 540px;">
 		<div class="row">
 			<div class="col text-danger">
-				<h5>Priority commodities for {{name}}</h5>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-7">
-			</div>
-			<div class="col-5">
-					<span><a class="btn  badge btn-outline-secondary mb-2" href="{% url 'Family_index' %}">back</a></span>
-					<span><a class="btn  badge btn-outline-secondary nb-2" href="{% url 'crop_create' familyid=myid %}">add</a></span>
+				<h5>Step4: Commodities feasibility check for {{name}}</h5>
 			</div>
 		</div>
 	</div>
 
-	<div class="container text-white">
-			<div class="card border-primary bg-info col-12 mt-2" style="max-width: 540px;">
-				<div class="row">
-					<div class="col-12">
-						<div class="card-body p-2">
-							<div class="row">
-								<div class="col-7 ">
-									Nutrients
-								</div>
-								<div class="col-5 ">
-									Target
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-7 ">
-									protein(g/day)
-								</div>
-								<div class="col-5 ">
-									{{dri_p|floatformat:2}}
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-7 ">
-									vit-A(μg/day)
-								</div>
-								<div class="col-5 ">
-									{{dri_v|intcomma}}
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-7 ">
-									Fe(mg/day)
-								</div>
-								<div class="col-5 ">
-									{{dri_f|floatformat:2}}
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="container text-white" style="max-width: 540px;">
+	    <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
+	      <div class="row">
+	        <div class="col-12">
+	          <div class="card-body py-0 px-0">
+	            <p class="card-title text-danger my-0">
+	              {{ name }}
+	            </p>
+	            <p class="card-text my-0">
+	              {{ country }}
+	            </p>
+	            <p class="card-text my-0">
+	              {{ region }}
+	            </p>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+
+	<div class="container text-white" style="max-width: 540px;">
+	    <div class="card border-primary bg-info col-12 mt-2" style="max-width: 540px;">
+	      <div class="row">
+	        <div class="col-12">
+	          <div class="card-body py-0 px-0">
+	            <div class="row">
+	              <div class="col-7 text-danger ">
+	                Nutrients
+	              </div>
+	              <div class="col-5 text-danger ">
+	                Target
+	              </div>
+	            </div>
+	            <div class="row">
+	              <div class="col-7 ">
+	                protein(g/day)
+	              </div>
+	              <div class="col-5 ">
+	                {{dri_p|floatformat:2}}
+	              </div>
+	            </div>
+	            <div class="row">
+	              <div class="col-7 ">
+	                vit-A(μg/day)
+	              </div>
+	              <div class="col-5 ">
+	                {{dri_v|intcomma}}
+	              </div>
+	            </div>
+	            <div class="row">
+	              <div class="col-7 ">
+	                Fe(mg/day)
+	              </div>
+	              <div class="col-5 ">
+	                {{dri_f|floatformat:2}}
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="container text-white" style="max-width: 540px;">
+	      <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
+	        <div class="row">
+	          <div class="col-12">
+	            <div class="card-body py-0 px-0">
+	              <p class="card-text text-danger my-0">
+	                selected commodities
+	              </p>
+	              {% for crop in crop_list %}
+	                <p class="card-text text-truncate my-0">
+	                  -{{ crop }}
+	                </p>
+	              {% endfor %}
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="col-12">
+							<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'fctdata' familyid=myid items=crop_list %}">back</a></span>
+	            <span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'crop_create' familyid=myid %}">+</a></span>
+	        </div>
+	      </div>
+	    </div>
 
 
-
-		<div class="container">
+		<div class="container " style="max-width: 540px;">
 			{% for crop in mylist %}
-				<div class="card border-primary col-12 mt-2" style="max-width: 540px;">
+				<div class="card border-primary col-12 mt-2 py-0" style="max-width: 540px;">
 				  <div class="row">
-				    <div class="col-4 d-flex align-items-center">
-				      <img src="{% static 'img/foods/icon_113490_256.png' %}" class="card-img">
-				    </div>
-				    <div class="col-8">
-				      <div class="card-body bg-light p-2">
-				        <h5 class="card-title">
+				    <div class="col-12">
+				      <div class="card-body bg-light p-2 py-0 px-0">
+				        <h5 class="card-title text-truncate my-0">
 									{{crop.Food_name}}
 								</h5>
-								<p class="card-text">
+								<p class="card-text my-0">
 									amont to meet target
 								</p>
-								<p class="card-text">
-									protein: {{ crop.food_wt_p|floatformat:1}}
+								<p class="card-text my-0">
+									-protein: {{ crop.food_wt_p|floatformat:1}}
 								</p>
-								<p class="card-text">
-									vit-A: {{ crop.food_wt_va|floatformat:1 }}
+								<p class="card-text my-0">
+									-vit-A: {{ crop.food_wt_va|floatformat:1 }}
 								</p>
-								<p class="card-text">
-									Iron: {{ crop.food_wt_fe|floatformat:1 }}
+								<p class="card-text my-0">
+									-Iron: {{ crop.food_wt_fe|floatformat:1 }}
 								</p>
-								<p class="card-text">
-									score: {{ crop.crop_score }}
+								<p class="card-text my-0">
+									-score: {{ crop.crop_score }}
 								</p>
-									<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_update' familyid=crop.familyid pk=crop.pk %}">edit</a></span>
+									<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_update' familyid=crop.familyid pk=crop.pk %}">feasibility</a></span>
 									<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_delete' familyid=crop.familyid pk=crop.pk %}">del</a></span>
 				      </div>
 				    </div>
