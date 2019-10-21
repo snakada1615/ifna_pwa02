@@ -414,3 +414,42 @@ def getNFA(request, store_id):
 
     jsondata = serializers.serialize('json',results)
     return HttpResponse(jsondata)
+
+def registCrops(request, familyid, items):
+    tmp = Family.objects.get(id = familyid).crop_list
+    crops = []
+    a = 0
+    if ('-' in tmp):
+        crops = tmp.split('-')
+    else:
+        crops.append(tmp)
+
+    selectedItem = []
+    if ('-' in items):
+        selectedItem = items.split('-')
+    else:
+        selectedItem.append(items)
+
+    for item in selectedItem:
+        if item in crops:
+            a += 1 #  do nothing"
+        else:
+#            register new crop here"
+            a += 1 #  do nothing"
+
+    for crop in crops:
+        if crop in selectedItem:
+#            do nothing"
+            a += 1 #  do nothing"
+        else:
+#            delete crop here"
+            a += 1 #  do nothing"
+
+#    move to crop list page
+    myURL = reverse_lazy('crop_list', kwargs = {'familyid': familyid})
+    return HttpResponseRedirect(myURL)
+
+def funcTest(request, familyid):
+#    move to crop list page
+    myURL = reverse_lazy('crop_list', kwargs = {'familyid': familyid})
+    return HttpResponseRedirect(myURL)

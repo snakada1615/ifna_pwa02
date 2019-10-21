@@ -18,6 +18,7 @@ getHTML_param = function() {
   var url_tmp = window.location.href.split('/');
   var tmp1 = url_tmp[url_tmp.length-3];
   var tmp2 = url_tmp[url_tmp.length-2];
+  myFamily = tmp1;
   items.length = 0;
   if (tmp2 == '0') {
     items.push('0');
@@ -62,14 +63,14 @@ $(document).ready(function() {
         table.rows('.selected').every( function ( rowIdx, tableLoop, rowLoop ) {
             var data = this.data();
             s += data.Food_name + "\n";
-            n += "-" + data.FCT_id;
+            n += "-" + data.food_item_id;
 
             // ... do something with data(), or this.node(), etc
         } );
         n = n.substring(1);
         window.confirm(s);
         window.confirm(n);
-
+        location.href = 'http://127.0.0.1:8000/registCrops/' + myFamily + '/' + n + '/';
     } );
 
 } );

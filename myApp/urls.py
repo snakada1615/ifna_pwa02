@@ -31,4 +31,6 @@ urlpatterns = [
     path('crop/update/<int:familyid>/<int:pk>/', Crop_UpdateView.as_view(), name='crop_update'),
     path('crop/delete/<int:familyid>/<int:pk>/', Crop_DeleteView.as_view(), name='crop_delete'),
     path('getNFA/<int:store_id>/',  views.getNFA, name='getnfa'),
+    path('registCrops/<int:familyid>/<str:items>/',  views.registCrops, name='registcrops'),
+    path('funcTest/<int:familyid>/',  views.funcTest, name='funcTest'),
 ]
