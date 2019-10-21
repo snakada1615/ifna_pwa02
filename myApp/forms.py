@@ -181,14 +181,22 @@ class CropForm(forms.ModelForm):
         self.myid = kwargs.pop('myid')
         super(CropForm, self).__init__(*args, **kwargs)
         myquery = FCT.objects.all()
-        self.fields['Food_name'] = forms.ModelChoiceField(queryset=myquery, empty_label='select food', to_field_name='Food_name')
+        self.fields['Food_name'].widget.attrs['readonly'] = True
         self.fields['food_wt_p'].widget.attrs['readonly'] = True
         self.fields['food_wt_va'].widget.attrs['readonly'] = True
         self.fields['food_wt_fe'].widget.attrs['readonly'] = True
 
     def clean(self):
         cleaned_data = super(CropForm, self).clean()
+
         myfood = FCT.objects.get(Food_name = self.cleaned_data['Food_name'])
+        if myfood.Protein == '':
+            myfood.Protein = 0
+        if myfood.VITA_RAE == '':
+            myfood.VITA_RAE = 0
+        if myfood.FE == '':
+            myfood.FE = 0
+
         mytarget = Family.objects.get(pk = self.myid)
         self.cleaned_data['food_item_id'] = myfood.food_item_id
         self.cleaned_data['food_grp'] = myfood.Food_grp

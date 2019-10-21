@@ -94,7 +94,6 @@
 	      <div class="row">
 	        <div class="col-12">
 							<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'fctdata' familyid=myid items=crop_list2 %}">back</a></span>
-	            <span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'crop_create' familyid=myid %}">+</a></span>
 	        </div>
 	      </div>
 	    </div>
@@ -125,7 +124,6 @@
 									-score: {{ crop.crop_score }}
 								</p>
 									<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_update' familyid=crop.familyid pk=crop.pk %}">feasibility</a></span>
-									<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_delete' familyid=crop.familyid pk=crop.pk %}">del</a></span>
 				      </div>
 				    </div>
 				  </div>

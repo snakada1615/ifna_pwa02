@@ -435,7 +435,40 @@ def registCrops(request, familyid, items):
             a += 1 #  do nothing"
         else:
 #            register new crop here"
-            a += 1 #  do nothing"
+            newcrop = {}
+            myfood = FCT.objects.get(food_item_id = item)
+            if myfood.Protein == '':
+                myfood.Protein = 0
+            if myfood.VITA_RAE == '':
+                myfood.VITA_RAE = 0
+            if myfood.FE == '':
+                myfood.FE = 0
+
+            mytarget = Family.objects.get(pk = familyid)
+            newcrop['food_item_id'] = item
+            newcrop['Food_name'] = myfood.Food_name
+            newcrop['food_grp'] = myfood.Food_grp
+            newcrop['protein'] = myfood.Protein
+            newcrop['vita'] = myfood.VITA_RAE
+            newcrop['fe'] = myfood.FE
+            newcrop['familyid'] = familyid
+
+            if myfood.Protein >0:
+                newcrop['food_wt_p'] = round(mytarget.protein *100 / myfood.Protein, 1)
+            else:
+                newcrop['food_wt_p'] = 0
+
+            if myfood.VITA_RAE > 0:
+                newcrop['food_wt_va'] = round(mytarget.vita *100 / myfood.VITA_RAE, 1)
+            else:
+                newcrop['food_wt_va'] = 0
+
+            if myfood.FE > 0:
+                newcrop['food_wt_fe'] = round(mytarget.fe *100 / myfood.FE, 1)
+            else:
+                newcrop['food_wt_fe'] = 0
+
+            Crop.objects.create(**newcrop)
 
     for crop in crops:
         if crop in selectedItem:
@@ -443,8 +476,11 @@ def registCrops(request, familyid, items):
             a += 1 #  do nothing"
         else:
 #            delete crop here"
-            a += 1 #  do nothing"
+            Crop.objects.filter(food_item_id=crop).delete()
 
+#   update crop_list to match with DCT_datatable selection
+    Family.objects.filter(id = familyid).update(crop_list = items)
+    
 #    move to crop list page
     myURL = reverse_lazy('crop_list', kwargs = {'familyid': familyid})
     return HttpResponseRedirect(myURL)

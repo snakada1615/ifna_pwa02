@@ -12,12 +12,15 @@
 <script>
 // URLパラメータの取得
 var myFamily = '';
+var myRoot = '';
 var items = [];
 
 getHTML_param = function() {
   var url_tmp = window.location.href.split('/');
   var tmp1 = url_tmp[url_tmp.length-3];
   var tmp2 = url_tmp[url_tmp.length-2];
+  url_tmp.pop();url_tmp.pop();url_tmp.pop();url_tmp.pop();
+  myRoot = url_tmp.join("/") + '/';
   myFamily = tmp1;
   items.length = 0;
   if (tmp2 == '0') {
@@ -34,6 +37,7 @@ $(document).ready(function() {
   var table = $('#example').DataTable( {
     "ajax": "{% static 'DataTables/data/FCT.txt' %}",
     "columns": [
+        { "data": "row_sel" },
         { "data": "Food_name" },
         { "data": "Protein" },
         { "data": "VITA_RAE" },
@@ -46,10 +50,10 @@ $(document).ready(function() {
         var data = this.data();
         if (items.indexOf(data.food_item_id) >= 0) {
           this.select();
+          this.cell(rowIdx, 0).data("1");
         }
-      } );
+      });
     }
-
   } );
 
     $('#example tbody').on( 'click', 'tr', function () {
@@ -70,7 +74,7 @@ $(document).ready(function() {
         n = n.substring(1);
         window.confirm(s);
         window.confirm(n);
-        location.href = 'http://127.0.0.1:8000/registCrops/' + myFamily + '/' + n + '/';
+        location.href = myRoot + 'registCrops/' + myFamily + '/' + n + '/';
     } );
 
 } );
@@ -167,7 +171,7 @@ $(document).ready(function() {
       <div class="row">
         <div class="col-12">
             <span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_list' familyid=familyid %}">back</a></span>
-            <span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'crop_list' familyid=familyid %}">next step</a></span>
+            <span><a id="button" class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'crop_list' familyid=familyid %}">next step</a></span>
         </div>
       </div>
     </div>
@@ -175,24 +179,29 @@ $(document).ready(function() {
 
   <hr>
 
-<button type="button" id="button" >select count</button>
-<table id="example" class="display compact" cellspacing="0" width="100%">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Pr</th>
-            <th>VA</th>
-            <th>Fe</th>
-        </tr>
-    </thead>
+  <div class="container" style="max-width: 540px;">
 
-    <tfoot>
-        <tr>
-          <th>Name</th>
-          <th>Pr</th>
-          <th>VA</th>
-          <th>Fe</th>
-        </tr>
-    </tfoot>
-</table>
+    <table id="example" class="display compact" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>s</th>
+                <th>Name</th>
+                <th>Pr</th>
+                <th>VA</th>
+                <th>Fe</th>
+            </tr>
+        </thead>
+
+        <tfoot>
+            <tr>
+              <th>s</th>
+              <th>Name</th>
+              <th>Pr</th>
+              <th>VA</th>
+              <th>Fe</th>
+            </tr>
+        </tfoot>
+    </table>
+  </div>
+
 {% endblock %}
