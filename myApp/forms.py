@@ -156,9 +156,9 @@ class CropForm(forms.ModelForm):
             'crop_score': forms.HiddenInput(),
         }
         labels = {
-            "food_wt_p": "required amount (for protein)",
-            "food_wt_va": "required amount (for VitA)",
-            "food_wt_fe": "required amount (for Iron)",
+            "food_wt_p": "required amount of intake(g) to meet daily protein requirement",
+            "food_wt_va": "required amount of intake(g) to meet daily VitA requirement",
+            "food_wt_fe": "required amount of intake(g) to meet daily Iron requirement",
             "feas_DRI_p": "Is required amount for protein target feasible?",
             "feas_DRI_a": "Is required amount for vit-A target feasible?",
             "feas_DRI_f": "Is required amount for Iron target feasible?",
