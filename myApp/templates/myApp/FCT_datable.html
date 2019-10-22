@@ -14,7 +14,20 @@
 var myFamily = '';
 var myRoot = '';
 var items = [];
-
+var fGrp=[
+  "Cereals and their products",
+  "Roots, tubers and their products",
+  "Legumes and their products",
+  "Vegetables and their products",
+  "Fruits and their products",
+  "Nuts, Seeds and their products",
+  "Meat, poultry and their products",
+  "Eggs and their products",
+  "Fish and their products",
+  "Milk and their products",
+  "Bevarages and their products",
+  "Miscellaneous"
+]
 getHTML_param = function() {
   var url_tmp = window.location.href.split('/');
   var tmp1 = url_tmp[url_tmp.length-3];
@@ -42,7 +55,13 @@ $(document).ready(function() {
         { "data": "Protein" },
         { "data": "VITA_RAE" },
         { "data": "FE" },
+        { "data": "Food_grp" },
     ],
+    "columnDefs": [
+      { targets: [0, 1, 2, 3, 4], visible: true},
+      { targets: '_all', visible: false },
+      ],
+
 
     "initComplete": function(settings, json) {
       getHTML_param();
@@ -53,6 +72,26 @@ $(document).ready(function() {
           this.cell(rowIdx, 0).data("1");
         }
       });
+////////////////////////////////////
+      this.api().columns([5]).every(function () {
+        var column = this;
+        var select = $('<select><option value=""></option></select>')
+            .appendTo( $(table.column(1).header()).empty() )
+            .on( 'change', function () {
+                var val = $.fn.dataTable.util.escapeRegex(
+                    $(this).val()
+                );
+
+                column
+                    .search( val ? '^'+val+'$' : '', true, false )
+                    .draw();
+            } );
+
+        column.data().unique().sort().each( function ( d, j ) {
+            select.append( '<option value="'+d+'">'+d+'</option>' )
+        } );
+      })
+////////////////////////////////////
     }
   } );
 
@@ -72,10 +111,12 @@ $(document).ready(function() {
             // ... do something with data(), or this.node(), etc
         } );
         n = n.substring(1);
-        window.confirm(s);
-        window.confirm(n);
         location.href = myRoot + 'registCrops/' + myFamily + '/' + n + '/';
     } );
+
+    function foodGrp_filter() {
+
+    }
 
 } );
 </script>
@@ -180,7 +221,6 @@ $(document).ready(function() {
   <hr>
 
   <div class="container" style="max-width: 540px;">
-
     <table id="example" class="display compact" cellspacing="0" width="100%">
         <thead>
             <tr>

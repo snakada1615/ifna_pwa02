@@ -472,7 +472,6 @@ def registCrops(request, familyid, items):
 
     for crop in crops:
         if crop in selectedItem:
-#            do nothing"
             a += 1 #  do nothing"
         else:
 #            delete crop here"
@@ -480,7 +479,7 @@ def registCrops(request, familyid, items):
 
 #   update crop_list to match with DCT_datatable selection
     Family.objects.filter(id = familyid).update(crop_list = items)
-    
+
 #    move to crop list page
     myURL = reverse_lazy('crop_list', kwargs = {'familyid': familyid})
     return HttpResponseRedirect(myURL)
