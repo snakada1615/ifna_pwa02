@@ -27,8 +27,8 @@ class FamilyForm(forms.ModelForm):
         model = Family
         fields = (
             "name", "remark", "country", "region", "province", "community",
-            "month_start", "month_end", "protein", "vita", "fe", "size",
-            "crop_list", "id"
+            "nutrition_target", "month_start", "month_end", "protein", "vita",
+            "fe", "size", "crop_list", "id"
         )
         widgets = {
             'protein': forms.HiddenInput(),
@@ -171,7 +171,7 @@ class CropForm(forms.ModelForm):
             "feas_invest_fixed": "Is there need for specific infrastructure (irrigation / postharvest)?",
             "feas_invest_variable": "Is production input (fertilizer, seed) become burden for small farmer?",
             "feas_availability_non": "How many month is this crop NOT available in a year?",
-            "feas_availability_prod": "When is this crop available in a year?",
+            "feas_availability_prod": "How many month can you harvest this crop in a year?",
             "feas_affordability": "Is this crop affordable for ordinary population?",
             "feas_storability": "Are there any feasible storage medhod available for this crop?",
             "diet_type": "is this crop new for target area?",

@@ -88,6 +88,10 @@ class Family(models.Model):
         max_length=200,
         blank = True
     )
+    nutrition_target = models.CharField(
+        max_length=200,
+        blank = True
+    )
     crop_list = models.CharField(
         max_length=1000,
         default='0',
@@ -231,17 +235,41 @@ class Person(models.Model):
 
 
 class Crop(models.Model):
-    choices_DRI_realistic = (
-        (1, 'no'),
+    choices_ascending = (
+        (0, 'no'),
+        (1, 'maybe no'),
+        (2, 'maybe yes'),
+        (3, 'yes'),
+    )
+    choices_descending = (
+        (3, 'no'),
         (2, 'maybe no'),
-        (3, 'maybe yes'),
-        (4, 'yes'),
+        (1, 'maybe yes'),
+        (0, 'yes'),
+    )
+    choices_availability = (
+        (0, '0-3 mon'),
+        (1, '4-6 mon'),
+        (2, '7-9 mon'),
+        (3, '10-12 mon'),
+    )
+    choices_non_availability = (
+        (3, '0-3 mon'),
+        (2, '4-6 mon'),
+        (1, '7-9 mon'),
+        (0, '10-12 mon'),
+    )
+    choices_DRI_realistic = (
+        (0, 'no'),
+        (1, 'maybe no'),
+        (2, 'maybe yes'),
+        (3, 'yes'),
     )
     choices_social_acceptability = (
-        (1, 'no'),
+        (3, 'no'),
         (2, 'maybe no'),
-        (3, 'maybe yes'),
-        (4, 'yes'),
+        (1, 'maybe yes'),
+        (0, 'yes'),
     )
     choices_prod_skill = (
         (1, 'no'),
@@ -274,12 +302,6 @@ class Crop(models.Model):
         (4, 'yes'),
     )
     choices_invest_variable = (
-        (1, 'no'),
-        (2, 'maybe no'),
-        (3, 'maybe yes'),
-        (4, 'yes'),
-    )
-    choices_availability = (
         (1, 'no'),
         (2, 'maybe no'),
         (3, 'maybe yes'),
@@ -336,83 +358,83 @@ class Crop(models.Model):
     )
     feas_DRI = models.IntegerField(
         verbose_name='feas_DRI',
-        choices=choices_DRI_realistic,
-        default=1,
+        choices=choices_ascending,
+        default=0,
     )
     feas_DRI_p = models.IntegerField(
         verbose_name='feas_DRI_p',
-        choices=choices_DRI_realistic,
-        default=1,
+        choices=choices_ascending,
+        default=0,
     )
     feas_DRI_a = models.IntegerField(
         verbose_name='feas_DRI_a',
-        choices=choices_DRI_realistic,
-        default=1,
+        choices=choices_ascending,
+        default=0,
     )
     feas_DRI_f = models.IntegerField(
         verbose_name='feas_DRI_f',
-        choices=choices_DRI_realistic,
-        default=1,
+        choices=choices_ascending,
+        default=0,
     )
     feas_soc_acceptable = models.IntegerField(
         verbose_name='feas_social_wo',
-        choices=choices_social_acceptability,
-        default=1,
+        choices=choices_descending,
+        default=0,
     )
     feas_soc_acceptable_wo = models.IntegerField(
         verbose_name='feas_social_wo',
-        choices=choices_social_acceptability,
-        default=1,
+        choices=choices_descending,
+        default=0,
     )
     feas_soc_acceptable_c5 = models.IntegerField(
         verbose_name='feas_social_c5',
-        choices=choices_social_acceptability,
-        default=1,
+        choices=choices_descending,
+        default=0,
     )
     feas_prod_skill = models.IntegerField(
         verbose_name='feas_prod_skill',
-        choices=choices_prod_skill,
-        default=1,
+        choices=choices_ascending,
+        default=0,
     )
     feas_workload = models.IntegerField(
         verbose_name='feas_workload',
-        choices=choices_prod_skill,
-        default=1,
+        choices=choices_descending,
+        default=0,
     )
     feas_tech_service = models.IntegerField(
         verbose_name='feas_tech_service',
-        choices=choices_tech_service,
-        default=1,
+        choices=choices_ascending,
+        default=0,
     )
     feas_invest_fixed = models.IntegerField(
         verbose_name='feas_invest_fixed',
-        choices=choices_invest_fixed,
-        default=1,
+        choices=choices_descending,
+        default=0,
     )
     feas_invest_variable = models.IntegerField(
         verbose_name='feas_invest_variable',
-        choices=choices_invest_variable,
-        default=1,
+        choices=choices_descending,
+        default=0,
     )
     feas_availability_non = models.IntegerField(
         verbose_name='feas_availability_non',
         choices=choices_availability,
-        default=1,
+        default=0,
     )
     feas_availability_prod = models.IntegerField(
         verbose_name='feas_availability_prod',
         choices=choices_availability,
-        default=1,
+        default=0,
     )
     feas_affordability = models.IntegerField(
         verbose_name='feas_affordability',
-        choices=choices_availability,
-        default=1,
+        choices=choices_ascending,
+        default=0,
     )
     feas_storability = models.IntegerField(
         verbose_name='feas_storability',
-        choices=choices_availability,
-        default=1,
+        choices=choices_ascending,
+        default=0,
     )
     crop_score = models.IntegerField(
         verbose_name='crop_score',

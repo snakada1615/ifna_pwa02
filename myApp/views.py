@@ -22,6 +22,7 @@ class FCTdatable_View(TemplateView):
         context['myid'] = Family.objects.get(id = self.kwargs['familyid']).id
         context['country'] = Family.objects.get(id = self.kwargs['familyid']).country
         context['region'] = Family.objects.get(id = self.kwargs['familyid']).region
+        context['nutrition_target'] = Family.objects.get(id = self.kwargs['familyid']).nutrition_target
         context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
         context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
@@ -156,6 +157,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
         context['myid'] = Family.objects.get(id = self.kwargs['familyid']).id
         context['country'] = Family.objects.get(id = self.kwargs['familyid']).country
         context['region'] = Family.objects.get(id = self.kwargs['familyid']).region
+        context['nutrition_target'] = Family.objects.get(id = self.kwargs['familyid']).nutrition_target
         context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
         context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
@@ -316,6 +318,7 @@ class Crop_ListView(LoginRequiredMixin, ListView):
         context['myid'] = Family.objects.get(id = self.kwargs['familyid']).id
         context['country'] = Family.objects.get(id = self.kwargs['familyid']).country
         context['region'] = Family.objects.get(id = self.kwargs['familyid']).region
+        context['nutrition_target'] = Family.objects.get(id = self.kwargs['familyid']).nutrition_target
         context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
         context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
