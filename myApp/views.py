@@ -475,14 +475,14 @@ def registCrops(request, familyid, items):
             else:
                 newcrop['food_wt_fe'] = 0
 
-            Crop.objects.create(**newcrop)
+            p = Crop.objects.create(**newcrop)
 
     for crop in crops:
         if crop in selectedItem:
             a += 1 #  do nothing"
         else:
 #            delete crop here"
-            Crop.objects.filter(food_item_id=crop).delete()
+            p = Crop.objects.filter(food_item_id=crop).delete()
 
 #   update crop_list to match with DCT_datatable selection
     Family.objects.filter(id = familyid).update(crop_list = items)

@@ -44,6 +44,7 @@ $(document).ready(function() {
         { "data": "FE" },
         { "data": "Food_grp" },
     ],
+
     "columnDefs": [
       { targets: [0, 1, 2, 3, 4], visible: true},
       { targets: '_all', visible: false },
@@ -83,9 +84,12 @@ $(document).ready(function() {
   } );
 
     $('#example tbody').on( 'click', 'tr', function () {
+//        var data = table.row( this ).data();
+//        var data1 = table.row( this ).data().row_sel;
+//        alert(data.Food_name);
+//        alert(data1);
         $(this).toggleClass('selected');
     } );
-
 
     $('#button').click( function () {
         var s = "";
@@ -98,10 +102,9 @@ $(document).ready(function() {
             // ... do something with data(), or this.node(), etc
         } );
         n = n.substring(1);
-        alert(myRoot + 'registCrops/' + myFamily + '/' + n + '/');
+//        location.href = myRoot + 'fctdata/' + myFamily + '/' + n + '/';
         location.href = myRoot + 'registCrops/' + myFamily + '/' + n + '/';
     } );
-
 } );
 </script>
 
@@ -198,8 +201,8 @@ $(document).ready(function() {
       </div>
       <div class="row">
         <div class="col-12">
-            <span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_list' familyid=familyid %}">back</a></span>
-            <span><a id="button" class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'crop_list' familyid=familyid %}">next step</a></span>
+          <span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_list' familyid=familyid %}">back</a></span>
+          <span><a id="button" class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" >next step</a></span>
         </div>
       </div>
     </div>
