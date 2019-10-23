@@ -102,7 +102,6 @@ $(document).ready(function() {
             // ... do something with data(), or this.node(), etc
         } );
         n = n.substring(1);
-//        location.href = myRoot + 'fctdata/' + myFamily + '/' + n + '/';
         location.href = myRoot + 'registCrops/' + myFamily + '/' + n + '/';
     } );
 } );
@@ -110,8 +109,11 @@ $(document).ready(function() {
 
 <div class="container" style="max-width: 540px;">
   <div class="row">
-    <div class="col text-danger">
-      <h5>Step3: Commodity selection for {{name}}</h5>
+    <div class="col-2 my-0 px-1">
+      <img src="{% static 'img/no3.png' %}">
+    </div>
+    <div class="col-10 my-0 px-1">
+        <h5>   Commodity selection for {{name}} </h5>
     </div>
   </div>
 </div>
@@ -202,7 +204,7 @@ $(document).ready(function() {
       <div class="row">
         <div class="col-12">
           <span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_list' familyid=familyid %}">back</a></span>
-          <span><a id="button" class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" >next step</a></span>
+          <span><a id="button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" >next step</a></span>
         </div>
       </div>
     </div>
