@@ -74,8 +74,8 @@ class Family(models.Model):
 
     country = models.CharField(
         max_length=200,
-        blank = True
     )
+
     region = models.CharField(
         max_length=200,
         blank = True
@@ -90,7 +90,6 @@ class Family(models.Model):
     )
     nutrition_target = models.CharField(
         max_length=200,
-        blank = True
     )
     crop_list = models.CharField(
         max_length=1000,
