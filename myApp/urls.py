@@ -7,6 +7,11 @@ from .views import Crop_UpdateView, Crop_DeleteView, Crop_ListView, Crop_CreateV
 from .views import WhoamI_View, Usage_View, TestOfflineView, off_FCT_view, off_Family_ListView
 from .views import Trial_View, off_Family_CreateView, FCTdatable_View
 
+from django.contrib import admin
+from django.urls import include
+from django.contrib.auth import views as auth_views
+from django.views.generic import TemplateView
+
 urlpatterns = [
     path('FCTdata/<int:familyid>/<str:items>/',  FCTdatable_View.as_view(), name='fctdata'),
     path('trial/',  Trial_View.as_view(), name='trial'),
@@ -33,4 +38,8 @@ urlpatterns = [
     path('getNFA/<int:store_id>/',  views.getNFA, name='getnfa'),
     path('registCrops/<int:familyid>/<str:items>/',  views.registCrops, name='registcrops'),
     path('funcTest/<int:familyid>/',  views.funcTest, name='funcTest'),
+    path('register/', views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='myApp/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+
 ]

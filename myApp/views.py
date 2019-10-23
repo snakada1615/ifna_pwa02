@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -6,10 +6,14 @@ from django.http import HttpResponse
 from django.core import serializers
 
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import FCT, Person, DRI, DRI_women, Family, Crop
 from .forms import Order_Key_Form, FamilyForm, Person_Create_Form, CropForm
 from django.db.models import Q, Sum
+
+# for user registration
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import logout, authenticate, login
 
 
 # Create your views here.
@@ -491,3 +495,25 @@ def funcTest(request, familyid):
 #    move to crop list page
     myURL = reverse_lazy('crop_list', kwargs = {'familyid': familyid})
     return HttpResponseRedirect(myURL)
+
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            login(request, user)
+            return redirect("test")
+
+        else:
+            for msg in form.error_messages:
+                print(form.error_messages[msg])
+
+            return render(request = request,
+                          template_name = "myApp/signup.html",
+                          context={"form":form})
+
+    form = UserCreationForm
+    return render(request = request,
+                  template_name = "myApp/signup.html",
+                  context={"form":form})

@@ -124,8 +124,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # 管理サイトのログイン機能を通常のログイン機能として使う
-LOGIN_URL='admin:login'
-LOGOUT_REDIRECT_URL='/'
+LOGIN_URL='login'
+LOGIN_REDIRECT_URL = '/test/'
+LOGOUT_REDIRECT_URL='/test/'
 
 # django-crispy-forms 設定
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
