@@ -30,8 +30,10 @@ class FCTdatable_View(TemplateView):
         context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
         context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
-        context['sex'] = Person.objects.filter(familyid = self.kwargs['familyid'])[0].sex
-        context['age'] = Person.objects.filter(familyid = self.kwargs['familyid'])[0].age
+#        context['sex'] = Person.objects.filter(familyid = self.kwargs['familyid'])[0].sex
+#        context['age'] = Person.objects.filter(familyid = self.kwargs['familyid'])[0].age
+        context['sex'] = 'female'
+        context['age'] = '12'
         tmp = Family.objects.get(id = self.kwargs['familyid']).crop_list
         crops = []
         if ('-' in tmp):
@@ -168,8 +170,10 @@ class Person_ListView(LoginRequiredMixin, ListView):
         context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
         context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
         context['crop_list'] = Family.objects.get(id = self.kwargs['familyid']).crop_list
-        context['sex'] = Person.objects.filter(familyid = self.kwargs['familyid'])[0].sex
-        context['age'] = Person.objects.filter(familyid = self.kwargs['familyid'])[0].age
+#        context['sex'] = Person.objects.filter(familyid = self.kwargs['familyid'])[0].sex
+#        context['age'] = Person.objects.filter(familyid = self.kwargs['familyid'])[0].age
+        context['sex'] = 'female'
+        context['age'] = '12'
         return context
 
 # 登録画面
@@ -330,8 +334,10 @@ class Crop_ListView(LoginRequiredMixin, ListView):
         context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
         context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
-        context['sex'] = Person.objects.filter(familyid = self.kwargs['familyid'])[0].sex
-        context['age'] = Person.objects.filter(familyid = self.kwargs['familyid'])[0].age
+#        context['sex'] = Person.objects.filter(familyid = self.kwargs['familyid'])[0].sex
+#        context['age'] = Person.objects.filter(familyid = self.kwargs['familyid'])[0].age
+        context['sex'] = 'female'
+        context['age'] = '12'
 
         tmp = Family.objects.get(id = self.kwargs['familyid']).crop_list
         context['crop_list2'] = tmp
