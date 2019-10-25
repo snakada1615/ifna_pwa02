@@ -35,13 +35,13 @@ class FCTdatable_View(TemplateView):
         try:
             data = Person.objects.filter(familyid = self.kwargs['familyid'])[0]
             tmp_sex = Person.SEX_CHOICES[data.sex-1][1]
-        except Person.DoesNotExist:
+        except:
             tmp_sex = 'no data'
         tmp_age=''
         try:
             data = Person.objects.filter(familyid = self.kwargs['familyid'])[0]
             tmp_age = Person.AGE_CHOICES[data.age-1][1]
-        except Person.DoesNotExist:
+        except:
             tmp_age = 'no data'
         context['sex'] = tmp_sex
         context['age'] = tmp_age
@@ -187,13 +187,13 @@ class Person_ListView(LoginRequiredMixin, ListView):
         try:
             data = Person.objects.filter(familyid = self.kwargs['familyid'])[0]
             tmp_sex = Person.SEX_CHOICES[data.sex-1][1]
-        except Person.DoesNotExist:
+        except:
             tmp_sex = 'no data'
         tmp_age=''
         try:
             data = Person.objects.filter(familyid = self.kwargs['familyid'])[0]
             tmp_age = Person.AGE_CHOICES[data.age-1][1]
-        except Person.DoesNotExist:
+        except:
             tmp_age = 'no data'
         context['sex'] = tmp_sex
         context['age'] = tmp_age
@@ -363,13 +363,13 @@ class Crop_ListView(LoginRequiredMixin, ListView):
         try:
             data = Person.objects.filter(familyid = self.kwargs['familyid'])[0]
             tmp_sex = Person.SEX_CHOICES[data.sex-1][1]
-        except Person.DoesNotExist:
+        except:
             tmp_sex = 'no data'
         tmp_age=''
         try:
             data = Person.objects.filter(familyid = self.kwargs['familyid'])[0]
             tmp_age = Person.AGE_CHOICES[data.age-1][1]
-        except Person.DoesNotExist:
+        except:
             tmp_age = 'no data'
         context['sex'] = tmp_sex
         context['age'] = tmp_age
