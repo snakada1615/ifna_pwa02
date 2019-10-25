@@ -124,35 +124,62 @@
 
 		<div class="container " style="max-width: 540px;">
 			{% for crop in mylist %}
+			<div id="accordion">
 				<div class="card border-primary col-12 mt-2 py-0" style="max-width: 540px;">
 				  <div class="row">
 				    <div class="col-12">
 				      <div class="card-body bg-light p-2 py-0 px-0">
-				        <h5 class="card-title text-truncate my-0">
+								<p class="card-text text-truncate my-0">
 									{{crop.Food_name}}
-								</h5>
-								<p class="card-text my-0">
-									amont to meet target
-								</p>
-								<p class="card-text my-0">
-									-protein: {{ crop.food_wt_p|floatformat:1}}
-								</p>
-								<p class="card-text my-0">
-									-vit-A: {{ crop.food_wt_va|floatformat:1 }}
-								</p>
-								<p class="card-text my-0">
-									-Iron: {{ crop.food_wt_fe|floatformat:1 }}
 								</p>
 								<p class="card-text my-0">
 									-Total Score: {{ crop.crop_score }}
 								</p>
-									<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_update' familyid=crop.familyid pk=crop.pk %}">feasibility</a></span>
+								<button class="btn btn-link" data-toggle="collapse" data-target="#num_{{crop.food_item_id}}" aria-expanded="true" aria-controls="num_{{crop.food_item_id}}">
+									nutrient info
+								</button>
+
+
+								<div id="num_{{crop.food_item_id}}" class="collapse" aria-labelledby="heading{{crop.food_item_id}}" data-parent="#accordion">
+						      <div class="card-body">
+										<p class="card-text my-0">
+											Nutrient content /100g
+										</p>
+										<p class="card-text my-0">
+											-protein: {{ crop.protein|floatformat:1}}
+										</p>
+										<p class="card-text my-0">
+											-vit-A: {{ crop.vita|floatformat:1 }}
+										</p>
+										<p class="card-text my-0">
+											-Iron: {{ crop.fe|floatformat:1 }}
+										</p>
+
+										<hr>
+
+										<p class="card-text my-0">
+											required intake (g)
+										</p>
+										<p class="card-text my-0">
+											-protein: {{ crop.food_wt_p|floatformat:1}}
+										</p>
+										<p class="card-text my-0">
+											-vit-A: {{ crop.food_wt_va|floatformat:1 }}
+										</p>
+										<p class="card-text my-0">
+											-Iron: {{ crop.food_wt_fe|floatformat:1 }}
+										</p>
+						      </div>
+						    </div>
+
+								<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_update' familyid=crop.familyid pk=crop.pk %}">feasibility</a></span>
 				      </div>
 				    </div>
 				  </div>
 				</div>
 				{% endfor %}
 			</div>
+		</div>
 
 
 {% endblock %}
