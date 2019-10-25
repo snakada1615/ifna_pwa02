@@ -120,6 +120,9 @@ $(document).ready(function() {
             // ... do something with data(), or this.node(), etc
         } );
         n = n.substring(1);
+        if (n == '') {
+          n = 0;
+        }
         location.href = myRoot + 'registCrops/' + myFamily + '/' + n + '/';
     } );
 } );
