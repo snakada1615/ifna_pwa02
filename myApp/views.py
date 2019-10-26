@@ -55,6 +55,9 @@ class FCTdatable_View(TemplateView):
         return context
 
 
+class Crop_Feas_View(TemplateView):
+    template_name = "myApp/feasibility_result.html"
+
 class Trial_View(TemplateView):
     template_name = "myApp/trial.html"
 
@@ -451,7 +454,7 @@ class Crop_UpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self, **kwargs):
         return reverse_lazy('crop_list', kwargs = {'familyid': self.kwargs['familyid']})
 
-def getNFA(request, store_id):
+def getNFA(request, store_id, familyid):
     results = FCT.objects.all()
     if store_id == 1:
         results = FCT.objects.all()
@@ -462,7 +465,7 @@ def getNFA(request, store_id):
     if store_id == 4:
         results = Person.objects.all()
     if store_id == 5:
-        results = Crop.objects.all()
+        results = Crop.objects.filter(familyid = familyid)
     if store_id == 6:
         results = Family.objects.all()
 

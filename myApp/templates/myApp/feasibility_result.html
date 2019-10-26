@@ -4,7 +4,11 @@
 {% block content %}
 
 <script type="text/javascript">
+  var myFamily = ''; // URL parameters
+  var myRoot = ''; // URL parameters
+
   labels = {
+      "crop_score": "overall score",
       "food_wt_p": "required amount of intake(g) to meet daily protein requirement",
       "food_wt_va": "required amount of intake(g) to meet daily VitA requirement",
       "food_wt_fe": "required amount of intake(g) to meet daily Iron requirement",
@@ -29,14 +33,6 @@
 // 行列転置
 const transpose = a => a[0].map((_, c) => a.map(r => r[c]));
 
-//      var d = '';
-//      d += "<tr>";
-//      d += "  <td>" + FCTdat.fields.Food_name + "</td>";
-//      d += "  <td>" + FCTdat.fields.Protein + "</td>";
-//      d += "  <td>" + FCTdat.fields.FE + "</td>";
-//      d += "  <td>" + FCTdat.fields.VITA_RAE + "</td>";
-//      d += "</tr>";
-
 // 表の動的作成
 function makeTable(data, tableId){
     // 表の作成開始
@@ -55,23 +51,72 @@ function makeTable(data, tableId){
     document.getElementById(tableId).appendChild(table);
 }
 
+// get URL parameter
+getHTML_param = function() {
+  var url_tmp = window.location.href.split('/');
+  var tmp1 = url_tmp[url_tmp.length-2];
+  url_tmp.pop();url_tmp.pop();url_tmp.pop();
+  myRoot = url_tmp.join("/") + '/';
+  myFamily = tmp1;
+}
+
+
+async function getCrop(id){
+//collect latest post from server
+let cropDat;
+  try {
+    cropDat = await fetch(myRoot + 'getNFA/5/' + id + '/');
+  } catch(err) {
+    console.log('get1 or get2 error'); //・・・どちらか一方でもエラー発生した場合
+    return;
+  }
+
+  return cropDat.json();
+}
+
 window.onload = function() {
   var d = []
+  getHTML_param();
 
   d[0] = [];
+  d[0].push('Indicators');
   for (key in labels) {
     d[0].push(labels[key]);
   }
-  for (i=1;i<10;i++) {
-    d[i] = [];
-    for (j=1;j<Object.keys(labels).length+1;j++) {
-      d[i].push(i);
-    }
-  }
-  makeTable(transpose(d), "crop_feas");
+
+  var i = 0;
+  getCrop(myFamily).then(results => {
+      for (result in results) {
+        i += 1;
+        d[i] = [];
+        d[i].push(results[result].fields['Food_name'])
+        for (key in labels) {
+          d[i].push(Math.round(results[result].fields[key]));
+        }
+      }
+      makeTable(transpose(d), "crop_feas");
+
+    });
+
 };
 
 </script>
+
+
+<div class="container " style="max-width: 540px;">
+  <div class="row">
+
+    <div class="col-2 my-0 px-3">
+      <img src="{% static 'img/no5.png' %}">
+    </div>
+    <div class="col-10 my-0 px-1">
+        <h5>Result of crop feasibility assessment</h5>
+    </div>
+  </div>
+  <span><a class="btn btn-outline-secondary mt-2 my-2 py-0 btn-sm align-middle" href="{% url 'crop_list' familyid=familyid %}">back</a></span>
+</div>
+
+
 
 <div class="table-responsive">
   <div id="crop_feas" class="table table-bordered table-striped"></div>

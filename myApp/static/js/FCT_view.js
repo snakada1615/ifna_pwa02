@@ -10,9 +10,9 @@ var FCTdat = {
         d += "  <td>" + FCTdat.fields.VITA_RAE + "</td>";
         d += "</tr>";
 
-        var tr = document.createElement('tr');
+        var tb = document.createElement('table');
         tr.innerHTML = d;
-        document.getElementById("FCT-list").appendChild(tr);
+        document.getElementById("FCT-list").appendChild(tb);
     }
 };
 
