@@ -448,9 +448,9 @@ class Crop_UpdateView(LoginRequiredMixin, UpdateView):
         for i in range(1,3):
             for j in range(1,13):
                 if (getattr(mydat, 'm'+str(j)+'_p') == 1):
-                    myitem += '1:' + str(j) + '-'
+                    myitem += str(j) + ':1' + '-'
                 if (getattr(mydat, 'm'+str(j)+'_m') == 1):
-                    myitem += '2:' + str(j) + '-'
+                    myitem += str(j) + ':2' + '-'
         if (len(myitem)>0):
             myitem = myitem[:-1]
         else:
