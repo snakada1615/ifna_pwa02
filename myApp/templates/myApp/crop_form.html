@@ -28,6 +28,7 @@
     <div class="row">
         <div class="col-12">
             <div class="float-right">
+              <a class="btn btn-outline-secondary" href="{% url 'calendar' familyid=myid pk=pk items=myCal %}">crop calendar</a>
               <a class="btn btn-outline-secondary" href="{% url 'crop_list' familyid=myid %}">return</a>
               <button class="btn btn-outline-secondary" type="submit">save</button>
             </div>

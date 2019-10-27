@@ -14,9 +14,7 @@ from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('crop/calendar/<int:familyid>/<str:items>/',  Crop_Calendar_View.as_view(), name='calendar'),
     path('result/<int:familyid>/',  Crop_Feas_View.as_view(), name='result'),
-    path('FCTdata/<int:familyid>/<str:items>/',  FCTdatable_View.as_view(), name='fctdata'),
     path('trial/',  Trial_View.as_view(), name='trial'),
     path('test/',  TestView.as_view(), name='test'),
     path('offline/', TestOfflineView.as_view(), name='offline'),
@@ -26,6 +24,7 @@ urlpatterns = [
     path('who/',  WhoamI_View.as_view(), name='who'),
     path('usage/',  Usage_View.as_view(), name='usage'),
     path('fct/<int:categ>/<int:order>/',  FCT_show.as_view(), name='FCT_show'),
+    path('FCTdata/<int:familyid>/<str:items>/',  FCTdatable_View.as_view(), name='fctdata'),
     path('Family/list/', Family_ListView.as_view(), name='Family_index'),
     path('Family/create/<int:pk>/', Family_CreateView.as_view(), name='Family_create'),
     path('Family/update/<int:pk>/', Family_UpdateView.as_view(), name='Family_update'),
@@ -38,7 +37,9 @@ urlpatterns = [
     path('crop/create/<int:familyid>/', Crop_CreateView.as_view(), name='crop_create'),
     path('crop/update/<int:familyid>/<int:pk>/', Crop_UpdateView.as_view(), name='crop_update'),
     path('crop/delete/<int:familyid>/<int:pk>/', Crop_DeleteView.as_view(), name='crop_delete'),
+    path('crop/calendar/<int:familyid>/<int:pk>/<str:items>/',  Crop_Calendar_View.as_view(), name='calendar'),
     path('getNFA/<int:store_id>/<int:familyid>/',  views.getNFA, name='getnfa'),
+    path('registCalendar/<int:familyid>/<int:pk>/<str:itemstr>/',  views.registCalendar, name='registcalendar'),
     path('registCrops/<int:familyid>/<str:items>/',  views.registCrops, name='registcrops'),
     path('funcTest/<int:familyid>/',  views.funcTest, name='funcTest'),
     path('register/', views.register, name='register'),

@@ -439,3 +439,99 @@ class Crop(models.Model):
         verbose_name='crop_score',
         default=0,
     )
+    m1_p = models.IntegerField(
+        verbose_name='mon01_prod',
+        default=0,
+    )
+    m2_p = models.IntegerField(
+        verbose_name='mon02_prod',
+        default=0,
+    )
+    m3_p = models.IntegerField(
+        verbose_name='mon03_prod',
+        default=0,
+    )
+    m4_p = models.IntegerField(
+        verbose_name='mon04_prod',
+        default=0,
+    )
+    m5_p = models.IntegerField(
+        verbose_name='mon05_prod',
+        default=0,
+    )
+    m6_p = models.IntegerField(
+        verbose_name='mon06_prod',
+        default=0,
+    )
+    m7_p = models.IntegerField(
+        verbose_name='mon07_prod',
+        default=0,
+    )
+    m8_p = models.IntegerField(
+        verbose_name='mon08_prod',
+        default=0,
+    )
+    m9_p = models.IntegerField(
+        verbose_name='mon09_prod',
+        default=0,
+    )
+    m10_p = models.IntegerField(
+        verbose_name='mon10_prod',
+        default=0,
+    )
+    m11_p = models.IntegerField(
+        verbose_name='mon11_prod',
+        default=0,
+    )
+    m12_p = models.IntegerField(
+        verbose_name='mon12_prod',
+        default=0,
+    )
+    m1_m = models.IntegerField(
+        verbose_name='mon01_market',
+        default=0,
+    )
+    m2_m = models.IntegerField(
+        verbose_name='mon02_market',
+        default=0,
+    )
+    m3_m = models.IntegerField(
+        verbose_name='mon03_market',
+        default=0,
+    )
+    m4_m = models.IntegerField(
+        verbose_name='mon04_market',
+        default=0,
+    )
+    m5_m = models.IntegerField(
+        verbose_name='mon05_market',
+        default=0,
+    )
+    m6_m = models.IntegerField(
+        verbose_name='mon06_market',
+        default=0,
+    )
+    m7_m = models.IntegerField(
+        verbose_name='mon07_market',
+        default=0,
+    )
+    m8_m = models.IntegerField(
+        verbose_name='mon08_market',
+        default=0,
+    )
+    m9_m = models.IntegerField(
+        verbose_name='mon09_market',
+        default=0,
+    )
+    m10_m = models.IntegerField(
+        verbose_name='mon10_market',
+        default=0,
+    )
+    m11_m = models.IntegerField(
+        verbose_name='mon11_market',
+        default=0,
+    )
+    m12_m = models.IntegerField(
+        verbose_name='mon12_market',
+        default=0,
+    )

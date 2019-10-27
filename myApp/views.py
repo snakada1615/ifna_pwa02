@@ -15,6 +15,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout, authenticate, login
 
+#for 正規表現チェック
+import re
+import logging
+#from tkinter import messagebox
 
 # Create your views here.
 class FCTdatable_View(TemplateView):
@@ -175,7 +179,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset().filter(familyid = self.kwargs['familyid']).order_by('age')
-        return queryset
+#        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -438,8 +442,24 @@ class Crop_UpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         myid = self.kwargs['familyid']
+
+        mydat = Crop.objects.get(pk = self.kwargs['pk'])
+        myitem = ''
+        for i in range(1,3):
+            for j in range(1,13):
+                if (getattr(mydat, 'm'+str(j)+'_p') == 1):
+                    myitem += '1:' + str(j) + '-'
+                if (getattr(mydat, 'm'+str(j)+'_m') == 1):
+                    myitem += '2:' + str(j) + '-'
+        if (len(myitem)>0):
+            myitem = myitem[:-1]
+        else:
+            myitem = '0'
+
         context = super().get_context_data(**kwargs)
         context['myid'] = myid
+        context['myCal'] = myitem
+        context['pk'] = self.kwargs['pk']
         context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
         context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
@@ -448,6 +468,7 @@ class Crop_UpdateView(LoginRequiredMixin, UpdateView):
     def get_form_kwargs(self):
         """This method is what injects forms with their keyword
             arguments."""
+
         # grab the current set of form #kwargs
         kwargs = super(Crop_UpdateView, self).get_form_kwargs()
         # Update the kwargs with the user_id
@@ -474,6 +495,33 @@ def getNFA(request, store_id, familyid):
 
     jsondata = serializers.serialize('json',results)
     return HttpResponse(jsondata)
+
+
+def registCalendar(request, familyid, pk, itemstr):
+    pattern = '^(\d+:\d+)(-\d+:\d+)*$'
+    myURL = reverse_lazy('crop_update', kwargs = {'familyid': familyid, 'pk':pk})
+
+    if (re.match(pattern, itemstr) == False):
+        return HttpResponseRedirect(myURL)
+
+    # update calendar
+    newcalendar = {}
+    pm_choice = ['_p','_m']
+    items = itemstr.split('-')
+    for i in range(1,3):
+        for j in range(1,13):
+            myitem = str(j) + ':' + str(i)
+            if (myitem in items):
+                newcalendar['m' + str(j) + pm_choice[i-1] ] = 1
+            else:
+                newcalendar['m' + str(j) + pm_choice[i-1] ] = 0
+    logging.debug(newcalendar)
+    p = Crop.objects.filter(id = pk).update(**newcalendar)
+
+
+#    move to crop assessment page
+    return HttpResponseRedirect(myURL)
+
 
 def registCrops(request, familyid, items):
     tmp = Family.objects.get(id = familyid).crop_list

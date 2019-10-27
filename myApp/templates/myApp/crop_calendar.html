@@ -8,24 +8,36 @@
 <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
 
 <script>
+
   // URLパラメータの取得
   var myFamily = '';
+  var myCrop = '';
   var myRoot = '';
   var items = [];
+  var item_pattern = new RegExp(/^(\d+:\d+)(-\d+:\d+)*$/);
 
   getHTML_param = function() {
     var url_tmp = window.location.href.split('/');
-    var tmp1 = url_tmp[url_tmp.length-3];
+    var tmp1 = url_tmp[url_tmp.length-4];
     var tmp2 = url_tmp[url_tmp.length-2];
-    url_tmp.pop();url_tmp.pop();url_tmp.pop();url_tmp.pop();;url_tmp.pop();
+    var tmp3 = url_tmp[url_tmp.length-3];
+    url_tmp.pop();url_tmp.pop();url_tmp.pop();url_tmp.pop();url_tmp.pop();
+    url_tmp.pop();
     myRoot = url_tmp.join("/") + '/';
     myFamily = tmp1;
+    myCrop = tmp3;
     items.length = 0;
     if (tmp2 == '0') {
       items.push('0');
     } else if (tmp2.indexOf('-') < 0) {
+      if (!(item_pattern.test(tmp2))) {
+        alert('URL parameter does not match!');
+      }
       items.push(tmp2);
     } else {
+      if (!(item_pattern.test(tmp2))) {
+        alert('URL parameter does not match!');
+      }
       items = tmp2.split('-');
     }
     return tmp1;
@@ -41,7 +53,7 @@
           select: {
               style: 'multi',
               items: 'cell',
-              selector: ':not(:first-child)'              
+              selector: ':not(:first-child)'
           },
       } );
 // table initialize end
@@ -54,16 +66,25 @@
       table.cells().every(function (row, column){
         let id = row + ':' + column;
         if (items.indexOf(id) >= 0) {
-          console.log(id);
           this.select();
         }
       });
 
       $('#button').click( function () {
+        let myitem = [];
         table.cells('.selected').every( function (row, column) {
-          console.log('column: ' + column + ', row:' + row);
-          this.select();
+          myitem.push(row + ':' + column);
         });
+        let noAdd = myitem.every(v => items.includes(v));
+        let noDel = items.every(v => myitem.includes(v));
+        if (noAdd && noDel) {
+          console.log('no change');
+//          console.log(myitem.join('-'));
+        } else {
+          console.log(myitem.join('-'));
+          location.href = myRoot + 'registCalendar/' + myFamily + '/' +
+            myCrop + '/' + myitem.join('-') + '/';
+        }
       } );
   } );
 
@@ -80,7 +101,7 @@
 
 <div class="container" style="max-width: 540px;">
   <table id="example" class="table table-responsive display compact cell-border" cellspacing="0" width="100%">
-          <thead>
+          <thead style="display:none;">
               <tr>
                 <th>month</th>
                 <th>production</th>
@@ -88,6 +109,11 @@
               </tr>
           </thead>
           <tbody>
+            <tr>
+              <th>month</th>
+              <th>production</th>
+              <th> market </th>
+            </tr>
             <tr>
               <th>01</th>
               <th></th>
@@ -149,7 +175,7 @@
               <th></th>
             </tr>
           </tbody>
-          <tfoot>
+          <tfoot style="display:none;">
               <tr>
                 <tr>
                   <th>month</th>
@@ -159,7 +185,7 @@
               </tr>
           </tfoot>
       </table>
-      <span><a id="button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" >next step</a></span>
+      <span><a id="button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" >back</a></span>
 </div>
 
 {% endblock %}
