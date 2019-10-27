@@ -5,7 +5,8 @@ from .views import Family_UpdateView, Family_DeleteView, Family_ListView, Family
 from .views import Person_UpdateView, Person_DeleteView, Person_ListView, Person_CreateView
 from .views import Crop_UpdateView, Crop_DeleteView, Crop_ListView, Crop_CreateView
 from .views import WhoamI_View, Usage_View, TestOfflineView, off_FCT_view, off_Family_ListView
-from .views import Trial_View, off_Family_CreateView, FCTdatable_View, Crop_Feas_View
+from .views import Trial_View, off_Family_CreateView, FCTdatable_View
+from .views import Crop_Feas_View, Crop_Calendar_View
 
 from django.contrib import admin
 from django.urls import include
@@ -13,6 +14,7 @@ from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 
 urlpatterns = [
+    path('crop/calendar/<int:familyid>/<str:items>/',  Crop_Calendar_View.as_view(), name='calendar'),
     path('result/<int:familyid>/',  Crop_Feas_View.as_view(), name='result'),
     path('FCTdata/<int:familyid>/<str:items>/',  FCTdatable_View.as_view(), name='fctdata'),
     path('trial/',  Trial_View.as_view(), name='trial'),

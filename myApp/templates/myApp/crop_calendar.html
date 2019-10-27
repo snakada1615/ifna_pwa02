@@ -17,7 +17,7 @@
     var url_tmp = window.location.href.split('/');
     var tmp1 = url_tmp[url_tmp.length-3];
     var tmp2 = url_tmp[url_tmp.length-2];
-    url_tmp.pop();url_tmp.pop();url_tmp.pop();url_tmp.pop();
+    url_tmp.pop();url_tmp.pop();url_tmp.pop();url_tmp.pop();;url_tmp.pop();
     myRoot = url_tmp.join("/") + '/';
     myFamily = tmp1;
     items.length = 0;
@@ -31,6 +31,7 @@
     return tmp1;
   }
 
+// table initialize start
   $(document).ready(function() {
       var table = $('#example').DataTable( {
           "searching": false,
@@ -39,27 +40,33 @@
           "info": false,
           select: {
               style: 'multi',
-              items: 'cell'
+              items: 'cell',
+              selector: ':not(:first-child)'              
           },
       } );
+// table initialize end
+
+
+//get URL parameter
+      getHTML_param();
+
+//set initial cell selection based on URL parameter
+      table.cells().every(function (row, column){
+        let id = row + ':' + column;
+        if (items.indexOf(id) >= 0) {
+          console.log(id);
+          this.select();
+        }
+      });
 
       $('#button').click( function () {
         table.cells('.selected').every( function (row, column) {
           console.log('column: ' + column + ', row:' + row);
+          this.select();
         });
       } );
   } );
 
-  "initComplete": function(settings, json) {
-      getHTML_param();
-      table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
-        var data = this.data();
-        if (items.indexOf(data.food_item_id) >= 0) {
-          this.select();
-          this.cell(rowIdx, 0).data("1");
-        }
-      });
-  });
 
 </script>
 

@@ -55,6 +55,9 @@ class FCTdatable_View(TemplateView):
         return context
 
 
+class Crop_Calendar_View(TemplateView):
+    template_name = "myApp/crop_calendar.html"
+
 class Crop_Feas_View(TemplateView):
     template_name = "myApp/feasibility_result.html"
 
