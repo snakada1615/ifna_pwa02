@@ -515,7 +515,35 @@ def registCalendar(request, familyid, pk, itemstr):
                 newcalendar['m' + str(j) + pm_choice[i-1] ] = 1
             else:
                 newcalendar['m' + str(j) + pm_choice[i-1] ] = 0
-    logging.debug(newcalendar)
+
+    avail_p = 0
+    avail_non = 0
+    for i in range(1, 13):
+        avail_p += newcalendar['m' + str(i) + '_p' ]
+        if ((newcalendar['m' + str(i) + '_p' ] == 0) and (newcalendar['m' + str(i) + '_m' ] == 0)):
+            avail_non+=1
+
+    if avail_p < 4:
+        avail_p_all = 0
+    elif avail_p < 7:
+        avail_p_all = 1
+    elif avail_p < 10:
+        avail_p_all = 2
+    else:
+        avail_p_all = 3
+    newcalendar['feas_availability_prod'] = avail_p_all
+
+    if avail_non < 4:
+        avail_non_all = 3
+    elif avail_non < 7:
+        avail_non_all = 2
+    elif avail_non < 10:
+        avail_non_all = 1
+    else:
+        avail_non_all = 0
+    newcalendar['feas_availability_non'] = avail_non_all
+
+#    logging.debug(newcalendar)
     p = Crop.objects.filter(id = pk).update(**newcalendar)
 
 
@@ -618,3 +646,61 @@ def register(request):
     return render(request = request,
                   template_name = "myApp/signup.html",
                   context={"form":form})
+
+
+def SetCal(request):
+    import json
+    mydats = Crop.objects.all()
+    myitem = {}
+    result = {}
+    i = 0
+    for mydat in mydats:
+        myitem = {}
+        i = i+1
+        myitem['id'] = getattr(mydat, 'id')
+        myitem['prod_period'] = getattr(mydat, 'feas_availability_non')
+        myitem['non_availability'] = getattr(mydat, 'feas_availability_prod')
+
+        if (myitem['prod_period'] == 0):
+            jmax = 1
+        elif (myitem['prod_period'] == 1):
+            jmax = 5
+        elif (myitem['prod_period'] == 2):
+            jmax = 8
+        elif (myitem['prod_period'] == 3):
+            jmax = 11
+
+        newcalendar = {}
+        for j in range(1,13):
+            if (j <= jmax):
+                newcalendar['m' + str(j) + '_p' ] = 1
+            else:
+                newcalendar['m' + str(j) + '_p' ] = 0
+
+        if (myitem['non_availability'] == 0):
+            tmp = 1
+        elif (myitem['non_availability'] == 1):
+            tmp = 5
+        elif (myitem['non_availability'] == 2):
+            tmp = 8
+        elif (myitem['non_availability'] == 3):
+            tmp = 11
+        kmax = tmp + jmax
+        if kmax > 12:
+            kmax = 12
+
+        for i in range(1, 13):
+            if (i <= jmax):
+                newcalendar['m' + str(i) + '_m' ] = 0
+            elif (i <= kmax):
+                newcalendar['m' + str(i) + '_m' ] = 0
+            else:
+                newcalendar['m' + str(i) + '_m' ] = 1
+
+#        logging.debug(newcalendar)
+        p = Crop.objects.filter(id = myitem['id']).update(**newcalendar)
+
+#    jsondata = serializers.serialize('json',result)
+        result[str(i)]=newcalendar
+
+    return HttpResponse(json.dumps(result))

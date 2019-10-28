@@ -253,10 +253,10 @@ class Crop(models.Model):
         (3, '10-12 mon'),
     )
     choices_non_availability = (
-        (3, '0-3 mon'),
-        (2, '4-6 mon'),
-        (1, '7-9 mon'),
         (0, '10-12 mon'),
+        (1, '7-9 mon'),
+        (2, '4-6 mon'),
+        (3, '0-3 mon'),
     )
     choices_DRI_realistic = (
         (0, 'no'),
@@ -417,7 +417,7 @@ class Crop(models.Model):
     )
     feas_availability_non = models.IntegerField(
         verbose_name='feas_availability_non',
-        choices=choices_availability,
+        choices=choices_non_availability,
         default=0,
     )
     feas_availability_prod = models.IntegerField(
