@@ -36,6 +36,7 @@ getHTML_param = function() {
 $(document).ready(function() {
   var table = $('#example').DataTable( {
     "ajax": "{% static 'DataTables/data/FCT.txt' %}",
+    "pageLength": 50,
     "columns": [
         { "data": "row_sel" },
         { "data": "Food_name" },
