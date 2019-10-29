@@ -79,6 +79,7 @@
         let noDel = items.every(v => myitem.includes(v));
         if (noAdd && noDel) {
           console.log('no change');
+//          console.log(myitem.join('-'));
           location.href = myRoot + 'registCalendar/' + myFamily + '/' +
             myCrop + '/' + myitem.join('-') + '/';
         } else {

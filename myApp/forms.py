@@ -185,6 +185,8 @@ class CropForm(forms.ModelForm):
         self.fields['food_wt_p'].widget.attrs['readonly'] = True
         self.fields['food_wt_va'].widget.attrs['readonly'] = True
         self.fields['food_wt_fe'].widget.attrs['readonly'] = True
+        self.fields['feas_availability_non'].widget.attrs['readonly'] = True
+        self.fields['feas_availability_prod'].widget.attrs['readonly'] = True
 
     def clean(self):
         cleaned_data = super(CropForm, self).clean()
