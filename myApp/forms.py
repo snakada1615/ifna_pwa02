@@ -191,7 +191,7 @@ class CropForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super(CropForm, self).clean()
 
-        myfood = FCT.objects.get(Food_name = self.cleaned_data['Food_name'])
+        myfood = FCT.objects.get(food_item_id = self.cleaned_data['food_item_id'])
         if myfood.Protein == '':
             myfood.Protein = 0
         if myfood.VITA_RAE == '':
@@ -200,7 +200,6 @@ class CropForm(forms.ModelForm):
             myfood.FE = 0
 
         mytarget = Family.objects.get(pk = self.myid)
-        self.cleaned_data['food_item_id'] = myfood.food_item_id
         self.cleaned_data['food_grp'] = myfood.Food_grp
         self.cleaned_data['protein'] = myfood.Protein
         self.cleaned_data['vita'] = myfood.VITA_RAE
