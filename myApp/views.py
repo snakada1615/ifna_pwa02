@@ -506,7 +506,7 @@ def registCalendar(request, familyid, pk, itemstr):
     pattern = '^(\d+:\d+)(-\d+:\d+)*$'
     myURL = reverse_lazy('crop_update', kwargs = {'familyid': familyid, 'pk':pk})
 
-    if (re.match(pattern, itemstr) == False):
+    if (re.match(pattern, itemstr) == False) and (itemstr != '0'):
         return HttpResponseRedirect(myURL)
 
     # update calendar
