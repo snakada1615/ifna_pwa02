@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class FCT(models.Model):
@@ -128,7 +129,12 @@ class Family(models.Model):
         verbose_name='record_date',
         auto_now_add=True
     )
-
+    created_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.name
@@ -218,10 +224,15 @@ class Person(models.Model):
         verbose_name='iron',
         default=0,
     )
-
     created_at = models.DateTimeField(
         verbose_name='record_date',
         auto_now_add=True
+    )
+    created_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
     )
 
     # 以下は管理サイト上の表示設定
@@ -534,4 +545,14 @@ class Crop(models.Model):
     m12_m = models.IntegerField(
         verbose_name='mon12_market',
         default=0,
+    )
+    created_at = models.DateTimeField(
+        verbose_name='record_date',
+        auto_now_add=True
+    )
+    created_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
     )

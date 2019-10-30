@@ -14,6 +14,7 @@ from django.db.models import Q, Sum
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.models import User
 
 #for 正規表現チェック
 import re
@@ -145,6 +146,10 @@ class Family_CreateView(LoginRequiredMixin, CreateView):
     form_class = FamilyForm
     template_name = 'myApp/family_form.html'
     success_url = reverse_lazy('Family_index')
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super(Family_CreateView, self).form_valid(form)
 
     def get_form_kwargs(self):
         """This method is what injects forms with their keyword
@@ -620,10 +625,11 @@ def registCrops(request, familyid, items):
     myURL = reverse_lazy('crop_list', kwargs = {'familyid': familyid})
     return HttpResponseRedirect(myURL)
 
-def funcTest(request, familyid):
+def funcTest(request):
 #    move to crop list page
-    myURL = reverse_lazy('crop_list', kwargs = {'familyid': familyid})
-    return HttpResponseRedirect(myURL)
+    test = request.user.username + ':' + str(request.user.last_login)
+
+    return HttpResponse(test)
 
 def register(request):
     if request.method == "POST":

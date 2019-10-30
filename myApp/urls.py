@@ -41,7 +41,7 @@ urlpatterns = [
     path('getNFA/<int:store_id>/<int:familyid>/',  views.getNFA, name='getnfa'),
     path('registCalendar/<int:familyid>/<int:pk>/<str:itemstr>/',  views.registCalendar, name='registcalendar'),
     path('registCrops/<int:familyid>/<str:items>/',  views.registCrops, name='registcrops'),
-    path('funcTest/<int:familyid>/',  views.funcTest, name='funcTest'),
+    path('funcTest/',  views.funcTest, name='funcTest'),
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='myApp/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
