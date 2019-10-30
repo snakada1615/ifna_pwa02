@@ -49,8 +49,8 @@ class FamilyForm(forms.ModelForm):
             d = ''
             for crp in Crop.objects.filter(familyid = self.myid):
                 d += "-" + str(crp.food_item_id)
-            if d[0] == '-':
-                d = d[1:]
+                if d[0] == '-':
+                    d = d[1:]
         crop_list = d
         return crop_list
 
