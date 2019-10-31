@@ -581,6 +581,8 @@ def registCrops(request, familyid, items):
     for item in selectedItem:
         if item in crops:
             a += 1 #  do nothing"
+        elif item =='0':
+            a += 1 #  do nothing"            
         else:
 #            register new crop here"
             newcrop = {}
@@ -600,6 +602,8 @@ def registCrops(request, familyid, items):
             newcrop['vita'] = myfood.VITA_RAE
             newcrop['fe'] = myfood.FE
             newcrop['familyid'] = familyid
+
+            newcrop['created_by'] = request.user
 
             if myfood.Protein >0:
                 newcrop['food_wt_p'] = round(mytarget.protein *100 / myfood.Protein, 1)
