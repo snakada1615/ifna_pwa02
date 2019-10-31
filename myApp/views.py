@@ -246,26 +246,29 @@ class Person_CreateView(LoginRequiredMixin, CreateView):
         self.object = form.save()
         # do something with self.object
         # remember the import: from django.http import HttpResponseRedirect
+        form.instance.created_by = self.request.user
         myid = self.kwargs['familyid']
-        aggregates = Person.objects.aggregate(
-            protein1 = Sum('protein', filter = Q(familyid = myid)),
-            vita1 = Sum('vita', filter = Q(familyid = myid)),
-            fe1 = Sum('fe', filter = Q(familyid = myid)),
-        )
-        if aggregates:
-            rec = Family.objects.filter(id = myid).first()
-            rec.protein = aggregates['protein1']
-            rec.vita = aggregates['vita1']
-            rec.fe = aggregates['fe1']
-            rec.save()
 
         mySize = Person.objects.filter(familyid = myid).count()
         if mySize > 0:
             rec = Family.objects.filter(id = myid).first()
             rec.size = mySize
+
+            aggregates = Person.objects.aggregate(
+                protein1 = Sum('protein', filter = Q(familyid = myid)),
+                vita1 = Sum('vita', filter = Q(familyid = myid)),
+                fe1 = Sum('fe', filter = Q(familyid = myid)),
+            )
+            if aggregates:
+                rec = Family.objects.filter(id = myid).first()
+                rec.protein = aggregates['protein1']
+                rec.vita = aggregates['vita1']
+                rec.fe = aggregates['fe1']
+
             rec.save()
 
-        return HttpResponseRedirect(self.get_success_url())
+        return super(Person_CreateView, self).form_valid(form)
+#        return HttpResponseRedirect(self.get_success_url())
 
 # 更新画面
 class Person_UpdateView(LoginRequiredMixin, UpdateView):
@@ -334,22 +337,22 @@ class Person_DeleteView(LoginRequiredMixin, DeleteView):
         success_url = self.get_success_url()
 
         myid = self.kwargs['familyid']
-        aggregates = Person.objects.aggregate(
-            protein1 = Sum('protein', filter = Q(familyid = myid)),
-            vita1 = Sum('vita', filter = Q(familyid = myid)),
-            fe1 = Sum('fe', filter = Q(familyid = myid)),
-        )
-        if aggregates:
-            rec = Family.objects.filter(id = myid).first()
-            rec.protein = aggregates['protein1']
-            rec.vita = aggregates['vita1']
-            rec.fe = aggregates['fe1']
-            rec.save()
-
         mySize = Person.objects.filter(familyid = myid).count()
         if mySize > 0:
             rec = Family.objects.filter(id = myid).first()
             rec.size = mySize
+
+            aggregates = Person.objects.aggregate(
+                protein1 = Sum('protein', filter = Q(familyid = myid)),
+                vita1 = Sum('vita', filter = Q(familyid = myid)),
+                fe1 = Sum('fe', filter = Q(familyid = myid)),
+            )
+            if aggregates:
+                rec = Family.objects.filter(id = myid).first()
+                rec.protein = aggregates['protein1']
+                rec.vita = aggregates['vita1']
+                rec.fe = aggregates['fe1']
+
             rec.save()
 
         return HttpResponseRedirect(success_url)
@@ -435,6 +438,10 @@ class Crop_CreateView(LoginRequiredMixin, CreateView):
         # Update the kwargs with the user_id
         kwargs['myid'] = self.kwargs['familyid']
         return kwargs
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super(Crop_CreateView, self).form_valid(form)
 
     def get_success_url(self, **kwargs):
         return reverse_lazy('crop_list', kwargs = {'familyid': self.kwargs['familyid']})
