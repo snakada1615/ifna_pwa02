@@ -374,12 +374,10 @@ class Crop(models.Model):
         verbose_name='protein',
         default=0
     )
-
     vita = models.FloatField(
         verbose_name='Vit-A',
         default=0
     )
-
     fe = models.FloatField(
         verbose_name='iron',
         default=0
