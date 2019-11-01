@@ -89,8 +89,21 @@ class Family(models.Model):
         max_length=200,
         blank = True
     )
+    stunting_rate = models.IntegerField(
+        default=0,
+    )
+    wasting_rate = models.IntegerField(
+        default=0,
+    )
+    anemia_rate = models.IntegerField(
+        default=0,
+    )
     nutrition_target = models.CharField(
         max_length=200,
+    )
+    major_commodity = models.CharField(
+        max_length=200,
+        blank = True
     )
     crop_list = models.CharField(
         max_length=1000,

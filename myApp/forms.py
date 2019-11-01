@@ -27,7 +27,8 @@ class FamilyForm(forms.ModelForm):
         model = Family
         fields = (
             "name", "remark", "country", "region", "province", "community",
-            "nutrition_target", "month_start", "month_end", "protein", "vita",
+            "wasting_rate", "stunting_rate", "anemia_rate",
+            "nutrition_target", "major_commodity", "protein", "vita",
             "fe", "size", "crop_list", "id"
         )
         widgets = {

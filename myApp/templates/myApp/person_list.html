@@ -15,6 +15,7 @@
 	</div>
 
 	<div class="container text-white" style="max-width: 540px;">
+		<div id="accordion">
 			<div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
 			  <div class="row">
 			    <div class="col-12">
@@ -31,11 +32,30 @@
 	            <p class="card-text my-0">
 	              nutrition target: {{ nutrition_target }}
 	            </p>
-			      </div>
-			    </div>
+							<button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true" aria-controls="more_info">
+								more info
+							</button>
+
+							<div id="more_info" class="collapse" aria-labelledby="heading{{crop.food_item_id}}" data-parent="#accordion">
+								<p class="card-text my-0">
+		              stunting rate: {{ stunting_rate }}
+		            </p>
+								<p class="card-text my-0">
+		              wasting rate: {{ wasting_rate }}
+		            </p>
+								<p class="card-text my-0">
+		              anemia rate: {{ anemia_rate }}
+		            </p>
+								<p class="card-text my-0">
+		              major commodity: {{ major_commodity }}
+		            </p>
+							</div>
+						</div>
+		    	</div>
 			  </div>
 			</div>
 		</div>
+	</div>
 
 	<div class="container text-white" style="max-width: 540px;">
 			<div class="card border-primary bg-info col-12 mt-2" style="max-width: 540px;">
@@ -98,7 +118,7 @@
 				<div class="col-7">
 				</div>
 				<div class="col-12">
-						<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'Family_index' %}">back</a></span>
+						<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'Family_filter' %}">back</a></span>
 						<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_create' familyid=myid %}">+</a></span>
 						<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'fctdata' familyid=myid items=crop_list %}">next step</a></span>
 				</div>

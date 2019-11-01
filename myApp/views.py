@@ -136,16 +136,25 @@ class Family_ListView(LoginRequiredMixin, ListView):
     context_object_name = "mylist"
     template_name = 'myApp/family_list.html'
 
+class FamilyFiltered_ListView(LoginRequiredMixin, ListView):
+    model = Family
+    context_object_name = "mylist"
+    template_name = 'myApp/family_list_filtered.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(created_by = self.request.user)
+        return queryset
+
 class Family_DeleteView(LoginRequiredMixin, DeleteView):
     model = Family
     template_name = 'myApp/family_confirm_delete.html'
-    success_url = reverse_lazy('Family_index')
+    success_url = reverse_lazy('Family_filter')
 
 class Family_CreateView(LoginRequiredMixin, CreateView):
     model = Family
     form_class = FamilyForm
     template_name = 'myApp/family_form.html'
-    success_url = reverse_lazy('Family_index')
+    success_url = reverse_lazy('Family_filter')
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -582,7 +591,7 @@ def registCrops(request, familyid, items):
         if item in crops:
             a += 1 #  do nothing"
         elif item =='0':
-            a += 1 #  do nothing"            
+            a += 1 #  do nothing"
         else:
 #            register new crop here"
             newcrop = {}
@@ -638,7 +647,11 @@ def registCrops(request, familyid, items):
 
 def funcTest(request):
 #    move to crop list page
-    test = request.user.username + ':' + str(request.user.last_login)
+    test = request.user.username + ':' + str(request.user.date_joined)
+    if (request.user.date_joined > datetime.date(2019, 9,30)):
+        test += ', yes new'
+    else:
+        test += ', no old'
 
     return HttpResponse(test)
 
