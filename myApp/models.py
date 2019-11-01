@@ -217,6 +217,11 @@ class Person(models.Model):
         default=1,
     )
 
+    target_pop = models.IntegerField(
+        verbose_name='target population',
+        default=0,
+    )
+
     women_s = models.IntegerField(
         verbose_name='women_special',
         choices=WOMEN_SPECIAL,

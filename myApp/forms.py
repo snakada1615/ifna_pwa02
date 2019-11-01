@@ -60,7 +60,7 @@ class Person_Create_Form(forms.ModelForm):
     class Meta:
         model = Person
         fields = ("familyid", "name" ,"age", "sex", "women_s",
-            "protein", "vita", "fe")
+            "protein", "vita", "fe", "target_pop")
         widgets = {
             'name': forms.HiddenInput(),
             'familyid': forms.HiddenInput(),

@@ -27,6 +27,7 @@ class FCTdatable_View(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['families'] = Person.objects.filter(familyid = self.kwargs['familyid'])
         context['name'] = Family.objects.get(id = self.kwargs['familyid'])
         context['myid'] = Family.objects.get(id = self.kwargs['familyid']).id
         context['country'] = Family.objects.get(id = self.kwargs['familyid']).country
@@ -377,6 +378,7 @@ class Crop_ListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['families'] = Person.objects.filter(familyid = self.kwargs['familyid'])
         context['name'] = Family.objects.get(id = self.kwargs['familyid'])
         context['myid'] = Family.objects.get(id = self.kwargs['familyid']).id
         context['country'] = Family.objects.get(id = self.kwargs['familyid']).country

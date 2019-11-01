@@ -60,62 +60,62 @@
 
 	<div class="container text-white" style="max-width: 540px;">
 	    <div class="card border-primary bg-info col-12 mt-2" style="max-width: 540px;">
-	      <div class="row">
-	        <div class="col-12">
-	          <div class="card-body py-0 px-0">
-							<div class="row">
-	              <div class="col-5 text-warning ">
-	                sex:
-	              </div>
-	              <div class="col-7 ">
-	                {{sex}}
-	              </div>
-	            </div>
-	            <div class="row">
-	              <div class="col-5 text-warning ">
-	                age:
-	              </div>
-	              <div class="col-7 ">
-	                {{age}}
-	              </div>
-	            </div>
-	            <div class="row">
-								<div class="col-7 text-warning ">
-	                Nutrients
-	              </div>
-	              <div class="col-5 text-warning ">
-	                Target
-	              </div>
-	            </div>
-	            <div class="row">
-	              <div class="col-7 ">
-	                protein(g/day)
-	              </div>
-	              <div class="col-5 ">
-	                {{dri_p|floatformat:2}}
-	              </div>
-	            </div>
-	            <div class="row">
-	              <div class="col-7 ">
-	                vit-A(μg/day)
-	              </div>
-	              <div class="col-5 ">
-	                {{dri_v|intcomma}}
-	              </div>
-	            </div>
-	            <div class="row">
-	              <div class="col-7 ">
-	                Fe(mg/day)
-	              </div>
-	              <div class="col-5 ">
-	                {{dri_f|floatformat:2}}
-	              </div>
-	            </div>
-	          </div>
+	      <div class="card-body py-2 px-0">
+	        <p class="card-text my-0">
+	          Nutrition Target:
+	        </p>
+	        <div class="table-responsive table-bordered table-striped text-white">
+	          <table>
+	            <tbody>
+	              <tr>
+	                  <td class="text-warning px-1">sex</td>
+	                  {% for family in families %}
+	                    <td class="px-1">{{family.get_sex_display}}</td>
+	                  {% endfor %}
+	              </tr>
+	              <tr>
+	                  <td class="text-warning px-1">age</td>
+	                  {% for family in families %}
+	                    <td class="px-1">{{family.get_age_display}}</td>
+	                  {% endfor %}
+	              </tr>
+	              <tr>
+	                  <td class="text-warning px-1">w_status</td>
+	                  {% for family in families %}
+	                    <td class="px-1">{{family.get_women_s_display}}</td>
+	                  {% endfor %}
+	              </tr>
+	              <tr>
+	                  <td class="text-warning px-1">population size</td>
+	                  {% for family in families %}
+	                    <td class="px-1">{{family.target_pop}}</td>
+	                  {% endfor %}
+	              </tr>
+	              <tr>
+	                  <td class="text-warning px-1">protein(g/day)</td>
+	                  {% for family in families %}
+	                    <td class="px-1">{{family.protein|floatformat:2}}</td>
+	                  {% endfor %}
+	              </tr>
+	              <tr>
+	                  <td class="text-warning px-1">VitA(μg/day)</td>
+	                  {% for family in families %}
+	                    <td class="px-1">{{family.vita|floatformat:2}}</td>
+	                  {% endfor %}
+	              </tr>
+	              <tr>
+	                  <td class="text-warning px-1">Fe(mg/day)</td>
+	                  {% for family in families %}
+	                    <td class="px-1">{{family.iron|floatformat:2}}</td>
+	                  {% endfor %}
+	              </tr>
+	            </tbody>
+	          </table>
 	        </div>
 	      </div>
 	    </div>
-	  </div>
+	</div>
+
 
 	  <div class="container text-white" style="max-width: 540px;">
 	      <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
