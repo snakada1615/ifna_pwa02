@@ -137,7 +137,7 @@ class CropForm(forms.ModelForm):
 
     class Meta:
         model = Crop
-        fields = ("familyid", "Food_name", "food_wt_p", "food_wt_va", "food_wt_fe",
+        fields = ("familyid", "Food_name", "nutrient_target", "food_wt_p", "food_wt_va", "food_wt_fe",
             "feas_DRI_p", "feas_DRI_a", "feas_DRI_f", "feas_soc_acceptable",
             "feas_soc_acceptable_wo", "feas_soc_acceptable_c5",
             "feas_prod_skill", "feas_workload", "feas_tech_service",
@@ -233,5 +233,6 @@ class CropForm(forms.ModelForm):
             + self.cleaned_data['feas_availability_non']\
             + self.cleaned_data['feas_availability_prod']\
             + self.cleaned_data['feas_storability']
+
 
         return cleaned_data

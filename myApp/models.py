@@ -335,6 +335,11 @@ class Crop(models.Model):
         (3, 'maybe yes'),
         (4, 'yes'),
     )
+    nutrient_choices = (
+        (1, 'protein'),
+        (2, 'vita'),
+        (3, 'iron'),
+    )
     diet_choices = (
         (1, 'conventional'),
         (2, 'new crop'),
@@ -349,6 +354,10 @@ class Crop(models.Model):
     Food_name = models.CharField(
         max_length=200,
         blank = True
+    )
+    nutrient_target = models.IntegerField(
+        default=1,
+        choices=nutrient_choices,
     )
     diet_type = models.IntegerField(
         default=1,

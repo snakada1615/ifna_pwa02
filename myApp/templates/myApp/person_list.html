@@ -21,33 +21,33 @@
 			    <div class="col-12">
 			      <div class="card-body py-0 px-0">
 							<p class="card-text text-warning my-0">
-	              name: {{ name }}
+	              name: {{ myfamily.name }}
 	            </p>
 	            <p class="card-text my-0">
-	              country: {{ country }}
+	              country: {{ myfamily.country }}
 	            </p>
 	            <p class="card-text my-0">
-	              region: {{ region }}
+	              region: {{ myfamily.region }}
 	            </p>
 	            <p class="card-text my-0">
-	              nutrition target: {{ nutrition_target }}
+	              nutrition target: {{ myfamily.nutrition_target }}
 	            </p>
 							<button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true" aria-controls="more_info">
 								more info
 							</button>
 
-							<div id="more_info" class="collapse" aria-labelledby="heading{{crop.food_item_id}}" data-parent="#accordion">
+							<div id="more_info" class="collapse" aria-labelledby="more_info1" data-parent="#accordion">
 								<p class="card-text my-0">
-		              stunting rate: {{ stunting_rate }}
+		              stunting rate: {{ myfamily.stunting_rate }}
 		            </p>
 								<p class="card-text my-0">
-		              wasting rate: {{ wasting_rate }}
+		              wasting rate: {{ myfamily.wasting_rate }}
 		            </p>
 								<p class="card-text my-0">
-		              anemia rate: {{ anemia_rate }}
+		              anemia rate: {{ myfamily.anemia_rate }}
 		            </p>
 								<p class="card-text my-0">
-		              major commodity: {{ major_commodity }}
+		              major commodity: {{ myfamily.major_commodity }}
 		            </p>
 							</div>
 						</div>
@@ -68,44 +68,44 @@
 								<tbody>
 									<tr>
 										  <td class="text-warning px-1">sex</td>
-											{% for family in families %}
-												<td class="px-1">{{family.get_sex_display}}</td>
+											{% for person in persons %}
+												<td class="px-1">{{person.get_sex_display}}</td>
 											{% endfor %}
 									</tr>
 									<tr>
 										  <td class="text-warning px-1">age</td>
-											{% for family in families %}
-												<td class="px-1">{{family.get_age_display}}</td>
+											{% for person in persons %}
+												<td class="px-1">{{person.get_age_display}}</td>
 											{% endfor %}
 									</tr>
 									<tr>
 										  <td class="text-warning px-1">w_status</td>
-											{% for family in families %}
-												<td class="px-1">{{family.get_women_s_display}}</td>
+											{% for person in persons %}
+												<td class="px-1">{{person.get_women_s_display}}</td>
 											{% endfor %}
 									</tr>
 									<tr>
 										  <td class="text-warning px-1">population size</td>
-											{% for family in families %}
-												<td class="px-1">{{family.target_pop}}</td>
+											{% for person in persons %}
+												<td class="px-1">{{person.target_pop}}</td>
 											{% endfor %}
 									</tr>
 									<tr>
 										  <td class="text-warning px-1">protein(g/day)</td>
-											{% for family in families %}
-												<td class="px-1">{{family.protein|floatformat:2}}</td>
+											{% for person in persons %}
+												<td class="px-1">{{person.protein|floatformat:2}}</td>
 											{% endfor %}
 									</tr>
 									<tr>
 										  <td class="text-warning px-1">VitA(μg/day)</td>
-											{% for family in families %}
-												<td class="px-1">{{family.vita|floatformat:2}}</td>
+											{% for person in persons %}
+												<td class="px-1">{{person.vita|floatformat:2}}</td>
 											{% endfor %}
 									</tr>
 									<tr>
 										  <td class="text-warning px-1">Fe(mg/day)</td>
-											{% for family in families %}
-												<td class="px-1">{{family.fe|floatformat:2}}</td>
+											{% for person in persons %}
+												<td class="px-1">{{person.fe|floatformat:2}}</td>
 											{% endfor %}
 									</tr>
 								</tbody>
@@ -118,8 +118,8 @@
 					</div>
 					<div class="col-12">
 							<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'Family_filter' %}">back</a></span>
-							<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_create' familyid=myid %}">+</a></span>
-							<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'fctdata' familyid=myid items=crop_list %}">next step</a></span>
+							<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_create' familyid=myfamily.id %}">+</a></span>
+							<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'fctdata' familyid=myfamily.id items=myfamily.crop_list %}">next step</a></span>
 					</div>
 				</div>
 		</div>
@@ -128,22 +128,22 @@
 
 
 			<div class="container" style="max-width: 540px;">
-				{% for family in families %}
+				{% for person in persons %}
 					<div class="card border-primary col-12 mt-2" style="max-width: 540px;">
 					  <div class="row">
 					    <div class="col-12">
 					      <div class="card-body bg-light py-0 px-0">
 									<p class="card-text my-0">
-										sex: {{ family.get_sex_display }}
+										sex: {{ person.get_sex_display }}
 									</p>
 									<p class="card-text my-0">
-										age: {{ family.get_age_display }}
+										age: {{ person.get_age_display }}
 									</p>
 									<p class="card-text my-0">
-										other: {{ family.get_women_s_display }}
+										other: {{ person.get_women_s_display }}
 									</p>
-										<span><a class="btn mb-2 btn-outline-success btn-sm align-middle " href="{% url 'person_update' familyid=family.familyid pk=family.pk %}">edit</a></span>
-										<span><a class="btn mb-2 btn-outline-success btn-sm align-middle " href="{% url 'person_delete' familyid=family.familyid pk=family.pk %}">del</a></span>
+										<span><a class="btn mb-2 btn-outline-success btn-sm align-middle " href="{% url 'person_update' familyid=myfamily.id pk=person.id %}">edit</a></span>
+										<span><a class="btn mb-2 btn-outline-success btn-sm align-middle " href="{% url 'person_delete' familyid=myfamily.id pk=person.id %}">del</a></span>
 					      </div>
 					    </div>
 					  </div>

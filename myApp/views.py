@@ -189,7 +189,7 @@ class Family_UpdateView(LoginRequiredMixin, UpdateView):
 
 class Person_ListView(LoginRequiredMixin, ListView):
     template_name = 'myApp/person_list.html'  # この行でテンプレート指定
-    context_object_name = 'families'
+    context_object_name = 'persons'
     model = Person
 
     def get_queryset(self):
@@ -198,30 +198,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['name'] = Family.objects.get(id = self.kwargs['familyid'])
-        context['myid'] = Family.objects.get(id = self.kwargs['familyid']).id
-        context['country'] = Family.objects.get(id = self.kwargs['familyid']).country
-        context['region'] = Family.objects.get(id = self.kwargs['familyid']).region
-        context['nutrition_target'] = Family.objects.get(id = self.kwargs['familyid']).nutrition_target
-        context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
-        context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
-        context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
-        context['crop_list'] = Family.objects.get(id = self.kwargs['familyid']).crop_list
-
-        tmp_sex=''
-        try:
-            data = Person.objects.filter(familyid = self.kwargs['familyid'])[0]
-            tmp_sex = Person.SEX_CHOICES[data.sex-1][1]
-        except:
-            tmp_sex = 'no data'
-        tmp_age=''
-        try:
-            data = Person.objects.filter(familyid = self.kwargs['familyid'])[0]
-            tmp_age = Person.AGE_CHOICES[data.age-1][1]
-        except:
-            tmp_age = 'no data'
-        context['sex'] = tmp_sex
-        context['age'] = tmp_age
+        context['myfamily'] = Family.objects.get(id = self.kwargs['familyid'])
 
         return context
 
