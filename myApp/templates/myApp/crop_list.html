@@ -4,210 +4,210 @@
 {% load mylookup %}
 {% block content %}
 
-	<div class="container " style="max-width: 540px;">
-		<div class="row">
+<div class="container " style="max-width: 540px;">
+	<div class="row">
 
-			<div class="col-2 my-0 px-3">
-	      <img src="{% static 'img/no4.png' %}">
-	    </div>
-	    <div class="col-10 my-0 px-1">
-					<h5>Commodities feasibility check for {{myfamily.name}}</h5>
-	    </div>
+		<div class="col-2 my-0 px-3">
+			<img src="{% static 'img/no4.png' %}">
+		</div>
+		<div class="col-10 my-0 px-1">
+			<h5>Commodities feasibility check for {{myfamily.name}}</h5>
 		</div>
 	</div>
+</div>
 
-	<div class="container text-white" style="max-width: 540px;">
-		<div id="accordion2">
-			<div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
-			  <div class="row">
-			    <div class="col-12">
-			      <div class="card-body py-0 px-0">
-							<p class="card-text text-warning my-0">
-	              name: {{ myfamily.name }}
-	            </p>
-	            <p class="card-text my-0">
-	              country: {{ myfamily.country }}
-	            </p>
-	            <p class="card-text my-0">
-	              region: {{ myfamily.region }}
-	            </p>
-	            <p class="card-text my-0">
-	              nutrition target: {{ myfamily.nutrition_target }}
-	            </p>
-							<button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true" aria-controls="more_info">
-								more info
-							</button>
+<div class="container text-white" style="max-width: 540px;">
+	<div id="accordion2">
+		<div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
+			<div class="row">
+				<div class="col-12">
+					<div class="card-body py-0 px-0">
+						<p class="card-text text-warning my-0">
+							name: {{ myfamily.name }}
+						</p>
+						<p class="card-text my-0">
+							country: {{ myfamily.country }}
+						</p>
+						<p class="card-text my-0">
+							region: {{ myfamily.region }}
+						</p>
+						<p class="card-text my-0">
+							nutrition target: {{ myfamily.nutrition_target }}
+						</p>
+						<button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true" aria-controls="more_info">
+							more info
+						</button>
 
-							<div id="more_info" class="collapse" aria-labelledby="heading{{crop.food_item_id}}" data-parent="#accordion2">
+						<div id="more_info" class="collapse" aria-labelledby="heading{{crop.food_item_id}}" data-parent="#accordion2">
+							<p class="card-text my-0">
+								stunting rate: {{ myfamily.stunting_rate }}
+							</p>
+							<p class="card-text my-0">
+								wasting rate: {{ myfamily.wasting_rate }}
+							</p>
+							<p class="card-text my-0">
+								anemia rate: {{ myfamily.anemia_rate }}
+							</p>
+							<p class="card-text my-0">
+								major commodity: {{ myfamily.major_commodity }}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container text-white" style="max-width: 540px;">
+	<div class="card border-primary bg-info col-12 mt-2" style="max-width: 540px;">
+		<div class="card-body py-2 px-0">
+			<p class="card-text my-0">
+				Nutrition Target:
+			</p>
+			<div class="table-responsive table-bordered table-striped text-white">
+				<table>
+					<tbody>
+						<tr>
+							<td class="text-warning px-1">sex</td>
+							{% for Person in Persons %}
+							<td class="px-1">{{Person.get_sex_display}}</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<td class="text-warning px-1">age</td>
+							{% for Person in Persons %}
+							<td class="px-1">{{Person.get_age_display}}</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<td class="text-warning px-1">w_status</td>
+							{% for Person in Persons %}
+							<td class="px-1">{{Person.get_women_s_display}}</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<td class="text-warning px-1">population size</td>
+							{% for Person in Persons %}
+							<td class="px-1">{{Person.target_pop}}</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<td class="text-warning px-1">protein(g/day)</td>
+							{% for Person in Persons %}
+							<td class="px-1">{{Person.protein|floatformat:2}}</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<td class="text-warning px-1">VitA(μg/day)</td>
+							{% for Person in Persons %}
+							<td class="px-1">{{Person.vita|floatformat:2}}</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<td class="text-warning px-1">Fe(mg/day)</td>
+							{% for Person in Persons %}
+							<td class="px-1">{{Person.fe|floatformat:2}}</td>
+							{% endfor %}
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="container text-white" style="max-width: 540px;">
+	<div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
+		<div class="row">
+			<div class="col-12">
+				<div class="card-body py-0 px-0">
+					<p class="card-text text-warning my-0">
+						selected commodities
+					</p>
+					{% for crop in crop_list %}
+					<p class="card-text text-truncate my-0">
+						-{{ crop }}
+					</p>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'fctdata' familyid=myfamily.id items=myfamily.crop_list %}">back</a></span>
+			<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'result' familyid=myfamily.id %}">result</a></span>
+		</div>
+	</div>
+</div>
+
+
+<div class="container " style="max-width: 540px;">
+	{% for crop in crops %}
+	<div id="accordion">
+		<div class="card border-primary col-12 mt-2 py-0" style="max-width: 540px;">
+			<div class="row">
+				<div class="col-12">
+					<div class="card-body bg-light p-2 py-0 px-0">
+						<p class="card-text text-truncate my-0">
+							{{crop.Food_name}}
+						</p>
+						<p class="card-text my-0">
+							-Total Score: {{ crop.crop_score }}
+						</p>
+						<button class="btn btn-link" data-toggle="collapse" data-target="#num_{{crop.food_item_id}}" aria-expanded="true" aria-controls="num_{{crop.food_item_id}}">
+							nutrient info
+						</button>
+
+
+						<div id="num_{{crop.food_item_id}}" class="collapse" aria-labelledby="heading{{crop.food_item_id}}" data-parent="#accordion">
+							<div class="card-body">
 								<p class="card-text my-0">
-		              stunting rate: {{ myfamily.stunting_rate }}
-		            </p>
+									100g of <span class="text-danger">{{crop.Food_name}}</span> contein,
+								</p>
+
 								<p class="card-text my-0">
-		              wasting rate: {{ myfamily.wasting_rate }}
-		            </p>
+									-<span class="text-danger">{{ crop.protein|floatformat:1}} g</span> of protein
+								</p>
 								<p class="card-text my-0">
-		              anemia rate: {{ myfamily.anemia_rate }}
-		            </p>
+									-<span class="text-danger">{{ crop.vita|floatformat:1}} g</span> of vitamine A
+								</p>
 								<p class="card-text my-0">
-		              major commodity: {{ myfamily.major_commodity }}
-		            </p>
+									-<span class="text-danger">{{ crop.fe|floatformat:1}} g</span> of iron
+								</p>
+
+								<hr>
+
+								{% for person in Persons %}
+								<p class="card-text my-0">
+									To satisfy
+									<span class="text-danger">{{crop.get_nutrient_target_display}} </span>
+									requirement for
+									<span class="text-danger">{{person.get_sex_display}}, {{person.get_age_display}} </span>,
+								</p>
+								<p class="card-text my-0">
+									<span class="text-danger">
+										{{person_food_target|dict_key:person.id|dict_key:crop.id|dict_key:crop.get_nutrient_target_display}}
+									</span>
+									gram of {{crop.Food_name}} need to be consumed daily
+								</p>
+								<hr>
+								{% endfor %}
+
 							</div>
 						</div>
-		    	</div>
-			  </div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<div class="container text-white" style="max-width: 540px;">
-	    <div class="card border-primary bg-info col-12 mt-2" style="max-width: 540px;">
-	      <div class="card-body py-2 px-0">
-	        <p class="card-text my-0">
-	          Nutrition Target:
-	        </p>
-	        <div class="table-responsive table-bordered table-striped text-white">
-	          <table>
-	            <tbody>
-	              <tr>
-	                  <td class="text-warning px-1">sex</td>
-	                  {% for Person in Persons %}
-	                    <td class="px-1">{{Person.get_sex_display}}</td>
-	                  {% endfor %}
-	              </tr>
-	              <tr>
-	                  <td class="text-warning px-1">age</td>
-	                  {% for Person in Persons %}
-	                    <td class="px-1">{{Person.get_age_display}}</td>
-	                  {% endfor %}
-	              </tr>
-	              <tr>
-	                  <td class="text-warning px-1">w_status</td>
-	                  {% for Person in Persons %}
-	                    <td class="px-1">{{Person.get_women_s_display}}</td>
-	                  {% endfor %}
-	              </tr>
-	              <tr>
-	                  <td class="text-warning px-1">population size</td>
-	                  {% for Person in Persons %}
-	                    <td class="px-1">{{Person.target_pop}}</td>
-	                  {% endfor %}
-	              </tr>
-	              <tr>
-	                  <td class="text-warning px-1">protein(g/day)</td>
-	                  {% for Person in Persons %}
-	                    <td class="px-1">{{Person.protein|floatformat:2}}</td>
-	                  {% endfor %}
-	              </tr>
-	              <tr>
-	                  <td class="text-warning px-1">VitA(μg/day)</td>
-	                  {% for Person in Persons %}
-	                    <td class="px-1">{{Person.vita|floatformat:2}}</td>
-	                  {% endfor %}
-	              </tr>
-	              <tr>
-	                  <td class="text-warning px-1">Fe(mg/day)</td>
-	                  {% for Person in Persons %}
-	                    <td class="px-1">{{Person.fe|floatformat:2}}</td>
-	                  {% endfor %}
-	              </tr>
-	            </tbody>
-	          </table>
-	        </div>
-	      </div>
-	    </div>
-	</div>
-
-
-	  <div class="container text-white" style="max-width: 540px;">
-	      <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
-	        <div class="row">
-	          <div class="col-12">
-	            <div class="card-body py-0 px-0">
-								<p class="card-text text-warning my-0">
-	                selected commodities
-	              </p>
-	              {% for crop in crop_list %}
-	                <p class="card-text text-truncate my-0">
-	                  -{{ crop }}
-	                </p>
-	              {% endfor %}
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-	      <div class="row">
-	        <div class="col-12">
-						<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'fctdata' familyid=myfamily.id items=myfamily.crop_list %}">back</a></span>
-						<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'result' familyid=myfamily.id %}">result</a></span>
-	        </div>
-	      </div>
-	    </div>
-
-
-		<div class="container " style="max-width: 540px;">
-			{% for crop in crops %}
-			<div id="accordion">
-				<div class="card border-primary col-12 mt-2 py-0" style="max-width: 540px;">
-				  <div class="row">
-				    <div class="col-12">
-				      <div class="card-body bg-light p-2 py-0 px-0">
-								<p class="card-text text-truncate my-0">
-									{{crop.Food_name}}
-								</p>
-								<p class="card-text my-0">
-									-Total Score: {{ crop.crop_score }}
-								</p>
-								<button class="btn btn-link" data-toggle="collapse" data-target="#num_{{crop.food_item_id}}" aria-expanded="true" aria-controls="num_{{crop.food_item_id}}">
-									nutrient info
-								</button>
-
-
-								<div id="num_{{crop.food_item_id}}" class="collapse" aria-labelledby="heading{{crop.food_item_id}}" data-parent="#accordion">
-						      <div class="card-body">
-										<p class="card-text my-0">
-											100g of <span class="text-danger" >{{crop.Food_name}}</span> contein,
-										</p>
-
-										<p class="card-text my-0">
-											-<span class="text-danger" >{{ crop.protein|floatformat:1}} g</span> of protein
-										</p>
-										<p class="card-text my-0">
-											-<span class="text-danger" >{{ crop.vita|floatformat:1}} g</span> of vitamine A
-										</p>
-										<p class="card-text my-0">
-											-<span class="text-danger" >{{ crop.fe|floatformat:1}} g</span> of iron
-										</p>
-
-										<hr>
-
-										{% for person in Persons %}
-										<p class="card-text my-0">
-											To satisfy
-											 <span class="text-danger" >{{crop.get_nutrient_target_display}} </span>
-											 requirement for
-											 <span class="text-danger" >{{person.get_sex_display}}, {{person.get_age_display}} </span>,
-										</p>
-										<p class="card-text my-0">
-											 <span class="text-danger" >
-												 {{person_food_target|dict_key:person.id|dict_key:crop.id|dict_key:crop.get_nutrient_target_display}}
-											 </span>
-											  gram of {{crop.Food_name}} need to be consumed
-										</p>
-										<hr>
-										{% endfor %}
-
-						      </div>
-						    </div>
-								<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_update' familyid=crop.familyid pk=crop.pk %}">feasibility</a></span>
-				      </div>
-				    </div>
-				  </div>
+						<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_update' familyid=crop.familyid pk=crop.pk %}">feasibility</a></span>
+					</div>
 				</div>
-				{% endfor %}
 			</div>
 		</div>
+		{% endfor %}
+	</div>
+</div>
 
 
 {% endblock %}

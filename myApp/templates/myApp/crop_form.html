@@ -5,35 +5,61 @@
 {% load humanize %}
 {{ form.certifications.errors }}
 
-<div class="container " style="max-width: 540px;">
-  <div class="card border-primary col-12 mt-2 py-0" style="max-width: 540px;">
-    <div class="row">
-      <div class="col-12">
-        <div class="card-body bg-light p-2 py-0 px-0">
-          {% for person in persons %}
-          <p class="card-text my-0">
-            To satisfy
-            <span class="text-danger">{{n_target}} </span>
-            requirement for
-            <span class="text-danger">{{person.get_sex_display}}, {{person.get_age_display}} </span>,
-          </p>
-          <p class="card-text my-0">
-            <span class="text-danger">
-              {{person_food_target|dict_key:person.id|dict_key:pk|dict_key:n_target}}
-            </span>
-            gram of {{f_name}} need to be consumed
-          </p>
-          <hr>
-          {% endfor %}
-
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container text-white" style="max-width: 540px;">
+	<div class="card border-primary bg-info col-12 mt-2" style="max-width: 540px;">
+		<div class="card-body py-2 px-0">
+			<p class="card-text my-0">
+				Daily Consumption Target (g/day/capita) for
+        <span class="text-danger">{{f_name}}:</span>
+			</p>
+			<div class="table-responsive table-bordered table-striped text-white">
+				<table>
+					<tbody>
+						<tr>
+							<td class="text-warning px-1">sex</td>
+							{% for person in persons %}
+							<td class="px-1">{{person.get_sex_display}}</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<td class="text-warning px-1">age</td>
+							{% for person in persons %}
+							<td class="px-1">{{person.get_age_display}}</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<td class="text-warning px-1">w_status</td>
+							{% for person in persons %}
+							<td class="px-1">{{person.get_women_s_display}}</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<td class="text-warning px-1">protein</td>
+							{% for person in persons %}
+							<td class="px-1">{{person_food_target|dict_key:person.id|dict_key:pk|dict_key:'protein'}}</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<td class="text-warning px-1">VitA</td>
+							{% for person in persons %}
+              <td class="px-1">{{person_food_target|dict_key:person.id|dict_key:pk|dict_key:'vit-a'}}</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<td class="text-warning px-1">Fe</td>
+							{% for person in persons %}
+              <td class="px-1">{{person_food_target|dict_key:person.id|dict_key:pk|dict_key:'iron'}}</td>
+							{% endfor %}
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
 
 
-<div class="container" style="max-width: 540px;">
+<div class="container my-2" style="max-width: 540px;">
   <form method="post" id="myform">
     {% csrf_token %}
     <div class="row">

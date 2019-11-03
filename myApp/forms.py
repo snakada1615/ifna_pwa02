@@ -149,11 +149,15 @@ class CropForm(forms.ModelForm):
         widgets = {
             'familyid': forms.HiddenInput(),
             'food_grp': forms.HiddenInput(),
+            'nutrient_target': forms.RadioSelect(),
             'diet_type': forms.RadioSelect(),
             'food_item_id': forms.HiddenInput(),
             'protein': forms.HiddenInput(),
             'vita': forms.HiddenInput(),
             'fe': forms.HiddenInput(),
+            'food_wt_p': forms.HiddenInput(),
+            'food_wt_va': forms.HiddenInput(),
+            'food_wt_fe': forms.HiddenInput(),
             'crop_score': forms.HiddenInput(),
         }
         labels = {
@@ -183,9 +187,6 @@ class CropForm(forms.ModelForm):
         super(CropForm, self).__init__(*args, **kwargs)
         myquery = FCT.objects.all()
         self.fields['Food_name'].widget.attrs['readonly'] = True
-        self.fields['food_wt_p'].widget.attrs['readonly'] = True
-        self.fields['food_wt_va'].widget.attrs['readonly'] = True
-        self.fields['food_wt_fe'].widget.attrs['readonly'] = True
         self.fields['feas_availability_non'].widget.attrs['readonly'] = True
         self.fields['feas_availability_prod'].widget.attrs['readonly'] = True
 
