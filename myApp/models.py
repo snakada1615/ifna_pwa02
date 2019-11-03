@@ -337,7 +337,7 @@ class Crop(models.Model):
     )
     nutrient_choices = (
         (1, 'protein'),
-        (2, 'vita'),
+        (2, 'vit-a'),
         (3, 'iron'),
     )
     diet_choices = (

@@ -344,9 +344,36 @@ class Person_DeleteView(LoginRequiredMixin, DeleteView):
 
         return HttpResponseRedirect(success_url)
 
+def SetFoodTarget(id):
+    # calculate required food weight per commodity, person
+    person_food_target = {}
+    prot_weights = {}
+    vita_weights = {}
+    fe_weights = {}
+    for person in Person.objects.filter(familyid = id):
+        food_target = {}
+        for crop in Crop.objects.filter(familyid = id):
+            f_weights = {}
+            if crop.protein>0:
+                f_weights['protein'] = round(person.protein *100 / crop.protein, 1)
+            else:
+                f_weights['protein'] = 0
+            if crop.vita>0:
+                f_weights['vit-a'] = round(person.vita *100 / crop.vita, 1)
+            else:
+                f_weights['vit-a'] = 0
+            if crop.fe>0:
+                f_weights['iron'] = round(person.fe *100 / crop.fe, 1)
+            else:
+                f_weights['iron'] = 0
+            food_target[crop.id] = f_weights
+        person_food_target[person.id] = food_target
+    return person_food_target
+
+
 class Crop_ListView(LoginRequiredMixin, ListView):
     model = Crop
-    context_object_name = "mylist"
+    context_object_name = "crops"
     template_name = 'myApp/crop_list.html'
 
     def get_queryset(self):
@@ -355,39 +382,16 @@ class Crop_ListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['families'] = Person.objects.filter(familyid = self.kwargs['familyid'])
-        context['name'] = Family.objects.get(id = self.kwargs['familyid'])
-        context['myid'] = Family.objects.get(id = self.kwargs['familyid']).id
-        context['country'] = Family.objects.get(id = self.kwargs['familyid']).country
-        context['region'] = Family.objects.get(id = self.kwargs['familyid']).region
-        context['nutrition_target'] = Family.objects.get(id = self.kwargs['familyid']).nutrition_target
-        context['dri_p'] = Family.objects.get(id = self.kwargs['familyid']).protein
-        context['dri_v'] = Family.objects.get(id = self.kwargs['familyid']).vita
-        context['dri_f'] = Family.objects.get(id = self.kwargs['familyid']).fe
+        context['Persons'] = Person.objects.filter(familyid = self.kwargs['familyid'])
+        context['myfamily'] = Family.objects.get(id = self.kwargs['familyid'])
 
-        tmp_sex=''
-        try:
-            data = Person.objects.filter(familyid = self.kwargs['familyid'])[0]
-            tmp_sex = Person.SEX_CHOICES[data.sex-1][1]
-        except:
-            tmp_sex = 'no data'
-        tmp_age=''
-        try:
-            data = Person.objects.filter(familyid = self.kwargs['familyid'])[0]
-            tmp_age = Person.AGE_CHOICES[data.age-1][1]
-        except:
-            tmp_age = 'no data'
-        context['sex'] = tmp_sex
-        context['age'] = tmp_age
+        crop_names = []
+        if ('-' in Family.objects.get(id = self.kwargs['familyid']).crop_list):
+            for crop in Family.objects.get(id = self.kwargs['familyid']).crop_list.split('-'):
+                crop_names.append(FCT.objects.get(food_item_id = crop).Food_name)
+        context['crop_list'] = crop_names
+        context['person_food_target'] = SetFoodTarget(self.kwargs['familyid'])
 
-        tmp = Family.objects.get(id = self.kwargs['familyid']).crop_list
-        context['crop_list2'] = tmp
-
-        crops = []
-        if ('-' in tmp):
-            for crop in tmp.split('-'):
-                crops.append(FCT.objects.get(food_item_id = crop).Food_name)
-        context['crop_list'] = crops
         return context
 
 class Crop_DeleteView(LoginRequiredMixin, DeleteView):
@@ -457,6 +461,10 @@ class Crop_UpdateView(LoginRequiredMixin, UpdateView):
             myitem = '0'
 
         context = super().get_context_data(**kwargs)
+        context['persons'] = Person.objects.filter(familyid = self.kwargs['familyid'])
+        context['person_food_target'] = SetFoodTarget(self.kwargs['familyid'])
+        context['f_name'] = Crop.objects.get(id = self.kwargs['pk']).Food_name
+        context['n_target'] = Crop.objects.get(id = self.kwargs['pk']).get_nutrient_target_display
         context['myid'] = myid
         context['myCal'] = myitem
         context['pk'] = self.kwargs['pk']
