@@ -142,7 +142,7 @@ class CropForm(forms.ModelForm):
             "feas_soc_acceptable_wo", "feas_soc_acceptable_c5",
             "feas_prod_skill", "feas_workload", "feas_tech_service",
             "feas_invest_fixed",
-            "feas_invest_variable", "feas_availability_non", "feas_availability_prod",
+            "feas_invest_variable",
             "feas_affordability", "feas_storability",
             "diet_type", "food_item_id", "food_grp", "protein", "vita", "fe", "crop_score"
             )
@@ -184,16 +184,15 @@ class CropForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.myid = kwargs.pop('myid')
+        self.food_item_id = kwargs.pop('food_item_id')
         super(CropForm, self).__init__(*args, **kwargs)
-        myquery = FCT.objects.all()
+#        myquery = FCT.objects.all()
         self.fields['Food_name'].widget.attrs['readonly'] = True
-        self.fields['feas_availability_non'].widget.attrs['readonly'] = True
-        self.fields['feas_availability_prod'].widget.attrs['readonly'] = True
 
     def clean(self):
         cleaned_data = super(CropForm, self).clean()
 
-        myfood = FCT.objects.get(food_item_id = self.cleaned_data['food_item_id'])
+        myfood = FCT.objects.get(food_item_id = self.food_item_id)
         if myfood.Protein == '':
             myfood.Protein = 0
         if myfood.VITA_RAE == '':
@@ -231,9 +230,6 @@ class CropForm(forms.ModelForm):
             + self.cleaned_data['feas_invest_fixed']\
             + self.cleaned_data['feas_tech_service']\
             + self.cleaned_data['feas_invest_variable']\
-            + self.cleaned_data['feas_availability_non']\
-            + self.cleaned_data['feas_availability_prod']\
             + self.cleaned_data['feas_storability']
-
 
         return cleaned_data
