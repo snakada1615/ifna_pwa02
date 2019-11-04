@@ -6,56 +6,80 @@
 {{ form.certifications.errors }}
 
 <div class="container text-white" style="max-width: 540px;">
-	<div class="card border-primary bg-info col-12 mt-2" style="max-width: 540px;">
-		<div class="card-body py-2 px-0">
-			<p class="card-text my-0">
-				Daily Consumption Target (g/day/capita) for
+  <div class="card border-primary bg-info col-12 mt-2" style="max-width: 540px;">
+    <div class="card-body py-2 px-0">
+      <p class="card-text my-0">
+        Daily Consumption Target (g/day/capita) for
         <span class="text-danger">{{f_name}}:</span>
-			</p>
-			<div class="table-responsive table-bordered table-striped text-white">
-				<table>
-					<tbody>
-						<tr>
-							<td class="text-warning px-1">sex</td>
-							{% for person in persons %}
-							<td class="px-1">{{person.get_sex_display}}</td>
-							{% endfor %}
-						</tr>
-						<tr>
-							<td class="text-warning px-1">age</td>
-							{% for person in persons %}
-							<td class="px-1">{{person.get_age_display}}</td>
-							{% endfor %}
-						</tr>
-						<tr>
-							<td class="text-warning px-1">w_status</td>
-							{% for person in persons %}
-							<td class="px-1">{{person.get_women_s_display}}</td>
-							{% endfor %}
-						</tr>
-						<tr>
-							<td class="text-warning px-1">protein</td>
-							{% for person in persons %}
-							<td class="px-1">{{person_food_target|dict_key:person.id|dict_key:pk|dict_key:'protein'}}</td>
-							{% endfor %}
-						</tr>
-						<tr>
-							<td class="text-warning px-1">VitA</td>
-							{% for person in persons %}
-              <td class="px-1">{{person_food_target|dict_key:person.id|dict_key:pk|dict_key:'vit-a'}}</td>
-							{% endfor %}
-						</tr>
-						<tr>
-							<td class="text-warning px-1">Fe</td>
-							{% for person in persons %}
-              <td class="px-1">{{person_food_target|dict_key:person.id|dict_key:pk|dict_key:'iron'}}</td>
-							{% endfor %}
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+      </p>
+      <div class="table-responsive table-bordered table-striped text-white">
+        <table>
+          <tbody>
+            <tr>
+              <td class="text-warning px-1">
+                <div class="text-center">sex</div>
+              </td>
+              {% for person in persons %}
+              <td class="px-1 ">
+                <div class="text-center">{{person.get_sex_display}}</div>
+              </td>
+              {% endfor %}
+            </tr>
+            <tr>
+              <td class="text-warning px-1">
+                <div class="text-center">age</div>
+              </td>
+              {% for person in persons %}
+              <td class="px-1">
+                <div class="text-center">{{person.get_age_display}}</div>
+              </td>
+              {% endfor %}
+            </tr>
+            <tr>
+              <td class="text-warning px-1">
+                <div class="text-center">w_status</div>
+              </td>
+              {% for person in persons %}
+              <td class="px-1">
+                <div class="text-center">{{person.get_women_s_display}}</div>
+              </td>
+              {% endfor %}
+            </tr>
+            <tr>
+              <td class="text-warning px-1">
+                <div class="text-center">protein</div>
+              </td>
+              {% for person in persons %}
+              <td class="px-1">
+                <div class="text-center">{{person_food_target|dict_key:person.id|dict_key:pk|dict_key:'protein'}}</div>
+              </td>
+              {% endfor %}
+            </tr>
+            <tr>
+              <td class="text-warning px-1">
+                <div class="text-center">VitA</div>
+              </td>
+              {% for person in persons %}
+              <td class="px-1">
+                <div class="text-center">{{person_food_target|dict_key:person.id|dict_key:pk|dict_key:'vit-a'}}</div>
+              </td>
+              {% endfor %}
+            </tr>
+            <tr>
+              <td class="text-warning px-1">
+                <div class="text-center">Fe</div>
+              </td>
+              {% for person in persons %}
+              <td class="px-1">
+                <div class="text-center">{{person_food_target|dict_key:person.id|dict_key:pk|dict_key:'iron'}}</div>
+              </td>
+              {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -91,4 +115,94 @@
     </div>
   </form>
 </div>
+
+
+<div class="container text-white" style="max-width: 540px;">
+  <div class="card border-primary bg-info col-12 mt-2" style="max-width: 540px;">
+    <div class="card-body py-2 px-0">
+      <p class="card-text my-0 pt-2 pb-2">
+        {{ form.Food_name.label_tag }}
+        {{ form.Food_name }}
+      </p>
+
+      <p class="card-text my-0 pt-0 pb-0">
+        {{ form.nutrient_target.label_tag }}
+      </p>
+      {% for radio in form.nutrient_target %}
+      {{ radio.tag }}
+      <label for="value_{{ forloop.counter0 }}">{{ radio.choice_label }}</label>
+      {% endfor %}
+
+      <p class="card-text my-0 pt-2 pb-2">
+        {{ form.feas_DRI_p.label_tag }}
+        {{ form.feas_DRI_p }}
+      </p>
+      <p class="card-text my-0 pt-2 pb-2">
+        {{ form.feas_DRI_a.label_tag }}
+        {{ form.feas_DRI_a }}
+      </p>
+      <p class="card-text my-0 pt-2 pb-2">
+        {{ form.feas_DRI_f.label_tag }}
+        {{ form.feas_DRI_f }}
+      </p>
+      <p class="card-text my-0 pt-2 pb-2">
+        {{ form.feas_soc_acceptable.label_tag }}
+        {{ form.feas_soc_acceptable }}
+      </p>
+      <p class="card-text my-0 pt-2 pb-2">
+        {{ form.feas_soc_acceptable_wo.label_tag }}
+        {{ form.feas_soc_acceptable_wo }}
+      </p>
+      <p class="card-text my-0 pt-2 pb-2">
+        {{ form.feas_soc_acceptable_c5.label_tag }}
+        {{ form.feas_soc_acceptable_c5 }}
+      </p>
+      <p class="card-text my-0 pt-2 pb-2">
+        {{ form.feas_prod_skill.label_tag }}
+        {{ form.feas_prod_skill }}
+      </p>
+      <p class="card-text my-0 pt-2 pb-2">
+        {{ form.feas_workload.label_tag }}
+        {{ form.feas_workload }}
+      </p>
+      <p class="card-text my-0 pt-2 pb-2">
+        {{ form.feas_tech_service.label_tag }}
+        {{ form.feas_tech_service }}
+      </p>
+      <p class="card-text my-0 pt-2 pb-2">
+        {{ form.feas_invest_fixed.label_tag }}
+        {{ form.feas_invest_fixed }}
+      </p>
+      <p class="card-text my-0 pt-2 pb-2">
+        {{ form.feas_invest_variable.label_tag }}
+        {{ form.feas_invest_variable }}
+      </p>
+      <p class="card-text my-0 pt-2 pb-2">
+        {{ form.feas_affordability.label_tag }}
+        {{ form.feas_affordability }}
+      </p>
+      <p class="card-text my-0 pt-2 pb-2">
+        {{ form.feas_storability.label_tag }}
+        {{ form.feas_storability }}
+      </p>
+
+      <p class="card-text my-0 pt-2 pb-2">
+        please indicate seasonal availability of this commodity
+      </p>
+      <a class="btn btn-secondary" href="{% url 'calendar' familyid=myid pk=pk items=myCal %}">crop calendar</a>
+
+      <p class="card-text my-0 pt-2 pb-0">
+        {{ form.diet_type.label_tag }}
+      </p>
+      {% for radio in form.diet_type %}
+      {{ radio.tag }}
+      <label for="value_{{ forloop.counter0 }}">{{ radio.choice_label }}</label>
+      {% endfor %}
+
+
+    </div>
+  </div>
+</div>
+
+
 {% endblock %}

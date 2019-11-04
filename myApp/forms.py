@@ -149,7 +149,7 @@ class CropForm(forms.ModelForm):
         widgets = {
             'familyid': forms.HiddenInput(),
             'food_grp': forms.HiddenInput(),
-            'nutrient_target': forms.RadioSelect(),
+            'nutrient_target': forms.RadioSelect(attrs={'id': 'value'}),
             'diet_type': forms.RadioSelect(),
             'food_item_id': forms.HiddenInput(),
             'protein': forms.HiddenInput(),
