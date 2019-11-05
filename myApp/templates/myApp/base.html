@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 {% load static %}
+
 <head>
 	<title>NFA tool</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,82 +10,94 @@
 	<script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
 	<style type="text/css">
-		.dropdown-span{
+		.dropdown-span {
 			text-align: center;
 			color: white;
 			background-color: #5bc0de;
 		}
-		span{
+
+		span {
 			color: white;
 		}
-		.footer{
+
+		.footer {
 			text-align: center;
 			position: absolute;
-			padding:10px;
+			padding: 10px;
 			color: white;
 			width: 100%;
-			bottom:0;
+			bottom: 0;
 		}
-		.alink{
+
+		.alink {
 			text-decoration: none;
 			color: white;
 		}
-		.alink:hover{
+
+		.alink:hover {
 			text-decoration: none;
 			color: white;
 		}
-		#content{
+
+		#content {
 			padding-bottom: 5%;
 		}
-		html,body{
+
+		html,
+		body {
 			margin: 0;
-		  	padding: 0;
-		  	height: 100%;
+			padding: 0;
+			height: 100%;
 		}
-		.wrapper{
+
+		.wrapper {
 			position: relative;
 			min-height: 100%;
-        }
+		}
 	</style>
 </head>
+
 <body>
 	<div class="wrapper">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#"><h2>NFA</h2></a>
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+			<a class="navbar-brand" href="{% url 'test' %}">
+				<h6>NFA-IFNA</h6>
+			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		  	</button>
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-		  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		  		<ul class="navbar-nav mr-auto">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
 
-		  			<li class="nav-item active">
-			        	<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-			      	</li>
-			      	<li class="nav-item active">
-			        	<a class="nav-link" href="#">About us</a>
-			      	</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="{% url 'Family_filter' %}">main<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="/usage/">How to use?</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="/who/">About us</a>
+					</li>
 
-		  		</ul>
+				</ul>
 
-		  		<ul class="navbar-nav navbar-right">
-		  			<li class="nav-item">
+				<ul class="navbar-nav navbar-right">
+					<li class="nav-item">
 
 					</li>
-		  	</ul>
-		  	</div>
+				</ul>
+			</div>
 		</nav>
+
 		<div id="content" class="container">
 			<br><br><br>
 			{% block content %}
 
 			{% endblock %}
 		</div>
-		<div class="footer bg-dark">
-			<p>&copy IFNA 2018</p>
-			<a class="alink" href="#">Privacy policy</a>&nbsp
-			<a class="alink" href="#">Contact us</a>
-		</div>
 	</div>
 </body>
+
 </html>
