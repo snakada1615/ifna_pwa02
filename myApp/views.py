@@ -236,22 +236,24 @@ class Person_CreateView(LoginRequiredMixin, CreateView):
         form.instance.created_by = self.request.user
         myid = self.kwargs['familyid']
 
-        mySize = Person.objects.filter(familyid = myid).count()
-        if mySize > 0:
+        protein1 = 0
+        vita1 = 0
+        fe1 = 0
+
+        Persons = Person.objects.filter(familyid = myid)
+        if Persons.count() > 0:
             rec = Family.objects.filter(id = myid).first()
-            rec.size = mySize
+            rec.size = Persons.count()
 
-            aggregates = Person.objects.aggregate(
-                protein1 = Sum('protein', filter = Q(familyid = myid)),
-                vita1 = Sum('vita', filter = Q(familyid = myid)),
-                fe1 = Sum('fe', filter = Q(familyid = myid)),
-            )
-            if aggregates:
+            for myPerson in Persons:
+                protein1 += myPerson.protein * myPerson.target_pop
+                vita1 += myPerson.vita * myPerson.target_pop
+                fe1 += myPerson.fe * myPerson.target_pop
                 rec = Family.objects.filter(id = myid).first()
-                rec.protein = aggregates['protein1']
-                rec.vita = aggregates['vita1']
-                rec.fe = aggregates['fe1']
 
+            rec.protein = protein1
+            rec.vita = vita1
+            rec.fe = fe1
             rec.save()
 
         return super(Person_CreateView, self).form_valid(form)
@@ -277,17 +279,26 @@ class Person_UpdateView(LoginRequiredMixin, UpdateView):
         # do something with self.object
         # remember the import: from django.http import HttpResponseRedirect
         myid = self.kwargs['familyid']
-        aggregates = Person.objects.aggregate(
-            protein1 = Sum('protein', filter = Q(familyid = myid)),
-            vita1 = Sum('vita', filter = Q(familyid = myid)),
-            fe1 = Sum('fe', filter = Q(familyid = myid)),
-        )
-        if aggregates:
+        protein1 = 0
+        vita1 = 0
+        fe1 = 0
+
+        Persons = Person.objects.filter(familyid = myid)
+        if Persons.count() > 0:
             rec = Family.objects.filter(id = myid).first()
-            rec.protein = aggregates['protein1']
-            rec.vita = aggregates['vita1']
-            rec.fe = aggregates['fe1']
+            rec.size = Persons.count()
+
+            for myPerson in Persons:
+                protein1 += myPerson.protein * myPerson.target_pop
+                vita1 += myPerson.vita * myPerson.target_pop
+                fe1 += myPerson.fe * myPerson.target_pop
+                rec = Family.objects.filter(id = myid).first()
+
+            rec.protein = protein1
+            rec.vita = vita1
+            rec.fe = fe1
             rec.save()
+
         return HttpResponseRedirect(self.get_success_url())
 
     def get_context_data(self, **kwargs):
@@ -324,22 +335,24 @@ class Person_DeleteView(LoginRequiredMixin, DeleteView):
         success_url = self.get_success_url()
 
         myid = self.kwargs['familyid']
-        mySize = Person.objects.filter(familyid = myid).count()
-        if mySize > 0:
+        protein1 = 0
+        vita1 = 0
+        fe1 = 0
+
+        Persons = Person.objects.filter(familyid = myid)
+        if Persons.count() > 0:
             rec = Family.objects.filter(id = myid).first()
-            rec.size = mySize
+            rec.size = Persons.count()
 
-            aggregates = Person.objects.aggregate(
-                protein1 = Sum('protein', filter = Q(familyid = myid)),
-                vita1 = Sum('vita', filter = Q(familyid = myid)),
-                fe1 = Sum('fe', filter = Q(familyid = myid)),
-            )
-            if aggregates:
+            for myPerson in Persons:
+                protein1 += myPerson.protein * myPerson.target_pop
+                vita1 += myPerson.vita * myPerson.target_pop
+                fe1 += myPerson.fe * myPerson.target_pop
                 rec = Family.objects.filter(id = myid).first()
-                rec.protein = aggregates['protein1']
-                rec.vita = aggregates['vita1']
-                rec.fe = aggregates['fe1']
 
+            rec.protein = protein1
+            rec.vita = vita1
+            rec.fe = fe1
             rec.save()
 
         return HttpResponseRedirect(success_url)

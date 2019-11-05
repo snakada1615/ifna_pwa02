@@ -2,19 +2,19 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {{ form.certifications.errors }}
-<div class="container" style="max-width: 540px;">
+<div class="container text-white bg-info" style="max-width: 540px;">
   <form method="post" id="myform">
     {% csrf_token %}
     <div class="row">
         <div class="col-12">
-            <h2 class="text-center">data input</h2>
+            <h2 class="text-center">Information for Target Group</h2>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
             <div class="float-right">
-                <a class="btn btn-outline-secondary" href="{% url 'person_list' familyid=myid %}">return</a>
-                <button class="btn btn-outline-secondary" type="submit">save</button>
+                <a class="btn btn-secondary" href="{% url 'person_list' familyid=myid %}">return</a>
+                <button class="btn btn-secondary" type="submit">save</button>
             </div>
         </div>
     </div>
@@ -26,8 +26,8 @@
     <div class="row">
         <div class="col-12">
             <div class="float-right">
-                <a class="btn btn-outline-secondary" href="{% url 'person_list' familyid=myid %}">return</a>
-                <button class="btn btn-outline-secondary" type="submit">save</button>
+                <a class="btn btn-secondary" href="{% url 'person_list' familyid=myid %}">return</a>
+                <button class="btn btn-secondary" type="submit">save</button>
             </div>
         </div>
     </div>

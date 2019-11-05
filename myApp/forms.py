@@ -137,14 +137,16 @@ class CropForm(forms.ModelForm):
 
     class Meta:
         model = Crop
-        fields = ("familyid", "Food_name", "nutrient_target", "food_wt_p", "food_wt_va", "food_wt_fe",
+        fields = ("familyid", "Food_name", "nutrient_target",
+            "food_wt", "food_wt_p", "food_wt_va", "food_wt_fe",
             "feas_DRI_p", "feas_DRI_a", "feas_DRI_f", "feas_soc_acceptable",
             "feas_soc_acceptable_wo", "feas_soc_acceptable_c5",
             "feas_prod_skill", "feas_workload", "feas_tech_service",
             "feas_invest_fixed",
             "feas_invest_variable",
             "feas_affordability", "feas_storability",
-            "diet_type", "food_item_id", "food_grp", "protein", "vita", "fe", "crop_score"
+            "diet_type", "food_item_id", "food_grp", "protein", "vita", "fe", "crop_score",
+            "feas_availability_non", "feas_availability_prod"
             )
         widgets = {
             'familyid': forms.HiddenInput(),
@@ -155,15 +157,18 @@ class CropForm(forms.ModelForm):
             'protein': forms.HiddenInput(),
             'vita': forms.HiddenInput(),
             'fe': forms.HiddenInput(),
+            'food_wt': forms.HiddenInput(),
             'food_wt_p': forms.HiddenInput(),
             'food_wt_va': forms.HiddenInput(),
             'food_wt_fe': forms.HiddenInput(),
             'crop_score': forms.HiddenInput(),
+            'feas_availability_non': forms.HiddenInput(),
+            'feas_availability_prod': forms.HiddenInput(),
         }
         labels = {
-            "food_wt_p": "required amount of intake(g) to meet daily protein requirement",
-            "food_wt_va": "required amount of intake(g) to meet daily VitA requirement",
-            "food_wt_fe": "required amount of intake(g) to meet daily Iron requirement",
+            "food_wt_p": "required amount of production(t) to meet daily protein requirement",
+            "food_wt_va": "required amount of production(t) to meet daily VitA requirement",
+            "food_wt_fe": "required amount of production(t) to meet daily Iron requirement",
             "feas_DRI_p": "Is required amount for protein target feasible?",
             "feas_DRI_a": "Is required amount for vit-A target feasible?",
             "feas_DRI_f": "Is required amount for Iron target feasible?",
@@ -208,19 +213,26 @@ class CropForm(forms.ModelForm):
         self.cleaned_data['familyid'] = self.myid
 
         if myfood.Protein >0:
-            self.cleaned_data['food_wt_p'] = round(mytarget.protein *100 / myfood.Protein, 1)
+            self.cleaned_data['food_wt_p'] = round(mytarget.protein *100 *365 / myfood.Protein / 1000000, 1)
         else:
             self.cleaned_data['food_wt_p'] = 0
 
         if myfood.VITA_RAE > 0:
-            self.cleaned_data['food_wt_va'] = round(mytarget.vita *100 / myfood.VITA_RAE, 1)
+            self.cleaned_data['food_wt_va'] = round(mytarget.vita *100 *365 / myfood.VITA_RAE / 1000000, 1)
         else:
             self.cleaned_data['food_wt_va'] = 0
 
         if myfood.FE > 0:
-            self.cleaned_data['food_wt_fe'] = round(mytarget.fe *100 / myfood.FE, 1)
+            self.cleaned_data['food_wt_fe'] = round(mytarget.fe *100 *365 / myfood.FE / 1000000, 1)
         else:
             self.cleaned_data['food_wt_fe'] = 0
+
+        if cleaned_data['nutrient_target'] == 1:
+            self.cleaned_data['food_wt'] = self.cleaned_data['food_wt_p']
+        elif cleaned_data['nutrient_target'] == 2:
+            self.cleaned_data['food_wt'] = self.cleaned_data['food_wt_va']
+        else:
+            self.cleaned_data['food_wt'] = self.cleaned_data['food_wt_fe']
 
         self.cleaned_data['crop_score'] = self.cleaned_data['feas_soc_acceptable'] \
             + self.cleaned_data['feas_soc_acceptable_wo'] +self.cleaned_data['feas_soc_acceptable_c5'] \
@@ -230,6 +242,8 @@ class CropForm(forms.ModelForm):
             + self.cleaned_data['feas_invest_fixed']\
             + self.cleaned_data['feas_tech_service']\
             + self.cleaned_data['feas_invest_variable']\
+            + self.cleaned_data['feas_availability_non']\
+            + self.cleaned_data['feas_availability_prod']\
             + self.cleaned_data['feas_storability']
 
         return cleaned_data
