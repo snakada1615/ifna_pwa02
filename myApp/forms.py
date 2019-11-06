@@ -68,6 +68,13 @@ class Person_Create_Form(forms.ModelForm):
             'vita': forms.HiddenInput(),
             'fe': forms.HiddenInput(),
             }
+        labels = {
+            "age":"age",
+            "sex":"sex",
+            "women_s": "additional description of women in reproduction stage",
+            "target_pop":"number of community members with the above attributes",
+        }
+
 
     def __init__(self, *args, **kwargs):
         self.myid = kwargs.pop('myid')
