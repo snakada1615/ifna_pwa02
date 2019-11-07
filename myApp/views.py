@@ -67,6 +67,11 @@ class Under_Construction_View(TemplateView):
 class Crop_Calendar_View(TemplateView):
     template_name = "myApp/crop_calendar.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['crop_name'] = Crop.objects.get(id = self.kwargs['pk']).Food_name
+        return context
+
 class Crop_Feas_View(TemplateView):
     template_name = "myApp/feasibility_result.html"
 

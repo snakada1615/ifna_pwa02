@@ -4,6 +4,7 @@
 {% block content %}
 <script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'DataTables/js/dataTables.fixedColumns.min.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
 <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
 
@@ -101,7 +102,7 @@
 <div class="container" style="max-width: 540px;">
   <div class="row">
     <div class="col-10 my-2 px-1">
-      <h5> seasonal availability of crop XX </h5>
+      <h5> seasonal availability of {{crop_name}} </h5>
     </div>
   </div>
 </div>

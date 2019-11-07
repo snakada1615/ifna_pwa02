@@ -7,7 +7,7 @@ Choice_FoodGrp = {
     ('0','food name'),
     ('1','protein'),
     ('2','iron'),
-    ('3','Vitamine-A'),
+    ('3','Vitamin-A'),
 }
 
 class BS4RadioSelect(forms.RadioSelect):
@@ -186,7 +186,7 @@ class CropForm(forms.ModelForm):
             "feas_workload": "Does this commodity imply incremental workload for women?",
             "feas_tech_service": "Is technical service available for this commodity?",
             "feas_invest_fixed": "Is there need for specific infrastructure (irrigation / postharvest, etc.)?",
-            "feas_invest_variable": "Is production input (fertilizer, seed, feed) become burden for small farmer?",
+            "feas_invest_variable": "Is production input (fertilizer, seed, feed) become financial burden for small farmer?",
             "feas_availability_non": "How many month is this commodity NOT available in a year?",
             "feas_availability_prod": "How many month can you harvest this commodity in a year?",
             "feas_affordability": "Is this commodity affordable in the market for ordinary population?",

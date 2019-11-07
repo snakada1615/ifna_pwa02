@@ -170,17 +170,17 @@
 						<div id="num_{{crop.food_item_id}}" class="collapse" aria-labelledby="heading{{crop.food_item_id}}" data-parent="#accordion">
 							<div class="card-body">
 								<p class="card-text my-0">
-									100g of <span class="text-danger">{{crop.Food_name}}</span> contein,
+									100g of <span class="text-danger">{{crop.Food_name}}</span> contain,
 								</p>
 
 								<p class="card-text my-0">
 									-<span class="text-danger">{{ crop.protein|floatformat:1}} g</span> of protein
 								</p>
 								<p class="card-text my-0">
-									-<span class="text-danger">{{ crop.vita|floatformat:1}} g</span> of vitamine A
+									-<span class="text-danger">{{ crop.vita|floatformat:1}} μg</span> of vitamin A
 								</p>
 								<p class="card-text my-0">
-									-<span class="text-danger">{{ crop.fe|floatformat:1}} g</span> of iron
+									-<span class="text-danger">{{ crop.fe|floatformat:1}} mg</span> of iron
 								</p>
 
 								<hr>
@@ -190,7 +190,10 @@
 									To satisfy
 									<span class="text-danger">{{crop.get_nutrient_target_display}} </span>
 									requirement for
-									<span class="text-danger">{{person.get_sex_display}}, {{person.get_age_display}} </span>,
+									<span class="text-danger">
+										{{person.get_sex_display}}, {{person.get_age_display}},
+										(reproductive status: {{person.get_women_s_display}} )
+									</span>,
 								</p>
 								<p class="card-text my-0">
 									<span class="text-danger">
