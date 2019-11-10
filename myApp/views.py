@@ -79,7 +79,7 @@ class Trial_View(TemplateView):
     template_name = "myApp/trial.html"
 
 class TestOfflineView(TemplateView):
-    template_name = "myApp/offline/index.html"
+    template_name = "myApp/offline/test.html"
 
 class off_FCT_view(TemplateView):
     template_name = "myApp/offline/off_FCT_view.html"
