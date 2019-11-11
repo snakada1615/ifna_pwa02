@@ -406,11 +406,28 @@ class Crop_ListView(LoginRequiredMixin, ListView):
         context['Persons'] = Person.objects.filter(familyid = self.kwargs['familyid'])
         context['myfamily'] = Family.objects.get(id = self.kwargs['familyid'])
 
+        mydats = Crop.objects.filter(familyid = self.kwargs['familyid'])
+        myitems = {}
+        for mydat in mydats:
+            myitem = ''
+            for i in range(1,3):
+                for j in range(1,13):
+                    if (getattr(mydat, 'm'+str(j)+'_p') == 1):
+                        myitem += str(j) + ':1' + '-'
+                    if (getattr(mydat, 'm'+str(j)+'_m') == 1):
+                        myitem += str(j) + ':2' + '-'
+            if (len(myitem)>0):
+                myitem = myitem[:-1]
+            else:
+                myitem = '0'
+            myitems[mydat.id] = myitem
+
         crop_names = []
         if ('-' in Family.objects.get(id = self.kwargs['familyid']).crop_list):
             for crop in Family.objects.get(id = self.kwargs['familyid']).crop_list.split('-'):
                 crop_names.append(FCT.objects.get(food_item_id = crop).Food_name)
         context['crop_list'] = crop_names
+        context['myCal'] = myitems
         context['person_food_target'] = SetFoodTarget(self.kwargs['familyid'])
 
         return context
@@ -529,7 +546,7 @@ def getNFA(request, store_id, familyid):
 
 def registCalendar(request, familyid, pk, itemstr):
     pattern = '^(\d+:\d+)(-\d+:\d+)*$'
-    myURL = reverse_lazy('crop_update', kwargs = {'familyid': familyid, 'pk':pk})
+    myURL = reverse_lazy('crop_list', kwargs = {'familyid': familyid})
 
     if (re.match(pattern, itemstr) == False) and (itemstr != '0'):
         return HttpResponseRedirect(myURL)

@@ -207,6 +207,7 @@
 							</div>
 						</div>
 						<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'crop_update' familyid=crop.familyid pk=crop.pk %}">feasibility</a></span>
+						<span><a class="btn btn-light btn-sm align-middle badge badge-secondary" href="{% url 'calendar' familyid=crop.familyid pk=crop.pk items=myCal|dict_key:crop.id  %}">calendar</a></span>
 					</div>
 				</div>
 			</div>
