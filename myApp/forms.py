@@ -204,7 +204,7 @@ class CropForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super(CropForm, self).clean()
 
-        myfood = FCT.objects.get(food_item_id = self.food_item_id)
+        myfood = FCT.objects.get(food_item_id = str(self.food_item_id))
         if myfood.Protein == '':
             myfood.Protein = 0
         if myfood.VITA_RAE == '':

@@ -519,7 +519,7 @@ class Crop_UpdateView(LoginRequiredMixin, UpdateView):
         kwargs = super(Crop_UpdateView, self).get_form_kwargs()
         # Update the kwargs with the user_id
         kwargs['myid'] = self.kwargs['familyid']
-        kwargs['food_item_id'] = self.kwargs['pk']
+        kwargs['food_item_id'] = Crop.objects.get(pk = self.kwargs['pk']).food_item_id
         return kwargs
 
     def get_success_url(self, **kwargs):
