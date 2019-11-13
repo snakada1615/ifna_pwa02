@@ -288,16 +288,16 @@ class Crop(models.Model):
         (3, '0-3 mon'),
     )
     choices_DRI_realistic = (
-        (0, 'no'),
-        (1, 'maybe no'),
-        (2, 'maybe yes'),
-        (3, 'yes'),
+        (0, 'no for all'),
+        (1, 'no for most target grp'),
+        (2, 'yes for most target grp'),
+        (3, 'yes for all'),
     )
-    choices_social_acceptability = (
-        (3, 'no'),
-        (2, 'maybe no'),
-        (1, 'maybe yes'),
-        (0, 'yes'),
+    choices_social_barrier = (
+        (3, 'no for all'),
+        (2, 'no for most target grp'),
+        (1, 'yes for most target grp'),
+        (0, 'yes for all'),
     )
     choices_prod_skill = (
         (1, 'no'),
@@ -309,7 +309,7 @@ class Crop(models.Model):
         (1, 'no'),
         (2, 'maybe no'),
         (3, 'maybe yes'),
-        (4, 'yes'),
+        (4, 'yes / there is no need for it since beneficiaries already have enough skill'),
     )
     choices_workload = (
         (1, 'no'),
@@ -393,37 +393,37 @@ class Crop(models.Model):
     )
     feas_DRI = models.IntegerField(
         verbose_name='feas_DRI',
-        choices=choices_ascending,
+        choices=choices_DRI_realistic,
         default=0,
     )
     feas_DRI_p = models.IntegerField(
         verbose_name='feas_DRI_p',
-        choices=choices_ascending,
+        choices=choices_DRI_realistic,
         default=0,
     )
     feas_DRI_a = models.IntegerField(
         verbose_name='feas_DRI_a',
-        choices=choices_ascending,
+        choices=choices_DRI_realistic,
         default=0,
     )
     feas_DRI_f = models.IntegerField(
         verbose_name='feas_DRI_f',
-        choices=choices_ascending,
+        choices=choices_DRI_realistic,
         default=0,
     )
     feas_soc_acceptable = models.IntegerField(
         verbose_name='feas_social_wo',
-        choices=choices_descending,
+        choices=choices_social_barrier,
         default=0,
     )
     feas_soc_acceptable_wo = models.IntegerField(
         verbose_name='feas_social_wo',
-        choices=choices_descending,
+        choices=choices_social_barrier,
         default=0,
     )
     feas_soc_acceptable_c5 = models.IntegerField(
         verbose_name='feas_social_c5',
-        choices=choices_descending,
+        choices=choices_social_barrier,
         default=0,
     )
     feas_prod_skill = models.IntegerField(
@@ -438,7 +438,7 @@ class Crop(models.Model):
     )
     feas_tech_service = models.IntegerField(
         verbose_name='feas_tech_service',
-        choices=choices_ascending,
+        choices=choices_tech_service,
         default=0,
     )
     feas_invest_fixed = models.IntegerField(
