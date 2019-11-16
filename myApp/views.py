@@ -21,6 +21,9 @@ import re
 import logging
 #from tkinter import messagebox
 
+#cloudant access
+from myApp.mymodule import pouchdb_test
+
 # Create your views here.
 class FCTdatable_View(TemplateView):
     template_name = "myApp/FCT_datable.html"
