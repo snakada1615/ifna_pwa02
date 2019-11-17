@@ -546,7 +546,6 @@ def getNFA(request, store_id, familyid):
     jsondata = serializers.serialize('json',results)
     return HttpResponse(jsondata)
 
-
 def registCalendar(request, familyid, pk, itemstr):
     pattern = '^(\d+:\d+)(-\d+:\d+)*$'
     myURL = reverse_lazy('crop_list', kwargs = {'familyid': familyid})
@@ -675,14 +674,18 @@ def registCrops(request, familyid, items):
     return HttpResponseRedirect(myURL)
 
 def funcTest(request):
-#    move to crop list page
-    test = request.user.username + ':' + str(request.user.date_joined)
-    if (request.user.date_joined > datetime.date(2019, 9,30)):
-        test += ', yes new'
-    else:
-        test += ', no old'
+    myid = "82e081b0-8c7a-44fe-bb89-b7330ba202a2-bluemix"
+    mypass = "f8dabca0c2ed8c226f6a794ceaa65b625ae642f86ee0afcedf093d7e153edbd6"
+    myurl = "https://82e081b0-8c7a-44fe-bb89-b7330ba202a2-bluemix:f8dabca0c2ed8c226f6a794ceaa65b625ae642f86ee0afcedf093d7e153edbd6@82e081b0-8c7a-44fe-bb89-b7330ba202a2-bluemix.cloudantnosqldb.appdomain.cloud"
 
-    return HttpResponse(test)
+    mydat = serializers.serialize('json',FCT.objects.all())
+    client = pouchdb_test.Couch_connect(myid, mypass, url = myurl)
+    mydb = pouchdb_test.Couch_create(client, 'fct')
+    pouchdb_test.Couch_post(mydb, mydat)
+    pouchdb_test.Couch_disconnect()
+
+    return HttpResponse('done')
+
 
 def register(request):
     if request.method == "POST":
