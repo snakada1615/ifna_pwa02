@@ -2,6 +2,22 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+
+class Countries(models.Model):
+    GID_0 = models.CharField(max_length=200)
+    NAME_0 = models.CharField(max_length=200)
+    GID_1 = models.CharField(max_length=200)
+    NAME_1 = models.CharField(max_length=200)
+    GID_2 = models.CharField(max_length=200)
+    NAME_2 = models.CharField(max_length=200)
+    GID_3 = models.CharField(max_length=200)
+    NAME_3 = models.CharField(max_length=200)
+
+def __str__(self):
+    return self.GID_0
+
+
 class FCT(models.Model):
 
     FCT_id = models.IntegerField(default=1)
@@ -42,6 +58,7 @@ class FCT(models.Model):
     def __str__(self):
         return self.Food_name
 
+
 class DRI(models.Model):
 
     age_id = models.IntegerField(default=1)
@@ -66,11 +83,12 @@ class DRI_women(models.Model):
     def __str__(self):
         return self.status
 
+
 class Family(models.Model):
     name = models.CharField(
         verbose_name='name',
         max_length=200,
-        unique = True,
+        unique=True,
     )
 
     country = models.CharField(
@@ -79,15 +97,15 @@ class Family(models.Model):
 
     region = models.CharField(
         max_length=200,
-        blank = True
+        blank=True
     )
     province = models.CharField(
         max_length=200,
-        blank = True
+        blank=True
     )
     community = models.CharField(
         max_length=200,
-        blank = True
+        blank=True
     )
     stunting_rate = models.IntegerField(
         default=0,
@@ -103,7 +121,7 @@ class Family(models.Model):
     )
     major_commodity = models.CharField(
         max_length=200,
-        blank = True
+        blank=True
     )
     crop_list = models.CharField(
         max_length=1000,
@@ -120,7 +138,7 @@ class Family(models.Model):
     remark = models.CharField(
         verbose_name='remark',
         max_length=600,
-        blank = True
+        blank=True
     )
 
     protein = models.FloatField(
@@ -349,11 +367,11 @@ class Crop(models.Model):
     food_item_id = models.IntegerField(default=1)
     food_grp = models.CharField(
         max_length=200,
-        blank = True
+        blank=True
     )
     Food_name = models.CharField(
         max_length=200,
-        blank = True
+        blank=True
     )
     nutrient_target = models.IntegerField(
         default=1,

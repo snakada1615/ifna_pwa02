@@ -1,158 +1,109 @@
 {% extends 'myApp/base.html' %}
 {% load static %}
-
 {% block content %}
-<script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
-<link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
 
-<script>
-  // URLパラメータの取得
-  var myFamily = '';
-  var myRoot = '';
-  var items = [];
 
-  getHTML_param = function() {
-    var url_tmp = window.location.href.split('/');
-    var tmp1 = url_tmp[url_tmp.length-3];
-    var tmp2 = url_tmp[url_tmp.length-2];
-    url_tmp.pop();url_tmp.pop();url_tmp.pop();url_tmp.pop();
-    myRoot = url_tmp.join("/") + '/';
-    myFamily = tmp1;
-    items.length = 0;
-    if (tmp2 == '0') {
-      items.push('0');
-    } else if (tmp2.indexOf('-') < 0) {
-      items.push(tmp2);
-    } else {
-      items = tmp2.split('-');
-    }
-    return tmp1;
+<div id="greet">select target area</div>
+
+<p><select id="counry_dl" onclick="selCnt(this)"></select></p>
+<p><select id="subdiv1_dl" onclick="selSub1(this)"></select></p>
+<p><select id="subdiv2_dl"></select></p>
+
+<script type="text/javascript">
+  var cnt_arr = {{countries | safe}};
+  var cnt_list = [];
+  var cnt_key = [];
+  var subDiv_list1 = [];
+  var subDiv_list2 = [];
+  var subDiv_key1 = [];
+  var subDiv_key2 = [];
+
+  function getCountry() {
+    cnt_list =[];
+    cnt_list.push("--select country--")
+    cnt_key.push("")
+    cnt_arr.forEach(function(val) {
+      if (cnt_list.indexOf(val.fields["NAME_0"]) == -1) {
+        cnt_list.push(val.fields["NAME_0"]);
+        cnt_key.push(val.fields["GID_0"]);
+      }
+    });
   }
 
-  $(document).ready(function() {
-      var table = $('#example').DataTable( {
-          "searching": false,
-          "paging": false,
-          "ordering": false,
-          "info": false,
-          select: {
-              style: 'multi',
-              items: 'cell'
-          },
-      } );
-
-      $('#button').click( function () {
-        table.cells('.selected').every( function (row, column) {
-          console.log('column: ' + column + ', row:' + row);
-        });
-      } );
-  } );
-
-  "initComplete": function(settings, json) {
-      getHTML_param();
-      table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
-        var data = this.data();
-        if (items.indexOf(data.food_item_id) >= 0) {
-          this.select();
-          this.cell(rowIdx, 0).data("1");
+  function getSubDiv1(parentAdm) {
+    subDiv_list1 = [];
+    subDiv_key1 = [];
+    subDiv_list1.push("--select subdivision1--");
+    subDiv_key1.push("");
+    cnt_arr.forEach(function(val) {
+      if (val.fields["GID_0"] == parentAdm) {
+        if (subDiv_list1.indexOf(val.fields["NAME_1"]) == -1) {
+          subDiv_list1.push(val.fields["NAME_1"]);
+          subDiv_key1.push(val.fields["GID_1"]);
         }
-      });
-  });
+      }
+    });
+  }
 
+  function getSubDiv2(parentAdm) {
+    subDiv_list2 = [];
+    subDiv_key2 = [];
+    subDiv_list2.push("--select subdivision2--");
+    subDiv_key2.push("");
+    cnt_arr.forEach(function(val) {
+      if (val.fields["GID_1"] == parentAdm) {
+        if (subDiv_list2.indexOf(val.fields["NAME_2"]) == -1) {
+          subDiv_list2.push(val.fields["NAME_2"]);
+          subDiv_key2.push(val.fields["GID_2"]);
+        }
+      }
+    });
+  }
+
+  function selCnt(obj) {
+    getSubDiv1(obj.value);
+    var selObj = document.getElementById('subdiv1_dl');
+    while (selObj.lastChild) {
+      selObj.removeChild(selObj.lastChild);
+    }
+    for (var i = 0; i < subDiv_list1.length; i++) {
+      let op = document.createElement("option");
+      op.value = subDiv_key1[i];
+      op.text = subDiv_list1[i];
+      selObj.appendChild(op);
+    }
+
+    // delete subdiv2 list also
+    var selObj = document.getElementById('subdiv2_dl');
+    while (selObj.lastChild) {
+      selObj.removeChild(selObj.lastChild);
+    }
+  }
+
+  function selSub1(obj) {
+    getSubDiv2(obj.value);
+    var selObj = document.getElementById('subdiv2_dl');
+    while (selObj.lastChild) {
+      selObj.removeChild(selObj.lastChild);
+    }
+    for (var i = 0; i < subDiv_list2.length; i++) {
+      let op = document.createElement("option");
+      op.value = subDiv_key2[i];
+      op.text = subDiv_list2[i];
+      selObj.appendChild(op);
+    }
+  }
+
+  // initislize country list -------------------
+
+  getCountry();
+  for (var i = 0; i < cnt_list.length; i++) {
+    let op = document.createElement("option");
+    op.value = cnt_key[i];
+    op.text = cnt_list[i];
+    document.getElementById("counry_dl").appendChild(op);
+  }
 </script>
 
-<div class="container" style="max-width: 540px;">
-  <div class="row">
-      <div class="col-10 my-2 px-1">
-          <h5>  seasonal availability of crop XX </h5>
-      </div>
-  </div>
-</div>
-
-<div class="container" style="max-width: 540px;">
-  <table id="example" class="table table-responsive display compact cell-border" cellspacing="0" width="100%">
-          <thead>
-              <tr>
-                <th>month</th>
-                <th>production</th>
-                <th> market </th>
-              </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>01</th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <th>02</th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <th>03</th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <th>04</th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <th>05</th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <th>06</th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <th>07</th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <th>08</th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <th>09</th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <th>10</th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <th>11</th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <th>12</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </tbody>
-          <tfoot>
-              <tr>
-                <tr>
-                  <th>month</th>
-                  <th>production</th>
-                  <th>market</th>
-                </tr>
-              </tr>
-          </tfoot>
-      </table>
-      <span><a id="button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" >next step</a></span>
-</div>
 
 {% endblock %}
