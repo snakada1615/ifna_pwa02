@@ -32,6 +32,9 @@ class FamilyForm(forms.ModelForm):
             "fe", "size", "crop_list", "id"
         )
         widgets = {
+            'country': forms.Select(attrs = {'onchange' : "selCnt();"}),
+            'region': forms.Select(attrs = {'onchange' : "selSub1();"}),
+            'province': forms.Select(),
             'protein': forms.HiddenInput(),
             'vita': forms.HiddenInput(),
             'fe': forms.HiddenInput(),

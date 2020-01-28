@@ -49,6 +49,5 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='myApp/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('SetCal/',  views.SetCal, name='setcal'),
-    path('sendCountry/',  views.send_country, name='send_country'),
 
 ]
