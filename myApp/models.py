@@ -109,15 +109,19 @@ class Family(models.Model):
     )
     stunting_rate = models.IntegerField(
         default=0,
+        blank=True
     )
     wasting_rate = models.IntegerField(
         default=0,
+        blank=True
     )
     anemia_rate = models.IntegerField(
         default=0,
+        blank=True
     )
     nutrition_target = models.CharField(
         max_length=200,
+        blank=True
     )
     major_commodity = models.CharField(
         max_length=200,
