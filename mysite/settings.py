@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django.contrib.humanize',
     'pwa',
+    'datatableview',
 ]
 
 MIDDLEWARE = [

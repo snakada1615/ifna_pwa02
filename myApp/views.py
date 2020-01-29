@@ -6,9 +6,11 @@ from django.http import HttpResponse
 from django.core import serializers
 
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
-from .models import FCT, Person, DRI, DRI_women, Family, Crop, Countries
+from .models import FCT, Person, DRI, DRI_women, Family, Crop, Countries, Crop_Region
 from .forms import Order_Key_Form, FamilyForm, Person_Create_Form, CropForm
 from django.db.models import Q, Sum
+from datatableview.views import DatatableView, Datatable
+from django_datatables_view.base_datatable_view import BaseDatatableView
 
 # for user registration
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -85,9 +87,26 @@ class Crop_Feas_View(TemplateView):
     template_name = "myApp/feasibility_result.html"
 
 
-class Trial_View(TemplateView):
-    template_name = "myApp/trial.html"
+class Trial_Model(Datatable):
+    class Meta:
+        model = Crop_Region
+        columns = [
+            'Food_name',
+            'suitable_class',
+            'Hrv_strt',
+            'Hrv_end',
+        ]
 
+
+class Trial_View(DatatableView):
+    model = Crop_Region
+    datatable_class = Trial_Model
+
+    def get_template_names(self):
+        return "myApp/trial.html"
+
+    def get_initial_queryset(self):
+        return self.model.objects.filter(Hrv_end=10)
 
 class TestOfflineView(TemplateView):
     template_name = "myApp/offline/test.html"
@@ -211,6 +230,7 @@ class Family_CreateView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['countries'] = serializers.serialize('json', data)
         return context
+
 
 class Family_UpdateView(LoginRequiredMixin, UpdateView):
     model = Family
