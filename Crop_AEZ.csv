@@ -1,0 +1,2320 @@
+country,AEZ,FCT_id,food_grp_id,food_item_id,Food_grp,Food_name,suitable_class,Hrv_strt,Hrv_end
+ETH,1,11439,11,439,Beverages,"Beer, sorghum (est. 3% alcohol)",1,2,4
+ETH,1,11451,11,451,Beverages,Ovaltine beverage with partly skimmed milk (without sugar; fortified),1,3,5
+ETH,1,1047,1,47,Cereals and their products,"Bread, wheat, white for toasting",3,4,6
+ETH,1,1059,1,59,Cereals and their products,"Maize, white, flour degermed ",3,5,7
+ETH,1,1076,1,76,Cereals and their products,"Maize, white, stiff porridge* (without salt)",3,2,4
+ETH,1,1004,1,4,Cereals and their products,"Maize, white, whole kernel, dried, raw",3,5,7
+ETH,1,1017,1,17,Cereals and their products,"Pearl millet, whole grain, raw (with bran)",1,10,12
+ETH,1,1034,1,34,Cereals and their products,"Rice, brown, raw",1,0,2
+ETH,1,1040,1,40,Cereals and their products,"Sorghum, whole grain, white, raw",2,8,10
+ETH,1,1073,1,73,Cereals and their products,"Wheat, bran",2,8,10
+ETH,1,5253,5,253,Fruits and their products,"Fruit cocktail, canned in syrup",4,7,9
+ETH,1,5234,5,234,Fruits and their products,"Mango, orange flesh,  raw",3,6,8
+ETH,1,5259,5,259,Fruits and their products,"Palm nuts, pulp, raw",1,8,10
+ETH,1,5236,5,236,Fruits and their products,"Papaya, fruit, ripe, raw",1,1,3
+ETH,1,5260,5,260,Fruits and their products,"Pomegranate, raw",4,11,1
+ETH,1,5239,5,239,Fruits and their products,"Tamarind, immature fruit, raw",1,12,2
+ETH,1,3140,3,140,Legumes and their products,"Lentils, dried, raw",2,1,3
+ETH,1,3118,3,118,Legumes and their products,"Soya bean, dried, raw",3,5,7
+ETH,1,7316,7,316,Meat and poultry and their products,"Bamboo caterpillar, deep fried",3,1,3
+ETH,1,7291,7,291,Meat and poultry and their products,"Beef liver, raw",2,6,8
+ETH,1,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",3,1,3
+ETH,1,7315,7,315,Meat and poultry and their products,"Beef, meat, cured, corned, canned",4,1,3
+ETH,1,7329,7,329,Meat and poultry and their products,"Chicken giblets, raw",2,6,8
+ETH,1,7336,7,336,Meat and poultry and their products,"Goat, meat, raw",2,10,12
+ETH,1,7341,7,341,Meat and poultry and their products,"Lamb, brain, raw",1,5,7
+ETH,1,7343,7,343,Meat and poultry and their products,"Lamb, liver, raw",4,3,5
+ETH,1,7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless, raw",4,5,7
+ETH,1,10412,10,412,Milk and their products,"Cheese, Gouda",4,11,1
+ETH,1,10413,10,413,Milk and their products,"Cream, whipping, 38 % fat",1,8,10
+ETH,1,10421,10,421,Milk and their products,"Milk, cow powder, skimmed",2,10,12
+ETH,1,10420,10,420,Milk and their products,"Milk, cow, canned, evaporated",3,5,7
+ETH,1,10406,10,406,Milk and their products,"Milk, cow, powder, whole",1,11,1
+ETH,1,10407,10,407,Milk and their products,"Milk, goat, raw",2,7,9
+ETH,1,12459,12,459,Miscellaneous,"Bay leaf, dried",2,3,5
+ETH,1,12462,12,462,Miscellaneous,"Cube, beef, dry",4,12,2
+ETH,1,12465,12,465,Miscellaneous,"Ginger, roots, dried",2,1,3
+ETH,1,12455,12,455,Miscellaneous,Honey,3,11,1
+ETH,1,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",2,9,11
+ETH,1,12470,12,470,Miscellaneous,"Spices, mix, ground",4,0,2
+ETH,1,6265,6,265,"Nuts, seeds and their products","Cashew nut, raw",4,2,4
+ETH,1,6266,6,266,"Nuts, seeds and their products","Coconut, mature kernel, fresh, raw",2,8,10
+ETH,1,6287,6,287,"Nuts, seeds and their products","Groundnut flour, with fat",1,3,5
+ETH,1,6289,6,289,"Nuts, seeds and their products","Palm nut kernel, shelled, raw",2,1,3
+ETH,1,6277,6,277,"Nuts, seeds and their products","Shea nut, seed kernel, dried, raw",2,1,3
+ETH,1,2078,2,78,"Starchy roots, tubers and their products","Cassava, tuber, dried",1,10,12
+ETH,1,2100,2,100,"Starchy roots, tubers and their products","Tiger nut, tuber dried",1,12,2
+ETH,1,4153,4,153,Vegetables and their products,"Beans, green raw",4,8,10
+ETH,1,4155,4,155,Vegetables and their products,"Cabbage, raw",2,6,8
+ETH,1,4159,4,159,Vegetables and their products,"Cocoyam, leaves, raw",2,3,5
+ETH,1,4161,4,161,Vegetables and their products,"Drumstick  leaves, raw",1,3,5
+ETH,1,4166,4,166,Vegetables and their products,"Roselle leaves, raw",3,2,4
+ETH,1,4170,4,170,Vegetables and their products,"Taro, leaves, raw",4,7,9
+ETH,1,4216,4,216,Vegetables and their products,"Tomato paste, concentrated",2,1,3
+RWA,1,11440,11,440,Beverages,"Coffee, instant, powder",4,10,12
+RWA,1,11449,11,449,Beverages,"Nectar, Mango, canned",2,1,3
+RWA,1,11453,11,453,Beverages,"Ovaltine powder, fortified",2,8,10
+RWA,1,11442,11,442,Beverages,"Sap, palm, fresh (0.3 % alcohol)",3,1,3
+RWA,1,1045,1,45,Cereals and their products,"Bread/rolls, white",2,1,3
+RWA,1,1052,1,52,Cereals and their products,"Macaroni, dried",4,2,4
+RWA,1,1063,1,63,Cereals and their products,"Pearl millet, flour (without bran)",2,5,7
+RWA,1,9386,9,386,Fish and their products,"Mudfish, raw",3,3,5
+RWA,1,5227,5,227,Fruits and their products,"Dattock, pulp, raw",3,2,4
+RWA,1,5253,5,253,Fruits and their products,"Fruit cocktail, canned in syrup",2,7,9
+RWA,1,5255,5,255,Fruits and their products,"Mango, deep orange flesh",2,5,7
+RWA,1,5258,5,258,Fruits and their products,"Melon, cantaloup, raw",3,3,5
+RWA,1,5263,5,263,Fruits and their products,"Shea fruit pulp, raw",2,4,6
+RWA,1,5239,5,239,Fruits and their products,"Tamarind, immature fruit, raw",1,4,6
+RWA,1,5241,5,241,Fruits and their products,"Watermelon, fruit, raw",4,9,11
+RWA,1,3111,3,111,Legumes and their products,"Bambara groundnut, dried, raw ",2,5,7
+RWA,1,3134,3,134,Legumes and their products,"Broad beans, dried, raw",3,10,12
+RWA,1,3142,3,142,Legumes and their products,"Pigeon pea, dried, raw",3,2,4
+RWA,1,3118,3,118,Legumes and their products,"Soya bean, dried, raw",4,2,4
+RWA,1,7311,7,311,Meat and poultry and their products,"Beef, tripe, raw",2,11,1
+RWA,1,7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless, raw",4,5,7
+RWA,1,10410,10,410,Milk and their products,Cheddar,2,10,12
+RWA,1,10414,10,414,Milk and their products,"Cream, 13 % fat",1,2,4
+RWA,1,10428,10,428,Milk and their products,Groundnut oil,1,8,10
+RWA,1,10415,10,415,Milk and their products,"Infant formula, powder, for 3 months",1,6,8
+RWA,1,10416,10,416,Milk and their products,"Infant formula, powder, for 6 months",3,11,1
+RWA,1,10406,10,406,Milk and their products,"Milk, cow, powder, whole",3,0,2
+RWA,1,10407,10,407,Milk and their products,"Milk, goat, raw",2,8,10
+RWA,1,10425,10,425,Milk and their products,"Yoghurt, whole milk, with fruits",2,3,5
+RWA,1,12455,12,455,Miscellaneous,Honey,3,9,11
+RWA,1,12466,12,466,Miscellaneous,"Mustard, powder",4,10,12
+RWA,1,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",3,5,7
+RWA,1,12456,12,456,Miscellaneous,Sugar,1,8,10
+RWA,1,6269,6,269,"Nuts, seeds and their products",Coconut milk ,4,1,3
+RWA,1,6268,6,268,"Nuts, seeds and their products","Coconut, kernel, dried, raw",4,1,3
+RWA,1,6266,6,266,"Nuts, seeds and their products","Coconut, mature kernel, fresh, raw",3,2,4
+RWA,1,6287,6,287,"Nuts, seeds and their products","Groundnut flour, with fat",4,1,3
+RWA,1,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",4,4,6
+RWA,1,6277,6,277,"Nuts, seeds and their products","Shea nut, seed kernel, dried, raw",4,6,8
+RWA,1,2095,2,95,"Starchy roots, tubers and their products","Cassava sweet, tuber, dried",2,3,5
+RWA,1,2083,2,83,"Starchy roots, tubers and their products","Potato, raw",4,9,11
+RWA,1,2093,2,93,"Starchy roots, tubers and their products","Yam tuber, raw",3,10,12
+RWA,1,4151,4,151,Vegetables and their products,"Baobab, leaves,  raw",1,7,9
+RWA,1,4155,4,155,Vegetables and their products,"Cabbage, raw",3,4,6
+RWA,1,4163,4,163,Vegetables and their products,"Eggplant leaves, raw",4,8,10
+RWA,1,4164,4,164,Vegetables and their products,"False sesame, leaves, dried",3,3,5
+RWA,1,4154,4,154,Vegetables and their products,"Okra leaves, raw",4,7,9
+RWA,1,4197,4,197,Vegetables and their products,"Pepper, sweet, red, raw",4,8,10
+RWA,1,4205,4,205,Vegetables and their products,"Pumpkin leaves, dried",2,8,10
+RWA,1,4201,4,201,Vegetables and their products,"Pumpkin, squash, raw",4,9,11
+RWA,1,4169,4,169,Vegetables and their products,"Tamarind, leaves, raw",1,4,6
+RWA,1,4170,4,170,Vegetables and their products,"Taro, leaves, raw",3,7,9
+RWA,1,4171,4,171,Vegetables and their products,"Tomato, red, ripe, raw",4,7,9
+ETH,2,11436,11,436,Beverages,Beer european (4.4 % alcohol),3,7,9
+ETH,2,11437,11,437,Beverages,"Beer, maize  (est. 3 % alcohol)",1,6,8
+ETH,2,11452,11,452,Beverages,Ovaltine beverage with skimmed milk (without sugar; fortified),2,1,3
+ETH,2,1046,1,46,Cereals and their products,"Bread, wheat, white",3,8,10
+ETH,2,1045,1,45,Cereals and their products,"Bread/rolls, white",1,1,3
+ETH,2,1001,1,1,Cereals and their products,"Fonio, white, whole grain, raw",1,10,12
+ETH,2,1014,1,14,Cereals and their products,"Maize, combined varieties, whole kernel, dried, raw",2,9,11
+ETH,2,1060,1,60,Cereals and their products,"Maize, white, grit, degermed",3,1,3
+ETH,2,1076,1,76,Cereals and their products,"Maize, white, stiff porridge* (without salt)",2,5,7
+ETH,2,1075,1,75,Cereals and their products,"Maize, yellow, stiff porridge* (without salt)",1,4,6
+ETH,2,1032,1,32,Cereals and their products,"Pearl millet, combined varieties, whole grain, raw",1,12,2
+ETH,2,1063,1,63,Cereals and their products,"Pearl millet, flour (without bran)",2,7,9
+ETH,2,1036,1,36,Cereals and their products,"Rice, white, polished, raw",1,6,8
+ETH,2,1074,1,74,Cereals and their products,"Wheat, whole grains, raw",1,5,7
+ETH,2,9364,9,364,Fish and their products,"African carp, raw",3,2,4
+ETH,2,9369,9,369,Fish and their products,"Anchovy, canned in oil (drained solids)",3,4,6
+ETH,2,9386,9,386,Fish and their products,"Mudfish, raw",4,12,2
+ETH,2,9363,9,363,Fish and their products,"White grouper, raw",1,2,4
+ETH,2,5243,5,243,Fruits and their products,"African locust bean, flour from fruit, pulp",2,12,2
+ETH,2,5226,5,226,Fruits and their products,"Cashew apple, pulp, raw",3,0,2
+ETH,2,5248,5,248,Fruits and their products,"Clementine, raw",2,9,11
+ETH,2,5251,5,251,Fruits and their products,"Fig, raw ",1,5,7
+ETH,2,5259,5,259,Fruits and their products,"Palm nuts, pulp, raw",4,4,6
+ETH,2,5236,5,236,Fruits and their products,"Papaya, fruit, ripe, raw",2,3,5
+ETH,2,5261,5,261,Fruits and their products,"Plantain, ripe, raw",2,6,8
+ETH,2,5238,5,238,Fruits and their products,"Soapberry, fruit, raw",4,11,1
+ETH,2,3132,3,132,Legumes and their products,"Beans, white, dried",1,5,7
+ETH,2,3115,3,115,Legumes and their products,"Cowpea, black, dried, raw",4,5,7
+ETH,2,3114,3,114,Legumes and their products,"Cowpea, dried, raw",4,2,4
+ETH,2,3142,3,142,Legumes and their products,"Pigeon pea, dried, raw",4,1,3
+ETH,2,7309,7,309,Meat and poultry and their products,"Beef, kidney, raw",4,8,10
+ETH,2,7293,7,293,Meat and poultry and their products,"Chicken, dark meat, flesh, raw",1,10,12
+ETH,2,10431,10,431,Milk and their products,"Margarine, fortified",2,11,1
+ETH,2,10421,10,421,Milk and their products,"Milk, cow powder, skimmed",4,10,12
+ETH,2,10424,10,424,Milk and their products,Vacherin cheese,2,8,10
+ETH,2,10435,10,435,Milk and their products,Vegetable oil,2,6,8
+ETH,2,12458,12,458,Miscellaneous,Anis seed,3,9,11
+ETH,2,12460,12,460,Miscellaneous,"Chilli pepper, dried",2,0,2
+ETH,2,12461,12,461,Miscellaneous,"Cinnamon, ground",4,5,7
+ETH,2,12469,12,469,Miscellaneous,Salt,4,7,9
+ETH,2,12471,12,471,Miscellaneous,"Yeast, dried",4,8,10
+ETH,2,6285,6,285,"Nuts, seeds and their products","Groundnut, combined varieties, shelled, dried, raw (Ghana)",1,8,10
+ETH,2,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",1,1,3
+ETH,2,6273,6,273,"Nuts, seeds and their products","Groundnut, rose, shelled, dried, raw (Benin)",2,1,3
+ETH,2,6276,6,276,"Nuts, seeds and their products","Sesame seeds, whole, dried, raw",3,4,6
+ETH,2,6277,6,277,"Nuts, seeds and their products","Shea nut, seed kernel, dried, raw",4,8,10
+ETH,2,2095,2,95,"Starchy roots, tubers and their products","Cassava sweet, tuber, dried",2,10,12
+ETH,2,2077,2,77,"Starchy roots, tubers and their products","Cassava, tuber, raw",4,4,6
+ETH,2,2081,2,81,"Starchy roots, tubers and their products","Cocoyam, tuber, raw ",3,8,10
+ETH,2,2110,2,110,"Starchy roots, tubers and their products","Yam tuber, flour",2,10,12
+ETH,2,4173,4,173,Vegetables and their products,"Amaranth leaves, raw",1,8,10
+ETH,2,4155,4,155,Vegetables and their products,"Cabbage, raw",4,7,9
+ETH,2,4158,4,158,Vegetables and their products,"Cassava, leaves, raw",2,5,7
+ETH,2,4186,4,186,Vegetables and their products,"False sesame, leaves, raw",1,3,5
+ETH,2,4165,4,165,Vegetables and their products,"Garlic, raw",1,2,4
+ETH,2,4195,4,195,Vegetables and their products,"Parsley, fresh",3,6,8
+ETH,2,4196,4,196,Vegetables and their products,"Peppers, chilli, raw",3,2,4
+ETH,2,4212,4,212,Vegetables and their products,"Tamarind, leaves, dried",3,6,8
+ETH,2,4215,4,215,Vegetables and their products,"Tomatoes, canned, packed in juice",1,1,3
+RWA,2,11437,11,437,Beverages,"Beer, maize  (est. 3 % alcohol)",2,1,3
+RWA,2,11450,11,450,Beverages,Ovaltine beverage with whole milk (without sugar; fortified),1,1,3
+RWA,2,1014,1,14,Cereals and their products,"Maize, combined varieties, whole kernel, dried, raw",3,6,8
+RWA,2,1054,1,54,Cereals and their products,"Maize, yellow, flour of whole-grain",3,11,1
+RWA,2,1055,1,55,Cereals and their products,"Maize, yellow, grit, degermed",1,3,5
+RWA,2,1015,1,15,Cereals and their products,"Millet, whole grain, raw",4,1,3
+RWA,2,1065,1,65,Cereals and their products,"Rice, red native, hulled, raw",3,2,4
+RWA,2,9369,9,369,Fish and their products,"Anchovy, canned in oil (drained solids)",3,11,1
+RWA,2,9358,9,358,Fish and their products,"Anchovy, fillet, raw",3,12,2
+RWA,2,5221,5,221,Fruits and their products,"African locust bean, fruit, pulp, raw",2,6,8
+RWA,2,5246,5,246,Fruits and their products,"Apple, without skin, raw",4,7,9
+RWA,2,5247,5,247,Fruits and their products,"Banana, yellow flesh, raw",4,2,4
+RWA,2,5225,5,225,Fruits and their products,"Breadfruit, raw",1,4,6
+RWA,2,5232,5,232,Fruits and their products,"Landolphia, pulp, raw",1,5,7
+RWA,2,5257,5,257,Fruits and their products,"Melon, honeydew, raw",2,6,8
+RWA,2,5236,5,236,Fruits and their products,"Papaya, fruit, ripe, raw",1,11,1
+RWA,2,5264,5,264,Fruits and their products,"Sweet apple, fruit, raw",3,2,4
+RWA,2,3137,3,137,Legumes and their products,"Cowpea, brown, dried, raw",4,10,12
+RWA,2,3118,3,118,Legumes and their products,"Soya bean, dried, raw",3,10,12
+RWA,2,7292,7,292,Meat and poultry and their products,"Beef, meat, 15-20  % fat, boneless, raw",2,2,4
+RWA,2,7304,7,304,Meat and poultry and their products,"Beef, meat, approx. 30 % fat, boneless, raw",4,4,6
+RWA,2,7315,7,315,Meat and poultry and their products,"Beef, meat, cured, corned, canned",1,5,7
+RWA,2,7326,7,326,Meat and poultry and their products,"Chicken, light meat, flesh and skin, raw",4,8,10
+RWA,2,7323,7,323,Meat and poultry and their products,"Chicken, light meat, flesh, raw",2,6,8
+RWA,2,7334,7,334,Meat and poultry and their products,"Crocodile, raw",4,8,10
+RWA,2,7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless, raw",1,7,9
+RWA,2,7297,7,297,Meat and poultry and their products,"Rabbit, flesh only, raw",4,0,2
+RWA,2,7353,7,353,Meat and poultry and their products,"Sausage, wiener (beef, pork, chicken) canned",2,5,7
+RWA,2,10415,10,415,Milk and their products,"Infant formula, powder, for 3 months",3,1,3
+RWA,2,10422,10,422,Milk and their products,"Milk, camel, raw (average of different breeds)",2,12,2
+RWA,2,10407,10,407,Milk and their products,"Milk, goat, raw",4,3,5
+RWA,2,12458,12,458,Miscellaneous,Anis seed,3,10,12
+RWA,2,12464,12,464,Miscellaneous,"Ginger, root, raw",2,8,10
+RWA,2,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",2,6,8
+RWA,2,12469,12,469,Miscellaneous,Salt,4,1,3
+RWA,2,12457,12,457,Miscellaneous,Vinegar,3,7,9
+RWA,2,6265,6,265,"Nuts, seeds and their products","Cashew nut, raw",4,5,7
+RWA,2,6268,6,268,"Nuts, seeds and their products","Coconut, kernel, dried, raw",2,6,8
+RWA,2,6278,6,278,"Nuts, seeds and their products","Colanut, raw",3,4,6
+RWA,2,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",2,2,4
+RWA,2,6290,6,290,"Nuts, seeds and their products","Roselle, red, seed, dried ",2,9,11
+RWA,2,2077,2,77,"Starchy roots, tubers and their products","Cassava, tuber, raw",4,9,11
+RWA,2,2083,2,83,"Starchy roots, tubers and their products","Potato, raw",1,6,8
+RWA,2,2096,2,96,"Starchy roots, tubers and their products","Sweet potato, pale yellow, raw",3,1,3
+RWA,2,2089,2,89,"Starchy roots, tubers and their products","Taro, tuber, raw",4,8,10
+RWA,2,2093,2,93,"Starchy roots, tubers and their products","Yam tuber, raw",4,8,10
+RWA,2,4155,4,155,Vegetables and their products,"Cabbage, raw",3,1,3
+RWA,2,4156,4,156,Vegetables and their products,"Carrot, raw",1,1,3
+RWA,2,4158,4,158,Vegetables and their products,"Cassava, leaves, raw",4,8,10
+RWA,2,4160,4,160,Vegetables and their products,"Cowpea, leaves, raw",4,3,5
+RWA,2,4182,4,182,Vegetables and their products,"Cucumber, raw",2,3,5
+RWA,2,4161,4,161,Vegetables and their products,"Drumstick  leaves, raw",3,7,9
+RWA,2,4164,4,164,Vegetables and their products,"False sesame, leaves, dried",3,8,10
+RWA,2,4186,4,186,Vegetables and their products,"False sesame, leaves, raw",2,2,4
+RWA,2,4190,4,190,Vegetables and their products,"Lettuce, raw",2,7,9
+RWA,2,4168,4,168,Vegetables and their products,"Onion, raw",2,9,11
+RWA,2,4205,4,205,Vegetables and their products,"Pumpkin leaves, dried",3,1,3
+RWA,2,4169,4,169,Vegetables and their products,"Tamarind, leaves, raw",3,11,1
+RWA,2,4216,4,216,Vegetables and their products,"Tomato paste, concentrated",3,4,6
+RWA,2,4218,4,218,Vegetables and their products,"Turnip, raw ",2,10,12
+ETH,3,11440,11,440,Beverages,"Coffee, instant, powder",4,4,6
+ETH,3,1048,1,48,Cereals and their products,"Bread, wheat, wholemeal",2,5,7
+ETH,3,1059,1,59,Cereals and their products,"Maize, white, flour degermed ",1,11,1
+ETH,3,1058,1,58,Cereals and their products,"Maize, white, flour refined",2,4,6
+ETH,3,1075,1,75,Cereals and their products,"Maize, yellow, stiff porridge* (without salt)",2,2,4
+ETH,3,1006,1,6,Cereals and their products,"Maize, yellow, whole kernel, dried, raw",4,6,8
+ETH,3,1015,1,15,Cereals and their products,"Millet, whole grain, raw",2,9,11
+ETH,3,1041,1,41,Cereals and their products,"Sorghum, whole grain, red, raw",4,5,7
+ETH,3,9378,9,378,Fish and their products,"Carp, raw",1,12,2
+ETH,3,9363,9,363,Fish and their products,"White grouper, raw",4,5,7
+ETH,3,5245,5,245,Fruits and their products,"Apple, with skin, raw",2,7,9
+ETH,3,5250,5,250,Fruits and their products,"Dates, dried",4,3,5
+ETH,3,5252,5,252,Fruits and their products,"Fig, dried ",2,8,10
+ETH,3,5253,5,253,Fruits and their products,"Fruit cocktail, canned in syrup",4,3,5
+ETH,3,5254,5,254,Fruits and their products,"Grapefruit, pulp, raw",1,3,5
+ETH,3,5229,5,229,Fruits and their products,"Guava, fruit, raw",2,8,10
+ETH,3,5230,5,230,Fruits and their products,"Gumvine, raw",4,4,6
+ETH,3,5256,5,256,Fruits and their products,"Mango, pale flesh, raw",3,5,7
+ETH,3,5258,5,258,Fruits and their products,"Melon, cantaloup, raw",1,3,5
+ETH,3,5257,5,257,Fruits and their products,"Melon, honeydew, raw",2,5,7
+ETH,3,5235,5,235,Fruits and their products,"Orange, raw",1,3,5
+ETH,3,5259,5,259,Fruits and their products,"Palm nuts, pulp, raw",2,7,9
+ETH,3,5236,5,236,Fruits and their products,"Papaya, fruit, ripe, raw",2,2,4
+ETH,3,5263,5,263,Fruits and their products,"Shea fruit pulp, raw",3,12,2
+ETH,3,5239,5,239,Fruits and their products,"Tamarind, immature fruit, raw",1,2,4
+ETH,3,3111,3,111,Legumes and their products,"Bambara groundnut, dried, raw ",4,8,10
+ETH,3,3132,3,132,Legumes and their products,"Beans, white, dried",3,11,1
+ETH,3,3115,3,115,Legumes and their products,"Cowpea, black, dried, raw",3,4,6
+ETH,3,3116,3,116,Legumes and their products,"Cowpea, white, dried, raw",2,8,10
+ETH,3,7309,7,309,Meat and poultry and their products,"Beef, kidney, raw",4,10,12
+ETH,3,7334,7,334,Meat and poultry and their products,"Crocodile, raw",2,6,8
+ETH,3,7346,7,346,Meat and poultry and their products,"Mopanie worm, canned",2,0,2
+ETH,3,10419,10,419,Milk and their products,"Milk, cow, canned, condensed, sweetened",4,9,11
+ETH,3,10407,10,407,Milk and their products,"Milk, goat, raw",4,7,9
+ETH,3,12459,12,459,Miscellaneous,"Bay leaf, dried",2,6,8
+ETH,3,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",2,1,3
+ETH,3,12456,12,456,Miscellaneous,Sugar,3,9,11
+ETH,3,6270,6,270,"Nuts, seeds and their products",Coconut water,2,11,1
+ETH,3,6278,6,278,"Nuts, seeds and their products","Colanut, raw",4,9,11
+ETH,3,6275,6,275,"Nuts, seeds and their products","Melon seeds, slightly salted, raw",1,2,4
+ETH,3,6277,6,277,"Nuts, seeds and their products","Shea nut, seed kernel, dried, raw",3,10,12
+ETH,3,2095,2,95,"Starchy roots, tubers and their products","Cassava sweet, tuber, dried",2,1,3
+ETH,3,4151,4,151,Vegetables and their products,"Baobab, leaves,  raw",1,1,3
+ETH,3,4159,4,159,Vegetables and their products,"Cocoyam, leaves, raw",3,11,1
+ETH,3,4165,4,165,Vegetables and their products,"Garlic, raw",3,8,10
+ETH,3,4188,4,188,Vegetables and their products,"Jute (bush-okra) leaves, raw",3,4,6
+ETH,3,4194,4,194,Vegetables and their products,"Onions, dried",3,1,3
+ETH,3,4201,4,201,Vegetables and their products,"Pumpkin, squash, raw",3,7,9
+RWA,3,11447,11,447,Beverages,"Juice, apple, canned or bottled",3,7,9
+RWA,3,11449,11,449,Beverages,"Nectar, Mango, canned",1,6,8
+RWA,3,11441,11,441,Beverages,Palm wine (est. 3.8 % alcohol),2,6,8
+RWA,3,11442,11,442,Beverages,"Sap, palm, fresh (0.3 % alcohol)",1,6,8
+RWA,3,11443,11,443,Beverages,"Tea, infusion",2,5,7
+RWA,3,1059,1,59,Cereals and their products,"Maize, white, flour degermed ",4,5,7
+RWA,3,1055,1,55,Cereals and their products,"Maize, yellow, grit, degermed",3,4,6
+RWA,3,1075,1,75,Cereals and their products,"Maize, yellow, stiff porridge* (without salt)",4,1,3
+RWA,3,1006,1,6,Cereals and their products,"Maize, yellow, whole kernel, dried, raw",2,9,11
+RWA,3,1034,1,34,Cereals and their products,"Rice, brown, raw",2,10,12
+RWA,3,1037,1,37,Cereals and their products,"Rice, white, raw",3,7,9
+RWA,3,9386,9,386,Fish and their products,"Mudfish, raw",2,6,8
+RWA,3,9394,9,394,Fish and their products,"Sardines in oil, canned (drained solids with bone)",3,3,5
+RWA,3,9398,9,398,Fish and their products,"Tilapia, raw",2,1,3
+RWA,3,5242,5,242,Fruits and their products,"African fan palm, fruit, pulp, raw",4,11,1
+RWA,3,5245,5,245,Fruits and their products,"Apple, with skin, raw",2,4,6
+RWA,3,5223,5,223,Fruits and their products,"Banana, white flesh, raw",1,12,2
+RWA,3,5247,5,247,Fruits and their products,"Banana, yellow flesh, raw",4,10,12
+RWA,3,5227,5,227,Fruits and their products,"Dattock, pulp, raw",3,10,12
+RWA,3,5233,5,233,Fruits and their products,"Lemon, raw",4,8,10
+RWA,3,5256,5,256,Fruits and their products,"Mango, pale flesh, raw",1,6,8
+RWA,3,5257,5,257,Fruits and their products,"Melon, honeydew, raw",4,10,12
+RWA,3,5260,5,260,Fruits and their products,"Pomegranate, raw",1,5,7
+RWA,3,5263,5,263,Fruits and their products,"Shea fruit pulp, raw",4,6,8
+RWA,3,3119,3,119,Legumes and their products,"African locust bean, seeds, dried",3,3,5
+RWA,3,3111,3,111,Legumes and their products,"Bambara groundnut, dried, raw ",3,1,3
+RWA,3,3114,3,114,Legumes and their products,"Cowpea, dried, raw",4,1,3
+RWA,3,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",1,9,11
+RWA,3,7292,7,292,Meat and poultry and their products,"Beef, meat, 15-20  % fat, boneless, raw",1,1,3
+RWA,3,7311,7,311,Meat and poultry and their products,"Beef, tripe, raw",1,8,10
+RWA,3,7341,7,341,Meat and poultry and their products,"Lamb, brain, raw",4,2,4
+RWA,3,7295,7,295,Meat and poultry and their products,"Pork, meat, approx. 40 % fat, boneless, raw",3,8,10
+RWA,3,10410,10,410,Milk and their products,Cheddar,4,1,3
+RWA,3,10414,10,414,Milk and their products,"Cream, 13 % fat",2,12,2
+RWA,3,10416,10,416,Milk and their products,"Infant formula, powder, for 6 months",2,12,2
+RWA,3,10421,10,421,Milk and their products,"Milk, cow powder, skimmed",3,6,8
+RWA,3,10406,10,406,Milk and their products,"Milk, cow, powder, whole",4,5,7
+RWA,3,10432,10,432,Milk and their products,"Palm oil, refined",4,7,9
+RWA,3,12460,12,460,Miscellaneous,"Chilli pepper, dried",2,6,8
+RWA,3,12461,12,461,Miscellaneous,"Cinnamon, ground",3,7,9
+RWA,3,12464,12,464,Miscellaneous,"Ginger, root, raw",1,12,2
+RWA,3,12465,12,465,Miscellaneous,"Ginger, roots, dried",2,11,1
+RWA,3,12471,12,471,Miscellaneous,"Yeast, dried",2,7,9
+RWA,3,6288,6,288,"Nuts, seeds and their products","Groundnut flour, defatted",1,7,9
+RWA,3,6272,6,272,"Nuts, seeds and their products","Groundnut, shelled, dried, raw",3,1,3
+RWA,3,6273,6,273,"Nuts, seeds and their products","Groundnut, rose, shelled, dried, raw (Benin)",1,5,7
+RWA,3,6276,6,276,"Nuts, seeds and their products","Sesame seeds, whole, dried, raw",3,11,1
+RWA,3,2095,2,95,"Starchy roots, tubers and their products","Cassava sweet, tuber, dried",3,1,3
+RWA,3,2077,2,77,"Starchy roots, tubers and their products","Cassava, tuber, raw",4,9,11
+RWA,3,2083,2,83,"Starchy roots, tubers and their products","Potato, raw",1,8,10
+RWA,3,2085,2,85,"Starchy roots, tubers and their products","Sweet potato, deep yellow, raw",1,0,2
+RWA,3,2096,2,96,"Starchy roots, tubers and their products","Sweet potato, pale yellow, raw",3,2,4
+RWA,3,2093,2,93,"Starchy roots, tubers and their products","Yam tuber, raw",4,11,1
+RWA,3,4151,4,151,Vegetables and their products,"Baobab, leaves,  raw",4,4,6
+RWA,3,4164,4,164,Vegetables and their products,"False sesame, leaves, dried",2,10,12
+RWA,3,4216,4,216,Vegetables and their products,"Tomato paste, concentrated",3,8,10
+ETH,4,11436,11,436,Beverages,Beer european (4.4 % alcohol),1,11,1
+ETH,4,11447,11,447,Beverages,"Juice, apple, canned or bottled",3,3,5
+ETH,4,11446,11,446,Beverages,"Juice, orange, unsweetened",2,2,4
+ETH,4,1044,1,44,Cereals and their products,"Bread, maize flour, yellow, with milk and egg",3,9,11
+ETH,4,1067,1,67,Cereals and their products,"Rice, red native,  milled, raw",1,8,10
+ETH,4,1043,1,43,Cereals and their products,"Wheat flour, white",2,4,6
+ETH,4,9369,9,369,Fish and their products,"Anchovy, canned in oil (drained solids)",3,3,5
+ETH,4,9386,9,386,Fish and their products,"Mudfish, raw",4,6,8
+ETH,4,9389,9,389,Fish and their products,"Perch, Nile, raw",4,8,10
+ETH,4,5245,5,245,Fruits and their products,"Apple, with skin, raw",1,4,6
+ETH,4,5224,5,224,Fruits and their products,"Baobab, fruit/Monkey bread, pulp, raw",1,11,1
+ETH,4,5250,5,250,Fruits and their products,"Dates, dried",1,1,3
+ETH,4,5252,5,252,Fruits and their products,"Fig, dried ",4,7,9
+ETH,4,5230,5,230,Fruits and their products,"Gumvine, raw",3,6,8
+ETH,4,5258,5,258,Fruits and their products,"Melon, cantaloup, raw",1,7,9
+ETH,4,3112,3,112,Legumes and their products,"Bambara groundnut, red, dried, raw",1,12,2
+ETH,4,3137,3,137,Legumes and their products,"Cowpea, brown, dried, raw",1,2,4
+ETH,4,7304,7,304,Meat and poultry and their products,"Beef, meat, approx. 30 % fat, boneless, raw",4,10,12
+ETH,4,7307,7,307,Meat and poultry and their products,"Beef, meat, lean, cured, dried",2,1,3
+ETH,4,7293,7,293,Meat and poultry and their products,"Chicken, dark meat, flesh, raw",3,1,3
+ETH,4,7331,7,331,Meat and poultry and their products,"Chicken, liver, raw",2,7,9
+ETH,4,7334,7,334,Meat and poultry and their products,"Crocodile, raw",2,7,9
+ETH,4,7297,7,297,Meat and poultry and their products,"Rabbit, flesh only, raw",2,1,3
+ETH,4,10426,10,426,Milk and their products,"Butter, from cow's milk (without salt)",1,0,2
+ETH,4,10415,10,415,Milk and their products,"Infant formula, powder, for 3 months",4,9,11
+ETH,4,12461,12,461,Miscellaneous,"Cinnamon, ground",2,8,10
+ETH,4,12463,12,463,Miscellaneous,"Cumin, seed",2,8,10
+ETH,4,12466,12,466,Miscellaneous,"Mustard, powder",4,2,4
+ETH,4,12468,12,468,Miscellaneous,"Pepper, black",1,1,3
+ETH,4,12456,12,456,Miscellaneous,Sugar,3,2,4
+ETH,4,12472,12,472,Miscellaneous,"Yeast extract, Marmite",3,11,1
+ETH,4,6269,6,269,"Nuts, seeds and their products",Coconut milk ,2,7,9
+ETH,4,6271,6,271,"Nuts, seeds and their products","Dikanut, kernel, dried, raw",2,5,7
+ETH,4,6286,6,286,"Nuts, seeds and their products",Groundnut paste,2,4,6
+ETH,4,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",2,6,8
+ETH,4,6273,6,273,"Nuts, seeds and their products","Groundnut, rose, shelled, dried, raw (Benin)",4,6,8
+ETH,4,6276,6,276,"Nuts, seeds and their products","Sesame seeds, whole, dried, raw",1,4,6
+ETH,4,2095,2,95,"Starchy roots, tubers and their products","Cassava sweet, tuber, dried",1,9,11
+ETH,4,2078,2,78,"Starchy roots, tubers and their products","Cassava, tuber, dried",3,8,10
+ETH,4,2083,2,83,"Starchy roots, tubers and their products","Potato, raw",4,5,7
+ETH,4,4156,4,156,Vegetables and their products,"Carrot, raw",3,8,10
+ETH,4,4167,4,167,Vegetables and their products,"Okra fruit, raw",1,3,5
+ETH,4,4154,4,154,Vegetables and their products,"Okra leaves, raw",2,2,4
+ETH,4,4209,4,209,Vegetables and their products,"Sweet potato, leaves, raw",1,10,12
+ETH,4,4170,4,170,Vegetables and their products,"Taro, leaves, raw",1,7,9
+RWA,4,11445,11,445,Beverages,"Juice, lemon, unsweetened",1,2,4
+RWA,4,11446,11,446,Beverages,"Juice, orange, unsweetened",4,7,9
+RWA,4,11449,11,449,Beverages,"Nectar, Mango, canned",1,5,7
+RWA,4,11451,11,451,Beverages,Ovaltine beverage with partly skimmed milk (without sugar; fortified),4,5,7
+RWA,4,11452,11,452,Beverages,Ovaltine beverage with skimmed milk (without sugar; fortified),1,11,1
+RWA,4,11453,11,453,Beverages,"Ovaltine powder, fortified",2,0,2
+RWA,4,1048,1,48,Cereals and their products,"Bread, wheat, wholemeal",3,1,3
+RWA,4,1045,1,45,Cereals and their products,"Bread/rolls, white",2,8,10
+RWA,4,1002,1,2,Cereals and their products,"Fonio, black, whole grain, raw",3,4,6
+RWA,4,1052,1,52,Cereals and their products,"Macaroni, dried",1,5,7
+RWA,4,1057,1,57,Cereals and their products,"Maize, white, flour of whole grain",4,11,1
+RWA,4,1017,1,17,Cereals and their products,"Pearl millet, whole grain, raw (with bran)",2,4,6
+RWA,4,1067,1,67,Cereals and their products,"Rice, red native,  milled, raw",4,11,1
+RWA,4,9358,9,358,Fish and their products,"Anchovy, fillet, raw",1,11,1
+RWA,4,9395,9,395,Fish and their products,"Shiny-nose, raw",1,9,11
+RWA,4,9363,9,363,Fish and their products,"White grouper, raw",1,6,8
+RWA,4,5225,5,225,Fruits and their products,"Breadfruit, raw",2,7,9
+RWA,4,5248,5,248,Fruits and their products,"Clementine, raw",1,5,7
+RWA,4,5250,5,250,Fruits and their products,"Dates, dried",3,4,6
+RWA,4,5228,5,228,Fruits and their products,"Dattock, dried pulp, raw",4,1,3
+RWA,4,5236,5,236,Fruits and their products,"Papaya, fruit, ripe, raw",3,3,5
+RWA,4,5239,5,239,Fruits and their products,"Tamarind, immature fruit, raw",1,1,3
+RWA,4,3119,3,119,Legumes and their products,"African locust bean, seeds, dried",3,12,2
+RWA,4,3134,3,134,Legumes and their products,"Broad beans, dried, raw",4,5,7
+RWA,4,7316,7,316,Meat and poultry and their products,"Bamboo caterpillar, deep fried",2,4,6
+RWA,4,7304,7,304,Meat and poultry and their products,"Beef, meat, approx. 30 % fat, boneless, raw",3,3,5
+RWA,4,7320,7,320,Meat and poultry and their products,"Chicken, dark meat, flesh and skin, raw",2,3,5
+RWA,4,7293,7,293,Meat and poultry and their products,"Chicken, dark meat, flesh, raw",4,9,11
+RWA,4,7334,7,334,Meat and poultry and their products,"Crocodile, raw",2,11,1
+RWA,4,10427,10,427,Milk and their products,Coconut oil,4,5,7
+RWA,4,10428,10,428,Milk and their products,Groundnut oil,2,1,3
+RWA,4,10421,10,421,Milk and their products,"Milk, cow powder, skimmed",1,2,4
+RWA,4,10418,10,418,Milk and their products,"Milk, cow,  skimmed, 0.5 % fat",3,9,11
+RWA,4,10407,10,407,Milk and their products,"Milk, goat, raw",2,4,6
+RWA,4,10408,10,408,Milk and their products,"Milk, human, mature, raw",1,6,8
+RWA,4,12459,12,459,Miscellaneous,"Bay leaf, dried",1,1,3
+RWA,4,12470,12,470,Miscellaneous,"Spices, mix, ground",3,8,10
+RWA,4,12472,12,472,Miscellaneous,"Yeast extract, Marmite",4,6,8
+RWA,4,6270,6,270,"Nuts, seeds and their products",Coconut water,3,4,6
+RWA,4,6288,6,288,"Nuts, seeds and their products","Groundnut flour, defatted",2,9,11
+RWA,4,6273,6,273,"Nuts, seeds and their products","Groundnut, rose, shelled, dried, raw (Benin)",4,3,5
+RWA,4,6275,6,275,"Nuts, seeds and their products","Melon seeds, slightly salted, raw",4,3,5
+RWA,4,6277,6,277,"Nuts, seeds and their products","Shea nut, seed kernel, dried, raw",3,2,4
+RWA,4,2095,2,95,"Starchy roots, tubers and their products","Cassava sweet, tuber, dried",3,6,8
+RWA,4,2078,2,78,"Starchy roots, tubers and their products","Cassava, tuber, dried",2,7,9
+RWA,4,2089,2,89,"Starchy roots, tubers and their products","Taro, tuber, raw",2,2,4
+RWA,4,2091,2,91,"Starchy roots, tubers and their products","Water yam, tuber, raw",4,5,7
+RWA,4,4173,4,173,Vegetables and their products,"Amaranth leaves, raw",3,7,9
+RWA,4,4155,4,155,Vegetables and their products,"Cabbage, raw",3,8,10
+RWA,4,4181,4,181,Vegetables and their products,"Cowpea leaves, dried",1,9,11
+RWA,4,4162,4,162,Vegetables and their products,"Eggplant, raw",3,4,6
+RWA,4,4186,4,186,Vegetables and their products,"False sesame, leaves, raw",4,8,10
+RWA,4,4194,4,194,Vegetables and their products,"Onions, dried",1,6,8
+RWA,4,4195,4,195,Vegetables and their products,"Parsley, fresh",2,3,5
+RWA,4,4212,4,212,Vegetables and their products,"Tamarind, leaves, dried",3,6,8
+RWA,4,4218,4,218,Vegetables and their products,"Turnip, raw ",4,11,1
+ETH,5,11444,11,444,Beverages,"Coffee, liquid",3,10,12
+ETH,5,11449,11,449,Beverages,"Nectar, Mango, canned",4,2,4
+ETH,5,1039,1,39,Cereals and their products,"Sorghum, whole grain, raw ",1,12,2
+ETH,5,1040,1,40,Cereals and their products,"Sorghum, whole grain, white, raw",2,9,11
+ETH,5,1073,1,73,Cereals and their products,"Wheat, bran",1,11,1
+ETH,5,8354,8,354,Eggs and their products,"Egg, chicken, raw",4,10,12
+ETH,5,9364,9,364,Fish and their products,"African carp, raw",3,4,6
+ETH,5,9369,9,369,Fish and their products,"Anchovy, canned in oil (drained solids)",2,3,5
+ETH,5,9358,9,358,Fish and their products,"Anchovy, fillet, raw",3,5,7
+ETH,5,9389,9,389,Fish and their products,"Perch, Nile, raw",2,9,11
+ETH,5,5243,5,243,Fruits and their products,"African locust bean, flour from fruit, pulp",3,10,12
+ETH,5,5221,5,221,Fruits and their products,"African locust bean, fruit, pulp, raw",4,7,9
+ETH,5,5245,5,245,Fruits and their products,"Apple, with skin, raw",2,0,2
+ETH,5,5222,5,222,Fruits and their products,"Avocado, pulp, raw",1,7,9
+ETH,5,5227,5,227,Fruits and their products,"Dattock, pulp, raw",3,6,8
+ETH,5,5233,5,233,Fruits and their products,"Lemon, raw",2,5,7
+ETH,5,5264,5,264,Fruits and their products,"Sweet apple, fruit, raw",2,0,2
+ETH,5,3119,3,119,Legumes and their products,"African locust bean, seeds, dried",4,7,9
+ETH,5,3111,3,111,Legumes and their products,"Bambara groundnut, dried, raw ",4,11,1
+ETH,5,3116,3,116,Legumes and their products,"Cowpea, white, dried, raw",1,7,9
+ETH,5,3140,3,140,Legumes and their products,"Lentils, dried, raw",1,2,4
+ETH,5,3118,3,118,Legumes and their products,"Soya bean, dried, raw",2,4,6
+ETH,5,7298,7,298,Meat and poultry and their products,"Ant flying, dried",4,11,1
+ETH,5,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",2,6,8
+ETH,5,7304,7,304,Meat and poultry and their products,"Beef, meat, approx. 30 % fat, boneless, raw",4,3,5
+ETH,5,7320,7,320,Meat and poultry and their products,"Chicken, dark meat, flesh and skin, raw",2,1,3
+ETH,5,7336,7,336,Meat and poultry and their products,"Goat, meat, raw",2,7,9
+ETH,5,7346,7,346,Meat and poultry and their products,"Mopanie worm, canned",4,11,1
+ETH,5,10427,10,427,Milk and their products,Coconut oil,4,8,10
+ETH,5,10431,10,431,Milk and their products,"Margarine, fortified",4,1,3
+ETH,5,10421,10,421,Milk and their products,"Milk, cow powder, skimmed",1,2,4
+ETH,5,10406,10,406,Milk and their products,"Milk, cow, powder, whole",4,10,12
+ETH,5,10424,10,424,Milk and their products,Vacherin cheese,1,7,9
+ETH,5,10425,10,425,Milk and their products,"Yoghurt, whole milk, with fruits",2,12,2
+ETH,5,12463,12,463,Miscellaneous,"Cumin, seed",4,6,8
+ETH,5,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",3,8,10
+ETH,5,12469,12,469,Miscellaneous,Salt,1,1,3
+ETH,5,12470,12,470,Miscellaneous,"Spices, mix, ground",2,1,3
+ETH,5,6265,6,265,"Nuts, seeds and their products","Cashew nut, raw",2,10,12
+ETH,5,6268,6,268,"Nuts, seeds and their products","Coconut, kernel, dried, raw",2,6,8
+ETH,5,6279,6,279,"Nuts, seeds and their products","Colanut, dried, raw",4,12,2
+ETH,5,6272,6,272,"Nuts, seeds and their products","Groundnut, shelled, dried, raw",1,11,1
+ETH,5,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",2,0,2
+ETH,5,6275,6,275,"Nuts, seeds and their products","Melon seeds, slightly salted, raw",3,7,9
+ETH,5,2077,2,77,"Starchy roots, tubers and their products","Cassava, tuber, raw",4,7,9
+ETH,5,2081,2,81,"Starchy roots, tubers and their products","Cocoyam, tuber, raw ",3,5,7
+ETH,5,2091,2,91,"Starchy roots, tubers and their products","Water yam, tuber, raw",3,10,12
+ETH,5,4153,4,153,Vegetables and their products,"Beans, green raw",2,11,1
+ETH,5,4155,4,155,Vegetables and their products,"Cabbage, raw",4,8,10
+ETH,5,4158,4,158,Vegetables and their products,"Cassava, leaves, raw",2,2,4
+ETH,5,4163,4,163,Vegetables and their products,"Eggplant leaves, raw",1,8,10
+ETH,5,4197,4,197,Vegetables and their products,"Pepper, sweet, red, raw",2,9,11
+ETH,5,4207,4,207,Vegetables and their products,"Spinach, raw",4,10,12
+ETH,5,4169,4,169,Vegetables and their products,"Tamarind, leaves, raw",1,2,4
+ETH,5,4216,4,216,Vegetables and their products,"Tomato paste, concentrated",1,5,7
+RWA,5,11446,11,446,Beverages,"Juice, orange, unsweetened",1,1,3
+RWA,5,11443,11,443,Beverages,"Tea, infusion",2,10,12
+RWA,5,1002,1,2,Cereals and their products,"Fonio, black, whole grain, raw",1,5,7
+RWA,5,1051,1,51,Cereals and their products,"Fonio, husked grains, boiled* (without salt)",3,11,1
+RWA,5,1055,1,55,Cereals and their products,"Maize, yellow, grit, degermed",4,8,10
+RWA,5,1063,1,63,Cereals and their products,"Pearl millet, flour (without bran)",2,4,6
+RWA,5,1041,1,41,Cereals and their products,"Sorghum, whole grain, red, raw",1,9,11
+RWA,5,1043,1,43,Cereals and their products,"Wheat flour, white",3,11,1
+RWA,5,9364,9,364,Fish and their products,"African carp, raw",2,8,10
+RWA,5,9382,9,382,Fish and their products,"Mackerel, grilled* (without salt and fat)",2,4,6
+RWA,5,5243,5,243,Fruits and their products,"African locust bean, flour from fruit, pulp",4,9,11
+RWA,5,5221,5,221,Fruits and their products,"African locust bean, fruit, pulp, raw",1,6,8
+RWA,5,5244,5,244,Fruits and their products,"Akee, pulp, raw",3,9,11
+RWA,5,5250,5,250,Fruits and their products,"Dates, dried",2,1,3
+RWA,5,5227,5,227,Fruits and their products,"Dattock, pulp, raw",1,3,5
+RWA,5,5257,5,257,Fruits and their products,"Melon, honeydew, raw",4,7,9
+RWA,5,5259,5,259,Fruits and their products,"Palm nuts, pulp, raw",4,10,12
+RWA,5,5260,5,260,Fruits and their products,"Pomegranate, raw",3,3,5
+RWA,5,3112,3,112,Legumes and their products,"Bambara groundnut, red, dried, raw",1,3,5
+RWA,5,3134,3,134,Legumes and their products,"Broad beans, dried, raw",2,11,1
+RWA,5,3118,3,118,Legumes and their products,"Soya bean, dried, raw",4,6,8
+RWA,5,7291,7,291,Meat and poultry and their products,"Beef liver, raw",3,11,1
+RWA,5,7307,7,307,Meat and poultry and their products,"Beef, meat, lean, cured, dried",3,5,7
+RWA,5,7311,7,311,Meat and poultry and their products,"Beef, tripe, raw",3,2,4
+RWA,5,7323,7,323,Meat and poultry and their products,"Chicken, light meat, flesh, raw",1,5,7
+RWA,5,10426,10,426,Milk and their products,"Butter, from cow's milk (without salt)",2,10,12
+RWA,5,10410,10,410,Milk and their products,Cheddar,3,6,8
+RWA,5,10420,10,420,Milk and their products,"Milk, cow, canned, evaporated",1,3,5
+RWA,5,10417,10,417,Milk and their products,"Milk, cow, partly skimmed, 1.5 % fat",3,8,10
+RWA,5,10429,10,429,Milk and their products,"Palm oil, red",4,7,9
+RWA,5,10433,10,433,Milk and their products,Shea butter,2,0,2
+RWA,5,10435,10,435,Milk and their products,Vegetable oil,4,11,1
+RWA,5,12459,12,459,Miscellaneous,"Bay leaf, dried",3,12,2
+RWA,5,12460,12,460,Miscellaneous,"Chilli pepper, dried",3,3,5
+RWA,5,12466,12,466,Miscellaneous,"Mustard, powder",1,4,6
+RWA,5,12469,12,469,Miscellaneous,Salt,1,6,8
+RWA,5,12471,12,471,Miscellaneous,"Yeast, dried",2,7,9
+RWA,5,6267,6,267,"Nuts, seeds and their products","Coconut, immature kernel, fresh, raw",4,4,6
+RWA,5,6266,6,266,"Nuts, seeds and their products","Coconut, mature kernel, fresh, raw",1,6,8
+RWA,5,6278,6,278,"Nuts, seeds and their products","Colanut, raw",3,10,12
+RWA,5,6271,6,271,"Nuts, seeds and their products","Dikanut, kernel, dried, raw",1,3,5
+RWA,5,6286,6,286,"Nuts, seeds and their products",Groundnut paste,1,8,10
+RWA,5,6285,6,285,"Nuts, seeds and their products","Groundnut, combined varieties, shelled, dried, raw (Ghana)",4,4,6
+RWA,5,6276,6,276,"Nuts, seeds and their products","Sesame seeds, whole, dried, raw",4,11,1
+RWA,5,2096,2,96,"Starchy roots, tubers and their products","Sweet potato, pale yellow, raw",3,7,9
+RWA,5,4151,4,151,Vegetables and their products,"Baobab, leaves,  raw",4,4,6
+RWA,5,4155,4,155,Vegetables and their products,"Cabbage, raw",4,1,3
+RWA,5,4159,4,159,Vegetables and their products,"Cocoyam, leaves, raw",1,6,8
+RWA,5,4181,4,181,Vegetables and their products,"Cowpea leaves, dried",4,5,7
+RWA,5,4160,4,160,Vegetables and their products,"Cowpea, leaves, raw",2,4,6
+RWA,5,4161,4,161,Vegetables and their products,"Drumstick  leaves, raw",2,6,8
+RWA,5,4186,4,186,Vegetables and their products,"False sesame, leaves, raw",2,2,4
+RWA,5,4154,4,154,Vegetables and their products,"Okra leaves, raw",3,6,8
+RWA,5,4195,4,195,Vegetables and their products,"Parsley, fresh",4,3,5
+RWA,5,4215,4,215,Vegetables and their products,"Tomatoes, canned, packed in juice",2,0,2
+ETH,6,11447,11,447,Beverages,"Juice, apple, canned or bottled",2,2,4
+ETH,6,11445,11,445,Beverages,"Juice, lemon, unsweetened",3,5,7
+ETH,6,1044,1,44,Cereals and their products,"Bread, maize flour, yellow, with milk and egg",2,1,3
+ETH,6,1052,1,52,Cereals and their products,"Macaroni, dried",3,1,3
+ETH,6,1057,1,57,Cereals and their products,"Maize, white, flour of whole grain",4,9,11
+ETH,6,1058,1,58,Cereals and their products,"Maize, white, flour refined",1,11,1
+ETH,6,1060,1,60,Cereals and their products,"Maize, white, grit, degermed",3,4,6
+ETH,6,1054,1,54,Cereals and their products,"Maize, yellow, flour of whole-grain",3,5,7
+ETH,6,1006,1,6,Cereals and their products,"Maize, yellow, whole kernel, dried, raw",4,3,5
+ETH,6,1063,1,63,Cereals and their products,"Pearl millet, flour (without bran)",3,4,6
+ETH,6,1034,1,34,Cereals and their products,"Rice, brown, raw",2,3,5
+ETH,6,1067,1,67,Cereals and their products,"Rice, red native,  milled, raw",3,1,3
+ETH,6,1065,1,65,Cereals and their products,"Rice, red native, hulled, raw",2,10,12
+ETH,6,1039,1,39,Cereals and their products,"Sorghum, whole grain, raw ",3,7,9
+ETH,6,1040,1,40,Cereals and their products,"Sorghum, whole grain, white, raw",2,8,10
+ETH,6,9359,9,359,Fish and their products,"Barracuda, raw",4,9,11
+ETH,6,9389,9,389,Fish and their products,"Perch, Nile, raw",3,2,4
+ETH,6,9394,9,394,Fish and their products,"Sardines in oil, canned (drained solids with bone)",3,6,8
+ETH,6,5247,5,247,Fruits and their products,"Banana, yellow flesh, raw",3,9,11
+ETH,6,5227,5,227,Fruits and their products,"Dattock, pulp, raw",2,1,3
+ETH,6,5230,5,230,Fruits and their products,"Gumvine, raw",1,8,10
+ETH,6,5234,5,234,Fruits and their products,"Mango, orange flesh,  raw",3,6,8
+ETH,6,5237,5,237,Fruits and their products,"Pineapple, pulp, raw",4,0,2
+ETH,6,5238,5,238,Fruits and their products,"Soapberry, fruit, raw",4,11,1
+ETH,6,3113,3,113,Legumes and their products,"Bambara groundnuts, white, raw",2,3,5
+ETH,6,3134,3,134,Legumes and their products,"Broad beans, dried, raw",3,8,10
+ETH,6,3116,3,116,Legumes and their products,"Cowpea, white, dried, raw",2,12,2
+ETH,6,3140,3,140,Legumes and their products,"Lentils, dried, raw",2,2,4
+ETH,6,7291,7,291,Meat and poultry and their products,"Beef liver, raw",3,1,3
+ETH,6,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",2,9,11
+ETH,6,7323,7,323,Meat and poultry and their products,"Chicken, light meat, flesh, raw",1,5,7
+ETH,6,7343,7,343,Meat and poultry and their products,"Lamb, liver, raw",4,2,4
+ETH,6,7345,7,345,Meat and poultry and their products,"Locust, raw",2,4,6
+ETH,6,10419,10,419,Milk and their products,"Milk, cow, canned, condensed, sweetened",3,4,6
+ETH,6,10420,10,420,Milk and their products,"Milk, cow, canned, evaporated",2,1,3
+ETH,6,10407,10,407,Milk and their products,"Milk, goat, raw",1,2,4
+ETH,6,10408,10,408,Milk and their products,"Milk, human, mature, raw",2,3,5
+ETH,6,10429,10,429,Milk and their products,"Palm oil, red",3,10,12
+ETH,6,10409,10,409,Milk and their products,"Yoghurt, whole milk, plain",1,12,2
+ETH,6,10425,10,425,Milk and their products,"Yoghurt, whole milk, with fruits",4,7,9
+ETH,6,12460,12,460,Miscellaneous,"Chilli pepper, dried",1,10,12
+ETH,6,12463,12,463,Miscellaneous,"Cumin, seed",1,1,3
+ETH,6,12456,12,456,Miscellaneous,Sugar,4,4,6
+ETH,6,6265,6,265,"Nuts, seeds and their products","Cashew nut, raw",4,8,10
+ETH,6,6269,6,269,"Nuts, seeds and their products",Coconut milk ,1,10,12
+ETH,6,6266,6,266,"Nuts, seeds and their products","Coconut, mature kernel, fresh, raw",3,6,8
+ETH,6,6286,6,286,"Nuts, seeds and their products",Groundnut paste,1,11,1
+ETH,6,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",3,3,5
+ETH,6,6289,6,289,"Nuts, seeds and their products","Palm nut kernel, shelled, raw",4,2,4
+ETH,6,2098,2,98,"Starchy roots, tubers and their products","Tiger nut, tuber, raw",4,11,1
+ETH,6,2110,2,110,"Starchy roots, tubers and their products","Yam tuber, flour",4,8,10
+ETH,6,4162,4,162,Vegetables and their products,"Eggplant, raw",3,8,10
+ETH,6,4201,4,201,Vegetables and their products,"Pumpkin, squash, raw",3,5,7
+ETH,6,4166,4,166,Vegetables and their products,"Roselle leaves, raw",2,1,3
+ETH,6,4212,4,212,Vegetables and their products,"Tamarind, leaves, dried",3,5,7
+ETH,6,4170,4,170,Vegetables and their products,"Taro, leaves, raw",4,8,10
+ETH,6,4217,4,217,Vegetables and their products,"Tomato, powder",3,7,9
+ETH,6,4171,4,171,Vegetables and their products,"Tomato, red, ripe, raw",2,9,11
+ETH,6,4218,4,218,Vegetables and their products,"Turnip, raw ",2,5,7
+RWA,6,11444,11,444,Beverages,"Coffee, liquid",1,11,1
+RWA,6,11448,11,448,Beverages,"Juice, grapefruit, canned, unsweetened",4,5,7
+RWA,6,11451,11,451,Beverages,Ovaltine beverage with partly skimmed milk (without sugar; fortified),4,4,6
+RWA,6,11452,11,452,Beverages,Ovaltine beverage with skimmed milk (without sugar; fortified),2,2,4
+RWA,6,11443,11,443,Beverages,"Tea, infusion",1,1,3
+RWA,6,11454,11,454,Beverages,"Water, tap",3,7,9
+RWA,6,1059,1,59,Cereals and their products,"Maize, white, flour degermed ",4,1,3
+RWA,6,1004,1,4,Cereals and their products,"Maize, white, whole kernel, dried, raw",3,7,9
+RWA,6,1037,1,37,Cereals and their products,"Rice, white, raw",4,1,3
+RWA,6,1043,1,43,Cereals and their products,"Wheat flour, white",3,6,8
+RWA,6,9372,9,372,Fish and their products,"Bayad, raw",4,3,5
+RWA,6,5243,5,243,Fruits and their products,"African locust bean, flour from fruit, pulp",2,2,4
+RWA,6,5221,5,221,Fruits and their products,"African locust bean, fruit, pulp, raw",3,3,5
+RWA,6,5226,5,226,Fruits and their products,"Cashew apple, pulp, raw",1,6,8
+RWA,6,5250,5,250,Fruits and their products,"Dates, dried",1,7,9
+RWA,6,5229,5,229,Fruits and their products,"Guava, fruit, raw",3,4,6
+RWA,6,5231,5,231,Fruits and their products,"Jujube, raw",1,1,3
+RWA,6,5258,5,258,Fruits and their products,"Melon, cantaloup, raw",2,5,7
+RWA,6,5235,5,235,Fruits and their products,"Orange, raw",2,12,2
+RWA,6,5237,5,237,Fruits and their products,"Pineapple, pulp, raw",2,2,4
+RWA,6,5263,5,263,Fruits and their products,"Shea fruit pulp, raw",3,8,10
+RWA,6,5241,5,241,Fruits and their products,"Watermelon, fruit, raw",1,5,7
+RWA,6,3120,3,120,Legumes and their products,"African yam bean, dried, raw",3,11,1
+RWA,6,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",2,9,11
+RWA,6,7292,7,292,Meat and poultry and their products,"Beef, meat, 15-20  % fat, boneless, raw",2,6,8
+RWA,6,7307,7,307,Meat and poultry and their products,"Beef, meat, lean, cured, dried",3,7,9
+RWA,6,7331,7,331,Meat and poultry and their products,"Chicken, liver, raw",1,8,10
+RWA,6,7343,7,343,Meat and poultry and their products,"Lamb, liver, raw",1,11,1
+RWA,6,10426,10,426,Milk and their products,"Butter, from cow's milk (without salt)",1,9,11
+RWA,6,10410,10,410,Milk and their products,Cheddar,1,2,4
+RWA,6,10430,10,430,Milk and their products,Cottonseed oil,1,11,1
+RWA,6,10413,10,413,Milk and their products,"Cream, whipping, 38 % fat",3,3,5
+RWA,6,10421,10,421,Milk and their products,"Milk, cow powder, skimmed",1,11,1
+RWA,6,10407,10,407,Milk and their products,"Milk, goat, raw",1,2,4
+RWA,6,10423,10,423,Milk and their products,"Milk, human, colostrum, raw",2,5,7
+RWA,6,10408,10,408,Milk and their products,"Milk, human, mature, raw",4,8,10
+RWA,6,10425,10,425,Milk and their products,"Yoghurt, whole milk, with fruits",3,5,7
+RWA,6,12458,12,458,Miscellaneous,Anis seed,1,8,10
+RWA,6,12469,12,469,Miscellaneous,Salt,2,1,3
+RWA,6,12471,12,471,Miscellaneous,"Yeast, dried",4,7,9
+RWA,6,6270,6,270,"Nuts, seeds and their products",Coconut water,3,6,8
+RWA,6,6267,6,267,"Nuts, seeds and their products","Coconut, immature kernel, fresh, raw",3,6,8
+RWA,6,6271,6,271,"Nuts, seeds and their products","Dikanut, kernel, dried, raw",1,4,6
+RWA,6,6287,6,287,"Nuts, seeds and their products","Groundnut flour, with fat",2,6,8
+RWA,6,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",1,9,11
+RWA,6,6289,6,289,"Nuts, seeds and their products","Palm nut kernel, shelled, raw",2,4,6
+RWA,6,6276,6,276,"Nuts, seeds and their products","Sesame seeds, whole, dried, raw",3,9,11
+RWA,6,2078,2,78,"Starchy roots, tubers and their products","Cassava, tuber, dried",4,9,11
+RWA,6,2096,2,96,"Starchy roots, tubers and their products","Sweet potato, pale yellow, raw",4,10,12
+RWA,6,4152,4,152,Vegetables and their products,"Baobab leaves, dried",1,9,11
+RWA,6,4158,4,158,Vegetables and their products,"Cassava, leaves, raw",1,8,10
+RWA,6,4190,4,190,Vegetables and their products,"Lettuce, raw",2,6,8
+RWA,6,4199,4,199,Vegetables and their products,"Pepper, sweet, green, raw",1,4,6
+RWA,6,4205,4,205,Vegetables and their products,"Pumpkin leaves, dried",4,6,8
+ETH,7,11436,11,436,Beverages,Beer european (4.4 % alcohol),3,10,12
+ETH,7,11444,11,444,Beverages,"Coffee, liquid",3,9,11
+ETH,7,11449,11,449,Beverages,"Nectar, Mango, canned",4,11,1
+ETH,7,11451,11,451,Beverages,Ovaltine beverage with partly skimmed milk (without sugar; fortified),1,11,1
+ETH,7,11443,11,443,Beverages,"Tea, infusion",1,9,11
+ETH,7,11454,11,454,Beverages,"Water, tap",3,4,6
+ETH,7,1044,1,44,Cereals and their products,"Bread, maize flour, yellow, with milk and egg",2,6,8
+ETH,7,1048,1,48,Cereals and their products,"Bread, wheat, wholemeal",2,7,9
+ETH,7,1051,1,51,Cereals and their products,"Fonio, husked grains, boiled* (without salt)",1,4,6
+ETH,7,1014,1,14,Cereals and their products,"Maize, combined varieties, whole kernel, dried, raw",4,9,11
+ETH,7,1059,1,59,Cereals and their products,"Maize, white, flour degermed ",2,5,7
+ETH,7,1015,1,15,Cereals and their products,"Millet, whole grain, raw",4,7,9
+ETH,7,1017,1,17,Cereals and their products,"Pearl millet, whole grain, raw (with bran)",3,10,12
+ETH,7,1034,1,34,Cereals and their products,"Rice, brown, raw",2,2,4
+ETH,7,9358,9,358,Fish and their products,"Anchovy, fillet, raw",3,12,2
+ETH,7,9375,9,375,Fish and their products,"Catfish, raw",4,12,2
+ETH,7,9382,9,382,Fish and their products,"Mackerel, grilled* (without salt and fat)",1,3,5
+ETH,7,5244,5,244,Fruits and their products,"Akee, pulp, raw",2,6,8
+ETH,7,5224,5,224,Fruits and their products,"Baobab, fruit/Monkey bread, pulp, raw",1,9,11
+ETH,7,5252,5,252,Fruits and their products,"Fig, dried ",1,8,10
+ETH,7,5229,5,229,Fruits and their products,"Guava, fruit, raw",2,2,4
+ETH,7,5255,5,255,Fruits and their products,"Mango, deep orange flesh",2,7,9
+ETH,7,5258,5,258,Fruits and their products,"Melon, cantaloup, raw",3,11,1
+ETH,7,5257,5,257,Fruits and their products,"Melon, honeydew, raw",4,11,1
+ETH,7,5235,5,235,Fruits and their products,"Orange, raw",2,10,12
+ETH,7,5240,5,240,Fruits and their products,"Tamarind, fruit, ripe, raw",3,10,12
+ETH,7,5239,5,239,Fruits and their products,"Tamarind, immature fruit, raw",1,2,4
+ETH,7,3120,3,120,Legumes and their products,"African yam bean, dried, raw",2,7,9
+ETH,7,3112,3,112,Legumes and their products,"Bambara groundnut, red, dried, raw",1,5,7
+ETH,7,3113,3,113,Legumes and their products,"Bambara groundnuts, white, raw",3,1,3
+ETH,7,7304,7,304,Meat and poultry and their products,"Beef, meat, approx. 30 % fat, boneless, raw",3,4,6
+ETH,7,7307,7,307,Meat and poultry and their products,"Beef, meat, lean, cured, dried",3,10,12
+ETH,7,7320,7,320,Meat and poultry and their products,"Chicken, dark meat, flesh and skin, raw",2,3,5
+ETH,7,7331,7,331,Meat and poultry and their products,"Chicken, liver, raw",1,12,2
+ETH,7,7294,7,294,Meat and poultry and their products,"Lamb/mutton, meat, moderately fat, raw",3,10,12
+ETH,7,7345,7,345,Meat and poultry and their products,"Locust, raw",4,4,6
+ETH,7,7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless, raw",1,5,7
+ETH,7,10410,10,410,Milk and their products,Cheddar,1,11,1
+ETH,7,10412,10,412,Milk and their products,"Cheese, Gouda",4,10,12
+ETH,7,10419,10,419,Milk and their products,"Milk, cow, canned, condensed, sweetened",2,4,6
+ETH,7,10406,10,406,Milk and their products,"Milk, cow, powder, whole",4,10,12
+ETH,7,10405,10,405,Milk and their products,"Milk, cow, whole, 3.5 % fat (includes pasteurised, sterilised and UHT)",4,4,6
+ETH,7,10407,10,407,Milk and their products,"Milk, goat, raw",1,4,6
+ETH,7,10435,10,435,Milk and their products,Vegetable oil,4,8,10
+ETH,7,12460,12,460,Miscellaneous,"Chilli pepper, dried",2,11,1
+ETH,7,12464,12,464,Miscellaneous,"Ginger, root, raw",3,4,6
+ETH,7,12455,12,455,Miscellaneous,Honey,1,10,12
+ETH,7,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",1,0,2
+ETH,7,12470,12,470,Miscellaneous,"Spices, mix, ground",2,4,6
+ETH,7,12456,12,456,Miscellaneous,Sugar,2,3,5
+ETH,7,12471,12,471,Miscellaneous,"Yeast, dried",1,5,7
+ETH,7,6269,6,269,"Nuts, seeds and their products",Coconut milk ,1,10,12
+ETH,7,6267,6,267,"Nuts, seeds and their products","Coconut, immature kernel, fresh, raw",3,7,9
+ETH,7,6268,6,268,"Nuts, seeds and their products","Coconut, kernel, dried, raw",1,10,12
+ETH,7,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",2,1,3
+ETH,7,2080,2,80,"Starchy roots, tubers and their products",Cassava flour,3,2,4
+ETH,7,2078,2,78,"Starchy roots, tubers and their products","Cassava, tuber, dried",2,7,9
+ETH,7,2100,2,100,"Starchy roots, tubers and their products","Tiger nut, tuber dried",3,11,1
+ETH,7,2110,2,110,"Starchy roots, tubers and their products","Yam tuber, flour",1,7,9
+ETH,7,4160,4,160,Vegetables and their products,"Cowpea, leaves, raw",3,0,2
+ETH,7,4162,4,162,Vegetables and their products,"Eggplant, raw",4,12,2
+ETH,7,4154,4,154,Vegetables and their products,"Okra leaves, raw",4,4,6
+ETH,7,4209,4,209,Vegetables and their products,"Sweet potato, leaves, raw",3,8,10
+ETH,7,4212,4,212,Vegetables and their products,"Tamarind, leaves, dried",1,2,4
+ETH,7,4169,4,169,Vegetables and their products,"Tamarind, leaves, raw",2,1,3
+ETH,7,4218,4,218,Vegetables and their products,"Turnip, raw ",4,5,7
+RWA,7,11444,11,444,Beverages,"Coffee, liquid",2,6,8
+RWA,7,11448,11,448,Beverages,"Juice, grapefruit, canned, unsweetened",2,3,5
+RWA,7,11445,11,445,Beverages,"Juice, lemon, unsweetened",3,3,5
+RWA,7,11451,11,451,Beverages,Ovaltine beverage with partly skimmed milk (without sugar; fortified),4,8,10
+RWA,7,1044,1,44,Cereals and their products,"Bread, maize flour, yellow, with milk and egg",1,7,9
+RWA,7,1002,1,2,Cereals and their products,"Fonio, black, whole grain, raw",2,5,7
+RWA,7,1052,1,52,Cereals and their products,"Macaroni, dried",3,2,4
+RWA,7,1059,1,59,Cereals and their products,"Maize, white, flour degermed ",3,7,9
+RWA,7,1060,1,60,Cereals and their products,"Maize, white, grit, degermed",2,7,9
+RWA,7,1004,1,4,Cereals and their products,"Maize, white, whole kernel, dried, raw",3,3,5
+RWA,7,1075,1,75,Cereals and their products,"Maize, yellow, stiff porridge* (without salt)",3,3,5
+RWA,7,1006,1,6,Cereals and their products,"Maize, yellow, whole kernel, dried, raw",2,6,8
+RWA,7,1034,1,34,Cereals and their products,"Rice, brown, raw",4,10,12
+RWA,7,1039,1,39,Cereals and their products,"Sorghum, whole grain, raw ",3,11,1
+RWA,7,1041,1,41,Cereals and their products,"Sorghum, whole grain, red, raw",1,5,7
+RWA,7,1040,1,40,Cereals and their products,"Sorghum, whole grain, white, raw",1,12,2
+RWA,7,9364,9,364,Fish and their products,"African carp, raw",1,10,12
+RWA,7,9378,9,378,Fish and their products,"Carp, raw",3,2,4
+RWA,7,9382,9,382,Fish and their products,"Mackerel, grilled* (without salt and fat)",3,1,3
+RWA,7,9394,9,394,Fish and their products,"Sardines in oil, canned (drained solids with bone)",3,10,12
+RWA,7,9398,9,398,Fish and their products,"Tilapia, raw",4,6,8
+RWA,7,5221,5,221,Fruits and their products,"African locust bean, fruit, pulp, raw",4,9,11
+RWA,7,5245,5,245,Fruits and their products,"Apple, with skin, raw",4,1,3
+RWA,7,5247,5,247,Fruits and their products,"Banana, yellow flesh, raw",4,7,9
+RWA,7,5225,5,225,Fruits and their products,"Breadfruit, raw",3,4,6
+RWA,7,5248,5,248,Fruits and their products,"Clementine, raw",1,8,10
+RWA,7,5228,5,228,Fruits and their products,"Dattock, dried pulp, raw",3,5,7
+RWA,7,5232,5,232,Fruits and their products,"Landolphia, pulp, raw",2,10,12
+RWA,7,5233,5,233,Fruits and their products,"Lemon, raw",1,4,6
+RWA,7,5255,5,255,Fruits and their products,"Mango, deep orange flesh",1,6,8
+RWA,7,5240,5,240,Fruits and their products,"Tamarind, fruit, ripe, raw",1,11,1
+RWA,7,3134,3,134,Legumes and their products,"Broad beans, dried, raw",4,10,12
+RWA,7,3142,3,142,Legumes and their products,"Pigeon pea, dried, raw",3,0,2
+RWA,7,7316,7,316,Meat and poultry and their products,"Bamboo caterpillar, deep fried",1,1,3
+RWA,7,7315,7,315,Meat and poultry and their products,"Beef, meat, cured, corned, canned",2,9,11
+RWA,7,7311,7,311,Meat and poultry and their products,"Beef, tripe, raw",1,12,2
+RWA,7,7334,7,334,Meat and poultry and their products,"Crocodile, raw",2,1,3
+RWA,7,7317,7,317,Meat and poultry and their products,"Game meat, dried",3,1,3
+RWA,7,7343,7,343,Meat and poultry and their products,"Lamb, liver, raw",2,12,2
+RWA,7,7345,7,345,Meat and poultry and their products,"Locust, raw",2,5,7
+RWA,7,10427,10,427,Milk and their products,Coconut oil,2,4,6
+RWA,7,10416,10,416,Milk and their products,"Infant formula, powder, for 6 months",1,2,4
+RWA,7,10431,10,431,Milk and their products,"Margarine, fortified",4,5,7
+RWA,7,10406,10,406,Milk and their products,"Milk, cow, powder, whole",3,3,5
+RWA,7,10405,10,405,Milk and their products,"Milk, cow, whole, 3.5 % fat (includes pasteurised, sterilised and UHT)",4,0,2
+RWA,7,10432,10,432,Milk and their products,"Palm oil, refined",4,8,10
+RWA,7,10433,10,433,Milk and their products,Shea butter,3,10,12
+RWA,7,10435,10,435,Milk and their products,Vegetable oil,4,10,12
+RWA,7,10409,10,409,Milk and their products,"Yoghurt, whole milk, plain",1,12,2
+RWA,7,10425,10,425,Milk and their products,"Yoghurt, whole milk, with fruits",1,1,3
+RWA,7,12463,12,463,Miscellaneous,"Cumin, seed",1,1,3
+RWA,7,12468,12,468,Miscellaneous,"Pepper, black",2,4,6
+RWA,7,12469,12,469,Miscellaneous,Salt,1,8,10
+RWA,7,6272,6,272,"Nuts, seeds and their products","Groundnut, shelled, dried, raw",1,1,3
+RWA,7,6276,6,276,"Nuts, seeds and their products","Sesame seeds, whole, dried, raw",3,10,12
+RWA,7,6277,6,277,"Nuts, seeds and their products","Shea nut, seed kernel, dried, raw",3,8,10
+RWA,7,2095,2,95,"Starchy roots, tubers and their products","Cassava sweet, tuber, dried",3,2,4
+RWA,7,2077,2,77,"Starchy roots, tubers and their products","Cassava, tuber, raw",1,1,3
+RWA,7,2083,2,83,"Starchy roots, tubers and their products","Potato, raw",1,4,6
+RWA,7,2096,2,96,"Starchy roots, tubers and their products","Sweet potato, pale yellow, raw",3,3,5
+RWA,7,4173,4,173,Vegetables and their products,"Amaranth leaves, raw",4,2,4
+RWA,7,4155,4,155,Vegetables and their products,"Cabbage, raw",1,7,9
+RWA,7,4163,4,163,Vegetables and their products,"Eggplant leaves, raw",2,4,6
+RWA,7,4165,4,165,Vegetables and their products,"Garlic, raw",1,2,4
+RWA,7,4154,4,154,Vegetables and their products,"Okra leaves, raw",2,8,10
+RWA,7,4197,4,197,Vegetables and their products,"Pepper, sweet, red, raw",4,9,11
+RWA,7,4205,4,205,Vegetables and their products,"Pumpkin leaves, dried",2,1,3
+RWA,7,4201,4,201,Vegetables and their products,"Pumpkin, squash, raw",4,12,2
+RWA,7,4217,4,217,Vegetables and their products,"Tomato, powder",1,9,11
+RWA,7,4172,4,172,Vegetables and their products,"Vernonia, leaves, raw",4,5,7
+ETH,8,11436,11,436,Beverages,Beer european (4.4 % alcohol),2,2,4
+ETH,8,11437,11,437,Beverages,"Beer, maize  (est. 3 % alcohol)",1,4,6
+ETH,8,11438,11,438,Beverages,"Beer, millet (est. 3 % alcohol)",3,2,4
+ETH,8,11440,11,440,Beverages,"Coffee, instant, powder",3,12,2
+ETH,8,11450,11,450,Beverages,Ovaltine beverage with whole milk (without sugar; fortified),4,9,11
+ETH,8,11441,11,441,Beverages,Palm wine (est. 3.8 % alcohol),3,8,10
+ETH,8,11442,11,442,Beverages,"Sap, palm, fresh (0.3 % alcohol)",3,7,9
+ETH,8,1047,1,47,Cereals and their products,"Bread, wheat, white for toasting",3,5,7
+ETH,8,1048,1,48,Cereals and their products,"Bread, wheat, wholemeal",1,2,4
+ETH,8,1059,1,59,Cereals and their products,"Maize, white, flour degermed ",3,11,1
+ETH,8,1057,1,57,Cereals and their products,"Maize, white, flour of whole grain",1,4,6
+ETH,8,1076,1,76,Cereals and their products,"Maize, white, stiff porridge* (without salt)",4,10,12
+ETH,8,1004,1,4,Cereals and their products,"Maize, white, whole kernel, dried, raw",3,5,7
+ETH,8,1063,1,63,Cereals and their products,"Pearl millet, flour (without bran)",4,5,7
+ETH,8,1067,1,67,Cereals and their products,"Rice, red native,  milled, raw",2,2,4
+ETH,8,1065,1,65,Cereals and their products,"Rice, red native, hulled, raw",1,7,9
+ETH,8,9369,9,369,Fish and their products,"Anchovy, canned in oil (drained solids)",3,2,4
+ETH,8,9375,9,375,Fish and their products,"Catfish, raw",2,2,4
+ETH,8,9389,9,389,Fish and their products,"Perch, Nile, raw",1,9,11
+ETH,8,9361,9,361,Fish and their products,"Sardine, raw",4,10,12
+ETH,8,9394,9,394,Fish and their products,"Sardines in oil, canned (drained solids with bone)",3,6,8
+ETH,8,9395,9,395,Fish and their products,"Shiny-nose, raw",1,5,7
+ETH,8,9362,9,362,Fish and their products,"Tuna, raw",3,10,12
+ETH,8,5244,5,244,Fruits and their products,"Akee, pulp, raw",2,9,11
+ETH,8,5247,5,247,Fruits and their products,"Banana, yellow flesh, raw",2,9,11
+ETH,8,5224,5,224,Fruits and their products,"Baobab, fruit/Monkey bread, pulp, raw",2,12,2
+ETH,8,5252,5,252,Fruits and their products,"Fig, dried ",1,7,9
+ETH,8,5231,5,231,Fruits and their products,"Jujube, raw",3,1,3
+ETH,8,5237,5,237,Fruits and their products,"Pineapple, pulp, raw",4,7,9
+ETH,8,5261,5,261,Fruits and their products,"Plantain, ripe, raw",4,4,6
+ETH,8,5260,5,260,Fruits and their products,"Pomegranate, raw",2,3,5
+ETH,8,5238,5,238,Fruits and their products,"Soapberry, fruit, raw",4,5,7
+ETH,8,5264,5,264,Fruits and their products,"Sweet apple, fruit, raw",4,8,10
+ETH,8,5240,5,240,Fruits and their products,"Tamarind, fruit, ripe, raw",1,7,9
+ETH,8,3119,3,119,Legumes and their products,"African locust bean, seeds, dried",2,1,3
+ETH,8,3111,3,111,Legumes and their products,"Bambara groundnut, dried, raw ",4,4,6
+ETH,8,3115,3,115,Legumes and their products,"Cowpea, black, dried, raw",2,1,3
+ETH,8,7304,7,304,Meat and poultry and their products,"Beef, meat, approx. 30 % fat, boneless, raw",4,6,8
+ETH,8,7326,7,326,Meat and poultry and their products,"Chicken, light meat, flesh and skin, raw",2,7,9
+ETH,8,7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless, raw",1,8,10
+ETH,8,10410,10,410,Milk and their products,Cheddar,4,10,12
+ETH,8,10411,10,411,Milk and their products,"Cheese, goat, hard type",3,8,10
+ETH,8,10428,10,428,Milk and their products,Groundnut oil,1,4,6
+ETH,8,10422,10,422,Milk and their products,"Milk, camel, raw (average of different breeds)",2,11,1
+ETH,8,10417,10,417,Milk and their products,"Milk, cow, partly skimmed, 1.5 % fat",3,3,5
+ETH,8,10405,10,405,Milk and their products,"Milk, cow, whole, 3.5 % fat (includes pasteurised, sterilised and UHT)",1,11,1
+ETH,8,10433,10,433,Milk and their products,Shea butter,3,1,3
+ETH,8,10409,10,409,Milk and their products,"Yoghurt, whole milk, plain",4,6,8
+ETH,8,12458,12,458,Miscellaneous,Anis seed,3,10,12
+ETH,8,12459,12,459,Miscellaneous,"Bay leaf, dried",2,3,5
+ETH,8,12464,12,464,Miscellaneous,"Ginger, root, raw",3,3,5
+ETH,8,12455,12,455,Miscellaneous,Honey,1,9,11
+ETH,8,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",1,1,3
+ETH,8,12469,12,469,Miscellaneous,Salt,2,11,1
+ETH,8,6265,6,265,"Nuts, seeds and their products","Cashew nut, raw",1,3,5
+ETH,8,6285,6,285,"Nuts, seeds and their products","Groundnut, combined varieties, shelled, dried, raw (Ghana)",3,3,5
+ETH,8,6273,6,273,"Nuts, seeds and their products","Groundnut, rose, shelled, dried, raw (Benin)",1,3,5
+ETH,8,2078,2,78,"Starchy roots, tubers and their products","Cassava, tuber, dried",1,6,8
+ETH,8,2096,2,96,"Starchy roots, tubers and their products","Sweet potato, pale yellow, raw",4,7,9
+ETH,8,2089,2,89,"Starchy roots, tubers and their products","Taro, tuber, raw",3,1,3
+ETH,8,4152,4,152,Vegetables and their products,"Baobab leaves, dried",2,7,9
+ETH,8,4182,4,182,Vegetables and their products,"Cucumber, raw",3,9,11
+ETH,8,4188,4,188,Vegetables and their products,"Jute (bush-okra) leaves, raw",1,6,8
+ETH,8,4199,4,199,Vegetables and their products,"Pepper, sweet, green, raw",1,7,9
+ETH,8,4197,4,197,Vegetables and their products,"Pepper, sweet, red, raw",3,10,12
+ETH,8,4201,4,201,Vegetables and their products,"Pumpkin, squash, raw",4,4,6
+ETH,8,4166,4,166,Vegetables and their products,"Roselle leaves, raw",2,7,9
+RWA,8,11440,11,440,Beverages,"Coffee, instant, powder",4,2,4
+RWA,8,11448,11,448,Beverages,"Juice, grapefruit, canned, unsweetened",4,7,9
+RWA,8,11445,11,445,Beverages,"Juice, lemon, unsweetened",4,8,10
+RWA,8,11446,11,446,Beverages,"Juice, orange, unsweetened",2,10,12
+RWA,8,11453,11,453,Beverages,"Ovaltine powder, fortified",1,6,8
+RWA,8,1046,1,46,Cereals and their products,"Bread, wheat, white",3,0,2
+RWA,8,1045,1,45,Cereals and their products,"Bread/rolls, white",1,1,3
+RWA,8,1001,1,1,Cereals and their products,"Fonio, white, whole grain, raw",4,0,2
+RWA,8,1058,1,58,Cereals and their products,"Maize, white, flour refined",4,4,6
+RWA,8,1004,1,4,Cereals and their products,"Maize, white, whole kernel, dried, raw",1,9,11
+RWA,8,1063,1,63,Cereals and their products,"Pearl millet, flour (without bran)",2,3,5
+RWA,8,1067,1,67,Cereals and their products,"Rice, red native,  milled, raw",4,6,8
+RWA,8,1036,1,36,Cereals and their products,"Rice, white, polished, raw",4,2,4
+RWA,8,1039,1,39,Cereals and their products,"Sorghum, whole grain, raw ",1,4,6
+RWA,8,1040,1,40,Cereals and their products,"Sorghum, whole grain, white, raw",1,3,5
+RWA,8,1073,1,73,Cereals and their products,"Wheat, bran",4,7,9
+RWA,8,9359,9,359,Fish and their products,"Barracuda, raw",2,6,8
+RWA,8,9372,9,372,Fish and their products,"Bayad, raw",4,4,6
+RWA,8,9375,9,375,Fish and their products,"Catfish, raw",4,11,1
+RWA,8,9363,9,363,Fish and their products,"White grouper, raw",1,6,8
+RWA,8,5250,5,250,Fruits and their products,"Dates, dried",1,11,1
+RWA,8,5251,5,251,Fruits and their products,"Fig, raw ",4,9,11
+RWA,8,5229,5,229,Fruits and their products,"Guava, fruit, raw",3,6,8
+RWA,8,5258,5,258,Fruits and their products,"Melon, cantaloup, raw",2,2,4
+RWA,8,5237,5,237,Fruits and their products,"Pineapple, pulp, raw",1,3,5
+RWA,8,5260,5,260,Fruits and their products,"Pomegranate, raw",1,1,3
+RWA,8,5240,5,240,Fruits and their products,"Tamarind, fruit, ripe, raw",1,12,2
+RWA,8,5241,5,241,Fruits and their products,"Watermelon, fruit, raw",3,1,3
+RWA,8,3132,3,132,Legumes and their products,"Beans, white, dried",1,12,2
+RWA,8,3142,3,142,Legumes and their products,"Pigeon pea, dried, raw",1,5,7
+RWA,8,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",4,0,2
+RWA,8,7311,7,311,Meat and poultry and their products,"Beef, tripe, raw",2,9,11
+RWA,8,7320,7,320,Meat and poultry and their products,"Chicken, dark meat, flesh and skin, raw",1,6,8
+RWA,8,7326,7,326,Meat and poultry and their products,"Chicken, light meat, flesh and skin, raw",3,9,11
+RWA,8,7336,7,336,Meat and poultry and their products,"Goat, meat, raw",1,0,2
+RWA,8,7341,7,341,Meat and poultry and their products,"Lamb, brain, raw",3,4,6
+RWA,8,7343,7,343,Meat and poultry and their products,"Lamb, liver, raw",1,1,3
+RWA,8,10411,10,411,Milk and their products,"Cheese, goat, hard type",4,1,3
+RWA,8,10412,10,412,Milk and their products,"Cheese, Gouda",3,2,4
+RWA,8,10430,10,430,Milk and their products,Cottonseed oil,2,7,9
+RWA,8,10428,10,428,Milk and their products,Groundnut oil,2,7,9
+RWA,8,10415,10,415,Milk and their products,"Infant formula, powder, for 3 months",4,11,1
+RWA,8,10420,10,420,Milk and their products,"Milk, cow, canned, evaporated",3,4,6
+RWA,8,10429,10,429,Milk and their products,"Palm oil, red",2,8,10
+RWA,8,10432,10,432,Milk and their products,"Palm oil, refined",4,0,2
+RWA,8,10433,10,433,Milk and their products,Shea butter,2,11,1
+RWA,8,10435,10,435,Milk and their products,Vegetable oil,3,11,1
+RWA,8,12466,12,466,Miscellaneous,"Mustard, powder",3,8,10
+RWA,8,6265,6,265,"Nuts, seeds and their products","Cashew nut, raw",1,10,12
+RWA,8,6268,6,268,"Nuts, seeds and their products","Coconut, kernel, dried, raw",2,7,9
+RWA,8,6266,6,266,"Nuts, seeds and their products","Coconut, mature kernel, fresh, raw",3,0,2
+RWA,8,6289,6,289,"Nuts, seeds and their products","Palm nut kernel, shelled, raw",2,1,3
+RWA,8,2078,2,78,"Starchy roots, tubers and their products","Cassava, tuber, dried",2,10,12
+RWA,8,2077,2,77,"Starchy roots, tubers and their products","Cassava, tuber, raw",1,3,5
+RWA,8,2083,2,83,"Starchy roots, tubers and their products","Potato, raw",1,3,5
+RWA,8,2096,2,96,"Starchy roots, tubers and their products","Sweet potato, pale yellow, raw",2,10,12
+RWA,8,2100,2,100,"Starchy roots, tubers and their products","Tiger nut, tuber dried",2,5,7
+RWA,8,2093,2,93,"Starchy roots, tubers and their products","Yam tuber, raw",1,10,12
+RWA,8,4151,4,151,Vegetables and their products,"Baobab, leaves,  raw",1,11,1
+RWA,8,4162,4,162,Vegetables and their products,"Eggplant, raw",2,1,3
+RWA,8,4194,4,194,Vegetables and their products,"Onions, dried",3,8,10
+RWA,8,4201,4,201,Vegetables and their products,"Pumpkin, squash, raw",3,1,3
+RWA,8,4169,4,169,Vegetables and their products,"Tamarind, leaves, raw",3,0,2
+RWA,8,4170,4,170,Vegetables and their products,"Taro, leaves, raw",2,8,10
+RWA,8,4217,4,217,Vegetables and their products,"Tomato, powder",3,7,9
+ETH,9,11438,11,438,Beverages,"Beer, millet (est. 3 % alcohol)",2,11,1
+ETH,9,11453,11,453,Beverages,"Ovaltine powder, fortified",3,7,9
+ETH,9,1044,1,44,Cereals and their products,"Bread, maize flour, yellow, with milk and egg",1,4,6
+ETH,9,1045,1,45,Cereals and their products,"Bread/rolls, white",2,9,11
+ETH,9,1001,1,1,Cereals and their products,"Fonio, white, whole grain, raw",4,1,3
+ETH,9,1060,1,60,Cereals and their products,"Maize, white, grit, degermed",1,0,2
+ETH,9,1004,1,4,Cereals and their products,"Maize, white, whole kernel, dried, raw",1,3,5
+ETH,9,1075,1,75,Cereals and their products,"Maize, yellow, stiff porridge* (without salt)",1,2,4
+ETH,9,8354,8,354,Eggs and their products,"Egg, chicken, raw",2,8,10
+ETH,9,9364,9,364,Fish and their products,"African carp, raw",3,3,5
+ETH,9,9382,9,382,Fish and their products,"Mackerel, grilled* (without salt and fat)",1,3,5
+ETH,9,9394,9,394,Fish and their products,"Sardines in oil, canned (drained solids with bone)",2,1,3
+ETH,9,9395,9,395,Fish and their products,"Shiny-nose, raw",4,2,4
+ETH,9,5242,5,242,Fruits and their products,"African fan palm, fruit, pulp, raw",3,5,7
+ETH,9,5222,5,222,Fruits and their products,"Avocado, pulp, raw",2,0,2
+ETH,9,5226,5,226,Fruits and their products,"Cashew apple, pulp, raw",1,7,9
+ETH,9,5232,5,232,Fruits and their products,"Landolphia, pulp, raw",4,3,5
+ETH,9,5255,5,255,Fruits and their products,"Mango, deep orange flesh",3,10,12
+ETH,9,5256,5,256,Fruits and their products,"Mango, pale flesh, raw",4,8,10
+ETH,9,5259,5,259,Fruits and their products,"Palm nuts, pulp, raw",2,7,9
+ETH,9,5264,5,264,Fruits and their products,"Sweet apple, fruit, raw",1,11,1
+ETH,9,3120,3,120,Legumes and their products,"African yam bean, dried, raw",3,1,3
+ETH,9,3115,3,115,Legumes and their products,"Cowpea, black, dried, raw",4,7,9
+ETH,9,7323,7,323,Meat and poultry and their products,"Chicken, light meat, flesh, raw",3,1,3
+ETH,9,7345,7,345,Meat and poultry and their products,"Locust, raw",1,1,3
+ETH,9,7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless, raw",1,1,3
+ETH,9,10412,10,412,Milk and their products,"Cheese, Gouda",2,8,10
+ETH,9,10418,10,418,Milk and their products,"Milk, cow,  skimmed, 0.5 % fat",3,9,11
+ETH,9,10407,10,407,Milk and their products,"Milk, goat, raw",3,4,6
+ETH,9,10408,10,408,Milk and their products,"Milk, human, mature, raw",1,12,2
+ETH,9,10429,10,429,Milk and their products,"Palm oil, red",3,11,1
+ETH,9,10433,10,433,Milk and their products,Shea butter,1,6,8
+ETH,9,10424,10,424,Milk and their products,Vacherin cheese,4,0,2
+ETH,9,12460,12,460,Miscellaneous,"Chilli pepper, dried",4,9,11
+ETH,9,12463,12,463,Miscellaneous,"Cumin, seed",3,11,1
+ETH,9,6269,6,269,"Nuts, seeds and their products",Coconut milk ,2,6,8
+ETH,9,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",3,1,3
+ETH,9,6273,6,273,"Nuts, seeds and their products","Groundnut, rose, shelled, dried, raw (Benin)",1,8,10
+ETH,9,2093,2,93,"Starchy roots, tubers and their products","Yam tuber, raw",3,8,10
+ETH,9,4155,4,155,Vegetables and their products,"Cabbage, raw",2,5,7
+ETH,9,4158,4,158,Vegetables and their products,"Cassava, leaves, raw",3,6,8
+ETH,9,4186,4,186,Vegetables and their products,"False sesame, leaves, raw",4,9,11
+ETH,9,4188,4,188,Vegetables and their products,"Jute (bush-okra) leaves, raw",3,10,12
+ETH,9,4197,4,197,Vegetables and their products,"Pepper, sweet, red, raw",4,11,1
+ETH,9,4203,4,203,Vegetables and their products,"Pumpkin leaves, raw",3,6,8
+ETH,9,4216,4,216,Vegetables and their products,"Tomato paste, concentrated",1,3,5
+ETH,9,4218,4,218,Vegetables and their products,"Turnip, raw ",2,9,11
+RWA,9,11444,11,444,Beverages,"Coffee, liquid",1,2,4
+RWA,9,11448,11,448,Beverages,"Juice, grapefruit, canned, unsweetened",4,4,6
+RWA,9,11442,11,442,Beverages,"Sap, palm, fresh (0.3 % alcohol)",3,7,9
+RWA,9,1048,1,48,Cereals and their products,"Bread, wheat, wholemeal",2,5,7
+RWA,9,1002,1,2,Cereals and their products,"Fonio, black, whole grain, raw",1,5,7
+RWA,9,1051,1,51,Cereals and their products,"Fonio, husked grains, boiled* (without salt)",4,3,5
+RWA,9,1015,1,15,Cereals and their products,"Millet, whole grain, raw",1,7,9
+RWA,9,1017,1,17,Cereals and their products,"Pearl millet, whole grain, raw (with bran)",4,9,11
+RWA,9,1037,1,37,Cereals and their products,"Rice, white, raw",3,11,1
+RWA,9,1073,1,73,Cereals and their products,"Wheat, bran",1,7,9
+RWA,9,1074,1,74,Cereals and their products,"Wheat, whole grains, raw",2,6,8
+RWA,9,9369,9,369,Fish and their products,"Anchovy, canned in oil (drained solids)",4,10,12
+RWA,9,9386,9,386,Fish and their products,"Mudfish, raw",3,12,2
+RWA,9,9398,9,398,Fish and their products,"Tilapia, raw",3,6,8
+RWA,9,5242,5,242,Fruits and their products,"African fan palm, fruit, pulp, raw",3,8,10
+RWA,9,5226,5,226,Fruits and their products,"Cashew apple, pulp, raw",3,5,7
+RWA,9,5250,5,250,Fruits and their products,"Dates, dried",1,10,12
+RWA,9,5254,5,254,Fruits and their products,"Grapefruit, pulp, raw",4,12,2
+RWA,9,3132,3,132,Legumes and their products,"Beans, white, dried",3,7,9
+RWA,9,3142,3,142,Legumes and their products,"Pigeon pea, dried, raw",3,2,4
+RWA,9,7291,7,291,Meat and poultry and their products,"Beef liver, raw",4,7,9
+RWA,9,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",1,8,10
+RWA,9,7309,7,309,Meat and poultry and their products,"Beef, kidney, raw",2,6,8
+RWA,9,7299,7,299,Meat and poultry and their products,"Beef, meat, lean, boneless, raw",2,4,6
+RWA,9,7323,7,323,Meat and poultry and their products,"Chicken, light meat, flesh, raw",4,7,9
+RWA,9,7345,7,345,Meat and poultry and their products,"Locust, raw",2,3,5
+RWA,9,7346,7,346,Meat and poultry and their products,"Mopanie worm, canned",1,7,9
+RWA,9,7297,7,297,Meat and poultry and their products,"Rabbit, flesh only, raw",2,6,8
+RWA,9,10411,10,411,Milk and their products,"Cheese, goat, hard type",3,8,10
+RWA,9,10413,10,413,Milk and their products,"Cream, whipping, 38 % fat",3,2,4
+RWA,9,10415,10,415,Milk and their products,"Infant formula, powder, for 3 months",4,3,5
+RWA,9,10407,10,407,Milk and their products,"Milk, goat, raw",3,4,6
+RWA,9,10408,10,408,Milk and their products,"Milk, human, mature, raw",4,11,1
+RWA,9,10432,10,432,Milk and their products,"Palm oil, refined",2,11,1
+RWA,9,10424,10,424,Milk and their products,Vacherin cheese,4,6,8
+RWA,9,10409,10,409,Milk and their products,"Yoghurt, whole milk, plain",1,6,8
+RWA,9,12457,12,457,Miscellaneous,Vinegar,4,7,9
+RWA,9,6265,6,265,"Nuts, seeds and their products","Cashew nut, raw",4,2,4
+RWA,9,6269,6,269,"Nuts, seeds and their products",Coconut milk ,4,8,10
+RWA,9,6288,6,288,"Nuts, seeds and their products","Groundnut flour, defatted",4,6,8
+RWA,9,6287,6,287,"Nuts, seeds and their products","Groundnut flour, with fat",1,6,8
+RWA,9,6286,6,286,"Nuts, seeds and their products",Groundnut paste,4,12,2
+RWA,9,6289,6,289,"Nuts, seeds and their products","Palm nut kernel, shelled, raw",4,10,12
+RWA,9,2083,2,83,"Starchy roots, tubers and their products","Potato, raw",2,7,9
+RWA,9,2098,2,98,"Starchy roots, tubers and their products","Tiger nut, tuber, raw",4,8,10
+RWA,9,2091,2,91,"Starchy roots, tubers and their products","Water yam, tuber, raw",3,12,2
+RWA,9,2110,2,110,"Starchy roots, tubers and their products","Yam tuber, flour",2,8,10
+RWA,9,4182,4,182,Vegetables and their products,"Cucumber, raw",1,11,1
+RWA,9,4154,4,154,Vegetables and their products,"Okra leaves, raw",4,4,6
+RWA,9,4197,4,197,Vegetables and their products,"Pepper, sweet, red, raw",4,7,9
+RWA,9,4201,4,201,Vegetables and their products,"Pumpkin, squash, raw",3,12,2
+RWA,9,4166,4,166,Vegetables and their products,"Roselle leaves, raw",3,12,2
+ETH,10,11440,11,440,Beverages,"Coffee, instant, powder",2,7,9
+ETH,10,11445,11,445,Beverages,"Juice, lemon, unsweetened",3,11,1
+ETH,10,11446,11,446,Beverages,"Juice, orange, unsweetened",2,2,4
+ETH,10,11449,11,449,Beverages,"Nectar, Mango, canned",3,4,6
+ETH,10,11441,11,441,Beverages,Palm wine (est. 3.8 % alcohol),4,6,8
+ETH,10,11443,11,443,Beverages,"Tea, infusion",1,11,1
+ETH,10,1075,1,75,Cereals and their products,"Maize, yellow, stiff porridge* (without salt)",3,6,8
+ETH,10,1063,1,63,Cereals and their products,"Pearl millet, flour (without bran)",2,5,7
+ETH,10,1067,1,67,Cereals and their products,"Rice, red native,  milled, raw",2,9,11
+ETH,10,1072,1,72,Cereals and their products,"Sorghum, flour, degermed",4,9,11
+ETH,10,1039,1,39,Cereals and their products,"Sorghum, whole grain, raw ",4,12,2
+ETH,10,1040,1,40,Cereals and their products,"Sorghum, whole grain, white, raw",3,1,3
+ETH,10,9359,9,359,Fish and their products,"Barracuda, raw",3,7,9
+ETH,10,9386,9,386,Fish and their products,"Mudfish, raw",1,5,7
+ETH,10,9395,9,395,Fish and their products,"Shiny-nose, raw",3,1,3
+ETH,10,5221,5,221,Fruits and their products,"African locust bean, fruit, pulp, raw",2,1,3
+ETH,10,5245,5,245,Fruits and their products,"Apple, with skin, raw",4,5,7
+ETH,10,5225,5,225,Fruits and their products,"Breadfruit, raw",1,9,11
+ETH,10,5250,5,250,Fruits and their products,"Dates, dried",1,9,11
+ETH,10,5253,5,253,Fruits and their products,"Fruit cocktail, canned in syrup",3,4,6
+ETH,10,5233,5,233,Fruits and their products,"Lemon, raw",3,7,9
+ETH,10,5235,5,235,Fruits and their products,"Orange, raw",3,10,12
+ETH,10,5260,5,260,Fruits and their products,"Pomegranate, raw",2,7,9
+ETH,10,5263,5,263,Fruits and their products,"Shea fruit pulp, raw",2,6,8
+ETH,10,5238,5,238,Fruits and their products,"Soapberry, fruit, raw",2,9,11
+ETH,10,5264,5,264,Fruits and their products,"Sweet apple, fruit, raw",1,2,4
+ETH,10,3119,3,119,Legumes and their products,"African locust bean, seeds, dried",4,6,8
+ETH,10,3113,3,113,Legumes and their products,"Bambara groundnuts, white, raw",3,1,3
+ETH,10,3132,3,132,Legumes and their products,"Beans, white, dried",2,3,5
+ETH,10,3114,3,114,Legumes and their products,"Cowpea, dried, raw",4,9,11
+ETH,10,3142,3,142,Legumes and their products,"Pigeon pea, dried, raw",4,12,2
+ETH,10,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",1,6,8
+ETH,10,7307,7,307,Meat and poultry and their products,"Beef, meat, lean, cured, dried",3,9,11
+ETH,10,7294,7,294,Meat and poultry and their products,"Lamb/mutton, meat, moderately fat, raw",3,9,11
+ETH,10,7333,7,333,Meat and poultry and their products,"Mole cricket, blanched",1,3,5
+ETH,10,10426,10,426,Milk and their products,"Butter, from cow's milk (without salt)",2,4,6
+ETH,10,10428,10,428,Milk and their products,Groundnut oil,2,3,5
+ETH,10,10417,10,417,Milk and their products,"Milk, cow, partly skimmed, 1.5 % fat",1,6,8
+ETH,10,10423,10,423,Milk and their products,"Milk, human, colostrum, raw",3,3,5
+ETH,10,10408,10,408,Milk and their products,"Milk, human, mature, raw",3,6,8
+ETH,10,10434,10,434,Milk and their products,Soya oil,4,11,1
+ETH,10,10425,10,425,Milk and their products,"Yoghurt, whole milk, with fruits",2,11,1
+ETH,10,12459,12,459,Miscellaneous,"Bay leaf, dried",4,0,2
+ETH,10,12461,12,461,Miscellaneous,"Cinnamon, ground",1,1,3
+ETH,10,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",3,7,9
+ETH,10,12456,12,456,Miscellaneous,Sugar,4,6,8
+ETH,10,12472,12,472,Miscellaneous,"Yeast extract, Marmite",3,9,11
+ETH,10,6269,6,269,"Nuts, seeds and their products",Coconut milk ,2,9,11
+ETH,10,6287,6,287,"Nuts, seeds and their products","Groundnut flour, with fat",2,6,8
+ETH,10,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",2,4,6
+ETH,10,2077,2,77,"Starchy roots, tubers and their products","Cassava, tuber, raw",1,12,2
+ETH,10,2083,2,83,"Starchy roots, tubers and their products","Potato, raw",1,10,12
+ETH,10,2110,2,110,"Starchy roots, tubers and their products","Yam tuber, flour",2,10,12
+ETH,10,4167,4,167,Vegetables and their products,"Okra fruit, raw",2,3,5
+ETH,10,4154,4,154,Vegetables and their products,"Okra leaves, raw",4,3,5
+ETH,10,4205,4,205,Vegetables and their products,"Pumpkin leaves, dried",4,5,7
+ETH,10,4209,4,209,Vegetables and their products,"Sweet potato, leaves, raw",1,2,4
+RWA,10,11447,11,447,Beverages,"Juice, apple, canned or bottled",2,8,10
+RWA,10,11445,11,445,Beverages,"Juice, lemon, unsweetened",4,6,8
+RWA,10,11446,11,446,Beverages,"Juice, orange, unsweetened",3,2,4
+RWA,10,1046,1,46,Cereals and their products,"Bread, wheat, white",4,6,8
+RWA,10,1047,1,47,Cereals and their products,"Bread, wheat, white for toasting",4,5,7
+RWA,10,1048,1,48,Cereals and their products,"Bread, wheat, wholemeal",2,10,12
+RWA,10,1059,1,59,Cereals and their products,"Maize, white, flour degermed ",3,9,11
+RWA,10,1060,1,60,Cereals and their products,"Maize, white, grit, degermed",2,2,4
+RWA,10,1055,1,55,Cereals and their products,"Maize, yellow, grit, degermed",4,11,1
+RWA,10,9375,9,375,Fish and their products,"Catfish, raw",3,2,4
+RWA,10,9382,9,382,Fish and their products,"Mackerel, grilled* (without salt and fat)",1,2,4
+RWA,10,9386,9,386,Fish and their products,"Mudfish, raw",2,6,8
+RWA,10,9362,9,362,Fish and their products,"Tuna, raw",1,2,4
+RWA,10,5244,5,244,Fruits and their products,"Akee, pulp, raw",1,9,11
+RWA,10,5247,5,247,Fruits and their products,"Banana, yellow flesh, raw",3,10,12
+RWA,10,5224,5,224,Fruits and their products,"Baobab, fruit/Monkey bread, pulp, raw",2,7,9
+RWA,10,5250,5,250,Fruits and their products,"Dates, dried",3,1,3
+RWA,10,5252,5,252,Fruits and their products,"Fig, dried ",2,2,4
+RWA,10,5232,5,232,Fruits and their products,"Landolphia, pulp, raw",2,6,8
+RWA,10,5233,5,233,Fruits and their products,"Lemon, raw",3,3,5
+RWA,10,5256,5,256,Fruits and their products,"Mango, pale flesh, raw",4,9,11
+RWA,10,5235,5,235,Fruits and their products,"Orange, raw",2,3,5
+RWA,10,5238,5,238,Fruits and their products,"Soapberry, fruit, raw",4,9,11
+RWA,10,5239,5,239,Fruits and their products,"Tamarind, immature fruit, raw",3,8,10
+RWA,10,3111,3,111,Legumes and their products,"Bambara groundnut, dried, raw ",1,9,11
+RWA,10,3112,3,112,Legumes and their products,"Bambara groundnut, red, dried, raw",1,10,12
+RWA,10,3118,3,118,Legumes and their products,"Soya bean, dried, raw",1,0,2
+RWA,10,7298,7,298,Meat and poultry and their products,"Ant flying, dried",3,2,4
+RWA,10,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",1,2,4
+RWA,10,7292,7,292,Meat and poultry and their products,"Beef, meat, 15-20  % fat, boneless, raw",4,2,4
+RWA,10,7331,7,331,Meat and poultry and their products,"Chicken, liver, raw",4,2,4
+RWA,10,7336,7,336,Meat and poultry and their products,"Goat, meat, raw",3,10,12
+RWA,10,10410,10,410,Milk and their products,Cheddar,4,4,6
+RWA,10,10412,10,412,Milk and their products,"Cheese, Gouda",1,1,3
+RWA,10,10414,10,414,Milk and their products,"Cream, 13 % fat",2,3,5
+RWA,10,10417,10,417,Milk and their products,"Milk, cow, partly skimmed, 1.5 % fat",3,7,9
+RWA,10,10406,10,406,Milk and their products,"Milk, cow, powder, whole",2,2,4
+RWA,10,10423,10,423,Milk and their products,"Milk, human, colostrum, raw",2,5,7
+RWA,10,12463,12,463,Miscellaneous,"Cumin, seed",3,8,10
+RWA,10,12466,12,466,Miscellaneous,"Mustard, powder",3,5,7
+RWA,10,12457,12,457,Miscellaneous,Vinegar,1,6,8
+RWA,10,12472,12,472,Miscellaneous,"Yeast extract, Marmite",4,12,2
+RWA,10,6268,6,268,"Nuts, seeds and their products","Coconut, kernel, dried, raw",1,3,5
+RWA,10,6279,6,279,"Nuts, seeds and their products","Colanut, dried, raw",3,4,6
+RWA,10,6272,6,272,"Nuts, seeds and their products","Groundnut, shelled, dried, raw",3,10,12
+RWA,10,6276,6,276,"Nuts, seeds and their products","Sesame seeds, whole, dried, raw",4,5,7
+RWA,10,6277,6,277,"Nuts, seeds and their products","Shea nut, seed kernel, dried, raw",1,5,7
+RWA,10,2085,2,85,"Starchy roots, tubers and their products","Sweet potato, deep yellow, raw",2,6,8
+RWA,10,2096,2,96,"Starchy roots, tubers and their products","Sweet potato, pale yellow, raw",2,9,11
+RWA,10,4173,4,173,Vegetables and their products,"Amaranth leaves, raw",4,10,12
+RWA,10,4152,4,152,Vegetables and their products,"Baobab leaves, dried",3,5,7
+RWA,10,4158,4,158,Vegetables and their products,"Cassava, leaves, raw",4,0,2
+RWA,10,4160,4,160,Vegetables and their products,"Cowpea, leaves, raw",4,7,9
+RWA,10,4163,4,163,Vegetables and their products,"Eggplant leaves, raw",2,9,11
+RWA,10,4162,4,162,Vegetables and their products,"Eggplant, raw",2,9,11
+RWA,10,4186,4,186,Vegetables and their products,"False sesame, leaves, raw",4,0,2
+RWA,10,4165,4,165,Vegetables and their products,"Garlic, raw",1,1,3
+RWA,10,4203,4,203,Vegetables and their products,"Pumpkin leaves, raw",3,9,11
+RWA,10,4212,4,212,Vegetables and their products,"Tamarind, leaves, dried",4,3,5
+RWA,10,4215,4,215,Vegetables and their products,"Tomatoes, canned, packed in juice",3,1,3
+RWA,10,4218,4,218,Vegetables and their products,"Turnip, raw ",3,1,3
+ETH,11,11446,11,446,Beverages,"Juice, orange, unsweetened",4,9,11
+ETH,11,11453,11,453,Beverages,"Ovaltine powder, fortified",3,3,5
+ETH,11,1048,1,48,Cereals and their products,"Bread, wheat, wholemeal",2,5,7
+ETH,11,1052,1,52,Cereals and their products,"Macaroni, dried",2,5,7
+ETH,11,1058,1,58,Cereals and their products,"Maize, white, flour refined",3,6,8
+ETH,11,1060,1,60,Cereals and their products,"Maize, white, grit, degermed",1,1,3
+ETH,11,1075,1,75,Cereals and their products,"Maize, yellow, stiff porridge* (without salt)",1,3,5
+ETH,11,1006,1,6,Cereals and their products,"Maize, yellow, whole kernel, dried, raw",3,3,5
+ETH,11,1032,1,32,Cereals and their products,"Pearl millet, combined varieties, whole grain, raw",1,3,5
+ETH,11,1041,1,41,Cereals and their products,"Sorghum, whole grain, red, raw",3,9,11
+ETH,11,9382,9,382,Fish and their products,"Mackerel, grilled* (without salt and fat)",3,11,1
+ETH,11,9383,9,383,Fish and their products,"Mormyrids, raw",2,9,11
+ETH,11,5243,5,243,Fruits and their products,"African locust bean, flour from fruit, pulp",1,3,5
+ETH,11,5223,5,223,Fruits and their products,"Banana, white flesh, raw",4,9,11
+ETH,11,5250,5,250,Fruits and their products,"Dates, dried",2,6,8
+ETH,11,5227,5,227,Fruits and their products,"Dattock, pulp, raw",2,7,9
+ETH,11,5253,5,253,Fruits and their products,"Fruit cocktail, canned in syrup",2,6,8
+ETH,11,5254,5,254,Fruits and their products,"Grapefruit, pulp, raw",2,2,4
+ETH,11,5258,5,258,Fruits and their products,"Melon, cantaloup, raw",2,8,10
+ETH,11,5235,5,235,Fruits and their products,"Orange, raw",2,0,2
+ETH,11,5264,5,264,Fruits and their products,"Sweet apple, fruit, raw",1,3,5
+ETH,11,3112,3,112,Legumes and their products,"Bambara groundnut, red, dried, raw",3,8,10
+ETH,11,3142,3,142,Legumes and their products,"Pigeon pea, dried, raw",1,9,11
+ETH,11,7291,7,291,Meat and poultry and their products,"Beef liver, raw",2,8,10
+ETH,11,7309,7,309,Meat and poultry and their products,"Beef, kidney, raw",4,7,9
+ETH,11,7292,7,292,Meat and poultry and their products,"Beef, meat, 15-20  % fat, boneless, raw",3,9,11
+ETH,11,7299,7,299,Meat and poultry and their products,"Beef, meat, lean, boneless, raw",3,6,8
+ETH,11,7323,7,323,Meat and poultry and their products,"Chicken, light meat, flesh, raw",2,2,4
+ETH,11,7334,7,334,Meat and poultry and their products,"Crocodile, raw",4,10,12
+ETH,11,7317,7,317,Meat and poultry and their products,"Game meat, dried",3,7,9
+ETH,11,7294,7,294,Meat and poultry and their products,"Lamb/mutton, meat, moderately fat, raw",3,1,3
+ETH,11,10412,10,412,Milk and their products,"Cheese, Gouda",2,3,5
+ETH,11,10419,10,419,Milk and their products,"Milk, cow, canned, condensed, sweetened",2,4,6
+ETH,11,10406,10,406,Milk and their products,"Milk, cow, powder, whole",1,6,8
+ETH,11,10408,10,408,Milk and their products,"Milk, human, mature, raw",2,6,8
+ETH,11,12459,12,459,Miscellaneous,"Bay leaf, dried",2,4,6
+ETH,11,12462,12,462,Miscellaneous,"Cube, beef, dry",3,3,5
+ETH,11,12464,12,464,Miscellaneous,"Ginger, root, raw",3,1,3
+ETH,11,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",2,0,2
+ETH,11,12456,12,456,Miscellaneous,Sugar,2,0,2
+ETH,11,6269,6,269,"Nuts, seeds and their products",Coconut milk ,3,8,10
+ETH,11,6288,6,288,"Nuts, seeds and their products","Groundnut flour, defatted",4,2,4
+ETH,11,6286,6,286,"Nuts, seeds and their products",Groundnut paste,3,2,4
+ETH,11,2081,2,81,"Starchy roots, tubers and their products","Cocoyam, tuber, raw ",4,10,12
+ETH,11,2083,2,83,"Starchy roots, tubers and their products","Potato, raw",3,5,7
+ETH,11,2089,2,89,"Starchy roots, tubers and their products","Taro, tuber, raw",3,8,10
+ETH,11,2091,2,91,"Starchy roots, tubers and their products","Water yam, tuber, raw",3,1,3
+ETH,11,2093,2,93,"Starchy roots, tubers and their products","Yam tuber, raw",3,5,7
+ETH,11,4153,4,153,Vegetables and their products,"Beans, green raw",1,3,5
+ETH,11,4155,4,155,Vegetables and their products,"Cabbage, raw",3,2,4
+ETH,11,4182,4,182,Vegetables and their products,"Cucumber, raw",1,2,4
+ETH,11,4188,4,188,Vegetables and their products,"Jute (bush-okra) leaves, raw",1,9,11
+ETH,11,4199,4,199,Vegetables and their products,"Pepper, sweet, green, raw",1,3,5
+ETH,11,4205,4,205,Vegetables and their products,"Pumpkin leaves, dried",3,3,5
+ETH,11,4217,4,217,Vegetables and their products,"Tomato, powder",4,6,8
+ETH,11,4171,4,171,Vegetables and their products,"Tomato, red, ripe, raw",4,11,1
+RWA,11,1048,1,48,Cereals and their products,"Bread, wheat, wholemeal",1,7,9
+RWA,11,1060,1,60,Cereals and their products,"Maize, white, grit, degermed",2,9,11
+RWA,11,1015,1,15,Cereals and their products,"Millet, whole grain, raw",4,9,11
+RWA,11,1032,1,32,Cereals and their products,"Pearl millet, combined varieties, whole grain, raw",2,0,2
+RWA,11,1036,1,36,Cereals and their products,"Rice, white, polished, raw",3,12,2
+RWA,11,1072,1,72,Cereals and their products,"Sorghum, flour, degermed",3,7,9
+RWA,11,1039,1,39,Cereals and their products,"Sorghum, whole grain, raw ",3,11,1
+RWA,11,9364,9,364,Fish and their products,"African carp, raw",3,10,12
+RWA,11,9372,9,372,Fish and their products,"Bayad, raw",2,4,6
+RWA,11,9386,9,386,Fish and their products,"Mudfish, raw",3,10,12
+RWA,11,9361,9,361,Fish and their products,"Sardine, raw",3,1,3
+RWA,11,9394,9,394,Fish and their products,"Sardines in oil, canned (drained solids with bone)",1,1,3
+RWA,11,9398,9,398,Fish and their products,"Tilapia, raw",1,5,7
+RWA,11,5242,5,242,Fruits and their products,"African fan palm, fruit, pulp, raw",3,11,1
+RWA,11,5244,5,244,Fruits and their products,"Akee, pulp, raw",1,4,6
+RWA,11,5226,5,226,Fruits and their products,"Cashew apple, pulp, raw",4,8,10
+RWA,11,5250,5,250,Fruits and their products,"Dates, dried",3,11,1
+RWA,11,5253,5,253,Fruits and their products,"Fruit cocktail, canned in syrup",1,6,8
+RWA,11,5254,5,254,Fruits and their products,"Grapefruit, pulp, raw",1,0,2
+RWA,11,5229,5,229,Fruits and their products,"Guava, fruit, raw",2,8,10
+RWA,11,5231,5,231,Fruits and their products,"Jujube, raw",1,11,1
+RWA,11,5237,5,237,Fruits and their products,"Pineapple, pulp, raw",2,8,10
+RWA,11,5260,5,260,Fruits and their products,"Pomegranate, raw",2,8,10
+RWA,11,5264,5,264,Fruits and their products,"Sweet apple, fruit, raw",2,10,12
+RWA,11,3111,3,111,Legumes and their products,"Bambara groundnut, dried, raw ",4,5,7
+RWA,11,3140,3,140,Legumes and their products,"Lentils, dried, raw",1,4,6
+RWA,11,7304,7,304,Meat and poultry and their products,"Beef, meat, approx. 30 % fat, boneless, raw",2,0,2
+RWA,11,7307,7,307,Meat and poultry and their products,"Beef, meat, lean, cured, dried",3,5,7
+RWA,11,7341,7,341,Meat and poultry and their products,"Lamb, brain, raw",2,4,6
+RWA,11,7343,7,343,Meat and poultry and their products,"Lamb, liver, raw",3,12,2
+RWA,11,10427,10,427,Milk and their products,Coconut oil,2,7,9
+RWA,11,10414,10,414,Milk and their products,"Cream, 13 % fat",4,7,9
+RWA,11,10413,10,413,Milk and their products,"Cream, whipping, 38 % fat",2,7,9
+RWA,11,10422,10,422,Milk and their products,"Milk, camel, raw (average of different breeds)",3,6,8
+RWA,11,10418,10,418,Milk and their products,"Milk, cow,  skimmed, 0.5 % fat",1,9,11
+RWA,11,10419,10,419,Milk and their products,"Milk, cow, canned, condensed, sweetened",4,5,7
+RWA,11,10407,10,407,Milk and their products,"Milk, goat, raw",4,1,3
+RWA,11,10435,10,435,Milk and their products,Vegetable oil,3,9,11
+RWA,11,12461,12,461,Miscellaneous,"Cinnamon, ground",2,8,10
+RWA,11,12465,12,465,Miscellaneous,"Ginger, roots, dried",2,3,5
+RWA,11,12456,12,456,Miscellaneous,Sugar,3,7,9
+RWA,11,12457,12,457,Miscellaneous,Vinegar,1,7,9
+RWA,11,6265,6,265,"Nuts, seeds and their products","Cashew nut, raw",1,2,4
+RWA,11,6270,6,270,"Nuts, seeds and their products",Coconut water,4,0,2
+RWA,11,6267,6,267,"Nuts, seeds and their products","Coconut, immature kernel, fresh, raw",1,3,5
+RWA,11,6285,6,285,"Nuts, seeds and their products","Groundnut, combined varieties, shelled, dried, raw (Ghana)",3,4,6
+RWA,11,6275,6,275,"Nuts, seeds and their products","Melon seeds, slightly salted, raw",4,10,12
+RWA,11,6290,6,290,"Nuts, seeds and their products","Roselle, red, seed, dried ",3,7,9
+RWA,11,4163,4,163,Vegetables and their products,"Eggplant leaves, raw",4,11,1
+RWA,11,4190,4,190,Vegetables and their products,"Lettuce, raw",2,7,9
+RWA,11,4167,4,167,Vegetables and their products,"Okra fruit, raw",1,1,3
+RWA,11,4154,4,154,Vegetables and their products,"Okra leaves, raw",3,12,2
+RWA,11,4168,4,168,Vegetables and their products,"Onion, raw",3,8,10
+RWA,11,4194,4,194,Vegetables and their products,"Onions, dried",4,6,8
+RWA,11,4199,4,199,Vegetables and their products,"Pepper, sweet, green, raw",4,7,9
+RWA,11,4212,4,212,Vegetables and their products,"Tamarind, leaves, dried",4,4,6
+RWA,11,4169,4,169,Vegetables and their products,"Tamarind, leaves, raw",2,12,2
+RWA,11,4172,4,172,Vegetables and their products,"Vernonia, leaves, raw",4,3,5
+ETH,12,11439,11,439,Beverages,"Beer, sorghum (est. 3% alcohol)",4,1,3
+ETH,12,11452,11,452,Beverages,Ovaltine beverage with skimmed milk (without sugar; fortified),3,11,1
+ETH,12,11450,11,450,Beverages,Ovaltine beverage with whole milk (without sugar; fortified),4,7,9
+ETH,12,11441,11,441,Beverages,Palm wine (est. 3.8 % alcohol),2,2,4
+ETH,12,1044,1,44,Cereals and their products,"Bread, maize flour, yellow, with milk and egg",4,10,12
+ETH,12,1014,1,14,Cereals and their products,"Maize, combined varieties, whole kernel, dried, raw",4,6,8
+ETH,12,1060,1,60,Cereals and their products,"Maize, white, grit, degermed",1,10,12
+ETH,12,1032,1,32,Cereals and their products,"Pearl millet, combined varieties, whole grain, raw",1,12,2
+ETH,12,1041,1,41,Cereals and their products,"Sorghum, whole grain, red, raw",4,4,6
+ETH,12,1043,1,43,Cereals and their products,"Wheat flour, white",1,8,10
+ETH,12,9364,9,364,Fish and their products,"African carp, raw",2,2,4
+ETH,12,9378,9,378,Fish and their products,"Carp, raw",4,1,3
+ETH,12,9389,9,389,Fish and their products,"Perch, Nile, raw",2,10,12
+ETH,12,9362,9,362,Fish and their products,"Tuna, raw",1,5,7
+ETH,12,9363,9,363,Fish and their products,"White grouper, raw",3,12,2
+ETH,12,5222,5,222,Fruits and their products,"Avocado, pulp, raw",3,12,2
+ETH,12,5223,5,223,Fruits and their products,"Banana, white flesh, raw",1,8,10
+ETH,12,5228,5,228,Fruits and their products,"Dattock, dried pulp, raw",4,6,8
+ETH,12,5234,5,234,Fruits and their products,"Mango, orange flesh,  raw",4,5,7
+ETH,12,5235,5,235,Fruits and their products,"Orange, raw",1,7,9
+ETH,12,3119,3,119,Legumes and their products,"African locust bean, seeds, dried",4,3,5
+ETH,12,3111,3,111,Legumes and their products,"Bambara groundnut, dried, raw ",1,11,1
+ETH,12,3134,3,134,Legumes and their products,"Broad beans, dried, raw",2,5,7
+ETH,12,3115,3,115,Legumes and their products,"Cowpea, black, dried, raw",1,12,2
+ETH,12,3118,3,118,Legumes and their products,"Soya bean, dried, raw",3,5,7
+ETH,12,7316,7,316,Meat and poultry and their products,"Bamboo caterpillar, deep fried",2,2,4
+ETH,12,7309,7,309,Meat and poultry and their products,"Beef, kidney, raw",4,3,5
+ETH,12,7299,7,299,Meat and poultry and their products,"Beef, meat, lean, boneless, raw",2,2,4
+ETH,12,7307,7,307,Meat and poultry and their products,"Beef, meat, lean, cured, dried",2,11,1
+ETH,12,7331,7,331,Meat and poultry and their products,"Chicken, liver, raw",3,6,8
+ETH,12,7334,7,334,Meat and poultry and their products,"Crocodile, raw",3,11,1
+ETH,12,7297,7,297,Meat and poultry and their products,"Rabbit, flesh only, raw",3,6,8
+ETH,12,10427,10,427,Milk and their products,Coconut oil,4,4,6
+ETH,12,10431,10,431,Milk and their products,"Margarine, fortified",3,5,7
+ETH,12,10421,10,421,Milk and their products,"Milk, cow powder, skimmed",1,7,9
+ETH,12,10406,10,406,Milk and their products,"Milk, cow, powder, whole",2,11,1
+ETH,12,10432,10,432,Milk and their products,"Palm oil, refined",2,5,7
+ETH,12,12458,12,458,Miscellaneous,Anis seed,1,5,7
+ETH,12,12459,12,459,Miscellaneous,"Bay leaf, dried",3,9,11
+ETH,12,12455,12,455,Miscellaneous,Honey,2,0,2
+ETH,12,12469,12,469,Miscellaneous,Salt,2,7,9
+ETH,12,12472,12,472,Miscellaneous,"Yeast extract, Marmite",1,4,6
+ETH,12,6272,6,272,"Nuts, seeds and their products","Groundnut, shelled, dried, raw",4,2,4
+ETH,12,2077,2,77,"Starchy roots, tubers and their products","Cassava, tuber, raw",4,6,8
+ETH,12,2110,2,110,"Starchy roots, tubers and their products","Yam tuber, flour",1,0,2
+ETH,12,4161,4,161,Vegetables and their products,"Drumstick  leaves, raw",2,0,2
+ETH,12,4163,4,163,Vegetables and their products,"Eggplant leaves, raw",1,3,5
+ETH,12,4164,4,164,Vegetables and their products,"False sesame, leaves, dried",3,2,4
+ETH,12,4190,4,190,Vegetables and their products,"Lettuce, raw",1,12,2
+ETH,12,4167,4,167,Vegetables and their products,"Okra fruit, raw",3,4,6
+ETH,12,4154,4,154,Vegetables and their products,"Okra leaves, raw",4,6,8
+ETH,12,4194,4,194,Vegetables and their products,"Onions, dried",1,5,7
+ETH,12,4197,4,197,Vegetables and their products,"Pepper, sweet, red, raw",2,4,6
+ETH,12,4196,4,196,Vegetables and their products,"Peppers, chilli, raw",1,10,12
+ETH,12,4205,4,205,Vegetables and their products,"Pumpkin leaves, dried",4,5,7
+ETH,12,4201,4,201,Vegetables and their products,"Pumpkin, squash, raw",4,11,1
+ETH,12,4166,4,166,Vegetables and their products,"Roselle leaves, raw",4,5,7
+RWA,12,11437,11,437,Beverages,"Beer, maize  (est. 3 % alcohol)",1,6,8
+RWA,12,11440,11,440,Beverages,"Coffee, instant, powder",1,8,10
+RWA,12,11444,11,444,Beverages,"Coffee, liquid",1,12,2
+RWA,12,11450,11,450,Beverages,Ovaltine beverage with whole milk (without sugar; fortified),1,3,5
+RWA,12,11441,11,441,Beverages,Palm wine (est. 3.8 % alcohol),3,3,5
+RWA,12,1045,1,45,Cereals and their products,"Bread/rolls, white",3,3,5
+RWA,12,1001,1,1,Cereals and their products,"Fonio, white, whole grain, raw",3,2,4
+RWA,12,1006,1,6,Cereals and their products,"Maize, yellow, whole kernel, dried, raw",3,4,6
+RWA,12,1015,1,15,Cereals and their products,"Millet, whole grain, raw",2,5,7
+RWA,12,9378,9,378,Fish and their products,"Carp, raw",1,5,7
+RWA,12,9375,9,375,Fish and their products,"Catfish, raw",4,7,9
+RWA,12,9383,9,383,Fish and their products,"Mormyrids, raw",1,4,6
+RWA,12,5242,5,242,Fruits and their products,"African fan palm, fruit, pulp, raw",3,3,5
+RWA,12,5244,5,244,Fruits and their products,"Akee, pulp, raw",1,6,8
+RWA,12,5245,5,245,Fruits and their products,"Apple, with skin, raw",3,3,5
+RWA,12,5226,5,226,Fruits and their products,"Cashew apple, pulp, raw",2,9,11
+RWA,12,5228,5,228,Fruits and their products,"Dattock, dried pulp, raw",3,1,3
+RWA,12,5259,5,259,Fruits and their products,"Palm nuts, pulp, raw",3,9,11
+RWA,12,5261,5,261,Fruits and their products,"Plantain, ripe, raw",2,9,11
+RWA,12,5238,5,238,Fruits and their products,"Soapberry, fruit, raw",1,6,8
+RWA,12,3132,3,132,Legumes and their products,"Beans, white, dried",1,9,11
+RWA,12,3134,3,134,Legumes and their products,"Broad beans, dried, raw",3,7,9
+RWA,12,3137,3,137,Legumes and their products,"Cowpea, brown, dried, raw",4,1,3
+RWA,12,3140,3,140,Legumes and their products,"Lentils, dried, raw",4,2,4
+RWA,12,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",3,4,6
+RWA,12,7326,7,326,Meat and poultry and their products,"Chicken, light meat, flesh and skin, raw",2,4,6
+RWA,12,7317,7,317,Meat and poultry and their products,"Game meat, dried",1,9,11
+RWA,12,7333,7,333,Meat and poultry and their products,"Mole cricket, blanched",4,11,1
+RWA,12,7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless, raw",2,1,3
+RWA,12,7295,7,295,Meat and poultry and their products,"Pork, meat, approx. 40 % fat, boneless, raw",1,11,1
+RWA,12,10414,10,414,Milk and their products,"Cream, 13 % fat",4,7,9
+RWA,12,10413,10,413,Milk and their products,"Cream, whipping, 38 % fat",2,11,1
+RWA,12,10417,10,417,Milk and their products,"Milk, cow, partly skimmed, 1.5 % fat",1,1,3
+RWA,12,10407,10,407,Milk and their products,"Milk, goat, raw",3,6,8
+RWA,12,10423,10,423,Milk and their products,"Milk, human, colostrum, raw",2,5,7
+RWA,12,10435,10,435,Milk and their products,Vegetable oil,1,7,9
+RWA,12,10409,10,409,Milk and their products,"Yoghurt, whole milk, plain",1,10,12
+RWA,12,12459,12,459,Miscellaneous,"Bay leaf, dried",3,4,6
+RWA,12,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",2,11,1
+RWA,12,6285,6,285,"Nuts, seeds and their products","Groundnut, combined varieties, shelled, dried, raw (Ghana)",3,11,1
+RWA,12,2089,2,89,"Starchy roots, tubers and their products","Taro, tuber, raw",2,6,8
+RWA,12,2098,2,98,"Starchy roots, tubers and their products","Tiger nut, tuber, raw",4,6,8
+RWA,12,2091,2,91,"Starchy roots, tubers and their products","Water yam, tuber, raw",1,10,12
+RWA,12,2093,2,93,"Starchy roots, tubers and their products","Yam tuber, raw",4,7,9
+RWA,12,4153,4,153,Vegetables and their products,"Beans, green raw",1,10,12
+RWA,12,4156,4,156,Vegetables and their products,"Carrot, raw",4,9,11
+RWA,12,4188,4,188,Vegetables and their products,"Jute (bush-okra) leaves, raw",2,10,12
+RWA,12,4168,4,168,Vegetables and their products,"Onion, raw",4,6,8
+RWA,12,4194,4,194,Vegetables and their products,"Onions, dried",2,5,7
+RWA,12,4195,4,195,Vegetables and their products,"Parsley, fresh",3,8,10
+RWA,12,4217,4,217,Vegetables and their products,"Tomato, powder",2,2,4
+ETH,13,11436,11,436,Beverages,Beer european (4.4 % alcohol),4,7,9
+ETH,13,11439,11,439,Beverages,"Beer, sorghum (est. 3% alcohol)",2,1,3
+ETH,13,11445,11,445,Beverages,"Juice, lemon, unsweetened",4,8,10
+ETH,13,11442,11,442,Beverages,"Sap, palm, fresh (0.3 % alcohol)",3,11,1
+ETH,13,11454,11,454,Beverages,"Water, tap",1,6,8
+ETH,13,1044,1,44,Cereals and their products,"Bread, maize flour, yellow, with milk and egg",2,11,1
+ETH,13,1032,1,32,Cereals and their products,"Pearl millet, combined varieties, whole grain, raw",1,4,6
+ETH,13,1017,1,17,Cereals and their products,"Pearl millet, whole grain, raw (with bran)",4,12,2
+ETH,13,1039,1,39,Cereals and their products,"Sorghum, whole grain, raw ",2,3,5
+ETH,13,1073,1,73,Cereals and their products,"Wheat, bran",3,5,7
+ETH,13,9375,9,375,Fish and their products,"Catfish, raw",2,1,3
+ETH,13,9383,9,383,Fish and their products,"Mormyrids, raw",2,9,11
+ETH,13,9398,9,398,Fish and their products,"Tilapia, raw",2,8,10
+ETH,13,9362,9,362,Fish and their products,"Tuna, raw",4,1,3
+ETH,13,5246,5,246,Fruits and their products,"Apple, without skin, raw",3,5,7
+ETH,13,5222,5,222,Fruits and their products,"Avocado, pulp, raw",3,5,7
+ETH,13,5228,5,228,Fruits and their products,"Dattock, dried pulp, raw",1,0,2
+ETH,13,5251,5,251,Fruits and their products,"Fig, raw ",1,0,2
+ETH,13,5260,5,260,Fruits and their products,"Pomegranate, raw",1,1,3
+ETH,13,3119,3,119,Legumes and their products,"African locust bean, seeds, dried",3,1,3
+ETH,13,3112,3,112,Legumes and their products,"Bambara groundnut, red, dried, raw",1,8,10
+ETH,13,3132,3,132,Legumes and their products,"Beans, white, dried",1,8,10
+ETH,13,3134,3,134,Legumes and their products,"Broad beans, dried, raw",2,2,4
+ETH,13,3114,3,114,Legumes and their products,"Cowpea, dried, raw",2,11,1
+ETH,13,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",4,11,1
+ETH,13,7311,7,311,Meat and poultry and their products,"Beef, tripe, raw",1,7,9
+ETH,13,7294,7,294,Meat and poultry and their products,"Lamb/mutton, meat, moderately fat, raw",1,1,3
+ETH,13,10426,10,426,Milk and their products,"Butter, from cow's milk (without salt)",3,10,12
+ETH,13,10414,10,414,Milk and their products,"Cream, 13 % fat",3,10,12
+ETH,13,10413,10,413,Milk and their products,"Cream, whipping, 38 % fat",4,4,6
+ETH,13,10417,10,417,Milk and their products,"Milk, cow, partly skimmed, 1.5 % fat",4,2,4
+ETH,13,10407,10,407,Milk and their products,"Milk, goat, raw",4,3,5
+ETH,13,10429,10,429,Milk and their products,"Palm oil, red",1,5,7
+ETH,13,10432,10,432,Milk and their products,"Palm oil, refined",1,3,5
+ETH,13,10409,10,409,Milk and their products,"Yoghurt, whole milk, plain",1,4,6
+ETH,13,12462,12,462,Miscellaneous,"Cube, beef, dry",4,4,6
+ETH,13,12463,12,463,Miscellaneous,"Cumin, seed",1,0,2
+ETH,13,12464,12,464,Miscellaneous,"Ginger, root, raw",1,9,11
+ETH,13,6268,6,268,"Nuts, seeds and their products","Coconut, kernel, dried, raw",2,7,9
+ETH,13,6266,6,266,"Nuts, seeds and their products","Coconut, mature kernel, fresh, raw",4,10,12
+ETH,13,6271,6,271,"Nuts, seeds and their products","Dikanut, kernel, dried, raw",1,5,7
+ETH,13,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",4,7,9
+ETH,13,2091,2,91,"Starchy roots, tubers and their products","Water yam, tuber, raw",1,2,4
+ETH,13,4155,4,155,Vegetables and their products,"Cabbage, raw",3,11,1
+ETH,13,4181,4,181,Vegetables and their products,"Cowpea leaves, dried",2,11,1
+ETH,13,4163,4,163,Vegetables and their products,"Eggplant leaves, raw",4,1,3
+ETH,13,4188,4,188,Vegetables and their products,"Jute (bush-okra) leaves, raw",2,9,11
+ETH,13,4203,4,203,Vegetables and their products,"Pumpkin leaves, raw",1,11,1
+ETH,13,4216,4,216,Vegetables and their products,"Tomato paste, concentrated",1,8,10
+RWA,13,11438,11,438,Beverages,"Beer, millet (est. 3 % alcohol)",3,7,9
+RWA,13,11453,11,453,Beverages,"Ovaltine powder, fortified",1,9,11
+RWA,13,11441,11,441,Beverages,Palm wine (est. 3.8 % alcohol),3,12,2
+RWA,13,11442,11,442,Beverages,"Sap, palm, fresh (0.3 % alcohol)",1,2,4
+RWA,13,1047,1,47,Cereals and their products,"Bread, wheat, white for toasting",1,4,6
+RWA,13,1045,1,45,Cereals and their products,"Bread/rolls, white",2,6,8
+RWA,13,1017,1,17,Cereals and their products,"Pearl millet, whole grain, raw (with bran)",1,2,4
+RWA,13,1034,1,34,Cereals and their products,"Rice, brown, raw",2,6,8
+RWA,13,1036,1,36,Cereals and their products,"Rice, white, polished, raw",3,2,4
+RWA,13,1039,1,39,Cereals and their products,"Sorghum, whole grain, raw ",1,3,5
+RWA,13,1041,1,41,Cereals and their products,"Sorghum, whole grain, red, raw",3,9,11
+RWA,13,9398,9,398,Fish and their products,"Tilapia, raw",2,2,4
+RWA,13,5246,5,246,Fruits and their products,"Apple, without skin, raw",1,12,2
+RWA,13,5225,5,225,Fruits and their products,"Breadfruit, raw",4,0,2
+RWA,13,5251,5,251,Fruits and their products,"Fig, raw ",1,9,11
+RWA,13,5232,5,232,Fruits and their products,"Landolphia, pulp, raw",1,4,6
+RWA,13,5233,5,233,Fruits and their products,"Lemon, raw",2,7,9
+RWA,13,5255,5,255,Fruits and their products,"Mango, deep orange flesh",3,12,2
+RWA,13,5258,5,258,Fruits and their products,"Melon, cantaloup, raw",1,10,12
+RWA,13,5257,5,257,Fruits and their products,"Melon, honeydew, raw",2,0,2
+RWA,13,5236,5,236,Fruits and their products,"Papaya, fruit, ripe, raw",3,3,5
+RWA,13,5261,5,261,Fruits and their products,"Plantain, ripe, raw",3,6,8
+RWA,13,5260,5,260,Fruits and their products,"Pomegranate, raw",1,6,8
+RWA,13,5241,5,241,Fruits and their products,"Watermelon, fruit, raw",3,11,1
+RWA,13,3113,3,113,Legumes and their products,"Bambara groundnuts, white, raw",3,3,5
+RWA,13,7293,7,293,Meat and poultry and their products,"Chicken, dark meat, flesh, raw",2,6,8
+RWA,13,7326,7,326,Meat and poultry and their products,"Chicken, light meat, flesh and skin, raw",3,4,6
+RWA,13,7323,7,323,Meat and poultry and their products,"Chicken, light meat, flesh, raw",4,3,5
+RWA,13,7331,7,331,Meat and poultry and their products,"Chicken, liver, raw",3,8,10
+RWA,13,7334,7,334,Meat and poultry and their products,"Crocodile, raw",4,9,11
+RWA,13,7294,7,294,Meat and poultry and their products,"Lamb/mutton, meat, moderately fat, raw",1,0,2
+RWA,13,7345,7,345,Meat and poultry and their products,"Locust, raw",4,1,3
+RWA,13,10405,10,405,Milk and their products,"Milk, cow, whole, 3.5 % fat (includes pasteurised, sterilised and UHT)",4,2,4
+RWA,13,10408,10,408,Milk and their products,"Milk, human, mature, raw",2,11,1
+RWA,13,10409,10,409,Milk and their products,"Yoghurt, whole milk, plain",2,3,5
+RWA,13,12458,12,458,Miscellaneous,Anis seed,3,1,3
+RWA,13,12463,12,463,Miscellaneous,"Cumin, seed",2,2,4
+RWA,13,12455,12,455,Miscellaneous,Honey,2,2,4
+RWA,13,12466,12,466,Miscellaneous,"Mustard, powder",2,9,11
+RWA,13,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",4,2,4
+RWA,13,12456,12,456,Miscellaneous,Sugar,2,7,9
+RWA,13,6269,6,269,"Nuts, seeds and their products",Coconut milk ,3,6,8
+RWA,13,6266,6,266,"Nuts, seeds and their products","Coconut, mature kernel, fresh, raw",4,5,7
+RWA,13,6278,6,278,"Nuts, seeds and their products","Colanut, raw",4,7,9
+RWA,13,6271,6,271,"Nuts, seeds and their products","Dikanut, kernel, dried, raw",4,3,5
+RWA,13,6272,6,272,"Nuts, seeds and their products","Groundnut, shelled, dried, raw",1,8,10
+RWA,13,2080,2,80,"Starchy roots, tubers and their products",Cassava flour,1,4,6
+RWA,13,2085,2,85,"Starchy roots, tubers and their products","Sweet potato, deep yellow, raw",2,2,4
+RWA,13,2096,2,96,"Starchy roots, tubers and their products","Sweet potato, pale yellow, raw",2,11,1
+RWA,13,2110,2,110,"Starchy roots, tubers and their products","Yam tuber, flour",3,5,7
+RWA,13,4155,4,155,Vegetables and their products,"Cabbage, raw",1,7,9
+RWA,13,4156,4,156,Vegetables and their products,"Carrot, raw",1,2,4
+RWA,13,4159,4,159,Vegetables and their products,"Cocoyam, leaves, raw",4,5,7
+RWA,13,4181,4,181,Vegetables and their products,"Cowpea leaves, dried",1,11,1
+RWA,13,4182,4,182,Vegetables and their products,"Cucumber, raw",1,12,2
+RWA,13,4186,4,186,Vegetables and their products,"False sesame, leaves, raw",3,1,3
+RWA,13,4188,4,188,Vegetables and their products,"Jute (bush-okra) leaves, raw",4,9,11
+RWA,13,4154,4,154,Vegetables and their products,"Okra leaves, raw",2,3,5
+RWA,13,4199,4,199,Vegetables and their products,"Pepper, sweet, green, raw",4,7,9
+RWA,13,4207,4,207,Vegetables and their products,"Spinach, raw",3,3,5
+RWA,13,4209,4,209,Vegetables and their products,"Sweet potato, leaves, raw",4,8,10
+RWA,13,4171,4,171,Vegetables and their products,"Tomato, red, ripe, raw",3,3,5
+RWA,13,4172,4,172,Vegetables and their products,"Vernonia, leaves, raw",4,2,4
+ETH,14,11447,11,447,Beverages,"Juice, apple, canned or bottled",4,9,11
+ETH,14,11441,11,441,Beverages,Palm wine (est. 3.8 % alcohol),1,8,10
+ETH,14,1045,1,45,Cereals and their products,"Bread/rolls, white",1,7,9
+ETH,14,1057,1,57,Cereals and their products,"Maize, white, flour of whole grain",1,11,1
+ETH,14,1058,1,58,Cereals and their products,"Maize, white, flour refined",2,7,9
+ETH,14,1054,1,54,Cereals and their products,"Maize, yellow, flour of whole-grain",4,2,4
+ETH,14,1075,1,75,Cereals and their products,"Maize, yellow, stiff porridge* (without salt)",2,11,1
+ETH,14,1032,1,32,Cereals and their products,"Pearl millet, combined varieties, whole grain, raw",1,8,10
+ETH,14,9383,9,383,Fish and their products,"Mormyrids, raw",3,7,9
+ETH,14,9389,9,389,Fish and their products,"Perch, Nile, raw",3,8,10
+ETH,14,9394,9,394,Fish and their products,"Sardines in oil, canned (drained solids with bone)",2,9,11
+ETH,14,9395,9,395,Fish and their products,"Shiny-nose, raw",3,0,2
+ETH,14,9398,9,398,Fish and their products,"Tilapia, raw",2,0,2
+ETH,14,5245,5,245,Fruits and their products,"Apple, with skin, raw",3,3,5
+ETH,14,5224,5,224,Fruits and their products,"Baobab, fruit/Monkey bread, pulp, raw",2,0,2
+ETH,14,5225,5,225,Fruits and their products,"Breadfruit, raw",3,4,6
+ETH,14,5226,5,226,Fruits and their products,"Cashew apple, pulp, raw",3,8,10
+ETH,14,5248,5,248,Fruits and their products,"Clementine, raw",1,11,1
+ETH,14,5251,5,251,Fruits and their products,"Fig, raw ",4,2,4
+ETH,14,5254,5,254,Fruits and their products,"Grapefruit, pulp, raw",1,3,5
+ETH,14,5233,5,233,Fruits and their products,"Lemon, raw",2,4,6
+ETH,14,5258,5,258,Fruits and their products,"Melon, cantaloup, raw",3,9,11
+ETH,14,5235,5,235,Fruits and their products,"Orange, raw",3,6,8
+ETH,14,5237,5,237,Fruits and their products,"Pineapple, pulp, raw",1,11,1
+ETH,14,5261,5,261,Fruits and their products,"Plantain, ripe, raw",2,9,11
+ETH,14,5264,5,264,Fruits and their products,"Sweet apple, fruit, raw",4,8,10
+ETH,14,3134,3,134,Legumes and their products,"Broad beans, dried, raw",3,3,5
+ETH,14,3115,3,115,Legumes and their products,"Cowpea, black, dried, raw",1,8,10
+ETH,14,7291,7,291,Meat and poultry and their products,"Beef liver, raw",2,6,8
+ETH,14,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",4,1,3
+ETH,14,7304,7,304,Meat and poultry and their products,"Beef, meat, approx. 30 % fat, boneless, raw",2,0,2
+ETH,14,7311,7,311,Meat and poultry and their products,"Beef, tripe, raw",4,9,11
+ETH,14,7329,7,329,Meat and poultry and their products,"Chicken giblets, raw",2,1,3
+ETH,14,7320,7,320,Meat and poultry and their products,"Chicken, dark meat, flesh and skin, raw",2,6,8
+ETH,14,7293,7,293,Meat and poultry and their products,"Chicken, dark meat, flesh, raw",3,6,8
+ETH,14,7334,7,334,Meat and poultry and their products,"Crocodile, raw",4,11,1
+ETH,14,7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless, raw",2,10,12
+ETH,14,7297,7,297,Meat and poultry and their products,"Rabbit, flesh only, raw",4,2,4
+ETH,14,10413,10,413,Milk and their products,"Cream, whipping, 38 % fat",3,2,4
+ETH,14,10415,10,415,Milk and their products,"Infant formula, powder, for 3 months",4,11,1
+ETH,14,10416,10,416,Milk and their products,"Infant formula, powder, for 6 months",4,6,8
+ETH,14,10407,10,407,Milk and their products,"Milk, goat, raw",4,2,4
+ETH,14,10429,10,429,Milk and their products,"Palm oil, red",4,4,6
+ETH,14,10409,10,409,Milk and their products,"Yoghurt, whole milk, plain",4,7,9
+ETH,14,12461,12,461,Miscellaneous,"Cinnamon, ground",1,4,6
+ETH,14,12462,12,462,Miscellaneous,"Cube, beef, dry",4,8,10
+ETH,14,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",3,5,7
+ETH,14,12468,12,468,Miscellaneous,"Pepper, black",2,10,12
+ETH,14,12471,12,471,Miscellaneous,"Yeast, dried",2,9,11
+ETH,14,6273,6,273,"Nuts, seeds and their products","Groundnut, rose, shelled, dried, raw (Benin)",4,11,1
+ETH,14,6275,6,275,"Nuts, seeds and their products","Melon seeds, slightly salted, raw",2,5,7
+ETH,14,6290,6,290,"Nuts, seeds and their products","Roselle, red, seed, dried ",3,0,2
+ETH,14,6277,6,277,"Nuts, seeds and their products","Shea nut, seed kernel, dried, raw",2,5,7
+ETH,14,2077,2,77,"Starchy roots, tubers and their products","Cassava, tuber, raw",3,2,4
+ETH,14,2085,2,85,"Starchy roots, tubers and their products","Sweet potato, deep yellow, raw",2,2,4
+ETH,14,2087,2,87,"Starchy roots, tubers and their products","Sweet potato, yellow, raw",3,1,3
+ETH,14,2110,2,110,"Starchy roots, tubers and their products","Yam tuber, flour",1,5,7
+ETH,14,4159,4,159,Vegetables and their products,"Cocoyam, leaves, raw",4,10,12
+ETH,14,4164,4,164,Vegetables and their products,"False sesame, leaves, dried",1,8,10
+ETH,14,4186,4,186,Vegetables and their products,"False sesame, leaves, raw",4,6,8
+ETH,14,4217,4,217,Vegetables and their products,"Tomato, powder",3,12,2
+ETH,14,4172,4,172,Vegetables and their products,"Vernonia, leaves, raw",4,9,11
+RWA,14,11439,11,439,Beverages,"Beer, sorghum (est. 3% alcohol)",1,3,5
+RWA,14,11447,11,447,Beverages,"Juice, apple, canned or bottled",4,10,12
+RWA,14,11441,11,441,Beverages,Palm wine (est. 3.8 % alcohol),2,6,8
+RWA,14,11443,11,443,Beverages,"Tea, infusion",4,1,3
+RWA,14,1051,1,51,Cereals and their products,"Fonio, husked grains, boiled* (without salt)",3,6,8
+RWA,14,1052,1,52,Cereals and their products,"Macaroni, dried",4,12,2
+RWA,14,1014,1,14,Cereals and their products,"Maize, combined varieties, whole kernel, dried, raw",2,3,5
+RWA,14,1057,1,57,Cereals and their products,"Maize, white, flour of whole grain",1,11,1
+RWA,14,1075,1,75,Cereals and their products,"Maize, yellow, stiff porridge* (without salt)",2,7,9
+RWA,14,1006,1,6,Cereals and their products,"Maize, yellow, whole kernel, dried, raw",2,8,10
+RWA,14,1039,1,39,Cereals and their products,"Sorghum, whole grain, raw ",1,10,12
+RWA,14,1041,1,41,Cereals and their products,"Sorghum, whole grain, red, raw",4,8,10
+RWA,14,1040,1,40,Cereals and their products,"Sorghum, whole grain, white, raw",2,12,2
+RWA,14,1043,1,43,Cereals and their products,"Wheat flour, white",1,10,12
+RWA,14,1073,1,73,Cereals and their products,"Wheat, bran",1,7,9
+RWA,14,8354,8,354,Eggs and their products,"Egg, chicken, raw",1,7,9
+RWA,14,9358,9,358,Fish and their products,"Anchovy, fillet, raw",1,7,9
+RWA,14,9375,9,375,Fish and their products,"Catfish, raw",2,1,3
+RWA,14,9382,9,382,Fish and their products,"Mackerel, grilled* (without salt and fat)",3,6,8
+RWA,14,9361,9,361,Fish and their products,"Sardine, raw",4,3,5
+RWA,14,9395,9,395,Fish and their products,"Shiny-nose, raw",3,4,6
+RWA,14,9363,9,363,Fish and their products,"White grouper, raw",1,2,4
+RWA,14,5221,5,221,Fruits and their products,"African locust bean, fruit, pulp, raw",4,2,4
+RWA,14,5222,5,222,Fruits and their products,"Avocado, pulp, raw",1,5,7
+RWA,14,5225,5,225,Fruits and their products,"Breadfruit, raw",4,6,8
+RWA,14,5235,5,235,Fruits and their products,"Orange, raw",1,9,11
+RWA,14,5263,5,263,Fruits and their products,"Shea fruit pulp, raw",3,1,3
+RWA,14,3115,3,115,Legumes and their products,"Cowpea, black, dried, raw",1,11,1
+RWA,14,7316,7,316,Meat and poultry and their products,"Bamboo caterpillar, deep fried",2,2,4
+RWA,14,7334,7,334,Meat and poultry and their products,"Crocodile, raw",3,10,12
+RWA,14,7317,7,317,Meat and poultry and their products,"Game meat, dried",4,2,4
+RWA,14,7336,7,336,Meat and poultry and their products,"Goat, meat, raw",4,3,5
+RWA,14,7343,7,343,Meat and poultry and their products,"Lamb, liver, raw",3,4,6
+RWA,14,7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless, raw",4,3,5
+RWA,14,7295,7,295,Meat and poultry and their products,"Pork, meat, approx. 40 % fat, boneless, raw",3,0,2
+RWA,14,10428,10,428,Milk and their products,Groundnut oil,3,8,10
+RWA,14,10431,10,431,Milk and their products,"Margarine, fortified",2,10,12
+RWA,14,10422,10,422,Milk and their products,"Milk, camel, raw (average of different breeds)",1,12,2
+RWA,14,10421,10,421,Milk and their products,"Milk, cow powder, skimmed",2,6,8
+RWA,14,10420,10,420,Milk and their products,"Milk, cow, canned, evaporated",4,10,12
+RWA,14,10406,10,406,Milk and their products,"Milk, cow, powder, whole",2,6,8
+RWA,14,10429,10,429,Milk and their products,"Palm oil, red",1,11,1
+RWA,14,10432,10,432,Milk and their products,"Palm oil, refined",1,1,3
+RWA,14,10433,10,433,Milk and their products,Shea butter,2,10,12
+RWA,14,10434,10,434,Milk and their products,Soya oil,4,9,11
+RWA,14,10409,10,409,Milk and their products,"Yoghurt, whole milk, plain",1,4,6
+RWA,14,12460,12,460,Miscellaneous,"Chilli pepper, dried",4,6,8
+RWA,14,12465,12,465,Miscellaneous,"Ginger, roots, dried",3,6,8
+RWA,14,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",2,1,3
+RWA,14,12468,12,468,Miscellaneous,"Pepper, black",4,5,7
+RWA,14,6286,6,286,"Nuts, seeds and their products",Groundnut paste,2,10,12
+RWA,14,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",4,9,11
+RWA,14,2078,2,78,"Starchy roots, tubers and their products","Cassava, tuber, dried",2,11,1
+RWA,14,2085,2,85,"Starchy roots, tubers and their products","Sweet potato, deep yellow, raw",4,2,4
+RWA,14,2098,2,98,"Starchy roots, tubers and their products","Tiger nut, tuber, raw",3,7,9
+RWA,14,4173,4,173,Vegetables and their products,"Amaranth leaves, raw",2,11,1
+RWA,14,4156,4,156,Vegetables and their products,"Carrot, raw",1,6,8
+RWA,14,4158,4,158,Vegetables and their products,"Cassava, leaves, raw",3,1,3
+RWA,14,4159,4,159,Vegetables and their products,"Cocoyam, leaves, raw",2,9,11
+RWA,14,4186,4,186,Vegetables and their products,"False sesame, leaves, raw",2,8,10
+RWA,14,4205,4,205,Vegetables and their products,"Pumpkin leaves, dried",2,5,7
+RWA,14,4201,4,201,Vegetables and their products,"Pumpkin, squash, raw",1,7,9
+RWA,14,4212,4,212,Vegetables and their products,"Tamarind, leaves, dried",4,1,3
+RWA,14,4172,4,172,Vegetables and their products,"Vernonia, leaves, raw",1,11,1
+ETH,15,11439,11,439,Beverages,"Beer, sorghum (est. 3% alcohol)",1,8,10
+ETH,15,11440,11,440,Beverages,"Coffee, instant, powder",3,2,4
+ETH,15,11441,11,441,Beverages,Palm wine (est. 3.8 % alcohol),4,9,11
+ETH,15,11443,11,443,Beverages,"Tea, infusion",2,7,9
+ETH,15,1044,1,44,Cereals and their products,"Bread, maize flour, yellow, with milk and egg",4,9,11
+ETH,15,1014,1,14,Cereals and their products,"Maize, combined varieties, whole kernel, dried, raw",1,8,10
+ETH,15,1060,1,60,Cereals and their products,"Maize, white, grit, degermed",1,9,11
+ETH,15,1076,1,76,Cereals and their products,"Maize, white, stiff porridge* (without salt)",3,3,5
+ETH,15,1004,1,4,Cereals and their products,"Maize, white, whole kernel, dried, raw",4,12,2
+ETH,15,1054,1,54,Cereals and their products,"Maize, yellow, flour of whole-grain",3,3,5
+ETH,15,1032,1,32,Cereals and their products,"Pearl millet, combined varieties, whole grain, raw",2,11,1
+ETH,15,1073,1,73,Cereals and their products,"Wheat, bran",3,8,10
+ETH,15,8354,8,354,Eggs and their products,"Egg, chicken, raw",2,3,5
+ETH,15,9364,9,364,Fish and their products,"African carp, raw",2,3,5
+ETH,15,9383,9,383,Fish and their products,"Mormyrids, raw",2,0,2
+ETH,15,9386,9,386,Fish and their products,"Mudfish, raw",3,2,4
+ETH,15,5247,5,247,Fruits and their products,"Banana, yellow flesh, raw",3,7,9
+ETH,15,5224,5,224,Fruits and their products,"Baobab, fruit/Monkey bread, pulp, raw",3,12,2
+ETH,15,5249,5,249,Fruits and their products,"Dates, raw",1,10,12
+ETH,15,5230,5,230,Fruits and their products,"Gumvine, raw",1,0,2
+ETH,15,5258,5,258,Fruits and their products,"Melon, cantaloup, raw",3,3,5
+ETH,15,5237,5,237,Fruits and their products,"Pineapple, pulp, raw",2,0,2
+ETH,15,5238,5,238,Fruits and their products,"Soapberry, fruit, raw",1,9,11
+ETH,15,3120,3,120,Legumes and their products,"African yam bean, dried, raw",4,10,12
+ETH,15,3132,3,132,Legumes and their products,"Beans, white, dried",4,7,9
+ETH,15,3114,3,114,Legumes and their products,"Cowpea, dried, raw",2,6,8
+ETH,15,3142,3,142,Legumes and their products,"Pigeon pea, dried, raw",4,3,5
+ETH,15,7291,7,291,Meat and poultry and their products,"Beef liver, raw",2,1,3
+ETH,15,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",3,8,10
+ETH,15,7309,7,309,Meat and poultry and their products,"Beef, kidney, raw",1,1,3
+ETH,15,7299,7,299,Meat and poultry and their products,"Beef, meat, lean, boneless, raw",1,5,7
+ETH,15,7329,7,329,Meat and poultry and their products,"Chicken giblets, raw",4,8,10
+ETH,15,7343,7,343,Meat and poultry and their products,"Lamb, liver, raw",3,8,10
+ETH,15,10412,10,412,Milk and their products,"Cheese, Gouda",2,2,4
+ETH,15,10413,10,413,Milk and their products,"Cream, whipping, 38 % fat",3,9,11
+ETH,15,10415,10,415,Milk and their products,"Infant formula, powder, for 3 months",4,5,7
+ETH,15,10420,10,420,Milk and their products,"Milk, cow, canned, evaporated",1,7,9
+ETH,15,10406,10,406,Milk and their products,"Milk, cow, powder, whole",1,10,12
+ETH,15,10407,10,407,Milk and their products,"Milk, goat, raw",1,3,5
+ETH,15,10425,10,425,Milk and their products,"Yoghurt, whole milk, with fruits",2,8,10
+ETH,15,12460,12,460,Miscellaneous,"Chilli pepper, dried",4,2,4
+ETH,15,12465,12,465,Miscellaneous,"Ginger, roots, dried",1,11,1
+ETH,15,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",2,2,4
+ETH,15,12469,12,469,Miscellaneous,Salt,4,3,5
+ETH,15,12457,12,457,Miscellaneous,Vinegar,3,2,4
+ETH,15,12472,12,472,Miscellaneous,"Yeast extract, Marmite",3,7,9
+ETH,15,6265,6,265,"Nuts, seeds and their products","Cashew nut, raw",3,9,11
+ETH,15,6267,6,267,"Nuts, seeds and their products","Coconut, immature kernel, fresh, raw",3,4,6
+ETH,15,6266,6,266,"Nuts, seeds and their products","Coconut, mature kernel, fresh, raw",2,6,8
+ETH,15,6288,6,288,"Nuts, seeds and their products","Groundnut flour, defatted",3,8,10
+ETH,15,6285,6,285,"Nuts, seeds and their products","Groundnut, combined varieties, shelled, dried, raw (Ghana)",2,7,9
+ETH,15,2080,2,80,"Starchy roots, tubers and their products",Cassava flour,1,4,6
+ETH,15,2095,2,95,"Starchy roots, tubers and their products","Cassava sweet, tuber, dried",2,12,2
+ETH,15,2083,2,83,"Starchy roots, tubers and their products","Potato, raw",4,10,12
+ETH,15,2100,2,100,"Starchy roots, tubers and their products","Tiger nut, tuber dried",4,12,2
+ETH,15,2091,2,91,"Starchy roots, tubers and their products","Water yam, tuber, raw",3,4,6
+ETH,15,4158,4,158,Vegetables and their products,"Cassava, leaves, raw",3,2,4
+ETH,15,4161,4,161,Vegetables and their products,"Drumstick  leaves, raw",2,11,1
+ETH,15,4190,4,190,Vegetables and their products,"Lettuce, raw",2,10,12
+ETH,15,4203,4,203,Vegetables and their products,"Pumpkin leaves, raw",3,6,8
+ETH,15,4209,4,209,Vegetables and their products,"Sweet potato, leaves, raw",3,8,10
+RWA,15,11440,11,440,Beverages,"Coffee, instant, powder",2,11,1
+RWA,15,11446,11,446,Beverages,"Juice, orange, unsweetened",1,9,11
+RWA,15,11450,11,450,Beverages,Ovaltine beverage with whole milk (without sugar; fortified),2,2,4
+RWA,15,11453,11,453,Beverages,"Ovaltine powder, fortified",3,11,1
+RWA,15,11441,11,441,Beverages,Palm wine (est. 3.8 % alcohol),1,4,6
+RWA,15,1002,1,2,Cereals and their products,"Fonio, black, whole grain, raw",3,2,4
+RWA,15,1001,1,1,Cereals and their products,"Fonio, white, whole grain, raw",3,1,3
+RWA,15,1058,1,58,Cereals and their products,"Maize, white, flour refined",2,8,10
+RWA,15,1055,1,55,Cereals and their products,"Maize, yellow, grit, degermed",4,5,7
+RWA,15,1015,1,15,Cereals and their products,"Millet, whole grain, raw",2,9,11
+RWA,15,1032,1,32,Cereals and their products,"Pearl millet, combined varieties, whole grain, raw",4,6,8
+RWA,15,1017,1,17,Cereals and their products,"Pearl millet, whole grain, raw (with bran)",1,3,5
+RWA,15,1034,1,34,Cereals and their products,"Rice, brown, raw",1,10,12
+RWA,15,1036,1,36,Cereals and their products,"Rice, white, polished, raw",4,6,8
+RWA,15,1039,1,39,Cereals and their products,"Sorghum, whole grain, raw ",3,12,2
+RWA,15,1041,1,41,Cereals and their products,"Sorghum, whole grain, red, raw",1,3,5
+RWA,15,1040,1,40,Cereals and their products,"Sorghum, whole grain, white, raw",1,6,8
+RWA,15,1043,1,43,Cereals and their products,"Wheat flour, white",3,8,10
+RWA,15,9359,9,359,Fish and their products,"Barracuda, raw",2,7,9
+RWA,15,5244,5,244,Fruits and their products,"Akee, pulp, raw",1,5,7
+RWA,15,5245,5,245,Fruits and their products,"Apple, with skin, raw",4,0,2
+RWA,15,5222,5,222,Fruits and their products,"Avocado, pulp, raw",2,3,5
+RWA,15,5225,5,225,Fruits and their products,"Breadfruit, raw",1,9,11
+RWA,15,5251,5,251,Fruits and their products,"Fig, raw ",3,12,2
+RWA,15,5232,5,232,Fruits and their products,"Landolphia, pulp, raw",3,8,10
+RWA,15,5236,5,236,Fruits and their products,"Papaya, fruit, ripe, raw",4,1,3
+RWA,15,5261,5,261,Fruits and their products,"Plantain, ripe, raw",3,2,4
+RWA,15,5241,5,241,Fruits and their products,"Watermelon, fruit, raw",2,11,1
+RWA,15,3111,3,111,Legumes and their products,"Bambara groundnut, dried, raw ",4,6,8
+RWA,15,7298,7,298,Meat and poultry and their products,"Ant flying, dried",2,7,9
+RWA,15,7316,7,316,Meat and poultry and their products,"Bamboo caterpillar, deep fried",1,11,1
+RWA,15,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",4,7,9
+RWA,15,7315,7,315,Meat and poultry and their products,"Beef, meat, cured, corned, canned",4,7,9
+RWA,15,7307,7,307,Meat and poultry and their products,"Beef, meat, lean, cured, dried",3,12,2
+RWA,15,7311,7,311,Meat and poultry and their products,"Beef, tripe, raw",4,9,11
+RWA,15,7331,7,331,Meat and poultry and their products,"Chicken, liver, raw",4,4,6
+RWA,15,7345,7,345,Meat and poultry and their products,"Locust, raw",1,10,12
+RWA,15,10410,10,410,Milk and their products,Cheddar,2,3,5
+RWA,15,10413,10,413,Milk and their products,"Cream, whipping, 38 % fat",2,3,5
+RWA,15,10428,10,428,Milk and their products,Groundnut oil,2,3,5
+RWA,15,10415,10,415,Milk and their products,"Infant formula, powder, for 3 months",1,6,8
+RWA,15,10422,10,422,Milk and their products,"Milk, camel, raw (average of different breeds)",1,11,1
+RWA,15,10418,10,418,Milk and their products,"Milk, cow,  skimmed, 0.5 % fat",1,9,11
+RWA,15,10420,10,420,Milk and their products,"Milk, cow, canned, evaporated",1,1,3
+RWA,15,10406,10,406,Milk and their products,"Milk, cow, powder, whole",2,7,9
+RWA,15,10423,10,423,Milk and their products,"Milk, human, colostrum, raw",2,3,5
+RWA,15,10432,10,432,Milk and their products,"Palm oil, refined",3,10,12
+RWA,15,12460,12,460,Miscellaneous,"Chilli pepper, dried",2,9,11
+RWA,15,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",4,7,9
+RWA,15,12469,12,469,Miscellaneous,Salt,3,9,11
+RWA,15,6278,6,278,"Nuts, seeds and their products","Colanut, raw",2,4,6
+RWA,15,6285,6,285,"Nuts, seeds and their products","Groundnut, combined varieties, shelled, dried, raw (Ghana)",1,4,6
+RWA,15,6272,6,272,"Nuts, seeds and their products","Groundnut, shelled, dried, raw",1,6,8
+RWA,15,6273,6,273,"Nuts, seeds and their products","Groundnut, rose, shelled, dried, raw (Benin)",1,10,12
+RWA,15,6277,6,277,"Nuts, seeds and their products","Shea nut, seed kernel, dried, raw",3,6,8
+RWA,15,2091,2,91,"Starchy roots, tubers and their products","Water yam, tuber, raw",3,6,8
+RWA,15,2110,2,110,"Starchy roots, tubers and their products","Yam tuber, flour",1,6,8
+RWA,15,4152,4,152,Vegetables and their products,"Baobab leaves, dried",2,7,9
+RWA,15,4159,4,159,Vegetables and their products,"Cocoyam, leaves, raw",3,4,6
+RWA,15,4160,4,160,Vegetables and their products,"Cowpea, leaves, raw",3,3,5
+RWA,15,4186,4,186,Vegetables and their products,"False sesame, leaves, raw",3,6,8
+RWA,15,4154,4,154,Vegetables and their products,"Okra leaves, raw",3,5,7
+RWA,15,4197,4,197,Vegetables and their products,"Pepper, sweet, red, raw",3,4,6
+RWA,15,4207,4,207,Vegetables and their products,"Spinach, raw",3,11,1
+RWA,15,4169,4,169,Vegetables and their products,"Tamarind, leaves, raw",3,2,4
+RWA,15,4216,4,216,Vegetables and their products,"Tomato paste, concentrated",4,10,12
+RWA,15,4171,4,171,Vegetables and their products,"Tomato, red, ripe, raw",1,2,4
+ETH,16,11438,11,438,Beverages,"Beer, millet (est. 3 % alcohol)",1,6,8
+ETH,16,11447,11,447,Beverages,"Juice, apple, canned or bottled",4,3,5
+ETH,16,11445,11,445,Beverages,"Juice, lemon, unsweetened",2,4,6
+ETH,16,11443,11,443,Beverages,"Tea, infusion",2,10,12
+ETH,16,1002,1,2,Cereals and their products,"Fonio, black, whole grain, raw",2,9,11
+ETH,16,1052,1,52,Cereals and their products,"Macaroni, dried",3,10,12
+ETH,16,1059,1,59,Cereals and their products,"Maize, white, flour degermed ",2,7,9
+ETH,16,1058,1,58,Cereals and their products,"Maize, white, flour refined",4,9,11
+ETH,16,1004,1,4,Cereals and their products,"Maize, white, whole kernel, dried, raw",3,12,2
+ETH,16,1072,1,72,Cereals and their products,"Sorghum, flour, degermed",1,1,3
+ETH,16,9369,9,369,Fish and their products,"Anchovy, canned in oil (drained solids)",1,4,6
+ETH,16,5221,5,221,Fruits and their products,"African locust bean, fruit, pulp, raw",1,8,10
+ETH,16,5244,5,244,Fruits and their products,"Akee, pulp, raw",3,3,5
+ETH,16,5223,5,223,Fruits and their products,"Banana, white flesh, raw",1,7,9
+ETH,16,5227,5,227,Fruits and their products,"Dattock, pulp, raw",1,3,5
+ETH,16,5254,5,254,Fruits and their products,"Grapefruit, pulp, raw",2,5,7
+ETH,16,5231,5,231,Fruits and their products,"Jujube, raw",3,1,3
+ETH,16,5256,5,256,Fruits and their products,"Mango, pale flesh, raw",3,10,12
+ETH,16,5261,5,261,Fruits and their products,"Plantain, ripe, raw",1,7,9
+ETH,16,5263,5,263,Fruits and their products,"Shea fruit pulp, raw",2,11,1
+ETH,16,5264,5,264,Fruits and their products,"Sweet apple, fruit, raw",4,1,3
+ETH,16,3132,3,132,Legumes and their products,"Beans, white, dried",1,0,2
+ETH,16,3140,3,140,Legumes and their products,"Lentils, dried, raw",2,10,12
+ETH,16,7315,7,315,Meat and poultry and their products,"Beef, meat, cured, corned, canned",4,6,8
+ETH,16,7329,7,329,Meat and poultry and their products,"Chicken giblets, raw",1,10,12
+ETH,16,7323,7,323,Meat and poultry and their products,"Chicken, light meat, flesh, raw",1,2,4
+ETH,16,7336,7,336,Meat and poultry and their products,"Goat, meat, raw",1,4,6
+ETH,16,7294,7,294,Meat and poultry and their products,"Lamb/mutton, meat, moderately fat, raw",1,2,4
+ETH,16,7333,7,333,Meat and poultry and their products,"Mole cricket, blanched",4,10,12
+ETH,16,7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless, raw",4,2,4
+ETH,16,7297,7,297,Meat and poultry and their products,"Rabbit, flesh only, raw",2,2,4
+ETH,16,10414,10,414,Milk and their products,"Cream, 13 % fat",2,11,1
+ETH,16,10415,10,415,Milk and their products,"Infant formula, powder, for 3 months",2,4,6
+ETH,16,10416,10,416,Milk and their products,"Infant formula, powder, for 6 months",1,7,9
+ETH,16,10431,10,431,Milk and their products,"Margarine, fortified",4,1,3
+ETH,16,10417,10,417,Milk and their products,"Milk, cow, partly skimmed, 1.5 % fat",1,9,11
+ETH,16,10406,10,406,Milk and their products,"Milk, cow, powder, whole",4,4,6
+ETH,16,10405,10,405,Milk and their products,"Milk, cow, whole, 3.5 % fat (includes pasteurised, sterilised and UHT)",2,4,6
+ETH,16,10429,10,429,Milk and their products,"Palm oil, red",4,6,8
+ETH,16,10424,10,424,Milk and their products,Vacherin cheese,1,4,6
+ETH,16,12460,12,460,Miscellaneous,"Chilli pepper, dried",2,0,2
+ETH,16,12463,12,463,Miscellaneous,"Cumin, seed",2,0,2
+ETH,16,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",3,8,10
+ETH,16,12468,12,468,Miscellaneous,"Pepper, black",1,11,1
+ETH,16,12469,12,469,Miscellaneous,Salt,4,5,7
+ETH,16,12470,12,470,Miscellaneous,"Spices, mix, ground",1,10,12
+ETH,16,12471,12,471,Miscellaneous,"Yeast, dried",1,8,10
+ETH,16,6265,6,265,"Nuts, seeds and their products","Cashew nut, raw",2,6,8
+ETH,16,6267,6,267,"Nuts, seeds and their products","Coconut, immature kernel, fresh, raw",1,7,9
+ETH,16,6268,6,268,"Nuts, seeds and their products","Coconut, kernel, dried, raw",2,11,1
+ETH,16,6271,6,271,"Nuts, seeds and their products","Dikanut, kernel, dried, raw",4,10,12
+ETH,16,6273,6,273,"Nuts, seeds and their products","Groundnut, rose, shelled, dried, raw (Benin)",1,1,3
+ETH,16,2080,2,80,"Starchy roots, tubers and their products",Cassava flour,1,12,2
+ETH,16,2085,2,85,"Starchy roots, tubers and their products","Sweet potato, deep yellow, raw",2,1,3
+ETH,16,2091,2,91,"Starchy roots, tubers and their products","Water yam, tuber, raw",3,4,6
+ETH,16,4155,4,155,Vegetables and their products,"Cabbage, raw",3,3,5
+ETH,16,4167,4,167,Vegetables and their products,"Okra fruit, raw",2,7,9
+ETH,16,4194,4,194,Vegetables and their products,"Onions, dried",2,9,11
+ETH,16,4170,4,170,Vegetables and their products,"Taro, leaves, raw",4,8,10
+ETH,16,4218,4,218,Vegetables and their products,"Turnip, raw ",4,5,7
+RWA,16,11438,11,438,Beverages,"Beer, millet (est. 3 % alcohol)",2,5,7
+RWA,16,11439,11,439,Beverages,"Beer, sorghum (est. 3% alcohol)",4,10,12
+RWA,16,11447,11,447,Beverages,"Juice, apple, canned or bottled",3,9,11
+RWA,16,11448,11,448,Beverages,"Juice, grapefruit, canned, unsweetened",2,6,8
+RWA,16,11452,11,452,Beverages,Ovaltine beverage with skimmed milk (without sugar; fortified),3,12,2
+RWA,16,11450,11,450,Beverages,Ovaltine beverage with whole milk (without sugar; fortified),2,11,1
+RWA,16,1044,1,44,Cereals and their products,"Bread, maize flour, yellow, with milk and egg",1,2,4
+RWA,16,1047,1,47,Cereals and their products,"Bread, wheat, white for toasting",1,10,12
+RWA,16,1002,1,2,Cereals and their products,"Fonio, black, whole grain, raw",2,7,9
+RWA,16,1059,1,59,Cereals and their products,"Maize, white, flour degermed ",1,4,6
+RWA,16,1076,1,76,Cereals and their products,"Maize, white, stiff porridge* (without salt)",2,8,10
+RWA,16,1054,1,54,Cereals and their products,"Maize, yellow, flour of whole-grain",4,8,10
+RWA,16,1063,1,63,Cereals and their products,"Pearl millet, flour (without bran)",3,9,11
+RWA,16,1034,1,34,Cereals and their products,"Rice, brown, raw",2,9,11
+RWA,16,1065,1,65,Cereals and their products,"Rice, red native, hulled, raw",1,9,11
+RWA,16,1036,1,36,Cereals and their products,"Rice, white, polished, raw",3,9,11
+RWA,16,1072,1,72,Cereals and their products,"Sorghum, flour, degermed",3,6,8
+RWA,16,9383,9,383,Fish and their products,"Mormyrids, raw",3,5,7
+RWA,16,9389,9,389,Fish and their products,"Perch, Nile, raw",4,6,8
+RWA,16,9398,9,398,Fish and their products,"Tilapia, raw",1,1,3
+RWA,16,9363,9,363,Fish and their products,"White grouper, raw",2,1,3
+RWA,16,5246,5,246,Fruits and their products,"Apple, without skin, raw",1,8,10
+RWA,16,5247,5,247,Fruits and their products,"Banana, yellow flesh, raw",3,3,5
+RWA,16,5225,5,225,Fruits and their products,"Breadfruit, raw",2,1,3
+RWA,16,5233,5,233,Fruits and their products,"Lemon, raw",1,0,2
+RWA,16,5234,5,234,Fruits and their products,"Mango, orange flesh,  raw",4,7,9
+RWA,16,5237,5,237,Fruits and their products,"Pineapple, pulp, raw",4,3,5
+RWA,16,5261,5,261,Fruits and their products,"Plantain, ripe, raw",1,2,4
+RWA,16,5260,5,260,Fruits and their products,"Pomegranate, raw",1,7,9
+RWA,16,5264,5,264,Fruits and their products,"Sweet apple, fruit, raw",2,1,3
+RWA,16,7316,7,316,Meat and poultry and their products,"Bamboo caterpillar, deep fried",1,2,4
+RWA,16,7320,7,320,Meat and poultry and their products,"Chicken, dark meat, flesh and skin, raw",3,1,3
+RWA,16,7293,7,293,Meat and poultry and their products,"Chicken, dark meat, flesh, raw",2,0,2
+RWA,16,7323,7,323,Meat and poultry and their products,"Chicken, light meat, flesh, raw",4,7,9
+RWA,16,7336,7,336,Meat and poultry and their products,"Goat, meat, raw",3,9,11
+RWA,16,7343,7,343,Meat and poultry and their products,"Lamb, liver, raw",1,6,8
+RWA,16,10412,10,412,Milk and their products,"Cheese, Gouda",1,8,10
+RWA,16,10415,10,415,Milk and their products,"Infant formula, powder, for 3 months",3,1,3
+RWA,16,10431,10,431,Milk and their products,"Margarine, fortified",2,4,6
+RWA,16,10422,10,422,Milk and their products,"Milk, camel, raw (average of different breeds)",2,8,10
+RWA,16,10407,10,407,Milk and their products,"Milk, goat, raw",4,6,8
+RWA,16,10408,10,408,Milk and their products,"Milk, human, mature, raw",1,0,2
+RWA,16,12459,12,459,Miscellaneous,"Bay leaf, dried",3,9,11
+RWA,16,12462,12,462,Miscellaneous,"Cube, beef, dry",2,0,2
+RWA,16,12463,12,463,Miscellaneous,"Cumin, seed",1,10,12
+RWA,16,12464,12,464,Miscellaneous,"Ginger, root, raw",3,11,1
+RWA,16,12455,12,455,Miscellaneous,Honey,1,6,8
+RWA,16,12457,12,457,Miscellaneous,Vinegar,2,8,10
+RWA,16,6271,6,271,"Nuts, seeds and their products","Dikanut, kernel, dried, raw",2,3,5
+RWA,16,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",3,2,4
+RWA,16,6276,6,276,"Nuts, seeds and their products","Sesame seeds, whole, dried, raw",3,8,10
+RWA,16,6277,6,277,"Nuts, seeds and their products","Shea nut, seed kernel, dried, raw",3,1,3
+RWA,16,2077,2,77,"Starchy roots, tubers and their products","Cassava, tuber, raw",1,0,2
+RWA,16,2098,2,98,"Starchy roots, tubers and their products","Tiger nut, tuber, raw",1,1,3
+RWA,16,4173,4,173,Vegetables and their products,"Amaranth leaves, raw",1,5,7
+RWA,16,4155,4,155,Vegetables and their products,"Cabbage, raw",4,4,6
+RWA,16,4158,4,158,Vegetables and their products,"Cassava, leaves, raw",2,7,9
+RWA,16,4159,4,159,Vegetables and their products,"Cocoyam, leaves, raw",2,10,12
+RWA,16,4181,4,181,Vegetables and their products,"Cowpea leaves, dried",4,3,5
+RWA,16,4186,4,186,Vegetables and their products,"False sesame, leaves, raw",2,9,11
+RWA,16,4165,4,165,Vegetables and their products,"Garlic, raw",3,9,11
+RWA,16,4190,4,190,Vegetables and their products,"Lettuce, raw",3,8,10
+ETH,17,11436,11,436,Beverages,Beer european (4.4 % alcohol),4,11,1
+ETH,17,11444,11,444,Beverages,"Coffee, liquid",1,8,10
+ETH,17,11447,11,447,Beverages,"Juice, apple, canned or bottled",2,5,7
+ETH,17,11448,11,448,Beverages,"Juice, grapefruit, canned, unsweetened",3,3,5
+ETH,17,11446,11,446,Beverages,"Juice, orange, unsweetened",2,0,2
+ETH,17,11452,11,452,Beverages,Ovaltine beverage with skimmed milk (without sugar; fortified),1,8,10
+ETH,17,11441,11,441,Beverages,Palm wine (est. 3.8 % alcohol),1,7,9
+ETH,17,11442,11,442,Beverages,"Sap, palm, fresh (0.3 % alcohol)",3,4,6
+ETH,17,11454,11,454,Beverages,"Water, tap",2,4,6
+ETH,17,1045,1,45,Cereals and their products,"Bread/rolls, white",2,7,9
+ETH,17,1057,1,57,Cereals and their products,"Maize, white, flour of whole grain",4,11,1
+ETH,17,1060,1,60,Cereals and their products,"Maize, white, grit, degermed",3,8,10
+ETH,17,1004,1,4,Cereals and their products,"Maize, white, whole kernel, dried, raw",1,3,5
+ETH,17,1065,1,65,Cereals and their products,"Rice, red native, hulled, raw",4,10,12
+ETH,17,1043,1,43,Cereals and their products,"Wheat flour, white",2,4,6
+ETH,17,9358,9,358,Fish and their products,"Anchovy, fillet, raw",1,9,11
+ETH,17,9359,9,359,Fish and their products,"Barracuda, raw",3,4,6
+ETH,17,9378,9,378,Fish and their products,"Carp, raw",3,10,12
+ETH,17,9383,9,383,Fish and their products,"Mormyrids, raw",1,8,10
+ETH,17,9361,9,361,Fish and their products,"Sardine, raw",3,9,11
+ETH,17,9394,9,394,Fish and their products,"Sardines in oil, canned (drained solids with bone)",4,2,4
+ETH,17,5244,5,244,Fruits and their products,"Akee, pulp, raw",4,2,4
+ETH,17,5232,5,232,Fruits and their products,"Landolphia, pulp, raw",4,7,9
+ETH,17,5234,5,234,Fruits and their products,"Mango, orange flesh,  raw",3,5,7
+ETH,17,5256,5,256,Fruits and their products,"Mango, pale flesh, raw",2,2,4
+ETH,17,5261,5,261,Fruits and their products,"Plantain, ripe, raw",1,2,4
+ETH,17,3115,3,115,Legumes and their products,"Cowpea, black, dried, raw",1,5,7
+ETH,17,3140,3,140,Legumes and their products,"Lentils, dried, raw",3,11,1
+ETH,17,3142,3,142,Legumes and their products,"Pigeon pea, dried, raw",2,10,12
+ETH,17,3118,3,118,Legumes and their products,"Soya bean, dried, raw",4,3,5
+ETH,17,7298,7,298,Meat and poultry and their products,"Ant flying, dried",1,4,6
+ETH,17,7292,7,292,Meat and poultry and their products,"Beef, meat, 15-20  % fat, boneless, raw",1,6,8
+ETH,17,7304,7,304,Meat and poultry and their products,"Beef, meat, approx. 30 % fat, boneless, raw",2,12,2
+ETH,17,7299,7,299,Meat and poultry and their products,"Beef, meat, lean, boneless, raw",2,5,7
+ETH,17,7293,7,293,Meat and poultry and their products,"Chicken, dark meat, flesh, raw",3,4,6
+ETH,17,7326,7,326,Meat and poultry and their products,"Chicken, light meat, flesh and skin, raw",1,7,9
+ETH,17,7334,7,334,Meat and poultry and their products,"Crocodile, raw",1,3,5
+ETH,17,7345,7,345,Meat and poultry and their products,"Locust, raw",2,4,6
+ETH,17,7333,7,333,Meat and poultry and their products,"Mole cricket, blanched",3,1,3
+ETH,17,10414,10,414,Milk and their products,"Cream, 13 % fat",3,8,10
+ETH,17,10428,10,428,Milk and their products,Groundnut oil,2,2,4
+ETH,17,10416,10,416,Milk and their products,"Infant formula, powder, for 6 months",4,1,3
+ETH,17,10431,10,431,Milk and their products,"Margarine, fortified",3,2,4
+ETH,17,10421,10,421,Milk and their products,"Milk, cow powder, skimmed",1,0,2
+ETH,17,10418,10,418,Milk and their products,"Milk, cow,  skimmed, 0.5 % fat",1,11,1
+ETH,17,10419,10,419,Milk and their products,"Milk, cow, canned, condensed, sweetened",3,8,10
+ETH,17,10417,10,417,Milk and their products,"Milk, cow, partly skimmed, 1.5 % fat",3,5,7
+ETH,17,10429,10,429,Milk and their products,"Palm oil, red",1,7,9
+ETH,17,10432,10,432,Milk and their products,"Palm oil, refined",4,3,5
+ETH,17,10433,10,433,Milk and their products,Shea butter,2,3,5
+ETH,17,12460,12,460,Miscellaneous,"Chilli pepper, dried",3,10,12
+ETH,17,12464,12,464,Miscellaneous,"Ginger, root, raw",4,11,1
+ETH,17,12455,12,455,Miscellaneous,Honey,2,2,4
+ETH,17,12470,12,470,Miscellaneous,"Spices, mix, ground",2,11,1
+ETH,17,12471,12,471,Miscellaneous,"Yeast, dried",1,1,3
+ETH,17,6270,6,270,"Nuts, seeds and their products",Coconut water,1,8,10
+ETH,17,6266,6,266,"Nuts, seeds and their products","Coconut, mature kernel, fresh, raw",4,8,10
+ETH,17,6271,6,271,"Nuts, seeds and their products","Dikanut, kernel, dried, raw",4,11,1
+ETH,17,6285,6,285,"Nuts, seeds and their products","Groundnut, combined varieties, shelled, dried, raw (Ghana)",3,4,6
+ETH,17,2095,2,95,"Starchy roots, tubers and their products","Cassava sweet, tuber, dried",4,6,8
+ETH,17,2083,2,83,"Starchy roots, tubers and their products","Potato, raw",2,7,9
+ETH,17,2100,2,100,"Starchy roots, tubers and their products","Tiger nut, tuber dried",4,4,6
+ETH,17,4181,4,181,Vegetables and their products,"Cowpea leaves, dried",3,6,8
+ETH,17,4186,4,186,Vegetables and their products,"False sesame, leaves, raw",1,8,10
+ETH,17,4154,4,154,Vegetables and their products,"Okra leaves, raw",4,2,4
+ETH,17,4196,4,196,Vegetables and their products,"Peppers, chilli, raw",2,12,2
+ETH,17,4205,4,205,Vegetables and their products,"Pumpkin leaves, dried",2,4,6
+ETH,17,4201,4,201,Vegetables and their products,"Pumpkin, squash, raw",4,7,9
+ETH,17,4169,4,169,Vegetables and their products,"Tamarind, leaves, raw",4,10,12
+ETH,17,4172,4,172,Vegetables and their products,"Vernonia, leaves, raw",4,7,9
+RWA,17,11444,11,444,Beverages,"Coffee, liquid",3,1,3
+RWA,17,11447,11,447,Beverages,"Juice, apple, canned or bottled",4,8,10
+RWA,17,11448,11,448,Beverages,"Juice, grapefruit, canned, unsweetened",1,0,2
+RWA,17,11452,11,452,Beverages,Ovaltine beverage with skimmed milk (without sugar; fortified),2,10,12
+RWA,17,1051,1,51,Cereals and their products,"Fonio, husked grains, boiled* (without salt)",2,4,6
+RWA,17,1060,1,60,Cereals and their products,"Maize, white, grit, degermed",2,10,12
+RWA,17,1004,1,4,Cereals and their products,"Maize, white, whole kernel, dried, raw",1,11,1
+RWA,17,1015,1,15,Cereals and their products,"Millet, whole grain, raw",3,4,6
+RWA,17,1063,1,63,Cereals and their products,"Pearl millet, flour (without bran)",1,12,2
+RWA,17,1036,1,36,Cereals and their products,"Rice, white, polished, raw",1,10,12
+RWA,17,1073,1,73,Cereals and their products,"Wheat, bran",2,7,9
+RWA,17,9364,9,364,Fish and their products,"African carp, raw",4,9,11
+RWA,17,9378,9,378,Fish and their products,"Carp, raw",3,5,7
+RWA,17,5222,5,222,Fruits and their products,"Avocado, pulp, raw",1,0,2
+RWA,17,5224,5,224,Fruits and their products,"Baobab, fruit/Monkey bread, pulp, raw",4,2,4
+RWA,17,5253,5,253,Fruits and their products,"Fruit cocktail, canned in syrup",4,4,6
+RWA,17,5234,5,234,Fruits and their products,"Mango, orange flesh,  raw",1,7,9
+RWA,17,5256,5,256,Fruits and their products,"Mango, pale flesh, raw",3,10,12
+RWA,17,5258,5,258,Fruits and their products,"Melon, cantaloup, raw",3,12,2
+RWA,17,5257,5,257,Fruits and their products,"Melon, honeydew, raw",2,2,4
+RWA,17,5261,5,261,Fruits and their products,"Plantain, ripe, raw",4,6,8
+RWA,17,5238,5,238,Fruits and their products,"Soapberry, fruit, raw",3,6,8
+RWA,17,5241,5,241,Fruits and their products,"Watermelon, fruit, raw",1,2,4
+RWA,17,3137,3,137,Legumes and their products,"Cowpea, brown, dried, raw",1,6,8
+RWA,17,3114,3,114,Legumes and their products,"Cowpea, dried, raw",4,4,6
+RWA,17,3118,3,118,Legumes and their products,"Soya bean, dried, raw",2,5,7
+RWA,17,7291,7,291,Meat and poultry and their products,"Beef liver, raw",4,5,7
+RWA,17,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",3,6,8
+RWA,17,7307,7,307,Meat and poultry and their products,"Beef, meat, lean, cured, dried",3,7,9
+RWA,17,7326,7,326,Meat and poultry and their products,"Chicken, light meat, flesh and skin, raw",3,7,9
+RWA,17,7294,7,294,Meat and poultry and their products,"Lamb/mutton, meat, moderately fat, raw",1,0,2
+RWA,17,7297,7,297,Meat and poultry and their products,"Rabbit, flesh only, raw",3,8,10
+RWA,17,10412,10,412,Milk and their products,"Cheese, Gouda",1,11,1
+RWA,17,10430,10,430,Milk and their products,Cottonseed oil,2,9,11
+RWA,17,10414,10,414,Milk and their products,"Cream, 13 % fat",2,6,8
+RWA,17,10428,10,428,Milk and their products,Groundnut oil,2,11,1
+RWA,17,10416,10,416,Milk and their products,"Infant formula, powder, for 6 months",1,1,3
+RWA,17,10431,10,431,Milk and their products,"Margarine, fortified",1,10,12
+RWA,17,10420,10,420,Milk and their products,"Milk, cow, canned, evaporated",2,10,12
+RWA,17,10407,10,407,Milk and their products,"Milk, goat, raw",1,3,5
+RWA,17,10408,10,408,Milk and their products,"Milk, human, mature, raw",4,10,12
+RWA,17,10429,10,429,Milk and their products,"Palm oil, red",3,0,2
+RWA,17,10432,10,432,Milk and their products,"Palm oil, refined",3,9,11
+RWA,17,10409,10,409,Milk and their products,"Yoghurt, whole milk, plain",3,11,1
+RWA,17,12458,12,458,Miscellaneous,Anis seed,3,3,5
+RWA,17,12461,12,461,Miscellaneous,"Cinnamon, ground",2,4,6
+RWA,17,12464,12,464,Miscellaneous,"Ginger, root, raw",4,7,9
+RWA,17,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",2,4,6
+RWA,17,6269,6,269,"Nuts, seeds and their products",Coconut milk ,2,7,9
+RWA,17,6266,6,266,"Nuts, seeds and their products","Coconut, mature kernel, fresh, raw",3,9,11
+RWA,17,6271,6,271,"Nuts, seeds and their products","Dikanut, kernel, dried, raw",4,5,7
+RWA,17,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",1,8,10
+RWA,17,2080,2,80,"Starchy roots, tubers and their products",Cassava flour,3,8,10
+RWA,17,4152,4,152,Vegetables and their products,"Baobab leaves, dried",3,6,8
+RWA,17,4158,4,158,Vegetables and their products,"Cassava, leaves, raw",2,5,7
+RWA,17,4160,4,160,Vegetables and their products,"Cowpea, leaves, raw",4,4,6
+RWA,17,4190,4,190,Vegetables and their products,"Lettuce, raw",4,12,2
+RWA,17,4209,4,209,Vegetables and their products,"Sweet potato, leaves, raw",4,5,7
+RWA,17,4170,4,170,Vegetables and their products,"Taro, leaves, raw",1,7,9
+RWA,17,4217,4,217,Vegetables and their products,"Tomato, powder",3,1,3
+RWA,17,4218,4,218,Vegetables and their products,"Turnip, raw ",2,6,8
+ETH,18,11436,11,436,Beverages,Beer european (4.4 % alcohol),4,10,12
+ETH,18,11450,11,450,Beverages,Ovaltine beverage with whole milk (without sugar; fortified),2,8,10
+ETH,18,11441,11,441,Beverages,Palm wine (est. 3.8 % alcohol),1,11,1
+ETH,18,1046,1,46,Cereals and their products,"Bread, wheat, white",2,0,2
+ETH,18,1047,1,47,Cereals and their products,"Bread, wheat, white for toasting",4,0,2
+ETH,18,1052,1,52,Cereals and their products,"Macaroni, dried",4,1,3
+ETH,18,1015,1,15,Cereals and their products,"Millet, whole grain, raw",3,10,12
+ETH,18,1032,1,32,Cereals and their products,"Pearl millet, combined varieties, whole grain, raw",3,3,5
+ETH,18,1063,1,63,Cereals and their products,"Pearl millet, flour (without bran)",1,10,12
+ETH,18,1017,1,17,Cereals and their products,"Pearl millet, whole grain, raw (with bran)",2,8,10
+ETH,18,1065,1,65,Cereals and their products,"Rice, red native, hulled, raw",4,8,10
+ETH,18,1039,1,39,Cereals and their products,"Sorghum, whole grain, raw ",1,8,10
+ETH,18,1073,1,73,Cereals and their products,"Wheat, bran",3,3,5
+ETH,18,9394,9,394,Fish and their products,"Sardines in oil, canned (drained solids with bone)",1,2,4
+ETH,18,5242,5,242,Fruits and their products,"African fan palm, fruit, pulp, raw",1,9,11
+ETH,18,5245,5,245,Fruits and their products,"Apple, with skin, raw",2,7,9
+ETH,18,5222,5,222,Fruits and their products,"Avocado, pulp, raw",2,11,1
+ETH,18,5232,5,232,Fruits and their products,"Landolphia, pulp, raw",2,4,6
+ETH,18,5236,5,236,Fruits and their products,"Papaya, fruit, ripe, raw",1,6,8
+ETH,18,3112,3,112,Legumes and their products,"Bambara groundnut, red, dried, raw",1,7,9
+ETH,18,3140,3,140,Legumes and their products,"Lentils, dried, raw",1,0,2
+ETH,18,7316,7,316,Meat and poultry and their products,"Bamboo caterpillar, deep fried",3,11,1
+ETH,18,7307,7,307,Meat and poultry and their products,"Beef, meat, lean, cured, dried",4,3,5
+ETH,18,7311,7,311,Meat and poultry and their products,"Beef, tripe, raw",4,5,7
+ETH,18,7329,7,329,Meat and poultry and their products,"Chicken giblets, raw",2,6,8
+ETH,18,7341,7,341,Meat and poultry and their products,"Lamb, brain, raw",1,8,10
+ETH,18,10411,10,411,Milk and their products,"Cheese, goat, hard type",4,5,7
+ETH,18,10427,10,427,Milk and their products,Coconut oil,1,1,3
+ETH,18,10428,10,428,Milk and their products,Groundnut oil,2,10,12
+ETH,18,10416,10,416,Milk and their products,"Infant formula, powder, for 6 months",3,7,9
+ETH,18,10434,10,434,Milk and their products,Soya oil,4,0,2
+ETH,18,12460,12,460,Miscellaneous,"Chilli pepper, dried",2,10,12
+ETH,18,12462,12,462,Miscellaneous,"Cube, beef, dry",2,1,3
+ETH,18,6269,6,269,"Nuts, seeds and their products",Coconut milk ,2,1,3
+ETH,18,6270,6,270,"Nuts, seeds and their products",Coconut water,2,6,8
+ETH,18,6287,6,287,"Nuts, seeds and their products","Groundnut flour, with fat",3,6,8
+ETH,18,6272,6,272,"Nuts, seeds and their products","Groundnut, shelled, dried, raw",3,10,12
+ETH,18,6275,6,275,"Nuts, seeds and their products","Melon seeds, slightly salted, raw",4,8,10
+ETH,18,2095,2,95,"Starchy roots, tubers and their products","Cassava sweet, tuber, dried",4,8,10
+ETH,18,2081,2,81,"Starchy roots, tubers and their products","Cocoyam, tuber, raw ",4,6,8
+ETH,18,2085,2,85,"Starchy roots, tubers and their products","Sweet potato, deep yellow, raw",2,9,11
+ETH,18,2089,2,89,"Starchy roots, tubers and their products","Taro, tuber, raw",3,7,9
+ETH,18,2098,2,98,"Starchy roots, tubers and their products","Tiger nut, tuber, raw",4,7,9
+ETH,18,4160,4,160,Vegetables and their products,"Cowpea, leaves, raw",2,5,7
+ETH,18,4163,4,163,Vegetables and their products,"Eggplant leaves, raw",1,12,2
+ETH,18,4165,4,165,Vegetables and their products,"Garlic, raw",3,11,1
+ETH,18,4188,4,188,Vegetables and their products,"Jute (bush-okra) leaves, raw",3,7,9
+ETH,18,4167,4,167,Vegetables and their products,"Okra fruit, raw",1,1,3
+ETH,18,4205,4,205,Vegetables and their products,"Pumpkin leaves, dried",2,6,8
+ETH,18,4201,4,201,Vegetables and their products,"Pumpkin, squash, raw",3,3,5
+ETH,18,4169,4,169,Vegetables and their products,"Tamarind, leaves, raw",1,5,7
+ETH,18,4216,4,216,Vegetables and their products,"Tomato paste, concentrated",1,11,1
+ETH,18,4217,4,217,Vegetables and their products,"Tomato, powder",3,5,7
+ETH,18,4171,4,171,Vegetables and their products,"Tomato, red, ripe, raw",1,10,12
+RWA,18,11438,11,438,Beverages,"Beer, millet (est. 3 % alcohol)",4,1,3
+RWA,18,11446,11,446,Beverages,"Juice, orange, unsweetened",4,5,7
+RWA,18,11450,11,450,Beverages,Ovaltine beverage with whole milk (without sugar; fortified),1,3,5
+RWA,18,11443,11,443,Beverages,"Tea, infusion",4,2,4
+RWA,18,1044,1,44,Cereals and their products,"Bread, maize flour, yellow, with milk and egg",4,9,11
+RWA,18,1045,1,45,Cereals and their products,"Bread/rolls, white",3,7,9
+RWA,18,1002,1,2,Cereals and their products,"Fonio, black, whole grain, raw",3,2,4
+RWA,18,1039,1,39,Cereals and their products,"Sorghum, whole grain, raw ",1,2,4
+RWA,18,1040,1,40,Cereals and their products,"Sorghum, whole grain, white, raw",4,11,1
+RWA,18,8354,8,354,Eggs and their products,"Egg, chicken, raw",1,12,2
+RWA,18,9358,9,358,Fish and their products,"Anchovy, fillet, raw",1,7,9
+RWA,18,9375,9,375,Fish and their products,"Catfish, raw",2,2,4
+RWA,18,9398,9,398,Fish and their products,"Tilapia, raw",4,9,11
+RWA,18,5223,5,223,Fruits and their products,"Banana, white flesh, raw",1,9,11
+RWA,18,5227,5,227,Fruits and their products,"Dattock, pulp, raw",2,6,8
+RWA,18,5231,5,231,Fruits and their products,"Jujube, raw",3,11,1
+RWA,18,5236,5,236,Fruits and their products,"Papaya, fruit, ripe, raw",1,3,5
+RWA,18,5263,5,263,Fruits and their products,"Shea fruit pulp, raw",1,7,9
+RWA,18,5238,5,238,Fruits and their products,"Soapberry, fruit, raw",3,3,5
+RWA,18,5240,5,240,Fruits and their products,"Tamarind, fruit, ripe, raw",1,5,7
+RWA,18,5241,5,241,Fruits and their products,"Watermelon, fruit, raw",4,3,5
+RWA,18,3119,3,119,Legumes and their products,"African locust bean, seeds, dried",4,6,8
+RWA,18,3120,3,120,Legumes and their products,"African yam bean, dried, raw",2,10,12
+RWA,18,3132,3,132,Legumes and their products,"Beans, white, dried",2,12,2
+RWA,18,3114,3,114,Legumes and their products,"Cowpea, dried, raw",1,12,2
+RWA,18,3140,3,140,Legumes and their products,"Lentils, dried, raw",2,3,5
+RWA,18,7309,7,309,Meat and poultry and their products,"Beef, kidney, raw",4,3,5
+RWA,18,7329,7,329,Meat and poultry and their products,"Chicken giblets, raw",3,2,4
+RWA,18,7320,7,320,Meat and poultry and their products,"Chicken, dark meat, flesh and skin, raw",1,1,3
+RWA,18,7323,7,323,Meat and poultry and their products,"Chicken, light meat, flesh, raw",1,2,4
+RWA,18,7317,7,317,Meat and poultry and their products,"Game meat, dried",1,2,4
+RWA,18,7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless, raw",1,9,11
+RWA,18,7295,7,295,Meat and poultry and their products,"Pork, meat, approx. 40 % fat, boneless, raw",1,5,7
+RWA,18,7297,7,297,Meat and poultry and their products,"Rabbit, flesh only, raw",2,1,3
+RWA,18,10412,10,412,Milk and their products,"Cheese, Gouda",4,9,11
+RWA,18,10419,10,419,Milk and their products,"Milk, cow, canned, condensed, sweetened",3,9,11
+RWA,18,10405,10,405,Milk and their products,"Milk, cow, whole, 3.5 % fat (includes pasteurised, sterilised and UHT)",2,7,9
+RWA,18,10407,10,407,Milk and their products,"Milk, goat, raw",1,4,6
+RWA,18,10429,10,429,Milk and their products,"Palm oil, red",2,10,12
+RWA,18,10433,10,433,Milk and their products,Shea butter,4,10,12
+RWA,18,10434,10,434,Milk and their products,Soya oil,2,3,5
+RWA,18,12460,12,460,Miscellaneous,"Chilli pepper, dried",2,4,6
+RWA,18,12465,12,465,Miscellaneous,"Ginger, roots, dried",2,10,12
+RWA,18,12467,12,467,Miscellaneous,"Mustard, prepared, yellow",1,10,12
+RWA,18,12468,12,468,Miscellaneous,"Pepper, black",3,1,3
+RWA,18,12457,12,457,Miscellaneous,Vinegar,3,7,9
+RWA,18,6285,6,285,"Nuts, seeds and their products","Groundnut, combined varieties, shelled, dried, raw (Ghana)",3,1,3
+RWA,18,2078,2,78,"Starchy roots, tubers and their products","Cassava, tuber, dried",2,5,7
+RWA,18,2077,2,77,"Starchy roots, tubers and their products","Cassava, tuber, raw",3,2,4
+RWA,18,2096,2,96,"Starchy roots, tubers and their products","Sweet potato, pale yellow, raw",4,4,6
+RWA,18,2089,2,89,"Starchy roots, tubers and their products","Taro, tuber, raw",4,2,4
+RWA,18,2091,2,91,"Starchy roots, tubers and their products","Water yam, tuber, raw",3,6,8
+RWA,18,2110,2,110,"Starchy roots, tubers and their products","Yam tuber, flour",2,6,8
+RWA,18,4173,4,173,Vegetables and their products,"Amaranth leaves, raw",4,5,7
+RWA,18,4159,4,159,Vegetables and their products,"Cocoyam, leaves, raw",4,9,11
+RWA,18,4182,4,182,Vegetables and their products,"Cucumber, raw",4,2,4
+RWA,18,4164,4,164,Vegetables and their products,"False sesame, leaves, dried",1,12,2
+RWA,18,4168,4,168,Vegetables and their products,"Onion, raw",1,9,11
+RWA,18,4199,4,199,Vegetables and their products,"Pepper, sweet, green, raw",2,0,2
+RWA,18,4169,4,169,Vegetables and their products,"Tamarind, leaves, raw",2,7,9
+RWA,18,4215,4,215,Vegetables and their products,"Tomatoes, canned, packed in juice",3,12,2
+ETH,19,11438,11,438,Beverages,"Beer, millet (est. 3 % alcohol)",3,7,9
+ETH,19,11446,11,446,Beverages,"Juice, orange, unsweetened",3,8,10
+ETH,19,11452,11,452,Beverages,Ovaltine beverage with skimmed milk (without sugar; fortified),4,8,10
+ETH,19,11450,11,450,Beverages,Ovaltine beverage with whole milk (without sugar; fortified),3,8,10
+ETH,19,11442,11,442,Beverages,"Sap, palm, fresh (0.3 % alcohol)",3,11,1
+ETH,19,11454,11,454,Beverages,"Water, tap",2,1,3
+ETH,19,1045,1,45,Cereals and their products,"Bread/rolls, white",4,5,7
+ETH,19,1059,1,59,Cereals and their products,"Maize, white, flour degermed ",2,5,7
+ETH,19,1060,1,60,Cereals and their products,"Maize, white, grit, degermed",2,10,12
+ETH,19,1076,1,76,Cereals and their products,"Maize, white, stiff porridge* (without salt)",1,3,5
+ETH,19,9364,9,364,Fish and their products,"African carp, raw",1,9,11
+ETH,19,9369,9,369,Fish and their products,"Anchovy, canned in oil (drained solids)",2,5,7
+ETH,19,9372,9,372,Fish and their products,"Bayad, raw",3,1,3
+ETH,19,9361,9,361,Fish and their products,"Sardine, raw",4,11,1
+ETH,19,5242,5,242,Fruits and their products,"African fan palm, fruit, pulp, raw",2,4,6
+ETH,19,5222,5,222,Fruits and their products,"Avocado, pulp, raw",3,11,1
+ETH,19,5223,5,223,Fruits and their products,"Banana, white flesh, raw",3,6,8
+ETH,19,5247,5,247,Fruits and their products,"Banana, yellow flesh, raw",2,3,5
+ETH,19,5250,5,250,Fruits and their products,"Dates, dried",4,7,9
+ETH,19,5254,5,254,Fruits and their products,"Grapefruit, pulp, raw",1,3,5
+ETH,19,5230,5,230,Fruits and their products,"Gumvine, raw",1,9,11
+ETH,19,5235,5,235,Fruits and their products,"Orange, raw",1,9,11
+ETH,19,5237,5,237,Fruits and their products,"Pineapple, pulp, raw",2,3,5
+ETH,19,5238,5,238,Fruits and their products,"Soapberry, fruit, raw",3,5,7
+ETH,19,3111,3,111,Legumes and their products,"Bambara groundnut, dried, raw ",2,4,6
+ETH,19,3134,3,134,Legumes and their products,"Broad beans, dried, raw",3,4,6
+ETH,19,3114,3,114,Legumes and their products,"Cowpea, dried, raw",3,3,5
+ETH,19,3118,3,118,Legumes and their products,"Soya bean, dried, raw",2,9,11
+ETH,19,7298,7,298,Meat and poultry and their products,"Ant flying, dried",1,9,11
+ETH,19,7291,7,291,Meat and poultry and their products,"Beef liver, raw",1,8,10
+ETH,19,7293,7,293,Meat and poultry and their products,"Chicken, dark meat, flesh, raw",1,11,1
+ETH,19,7317,7,317,Meat and poultry and their products,"Game meat, dried",3,1,3
+ETH,19,7345,7,345,Meat and poultry and their products,"Locust, raw",2,11,1
+ETH,19,7295,7,295,Meat and poultry and their products,"Pork, meat, approx. 40 % fat, boneless, raw",3,3,5
+ETH,19,7297,7,297,Meat and poultry and their products,"Rabbit, flesh only, raw",1,5,7
+ETH,19,10412,10,412,Milk and their products,"Cheese, Gouda",4,0,2
+ETH,19,10414,10,414,Milk and their products,"Cream, 13 % fat",3,6,8
+ETH,19,10420,10,420,Milk and their products,"Milk, cow, canned, evaporated",4,2,4
+ETH,19,10432,10,432,Milk and their products,"Palm oil, refined",3,2,4
+ETH,19,12460,12,460,Miscellaneous,"Chilli pepper, dried",4,10,12
+ETH,19,12465,12,465,Miscellaneous,"Ginger, roots, dried",4,2,4
+ETH,19,6266,6,266,"Nuts, seeds and their products","Coconut, mature kernel, fresh, raw",3,5,7
+ETH,19,6279,6,279,"Nuts, seeds and their products","Colanut, dried, raw",1,2,4
+ETH,19,6272,6,272,"Nuts, seeds and their products","Groundnut, shelled, dried, raw",2,10,12
+ETH,19,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",3,11,1
+ETH,19,6289,6,289,"Nuts, seeds and their products","Palm nut kernel, shelled, raw",4,10,12
+ETH,19,6290,6,290,"Nuts, seeds and their products","Roselle, red, seed, dried ",3,3,5
+ETH,19,6276,6,276,"Nuts, seeds and their products","Sesame seeds, whole, dried, raw",2,11,1
+ETH,19,2089,2,89,"Starchy roots, tubers and their products","Taro, tuber, raw",1,8,10
+ETH,19,2100,2,100,"Starchy roots, tubers and their products","Tiger nut, tuber dried",3,1,3
+ETH,19,2098,2,98,"Starchy roots, tubers and their products","Tiger nut, tuber, raw",1,0,2
+ETH,19,4155,4,155,Vegetables and their products,"Cabbage, raw",1,5,7
+ETH,19,4167,4,167,Vegetables and their products,"Okra fruit, raw",1,6,8
+ETH,19,4195,4,195,Vegetables and their products,"Parsley, fresh",2,5,7
+ETH,19,4170,4,170,Vegetables and their products,"Taro, leaves, raw",4,10,12
+RWA,19,11438,11,438,Beverages,"Beer, millet (est. 3 % alcohol)",3,1,3
+RWA,19,11444,11,444,Beverages,"Coffee, liquid",4,10,12
+RWA,19,11451,11,451,Beverages,Ovaltine beverage with partly skimmed milk (without sugar; fortified),3,9,11
+RWA,19,11452,11,452,Beverages,Ovaltine beverage with skimmed milk (without sugar; fortified),2,7,9
+RWA,19,11453,11,453,Beverages,"Ovaltine powder, fortified",3,1,3
+RWA,19,1045,1,45,Cereals and their products,"Bread/rolls, white",3,3,5
+RWA,19,1002,1,2,Cereals and their products,"Fonio, black, whole grain, raw",3,10,12
+RWA,19,1052,1,52,Cereals and their products,"Macaroni, dried",4,3,5
+RWA,19,1057,1,57,Cereals and their products,"Maize, white, flour of whole grain",2,0,2
+RWA,19,1076,1,76,Cereals and their products,"Maize, white, stiff porridge* (without salt)",3,1,3
+RWA,19,1054,1,54,Cereals and their products,"Maize, yellow, flour of whole-grain",3,8,10
+RWA,19,1072,1,72,Cereals and their products,"Sorghum, flour, degermed",4,4,6
+RWA,19,1039,1,39,Cereals and their products,"Sorghum, whole grain, raw ",1,12,2
+RWA,19,1040,1,40,Cereals and their products,"Sorghum, whole grain, white, raw",2,3,5
+RWA,19,1073,1,73,Cereals and their products,"Wheat, bran",2,2,4
+RWA,19,9372,9,372,Fish and their products,"Bayad, raw",2,1,3
+RWA,19,9362,9,362,Fish and their products,"Tuna, raw",4,5,7
+RWA,19,5242,5,242,Fruits and their products,"African fan palm, fruit, pulp, raw",2,9,11
+RWA,19,5244,5,244,Fruits and their products,"Akee, pulp, raw",1,7,9
+RWA,19,5227,5,227,Fruits and their products,"Dattock, pulp, raw",3,12,2
+RWA,19,5252,5,252,Fruits and their products,"Fig, dried ",3,4,6
+RWA,19,5253,5,253,Fruits and their products,"Fruit cocktail, canned in syrup",3,10,12
+RWA,19,5254,5,254,Fruits and their products,"Grapefruit, pulp, raw",2,11,1
+RWA,19,5230,5,230,Fruits and their products,"Gumvine, raw",3,12,2
+RWA,19,5234,5,234,Fruits and their products,"Mango, orange flesh,  raw",4,2,4
+RWA,19,5236,5,236,Fruits and their products,"Papaya, fruit, ripe, raw",4,6,8
+RWA,19,5239,5,239,Fruits and their products,"Tamarind, immature fruit, raw",4,9,11
+RWA,19,3119,3,119,Legumes and their products,"African locust bean, seeds, dried",1,5,7
+RWA,19,3142,3,142,Legumes and their products,"Pigeon pea, dried, raw",3,8,10
+RWA,19,3118,3,118,Legumes and their products,"Soya bean, dried, raw",3,8,10
+RWA,19,7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat, raw",2,4,6
+RWA,19,7311,7,311,Meat and poultry and their products,"Beef, tripe, raw",3,4,6
+RWA,19,7293,7,293,Meat and poultry and their products,"Chicken, dark meat, flesh, raw",2,10,12
+RWA,19,7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless, raw",3,1,3
+RWA,19,10410,10,410,Milk and their products,Cheddar,1,12,2
+RWA,19,10427,10,427,Milk and their products,Coconut oil,2,10,12
+RWA,19,10430,10,430,Milk and their products,Cottonseed oil,2,0,2
+RWA,19,10416,10,416,Milk and their products,"Infant formula, powder, for 6 months",1,2,4
+RWA,19,10420,10,420,Milk and their products,"Milk, cow, canned, evaporated",1,8,10
+RWA,19,10406,10,406,Milk and their products,"Milk, cow, powder, whole",3,4,6
+RWA,19,10423,10,423,Milk and their products,"Milk, human, colostrum, raw",2,1,3
+RWA,19,12459,12,459,Miscellaneous,"Bay leaf, dried",2,11,1
+RWA,19,12463,12,463,Miscellaneous,"Cumin, seed",4,12,2
+RWA,19,12465,12,465,Miscellaneous,"Ginger, roots, dried",2,9,11
+RWA,19,6269,6,269,"Nuts, seeds and their products",Coconut milk ,3,3,5
+RWA,19,6285,6,285,"Nuts, seeds and their products","Groundnut, combined varieties, shelled, dried, raw (Ghana)",3,4,6
+RWA,19,6272,6,272,"Nuts, seeds and their products","Groundnut, shelled, dried, raw",4,6,8
+RWA,19,4173,4,173,Vegetables and their products,"Amaranth leaves, raw",3,0,2
+RWA,19,4160,4,160,Vegetables and their products,"Cowpea, leaves, raw",2,10,12
+RWA,19,4182,4,182,Vegetables and their products,"Cucumber, raw",1,0,2
+RWA,19,4188,4,188,Vegetables and their products,"Jute (bush-okra) leaves, raw",2,2,4
+RWA,19,4194,4,194,Vegetables and their products,"Onions, dried",3,3,5
+RWA,19,4205,4,205,Vegetables and their products,"Pumpkin leaves, dried",2,8,10
+RWA,19,4203,4,203,Vegetables and their products,"Pumpkin leaves, raw",4,3,5
+RWA,19,4201,4,201,Vegetables and their products,"Pumpkin, squash, raw",2,3,5
+RWA,19,4169,4,169,Vegetables and their products,"Tamarind, leaves, raw",3,12,2
+RWA,19,4218,4,218,Vegetables and their products,"Turnip, raw ",3,8,10
+ETH,20,11446,11,446,Beverages,"Juice, orange, unsweetened",4,11,1
+ETH,20,11452,11,452,Beverages,Ovaltine beverage with skimmed milk (without sugar; fortified),1,1,3
+ETH,20,11441,11,441,Beverages,Palm wine (est. 3.8 % alcohol),2,3,5
+ETH,20,1001,1,1,Cereals and their products,"Fonio, white, whole grain, raw",2,8,10
+ETH,20,1057,1,57,Cereals and their products,"Maize, white, flour of whole grain",2,5,7
+ETH,20,1058,1,58,Cereals and their products,"Maize, white, flour refined",2,9,11
+ETH,20,1075,1,75,Cereals and their products,"Maize, yellow, stiff porridge* (without salt)",2,9,11
+ETH,20,1015,1,15,Cereals and their products,"Millet, whole grain, raw",4,8,10
+ETH,20,1063,1,63,Cereals and their products,"Pearl millet, flour (without bran)",3,7,9
+ETH,20,1017,1,17,Cereals and their products,"Pearl millet, whole grain, raw (with bran)",1,11,1
+ETH,20,1040,1,40,Cereals and their products,"Sorghum, whole grain, white, raw",1,2,4
+ETH,20,9375,9,375,Fish and their products,"Catfish, raw",2,10,12
+ETH,20,9362,9,362,Fish and their products,"Tuna, raw",3,6,8
+ETH,20,5221,5,221,Fruits and their products,"African locust bean, fruit, pulp, raw",2,2,4
+ETH,20,5223,5,223,Fruits and their products,"Banana, white flesh, raw",2,10,12
+ETH,20,5228,5,228,Fruits and their products,"Dattock, dried pulp, raw",2,10,12
+ETH,20,5230,5,230,Fruits and their products,"Gumvine, raw",3,10,12
+ETH,20,5238,5,238,Fruits and their products,"Soapberry, fruit, raw",2,0,2
+ETH,20,3119,3,119,Legumes and their products,"African locust bean, seeds, dried",3,11,1
+ETH,20,3120,3,120,Legumes and their products,"African yam bean, dried, raw",4,10,12
+ETH,20,3114,3,114,Legumes and their products,"Cowpea, dried, raw",3,2,4
+ETH,20,7316,7,316,Meat and poultry and their products,"Bamboo caterpillar, deep fried",1,9,11
+ETH,20,7315,7,315,Meat and poultry and their products,"Beef, meat, cured, corned, canned",3,1,3
+ETH,20,7307,7,307,Meat and poultry and their products,"Beef, meat, lean, cured, dried",2,4,6
+ETH,20,7334,7,334,Meat and poultry and their products,"Crocodile, raw",4,11,1
+ETH,20,7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless, raw",2,4,6
+ETH,20,7297,7,297,Meat and poultry and their products,"Rabbit, flesh only, raw",4,9,11
+ETH,20,10412,10,412,Milk and their products,"Cheese, Gouda",1,9,11
+ETH,20,10423,10,423,Milk and their products,"Milk, human, colostrum, raw",4,6,8
+ETH,20,10433,10,433,Milk and their products,Shea butter,2,7,9
+ETH,20,12461,12,461,Miscellaneous,"Cinnamon, ground",2,6,8
+ETH,20,12468,12,468,Miscellaneous,"Pepper, black",3,9,11
+ETH,20,12470,12,470,Miscellaneous,"Spices, mix, ground",1,2,4
+ETH,20,12457,12,457,Miscellaneous,Vinegar,2,8,10
+ETH,20,12471,12,471,Miscellaneous,"Yeast, dried",2,10,12
+ETH,20,6278,6,278,"Nuts, seeds and their products","Colanut, raw",1,1,3
+ETH,20,6274,6,274,"Nuts, seeds and their products","Groundnut, red, shelled, dried, raw (Benin)",3,2,4
+ETH,20,6289,6,289,"Nuts, seeds and their products","Palm nut kernel, shelled, raw",1,10,12
+ETH,20,2077,2,77,"Starchy roots, tubers and their products","Cassava, tuber, raw",4,4,6
+ETH,20,2096,2,96,"Starchy roots, tubers and their products","Sweet potato, pale yellow, raw",4,11,1
+ETH,20,2098,2,98,"Starchy roots, tubers and their products","Tiger nut, tuber, raw",2,8,10
+ETH,20,2110,2,110,"Starchy roots, tubers and their products","Yam tuber, flour",1,3,5
+ETH,20,4152,4,152,Vegetables and their products,"Baobab leaves, dried",3,1,3
+ETH,20,4151,4,151,Vegetables and their products,"Baobab, leaves,  raw",2,8,10
+ETH,20,4186,4,186,Vegetables and their products,"False sesame, leaves, raw",2,5,7
+ETH,20,4199,4,199,Vegetables and their products,"Pepper, sweet, green, raw",2,7,9
+ETH,20,4197,4,197,Vegetables and their products,"Pepper, sweet, red, raw",2,5,7
+ETH,20,4203,4,203,Vegetables and their products,"Pumpkin leaves, raw",2,0,2
+ETH,20,4172,4,172,Vegetables and their products,"Vernonia, leaves, raw",3,7,9
+RWA,20,11438,11,438,Beverages,"Beer, millet (est. 3 % alcohol)",1,0,2
+RWA,20,1046,1,46,Cereals and their products,"Bread, wheat, white",2,10,12
+RWA,20,1001,1,1,Cereals and their products,"Fonio, white, whole grain, raw",3,7,9
+RWA,20,1052,1,52,Cereals and their products,"Macaroni, dried",4,7,9
+RWA,20,1059,1,59,Cereals and their products,"Maize, white, flour degermed ",3,10,12
+RWA,20,1057,1,57,Cereals and their products,"Maize, white, flour of whole grain",2,0,2
+RWA,20,1063,1,63,Cereals and their products,"Pearl millet, flour (without bran)",3,12,2
+RWA,20,1017,1,17,Cereals and their products,"Pearl millet, whole grain, raw (with bran)",4,11,1
+RWA,20,1034,1,34,Cereals and their products,"Rice, brown, raw",1,11,1
+RWA,20,1067,1,67,Cereals and their products,"Rice, red native,  milled, raw",3,4,6
+RWA,20,1065,1,65,Cereals and their products,"Rice, red native, hulled, raw",3,8,10
+RWA,20,1037,1,37,Cereals and their products,"Rice, white, raw",1,11,1
+RWA,20,9364,9,364,Fish and their products,"African carp, raw",3,2,4
+RWA,20,9372,9,372,Fish and their products,"Bayad, raw",3,0,2
+RWA,20,5222,5,222,Fruits and their products,"Avocado, pulp, raw",2,7,9
+RWA,20,5250,5,250,Fruits and their products,"Dates, dried",2,8,10
+RWA,20,5249,5,249,Fruits and their products,"Dates, raw",4,6,8
+RWA,20,5228,5,228,Fruits and their products,"Dattock, dried pulp, raw",4,6,8
+RWA,20,5252,5,252,Fruits and their products,"Fig, dried ",4,7,9
+RWA,20,5229,5,229,Fruits and their products,"Guava, fruit, raw",4,4,6
+RWA,20,5232,5,232,Fruits and their products,"Landolphia, pulp, raw",2,8,10
+RWA,20,5233,5,233,Fruits and their products,"Lemon, raw",1,1,3
+RWA,20,5234,5,234,Fruits and their products,"Mango, orange flesh,  raw",1,2,4
+RWA,20,5256,5,256,Fruits and their products,"Mango, pale flesh, raw",1,2,4
+RWA,20,5258,5,258,Fruits and their products,"Melon, cantaloup, raw",2,5,7
+RWA,20,5259,5,259,Fruits and their products,"Palm nuts, pulp, raw",3,10,12
+RWA,20,5261,5,261,Fruits and their products,"Plantain, ripe, raw",2,0,2
+RWA,20,5240,5,240,Fruits and their products,"Tamarind, fruit, ripe, raw",3,8,10
+RWA,20,5241,5,241,Fruits and their products,"Watermelon, fruit, raw",3,11,1
+RWA,20,3132,3,132,Legumes and their products,"Beans, white, dried",3,2,4
+RWA,20,7309,7,309,Meat and poultry and their products,"Beef, kidney, raw",1,0,2
+RWA,20,7331,7,331,Meat and poultry and their products,"Chicken, liver, raw",1,3,5
+RWA,20,7334,7,334,Meat and poultry and their products,"Crocodile, raw",1,11,1
+RWA,20,7343,7,343,Meat and poultry and their products,"Lamb, liver, raw",3,10,12
+RWA,20,7353,7,353,Meat and poultry and their products,"Sausage, wiener (beef, pork, chicken) canned",4,11,1
+RWA,20,10426,10,426,Milk and their products,"Butter, from cow's milk (without salt)",3,10,12
+RWA,20,10410,10,410,Milk and their products,Cheddar,4,6,8
+RWA,20,10415,10,415,Milk and their products,"Infant formula, powder, for 3 months",3,4,6
+RWA,20,10407,10,407,Milk and their products,"Milk, goat, raw",1,6,8
+RWA,20,10408,10,408,Milk and their products,"Milk, human, mature, raw",4,5,7
+RWA,20,10434,10,434,Milk and their products,Soya oil,4,10,12
+RWA,20,12460,12,460,Miscellaneous,"Chilli pepper, dried",2,7,9
+RWA,20,12461,12,461,Miscellaneous,"Cinnamon, ground",2,5,7
+RWA,20,12463,12,463,Miscellaneous,"Cumin, seed",3,5,7
+RWA,20,12464,12,464,Miscellaneous,"Ginger, root, raw",2,4,6
+RWA,20,12468,12,468,Miscellaneous,"Pepper, black",1,5,7
+RWA,20,12469,12,469,Miscellaneous,Salt,4,11,1
+RWA,20,12457,12,457,Miscellaneous,Vinegar,3,11,1
+RWA,20,6265,6,265,"Nuts, seeds and their products","Cashew nut, raw",1,8,10
+RWA,20,6270,6,270,"Nuts, seeds and their products",Coconut water,3,8,10
+RWA,20,6285,6,285,"Nuts, seeds and their products","Groundnut, combined varieties, shelled, dried, raw (Ghana)",3,0,2
+RWA,20,6273,6,273,"Nuts, seeds and their products","Groundnut, rose, shelled, dried, raw (Benin)",4,0,2
+RWA,20,2081,2,81,"Starchy roots, tubers and their products","Cocoyam, tuber, raw ",4,8,10
+RWA,20,2083,2,83,"Starchy roots, tubers and their products","Potato, raw",2,5,7
+RWA,20,2096,2,96,"Starchy roots, tubers and their products","Sweet potato, pale yellow, raw",1,1,3
+RWA,20,2098,2,98,"Starchy roots, tubers and their products","Tiger nut, tuber, raw",2,0,2
+RWA,20,4168,4,168,Vegetables and their products,"Onion, raw",3,1,3
+RWA,20,4199,4,199,Vegetables and their products,"Pepper, sweet, green, raw",3,6,8
+RWA,20,4197,4,197,Vegetables and their products,"Pepper, sweet, red, raw",2,12,2
+RWA,20,4203,4,203,Vegetables and their products,"Pumpkin leaves, raw",2,1,3
+RWA,20,4209,4,209,Vegetables and their products,"Sweet potato, leaves, raw",3,9,11
+RWA,20,4169,4,169,Vegetables and their products,"Tamarind, leaves, raw",4,0,2
+RWA,20,4215,4,215,Vegetables and their products,"Tomatoes, canned, packed in juice",4,8,10
+RWA,20,4218,4,218,Vegetables and their products,"Turnip, raw ",1,11,1

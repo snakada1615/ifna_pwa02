@@ -26,8 +26,8 @@ class FamilyForm(forms.ModelForm):
     class Meta:
         model = Family
         fields = (
-            "name", "remark", "country", "region", "province", "community",
-            "protein", "vita", "fe", "size", "crop_list", "id"
+            "name", "country", "region", "province", "community",
+            "protein", "vita", "fe", "size", "crop_list", "id", "remark"
         )
         widgets = {
             'country': forms.Select(attrs = {'onchange' : "selCnt();"}),

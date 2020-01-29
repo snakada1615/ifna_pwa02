@@ -3,6 +3,49 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class Crop_Region(models.Model):
+    country=models.CharField(max_length=200)
+    GID_1=models.CharField(max_length=200)
+    FCT_id=models.IntegerField(default=1)
+    food_grp_id=models.IntegerField(default=1)
+    food_item_id=models.IntegerField(default=1)
+    Food_grp=models.CharField(max_length=200)
+    Food_name=models.CharField(max_length=200)
+    suitable_class=models.IntegerField(default=1)
+    Hrv_strt=models.IntegerField(default=1)
+    Hrv_end=models.IntegerField(default=1)
+    created_at = models.DateTimeField(
+        verbose_name='record_date',
+        null=True,
+        blank=True,
+        auto_now_add=True
+    )
+    created_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
+
+class Crop_AEZ(models.Model):
+    country = models.CharField(max_length=200)
+    FCT_id = models.IntegerField(default=1)
+    food_grp_id = models.IntegerField(default=1)
+    food_item_id = models.IntegerField(default=1)
+    Food_grp = models.CharField(max_length=200)
+    Food_name = models.CharField(max_length=200)
+    Crop_ref = models.CharField(max_length=200)
+    created_at = models.DateTimeField(
+        verbose_name='record_date',
+        auto_now_add=True
+    )
+    created_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
+
 
 class Countries(models.Model):
     GID_0 = models.CharField(max_length=200)
