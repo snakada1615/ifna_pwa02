@@ -174,6 +174,14 @@ class Family(models.Model):
         max_length=1000,
         default='0',
     )
+    conv_crop_grow = models.CharField(
+        max_length=1000,
+        default='0',
+    )
+    conv_crop_mrkt = models.CharField(
+        max_length=1000,
+        default='0',
+    )
 
     month_start = models.IntegerField(
         default=0,

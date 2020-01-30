@@ -26,6 +26,35 @@ import logging
 # Create your views here.
 
 
+class convCrop_Grow(TemplateView):
+    template_name = "myApp/conv_crop_grow.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['families'] = Person.objects.filter(
+            familyid=self.kwargs['familyid'])
+        context['name'] = Family.objects.get(id=self.kwargs['familyid'])
+        context['myid'] = Family.objects.get(id=self.kwargs['familyid']).id
+        context['country'] = Family.objects.get(
+            id=self.kwargs['familyid']).country
+        context['region'] = Family.objects.get(
+            id=self.kwargs['familyid']).region
+        context['nutrition_target'] = Family.objects.get(
+            id=self.kwargs['familyid']).nutrition_target
+        context['dri_p'] = Family.objects.get(
+            id=self.kwargs['familyid']).protein
+        context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
+        context['dri_f'] = Family.objects.get(id=self.kwargs['familyid']).fe
+
+        tmp = Family.objects.get(id=self.kwargs['familyid']).crop_list
+        crops = []
+        if ('-' in tmp):
+            for crop in tmp.split('-'):
+                crops.append(FCT.objects.get(food_item_id=crop).Food_name)
+        context['crop_list'] = crops
+        return context
+
+
 class FCTdatable_View(TemplateView):
     template_name = "myApp/FCT_datable.html"
 
@@ -87,7 +116,7 @@ class Crop_Feas_View(TemplateView):
     template_name = "myApp/feasibility_result.html"
 
 
-class Trial_Model(Datatable):
+class SuitCrop_Model(Datatable):
     class Meta:
         model = Crop_Region
         columns = [
@@ -97,16 +126,15 @@ class Trial_Model(Datatable):
             'Hrv_end',
         ]
 
-
-class Trial_View(DatatableView):
+class SuitCrop_View(DatatableView):
     model = Crop_Region
-    datatable_class = Trial_Model
+    datatable_class = SuitCrop_Model
 
     def get_template_names(self):
         return "myApp/trial.html"
 
     def get_initial_queryset(self):
-        return self.model.objects.filter(Hrv_end=10)
+        return self.model.objects.filter(GID_1 = self.kwargs['familyid'])
 
 class TestOfflineView(TemplateView):
     template_name = "myApp/offline/test.html"

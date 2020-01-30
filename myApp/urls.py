@@ -5,7 +5,7 @@ from .views import Family_UpdateView, Family_DeleteView, Family_ListView, Family
 from .views import Person_UpdateView, Person_DeleteView, Person_ListView, Person_CreateView
 from .views import Crop_UpdateView, Crop_DeleteView, Crop_ListView, Crop_CreateView
 from .views import WhoamI_View, Usage_View, TestOfflineView, off_FCT_view, off_Family_ListView
-from .views import Trial_View, off_Family_CreateView, FCTdatable_View, Under_Construction_View
+from .views import SuitCrop_View, off_Family_CreateView, FCTdatable_View, Under_Construction_View
 from .views import Crop_Feas_View, Crop_Calendar_View, FamilyFiltered_ListView, TestView01
 
 from django.contrib import admin
@@ -15,9 +15,11 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('test01/',  TestView01.as_view(), name='test01'),
-    path('result/<int:familyid>/',  Crop_Feas_View.as_view(), name='result'),
-    path('trial/',  Trial_View.as_view(), name='trial'),
+    path('suitcrop/<str:aez_id>/',  SuitCrop_View.as_view(), name='suitcrop'),
+    path('conv_crop_grow/<int:familyid>/',  convCrop_Grow_View.as_view(), name='conv_crop_grow'),
+
     path('test/',  TestView.as_view(), name='test'),
+    path('result/<int:familyid>/',  Crop_Feas_View.as_view(), name='result'),
     path('offline/', TestOfflineView.as_view(), name='offline'),
     path('offline/fct/<int:categ>/<int:order>/',  off_FCT_view.as_view(), name='off_FCT_view'),
     path('offline/Family/list/', off_Family_ListView.as_view(), name='off_family_list'),

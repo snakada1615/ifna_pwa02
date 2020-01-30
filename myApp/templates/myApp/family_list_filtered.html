@@ -37,9 +37,10 @@
 						<p class="card-text my-0">
 							{{ family.region }}
 						</p>
-							<span><a class="btn my-0 btn-outline-secondary btn-sm align-middle badge" href="{% url 'Family_update' pk=family.pk %}">basic info</a></span>
-							<span><a class="btn my-0 btn-outline-secondary btn-sm align-middle badge " href="{% url 'Family_delete' pk=family.pk %}">delete all</a></span>
-							<span><a class="btn my-0 btn-outline-secondary btn-sm align-middle badge" href="{% url 'person_list' familyid=family.pk %}">next step</a></span>
+							<span><a class="btn my-0 btn-outline-secondary btn-sm align-middle badge" href="{% url 'Family_update' pk=family.pk %}">edit</a></span>
+							<span><a class="btn my-0 btn-outline-secondary btn-sm align-middle badge " href="{% url 'Family_delete' pk=family.pk %}">delete</a></span>
+							<span><a class="btn my-0 btn-outline-secondary btn-sm align-middle badge " href="{% url 'suitcrop' aez_id=family.region %}">crop_s</a></span>
+							<span><a class="btn my-0 btn-outline-secondary btn-sm align-middle badge" href="{% url 'person_list' familyid=family.pk %}">next</a></span>
 		      </div>
 		    </div>
 		  </div>

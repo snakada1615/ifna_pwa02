@@ -1,0 +1,268 @@
+{% extends 'myApp/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
+<link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
+
+
+<script>
+  // URLパラメータの取得
+  var myFamily = '';
+  var myRoot = '';
+  var items = [];
+
+  getHTML_param = function() {
+    var url_tmp = window.location.href.split('/');
+    var tmp1 = url_tmp[url_tmp.length - 3];
+    var tmp2 = url_tmp[url_tmp.length - 2];
+    url_tmp.pop();
+    url_tmp.pop();
+    url_tmp.pop();
+    url_tmp.pop();
+    myRoot = url_tmp.join("/") + '/';
+    myFamily = tmp1;
+    items.length = 0;
+    if (tmp2 == '0') {
+      items.push('0');
+    } else if (tmp2.indexOf('-') < 0) {
+      items.push(tmp2);
+    } else {
+      items = tmp2.split('-');
+    }
+    return tmp1;
+  }
+
+  $(document).ready(function() {
+    var table = $('#example').DataTable({
+      "ajax": "{% static 'DataTables/data/FCT.txt' %}",
+      "pageLength": 50,
+      "columns": [{
+          "data": "row_sel"
+        },
+        {
+          "data": "Food_name"
+        },
+        {
+          "data": "Protein"
+        },
+        {
+          "data": "VITA_RAE"
+        },
+        {
+          "data": "FE"
+        },
+        {
+          "data": "Food_grp"
+        },
+      ],
+
+      "columnDefs": [{
+          targets: [0, 1, 2, 3, 4],
+          visible: true
+        },
+        {
+          targets: '_all',
+          visible: false
+        },
+        {
+          "orderSequence": ["desc"],
+          "targets": [2]
+        },
+        {
+          "orderSequence": ["desc"],
+          "targets": [3]
+        },
+        {
+          "orderSequence": ["desc"],
+          "targets": [4]
+        },
+      ],
+
+
+      "initComplete": function(settings, json) {
+        getHTML_param();
+        table.rows().every(function(rowIdx, tableLoop, rowLoop) {
+          var data = this.data();
+          if (items.indexOf(data.food_item_id) >= 0) {
+            this.select();
+            this.cell(rowIdx, 0).data("1");
+          }
+        });
+        //////////////////add filtering dropdown list
+        this.api().columns([5]).every(function() {
+          var column = this;
+          var select = $('<select class="selectpicker" style="max-width: 250px;"><option value=""></option></select>')
+            .appendTo($('#newSearchPlace'))
+            .on('change', function() {
+              var val = $.fn.dataTable.util.escapeRegex(
+                $(this).val()
+              );
+
+              column
+                .search(val ? '^' + val + '$' : '', true, false)
+                .draw();
+            });
+
+          column.data().unique().sort().each(function(d, j) {
+            select.append('<option value="' + d + '">' + d + '</option>');
+          });
+        })
+        //////////////////add selected rows to text box
+        jQuery('#selected_crops').html('');
+        d = '';
+        table.rows('.selected').every(function(rowIdx, tableLoop, rowLoop) {
+          var data = this.data();
+          d += "<p class='card-text text-truncate my-0'>";
+          d += data.Food_name + '</P>';
+        });
+        jQuery('#selected_crops').append(d);
+        ///////////////////end of initialization ////////
+      }
+    });
+
+    $('#example tbody')
+      .on('click', 'tr', function() {
+        $(this).toggleClass('selected');
+
+        //////////////////add selected rows to text box
+        jQuery('#selected_crops').html('');
+        d = '';
+        table.rows('.selected').every(function(rowIdx, tableLoop, rowLoop) {
+          var data = this.data();
+          d += "<p class='card-text text-truncate my-0'>";
+          d += data.Food_name + '</P>';
+        });
+        jQuery('#selected_crops').append(d);
+        //////////////////
+
+      });
+
+    $('#button').click(function() {
+      var s = "";
+      var n = "";
+      table.rows('.selected').every(function(rowIdx, tableLoop, rowLoop) {
+        var data = this.data();
+        s += data.Food_name + "\n";
+        n += "-" + data.food_item_id;
+
+        // ... do something with data(), or this.node(), etc
+      });
+      n = n.substring(1);
+      if (n == '') {
+        n = 0;
+      }
+      location.href = myRoot + 'registCrops/' + myFamily + '/' + n + '/';
+    });
+  });
+</script>
+
+<div class="container" style="max-width: 540px;">
+  <div class="row">
+    <div class="col-2 my-0 px-3">
+      <img src="{% static 'img/no3.png' %}">
+    </div>
+    <div class="col-10 my-0 px-1">
+      <h5> Commodity selection for {{name}} </h5>
+    </div>
+  </div>
+</div>
+
+<div class="container text-white" style="max-width: 540px;">
+  <div id="accordion">
+    <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
+      <div class="row">
+        <div class="col-12">
+          <div class="card-body py-0 px-0">
+            <p class="card-text text-warning my-0">
+              name: {{ name }}
+            </p>
+            <p class="card-text my-0">
+              country: {{ country }}
+            </p>
+            <p class="card-text my-0">
+              region: {{ region }}
+            </p>
+            <p class="card-text my-0">
+              nutrition target: {{ nutrition_target }}
+            </p>
+            <button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true" aria-controls="more_info">
+              more info
+            </button>
+
+            <div id="more_info" class="collapse" aria-labelledby="heading{{crop.food_item_id}}" data-parent="#accordion">
+              <p class="card-text my-0">
+                stunting rate: {{ stunting_rate }}
+              </p>
+              <p class="card-text my-0">
+                wasting rate: {{ wasting_rate }}
+              </p>
+              <p class="card-text my-0">
+                anemia rate: {{ anemia_rate }}
+              </p>
+              <p class="card-text my-0">
+                major commodity: {{ major_commodity }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container text-white" style="max-width: 540px;">
+  <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
+    <div class="row">
+      <div class="col-12">
+        <div class="card-body py-0 px-0">
+          <p class="card-title text-warning my-0">
+            selected commodities
+          </p>
+          <p id="selected_crops" class="card-text text-truncate my-0">
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_list' familyid=familyid %}">back</a></span>
+      <span><a id="button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">next step</a></span>
+    </div>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="container" style="max-width: 540px;">
+  <div class="my-2" id="newSearchPlace">Food group: </div>
+  <table id="example" class="display compact" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th>s</th>
+        <th>Name</th>
+        <th>Pr</th>
+        <th>VA</th>
+        <th>Fe</th>
+      </tr>
+    </thead>
+
+    <tfoot>
+      <tr>
+        <th>s</th>
+        <th>Name</th>
+        <th>Pr</th>
+        <th>VA</th>
+        <th>Fe</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+{% endblock %}
