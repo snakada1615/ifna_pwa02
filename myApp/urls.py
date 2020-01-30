@@ -7,7 +7,7 @@ from .views import Crop_UpdateView, Crop_DeleteView, Crop_ListView, Crop_CreateV
 from .views import WhoamI_View, Usage_View, TestOfflineView, off_FCT_view, off_Family_ListView
 from .views import SuitCrop_View, off_Family_CreateView, FCTdatable_View, Under_Construction_View
 from .views import Crop_Feas_View, Crop_Calendar_View, FamilyFiltered_ListView, TestView01
-from .views import convCrop_Grow, registConvCrops_grow
+from .views import convCrop_Grow, convCrop_Sold, registConvCrops_grow, registConvCrops_sold
 
 from django.contrib import admin
 from django.urls import include
@@ -18,7 +18,9 @@ urlpatterns = [
     path('test01/',  TestView01.as_view(), name='test01'),
     path('suitcrop/<str:aez_id>/',  SuitCrop_View.as_view(), name='suitcrop'),
     path('conv_crop_grow/<int:familyid>/<str:items>/',  convCrop_Grow.as_view(), name='conv_crop_grow'),
+    path('conv_crop_sold/<int:familyid>/<str:items>/',  convCrop_Sold.as_view(), name='conv_crop_sold'),
     path('regist_conv_crop_grow/<int:familyid>/<str:items>/',  views.registConvCrops_grow, name='regist_conv_crop_grow'),
+    path('regist_conv_crop_sold/<int:familyid>/<str:items>/',  views.registConvCrops_sold, name='regist_conv_crop_sold'),
 
     path('test/',  TestView.as_view(), name='test'),
     path('result/<int:familyid>/',  Crop_Feas_View.as_view(), name='result'),

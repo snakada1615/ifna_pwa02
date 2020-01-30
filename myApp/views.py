@@ -54,6 +54,34 @@ class convCrop_Grow(TemplateView):
         context['crop_list'] = crops
         return context
 
+class convCrop_Sold(TemplateView):
+    template_name = "myApp/conv_crop_sold.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['families'] = Person.objects.filter(
+            familyid=self.kwargs['familyid'])
+        context['name'] = Family.objects.get(id=self.kwargs['familyid'])
+        context['myid'] = Family.objects.get(id=self.kwargs['familyid']).id
+        context['country'] = Family.objects.get(
+            id=self.kwargs['familyid']).country
+        context['region'] = Family.objects.get(
+            id=self.kwargs['familyid']).region
+        context['nutrition_target'] = Family.objects.get(
+            id=self.kwargs['familyid']).nutrition_target
+        context['dri_p'] = Family.objects.get(
+            id=self.kwargs['familyid']).protein
+        context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
+        context['dri_f'] = Family.objects.get(id=self.kwargs['familyid']).fe
+
+        tmp = Family.objects.get(id=self.kwargs['familyid']).conv_crop_sold
+        crops = []
+        if ('-' in tmp):
+            for crop in tmp.split('-'):
+                crops.append(FCT.objects.get(food_item_id=crop).Food_name)
+        context['crop_list'] = crops
+        return context
+
 
 class FCTdatable_View(TemplateView):
     template_name = "myApp/FCT_datable.html"
@@ -131,10 +159,10 @@ class SuitCrop_View(DatatableView):
     datatable_class = SuitCrop_Model
 
     def get_template_names(self):
-        return "myApp/trial.html"
+        return "myApp/suitcrop_show.html"
 
     def get_initial_queryset(self):
-        return self.model.objects.filter(GID_1 = self.kwargs['familyid'])
+        return self.model.objects.filter(GID_1 = self.kwargs['aez_id'])
 
 class TestOfflineView(TemplateView):
     template_name = "myApp/offline/test.html"
@@ -779,10 +807,21 @@ def registCrops(request, familyid, items):
     return HttpResponseRedirect(myURL)
 
 def registConvCrops_grow(request, familyid, items):
-    tmp = Family.objects.get(id=familyid).crop_list
+#    tmp = Family.objects.get(id=familyid).crop_list
 
 #   update crop_list to match with DCT_datatable selection
     Family.objects.filter(id=familyid).update(conv_crop_grow=items)
+
+#    move to crop list page
+    myURL = reverse_lazy('conv_crop_sold', kwargs={'familyid': familyid, 'items': items})
+    return HttpResponseRedirect(myURL)
+
+
+def registConvCrops_sold(request, familyid, items):
+#    tmp = Family.objects.get(id=familyid).crop_list
+
+#   update crop_list to match with DCT_datatable selection
+    Family.objects.filter(id=familyid).update(conv_crop_sold=items)
 
 #    move to crop list page
     myURL = reverse_lazy('Family_filter')

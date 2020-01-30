@@ -178,7 +178,7 @@ class Family(models.Model):
         max_length=1000,
         default='0',
     )
-    conv_crop_mrkt = models.CharField(
+    conv_crop_sold = models.CharField(
         max_length=1000,
         default='0',
     )
