@@ -155,7 +155,7 @@
       if (n == '') {
         n = 0;
       }
-      location.href = myRoot + 'registCrops/' + myFamily + '/' + n + '/';
+      location.href = myRoot + 'regist_conv_crop_grow/' + myFamily + '/' + n + '/';
     });
   });
 </script>
@@ -163,10 +163,10 @@
 <div class="container" style="max-width: 540px;">
   <div class="row">
     <div class="col-2 my-0 px-3">
-      <img src="{% static 'img/no3.png' %}">
+      <img src="{% static 'img/no2.png' %}">
     </div>
     <div class="col-10 my-0 px-1">
-      <h5> Commodity selection for {{name}} </h5>
+      <h5> Commodity grown in {{name}} </h5>
     </div>
   </div>
 </div>
@@ -203,9 +203,6 @@
               <p class="card-text my-0">
                 anemia rate: {{ anemia_rate }}
               </p>
-              <p class="card-text my-0">
-                major commodity: {{ major_commodity }}
-              </p>
             </div>
           </div>
         </div>
@@ -231,7 +228,7 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_list' familyid=familyid %}">back</a></span>
+      <span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'Family_filter' %}">back</a></span>
       <span><a id="button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">next step</a></span>
     </div>
   </div>

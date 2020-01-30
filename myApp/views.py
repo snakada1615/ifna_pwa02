@@ -46,7 +46,7 @@ class convCrop_Grow(TemplateView):
         context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
         context['dri_f'] = Family.objects.get(id=self.kwargs['familyid']).fe
 
-        tmp = Family.objects.get(id=self.kwargs['familyid']).crop_list
+        tmp = Family.objects.get(id=self.kwargs['familyid']).conv_crop_grow
         crops = []
         if ('-' in tmp):
             for crop in tmp.split('-'):
@@ -777,6 +777,17 @@ def registCrops(request, familyid, items):
 #    move to crop list page
     myURL = reverse_lazy('crop_list', kwargs={'familyid': familyid})
     return HttpResponseRedirect(myURL)
+
+def registConvCrops_grow(request, familyid, items):
+    tmp = Family.objects.get(id=familyid).crop_list
+
+#   update crop_list to match with DCT_datatable selection
+    Family.objects.filter(id=familyid).update(conv_crop_grow=items)
+
+#    move to crop list page
+    myURL = reverse_lazy('Family_filter')
+    return HttpResponseRedirect(myURL)
+
 
 
 def funcTest(request):
