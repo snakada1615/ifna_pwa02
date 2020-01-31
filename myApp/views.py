@@ -6,8 +6,9 @@ from django.http import HttpResponse
 from django.core import serializers
 
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
-from .models import FCT, Person, DRI, DRI_women, Family, Crop, Countries, Crop_Region
+from .models import FCT, Person, DRI, DRI_women, DRI_aggr, Family, Crop, Countries, Crop_Region
 from .forms import Order_Key_Form, FamilyForm, Person_Create_Form, CropForm
+from .forms import Person_new_Create_Form
 from django.db.models import Q, Sum
 from datatableview.views import DatatableView, Datatable
 from django_datatables_view.base_datatable_view import BaseDatatableView
@@ -39,6 +40,8 @@ class convCrop_Grow(TemplateView):
             id=self.kwargs['familyid']).country
         context['region'] = Family.objects.get(
             id=self.kwargs['familyid']).region
+        context['province'] = Family.objects.get(
+            id=self.kwargs['familyid']).province
         context['nutrition_target'] = Family.objects.get(
             id=self.kwargs['familyid']).nutrition_target
         context['dri_p'] = Family.objects.get(
@@ -67,6 +70,8 @@ class convCrop_Sold(TemplateView):
             id=self.kwargs['familyid']).country
         context['region'] = Family.objects.get(
             id=self.kwargs['familyid']).region
+        context['province'] = Family.objects.get(
+            id=self.kwargs['familyid']).province
         context['nutrition_target'] = Family.objects.get(
             id=self.kwargs['familyid']).nutrition_target
         context['dri_p'] = Family.objects.get(
@@ -185,7 +190,7 @@ class TestView(TemplateView):
 
 
 class TestView01(TemplateView):
-    template_name = "myApp/test01.html"
+    template_name = "myApp/index02.html"
 
 
 class WhoamI_View(TemplateView):
@@ -388,11 +393,125 @@ class Person_CreateView(LoginRequiredMixin, CreateView):
 
 # 更新画面
 
+class Person_new_CreateView(LoginRequiredMixin, CreateView):
+    model = Person
+    form_class = Person_new_Create_Form
+    template_name = 'myApp/person_new_form.html'
+
+    def get_form_kwargs(self):
+        """This method is what injects forms with their keyword
+            arguments."""
+        # grab the current set of form #kwargs
+        kwargs = super(Person_new_CreateView, self).get_form_kwargs()
+        # Update the kwargs with the user_id
+        kwargs['myid'] = self.kwargs['familyid']
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        myid = self.kwargs['familyid']
+        mydata = Family.objects.get(id=myid)
+        context = super().get_context_data(**kwargs)
+        context['myid'] = myid
+        context['name'] = mydata
+        context["families"] = Family.objects.filter(
+            id=self.kwargs['familyid']).order_by('age')
+        return context
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('person_list', kwargs={'familyid': self.kwargs['familyid']})
+
+    def form_valid(self, form):
+        self.object = form.save()
+        # do something with self.object
+        # remember the import: from django.http import HttpResponseRedirect
+        form.instance.created_by = self.request.user
+        myid = self.kwargs['familyid']
+
+        protein1 = 0
+        vita1 = 0
+        fe1 = 0
+
+        Persons = Person.objects.filter(familyid=myid)
+        if Persons.count() > 0:
+            rec = Family.objects.filter(id=myid).first()
+            rec.size = Persons.count()
+
+            for myPerson in Persons:
+                protein1 += myPerson.protein * myPerson.target_pop
+                vita1 += myPerson.vita * myPerson.target_pop
+                fe1 += myPerson.fe * myPerson.target_pop
+                rec = Family.objects.filter(id=myid).first()
+
+            rec.protein = protein1
+            rec.vita = vita1
+            rec.fe = fe1
+            rec.save()
+
+        return super(Person_new_CreateView, self).form_valid(form)
+#        return HttpResponseRedirect(self.get_success_url())
+
+# 更新画面
+
 
 class Person_UpdateView(LoginRequiredMixin, UpdateView):
     model = Person
     form_class = Person_Create_Form
     template_name = 'myApp/person_form.html'
+
+    def get_form_kwargs(self):
+        """This method is what injects forms with their keyword
+            arguments."""
+        # grab the current set of form #kwargs
+        kwargs = super(Person_UpdateView, self).get_form_kwargs()
+        # Update the kwargs with the user_id
+        kwargs['myid'] = self.kwargs['familyid']
+        return kwargs
+
+    def form_valid(self, form):
+        self.object = form.save()
+        # do something with self.object
+        # remember the import: from django.http import HttpResponseRedirect
+        myid = self.kwargs['familyid']
+        protein1 = 0
+        vita1 = 0
+        fe1 = 0
+
+        Persons = Person.objects.filter(familyid=myid)
+        if Persons.count() > 0:
+            rec = Family.objects.filter(id=myid).first()
+            rec.size = Persons.count()
+
+            for myPerson in Persons:
+                protein1 += myPerson.protein * myPerson.target_pop
+                vita1 += myPerson.vita * myPerson.target_pop
+                fe1 += myPerson.fe * myPerson.target_pop
+                rec = Family.objects.filter(id=myid).first()
+
+            rec.protein = protein1
+            rec.vita = vita1
+            rec.fe = fe1
+            rec.save()
+
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_context_data(self, **kwargs):
+        myid = self.kwargs['familyid']
+        mydata = Family.objects.get(id=myid)
+        context = super().get_context_data(**kwargs)
+        context['name'] = mydata
+        context['myid'] = myid
+        context["families"] = Person.objects.filter(
+            familyid=self.kwargs['familyid']).order_by('age')
+        return context
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('person_list', kwargs={'familyid': self.kwargs['familyid']})
+
+
+class Person_new_UpdateView(LoginRequiredMixin, UpdateView):
+    model = Person
+    form_class = Person_new_Create_Form
+    template_name = 'myApp/person_new_form.html'
 
     def get_form_kwargs(self):
         """This method is what injects forms with their keyword

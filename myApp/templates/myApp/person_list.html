@@ -118,7 +118,7 @@
 		</div>
 		<div class="col-12">
 			<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'Family_filter' %}">back</a></span>
-			<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_create' familyid=myfamily.id %}">+</a></span>
+			<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_new_create' familyid=myfamily.id %}">+</a></span>
 			<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'fctdata' familyid=myfamily.id items=myfamily.crop_list %}">next step</a></span>
 		</div>
 	</div>
@@ -142,7 +142,7 @@
 					<p class="card-text my-0">
 						other: {{ person.get_women_s_display }}
 					</p>
-					<span><a class="btn mb-2 btn-outline-success btn-sm align-middle " href="{% url 'person_update' familyid=myfamily.id pk=person.id %}">edit</a></span>
+					<span><a class="btn mb-2 btn-outline-success btn-sm align-middle " href="{% url 'person_new_update' familyid=myfamily.id pk=person.id %}">edit</a></span>
 					<span><a class="btn mb-2 btn-outline-success btn-sm align-middle " href="{% url 'person_delete' familyid=myfamily.id pk=person.id %}">del</a></span>
 				</div>
 			</div>

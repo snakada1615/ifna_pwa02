@@ -8,6 +8,7 @@ from .views import WhoamI_View, Usage_View, TestOfflineView, off_FCT_view, off_F
 from .views import SuitCrop_View, off_Family_CreateView, FCTdatable_View, Under_Construction_View
 from .views import Crop_Feas_View, Crop_Calendar_View, FamilyFiltered_ListView, TestView01
 from .views import convCrop_Grow, convCrop_Sold, registConvCrops_grow, registConvCrops_sold
+from .views import Person_new_CreateView, Person_new_UpdateView
 
 from django.contrib import admin
 from django.urls import include
@@ -15,12 +16,14 @@ from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('test01/',  TestView01.as_view(), name='test01'),
+    path('index02/',  TestView01.as_view(), name='index02'),
     path('suitcrop/<str:aez_id>/',  SuitCrop_View.as_view(), name='suitcrop'),
     path('conv_crop_grow/<int:familyid>/<str:items>/',  convCrop_Grow.as_view(), name='conv_crop_grow'),
     path('conv_crop_sold/<int:familyid>/<str:items>/',  convCrop_Sold.as_view(), name='conv_crop_sold'),
     path('regist_conv_crop_grow/<int:familyid>/<str:items>/',  views.registConvCrops_grow, name='regist_conv_crop_grow'),
     path('regist_conv_crop_sold/<int:familyid>/<str:items>/',  views.registConvCrops_sold, name='regist_conv_crop_sold'),
+    path('person/create/new/<int:familyid>/', Person_new_CreateView.as_view(), name='person_new_create'),
+    path('person/update/new/<int:familyid>/<int:pk>/', Person_new_UpdateView.as_view(), name='person_new_update'),
 
     path('test/',  TestView.as_view(), name='test'),
     path('result/<int:familyid>/',  Crop_Feas_View.as_view(), name='result'),
