@@ -3,6 +3,16 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class myProgress(models.Model):
+    user_id = models.IntegerField(default=0)
+    user_name = models.CharField(max_length=200,default = "")
+    family_id = models.IntegerField(default=0,blank=True)
+    aez_id = models.CharField(max_length=200,default = "",blank=True)
+    conv_crop_grow_list = models.CharField(max_length=200,default = "",blank=True)
+    conv_crop_sold_list = models.CharField(max_length=200,default = "",blank=True)
+    person_id = models.IntegerField(default=0,blank=True)
+    crop_id = models.IntegerField(default=0,blank=True)
+
 class DRI_aggr(models.Model):
     group = models.CharField(
         max_length=200,

@@ -6,7 +6,8 @@ from django.http import HttpResponse
 from django.core import serializers
 
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
-from .models import FCT, Person, DRI, DRI_women, DRI_aggr, Family, Crop, Countries, Crop_Region
+from .models import FCT, Person, DRI, DRI_women, DRI_aggr, Family, Crop
+from .models import Countries, Crop_Region, myProgress
 from .forms import Order_Key_Form, FamilyForm, Person_Create_Form, CropForm
 from .forms import Person_new_Create_Form
 from django.db.models import Q, Sum
@@ -17,7 +18,6 @@ from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout, authenticate, login
-from django.contrib.auth.models import User
 
 # for 正規表現チェック
 import re
@@ -189,9 +189,19 @@ class TestView(TemplateView):
     template_name = "myApp/index.html"
 
 
-class TestView01(TemplateView):
-    template_name = "myApp/index02.html"
-
+class TestView01(LoginRequiredMixin, TemplateView):
+    template_name = "myApp/index03.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        keys_all = myProgress.objects.get(user_id = self.request.user.id)
+        context['myname'] = keys_all.user_name
+        context['family_id'] = keys_all.family_id
+        context['aez_id'] = keys_all.aez_id
+        context['conv_crop_grow_list'] = keys_all.conv_crop_grow_list
+        context['conv_crop_sold_list'] = keys_all.conv_crop_sold_list
+        context['person_id'] = keys_all.person_id
+        context['crop_id'] = keys_all.crop_id
+        return context
 
 class WhoamI_View(TemplateView):
     template_name = "myApp/acknowledge.html"
@@ -965,8 +975,9 @@ def register(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
+            myProgress.objects.create(user_id = user)
             login(request, user)
-            return redirect("test")
+            return redirect("index02")
 
         else:
             for msg in form.error_messages:
