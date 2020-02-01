@@ -23,12 +23,43 @@
 							</div>
 							<div class="row">
 								<div class="col">
-									<a class="btn btn-warning my-1" href="{% url 'Family_filter' %}" style="width:150px" id='btn01'>Location</a>
+									<a class="btn btn-warning my-1" href="{% url 'Family_filter' %}" style="max-width:540px" id='btn01'>Location</a>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col">
-									<a class="btn btn-warning my-1" href="#" style="width:150px" id='btn02'>Conventional Commodity (production)</a>
+									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn02'>Conventional Commodity (production)</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn03'>Conventional Commodity (market)</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn04'>Target Benefitiary</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn05'>Nutrition Issue</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn06'>New Commodity</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn07'>How to use?</a>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col">
+									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn08'>who we are</a>
 								</div>
 							</div>
 						</div>
@@ -41,13 +72,30 @@
 <script type="text/javascript">
 	window.onload = function () {
 		console.log('halo');
-		var id = 'familyid= '+ document.getElementById('myname').value;
-		console.log(id);
-		var refX = '/conv_crop_grow/' + document.getElementById('conv_crop_grow_list').value + '/';
-		console.log(refX);
-		document.getElementById('btn02').href = refX;
-	}
+		var param1 = document.getElementById('myname').value;
+		var param2 = document.getElementById('family_id').value;
+		var param3 = document.getElementById('aez_id').value;
+		var param4 = document.getElementById('conv_crop_grow_list').value;
+		var param5 = document.getElementById('conv_crop_sold_list').value;
+		var param6 = document.getElementById('person_id').value;
+		var param7 = document.getElementById('crop_id').value;
 
+		document.getElementById('btn02').classList.add("disabled");
+		document.getElementById('btn03').classList.add("disabled");
+		document.getElementById('btn04').classList.add("disabled");
+		document.getElementById('btn05').classList.add("disabled");
+		document.getElementById('btn06').classList.add("disabled");
+		document.getElementById('btn07').classList.add("disabled");
+		document.getElementById('btn08').classList.add("disabled");
+
+		if (param2 > 0){
+			document.getElementById('btn02').classList.remove("disabled");
+			if (param4 > 0){
+				document.getElementById('btn03').classList.remove("disabled");
+				var myURL = '/conv_crop_sold/' + param4 + '/';
+				document.getElementById('btn03').href = myURL;
+			}
+	}
 </script>
 
 {% endblock %}
