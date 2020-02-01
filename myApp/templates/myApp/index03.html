@@ -90,7 +90,7 @@
 
 		if (param2 > 0){
 			document.getElementById('btn02').classList.remove("disabled");
-			if (param4 > 0){
+			if (param4 != ""){
 				document.getElementById('btn03').classList.remove("disabled");
 				var myURL = '/conv_crop_sold/' + param4 + '/';
 				document.getElementById('btn03').href = myURL;

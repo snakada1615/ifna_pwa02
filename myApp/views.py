@@ -284,6 +284,13 @@ class Family_CreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('Family_filter')
 
     def form_valid(self, form):
+        self.object = form.save()
+#--------------------update myProgress-------------------------
+        keys = {}
+        keys['family_id'] = form.instance.pk
+        keys_all = myProgress.objects.filter(id = self.request.user.id)
+        keys_all.update(**keys)
+#---------------------
         form.instance.created_by = self.request.user
         return super(Family_CreateView, self).form_valid(form)
 
@@ -300,6 +307,9 @@ class Family_CreateView(LoginRequiredMixin, CreateView):
         data = Countries.objects.all()
         context = super().get_context_data(**kwargs)
         context['countries'] = serializers.serialize('json', data)
+        context['coutry_selected'] = ''
+        context['region_selected'] = ''
+        context['province_selected'] = ''
         return context
 
 
@@ -320,8 +330,12 @@ class Family_UpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         data = Countries.objects.all()
+        data2 = Family.objects.filter(pk = self.kwargs['pk'])[0]
         context = super().get_context_data(**kwargs)
         context['countries'] = serializers.serialize('json', data)
+        context['coutry_selected'] = data2.country
+        context['region_selected'] = data2.region
+        context['province_selected'] = data2.province
         return context
 
 
@@ -942,7 +956,8 @@ def registConvCrops_grow(request, familyid, items):
     Family.objects.filter(id=familyid).update(conv_crop_grow=items)
 
 #    move to crop list page
-    myURL = reverse_lazy('conv_crop_sold', kwargs={'familyid': familyid, 'items': items})
+    myURL = reverse_lazy('Family_filter')
+#    myURL = reverse_lazy('conv_crop_sold', kwargs={'familyid': familyid, 'items': items})
     return HttpResponseRedirect(myURL)
 
 

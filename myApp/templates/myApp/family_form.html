@@ -1,6 +1,11 @@
 {% extends "myApp/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+
+<input type="hidden" value="{{coutry_selected}}" id="country">
+<input type="hidden" value="{{region_selected}}" id="region">
+<input type="hidden" value="{{province_selected}}" id="province">
+
   {{ form.certifications.errors }}
   <div class="container text-white bg-info" style="max-width: 540px;">
     <form method="post" id="myform">
@@ -138,6 +143,10 @@
     if (selected1 > 0) {
       document.getElementById('id_country').selectedIndex = selected1;
     }
+    document.getElementById('id_country').selectedIndex = 1;
+    document.getElementById('id_region').selectedIndex = 2;
+    document.getElementById('id_province').selectedIndex = 3;
+
   </script>
 
 {% endblock %}

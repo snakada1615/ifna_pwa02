@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.admin import widgets
 from django.db.models import Q, Sum
-from .models import Family, Person, DRI, DRI_aggr, DRI_women, Crop, FCT
+from .models import Family, Person, DRI, DRI_aggr, DRI_women, Crop, FCT, myProgress
 
 Choice_FoodGrp = {
     ('0','food name'),
