@@ -471,6 +471,11 @@ class Person_new_CreateView(LoginRequiredMixin, CreateView):
             rec.fe = fe1
             rec.save()
 
+        myProg_rec = myProgress.objects.filter(id=self.request.user).first()
+        myProg_rec.person_id = form.instance.pk
+        myProg_rec.save()
+
+
         return super(Person_new_CreateView, self).form_valid(form)
 #        return HttpResponseRedirect(self.get_success_url())
 
