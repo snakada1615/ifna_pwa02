@@ -288,6 +288,9 @@ class Family_CreateView(LoginRequiredMixin, CreateView):
 #--------------------update myProgress-------------------------
         keys = {}
         keys['family_id'] = form.instance.pk
+        keys['conv_crop_grow_list'] = ""
+        keys['conv_crop_sold_list'] = ""
+        keys['person_id'] = 0
         keys_all = myProgress.objects.filter(id = self.request.user.id)
         keys_all.update(**keys)
 #---------------------
@@ -337,6 +340,19 @@ class Family_UpdateView(LoginRequiredMixin, UpdateView):
         context['region_selected'] = data2.region
         context['province_selected'] = data2.province
         return context
+
+    def form_valid(self, form):
+        self.object = form.save()
+#--------------------update myProgress-------------------------
+        keys = {}
+        keys['family_id'] = form.instance.pk
+        keys['conv_crop_grow_list'] = ""
+        keys['conv_crop_sold_list'] = ""
+        keys['person_id'] = 0
+        keys_all = myProgress.objects.filter(id = self.request.user.id)
+        keys_all.update(**keys)
+#---------------------
+        return super(Family_UpdateView, self).form_valid(form)
 
 
 class Person_ListView(LoginRequiredMixin, ListView):
@@ -471,8 +487,9 @@ class Person_new_CreateView(LoginRequiredMixin, CreateView):
             rec.fe = fe1
             rec.save()
 
-        myProg_rec = myProgress.objects.filter(id=self.request.user).first()
+        myProg_rec = myProgress.objects.filter(id=self.request.user.id).first()
         myProg_rec.person_id = form.instance.pk
+
         myProg_rec.save()
 
 
