@@ -17,8 +17,9 @@
 
   getHTML_param = function() {
     var url_tmp = window.location.href.split('/');
-    var tmp1 = url_tmp[url_tmp.length - 3];
-    var tmp2 = url_tmp[url_tmp.length - 2];
+    var tmp1 = url_tmp[url_tmp.length - 4];
+    var tmp2 = url_tmp[url_tmp.length - 3];
+    var tmp3 = url_tmp[url_tmp.length - 2];
     url_tmp.pop();
     url_tmp.pop();
     url_tmp.pop();
@@ -26,19 +27,19 @@
     myRoot = url_tmp.join("/") + '/';
     myFamily = tmp1;
     items.length = 0;
-    if (tmp2 == '0') {
+    if (tmp3 == '0') {
       items.push('0');
-    } else if (tmp2.indexOf('-') < 0) {
-      items.push(tmp2);
+    } else if (tmp3.indexOf('-') < 0) {
+      items.push(tmp3);
     } else {
-      items = tmp2.split('-');
+      items = tmp3.split('-');
     }
     return tmp1;
   }
 
   $(document).ready(function() {
     var table = $('#example').DataTable({
-      "ajax": "{% static 'DataTables/data/FCT.txt' %}",
+      "ajax": "{% static 'DataTables/data/FCT2.txt' %}",
       "pageLength": 50,
       "columns": [{
           "data": "row_sel"

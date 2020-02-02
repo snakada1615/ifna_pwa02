@@ -8,7 +8,7 @@ from .views import WhoamI_View, Usage_View, TestOfflineView, off_FCT_view, off_F
 from .views import SuitCrop_View, off_Family_CreateView, FCTdatable_View, Under_Construction_View
 from .views import Crop_Feas_View, Crop_Calendar_View, FamilyFiltered_ListView, TestView01
 from .views import convCrop_Grow, convCrop_Sold, registConvCrops_grow, registConvCrops_sold
-from .views import Person_new_CreateView, Person_new_UpdateView
+from .views import Person_new_CreateView, Person_new_UpdateView, Diet_Plan1
 
 from django.contrib import admin
 from django.urls import include
@@ -24,6 +24,7 @@ urlpatterns = [
     path('regist_conv_crop_sold/<int:familyid>/<str:items>/',  views.registConvCrops_sold, name='regist_conv_crop_sold'),
     path('person/create/new/<int:familyid>/', Person_new_CreateView.as_view(), name='person_new_create'),
     path('person/update/new/<int:familyid>/<int:pk>/', Person_new_UpdateView.as_view(), name='person_new_update'),
+    path('Diet1/<int:familyid>/<str:dataset>/<str:selected_list>/',  Diet_Plan1.as_view(), name='diet1'),
 
     path('test/',  TestView.as_view(), name='test'),
     path('result/<int:familyid>/',  Crop_Feas_View.as_view(), name='result'),

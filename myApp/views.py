@@ -131,6 +131,49 @@ class FCTdatable_View(TemplateView):
         context['crop_list'] = crops
         return context
 
+class Diet_Plan1(TemplateView):
+    template_name = "myApp/Diet_Plan1.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['families'] = Person.objects.filter(
+            familyid=self.kwargs['familyid'])
+        context['name'] = Family.objects.get(id=self.kwargs['familyid'])
+        context['myid'] = Family.objects.get(id=self.kwargs['familyid']).id
+        context['country'] = Family.objects.get(
+            id=self.kwargs['familyid']).country
+        context['region'] = Family.objects.get(
+            id=self.kwargs['familyid']).region
+        context['nutrition_target'] = Family.objects.get(
+            id=self.kwargs['familyid']).nutrition_target
+        context['dri_p'] = Family.objects.get(
+            id=self.kwargs['familyid']).protein
+        context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
+        context['dri_f'] = Family.objects.get(id=self.kwargs['familyid']).fe
+
+        tmp_sex = ''
+        try:
+            data = Person.objects.filter(familyid=self.kwargs['familyid'])[0]
+            tmp_sex = Person.SEX_CHOICES[data.sex - 1][1]
+        except:
+            tmp_sex = 'no data'
+        tmp_age = ''
+        try:
+            data = Person.objects.filter(familyid=self.kwargs['familyid'])[0]
+            tmp_age = Person.AGE_CHOICES[data.age - 1][1]
+        except:
+            tmp_age = 'no data'
+        context['sex'] = tmp_sex
+        context['age'] = tmp_age
+
+        tmp = Family.objects.get(id=self.kwargs['familyid']).crop_list
+        crops = []
+        if ('-' in tmp):
+            for crop in tmp.split('-'):
+                crops.append(FCT.objects.get(food_item_id=crop).Food_name)
+        context['crop_list'] = crops
+        return context
+
 
 class Under_Construction_View(TemplateView):
     template_name = "myApp/under_construction.html"
