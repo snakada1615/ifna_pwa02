@@ -745,6 +745,10 @@ class Crop(models.Model):
         verbose_name='mon12_market',
         default=0,
     )
+    avail_type = models.IntegerField(
+        verbose_name='available_farm',
+        default=1,
+    )
     created_at = models.DateTimeField(
         verbose_name='record_date',
         auto_now_add=True

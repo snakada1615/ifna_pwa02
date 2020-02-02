@@ -939,7 +939,7 @@ def registCalendar(request, familyid, pk, itemstr):
     return HttpResponseRedirect(myURL)
 
 
-def registCrops(request, familyid, items):
+def registCrops(request, familyid, items, avail_type):
     tmp = Family.objects.get(id=familyid).crop_list
     crops = []
     a = 0
@@ -978,6 +978,7 @@ def registCrops(request, familyid, items):
             newcrop['vita'] = myfood.VITA_RAE
             newcrop['fe'] = myfood.FE
             newcrop['familyid'] = familyid
+            newcrop['avail_type'] = avail_type
 
             newcrop['created_by'] = request.user
 
