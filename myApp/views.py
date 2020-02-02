@@ -1011,7 +1011,7 @@ def registCrops(request, familyid, items):
     Family.objects.filter(id=familyid).update(crop_list=items)
 
 #    move to crop list page
-    myURL = reverse_lazy('crop_list', kwargs={'familyid': familyid})
+    myURL = reverse_lazy('index02')
     return HttpResponseRedirect(myURL)
 
 def registConvCrops_grow(request, familyid, items):
