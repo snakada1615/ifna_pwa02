@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class myProgress(models.Model):
-    user_id = models.IntegerField(default=0)
+    user_id = models.IntegerField(default=0, unique=True)
     user_name = models.CharField(max_length=200,default = "")
     family_id = models.IntegerField(default=0,blank=True, null=True)
     aez_id = models.CharField(max_length=200,default = "",blank=True)
