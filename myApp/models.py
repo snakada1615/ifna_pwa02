@@ -10,6 +10,7 @@ class myProgress(models.Model):
     aez_id = models.CharField(max_length=200,default = "",blank=True)
     conv_crop_grow_list = models.CharField(max_length=200,default = "0",blank=True)
     conv_crop_sold_list = models.CharField(max_length=200,default = "0",blank=True)
+    crop_list = models.CharField(max_length=200,default = "0",blank=True)
     person_id = models.IntegerField(default=0,blank=True)
     crop_id = models.IntegerField(default=0,blank=True)
 

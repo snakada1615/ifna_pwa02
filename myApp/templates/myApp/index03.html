@@ -82,45 +82,47 @@
 		</div>
 	</div>
 
-<script type="text/javascript">
-	window.onload = function () {
-		console.log('halo');
-		var param1 = document.getElementById('myname').value;
-		var param2 = document.getElementById('family_id').value;
-		var param3 = document.getElementById('aez_id').value;
-		var param4 = document.getElementById('conv_crop_grow_list').value;
-		var param5 = document.getElementById('conv_crop_sold_list').value;
-		var param6 = document.getElementById('person_id').value;
-		var param7 = document.getElementById('crop_id').value;
+	<script type="text/javascript">
+		window.onload = function () {
+			console.log('halo');
+			var param1 = document.getElementById('myname').value;
+			var param2 = document.getElementById('family_id').value;
+			var param3 = document.getElementById('aez_id').value;
+			var param4 = document.getElementById('conv_crop_grow_list').value;
+			var param5 = document.getElementById('conv_crop_sold_list').value;
+			var param6 = document.getElementById('person_id').value;
+			var param7 = document.getElementById('crop_id').value;
 
-		document.getElementById('btn02').classList.add("disabled");
-		document.getElementById('btn03').classList.add("disabled");
-		document.getElementById('btn04').classList.add("disabled");
-		document.getElementById('btn05').classList.add("disabled");
-		document.getElementById('btn06').classList.add("disabled");
-		document.getElementById('btn07').classList.add("disabled");
-		document.getElementById('btn08').classList.add("disabled");
-		document.getElementById('btn09').classList.add("disabled");
+			document.getElementById('btn02').classList.add("disabled");
+			document.getElementById('btn03').classList.add("disabled");
+			document.getElementById('btn04').classList.add("disabled");
+			document.getElementById('btn05').classList.add("disabled");
+			document.getElementById('btn06').classList.add("disabled");
+			document.getElementById('btn07').classList.add("disabled");
+			document.getElementById('btn08').classList.add("disabled");
+			document.getElementById('btn09').classList.add("disabled");
 
-		if (param2 > 0){
-			document.getElementById('btn02').classList.remove("disabled");
-			document.getElementById('btn03').classList.remove("disabled");
-			var myURL = '/conv_crop_grow/' + param2 + '/' + param4 + '/';
-			document.getElementById('btn02').href = myURL;
-			var myURL = '/conv_crop_sold/' + param2 + '/' + param5 + '/';
-			document.getElementById('btn03').href = myURL;
-			if ((param4 != "") && (param5 != "")) {
-				document.getElementById('btn04').classList.remove("disabled");
-				var myURL = '/person/list/' + param2 + '/';
-				document.getElementById('btn04').href = myURL;
-				if (param6 > 0) {
-					document.getElementById('btn05').classList.remove("disabled");
-					var myURL = '/Diet1/' + param2 + '/0/0/';
-					document.getElementById('btn05').href = myURL;
+			if (param2 > 0) {
+				document.getElementById('btn02').classList.remove("disabled");
+				var myURL = '/conv_crop_grow/' + param2 + '/' + param4 + '/';
+				document.getElementById('btn02').href = myURL;
+				if (param4 != "0") {
+					document.getElementById('btn03').classList.remove("disabled");
+					var myURL = '/conv_crop_sold/' + param2 + '/' + param5 + '/';
+					document.getElementById('btn03').href = myURL;
+					if (param5 != "0") {
+						document.getElementById('btn04').classList.remove("disabled");
+						var myURL = '/person/list/' + param2 + '/';
+						document.getElementById('btn04').href = myURL;
+						if (param6 > 0) {
+							document.getElementById('btn05').classList.remove("disabled");
+							var myURL = '/Diet1/' + param2 + '/' + param4 + param5 + '/0/';
+							document.getElementById('btn05').href = myURL;
+						}
+					}
 				}
 			}
 		}
-}
-</script>
+	</script>
 
 {% endblock %}

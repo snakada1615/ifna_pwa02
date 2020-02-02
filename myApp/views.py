@@ -331,8 +331,8 @@ class Family_CreateView(LoginRequiredMixin, CreateView):
 #--------------------update myProgress-------------------------
         keys = {}
         keys['family_id'] = form.instance.pk
-        keys['conv_crop_grow_list'] = ""
-        keys['conv_crop_sold_list'] = ""
+        keys['conv_crop_grow_list'] = "0"
+        keys['conv_crop_sold_list'] = "0"
         keys['person_id'] = 0
         keys_all = myProgress.objects.filter(id = self.request.user.id)
         keys_all.update(**keys)
@@ -1010,6 +1010,7 @@ def registCrops(request, familyid, items, avail_type):
 
 #   update crop_list to match with DCT_datatable selection
     Family.objects.filter(id=familyid).update(crop_list=items)
+    myProgress.objects.filter(id=self.request.user.id).update(crop_list=items)
 
 #    move to crop list page
     myURL = reverse_lazy('index02')
