@@ -954,9 +954,10 @@ def registConvCrops_grow(request, familyid, items):
 
 #   update crop_list to match with DCT_datatable selection
     Family.objects.filter(id=familyid).update(conv_crop_grow=items)
+    myProgress.objects.filter(id=request.user.id).update(conv_crop_grow_list=items)
 
 #    move to crop list page
-    myURL = reverse_lazy('Family_filter')
+    myURL = reverse_lazy('index02')
 #    myURL = reverse_lazy('conv_crop_sold', kwargs={'familyid': familyid, 'items': items})
     return HttpResponseRedirect(myURL)
 
@@ -966,9 +967,10 @@ def registConvCrops_sold(request, familyid, items):
 
 #   update crop_list to match with DCT_datatable selection
     Family.objects.filter(id=familyid).update(conv_crop_sold=items)
+    myProgress.objects.filter(id=request.user.id).update(conv_crop_sold_list=items)
 
 #    move to crop list page
-    myURL = reverse_lazy('Family_filter')
+    myURL = reverse_lazy('index02')
     return HttpResponseRedirect(myURL)
 
 

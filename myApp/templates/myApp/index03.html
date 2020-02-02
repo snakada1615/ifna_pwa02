@@ -23,42 +23,50 @@
 							</div>
 							<div class="row">
 								<div class="col">
-									<a class="btn btn-warning my-1" href="{% url 'Family_filter' %}" style="max-width:540px" id='btn01'>Location</a>
+									<img src="{% static 'img/no1.png' %}">
+									<a class="btn btn-warning my-1" href="{% url 'Family_filter' %}" style="max-width:540px" id='btn01'>Target location</a>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col">
-									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn02'>Conventional Commodity (production)</a>
+									<img src="{% static 'img/no2.png' %}">
+									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn02'>Conventional Commodity (produced)</a>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col">
-									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn03'>Conventional Commodity (market)</a>
+									<img src="{% static 'img/no3.png' %}">
+									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn03'>Conventional Commodity (sold)</a>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col">
+									<img src="{% static 'img/no4.png' %}">
 									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn04'>Target Benefitiary</a>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col">
-									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn05'>Nutrition Issue</a>
+									<img src="{% static 'img/no5.png' %}">
+									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn05'>Dietary Desing 1</a>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col">
-									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn06'>New Commodity</a>
+									<img src="{% static 'img/no6.png' %}">
+									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn06'>Dietary Desing 2</a>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col">
+									<img src="{% static 'img/no7.png' %}">
 									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn07'>How to use?</a>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col">
+									<img src="{% static 'img/no8.png' %}">
 									<a class="btn btn-warning my-1" href="#" style="max-width:540px" id='btn08'>who we are</a>
 								</div>
 							</div>
@@ -90,12 +98,17 @@
 
 		if (param2 > 0){
 			document.getElementById('btn02').classList.remove("disabled");
-			if (param4 != ""){
-				document.getElementById('btn03').classList.remove("disabled");
-				var myURL = '/conv_crop_sold/' + param4 + '/';
-				document.getElementById('btn03').href = myURL;
+			document.getElementById('btn03').classList.remove("disabled");
+			var myURL = '/conv_crop_grow/' + param2 + '/' + param4 + '/';
+			document.getElementById('btn02').href = myURL;
+			var myURL = '/conv_crop_sold/' + param2 + '/' + param5 + '/';
+			document.getElementById('btn03').href = myURL;
+			if ((param4 != "") && (param5 != "")) {
+				document.getElementById('btn04').classList.remove("disabled");
+				var myURL = '/person/list/' + param2 + '/';
+				document.getElementById('btn04').href = myURL;
 			}
-	}
+		}
 }
 </script>
 

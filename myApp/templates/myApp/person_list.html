@@ -6,7 +6,7 @@
 <div class="container" style="max-width: 540px;">
 	<div class="row">
 		<div class="col-2 my-0 px-3">
-			<img src="{% static 'img/no2.png' %}">
+			<img src="{% static 'img/no4.png' %}">
 		</div>
 		<div class="col-10 my-0 px-1">
 			<h5> agree on nutrition target for {{myfamily.name}} </h5>
@@ -117,7 +117,7 @@
 		<div class="col-7">
 		</div>
 		<div class="col-12">
-			<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'index02' %}">back</a></span>
+			<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'index02' %}">save</a></span>
 			<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_new_create' familyid=myfamily.id %}">+</a></span>
 			<span><a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm align-middle" href="{% url 'fctdata' familyid=myfamily.id items=myfamily.crop_list %}">next step</a></span>
 		</div>
