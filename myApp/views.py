@@ -1061,7 +1061,7 @@ def register(request):
             username = form.cleaned_data.get('username')
             myProgress.objects.create(user_id = user.id)
             login(request, user)
-            return redirect("index02")
+            return redirect("test")
 
         else:
             for msg in form.error_messages:
