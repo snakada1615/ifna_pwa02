@@ -163,17 +163,21 @@
 
         //////////////////add selected rows to text box
         jQuery('#selected_crops_tbl tr').remove();
-        d = '';
+        sum_pr = 0;sum_va = 0;sum_fe = 0;sum_wt=100;
         cr = '<tr><th>name</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th></tr><tr>';
         table.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
           var data = this.data();
           cr += '<td>' + data.Food_name + '</td>';
-          cr += '<td>' + data.protein + '</td>';
-          cr += '<td>' + data.vita + '</td>';
-          cr += '<td>' + data.fe + '</td>';
-          cr += '<td>' + '100' + '</td>';
+          cr += '<td>' + data.Protein + '</td>';
+          cr += '<td>' + data.VITA_RAE + '</td>';
+          cr += '<td>' + data.FE + '</td>';
+          cr += '<td>' + sum_wt + '</td>';
           cr += '</tr>';
+          sum_pr += data.Protein * sum_wt;
+          sum_va += data.VITA_RAE * sum_wt;
+          sum_fe += data.FE * sum_wt;
         });
+        cr += '<tr><td>total</td><td>' + Math.round(sum_pr) + '</td><td>' + Math.round(sum_va) + '</td><td>' + Math.round(sum_fe) + '</td><td></td></tr>';
         jQuery('#selected_crops_tbl').append(cr);
         //////////////////
 
