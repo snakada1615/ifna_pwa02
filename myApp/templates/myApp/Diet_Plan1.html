@@ -117,7 +117,13 @@
             var column = this;
             console.log('test');
             val = 1;
-            column.search(val ? '^' + val + '$': '', true, false).draw();
+            column.search(
+              val
+                ? '^' + val + '$'
+                : '',
+              true,
+              false
+            ).draw();
           });
 
           //////////////////add filtering dropdown list
@@ -149,9 +155,6 @@
           });
           jQuery('#selected_crops').append(d);
 
-          //////////////////set filter for conventional crop
-          document.getElementById('myFilter').selectedIndex = 2;
-          //        $('select[name=myFilter]').val(1);        $('select[name=myFilter]').change(); ///////////////end of initialization ////
         }
       });
 
@@ -159,14 +162,19 @@
         $(this).toggleClass('selected');
 
         //////////////////add selected rows to text box
-        jQuery('#selected_crops').html('');
+        jQuery('#selected_crops_tbl tr').remove();
         d = '';
+        cr = '<tr><th>name</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th></tr><tr>';
         table.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
           var data = this.data();
-          d += "<p class='card-text text-truncate my-0'>";
-          d += data.Food_name + '</P>';
+          cr += '<td>' + data.Food_name + '</td>';
+          cr += '<td>' + data.protein + '</td>';
+          cr += '<td>' + data.vita + '</td>';
+          cr += '<td>' + data.fe + '</td>';
+          cr += '<td>' + '100' + '</td>';
+          cr += '</tr>';
         });
-        jQuery('#selected_crops').append(d);
+        jQuery('#selected_crops_tbl').append(cr);
         //////////////////
 
       });
@@ -197,7 +205,8 @@
       </div>
       <div class="col-10 my-0 px-1">
         <h5>
-          Diet planning for {{name}}
+          Diet planning for
+          {{name}}
         </h5>
       </div>
     </div>
@@ -320,7 +329,22 @@
             <p class="card-title text-warning my-0">
               selected commodities
             </p>
-            <p id="selected_crops" class="card-text text-truncate my-0"></p>
+            <table border="1" id="selected_crops_tbl">
+              <tr>
+                <th>name</th>
+                <th>Pr</th>
+                <th>Va</th>
+                <th>Fe</th>
+                <th>Wt</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
