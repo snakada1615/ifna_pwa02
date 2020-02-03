@@ -163,7 +163,10 @@
 
         //////////////////add selected rows to text box
         jQuery('#selected_crops_tbl tr').remove();
-        sum_pr = 0;sum_va = 0;sum_fe = 0;sum_wt=100;
+        sum_pr = 0;
+        sum_va = 0;
+        sum_fe = 0;
+        sum_wt = 100;
         cr = '<tr><th>name</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th></tr><tr>';
         table.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
           var data = this.data();
@@ -183,6 +186,7 @@
 
       });
 
+      //////////////////register////
       $('#button').click(function () {
         var s = "";
         var n = "";
@@ -199,8 +203,24 @@
         }
         location.href = myRoot + 'registCrops/' + myFamily + '/' + n + '/1/';
       });
+
+      //////////////////add table edit function////
+      $("#selected_crops_tbl").on("click", "td", function() {
+        $('#selected_row').val($(this).closest('tr').index());
+        $('#rewriteCell').val($(this).text());
+      });
+
+      $('#button2').click(function () {
+        var tmp_v = $('#rewriteCell').val();
+        $('#selected_crops_tbl tr').eq( $('#selected_row').val() ).children('td').eq(4).text(tmp_v);
+      });
+
+      //////////////////add table edit function////
+
     });
   </script>
+
+  <input type="hidden" value="" id="selected_row">
 
   <div class="container" style="max-width: 540px;">
     <div class="row">
@@ -349,6 +369,8 @@
                 <td></td>
               </tr>
             </table>
+             <input type="text" id="rewriteCell" value=''>;
+             <a id="button2" class="btn btn-warning text-dark mt-2 my-0 py-0 btn-sm">change</a>
           </div>
         </div>
       </div>
