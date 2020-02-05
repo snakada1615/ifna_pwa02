@@ -272,15 +272,19 @@
               </p>
               <p class="card-text my-0">
                 country:
-                {{ country }}
+                {{ name.country_test.NAME_0 }}
               </p>
               <p class="card-text my-0">
                 region:
-                {{ region }}
+                {{ name.country_test.NAME_1 }}
+              </p>
+              <p class="card-text my-0">
+                province:
+                {{ name.country_test.NAME_2 }}
               </p>
               <p class="card-text my-0">
                 nutrition target:
-                {{ nutrition_target }}
+                {{ name.nutrition_target }}
               </p>
               <button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true" aria-controls="more_info">
                 more info
@@ -289,15 +293,15 @@
               <div id="more_info" class="collapse" aria-labelledby="heading{{crop.food_item_id}}" data-parent="#accordion">
                 <p class="card-text my-0">
                   stunting rate:
-                  {{ stunting_rate }}
+                  {{ name.stunting_rate }}
                 </p>
                 <p class="card-text my-0">
                   wasting rate:
-                  {{ wasting_rate }}
+                  {{ name.wasting_rate }}
                 </p>
                 <p class="card-text my-0">
                   anemia rate:
-                  {{ anemia_rate }}
+                  {{ name.anemia_rate }}
                 </p>
               </div>
             </div>
@@ -398,7 +402,7 @@
   <hr>
 
   <div class="container" style="max-width: 540px;">
-    <div class="my-2" id="myFilter">conventional food:
+    <div class="my-2" id="myFilter">Food group:
     </div>
     <table id="example" class="display compact" cellspacing="0" width="100%">
       <thead>
