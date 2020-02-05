@@ -56,7 +56,6 @@ class FamilyForm(forms.ModelForm):
         crop_list = d
         return crop_list
 
-
 class Person_Create_Form(forms.ModelForm):
     class Meta:
         model = Person

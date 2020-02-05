@@ -263,6 +263,12 @@ class Family(models.Model):
         blank=True,
         on_delete=models.CASCADE
     )
+    country_test = models.ForeignKey(
+        Countries,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.name
@@ -415,7 +421,6 @@ class Person(models.Model):
         choices=Nut_ANSWERS,
         default=1,
     )
-
 
     created_at = models.DateTimeField(
         verbose_name='record_date',

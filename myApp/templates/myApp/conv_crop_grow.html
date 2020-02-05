@@ -166,7 +166,7 @@
       <img src="{% static 'img/no2.png' %}">
     </div>
     <div class="col-10 my-0 px-1">
-      <h5> Commodity grown in {{province}} </h5>
+      <h5> Commodity grown in {{ name.country_test.NAME_2 }} </h5>
     </div>
   </div>
 </div>
@@ -181,13 +181,19 @@
               name: {{ name }}
             </p>
             <p class="card-text my-0">
-              country: {{ country }}
+              country:
+              {{ name.country_test.NAME_0 }}
             </p>
             <p class="card-text my-0">
-              region: {{ region }}
+              region:
+              {{ name.country_test.NAME_1 }}
             </p>
             <p class="card-text my-0">
-              nutrition target: {{ nutrition_target }}
+              province:
+              {{ name.country_test.NAME_2 }}
+            </p>
+            <p class="card-text my-0">
+              nutrition target: {{ name.nutrition_target }}
             </p>
             <button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true" aria-controls="more_info">
               more info
@@ -195,13 +201,13 @@
 
             <div id="more_info" class="collapse" aria-labelledby="heading{{crop.food_item_id}}" data-parent="#accordion">
               <p class="card-text my-0">
-                stunting rate: {{ stunting_rate }}
+                stunting rate: {{ name.stunting_rate }}
               </p>
               <p class="card-text my-0">
-                wasting rate: {{ wasting_rate }}
+                wasting rate: {{ name.wasting_rate }}
               </p>
               <p class="card-text my-0">
-                anemia rate: {{ anemia_rate }}
+                anemia rate: {{ name.anemia_rate }}
               </p>
             </div>
           </div>

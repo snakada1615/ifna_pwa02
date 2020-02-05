@@ -31,23 +31,9 @@ class convCrop_Grow(TemplateView):
     template_name = "myApp/conv_crop_grow.html"
 
     def get_context_data(self, **kwargs):
+
         context = super().get_context_data(**kwargs)
-        context['families'] = Person.objects.filter(
-            familyid=self.kwargs['familyid'])
         context['name'] = Family.objects.get(id=self.kwargs['familyid'])
-        context['myid'] = Family.objects.get(id=self.kwargs['familyid']).id
-        context['country'] = Family.objects.get(
-            id=self.kwargs['familyid']).country
-        context['region'] = Family.objects.get(
-            id=self.kwargs['familyid']).region
-        context['province'] = Family.objects.get(
-            id=self.kwargs['familyid']).province
-        context['nutrition_target'] = Family.objects.get(
-            id=self.kwargs['familyid']).nutrition_target
-        context['dri_p'] = Family.objects.get(
-            id=self.kwargs['familyid']).protein
-        context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
-        context['dri_f'] = Family.objects.get(id=self.kwargs['familyid']).fe
 
         tmp = Family.objects.get(id=self.kwargs['familyid']).conv_crop_grow
         crops = []
@@ -63,22 +49,7 @@ class convCrop_Sold(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['families'] = Person.objects.filter(
-            familyid=self.kwargs['familyid'])
         context['name'] = Family.objects.get(id=self.kwargs['familyid'])
-        context['myid'] = Family.objects.get(id=self.kwargs['familyid']).id
-        context['country'] = Family.objects.get(
-            id=self.kwargs['familyid']).country
-        context['region'] = Family.objects.get(
-            id=self.kwargs['familyid']).region
-        context['province'] = Family.objects.get(
-            id=self.kwargs['familyid']).province
-        context['nutrition_target'] = Family.objects.get(
-            id=self.kwargs['familyid']).nutrition_target
-        context['dri_p'] = Family.objects.get(
-            id=self.kwargs['familyid']).protein
-        context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
-        context['dri_f'] = Family.objects.get(id=self.kwargs['familyid']).fe
 
         tmp = Family.objects.get(id=self.kwargs['familyid']).conv_crop_sold
         crops = []
@@ -344,6 +315,7 @@ class Family_CreateView(LoginRequiredMixin, CreateView):
         keys_all.update(**keys)
 # ---------------------
         form.instance.created_by = self.request.user
+        form.instance.country_test = Countries.objects.filter(GID_2 = form.instance.province).first()
         return super(Family_CreateView, self).form_valid(form)
 
     def get_form_kwargs(self):
