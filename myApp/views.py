@@ -57,6 +57,7 @@ class convCrop_Grow(TemplateView):
         context['crop_list'] = crops
         return context
 
+
 class convCrop_Sold(TemplateView):
     template_name = "myApp/conv_crop_sold.html"
 
@@ -131,6 +132,7 @@ class FCTdatable_View(TemplateView):
         context['crop_list'] = crops
         return context
 
+
 class Diet_Plan1(TemplateView):
     template_name = "myApp/Diet_Plan1.html"
 
@@ -202,6 +204,7 @@ class SuitCrop_Model(Datatable):
             'Hrv_end',
         ]
 
+
 class SuitCrop_View(DatatableView):
     model = Crop_Region
     datatable_class = SuitCrop_Model
@@ -210,7 +213,8 @@ class SuitCrop_View(DatatableView):
         return "myApp/suitcrop_show.html"
 
     def get_initial_queryset(self):
-        return self.model.objects.filter(GID_1 = self.kwargs['aez_id'])
+        return self.model.objects.filter(GID_1=self.kwargs['aez_id'])
+
 
 class TestOfflineView(TemplateView):
     template_name = "myApp/offline/test.html"
@@ -234,9 +238,10 @@ class TestView(TemplateView):
 
 class TestView01(LoginRequiredMixin, TemplateView):
     template_name = "myApp/index03.html"
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        keys_all = myProgress.objects.get(user_id = self.request.user.id)
+        keys_all = myProgress.objects.get(user_id=self.request.user.id)
         context['myname'] = keys_all.user_name
         context['family_id'] = keys_all.family_id
         context['aez_id'] = keys_all.aez_id
@@ -245,6 +250,7 @@ class TestView01(LoginRequiredMixin, TemplateView):
         context['person_id'] = keys_all.person_id
         context['crop_id'] = keys_all.crop_id
         return context
+
 
 class WhoamI_View(TemplateView):
     template_name = "myApp/acknowledge.html"
@@ -328,15 +334,15 @@ class Family_CreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
-#--------------------update myProgress-------------------------
+# --------------------update myProgress-------------------------
         keys = {}
         keys['family_id'] = form.instance.pk
         keys['conv_crop_grow_list'] = "0"
         keys['conv_crop_sold_list'] = "0"
         keys['person_id'] = 0
-        keys_all = myProgress.objects.filter(user_id = self.request.user.id)
+        keys_all = myProgress.objects.filter(user_id=self.request.user.id)
         keys_all.update(**keys)
-#---------------------
+# ---------------------
         form.instance.created_by = self.request.user
         return super(Family_CreateView, self).form_valid(form)
 
@@ -376,7 +382,7 @@ class Family_UpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         data = Countries.objects.all()
-        data2 = Family.objects.filter(pk = self.kwargs['pk'])[0]
+        data2 = Family.objects.filter(pk=self.kwargs['pk'])[0]
         context = super().get_context_data(**kwargs)
         context['countries'] = serializers.serialize('json', data)
         context['coutry_selected'] = data2.country
@@ -386,15 +392,15 @@ class Family_UpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         self.object = form.save()
-#--------------------update myProgress-------------------------
+# --------------------update myProgress-------------------------
         keys = {}
         keys['family_id'] = form.instance.pk
         keys['conv_crop_grow_list'] = ""
         keys['conv_crop_sold_list'] = ""
         keys['person_id'] = 0
-        keys_all = myProgress.objects.filter(user_id = self.request.user.id)
+        keys_all = myProgress.objects.filter(user_id=self.request.user.id)
         keys_all.update(**keys)
-#---------------------
+# ---------------------
         return super(Family_UpdateView, self).form_valid(form)
 
 
@@ -476,6 +482,7 @@ class Person_CreateView(LoginRequiredMixin, CreateView):
 
 # 更新画面
 
+
 class Person_new_CreateView(LoginRequiredMixin, CreateView):
     model = Person
     form_class = Person_new_Create_Form
@@ -530,11 +537,11 @@ class Person_new_CreateView(LoginRequiredMixin, CreateView):
             rec.fe = fe1
             rec.save()
 
-        myProg_rec = myProgress.objects.filter(user_id=self.request.user.id).first()
+        myProg_rec = myProgress.objects.filter(
+            user_id=self.request.user.id).first()
         myProg_rec.person_id = form.instance.pk
 
         myProg_rec.save()
-
 
         return super(Person_new_CreateView, self).form_valid(form)
 #        return HttpResponseRedirect(self.get_success_url())
@@ -939,30 +946,36 @@ def registCalendar(request, familyid, pk, itemstr):
     return HttpResponseRedirect(myURL)
 
 
-def registCrops(request, familyid, items, avail_type):
-    tmp = Family.objects.get(id=familyid).crop_list
-    crops = []
-    a = 0
-    if ('-' in tmp):
-        crops = tmp.split('-')
-    else:
-        crops.append(tmp)
+def registCrops(request, familyid, items, items_w, avail_type):
 
-    selectedItem = []
-    if ('-' in items):
-        selectedItem = items.split('-')
-    else:
-        selectedItem.append(items)
+    if items != '0':
+        mytarget = Family.objects.get(pk=familyid)
 
-    for item in selectedItem:
-        if item in crops:
-            a += 1  # do nothing"
-        elif item == '0':
-            a += 1  # do nothing"
+        tmp = Family.objects.get(id=familyid).crop_list
+        crops = []
+        a = 0
+        if ('-' in tmp):
+            crops = tmp.split('-')
         else:
-            #            register new crop here"
+            crops.append(tmp)
+
+        selectedItem = []
+        if ('-' in items):
+            selectedItem = items.split('-')
+        else:
+            selectedItem.append(items)
+
+        Weight = []
+        if ('-' in items_w):
+            Weight = items_w.split('-')
+        else:
+            Weight.append(items_w)
+
+        # set new/update crop item
+#        for i in range(len(selectedItem)):
+        for i in range(3):
+            myfood = FCT.objects.get(food_item_id=selectedItem[i])
             newcrop = {}
-            myfood = FCT.objects.get(food_item_id=item)
             if myfood.Protein == '':
                 myfood.Protein = 0
             if myfood.VITA_RAE == '':
@@ -970,8 +983,7 @@ def registCrops(request, familyid, items, avail_type):
             if myfood.FE == '':
                 myfood.FE = 0
 
-            mytarget = Family.objects.get(pk=familyid)
-            newcrop['food_item_id'] = item
+            newcrop['food_item_id'] = myfood.food_item_id
             newcrop['Food_name'] = myfood.Food_name
             newcrop['food_grp'] = myfood.Food_grp
             newcrop['protein'] = myfood.Protein
@@ -979,6 +991,7 @@ def registCrops(request, familyid, items, avail_type):
             newcrop['fe'] = myfood.FE
             newcrop['familyid'] = familyid
             newcrop['avail_type'] = avail_type
+            newcrop['food_wt'] = Weight[i]
 
             newcrop['created_by'] = request.user
 
@@ -999,7 +1012,11 @@ def registCrops(request, familyid, items, avail_type):
             else:
                 newcrop['food_wt_fe'] = 0
 
-            p = Crop.objects.create(**newcrop)
+            try:
+                tmp = Crop.objects.filter(familyid=familyid).filter(food_item_id=selectedItem[i])
+                p = tmp.update(**newcrop)
+            except Crop.DoesNotExist:
+                p = Crop.objects.create(**newcrop)
 
     for crop in crops:
         if crop in selectedItem:
@@ -1010,18 +1027,21 @@ def registCrops(request, familyid, items, avail_type):
 
 #   update crop_list to match with DCT_datatable selection
     Family.objects.filter(id=familyid).update(crop_list=items)
-    myProgress.objects.filter(user_id=self.request.user.id).update(crop_list=items)
+    myProgress.objects.filter(
+        user_id=request.user.id).update(crop_list=items)
 
 #    move to crop list page
     myURL = reverse_lazy('index02')
     return HttpResponseRedirect(myURL)
 
-def registConvCrops_grow(request, familyid, items):
-#    tmp = Family.objects.get(id=familyid).crop_list
 
-#   update crop_list to match with DCT_datatable selection
+def registConvCrops_grow(request, familyid, items):
+    #    tmp = Family.objects.get(id=familyid).crop_list
+
+    #   update crop_list to match with DCT_datatable selection
     Family.objects.filter(id=familyid).update(conv_crop_grow=items)
-    myProgress.objects.filter(user_id=request.user.id).update(conv_crop_grow_list=items)
+    myProgress.objects.filter(user_id=request.user.id).update(
+        conv_crop_grow_list=items)
 
 #    move to crop list page
     myURL = reverse_lazy('index02')
@@ -1030,16 +1050,16 @@ def registConvCrops_grow(request, familyid, items):
 
 
 def registConvCrops_sold(request, familyid, items):
-#    tmp = Family.objects.get(id=familyid).crop_list
+    #    tmp = Family.objects.get(id=familyid).crop_list
 
-#   update crop_list to match with DCT_datatable selection
+    #   update crop_list to match with DCT_datatable selection
     Family.objects.filter(id=familyid).update(conv_crop_sold=items)
-    myProgress.objects.filter(user_id=request.user.id).update(conv_crop_sold_list=items)
+    myProgress.objects.filter(user_id=request.user.id).update(
+        conv_crop_sold_list=items)
 
 #    move to crop list page
     myURL = reverse_lazy('index02')
     return HttpResponseRedirect(myURL)
-
 
 
 def funcTest(request):
@@ -1059,7 +1079,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
-            myProgress.objects.create(user_id = user.id)
+            myProgress.objects.create(user_id=user.id)
             login(request, user)
             return redirect("test")
 

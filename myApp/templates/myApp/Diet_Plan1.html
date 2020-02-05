@@ -15,6 +15,9 @@
     var items = [];
     var myList1 = [];
 
+    // グローバル変数の作成
+    var selected_rows_id = []
+
     getHTML_param = function () {
       var url_tmp = window.location.href.split('/');
       var tmp1 = url_tmp[url_tmp.length - 4];
@@ -66,6 +69,8 @@
             "data": "row_filter"
           }, {
             "data": "Food_grp"
+          }, {
+            "data": "Weight"
           }
         ],
 
@@ -145,28 +150,18 @@
               select.append('<option value="' + d + '">' + d + '</option>');
             });
           })
-          //////////////////add selected rows to text box
-          jQuery('#selected_crops').html('');
-          d = '';
-          table.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
-            var data = this.data();
-            d += "<p class='card-text text-truncate my-0'>";
-            d += data.Food_name + '</P>';
-          });
-          jQuery('#selected_crops').append(d);
-
         }
       });
 
+      //////////////////add selected rows to text box
       $('#example tbody').on('click', 'tr', function () {
         $(this).toggleClass('selected');
 
-        //////////////////add selected rows to text box
         jQuery('#selected_crops_tbl tr').remove();
+        selected_rows_id.length = 0;
         sum_pr = 0;
         sum_va = 0;
         sum_fe = 0;
-        sum_wt = 100;
         cr = '<tr><th>name</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th></tr><tr>';
         table.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
           var data = this.data();
@@ -174,11 +169,12 @@
           cr += '<td>' + data.Protein + '</td>';
           cr += '<td>' + data.VITA_RAE + '</td>';
           cr += '<td>' + data.FE + '</td>';
-          cr += '<td>' + sum_wt + '</td>';
+          cr += '<td>' + data.Weight + '</td>';
           cr += '</tr>';
-          sum_pr += data.Protein * sum_wt;
-          sum_va += data.VITA_RAE * sum_wt;
-          sum_fe += data.FE * sum_wt;
+          sum_pr += data.Protein * data.Weight;
+          sum_va += data.VITA_RAE * data.Weight;
+          sum_fe += data.FE * data.Weight;
+          selected_rows_id.push(rowIdx);
         });
         cr += '<tr><td>total</td><td>' + Math.round(sum_pr) + '</td><td>' + Math.round(sum_va) + '</td><td>' + Math.round(sum_fe) + '</td><td></td></tr>';
         jQuery('#selected_crops_tbl').append(cr);
@@ -188,12 +184,12 @@
 
       //////////////////register////
       $('#button').click(function () {
-        var s = "";
+        var w = "";
         var n = "";
         table.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
           var data = this.data();
-          s += data.Food_name + "\n";
           n += "-" + data.food_item_id;
+          w += "-" + data.Weight;
 
           // ... do something with data(), or this.node(), etc
         });
@@ -201,22 +197,48 @@
         if (n == '') {
           n = 0;
         }
-        location.href = myRoot + 'registCrops/' + myFamily + '/' + n + '/1/';
+        w = w.substring(1);
+        if (w == '') {
+          w = 0;
+        }
+        location.href = myRoot + 'registCrops/' + myFamily + '/' + n + '/' + w + '/1/';
       });
 
       //////////////////add table edit function////
-      $("#selected_crops_tbl").on("click", "td", function() {
+      $("#selected_crops_tbl").on("click", "td", function () {
         $('#selected_row').val($(this).closest('tr').index());
         $('#rewriteCell').val($(this).text());
       });
 
       $('#button2').click(function () {
         var tmp_v = $('#rewriteCell').val();
-        $('#selected_crops_tbl tr').eq( $('#selected_row').val() ).children('td').eq(4).text(tmp_v);
+        $('#selected_crops_tbl tr').eq($('#selected_row').val()).children('td').eq(4).text(tmp_v);
+        table.row(selected_rows_id[$('#selected_row').val()-1]).data().Weight = tmp_v;
+
+        ///////////////////
+        jQuery('#selected_crops_tbl tr').remove();
+        selected_rows_id.length = 0;
+        sum_pr = 0;
+        sum_va = 0;
+        sum_fe = 0;
+        cr = '<tr><th>name</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th></tr><tr>';
+        table.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
+          var data = this.data();
+          cr += '<td>' + data.Food_name + '</td>';
+          cr += '<td>' + data.Protein + '</td>';
+          cr += '<td>' + data.VITA_RAE + '</td>';
+          cr += '<td>' + data.FE + '</td>';
+          cr += '<td>' + data.Weight + '</td>';
+          cr += '</tr>';
+          sum_pr += data.Protein * data.Weight;
+          sum_va += data.VITA_RAE * data.Weight;
+          sum_fe += data.FE * data.Weight;
+          selected_rows_id.push(rowIdx);
+        });
+        cr += '<tr><td>total</td><td>' + Math.round(sum_pr) + '</td><td>' + Math.round(sum_va) + '</td><td>' + Math.round(sum_fe) + '</td><td></td></tr>';
+        jQuery('#selected_crops_tbl').append(cr);
+        //////////////////
       });
-
-      //////////////////add table edit function////
-
     });
   </script>
 
@@ -274,10 +296,6 @@
                 <p class="card-text my-0">
                   anemia rate:
                   {{ anemia_rate }}
-                </p>
-                <p class="card-text my-0">
-                  major commodity:
-                  {{ major_commodity }}
                 </p>
               </div>
             </div>
@@ -369,8 +387,8 @@
                 <td></td>
               </tr>
             </table>
-             <input type="text" id="rewriteCell" value=''>;
-             <a id="button2" class="btn btn-warning text-dark mt-2 my-0 py-0 btn-sm">change</a>
+            <input type="text" id="rewriteCell" value=''>
+            <a id="button2" class="btn btn-warning text-dark mt-2 my-0 py-0 btn-sm">change</a>
           </div>
         </div>
       </div>
