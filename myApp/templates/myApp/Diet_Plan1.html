@@ -171,9 +171,9 @@
           cr += '<td>' + data.FE + '</td>';
           cr += '<td>' + data.Weight + '</td>';
           cr += '</tr>';
-          sum_pr += data.Protein * data.Weight;
-          sum_va += data.VITA_RAE * data.Weight;
-          sum_fe += data.FE * data.Weight;
+          sum_pr += data.Protein * data.Weight / 100;
+          sum_va += data.VITA_RAE * data.Weight / 100;
+          sum_fe += data.FE * data.Weight / 100;
           selected_rows_id.push(rowIdx);
         });
         cr += '<tr><td>total</td><td>' + Math.round(sum_pr) + '</td><td>' + Math.round(sum_va) + '</td><td>' + Math.round(sum_fe) + '</td><td></td></tr>';
@@ -182,7 +182,7 @@
 
       });
 
-      //////////////////register////
+      //////////////////register selected commodity ////
       $('#button').click(function () {
         var w = "";
         var n = "";
@@ -210,6 +210,7 @@
         $('#rewriteCell').val($(this).text());
       });
 
+      ////////////////// button click to reflect the modification ////
       $('#button2').click(function () {
         var tmp_v = $('#rewriteCell').val();
         $('#selected_crops_tbl tr').eq($('#selected_row').val()).children('td').eq(4).text(tmp_v);
@@ -230,9 +231,9 @@
           cr += '<td>' + data.FE + '</td>';
           cr += '<td>' + data.Weight + '</td>';
           cr += '</tr>';
-          sum_pr += data.Protein * data.Weight;
-          sum_va += data.VITA_RAE * data.Weight;
-          sum_fe += data.FE * data.Weight;
+          sum_pr += data.Protein * data.Weight / 100;
+          sum_va += data.VITA_RAE * data.Weight / 100;
+          sum_fe += data.FE * data.Weight / 100;
           selected_rows_id.push(rowIdx);
         });
         cr += '<tr><td>total</td><td>' + Math.round(sum_pr) + '</td><td>' + Math.round(sum_va) + '</td><td>' + Math.round(sum_fe) + '</td><td></td></tr>';
@@ -241,6 +242,7 @@
       });
     });
   </script>
+
 
   <input type="hidden" value="" id="selected_row">
 
@@ -315,21 +317,9 @@
           <table>
             <tbody>
               <tr>
-                <td class="text-warning px-1">sex</td>
+                <td class="text-warning px-1">Target group</td>
                 {% for family in families %}
-                  <td class="px-1">{{family.get_sex_display}}</td>
-                {% endfor %}
-              </tr>
-              <tr>
-                <td class="text-warning px-1">age</td>
-                {% for family in families %}
-                  <td class="px-1">{{family.get_age_display}}</td>
-                {% endfor %}
-              </tr>
-              <tr>
-                <td class="text-warning px-1">w_status</td>
-                {% for family in families %}
-                  <td class="px-1">{{family.get_women_s_display}}</td>
+                  <td class="px-1">{{family.nut_group}}</td>
                 {% endfor %}
               </tr>
               <tr>

@@ -945,6 +945,11 @@ def registCalendar(request, familyid, pk, itemstr):
 #    move to crop assessment page
     return HttpResponseRedirect(myURL)
 
+def myConsole(output):
+    path_w = 'myApp/output_log.txt'
+    with open(path_w, mode='w') as f:
+        f.write(output)
+
 
 def registCrops(request, familyid, items, items_w, avail_type):
 
@@ -971,9 +976,11 @@ def registCrops(request, familyid, items, items_w, avail_type):
         else:
             Weight.append(items_w)
 
+#        myConsole(selectedItem)
+
         # set new/update crop item
-#        for i in range(len(selectedItem)):
-        for i in range(3):
+        for i in range(len(selectedItem)):
+#        for i in range(3):
             myfood = FCT.objects.get(food_item_id=selectedItem[i])
             newcrop = {}
             if myfood.Protein == '':
