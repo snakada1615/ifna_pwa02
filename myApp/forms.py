@@ -94,7 +94,6 @@ class Person_new_Create_Form(forms.ModelForm):
         cleaned_data = super(Person_new_Create_Form, self).clean()
 
         a = self.cleaned_data['nut_group']
-        myConsole(a)
         self.cleaned_data['familyid'] = self.myid
         self.cleaned_data['name'] = Family.objects.get(id = self.myid).name
         self.cleaned_data['protein'] = DRI_aggr.objects.get(nut_group = a).protein

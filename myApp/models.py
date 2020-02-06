@@ -312,7 +312,7 @@ class Person(models.Model):
 
     Nut_GROUP = (
         ('children under 5', 'children under 5'),
-        ('pregnant woman', 'pregnant woman'),
+        ('pregnant women', 'pregnant women'),
         ('adlescent girl', 'adlescent girl'),
         ('adult', 'adult'),
     )
