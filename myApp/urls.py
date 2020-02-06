@@ -7,7 +7,8 @@ from .views import Crop_UpdateView, Crop_DeleteView, Crop_ListView, Crop_CreateV
 from .views import WhoamI_View, Usage_View, TestOfflineView, off_FCT_view, off_Family_ListView
 from .views import Trial_View, off_Family_CreateView, FCTdatable_View, Under_Construction_View
 from .views import Crop_Feas_View, Crop_Calendar_View, FamilyFiltered_ListView
-from .views import convCrop_Grow, convCrop_Sold, TestView01, Person_new_CreateView, Person_new_UpdateView
+from .views import convCrop_Grow, convCrop_Sold, TestView01
+from .views import Person_new_CreateView, Person_new_UpdateView, Diet_Plan1
 
 from django.contrib import admin
 from django.urls import include
@@ -23,7 +24,7 @@ urlpatterns = [
     path('regist_conv_crop_sold/<int:familyid>/<str:items>/',  views.registConvCrops_sold, name='regist_conv_crop_sold'),
     path('person/create/new/<int:familyid>/', Person_new_CreateView.as_view(), name='person_new_create'),
     path('person/update/new/<int:familyid>/<int:pk>/', Person_new_UpdateView.as_view(), name='person_new_update'),
-#    path('Diet1/<int:familyid>/<str:dataset>/<str:selected_list>/',  Diet_Plan1.as_view(), name='diet1'),
+    path('Diet1/<int:familyid>/<str:dataset>/<str:selected_list>/',  Diet_Plan1.as_view(), name='diet1'),
 
 
 
@@ -55,7 +56,7 @@ urlpatterns = [
     path('crop/calendar/<int:familyid>/<int:pk>/<str:items>/',  Crop_Calendar_View.as_view(), name='calendar'),
     path('getNFA/<int:store_id>/<int:familyid>/',  views.getNFA, name='getnfa'),
     path('registCalendar/<int:familyid>/<int:pk>/<str:itemstr>/',  views.registCalendar, name='registcalendar'),
-    path('registCrops/<int:familyid>/<str:items>/',  views.registCrops, name='registcrops'),
+    path('registCrops/<int:familyid>/<str:items>/<str:items_w>/<int:avail_type>/',  views.registCrops, name='registcrops'),
     path('funcTest/',  views.funcTest, name='funcTest'),
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='myApp/login.html'), name='login'),

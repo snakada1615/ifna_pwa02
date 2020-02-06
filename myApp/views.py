@@ -21,6 +21,48 @@ import re
 import logging
 #from tkinter import messagebox
 
+class Diet_Plan1(TemplateView):
+    template_name = "myApp/Diet_Plan1.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['families'] = Person.objects.filter(
+            familyid=self.kwargs['familyid'])
+        context['name'] = Family.objects.get(id=self.kwargs['familyid'])
+        context['myid'] = Family.objects.get(id=self.kwargs['familyid']).id
+        context['country'] = Family.objects.get(
+            id=self.kwargs['familyid']).country
+        context['region'] = Family.objects.get(
+            id=self.kwargs['familyid']).region
+        context['nutrition_target'] = Family.objects.get(
+            id=self.kwargs['familyid']).nutrition_target
+        context['dri_p'] = Family.objects.get(
+            id=self.kwargs['familyid']).protein
+        context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
+        context['dri_f'] = Family.objects.get(id=self.kwargs['familyid']).fe
+
+        tmp_sex = ''
+        try:
+            data = Person.objects.filter(familyid=self.kwargs['familyid'])[0]
+            tmp_sex = Person.SEX_CHOICES[data.sex - 1][1]
+        except:
+            tmp_sex = 'no data'
+        tmp_age = ''
+        try:
+            data = Person.objects.filter(familyid=self.kwargs['familyid'])[0]
+            tmp_age = Person.AGE_CHOICES[data.age - 1][1]
+        except:
+            tmp_age = 'no data'
+        context['sex'] = tmp_sex
+        context['age'] = tmp_age
+
+        tmp = Family.objects.get(id=self.kwargs['familyid']).crop_list
+        crops = []
+        if ('-' in tmp):
+            for crop in tmp.split('-'):
+                crops.append(FCT.objects.get(food_item_id=crop).Food_name)
+        context['crop_list'] = crops
+        return context
 
 class Person_new_UpdateView(LoginRequiredMixin, UpdateView):
     model = Person
@@ -31,10 +73,21 @@ class Person_new_UpdateView(LoginRequiredMixin, UpdateView):
         """This method is what injects forms with their keyword
             arguments."""
         # grab the current set of form #kwargs
-        kwargs = super(Person_UpdateView, self).get_form_kwargs()
+        kwargs = super(Person_new_UpdateView, self).get_form_kwargs()
         # Update the kwargs with the user_id
         kwargs['myid'] = self.kwargs['familyid']
         return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        myid = self.kwargs['familyid']
+        mydata = Family.objects.get(id=myid)
+        context['name'] = mydata
+        context['myid'] = myid
+        context["families"] = Person.objects.filter(
+            familyid=self.kwargs['familyid']).order_by('age')
+        return context
 
     def form_valid(self, form):
         self.object = form.save()
@@ -63,62 +116,8 @@ class Person_new_UpdateView(LoginRequiredMixin, UpdateView):
 
         return HttpResponseRedirect(self.get_success_url())
 
-    def get_context_data(self, **kwargs):
-        myid = self.kwargs['familyid']
-        mydata = Family.objects.get(id=myid)
-        context = super().get_context_data(**kwargs)
-        context['name'] = mydata
-        context['myid'] = myid
-        context["families"] = Person.objects.filter(
-            familyid=self.kwargs['familyid']).order_by('age')
-        return context
-
     def get_success_url(self, **kwargs):
         return reverse_lazy('person_list', kwargs={'familyid': self.kwargs['familyid']})
-
-
-# 削除画面
-class Person_DeleteView(LoginRequiredMixin, DeleteView):
-    model = Person
-    template_name = 'myApp/person_confirm_delete.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['familyid'] = self.kwargs['familyid']
-        return context
-
-    def get_success_url(self, **kwargs):
-        if kwargs != None:
-            return reverse_lazy('person_list', kwargs={'familyid': self.kwargs['familyid']})
-        else:
-            return reverse_lazy('person_list', args=(self.object.id,))
-
-    def delete(self, request, *args, **kwargs):
-        self.get_object().delete()
-        success_url = self.get_success_url()
-
-        myid = self.kwargs['familyid']
-        protein1 = 0
-        vita1 = 0
-        fe1 = 0
-
-        Persons = Person.objects.filter(familyid=myid)
-        if Persons.count() > 0:
-            rec = Family.objects.filter(id=myid).first()
-            rec.size = Persons.count()
-
-            for myPerson in Persons:
-                protein1 += myPerson.protein * myPerson.target_pop
-                vita1 += myPerson.vita * myPerson.target_pop
-                fe1 += myPerson.fe * myPerson.target_pop
-                rec = Family.objects.filter(id=myid).first()
-
-            rec.protein = protein1
-            rec.vita = vita1
-            rec.fe = fe1
-            rec.save()
-
-        return HttpResponseRedirect(success_url)
 
 
 class Person_new_CreateView(LoginRequiredMixin, CreateView):
@@ -853,30 +852,38 @@ def registCalendar(request, familyid, pk, itemstr):
     return HttpResponseRedirect(myURL)
 
 
-def registCrops(request, familyid, items):
-    tmp = Family.objects.get(id = familyid).crop_list
-    crops = []
-    a = 0
-    if ('-' in tmp):
-        crops = tmp.split('-')
-    else:
-        crops.append(tmp)
+def registCrops(request, familyid, items, items_w, avail_type):
 
-    selectedItem = []
-    if ('-' in items):
-        selectedItem = items.split('-')
-    else:
-        selectedItem.append(items)
+    if items != '0':
+        mytarget = Family.objects.get(pk=familyid)
 
-    for item in selectedItem:
-        if item in crops:
-            a += 1 #  do nothing"
-        elif item =='0':
-            a += 1 #  do nothing"
+        tmp = Family.objects.get(id=familyid).crop_list
+        crops = []
+        a = 0
+        if ('-' in tmp):
+            crops = tmp.split('-')
         else:
-#            register new crop here"
+            crops.append(tmp)
+
+        selectedItem = []
+        if ('-' in items):
+            selectedItem = items.split('-')
+        else:
+            selectedItem.append(items)
+
+        Weight = []
+        if ('-' in items_w):
+            Weight = items_w.split('-')
+        else:
+            Weight.append(items_w)
+
+#        myConsole(selectedItem)
+
+        # set new/update crop item
+        for i in range(len(selectedItem)):
+#        for i in range(3):
+            myfood = FCT.objects.get(food_item_id=selectedItem[i])
             newcrop = {}
-            myfood = FCT.objects.get(food_item_id = item)
             if myfood.Protein == '':
                 myfood.Protein = 0
             if myfood.VITA_RAE == '':
@@ -884,47 +891,57 @@ def registCrops(request, familyid, items):
             if myfood.FE == '':
                 myfood.FE = 0
 
-            mytarget = Family.objects.get(pk = familyid)
-            newcrop['food_item_id'] = item
+            newcrop['food_item_id'] = myfood.food_item_id
             newcrop['Food_name'] = myfood.Food_name
             newcrop['food_grp'] = myfood.Food_grp
             newcrop['protein'] = myfood.Protein
             newcrop['vita'] = myfood.VITA_RAE
             newcrop['fe'] = myfood.FE
             newcrop['familyid'] = familyid
+            newcrop['avail_type'] = avail_type
+            newcrop['food_wt'] = Weight[i]
 
             newcrop['created_by'] = request.user
 
-            if myfood.Protein >0:
-                newcrop['food_wt_p'] = round(mytarget.protein *100 / myfood.Protein, 1)
+            if myfood.Protein > 0:
+                newcrop['food_wt_p'] = round(
+                    mytarget.protein * 100 / myfood.Protein, 1)
             else:
                 newcrop['food_wt_p'] = 0
 
             if myfood.VITA_RAE > 0:
-                newcrop['food_wt_va'] = round(mytarget.vita *100 / myfood.VITA_RAE, 1)
+                newcrop['food_wt_va'] = round(
+                    mytarget.vita * 100 / myfood.VITA_RAE, 1)
             else:
                 newcrop['food_wt_va'] = 0
 
             if myfood.FE > 0:
-                newcrop['food_wt_fe'] = round(mytarget.fe *100 / myfood.FE, 1)
+                newcrop['food_wt_fe'] = round(mytarget.fe * 100 / myfood.FE, 1)
             else:
                 newcrop['food_wt_fe'] = 0
 
-            p = Crop.objects.create(**newcrop)
+            tmp = Crop.objects.filter(familyid=familyid).filter(food_item_id=selectedItem[i])
+            if tmp.count() == 0:
+                p = Crop.objects.create(**newcrop)
+            else:
+                p = tmp.update(**newcrop)
 
     for crop in crops:
         if crop in selectedItem:
-            a += 1 #  do nothing"
+            a += 1  # do nothing"
         else:
-#            delete crop here"
+            #            delete crop here"
             p = Crop.objects.filter(food_item_id=crop).delete()
 
 #   update crop_list to match with DCT_datatable selection
-    Family.objects.filter(id = familyid).update(crop_list = items)
+    Family.objects.filter(id=familyid).update(crop_list=items)
+    myProgress.objects.filter(
+        user_id=request.user.id).update(crop_list=items)
 
 #    move to crop list page
-    myURL = reverse_lazy('crop_list', kwargs = {'familyid': familyid})
+    myURL = reverse_lazy('index02')
     return HttpResponseRedirect(myURL)
+
 
 def funcTest(request):
 #    move to crop list page

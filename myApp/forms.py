@@ -10,6 +10,12 @@ Choice_FoodGrp = {
     ('3','Vitamin-A'),
 }
 
+def myConsole(output):
+    path_w = 'myApp/output_log.txt'
+    with open(path_w, mode='w') as f:
+        f.write(output)
+
+
 class BS4RadioSelect(forms.RadioSelect):
     input_type = 'radio'
     template_name = 'myApp/widgets/bs4_radio.html'
@@ -88,6 +94,7 @@ class Person_new_Create_Form(forms.ModelForm):
         cleaned_data = super(Person_new_Create_Form, self).clean()
 
         a = self.cleaned_data['nut_group']
+        myConsole(a)
         self.cleaned_data['familyid'] = self.myid
         self.cleaned_data['name'] = Family.objects.get(id = self.myid).name
         self.cleaned_data['protein'] = DRI_aggr.objects.get(group = a).protein
