@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.admin import widgets
 from django.db.models import Q, Sum
-from .models import Family, Person, DRI, DRI_women, Crop, FCT
+from .models import Family, Person, DRI, DRI_women, Crop, FCT, DRI_aggr
 
 Choice_FoodGrp = {
     ('0','food name'),
@@ -26,12 +26,13 @@ class FamilyForm(forms.ModelForm):
     class Meta:
         model = Family
         fields = (
-            "name", "remark", "country", "region", "province", "community",
-            "wasting_rate", "stunting_rate", "anemia_rate",
-            "nutrition_target", "major_commodity", "protein", "vita",
-            "fe", "size", "crop_list", "id"
+            "name", "country", "region", "province", "community",
+            "protein", "vita", "fe", "size", "crop_list", "id", "remark"
         )
         widgets = {
+            'country': forms.Select(attrs = {'onchange' : "selCnt();"}),
+            'region': forms.Select(attrs = {'onchange' : "selSub1();"}),
+            'province': forms.Select(),
             'protein': forms.HiddenInput(),
             'vita': forms.HiddenInput(),
             'fe': forms.HiddenInput(),
@@ -54,6 +55,46 @@ class FamilyForm(forms.ModelForm):
                     d = d[1:]
         crop_list = d
         return crop_list
+
+class Person_new_Create_Form(forms.ModelForm):
+    class Meta:
+        model = Person
+        fields = ("familyid", "nut_group", "name",
+            "protein", "vita", "fe",
+            "nut_question1", "nut_question2","nut_question3",
+            "nut_question4","nut_question5", "target_pop"
+            )
+        widgets = {
+            'familyid': forms.HiddenInput(),
+            'name': forms.HiddenInput(),
+            'protein': forms.HiddenInput(),
+            'vita': forms.HiddenInput(),
+            'fe': forms.HiddenInput(),
+            }
+        labels = {
+            "nut_question1":"question to identify nutrition status",
+            "nut_question2":"question to identify nutrition status",
+            "nut_question3":"question to identify nutrition status",
+            "nut_question4":"question to identify nutrition status",
+            "nut_question5":"question to identify nutrition status",
+        }
+
+
+    def __init__(self, *args, **kwargs):
+        self.myid = kwargs.pop('myid')
+        super(Person_new_Create_Form, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super(Person_new_Create_Form, self).clean()
+
+        a = self.cleaned_data['nut_group']
+        self.cleaned_data['familyid'] = self.myid
+        self.cleaned_data['name'] = Family.objects.get(id = self.myid).name
+        self.cleaned_data['protein'] = DRI_aggr.objects.get(group = a).protein
+        self.cleaned_data['vita'] = DRI_aggr.objects.get(group = a).vita
+        self.cleaned_data['fe'] = DRI_aggr.objects.get(group = a).fe
+
+        return cleaned_data
 
 
 class Person_Create_Form(forms.ModelForm):

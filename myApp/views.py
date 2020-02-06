@@ -6,8 +6,8 @@ from django.http import HttpResponse
 from django.core import serializers
 
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
-from .models import FCT, Person, DRI, DRI_women, Family, Crop
-from .forms import Order_Key_Form, FamilyForm, Person_Create_Form, CropForm
+from .models import FCT, Person, DRI, DRI_women, Family, Crop, myProgress, Countries
+from .forms import Order_Key_Form, FamilyForm, Person_Create_Form, CropForm, Person_new_Create_Form
 from django.db.models import Q, Sum
 
 # for user registration
@@ -21,7 +21,236 @@ import re
 import logging
 #from tkinter import messagebox
 
+
+class Person_new_UpdateView(LoginRequiredMixin, UpdateView):
+    model = Person
+    form_class = Person_new_Create_Form
+    template_name = 'myApp/person_new_form.html'
+
+    def get_form_kwargs(self):
+        """This method is what injects forms with their keyword
+            arguments."""
+        # grab the current set of form #kwargs
+        kwargs = super(Person_UpdateView, self).get_form_kwargs()
+        # Update the kwargs with the user_id
+        kwargs['myid'] = self.kwargs['familyid']
+        return kwargs
+
+    def form_valid(self, form):
+        self.object = form.save()
+        # do something with self.object
+        # remember the import: from django.http import HttpResponseRedirect
+        myid = self.kwargs['familyid']
+        protein1 = 0
+        vita1 = 0
+        fe1 = 0
+
+        Persons = Person.objects.filter(familyid=myid)
+        if Persons.count() > 0:
+            rec = Family.objects.filter(id=myid).first()
+            rec.size = Persons.count()
+
+            for myPerson in Persons:
+                protein1 += myPerson.protein * myPerson.target_pop
+                vita1 += myPerson.vita * myPerson.target_pop
+                fe1 += myPerson.fe * myPerson.target_pop
+                rec = Family.objects.filter(id=myid).first()
+
+            rec.protein = protein1
+            rec.vita = vita1
+            rec.fe = fe1
+            rec.save()
+
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_context_data(self, **kwargs):
+        myid = self.kwargs['familyid']
+        mydata = Family.objects.get(id=myid)
+        context = super().get_context_data(**kwargs)
+        context['name'] = mydata
+        context['myid'] = myid
+        context["families"] = Person.objects.filter(
+            familyid=self.kwargs['familyid']).order_by('age')
+        return context
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('person_list', kwargs={'familyid': self.kwargs['familyid']})
+
+
+# 削除画面
+class Person_DeleteView(LoginRequiredMixin, DeleteView):
+    model = Person
+    template_name = 'myApp/person_confirm_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['familyid'] = self.kwargs['familyid']
+        return context
+
+    def get_success_url(self, **kwargs):
+        if kwargs != None:
+            return reverse_lazy('person_list', kwargs={'familyid': self.kwargs['familyid']})
+        else:
+            return reverse_lazy('person_list', args=(self.object.id,))
+
+    def delete(self, request, *args, **kwargs):
+        self.get_object().delete()
+        success_url = self.get_success_url()
+
+        myid = self.kwargs['familyid']
+        protein1 = 0
+        vita1 = 0
+        fe1 = 0
+
+        Persons = Person.objects.filter(familyid=myid)
+        if Persons.count() > 0:
+            rec = Family.objects.filter(id=myid).first()
+            rec.size = Persons.count()
+
+            for myPerson in Persons:
+                protein1 += myPerson.protein * myPerson.target_pop
+                vita1 += myPerson.vita * myPerson.target_pop
+                fe1 += myPerson.fe * myPerson.target_pop
+                rec = Family.objects.filter(id=myid).first()
+
+            rec.protein = protein1
+            rec.vita = vita1
+            rec.fe = fe1
+            rec.save()
+
+        return HttpResponseRedirect(success_url)
+
+
+class Person_new_CreateView(LoginRequiredMixin, CreateView):
+    model = Person
+    form_class = Person_new_Create_Form
+    template_name = 'myApp/person_new_form.html'
+
+    def get_form_kwargs(self):
+        """This method is what injects forms with their keyword
+            arguments."""
+        # grab the current set of form #kwargs
+        kwargs = super(Person_new_CreateView, self).get_form_kwargs()
+        # Update the kwargs with the user_id
+        kwargs['myid'] = self.kwargs['familyid']
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        myid = self.kwargs['familyid']
+        mydata = Family.objects.get(id=myid)
+        context = super().get_context_data(**kwargs)
+        context['myid'] = myid
+        context['name'] = mydata
+        context["families"] = Family.objects.filter(
+            id=self.kwargs['familyid']).order_by('age')
+        return context
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('person_list', kwargs={'familyid': self.kwargs['familyid']})
+
+    def form_valid(self, form):
+        self.object = form.save()
+        # do something with self.object
+        # remember the import: from django.http import HttpResponseRedirect
+        form.instance.created_by = self.request.user
+        myid = self.kwargs['familyid']
+
+        protein1 = 0
+        vita1 = 0
+        fe1 = 0
+
+        Persons = Person.objects.filter(familyid=myid)
+        if Persons.count() > 0:
+            rec = Family.objects.filter(id=myid).first()
+            rec.size = Persons.count()
+
+            for myPerson in Persons:
+                protein1 += myPerson.protein * myPerson.target_pop
+                vita1 += myPerson.vita * myPerson.target_pop
+                fe1 += myPerson.fe * myPerson.target_pop
+                rec = Family.objects.filter(id=myid).first()
+
+            rec.protein = protein1
+            rec.vita = vita1
+            rec.fe = fe1
+            rec.save()
+
+        myProg_rec = myProgress.objects.filter(
+            user_id=self.request.user.id).first()
+        myProg_rec.person_id = form.instance.pk
+
+        myProg_rec.save()
+
+        return super(Person_new_CreateView, self).form_valid(form)
+#        return HttpResponseRedirect(self.get_success_url())
+
+
+def myConsole(output):
+    path_w = 'myApp/output_log.txt'
+    with open(path_w, mode='w') as f:
+        f.write(output)
+
+class TestView01(LoginRequiredMixin, TemplateView):
+    template_name = "myApp/index03.html"
+
 # Create your views here.
+class convCrop_Grow(TemplateView):
+    template_name = "myApp/conv_crop_grow.html"
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        context['name'] = Family.objects.get(id=self.kwargs['familyid'])
+
+        tmp = Family.objects.get(id=self.kwargs['familyid']).conv_crop_grow
+        crops = []
+        if ('-' in tmp):
+            for crop in tmp.split('-'):
+                crops.append(FCT.objects.get(food_item_id=crop).Food_name)
+        context['crop_list'] = crops
+        return context
+
+
+class convCrop_Sold(TemplateView):
+    template_name = "myApp/conv_crop_sold.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['name'] = Family.objects.get(id=self.kwargs['familyid'])
+
+        tmp = Family.objects.get(id=self.kwargs['familyid']).conv_crop_sold
+        crops = []
+        if ('-' in tmp):
+            for crop in tmp.split('-'):
+                crops.append(FCT.objects.get(food_item_id=crop).Food_name)
+        context['crop_list'] = crops
+        return context
+
+def registConvCrops_grow(request, familyid, items):
+    #   update crop_list to match with DCT_datatable selection
+    Family.objects.filter(id=familyid).update(conv_crop_grow=items)
+    myProgress.objects.filter(user_id=request.user.id).update(
+        conv_crop_grow_list=items)
+
+
+#    move to crop list page
+    myURL = reverse_lazy('index02')
+    return HttpResponseRedirect(myURL)
+
+
+def registConvCrops_sold(request, familyid, items):
+    #    tmp = Family.objects.get(id=familyid).crop_list
+
+    #   update crop_list to match with DCT_datatable selection
+    Family.objects.filter(id=familyid).update(conv_crop_sold=items)
+    myProgress.objects.filter(user_id=request.user.id).update(
+        conv_crop_sold_list=items)
+
+#    move to crop list page
+    myURL = reverse_lazy('index02')
+    return HttpResponseRedirect(myURL)
+
+
 class FCTdatable_View(TemplateView):
     template_name = "myApp/FCT_datable.html"
 
@@ -166,7 +395,24 @@ class Family_CreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('Family_filter')
 
     def form_valid(self, form):
+        self.object = form.save()
+# --------------------update myProgress-------------------------
+        keys = {}
+        keys['family_id'] = form.instance.pk
+        keys['conv_crop_grow_list'] = "0"
+        keys['conv_crop_sold_list'] = "0"
+        keys['person_id'] = 0
+        tmp = myProgress.objects.filter(user_id=self.request.user.id)
+        if tmp.count() == 0:
+            keys['user_id'] = self.request.user.id
+            p = myProgress.objects.create(**keys)
+        else:
+            p = tmp.update(**keys)
+
+#        keys_all.update(**keys)
+# ---------------------
         form.instance.created_by = self.request.user
+        form.instance.country_test = Countries.objects.filter(GID_2 = form.instance.province).first()
         return super(Family_CreateView, self).form_valid(form)
 
     def get_form_kwargs(self):
@@ -177,6 +423,15 @@ class Family_CreateView(LoginRequiredMixin, CreateView):
         # Update the kwargs with the user_id
         kwargs['myid'] = '0'
         return kwargs
+
+    def get_context_data(self, **kwargs):
+        data = Countries.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['countries'] = serializers.serialize('json', data)
+        context['coutry_selected'] = ''
+        context['region_selected'] = ''
+        context['province_selected'] = ''
+        return context
 
 
 class Family_UpdateView(LoginRequiredMixin, UpdateView):
