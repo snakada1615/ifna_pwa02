@@ -194,7 +194,7 @@ class TestView01(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        keys_all = myProgress.objects.get(user_id=self.request.user.id)
+        keys_all = myProgress.objects.get(user_id=self.user.id)
         context['myname'] = keys_all.user_name
         context['family_id'] = keys_all.family_id
         context['aez_id'] = keys_all.aez_id
