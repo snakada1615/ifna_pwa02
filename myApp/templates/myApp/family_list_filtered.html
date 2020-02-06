@@ -32,10 +32,13 @@
 							{{ family.name }}
 						</h5>
 						<p class="card-text my-0">
-							{{ family.country }}
+							{{ family.country_test.NAME_0 }}
 						</p>
 						<p class="card-text my-0">
-							{{ family.region }}
+							{{ family.country_test.NAME_1 }}
+						</p>
+						<p class="card-text my-0">
+							{{ family.country_test.NAME_2 }}
 						</p>
 							<span><a class="btn my-0 btn-outline-secondary btn-sm align-middle badge" href="{% url 'Family_update' pk=family.pk %}">edit</a></span>
 							<span><a class="btn my-0 btn-outline-secondary btn-sm align-middle badge " href="{% url 'Family_delete' pk=family.pk %}">delete</a></span>

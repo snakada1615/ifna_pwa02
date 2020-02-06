@@ -97,9 +97,9 @@ class Person_new_Create_Form(forms.ModelForm):
         myConsole(a)
         self.cleaned_data['familyid'] = self.myid
         self.cleaned_data['name'] = Family.objects.get(id = self.myid).name
-        self.cleaned_data['protein'] = DRI_aggr.objects.get(group = a).protein
-        self.cleaned_data['vita'] = DRI_aggr.objects.get(group = a).vita
-        self.cleaned_data['fe'] = DRI_aggr.objects.get(group = a).fe
+        self.cleaned_data['protein'] = DRI_aggr.objects.get(nut_group = a).protein
+        self.cleaned_data['vita'] = DRI_aggr.objects.get(nut_group = a).vita
+        self.cleaned_data['fe'] = DRI_aggr.objects.get(nut_group = a).fe
 
         return cleaned_data
 
