@@ -192,6 +192,19 @@ def myConsole(output):
 class TestView01(LoginRequiredMixin, TemplateView):
     template_name = "myApp/index03.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        keys_all = myProgress.objects.get(user_id=self.request.user.id)
+        context['myname'] = keys_all.user_name
+        context['family_id'] = keys_all.family_id
+        context['aez_id'] = keys_all.aez_id
+        context['conv_crop_grow_list'] = keys_all.conv_crop_grow_list
+        context['conv_crop_sold_list'] = keys_all.conv_crop_sold_list
+        context['person_id'] = keys_all.person_id
+        context['crop_id'] = keys_all.crop_id
+        return context
+
+
 # Create your views here.
 class convCrop_Grow(TemplateView):
     template_name = "myApp/conv_crop_grow.html"
