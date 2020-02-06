@@ -15,13 +15,13 @@ class myProgress(models.Model):
     crop_id = models.IntegerField(default=0,blank=True)
 
 class DRI_aggr(models.Model):
-    group = models.CharField(
+    nut_group = models.CharField(
         max_length=200,
         verbose_name='group',
         default='children under 5'
     )
     protein = models.FloatField(
-        verbose_name='protein',
+        verbose_name='nut_protein',
         default=0
     )
     vita = models.FloatField(
