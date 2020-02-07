@@ -459,7 +459,6 @@ class Family_UpdateView(LoginRequiredMixin, UpdateView):
     model = Family
     form_class = FamilyForm
     template_name = 'myApp/family_form.html'
-    success_url = reverse_lazy('Family_index')
 
     def get_form_kwargs(self):
         """This method is what injects forms with their keyword
@@ -469,6 +468,19 @@ class Family_UpdateView(LoginRequiredMixin, UpdateView):
         # Update the kwargs with the user_id
         kwargs['myid'] = self.kwargs['pk']
         return kwargs
+
+    def get_context_data(self, **kwargs):
+        data = Countries.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['countries'] = serializers.serialize('json', data)
+        myFamily = Family.objects.get(id = self.kwargs['pk'])
+        context['coutry_selected'] = myFamily.country
+        context['region_selected'] = myFamily.region
+        context['province_selected'] = myFamily.province
+        return context
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('Family_filter', kwargs = "")
 
 
 class Person_ListView(LoginRequiredMixin, ListView):

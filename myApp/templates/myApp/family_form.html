@@ -2,9 +2,9 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<input type="hidden" value="{{coutry_selected}}" id="country">
-<input type="hidden" value="{{region_selected}}" id="region">
-<input type="hidden" value="{{province_selected}}" id="province">
+<input type="hidden" value="{{coutry_selected}}" id="sel_country">
+<input type="hidden" value="{{region_selected}}" id="sel_region">
+<input type="hidden" value="{{province_selected}}" id="sel_province">
 
   {{ form.certifications.errors }}
   <div class="container text-white bg-info" style="max-width: 540px;">
@@ -128,10 +128,9 @@
     }
 
     // initislize country list -------------------
-    var selected1 = document.getElementById('id_country');
-    var selected2 = document.getElementById('id_country').selectedIndex;
-    var selected3 = document.getElementById('id_country').selectedIndex;
-    console.log(selected1);
+    var selected1 = document.getElementById('sel_country').value;
+    var selected2 = document.getElementById('sel_region').value;
+    var selected3 = document.getElementById('sel_province').value;
 
     getCountry();
     for (var i = 0; i < cnt_list.length; i++) {
@@ -140,12 +139,18 @@
       op.text = cnt_list[i];
       document.getElementById("id_country").appendChild(op);
     }
-    if (selected1 > 0) {
-      document.getElementById('id_country').selectedIndex = selected1;
+
+    if (selected1 != "") {
+      document.getElementById('id_country').value = selected1;
+      selCnt();
+      if (selected2 != "") {
+        document.getElementById('id_region').value = selected2;
+        selSub1();
+        if (selected3 != "") {
+          document.getElementById('id_province').value = selected3;
+        }
+      }
     }
-    document.getElementById('id_country').selectedIndex = 1;
-    document.getElementById('id_region').selectedIndex = 2;
-    document.getElementById('id_province').selectedIndex = 3;
 
   </script>
 
