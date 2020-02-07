@@ -194,7 +194,7 @@ class TestView01(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        myConsole(str(self.request.user.id))
+#        myConsole(str(self.request.user.id))
         ######## create record if not exists #########
         tmp = myProgress.objects.filter(user_id=self.request.user.id)
         if tmp.count() == 0:
