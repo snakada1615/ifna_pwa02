@@ -459,6 +459,7 @@ class Family_UpdateView(LoginRequiredMixin, UpdateView):
     model = Family
     form_class = FamilyForm
     template_name = 'myApp/family_form.html'
+    success_url = reverse_lazy('Family_filter')
 
     def get_form_kwargs(self):
         """This method is what injects forms with their keyword
@@ -479,8 +480,13 @@ class Family_UpdateView(LoginRequiredMixin, UpdateView):
         context['province_selected'] = myFamily.province
         return context
 
-    def get_success_url(self, **kwargs):
-        return reverse_lazy('Family_filter', kwargs = "")
+#    def get_success_url(self, **kwargs):
+#        return reverse_lazy('Family_filter', kwargs = "")
+
+    def form_valid(self, form):
+        form.instance.country_test = Countries.objects.filter(GID_2 = form.instance.province).first()
+#        return super(Family_UpdateView, self).form_valid(form)
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class Person_ListView(LoginRequiredMixin, ListView):
