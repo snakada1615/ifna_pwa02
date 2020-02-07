@@ -194,6 +194,15 @@ class TestView01(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        myConsole(str(self.request.user.id))
+        ######## create record if not exists #########
+        tmp = myProgress.objects.filter(user_id=self.request.user.id)
+        if tmp.count() == 0:
+            keys = {}
+            keys['user_id'] = self.request.user.id
+            p = myProgress.objects.create(**keys)
+        ###############################################
+
         keys_all = myProgress.objects.get(user_id=self.request.user.id)
         context['myname'] = keys_all.user_name
         context['family_id'] = keys_all.family_id
