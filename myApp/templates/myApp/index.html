@@ -37,38 +37,50 @@
 				<h5 >Welcome to NFA tool!</h5>
 			</div>
 		</div>
-		<div class="row">
 
+		<div class="row">
 			<div class="col-6 col-md-4">
 				<div class="card bg-info">
-					<div class="card-body py-2 px-2">
-						Start from here!
-						<a class="btn btn-warning m-auto btn-block" href="{% url 'index02' %}">Start Application</a>
+					<div class="card img-thumbnail bg-info">
+						<img class="card-img-top" src="{% static 'img/start.png' %}" alt="画像">
+						<div class="card-body py-2 px-2">
+							<p class="card-text">Start from here!</p>
+							<a class="btn btn-warning m-auto btn-block" href="{% url 'index02' %}">Start Application</a>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-6 col-md-8"></div>
 			<div class="col-6 col-md-4">
 				<div class="card bg-info">
-					<div class="card-body py-2 px-2">
-						If you are new user, please register from here
-						<a class="btn btn-warning m-auto btn-block" href="{% url 'register' %}">New user</a>
+					<div class="card img-thumbnail bg-info">
+						<img class="card-img-top" src="{% static 'img/login_trans.png' %}" alt="画像">
+						<div class="card-body py-2 px-2">
+							<p class="card-text">Sign in from here if you have changed your device</p>
+							<a class="btn btn-warning m-auto btn-block" href="{% url 'login' %}">Sign in</a>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-6 col-md-4">
 				<div class="card bg-info">
-					<div class="card-body py-2 px-2">
-						Sign in from here if you change your device
-						<a class="btn btn-warning m-auto btn-block" href="{% url 'login' %}">Sign in</a>
+					<div class="card img-thumbnail bg-info">
+						<img class="card-img-top" src="{% static 'img/logout.png' %}" alt="画像">
+						<div class="card-body py-2 px-2">
+							<p class="card-text">Sign out if you want to change user</p>
+							<a class="btn btn-warning m-auto btn-block" href="{% url 'logout' %}">Sign out</a>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-6 col-md-4">
 				<div class="card bg-info">
-					<div class="card-body py-2 px-2">
-						Sign out if you want to change user
-						<a class="btn btn-warning m-auto btn-block" href="{% url 'logout' %}">Sign in</a>
+					<div class="card img-thumbnail bg-info">
+						<img class="card-img-top" src="{% static 'img/regist.png' %}" alt="画像">
+						<div class="card-body py-2 px-2">
+							<p class="card-text">If you are new user, please register from here</p>
+							<a class="btn btn-warning m-auto btn-block" href="{% url 'register' %}">New user</a>
+						</div>
 					</div>
 				</div>
 			</div>
