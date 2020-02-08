@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.core import serializers
+import json
 
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 from .models import FCT, Person, DRI, DRI_women, Family, Crop, myProgress, Countries
@@ -211,6 +212,18 @@ class TestView01(LoginRequiredMixin, TemplateView):
         context['conv_crop_sold_list'] = keys_all.conv_crop_sold_list
         context['person_id'] = keys_all.person_id
         context['crop_id'] = keys_all.crop_id
+        data = {
+            'myname': keys_all.user_name,
+            'family_id': keys_all.family_id,
+            'aez_id': keys_all.aez_id,
+            'conv_crop_grow_list': keys_all.conv_crop_grow_list,
+            'conv_crop_sold_list': keys_all.conv_crop_sold_list,
+            'person_id': keys_all.person_id,
+            'crop_id': keys_all.crop_id
+        }
+        json_str = json.dumps(data)
+        context['myParam'] = json_str
+
         return context
 
 

@@ -2,14 +2,6 @@
 {% load static %}
 {% block content %}
 
-	<input type="hidden" value="{{myname}}" id="myname">
-	<input type="hidden" value="{{family_id}}" id="family_id">
-	<input type="hidden" value="{{aez_id}}" id="aez_id">
-	<input type="hidden" value="{{conv_crop_grow_list}}" id="conv_crop_grow_list">
-	<input type="hidden" value="{{conv_crop_sold_list}}" id="conv_crop_sold_list">
-	<input type="hidden" value="{{person_id}}" id="person_id">
-	<input type="hidden" value="{{crop_id}}" id="crop_id">
-
 	<div class="container text-white" style="max-width: 540px;">
 		<div id="accordion2">
 			<div class="card border-primary bg-info col-12 mt-2 mb-2 py-0" style="max-width: 540px;">
@@ -102,14 +94,7 @@
 
 	<script type="text/javascript">
 		window.onload = function () {
-			console.log('halo');
-			var param1 = document.getElementById('myname').value;
-			var param2 = document.getElementById('family_id').value;
-			var param3 = document.getElementById('aez_id').value;
-			var param4 = document.getElementById('conv_crop_grow_list').value;
-			var param5 = document.getElementById('conv_crop_sold_list').value;
-			var param6 = document.getElementById('person_id').value;
-			var param7 = document.getElementById('crop_id').value;
+			var DATA = JSON.parse('{{ myParam|safe }}');
 
 			document.getElementById('btn02').classList.add("disabled");
 			document.getElementById('btn03').classList.add("disabled");
@@ -120,21 +105,21 @@
 			document.getElementById('btn08').classList.add("disabled");
 			document.getElementById('btn09').classList.add("disabled");
 
-			if (param2 > 0) {
+			if (DATA.family_id > 0) {
 				document.getElementById('btn02').classList.remove("disabled");
-				var myURL = '/conv_crop_grow/' + param2 + '/' + param4 + '/';
+				var myURL = '/conv_crop_grow/' + DATA.family_id + '/' + DATA.conv_crop_grow_list + '/';
 				document.getElementById('btn02').href = myURL;
-				if (param4 != "0") {
+				if (DATA.conv_crop_grow_list != "0") {
 					document.getElementById('btn03').classList.remove("disabled");
-					var myURL = '/conv_crop_sold/' + param2 + '/' + param5 + '/';
+					var myURL = '/conv_crop_sold/' + DATA.family_id + '/' + DATA.conv_crop_sold_list + '/';
 					document.getElementById('btn03').href = myURL;
-					if (param5 != "0") {
+					if (DATA.conv_crop_sold_list != "0") {
 						document.getElementById('btn04').classList.remove("disabled");
-						var myURL = '/person/list/' + param2 + '/';
+						var myURL = '/person/list/' + DATA.family_id + '/';
 						document.getElementById('btn04').href = myURL;
-						if (param6 > 0) {
+						if (DATA.person_id > 0) {
 							document.getElementById('btn05').classList.remove("disabled");
-							var myURL = '/Diet1/' + param2 + '/' + param4 + param5 + '/0/';
+							var myURL = '/Diet1/' + DATA.family_id + '/' + DATA.conv_crop_grow_list + DATA.conv_crop_sold_list + '/0/';
 							document.getElementById('btn05').href = myURL;
 						}
 					}
