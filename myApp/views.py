@@ -191,7 +191,7 @@ def myConsole(output):
         f.write(output)
 
 class TestView01(LoginRequiredMixin, TemplateView):
-    template_name = "myApp/index03.html"
+    template_name = "myApp/index02.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -205,13 +205,6 @@ class TestView01(LoginRequiredMixin, TemplateView):
         ###############################################
 
         keys_all = myProgress.objects.get(user_id=self.request.user.id)
-        context['myname'] = keys_all.user_name
-        context['family_id'] = keys_all.family_id
-        context['aez_id'] = keys_all.aez_id
-        context['conv_crop_grow_list'] = keys_all.conv_crop_grow_list
-        context['conv_crop_sold_list'] = keys_all.conv_crop_sold_list
-        context['person_id'] = keys_all.person_id
-        context['crop_id'] = keys_all.crop_id
         data = {
             'myname': keys_all.user_name,
             'family_id': keys_all.family_id,
@@ -340,6 +333,33 @@ class Crop_Feas_View(TemplateView):
 
 class Trial_View(TemplateView):
     template_name = "myApp/trial.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+#        myConsole(str(self.request.user.id))
+        ######## create record if not exists #########
+        tmp = myProgress.objects.filter(user_id=self.request.user.id)
+        if tmp.count() == 0:
+            keys = {}
+            keys['user_id'] = self.request.user.id
+            p = myProgress.objects.create(**keys)
+        ###############################################
+
+        keys_all = myProgress.objects.get(user_id=self.request.user.id)
+        data = {
+            'myname': keys_all.user_name,
+            'family_id': keys_all.family_id,
+            'aez_id': keys_all.aez_id,
+            'conv_crop_grow_list': keys_all.conv_crop_grow_list,
+            'conv_crop_sold_list': keys_all.conv_crop_sold_list,
+            'person_id': keys_all.person_id,
+            'crop_id': keys_all.crop_id
+        }
+        json_str = json.dumps(data)
+        context['myParam'] = json_str
+
+        return context
+
 
 class TestOfflineView(TemplateView):
     template_name = "myApp/offline/test.html"

@@ -1,0 +1,94 @@
+{% extends 'myApp/base.html' %}
+{% load static %}
+{% block content %}
+
+
+  <div class="container text-white border-primary alert-secondary mt-2 mb-2 py-0" style="max-width: 540px;">
+    <div class="row">
+      <div class="col text-primary">
+        <h5 >Welcome to NFA tool!</h5>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6 col-md-4">
+        <div class="card bg-info">
+          <div class="card img-thumbnail bg-info">
+            <img class="card-img-top" src="{% static 'img/start.png' %}" alt="画像">
+            <div class="card-body pt-2 pb-0 px-2">
+              <p class="card-text">Information for target group</p>
+              <a class="btn btn-warning m-auto btn-block" id='btn01' href="{% url 'trial' %}">go</a>
+              <span class="badge badge-success float-left" id='chk01-true'>Complete</span>
+              <span class="badge badge-danger float-right" id='chk01-false'>not complete</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4">
+        <div class="card bg-info">
+          <div class="card img-thumbnail bg-info">
+            <img class="card-img-top" src="{% static 'img/start.png' %}" alt="画像">
+            <div class="card-body pb-0 pt-2 px-2">
+              <p class="card-text">What foods are available?</p>
+              <a class="btn btn-warning m-auto btn-block" id='btn02' href="{% url 'index02' %}">go</a>
+              <span class="badge badge-success float-left" id='chk02-true'>Complete</span>
+              <span class="badge badge-danger float-right" id='chk02-false'>not complete</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4">
+        <div class="card bg-info">
+          <div class="card img-thumbnail bg-info">
+            <img class="card-img-top" src="{% static 'img/start.png' %}" alt="画像">
+            <div class="card-body py-2 px-2">
+              <p class="card-text">Diet guidance</p>
+              <a class="btn btn-warning m-auto btn-block" id='btn03' href="{% url 'index02' %}">go</a>
+              <span class="badge badge-success float-left" id='chk03-true'>Complete</span>
+              <span class="badge badge-danger float-right" id='chk03-false'>not complete</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    window.onload = function () {
+      var DATA = JSON.parse('{{ myParam|safe }}');
+
+      document.getElementById("chk01-true").style.visibility = "hidden";
+      document.getElementById("chk01-false").style.visibility = "visible";
+      document.getElementById("chk02-true").style.visibility = "hidden";
+      document.getElementById("chk02-false").style.visibility = "visible";
+      document.getElementById("chk03-true").style.visibility = "hidden";
+      document.getElementById("chk03-false").style.visibility = "visible";
+      document.getElementById('btn02').classList.add("disabled");
+      document.getElementById('btn03').classList.add("disabled");
+
+      if ((DATA.family_id > 0) && (DATA.person_id > 0)) {
+        document.getElementById("chk01-true").style.visibility = "visible";
+        document.getElementById("chk01-false").style.visibility = "hidden";
+        document.getElementById('btn02').classList.remove("disabled");
+        var myURL = '/conv_crop_grow/' + DATA.family_id + '/' + DATA.conv_crop_grow_list + '/';
+        document.getElementById('btn02').href = myURL;
+        if (DATA.conv_crop_grow_list != "0") {
+          document.getElementById('btn03').classList.remove("disabled");
+          var myURL = '/conv_crop_sold/' + DATA.family_id + '/' + DATA.conv_crop_sold_list + '/';
+          document.getElementById('btn03').href = myURL;
+          if (DATA.conv_crop_sold_list != "0") {
+            document.getElementById('btn04').classList.remove("disabled");
+            var myURL = '/person/list/' + DATA.family_id + '/';
+            document.getElementById('btn04').href = myURL;
+            if (DATA.person_id > 0) {
+              document.getElementById('btn05').classList.remove("disabled");
+              var myURL = '/Diet1/' + DATA.family_id + '/' + DATA.conv_crop_grow_list + DATA.conv_crop_sold_list + '/0/';
+              document.getElementById('btn05').href = myURL;
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+{% endblock %}

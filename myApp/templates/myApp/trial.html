@@ -3,49 +3,66 @@
 
 {% block content %}
 
-  <div class="container border-primary bg-light mt-2 mb-2 py-0">
-    <div class="row">
-      <div class="col">
-        <h5>Welcome to NFA tool!</h5>
+  <div class="container text-white border-primary alert-secondary mt-2 mb-2 py-0" style="max-width: 540px;">
+    <div class="row my-3">
+      <div class="col text-primary">
+        <h5 >Information for the target beneficiaries</h5>
+        <a class="btn btn-warning m-auto" href="{% url 'index02' %}">return</a>
       </div>
     </div>
-    <div class="row">
 
+    <div class="row">
       <div class="col-6 col-md-4">
         <div class="card bg-info">
-          <div class="card-body">
-            Start from here!
-            <a class="btn btn-warning m-auto btn-block" href="{% url 'index02' %}">Start Application</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-md-4">
-      </div>
-      <div class="col-6 col-md-4">
-        <div class="card bg-info">
-          <div class="card-body">
-            If you are new user, please register from here
-            <a class="btn btn-warning m-auto btn-block" href="{% url 'register' %}">New user</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-md-4">
-        <div class="card bg-info">
-          <div class="card-body">
-            Sign in from here if you change your device
-            <a class="btn btn-warning m-auto btn-block" href="{% url 'login' %}">Sign in</a>
+          <div class="card img-thumbnail bg-info">
+            <img class="card-img-top" src="{% static 'img/start.png' %}" alt="画像">
+            <div class="card-body pt-2 pb-0 px-2">
+              <p class="card-text">where is the target beneficiaries live?</p>
+              <a class="btn btn-warning m-auto btn-block" id='btn01' href="{% url 'Family_filter' %}">go</a>
+              <span class="badge badge-success float-left" id='chk01-true'>Complete</span>
+              <span class="badge badge-danger float-right" id='chk01-false'>not complete</span>
+            </div>
           </div>
         </div>
       </div>
       <div class="col-6 col-md-4">
         <div class="card bg-info">
-          <div class="card-body">
-            Sign out if you want to change user
-            <a class="btn btn-warning m-auto btn-block" href="{% url 'logout' %}">Sign in</a>
+          <div class="card img-thumbnail bg-info">
+            <img class="card-img-top" src="{% static 'img/start.png' %}" alt="画像">
+            <div class="card-body pb-0 pt-2 px-2">
+              <p class="card-text">who are target beneficiaries?</p>
+              <a class="btn btn-warning m-auto btn-block" id='btn02' href="">go</a>
+              <span class="badge badge-success float-left" id='chk02-true'>Complete</span>
+              <span class="badge badge-danger float-right" id='chk02-false'>not complete</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+    window.onload = function () {
+      var DATA = JSON.parse('{{ myParam|safe }}');
+
+      document.getElementById("chk01-true").style.visibility = "hidden";
+      document.getElementById("chk01-false").style.visibility = "visible";
+      document.getElementById("chk02-true").style.visibility = "hidden";
+      document.getElementById("chk02-false").style.visibility = "visible";
+      document.getElementById('btn02').classList.add("disabled");
+
+      if (DATA.family_id > 0) {
+        document.getElementById("chk01-true").style.visibility = "visible";
+        document.getElementById("chk01-false").style.visibility = "hidden";
+        document.getElementById('btn02').classList.remove("disabled");
+        var myURL = '/person/list/' + DATA.family_id + '/';
+        document.getElementById('btn02').href = myURL;
+        if (DATA.person_id > 0) {
+          document.getElementById("chk02-true").style.visibility = "visible";
+          document.getElementById("chk02-false").style.visibility = "hidden";
+        }
+      }
+    }
+  </script>
 
 {% endblock %}
