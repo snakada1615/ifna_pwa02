@@ -22,6 +22,32 @@ import re
 import logging
 #from tkinter import messagebox
 
+
+def registCropAvail(request):
+    jsondata = request.POST.get('data')
+    myConsole(jsondata)
+    datas = json.loads(jsondata)
+    json_list = json.loads(request.body)
+    return HttpResponse(datas)
+
+
+class CropAvailable(TemplateView):
+    template_name = "myApp/crop_available.html"
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        context['name'] = Family.objects.get(id=self.kwargs['familyid'])
+
+        tmp = Family.objects.get(id=self.kwargs['familyid']).conv_crop_grow
+        crops = []
+        if ('-' in tmp):
+            for crop in tmp.split('-'):
+                crops.append(FCT.objects.get(food_item_id=crop).Food_name)
+        context['crop_list'] = crops
+        return context
+
+
 class Diet_Plan1(TemplateView):
     template_name = "myApp/Diet_Plan1.html"
 
@@ -335,30 +361,18 @@ class Trial_View(TemplateView):
     template_name = "myApp/trial.html"
 
     def get_context_data(self, **kwargs):
+
         context = super().get_context_data(**kwargs)
-#        myConsole(str(self.request.user.id))
-        ######## create record if not exists #########
-        tmp = myProgress.objects.filter(user_id=self.request.user.id)
-        if tmp.count() == 0:
-            keys = {}
-            keys['user_id'] = self.request.user.id
-            p = myProgress.objects.create(**keys)
-        ###############################################
+        context['name'] = Family.objects.get(id=self.kwargs['familyid'])
 
-        keys_all = myProgress.objects.get(user_id=self.request.user.id)
-        data = {
-            'myname': keys_all.user_name,
-            'family_id': keys_all.family_id,
-            'aez_id': keys_all.aez_id,
-            'conv_crop_grow_list': keys_all.conv_crop_grow_list,
-            'conv_crop_sold_list': keys_all.conv_crop_sold_list,
-            'person_id': keys_all.person_id,
-            'crop_id': keys_all.crop_id
-        }
-        json_str = json.dumps(data)
-        context['myParam'] = json_str
-
+        tmp = Family.objects.get(id=self.kwargs['familyid']).conv_crop_grow
+        crops = []
+        if ('-' in tmp):
+            for crop in tmp.split('-'):
+                crops.append(FCT.objects.get(food_item_id=crop).Food_name)
+        context['crop_list'] = crops
         return context
+
 
 
 class TestOfflineView(TemplateView):

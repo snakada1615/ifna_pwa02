@@ -2,6 +2,60 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+class myCrop(models.Model):
+    FCT_id = models.IntegerField(default=1)
+    selected_status = models.IntegerField(
+        verbose_name='mon01_prod',
+        default=0,
+    )
+    m1 = models.IntegerField(
+        verbose_name='mon01_prod',
+        default=0,
+    )
+    m2 = models.IntegerField(
+        verbose_name='mon02_prod',
+        default=0,
+    )
+    m3 = models.IntegerField(
+        verbose_name='mon03_prod',
+        default=0,
+    )
+    m4 = models.IntegerField(
+        verbose_name='mon04_prod',
+        default=0,
+    )
+    m5 = models.IntegerField(
+        verbose_name='mon05_prod',
+        default=0,
+    )
+    m6 = models.IntegerField(
+        verbose_name='mon06_prod',
+        default=0,
+    )
+    m7 = models.IntegerField(
+        verbose_name='mon07_prod',
+        default=0,
+    )
+    m8 = models.IntegerField(
+        verbose_name='mon08_prod',
+        default=0,
+    )
+    m9 = models.IntegerField(
+        verbose_name='mon09_prod',
+        default=0,
+    )
+    m10 = models.IntegerField(
+        verbose_name='mon10_prod',
+        default=0,
+    )
+    m11 = models.IntegerField(
+        verbose_name='mon11_prod',
+        default=0,
+    )
+    m12 = models.IntegerField(
+        verbose_name='mon12_prod',
+        default=0,
+    )
 
 class myProgress(models.Model):
     user_id = models.IntegerField(default=0, unique=True)
@@ -18,7 +72,7 @@ class DRI_aggr(models.Model):
     nut_group = models.CharField(
         max_length=200,
         verbose_name='group',
-        default='children under 5'
+        default='children 6 to 59 month'
     )
     protein = models.FloatField(
         verbose_name='nut_protein',
@@ -70,7 +124,7 @@ class Crop_Region(models.Model):
     )
 
 class Crop_AEZ(models.Model):
-    country = models.CharField(max_length=200)
+    AEZ_id = models.CharField(max_length=200)
     FCT_id = models.IntegerField(default=1)
     food_grp_id = models.IntegerField(default=1)
     food_item_id = models.IntegerField(default=1)
@@ -311,7 +365,7 @@ class Person(models.Model):
     )
 
     Nut_GROUP = (
-        ('children under 5', 'children under 5'),
+        ('children under 5', 'children 6 to 59 month'),
         ('pregnant women', 'pregnant women'),
         ('adlescent girl', 'adlescent girl'),
         ('adult', 'adult'),
@@ -345,7 +399,7 @@ class Person(models.Model):
         verbose_name='nut_group',
         choices=Nut_GROUP,
         max_length=200,
-        default='children under 5'
+        default='children 6 to 59 month'
     )
 
     age = models.IntegerField(

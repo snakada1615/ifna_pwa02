@@ -51,7 +51,7 @@
     }
 
     $(document).ready(function () {
-      var table = $('#example').DataTable({
+      var mytable = $('#example').DataTable({
         "ajax": "{% static 'DataTables/data/FCT2.txt' %}",
         "pageLength": 50,
         "columns": [
@@ -105,7 +105,7 @@
 
         "initComplete": function (settings, json) {
           getHTML_param();
-          table.rows().every(function (rowIdx, tableLoop, rowLoop) {
+          mytable.rows().every(function (rowIdx, tableLoop, rowLoop) {
             var data = this.data();
             if (myList1.indexOf(data.food_item_id) >= 0) {
               this.cell(rowIdx, 5).data("1");
@@ -163,7 +163,7 @@
         sum_va = 0;
         sum_fe = 0;
         cr = '<tr><th>name</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th></tr><tr>';
-        table.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
+        mytable.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
           var data = this.data();
           cr += '<td>' + data.Food_name + '</td>';
           cr += '<td>' + Math.round(data.Protein * data.Weight / 100, 1) + '</td>';
@@ -178,15 +178,13 @@
         });
         cr += '<tr><td>total</td><td>' + Math.round(sum_pr) + '</td><td>' + Math.round(sum_va) + '</td><td>' + Math.round(sum_fe) + '</td><td></td></tr>';
         jQuery('#selected_crops_tbl').append(cr);
-        //////////////////
-
       });
 
       //////////////////register selected commodity ////
       $('#button').click(function () {
         var w = "";
         var n = "";
-        table.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
+        mytable.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
           var data = this.data();
           n += "-" + data.food_item_id;
           w += "-" + data.Weight;
@@ -214,7 +212,7 @@
       $('#button2').click(function () {
         var tmp_v = $('#rewriteCell').val();
         $('#selected_crops_tbl tr').eq($('#selected_row').val()).children('td').eq(4).text(tmp_v);
-        table.row(selected_rows_id[$('#selected_row').val()-1]).data().Weight = tmp_v;
+        mytable.row(selected_rows_id[$('#selected_row').val()-1]).data().Weight = tmp_v;
 
         ///////////////////
         jQuery('#selected_crops_tbl tr').remove();
@@ -223,7 +221,7 @@
         sum_va = 0;
         sum_fe = 0;
         cr = '<tr><th>name</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th></tr><tr>';
-        table.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
+        mytable.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
           var data = this.data();
           cr += '<td>' + data.Food_name + '</td>';
           cr += '<td>' + Math.round(data.Protein * data.Weight / 100, 1) + '</td>';

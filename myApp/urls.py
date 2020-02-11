@@ -9,6 +9,7 @@ from .views import Trial_View, off_Family_CreateView, FCTdatable_View, Under_Con
 from .views import Crop_Feas_View, Crop_Calendar_View, FamilyFiltered_ListView
 from .views import convCrop_Grow, convCrop_Sold, TestView01
 from .views import Person_new_CreateView, Person_new_UpdateView, Diet_Plan1
+from .views import CropAvailable, registCropAvail
 
 from django.contrib import admin
 from django.urls import include
@@ -25,11 +26,13 @@ urlpatterns = [
     path('person/create/new/<int:familyid>/', Person_new_CreateView.as_view(), name='person_new_create'),
     path('person/update/new/<int:familyid>/<int:pk>/', Person_new_UpdateView.as_view(), name='person_new_update'),
     path('Diet1/<int:familyid>/<str:dataset>/<str:selected_list>/',  Diet_Plan1.as_view(), name='diet1'),
+    path('crop_avail/<int:familyid>/<str:items>/',  CropAvailable.as_view(), name='crop_avail'),
+    path('registCropAvail/', views.registCropAvail, name='regist_crop_avail'),
 
 
 
     path('result/<int:familyid>/',  Crop_Feas_View.as_view(), name='result'),
-    path('trial/',  Trial_View.as_view(), name='trial'),
+    path('trial/<int:familyid>/<str:items>/',  Trial_View.as_view(), name='trial'),
     path('test/',  TestView.as_view(), name='test'),
     path('offline/', TestOfflineView.as_view(), name='offline'),
     path('offline/fct/<int:categ>/<int:order>/',  off_FCT_view.as_view(), name='off_FCT_view'),
