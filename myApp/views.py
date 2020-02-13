@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.core import serializers
 import json
+from django.http.response import JsonResponse
 
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 from .models import FCT, Person, DRI, DRI_women, Family, Crop, myProgress, Countries
@@ -24,12 +25,18 @@ import logging
 
 
 def registCropAvail(request):
-    jsondata = request.POST.get('data')
-    myConsole(jsondata)
-    datas = json.loads(jsondata)
-    json_list = json.loads(request.body)
-    return HttpResponse(datas)
+#    jsondata = request.POST.get('data')
+#    myConsole(jsondata)
+#    datas = json.loads(jsondata)
+#    json_list = json.loads(request.body)
+#    return HttpResponse(datas)
 
+    json_str = request.body.decode("utf-8")
+    json_data = json.loads(json_str)
+#    json_data = serializers.serialize('json',json_str)
+#    return JsonResponse(json_data, safe=False)
+#    jsondata = serializers.serialize('json',results)
+    return HttpResponse(json_str)
 
 class CropAvailable(TemplateView):
     template_name = "myApp/crop_available.html"

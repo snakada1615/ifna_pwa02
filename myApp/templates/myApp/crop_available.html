@@ -118,12 +118,12 @@
 
           //////////////////crop calendar edit function////
           $("#selected_crops_tbl").on("click", "td", function () {
-            var tmp = Number($(this).text());
+            let tmp = Number($(this).text());
             tmp = (tmp + 1) % 4;
-            switch (tmp){
+            switch (tmp) {
               case 0:
                 $(this).css("background-color", "");
-                tmp="";
+                tmp = "";
                 break;
               case 1:
                 $(this).css("background-color", "red");
@@ -138,134 +138,157 @@
                 $(this).css("color", "blue");
                 break;
             }
-            $(this).text(tmp);
+            $(this).html(tmp);
           });
 
-          ////// csrf_tokenの取得に使う //////////////////////
+          ////// csrf_tokenの取得に使う
           function getCookie(name) {
-              var cookieValue = null;
-              if (document.cookie && document.cookie !== '') {
-                  var cookies = document.cookie.split(';');
-                  for (var i = 0; i < cookies.length; i++) {
-                      var cookie = jQuery.trim(cookies[i]);
-                      // Does this cookie string begin with the name we want?
-                      if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                          break;
-                      }
-                  }
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+              var cookies = document.cookie.split(';');
+              for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+                }
               }
-              return cookieValue;
+            }
+            return cookieValue;
           }
 
           function csrfSafeMethod(method) {
-              // these HTTP methods do not require CSRF protection
-              return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
           }
 
           var csrf_token = getCookie("csrftoken");
           $.ajaxSetup({
-              crossDomain: false, // obviates need for sameOrigin test
-              beforeSend: function(xhr, settings) {
-                  if (!csrfSafeMethod(settings.type)) {
-                      xhr.setRequestHeader("X-CSRFToken", csrf_token);
-                  }
+            crossDomain: false, // obviates need for sameOrigin test
+            beforeSend: function (xhr, settings) {
+              if (!csrfSafeMethod(settings.type)) {
+                xhr.setRequestHeader("X-CSRFToken", csrf_token);
               }
+            }
           });
 
-          //////////////////send crop list to django////
-          $("#save_button").click(function() {
-              var hostUrl= myRoot + 'registCropAvail/';
-              var mydat = [
-                { name : "jiro", exam : { math : 50, lang : 50 }, grade : "c" },
-                { name : "saburo", exam : { math : 10, lang : 10 }, grade : "d" }
-              ];
-
-              $.ajax({
-                  url: hostUrl,
-                  type:'POST',
-//                  dataType: 'json',
-//                  contentType: "application/json",
-                  contentType: "text/html",
-                  data : JSON.stringify(mydat),
-                  timeout:3000,
-              }).done(function(mydat) {
-                                alert("ok");
-              }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-                               alert("error");
-              })
+          //////////////////get data from table
+          function getTblData() {
+            var d = [];
+            $('#selected_crops_tbl tr').each(function (i, e) {
+              var dd = [];
+              if (i != 0) {
+                $(this).find('td').each(function (j, el) {
+                  dd.push($(this).text())
+                });
+              }
+              console.log(d);
+              d.push(dd);
+            });
+            return d;
+          };
+          //////////////////sendJson////
+          function sendJson(myjson, hostUrl) {
+            $.ajax({
+              type: 'post',
+              url: hostUrl,
+              data: JSON.stringify(myjson),
+              contentType: 'application/JSON',
+              dataType: 'JSON',
+              scriptCharset: 'utf-8'
+            }).then(
+              // Success
+              function (response) {
+                alert("success");
+                $("#response").html(response);
+              },
+              // error
+              function (response) {
+                alert("error");
+                $("#response").html(response);
+              },
+            );
+          };
+          //////////////send crop list to django////
+          $("#save_button").click(function () {
+            var hostUrl = myRoot + 'registCropAvail/';
+            var mydat = getTblData();
+            sendJson(mydat, hostUrl);
           });
-          ///////////////////////////////////////////////// //////finish initcomplete//////////
+          //////// finish initcomplete//////////
         }
+        ////// finish $(document).ready//////////
       });
-      ////finish $(document).ready///////////////////
     });
+    ////finish $(document).ready///////////////////
   </script>
 
-  <div class="container text-white"  style="max-width:570px;" >
-  <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
-    <div class="row">
-      <div class="col-12">
-        <div class="card-body py-0 px-0">
-          <p class="card-title text-warning my-0">
-            availability
-            <span style= "color:red">■</span>: market&prod
-            <span style= "color:yellow">■</span>: prod only
-            <span style= "color:blue">■</span>: market only
-          </p>
+  <div class="container text-white" style="max-width:570px;">
+    <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
+      <div class="row">
+        <div class="col-12">
+          <div class="card-body py-0 px-0">
+            <p class="card-title text-warning my-0">
+              availability
+              <span style="color:red">■</span>: market&prod
+              <span style="color:yellow">■</span>: prod only
+              <span style="color:blue">■</span>: market only
+            </p>
 
-          <div class="table-responsive">
-            <div id="selected_crops_tbl" class="table table-bordered table-striped mx-0 px-0"></div>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+            <div class="table-responsive">
+              <div id="selected_crops_tbl" class="table table-bordered table-striped mx-0 px-0"></div>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <span>
-        <a id="save_button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
-      </span>
+    <div class="row">
+      <div class="col-12">
+        <span>
+          <a id="save_button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
+          <textarea id="response" cols="60" rows="10" disabled="disabled"></textarea>
+        </span>
+      </div>
     </div>
   </div>
-</div>
 
-<hr>
-<div class="container" style="max-width: 540px;">
-  <div class="my-2" id="newSearchPlace">Food group:
+  <hr>
+  <div class="container" style="max-width: 540px;">
+    <div class="my-2" id="newSearchPlace">Food group:
+    </div>
+    <table id="croplist" class="display compact" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Group</th>
+          <th>Group</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+
+      <tfoot>
+        <tr>
+          <th>Group</th>
+          <th>Group</th>
+          <th>Name</th>
+        </tr>
+      </tfoot>
+    </table>
   </div>
-  <table id="croplist" class="display compact" cellspacing="0" width="100%">
-    <thead>
-      <tr>
-        <th>Group</th>
-        <th>Group</th>
-        <th>Name</th>
-      </tr>
-    </thead>
-
-    <tfoot>
-      <tr>
-        <th>Group</th>
-        <th>Group</th>
-        <th>Name</th>
-      </tr>
-    </tfoot>
-  </table>
-</div>
 
 {% endblock %}

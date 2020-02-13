@@ -2,8 +2,177 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+class Countries(models.Model):
+    GID_0 = models.CharField(max_length=200)
+    NAME_0 = models.CharField(max_length=200)
+    GID_1 = models.CharField(max_length=200)
+    NAME_1 = models.CharField(max_length=200)
+    GID_2 = models.CharField(max_length=200)
+    NAME_2 = models.CharField(max_length=200)
+    GID_3 = models.CharField(max_length=200)
+    NAME_3 = models.CharField(max_length=200)
+
+def __str__(self):
+    return self.GID_0
+
+
+class FCT(models.Model):
+
+    FCT_id = models.IntegerField(default=1, unique = True)
+    food_grp_id = models.IntegerField(default=1)
+    food_item_id = models.IntegerField(default=1)
+    Food_grp = models.CharField(max_length=200)
+    Food_name = models.CharField(max_length=200)
+    Crop_ref = models.CharField(max_length=200)
+    Edible = models.FloatField(default=0)
+    Energy = models.FloatField(default=0)
+    WATER = models.FloatField(default=0)
+    Protein = models.FloatField(default=0)
+    Fat = models.FloatField(default=0)
+    Carbohydrate = models.FloatField(default=0)
+    Fiber = models.FloatField(default=0)
+    ASH = models.FloatField(default=0)
+    CA = models.FloatField(default=0)
+    FE = models.FloatField(default=0)
+    MG = models.FloatField(default=0)
+    P = models.FloatField(default=0)
+    K = models.FloatField(default=0)
+    NA = models.FloatField(default=0)
+    ZN = models.FloatField(default=0)
+    CU = models.FloatField(default=0)
+    VITA_RAE = models.FloatField(default=0)
+    RETOL = models.FloatField(default=0)
+    B_Cart_eq = models.FloatField(default=0)
+    VITD = models.FloatField(default=0)
+    VITE = models.FloatField(default=0)
+    THIA = models.FloatField(default=0)
+    RIBF = models.FloatField(default=0)
+    NIA = models.FloatField(default=0)
+    VITB6C = models.FloatField(default=0)
+    FOL = models.FloatField(default=0)
+    VITB12 = models.FloatField(default=0)
+    VITC = models.FloatField(default=0)
+
+    def __str__(self):
+        return self.Food_name
+
+
+class Family(models.Model):
+    name = models.CharField(
+        verbose_name='name',
+        max_length=200,
+        unique=True,
+    )
+    country = models.CharField(
+        max_length=200,
+    )
+
+    region = models.CharField(
+        max_length=200,
+        blank=True
+    )
+    province = models.CharField(
+        max_length=200,
+        blank=True
+    )
+    community = models.CharField(
+        max_length=200,
+        blank=True
+    )
+    stunting_rate = models.IntegerField(
+        default=0,
+        blank=True
+    )
+    wasting_rate = models.IntegerField(
+        default=0,
+        blank=True
+    )
+    anemia_rate = models.IntegerField(
+        default=0,
+        blank=True
+    )
+    nutrition_target = models.CharField(
+        max_length=200,
+        blank=True
+    )
+    major_commodity = models.CharField(
+        max_length=200,
+        blank=True
+    )
+    crop_list = models.CharField(
+        max_length=1000,
+        default='0',
+    )
+    conv_crop_grow = models.CharField(
+        max_length=1000,
+        default='0',
+    )
+    conv_crop_sold = models.CharField(
+        max_length=1000,
+        default='0',
+    )
+
+    month_start = models.IntegerField(
+        default=0,
+    )
+    month_end = models.IntegerField(
+        default=0,
+    )
+
+    remark = models.CharField(
+        verbose_name='remark',
+        max_length=600,
+        blank=True
+    )
+
+    protein = models.FloatField(
+        verbose_name='protein',
+        default=0
+    )
+    vita = models.FloatField(
+        verbose_name='Vit-A',
+        default=0
+    )
+    fe = models.FloatField(
+        verbose_name='iron',
+        default=0
+    )
+    size = models.IntegerField(
+        default=0,
+    )
+    created_at = models.DateTimeField(
+        verbose_name='record_date',
+        auto_now_add=True
+    )
+    created_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
+    country_test = models.ForeignKey(
+        Countries,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
+
+    def __str__(self):
+        return self.name
+
 class myCrop(models.Model):
-    FCT_id = models.IntegerField(default=1)
+    myFCT = models.ForeignKey(
+        FCT,
+        to_field='FCT_id',
+        default = 11436,
+        on_delete=models.CASCADE
+    )
+    myFamily = models.ForeignKey(
+        Family,
+        default = 0,
+        on_delete=models.CASCADE
+    )
     selected_status = models.IntegerField(
         verbose_name='mon01_prod',
         default=0,
@@ -143,61 +312,6 @@ class Crop_AEZ(models.Model):
     )
 
 
-class Countries(models.Model):
-    GID_0 = models.CharField(max_length=200)
-    NAME_0 = models.CharField(max_length=200)
-    GID_1 = models.CharField(max_length=200)
-    NAME_1 = models.CharField(max_length=200)
-    GID_2 = models.CharField(max_length=200)
-    NAME_2 = models.CharField(max_length=200)
-    GID_3 = models.CharField(max_length=200)
-    NAME_3 = models.CharField(max_length=200)
-
-def __str__(self):
-    return self.GID_0
-
-
-class FCT(models.Model):
-
-    FCT_id = models.IntegerField(default=1)
-    food_grp_id = models.IntegerField(default=1)
-    food_item_id = models.IntegerField(default=1)
-    Food_grp = models.CharField(max_length=200)
-    Food_name = models.CharField(max_length=200)
-    Crop_ref = models.CharField(max_length=200)
-    Edible = models.FloatField(default=0)
-    Energy = models.FloatField(default=0)
-    WATER = models.FloatField(default=0)
-    Protein = models.FloatField(default=0)
-    Fat = models.FloatField(default=0)
-    Carbohydrate = models.FloatField(default=0)
-    Fiber = models.FloatField(default=0)
-    ASH = models.FloatField(default=0)
-    CA = models.FloatField(default=0)
-    FE = models.FloatField(default=0)
-    MG = models.FloatField(default=0)
-    P = models.FloatField(default=0)
-    K = models.FloatField(default=0)
-    NA = models.FloatField(default=0)
-    ZN = models.FloatField(default=0)
-    CU = models.FloatField(default=0)
-    VITA_RAE = models.FloatField(default=0)
-    RETOL = models.FloatField(default=0)
-    B_Cart_eq = models.FloatField(default=0)
-    VITD = models.FloatField(default=0)
-    VITE = models.FloatField(default=0)
-    THIA = models.FloatField(default=0)
-    RIBF = models.FloatField(default=0)
-    NIA = models.FloatField(default=0)
-    VITB6C = models.FloatField(default=0)
-    FOL = models.FloatField(default=0)
-    VITB12 = models.FloatField(default=0)
-    VITC = models.FloatField(default=0)
-
-    def __str__(self):
-        return self.Food_name
-
-
 class DRI(models.Model):
 
     age_id = models.IntegerField(default=1)
@@ -221,111 +335,6 @@ class DRI_women(models.Model):
 
     def __str__(self):
         return self.status
-
-
-class Family(models.Model):
-    name = models.CharField(
-        verbose_name='name',
-        max_length=200,
-        unique=True,
-    )
-
-    country = models.CharField(
-        max_length=200,
-    )
-
-    region = models.CharField(
-        max_length=200,
-        blank=True
-    )
-    province = models.CharField(
-        max_length=200,
-        blank=True
-    )
-    community = models.CharField(
-        max_length=200,
-        blank=True
-    )
-    stunting_rate = models.IntegerField(
-        default=0,
-        blank=True
-    )
-    wasting_rate = models.IntegerField(
-        default=0,
-        blank=True
-    )
-    anemia_rate = models.IntegerField(
-        default=0,
-        blank=True
-    )
-    nutrition_target = models.CharField(
-        max_length=200,
-        blank=True
-    )
-    major_commodity = models.CharField(
-        max_length=200,
-        blank=True
-    )
-    crop_list = models.CharField(
-        max_length=1000,
-        default='0',
-    )
-    conv_crop_grow = models.CharField(
-        max_length=1000,
-        default='0',
-    )
-    conv_crop_sold = models.CharField(
-        max_length=1000,
-        default='0',
-    )
-
-    month_start = models.IntegerField(
-        default=0,
-    )
-    month_end = models.IntegerField(
-        default=0,
-    )
-
-    remark = models.CharField(
-        verbose_name='remark',
-        max_length=600,
-        blank=True
-    )
-
-    protein = models.FloatField(
-        verbose_name='protein',
-        default=0
-    )
-    vita = models.FloatField(
-        verbose_name='Vit-A',
-        default=0
-    )
-    fe = models.FloatField(
-        verbose_name='iron',
-        default=0
-    )
-    size = models.IntegerField(
-        default=0,
-    )
-    created_at = models.DateTimeField(
-        verbose_name='record_date',
-        auto_now_add=True
-    )
-    created_by = models.ForeignKey(
-        User,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE
-    )
-    country_test = models.ForeignKey(
-        Countries,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE
-    )
-
-    def __str__(self):
-        return self.name
 
 
 class Person(models.Model):
