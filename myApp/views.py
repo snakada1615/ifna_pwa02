@@ -25,17 +25,11 @@ import logging
 
 
 def registCropAvail(request):
-#    jsondata = request.POST.get('data')
-#    myConsole(jsondata)
-#    datas = json.loads(jsondata)
-#    json_list = json.loads(request.body)
-#    return HttpResponse(datas)
 
     json_str = request.body.decode("utf-8")
     json_data = json.loads(json_str)
-#    json_data = serializers.serialize('json',json_str)
-#    return JsonResponse(json_data, safe=False)
-#    jsondata = serializers.serialize('json',results)
+#    myConsole(json_data)
+
     return HttpResponse(json_str)
 
 class CropAvailable(TemplateView):

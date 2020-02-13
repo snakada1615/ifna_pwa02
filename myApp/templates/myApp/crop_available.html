@@ -74,7 +74,7 @@
             jQuery('#selected_crops_tbl tr').remove();
             selected_rows_id.length = 0;
             cr = '<tr><th class="px-0 text-sm-center">name</th><th class="px-0">01</th><th class="px-0">02</th><th class="px-0">03</th><th class="px-0">04</th><th class="px-0">05</th><th class="px-0">06</th><th class="px-0">07</th><th class="px-0">08</th><th class="' +
-                'px-0">09</th><th class="px-0">10</th><th class="px-0">11</th><th class="px-0">12</th></tr>';
+                'px-0">09</th><th class="px-0">10</th><th class="px-0">11</th><th class="px-0">12</th><th class="px-0 hide_dom">food id</th></tr>';
             mytable.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
               var data = this.data();
               cr += '<td class="px-0 text-sm-center">' + data.Food_name + '</td>';
@@ -90,6 +90,7 @@
               cr += '<td class="px-0 text-sm-center"></td>';
               cr += '<td class="px-0 text-sm-center"></td>';
               cr += '<td class="px-0 text-sm-center"></td>';
+              cr += '<td class="px-0 text-sm-center hide_dom">' + data.food_item_id + '</td>';
               cr += '</tr>';
               selected_rows_id.push(rowIdx);
             });
@@ -175,15 +176,16 @@
 
           //////////////////get data from table
           function getTblData() {
-            var d = [];
+            let d = [];
             $('#selected_crops_tbl tr').each(function (i, e) {
-              var dd = [];
+              let dd = [];
               if (i != 0) {
                 $(this).find('td').each(function (j, el) {
-                  dd.push($(this).text())
+                  if (j != 0) {
+                    dd.push($(this).text());
+                  }
                 });
               }
-              console.log(d);
               d.push(dd);
             });
             return d;
@@ -224,6 +226,12 @@
     ////finish $(document).ready///////////////////
   </script>
 
+  <style>
+    .hide_dom {
+      display: none;
+    }
+  </style>
+
   <div class="container text-white" style="max-width:570px;">
     <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
       <div class="row">
@@ -252,6 +260,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td class="hide_dom"></td>
               </tr>
             </div>
           </div>
