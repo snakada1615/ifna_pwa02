@@ -91,6 +91,7 @@
               cr += '<td class="px-0 text-sm-center"></td>';
               cr += '<td class="px-0 text-sm-center"></td>';
               cr += '<td class="px-0 text-sm-center hide_dom">' + data.food_item_id + '</td>';
+              cr += '<td class="px-0 text-sm-center hide_dom">' + myFamily + '</td>';
               cr += '</tr>';
               selected_rows_id.push(rowIdx);
             });
@@ -178,17 +179,28 @@
           function getTblData() {
             let d = [];
             $('#selected_crops_tbl tr').each(function (i, e) {
-              let dd = [];
+              let dd = {};
+              let myFCT_id
               if (i != 0) {
                 $(this).find('td').each(function (j, el) {
-                  if (j != 0) {
-                    dd.push($(this).text());
+                  let tmp = $(this).text();
+                  if (tmp == "") {tmp = '0'};
+                  switch (true) {
+                    case j > 0 && j < 13:
+                      dd['m' + String(j)] = tmp;
+                      break;
+                    case j == 13:
+                      dd['myFCT_id'] = tmp;
+                      break;
+                    case j == 14:
+                      dd['myFamily_id'] = tmp;
+                      break;
                   }
                 });
+                d.push(dd);
               }
-              d.push(dd);
             });
-            return d;
+            return {"myJson": d};
           };
           //////////////////sendJson////
           function sendJson(myjson, hostUrl) {
@@ -202,13 +214,13 @@
             }).then(
               // Success
               function (response) {
-                alert("success");
-                $("#response").html(response);
+//                alert("success");
+                $("#response").html(JSON.stringify(response));
               },
               // error
               function (response) {
-                alert("error");
-                $("#response").html(response);
+//                alert("error");
+                $("#response").html(JSON.stringify(response));
               },
             );
           };
@@ -216,6 +228,7 @@
           $("#save_button").click(function () {
             var hostUrl = myRoot + 'registCropAvail/';
             var mydat = getTblData();
+            alert(JSON.stringify(mydat));
             sendJson(mydat, hostUrl);
           });
           //////// finish initcomplete//////////
@@ -260,6 +273,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td class="hide_dom"></td>
                 <td class="hide_dom"></td>
               </tr>
             </div>

@@ -21,7 +21,7 @@ class FCT(models.Model):
 
     FCT_id = models.IntegerField(default=1, unique = True)
     food_grp_id = models.IntegerField(default=1)
-    food_item_id = models.IntegerField(default=1)
+    food_item_id = models.IntegerField(default=1, unique = True)
     Food_grp = models.CharField(max_length=200)
     Food_name = models.CharField(max_length=200)
     Crop_ref = models.CharField(max_length=200)
@@ -164,8 +164,8 @@ class Family(models.Model):
 class myCrop(models.Model):
     myFCT = models.ForeignKey(
         FCT,
-        to_field='FCT_id',
-        default = 11436,
+        to_field='food_item_id',
+        default = 436,
         on_delete=models.CASCADE
     )
     myFamily = models.ForeignKey(
