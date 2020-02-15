@@ -38,10 +38,12 @@
       return tmp1;
     }
 
+    jsonData = {{mydata|safe}};
+
     //////////////////add selected rows to text box
     $(document).ready(function () {
       var mytable = $('#croplist').DataTable({
-        "ajax": "{% static 'DataTables/data/FCT2.txt' %}",
+        data: jsonData,
         "pageLength": 50,
         "columns": [
           {
@@ -74,7 +76,7 @@
             jQuery('#selected_crops_tbl tr').remove();
             selected_rows_id.length = 0;
             cr = '<tr><th class="px-0 text-sm-center">name</th><th class="px-0">01</th><th class="px-0">02</th><th class="px-0">03</th><th class="px-0">04</th><th class="px-0">05</th><th class="px-0">06</th><th class="px-0">07</th><th class="px-0">08</th><th class="' +
-                'px-0">09</th><th class="px-0">10</th><th class="px-0">11</th><th class="px-0">12</th></tr>';
+                'px-0">09</th><th class="px-0">10</th><th class="px-0">11</th><th class="px-0">12</th><th class="px-0 hide_dom">food id</th></tr>';
             mytable.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
               var data = this.data();
               cr += '<td class="px-0 text-sm-center">' + data.Food_name + '</td>';
@@ -90,6 +92,8 @@
               cr += '<td class="px-0 text-sm-center"></td>';
               cr += '<td class="px-0 text-sm-center"></td>';
               cr += '<td class="px-0 text-sm-center"></td>';
+              cr += '<td class="px-0 text-sm-center hide_dom">' + data.food_item_id + '</td>';
+              cr += '<td class="px-0 text-sm-center hide_dom">' + myFamily + '</td>';
               cr += '</tr>';
               selected_rows_id.push(rowIdx);
             });
@@ -114,16 +118,16 @@
             column.data().unique().sort().each(function (d, j) {
               select.append('<option value="' + d + '">' + d + '</option>');
             });
-          })
+          });
 
           //////////////////crop calendar edit function////
           $("#selected_crops_tbl").on("click", "td", function () {
-            var tmp = Number($(this).text());
+            let tmp = Number($(this).text());
             tmp = (tmp + 1) % 4;
-            switch (tmp){
+            switch (tmp) {
               case 0:
                 $(this).css("background-color", "");
-                tmp="";
+                tmp = "";
                 break;
               case 1:
                 $(this).css("background-color", "red");
@@ -138,80 +142,178 @@
                 $(this).css("color", "blue");
                 break;
             }
-            $(this).text(tmp);
-          })
+            $(this).html(tmp);
+          });
 
-          ///////////////////////////////////////////////// //////finish initcomplete//////////
+          ////// csrf_tokenの取得に使う
+          function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+              var cookies = document.cookie.split(';');
+              for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+                }
+              }
+            }
+            return cookieValue;
+          }
+
+          function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+          }
+
+          var csrf_token = getCookie("csrftoken");
+          $.ajaxSetup({
+            crossDomain: false, // obviates need for sameOrigin test
+            beforeSend: function (xhr, settings) {
+              if (!csrfSafeMethod(settings.type)) {
+                xhr.setRequestHeader("X-CSRFToken", csrf_token);
+              }
+            }
+          });
+
+          //////////////////get data from table
+          function getTblData() {
+            let d = [];
+            $('#selected_crops_tbl tr').each(function (i, e) {
+              let dd = {};
+              let myFCT_id
+              if (i != 0) {
+                $(this).find('td').each(function (j, el) {
+                  let tmp = $(this).text();
+                  if (tmp == "") {tmp = '0'};
+                  switch (true) {
+                    case j > 0 && j < 13:
+                      dd['m' + String(j)] = tmp;
+                      break;
+                    case j == 13:
+                      dd['myFCT_id'] = tmp;
+                      break;
+                    case j == 14:
+                      dd['myFamily_id'] = tmp;
+                      break;
+                  }
+                });
+                d.push(dd);
+              }
+            });
+            return {"myJson": d};
+          };
+          //////////////////sendJson////
+          function sendJson(myjson, hostUrl) {
+            $.ajax({
+              type: 'post',
+              url: hostUrl,
+              data: JSON.stringify(myjson),
+              contentType: 'application/JSON',
+              dataType: 'JSON',
+              scriptCharset: 'utf-8'
+            }).then(
+              // Success
+              function (response) {
+//                alert("success");
+                $("#response").html(JSON.stringify(response));
+              },
+              // error
+              function (response) {
+//                alert("error");
+                $("#response").html(JSON.stringify(response));
+              },
+            );
+          };
+          //////////////send crop list to django////
+          $("#save_button").click(function () {
+            var hostUrl = myRoot + 'registCropAvail/';
+            var mydat = getTblData();
+            alert(JSON.stringify(mydat));
+            sendJson(mydat, hostUrl);
+          });
+          //////// finish initcomplete//////////
         }
+        ////// finish $(document).ready//////////
       });
-      ////finish $(document).ready///////////////////
-    })
+    });
+    ////finish $(document).ready///////////////////
   </script>
 
-  <div class="container text-white"  style="max-width:570px;" >
-  <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
-    <div class="row">
-      <div class="col-12">
-        <div class="card-body py-0 px-0">
-          <p class="card-title text-warning my-0">
-            availability
-            <span style= "color:red">■</span>: market&prod
-            <span style= "color:yellow">■</span>: prod only
-            <span style= "color:blue">■</span>: market only
-          </p>
+  <style>
+    .hide_dom {
+      display: none;
+    }
+  </style>
 
-          <div class="table-responsive">
-            <div id="selected_crops_tbl" class="table table-bordered table-striped mx-0 px-0"></div>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+  <div class="container text-white" style="max-width:570px;">
+    <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
+      <div class="row">
+        <div class="col-12">
+          <div class="card-body py-0 px-0">
+            <p class="card-title text-warning my-0">
+              availability
+              <span style="color:red">■</span>: market&prod
+              <span style="color:yellow">■</span>: prod only
+              <span style="color:blue">■</span>: market only
+            </p>
+
+            <div class="table-responsive">
+              <div id="selected_crops_tbl" class="table table-bordered table-striped mx-0 px-0"></div>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="hide_dom"></td>
+                <td class="hide_dom"></td>
+              </tr>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <span>
-        <a id="button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
-      </span>
+    <div class="row">
+      <div class="col-12">
+        <span>
+          <a id="save_button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
+          <textarea id="response" cols="60" rows="10" disabled="disabled"></textarea>
+        </span>
+      </div>
     </div>
   </div>
-</div>
 
-<hr>
-<div class="container" style="max-width: 540px;">
-  <div class="my-2" id="newSearchPlace">Food group:
+  <hr>
+  <div class="container" style="max-width: 540px;">
+    <div class="my-2" id="newSearchPlace">Food group:
+    </div>
+    <table id="croplist" class="display compact" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Group</th>
+          <th>Group</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+
+      <tfoot>
+        <tr>
+          <th>Group</th>
+          <th>Group</th>
+          <th>Name</th>
+        </tr>
+      </tfoot>
+    </table>
   </div>
-  <table id="croplist" class="display compact" cellspacing="0" width="100%">
-    <thead>
-      <tr>
-        <th>Group</th>
-        <th>Group</th>
-        <th>Name</th>
-      </tr>
-    </thead>
-
-    <tfoot>
-      <tr>
-        <th>Group</th>
-        <th>Group</th>
-        <th>Name</th>
-      </tr>
-    </tfoot>
-  </table>
-</div>
 
 {% endblock %}

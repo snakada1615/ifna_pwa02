@@ -396,8 +396,25 @@ class Trial_View(TemplateView):
             for crop in tmp.split('-'):
                 crops.append(FCT.objects.get(food_item_id=crop).Food_name)
         context['crop_list'] = crops
+
+        tmp01 = FCT.objects.all()
+        d = []
+        for tmp02 in tmp01:
+            dd = {}
+            dd["row_sel"] = "0"
+            dd["Food_grp"] = tmp02.Food_grp
+            dd["Food_name"] = tmp02.Food_name
+            dd["food_item_id"] = tmp02.food_item_id
+            d.append(dd)
+        context["mydata"] = d
+
         return context
 
+def ChangeCow(request):
+    tmp = FCT.objects.get(Food_name = "Butter, from cow's milk (without salt)")
+    tmp.VITB6C = 0
+    tmp.Food_name = "Butter, from cow-s milk (without salt)"
+    tmp.save()
 
 class TestOfflineView(TemplateView):
     template_name = "myApp/offline/test.html"
