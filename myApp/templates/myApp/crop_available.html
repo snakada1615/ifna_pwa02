@@ -38,10 +38,12 @@
       return tmp1;
     }
 
+    jsonData = {{mydata|safe}};
+
     //////////////////add selected rows to text box
     $(document).ready(function () {
       var mytable = $('#croplist').DataTable({
-        "ajax": "{% static 'DataTables/data/FCT2.txt' %}",
+        data: jsonData,
         "pageLength": 50,
         "columns": [
           {
