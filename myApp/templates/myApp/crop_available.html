@@ -16,6 +16,8 @@
 
     // グローバル変数の作成
     var selected_rows_id = []
+    var selected_org = {{myselected|safe}};
+    var jsonData = {{mydata|safe}};
 
     getHTML_param = function () {
       var url_tmp = window.location.href.split('/');
@@ -37,8 +39,6 @@
       }
       return tmp1;
     }
-
-    jsonData = {{mydata|safe}};
 
     //////////////////add selected rows to text box
     $(document).ready(function () {
@@ -68,12 +68,6 @@
         //////////////////all the initialization process after this
         "initComplete": function (settings, json) {
           getHTML_param();
-
-          //////////////////add selected rows to text box
-          $('#croplist tbody').on('click', 'tr', function () {
-            $(this).toggleClass('selected');
-            drawSelected();
-          });
 
           //////////////////add filtering dropdown list
           this.api().columns([1]).every(function () {
@@ -124,14 +118,74 @@
       }); //////mytable setup complete/////
 
       /////////////////// initialize myTable///
+      drawSelected2(selected_org);
+
+      var res = get_selected_food();
+
       mytable.rows().every(function (rowIdx, tableLoop, rowLoop) {
         var data = this.data();
-        if (items.indexOf(String(data.food_item_id)) >= 0) {
+        if (res.indexOf(data.food_item_id) >= 0) {
           this.select();
         }
       });
-      let tmp = {{myselected|safe}};
-      drawSelected2(tmp);
+
+      ////// get selected food list ///
+      function get_selected_food() {
+        var res = [];
+        selected_org.map(function (i,j) {
+          let sel_id=i["food_item_id"];
+          res.push(sel_id);
+        });
+        return res;
+      }
+      //////////////////on click -> crop list ///
+      $('#croplist tbody').on('click', 'tr', function () {
+        $(this).toggleClass('selected');
+        let res = get_selected_food();
+        let d = [];
+        mytable.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
+          let data = this.data();
+          let dd = {};
+          dd["row_sel"] = "0";
+          dd["Food_grp"] = data.Food_grp;
+          dd["Food_name"] = data.Food_name;
+          dd["food_item_id"] = data.food_item_id;
+          let tmp_id = res.indexOf(data.food_item_id);
+          console.log('tmp_id:'+tmp_id+ ', food_id:' + data.food_item_id);
+          if (tmp_id > 0) {
+            dd["m1"] = selected_org[tmp_id].m1;
+            dd["m2"] = selected_org[tmp_id].m2;
+            dd["m3"] = selected_org[tmp_id].m3;
+            dd["m4"] = selected_org[tmp_id].m4;
+            dd["m5"] = selected_org[tmp_id].m5;
+            dd["m6"] = selected_org[tmp_id].m6;
+            dd["m7"] = selected_org[tmp_id].m7;
+            dd["m8"] = selected_org[tmp_id].m8;
+            dd["m9"] = selected_org[tmp_id].m9;
+            dd["m10"] = selected_org[tmp_id].m10;
+            dd["m11"] = selected_org[tmp_id].m11;
+            dd["m12"] = selected_org[tmp_id].m12;
+          } else {
+            dd["m1"] = 0;
+            dd["m2"] = 0;
+            dd["m3"] = 0;
+            dd["m4"] = 0;
+            dd["m5"] = 0;
+            dd["m6"] = 0;
+            dd["m7"] = 0;
+            dd["m8"] = 0;
+            dd["m9"] = 0;
+            dd["m10"] = 0;
+            dd["m11"] = 0;
+            dd["m12"] = 0;
+          }
+          d.push(dd);
+        });
+        selected_org = d;
+        console.log(selected_org);
+        drawSelected2(selected_org);
+      });
+
 
       //////////////////re-draw all selected raws into #croplist
       function drawSelected() {
@@ -236,15 +290,18 @@
         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
       }
 
-      var csrf_token = getCookie("csrftoken");
-      $.ajaxSetup({
-        crossDomain: false, // obviates need for sameOrigin test
-        beforeSend: function (xhr, settings) {
-          if (!csrfSafeMethod(settings.type)) {
-            xhr.setRequestHeader("X-CSRFToken", csrf_token);
+      function Set_CRSF() {
+        var csrf_token = getCookie("csrftoken");
+        $.ajaxSetup({
+          crossDomain: false, // obviates need for sameOrigin test
+          beforeSend: function (xhr, settings) {
+            if (!csrfSafeMethod(settings.type)) {
+              xhr.setRequestHeader("X-CSRFToken", csrf_token);
+            }
           }
-        }
-      });
+        });
+        return;
+      }
 
       //////////////////get data from table
       function getTblData() {
@@ -287,7 +344,7 @@
         }).then(
           // Success
           function (response) {
-            //                alert("success");
+            //alert("success");
             $("#response").html(JSON.stringify(response));
           },
           // error
@@ -301,6 +358,7 @@
       $("#save_button").click(function () {
         var hostUrl = myRoot + 'registCropAvail/';
         var mydat = getTblData();
+        Set_CRSF();
         alert(JSON.stringify(mydat));
         sendJson(mydat, hostUrl);
       }); ///////////////////
