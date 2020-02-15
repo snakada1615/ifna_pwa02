@@ -60,6 +60,7 @@ class CropAvailable(TemplateView):
                 crops.append(FCT.objects.get(food_item_id=crop).Food_name)
         context['crop_list'] = crops
 
+        # send filtered crop by AEZ ######
         tmp01 = FCT.objects.all()
         d = []
         for tmp02 in tmp01:
@@ -70,6 +71,30 @@ class CropAvailable(TemplateView):
             dd["food_item_id"] = tmp02.food_item_id
             d.append(dd)
         context["mydata"] = d
+
+        # send selected crop by community ######
+        tmp01 = myCrop.objects.all()
+        d = []
+        for tmp02 in tmp01:
+            dd = {}
+            dd["row_sel"] = "0"
+            dd["Food_grp"] = tmp02.myFCT.Food_grp
+            dd["Food_name"] = tmp02.myFCT.Food_name
+            dd["food_item_id"] = tmp02.myFCT.food_item_id
+            dd["m1"] = tmp02.m1
+            dd["m2"] = tmp02.m2
+            dd["m3"] = tmp02.m3
+            dd["m4"] = tmp02.m4
+            dd["m5"] = tmp02.m5
+            dd["m6"] = tmp02.m6
+            dd["m7"] = tmp02.m7
+            dd["m8"] = tmp02.m8
+            dd["m9"] = tmp02.m9
+            dd["m10"] = tmp02.m10
+            dd["m11"] = tmp02.m11
+            dd["m12"] = tmp02.m12
+            d.append(dd)
+        context["myselected"] = d
 
         return context
 

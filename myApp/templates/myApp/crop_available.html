@@ -72,32 +72,7 @@
           //////////////////add selected rows to text box
           $('#croplist tbody').on('click', 'tr', function () {
             $(this).toggleClass('selected');
-
-            jQuery('#selected_crops_tbl tr').remove();
-            selected_rows_id.length = 0;
-            cr = '<tr><th class="px-0 text-sm-center">name</th><th class="px-0">01</th><th class="px-0">02</th><th class="px-0">03</th><th class="px-0">04</th><th class="px-0">05</th><th class="px-0">06</th><th class="px-0">07</th><th class="px-0">08</th><th class="' +
-                'px-0">09</th><th class="px-0">10</th><th class="px-0">11</th><th class="px-0">12</th><th class="px-0 hide_dom">food id</th></tr>';
-            mytable.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
-              var data = this.data();
-              cr += '<td class="px-0 text-sm-center">' + data.Food_name + '</td>';
-              cr += '<td class="px-0 text-sm-center"></td>';
-              cr += '<td class="px-0 text-sm-center"></td>';
-              cr += '<td class="px-0 text-sm-center"></td>';
-              cr += '<td class="px-0 text-sm-center"></td>';
-              cr += '<td class="px-0 text-sm-center"></td>';
-              cr += '<td class="px-0 text-sm-center"></td>';
-              cr += '<td class="px-0 text-sm-center"></td>';
-              cr += '<td class="px-0 text-sm-center"></td>';
-              cr += '<td class="px-0 text-sm-center"></td>';
-              cr += '<td class="px-0 text-sm-center"></td>';
-              cr += '<td class="px-0 text-sm-center"></td>';
-              cr += '<td class="px-0 text-sm-center"></td>';
-              cr += '<td class="px-0 text-sm-center hide_dom">' + data.food_item_id + '</td>';
-              cr += '<td class="px-0 text-sm-center hide_dom">' + myFamily + '</td>';
-              cr += '</tr>';
-              selected_rows_id.push(rowIdx);
-            });
-            jQuery('#selected_crops_tbl').append(cr);
+            drawSelected();
           });
 
           //////////////////add filtering dropdown list
@@ -145,100 +120,191 @@
             $(this).html(tmp);
           });
 
-          ////// csrf_tokenの取得に使う
-          function getCookie(name) {
-            var cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-              var cookies = document.cookie.split(';');
-              for (var i = 0; i < cookies.length; i++) {
-                var cookie = jQuery.trim(cookies[i]);
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        } ////// finish initcomplete//////////
+      }); //////mytable setup complete/////
+
+      /////////////////// initialize myTable///
+      mytable.rows().every(function (rowIdx, tableLoop, rowLoop) {
+        var data = this.data();
+        if (items.indexOf(String(data.food_item_id)) >= 0) {
+          this.select();
+        }
+      });
+      let tmp = {{myselected|safe}};
+      drawSelected2(tmp);
+
+      //////////////////re-draw all selected raws into #croplist
+      function drawSelected() {
+        jQuery('#selected_crops_tbl tr').remove();
+        selected_rows_id.length = 0;
+        cr = '<tr><th class="px-0 text-sm-center">name</th><th class="px-0">01</th><th class="px-0">02</th><th class="px-0">03</th><th class="px-0">04</th><th class="px-0">05</th><th class="px-0">06</th><th class="px-0">07</th><th class="px-0">08</th><th class="' +
+            'px-0">09</th><th class="px-0">10</th><th class="px-0">11</th><th class="px-0">12</th><th class="px-0 hide_dom">food id</th></tr>';
+        mytable.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
+          var data = this.data();
+          cr += '<tr><td class="px-0 text-sm-center">' + data.Food_name + '</td>';
+          cr += '<td class="px-0 text-sm-center"></td>';
+          cr += '<td class="px-0 text-sm-center"></td>';
+          cr += '<td class="px-0 text-sm-center"></td>';
+          cr += '<td class="px-0 text-sm-center"></td>';
+          cr += '<td class="px-0 text-sm-center"></td>';
+          cr += '<td class="px-0 text-sm-center"></td>';
+          cr += '<td class="px-0 text-sm-center"></td>';
+          cr += '<td class="px-0 text-sm-center"></td>';
+          cr += '<td class="px-0 text-sm-center"></td>';
+          cr += '<td class="px-0 text-sm-center"></td>';
+          cr += '<td class="px-0 text-sm-center"></td>';
+          cr += '<td class="px-0 text-sm-center"></td>';
+          cr += '<td class="px-0 text-sm-center hide_dom">' + data.food_item_id + '</td>';
+          cr += '<td class="px-0 text-sm-center hide_dom">' + myFamily + '</td>';
+          cr += '</tr>';
+          selected_rows_id.push(rowIdx);
+        });
+        jQuery('#selected_crops_tbl').append(cr);
+        return;
+      }
+
+      //////////////set cell color////////////////
+      function SetCellColor(cNum) {
+        switch (cNum) {
+          case 0:
+            $(this).css("background-color", "");
+            res = '<td class="px-0 text-sm-center"></td>';
+            break;
+          case 1:
+            res = '<td class="px-0 text-sm-center" style ="background-color:red"><font color="red">1</font></td>';
+            break;
+          case 2:
+            res = '<td class="px-0 text-sm-center" style ="background-color:yellow"><font color="yellow">2</font></td>';
+            break;
+          case 3:
+            res = '<td class="px-0 text-sm-center" style ="background-color:blue"><font color="blue">3</font></td>';
+            break;
+        }
+        return res;
+      }
+
+      //////////////////re-draw all selected raws into #croplist
+      function drawSelected2(mylist) {
+        if (mylist.length == 0)
+          return;
+
+        jQuery('#selected_crops_tbl tr').remove();
+        selected_rows_id.length = 0;
+        cr = '<tr><th class="px-0 text-sm-center">name</th><th class="px-0">01</th><th class="px-0">02</th><th class="px-0">03</th><th class="px-0">04</th><th class="px-0">05</th><th class="px-0">06</th><th class="px-0">07</th><th class="px-0">08</th><th class="' +
+            'px-0">09</th><th class="px-0">10</th><th class="px-0">11</th><th class="px-0">12</th><th class="px-0 hide_dom">food id</th></tr>';
+        for (var data in mylist) {
+          cr += '<tr><td class="px-0 text-sm-center">' + mylist[data].Food_name + '</td>';
+          cr += SetCellColor(mylist[data].m1);
+          cr += SetCellColor(mylist[data].m2);
+          cr += SetCellColor(mylist[data].m3);
+          cr += SetCellColor(mylist[data].m4);
+          cr += SetCellColor(mylist[data].m5);
+          cr += SetCellColor(mylist[data].m6);
+          cr += SetCellColor(mylist[data].m7);
+          cr += SetCellColor(mylist[data].m8);
+          cr += SetCellColor(mylist[data].m9);
+          cr += SetCellColor(mylist[data].m10);
+          cr += SetCellColor(mylist[data].m11);
+          cr += SetCellColor(mylist[data].m12);
+          cr += '<td class="px-0 text-sm-center hide_dom">' + mylist[data].food_item_id + '</td>';
+          cr += '<td class="px-0 text-sm-center hide_dom">' + myFamily + '</td>';
+          cr += '</tr>';
+        };
+        jQuery('#selected_crops_tbl').append(cr);
+        return;
+      }
+
+      ////// csrf_tokenの取得に使う
+      function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+          var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+
+      function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+      }
+
+      var csrf_token = getCookie("csrftoken");
+      $.ajaxSetup({
+        crossDomain: false, // obviates need for sameOrigin test
+        beforeSend: function (xhr, settings) {
+          if (!csrfSafeMethod(settings.type)) {
+            xhr.setRequestHeader("X-CSRFToken", csrf_token);
+          }
+        }
+      });
+
+      //////////////////get data from table
+      function getTblData() {
+        let d = [];
+        $('#selected_crops_tbl tr').each(function (i, e) {
+          let dd = {};
+          let myFCT_id
+          if (i != 0) {
+            $(this).find('td').each(function (j, el) {
+              let tmp = $(this).text();
+              if (tmp == "") {
+                tmp = '0'
+              };
+              switch (true) {
+                case j > 0 && j < 13:
+                  dd['m' + String(j)] = tmp;
                   break;
-                }
-              }
-            }
-            return cookieValue;
-          }
-
-          function csrfSafeMethod(method) {
-            // these HTTP methods do not require CSRF protection
-            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-          }
-
-          var csrf_token = getCookie("csrftoken");
-          $.ajaxSetup({
-            crossDomain: false, // obviates need for sameOrigin test
-            beforeSend: function (xhr, settings) {
-              if (!csrfSafeMethod(settings.type)) {
-                xhr.setRequestHeader("X-CSRFToken", csrf_token);
-              }
-            }
-          });
-
-          //////////////////get data from table
-          function getTblData() {
-            let d = [];
-            $('#selected_crops_tbl tr').each(function (i, e) {
-              let dd = {};
-              let myFCT_id
-              if (i != 0) {
-                $(this).find('td').each(function (j, el) {
-                  let tmp = $(this).text();
-                  if (tmp == "") {tmp = '0'};
-                  switch (true) {
-                    case j > 0 && j < 13:
-                      dd['m' + String(j)] = tmp;
-                      break;
-                    case j == 13:
-                      dd['myFCT_id'] = tmp;
-                      break;
-                    case j == 14:
-                      dd['myFamily_id'] = tmp;
-                      break;
-                  }
-                });
-                d.push(dd);
+                case j == 13:
+                  dd['myFCT_id'] = tmp;
+                  break;
+                case j == 14:
+                  dd['myFamily_id'] = tmp;
+                  break;
               }
             });
-            return {"myJson": d};
-          };
-          //////////////////sendJson////
-          function sendJson(myjson, hostUrl) {
-            $.ajax({
-              type: 'post',
-              url: hostUrl,
-              data: JSON.stringify(myjson),
-              contentType: 'application/JSON',
-              dataType: 'JSON',
-              scriptCharset: 'utf-8'
-            }).then(
-              // Success
-              function (response) {
-//                alert("success");
-                $("#response").html(JSON.stringify(response));
-              },
-              // error
-              function (response) {
-//                alert("error");
-                $("#response").html(JSON.stringify(response));
-              },
-            );
-          };
-          //////////////send crop list to django////
-          $("#save_button").click(function () {
-            var hostUrl = myRoot + 'registCropAvail/';
-            var mydat = getTblData();
-            alert(JSON.stringify(mydat));
-            sendJson(mydat, hostUrl);
-          });
-          //////// finish initcomplete//////////
-        }
-        ////// finish $(document).ready//////////
-      });
-    });
-    ////finish $(document).ready///////////////////
+            d.push(dd);
+          }
+        });
+        return {"myJson": d};
+      };
+      //////////////////sendJson////
+      function sendJson(myjson, hostUrl) {
+        $.ajax({
+          type: 'post',
+          url: hostUrl,
+          data: JSON.stringify(myjson),
+          contentType: 'application/JSON',
+          dataType: 'JSON',
+          scriptCharset: 'utf-8'
+        }).then(
+          // Success
+          function (response) {
+            //                alert("success");
+            $("#response").html(JSON.stringify(response));
+          },
+          // error
+          function (response) {
+            //                alert("error");
+            $("#response").html(JSON.stringify(response));
+          },
+        );
+      };
+      //////////////send crop list to django////
+      $("#save_button").click(function () {
+        var hostUrl = myRoot + 'registCropAvail/';
+        var mydat = getTblData();
+        alert(JSON.stringify(mydat));
+        sendJson(mydat, hostUrl);
+      }); ///////////////////
+    }); ////finish $(document).ready///////////////////
   </script>
 
   <style>

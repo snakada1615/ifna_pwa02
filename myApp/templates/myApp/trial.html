@@ -68,6 +68,12 @@
         //////////////////all the initialization process after this
         "initComplete": function (settings, json) {
           getHTML_param();
+          mytable.rows().every(function(rowIdx, tableLoop, rowLoop) {
+            var data = this.data();
+            if (items.indexOf(data.food_item_id) >= 0) {
+              this.select();
+            }
+          });
 
           //////////////////add selected rows to text box
           $('#croplist tbody').on('click', 'tr', function () {
