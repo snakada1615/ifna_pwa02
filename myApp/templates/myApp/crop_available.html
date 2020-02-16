@@ -145,7 +145,7 @@
           dd["food_item_id"] = data.food_item_id;
           let tmp_id = res.indexOf(data.food_item_id);
           //          console.log('tmp_id:' + tmp_id + ', food_id:' + data.food_item_id);
-          if (tmp_id > 0) {
+          if (tmp_id >= 0) {
             dd["m1"] = selected_org[tmp_id].m1;
             dd["m2"] = selected_org[tmp_id].m2;
             dd["m3"] = selected_org[tmp_id].m3;
@@ -340,7 +340,7 @@
         var hostUrl = myRoot + 'registCropAvail/';
         var mydat = getTblData();
         Set_CRSF();
-        alert(JSON.stringify(mydat));
+//        alert(JSON.stringify(mydat));
         sendJson(mydat, hostUrl);
       }); ///////////////////
     }); ////finish $(document).ready///////////////////

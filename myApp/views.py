@@ -50,7 +50,6 @@ def registCropAvail(request):
     # (part 2) delete non-selected records
     tmp = myCrop.objects.filter(myFamily_id = tmp_myFamily_id)
     for rec in tmp:
-        myConsole(str(rec.myFCT.food_item_id))
         if str(rec.myFCT.food_item_id) not in tmp_newcrop_list:
             rec.selected_status = 9999
             rec.save()
