@@ -8,7 +8,7 @@ import json
 from django.http.response import JsonResponse
 
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
-from .models import FCT, Person, DRI, DRI_women, Family, Crop, myProgress, Countries, myCrop
+from .models import FCT, Person, DRI, DRI_women, Family, Crop, myProgress, Countries, myCrop, Crop_AEZ
 from .forms import Order_Key_Form, FamilyForm, Person_Create_Form, CropForm, Person_new_Create_Form
 from django.db.models import Q, Sum
 
@@ -33,8 +33,8 @@ def registCropAvail(request):
         newcrop = {}
         for j in range(1, 13):
             newcrop['m' + str(j)] = myrow['m' + str(j)]
-        newcrop['myFCT'] = FCT.objects.get(food_item_id = myrow['myFCT_id'])
-        newcrop['myFamily'] = Family.objects.get(id = myrow['myFamily_id'])
+        newcrop['myFCT'] = FCT.objects.get(food_item_id=myrow['myFCT_id'])
+        newcrop['myFamily'] = Family.objects.get(id=myrow['myFamily_id'])
 
         tmp = myCrop.objects.filter(myFCT=myrow['myFCT_id'])
         if tmp.count() == 0:
@@ -61,20 +61,21 @@ class CropAvailable(TemplateView):
         context['crop_list'] = crops
 
         # send filtered crop by AEZ ######
-        tmp01 = FCT.objects.all()
+        tmp = Family.objects.get(
+            id=self.kwargs['familyid']).country_test.AEZ_id
+        tmp01 = Crop_AEZ.objects.filter(AEZ_id=tmp)
         d = []
         for tmp02 in tmp01:
             dd = {}
             dd["row_sel"] = "0"
-            dd["Food_grp"] = tmp02.Food_grp
-            dd["Food_name"] = tmp02.Food_name
-            dd["food_item_id"] = tmp02.food_item_id
+            dd["Food_grp"] = tmp02.myFCT.Food_grp
+            dd["Food_name"] = tmp02.myFCT.Food_name
+            dd["food_item_id"] = tmp02.myFCT.food_item_id
             d.append(dd)
         context["mydata"] = d
 
         # send selected crop by community ######
-        tmp = Family.objects.get(id=self.kwargs['familyid']).country_test.AEZ_id
-        tmp01 = myCrop.objects.filter(AEZ_id = tmp)
+        tmp01 = myCrop.objects.filter(myFamily_id=self.kwargs['familyid'])
         d = []
         for tmp02 in tmp01:
             dd = {}
@@ -448,11 +449,42 @@ class Trial_View(TemplateView):
 
         return context
 
+
 def ChangeCow(request):
-    tmp = FCT.objects.get(Food_name = "Butter, from cow's milk (without salt)")
+    tmp = FCT.objects.get(Food_name="Butter, from cow's milk (without salt)")
     tmp.VITB6C = 0
     tmp.Food_name = "Butter, from cow-s milk (without salt)"
     tmp.save()
+
+
+def UpdateAEZ(request):
+    import random
+
+    tmp = Countries.objects.all()
+    for tmp1 in tmp:
+        i = random.randint(1, 100)
+        if i < 30:
+            res = "ETH-A1"
+        elif 30 <= i < 34:
+            res = "ETH-SA1"
+        elif 34 <= i < 46:
+            res = "ETH-SM1"
+        elif 46 <= i < 54:
+            res = "ETH-SM2"
+        elif 54 <= i < 68:
+            res = "ETH-M1"
+        elif 68 <= i < 80:
+            res = "ETH-M2"
+        elif 80 <= i < 88:
+            res = "ETH-SH1"
+        elif 88 <= i < 96:
+            res = "ETH-SH2"
+        else:
+            res = "ETH-H2"
+
+        tmp1.AEZ_id = res
+        tmp1.save()
+
 
 class TestOfflineView(TemplateView):
     template_name = "myApp/offline/test.html"

@@ -295,23 +295,13 @@ class Crop_Region(models.Model):
     )
 
 class Crop_AEZ(models.Model):
-    AEZ_id = models.CharField(max_length=200)
-    FCT_id = models.IntegerField(default=1)
-    food_grp_id = models.IntegerField(default=1)
-    food_item_id = models.IntegerField(default=1)
-    Food_grp = models.CharField(max_length=200)
-    Food_name = models.CharField(max_length=200)
-    Crop_ref = models.CharField(max_length=200)
-    created_at = models.DateTimeField(
-        verbose_name='record_date',
-        auto_now_add=True
-    )
-    created_by = models.ForeignKey(
-        User,
-        null=True,
-        blank=True,
+    myFCT = models.ForeignKey(
+        FCT,
+        to_field='food_item_id',
+        default = 436,
         on_delete=models.CASCADE
     )
+    AEZ_id = models.CharField(max_length=200)
 
 
 class DRI(models.Model):
