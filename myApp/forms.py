@@ -46,6 +46,11 @@ class FamilyForm(forms.ModelForm):
             'crop_list': forms.HiddenInput(),
             'id': forms.HiddenInput(),
         }
+        labels = {
+            "region":"Region",
+            "province":"Woreda",
+            "community":"Kebele",
+        }
 
     def __init__(self, *args, **kwargs):
         self.myid = kwargs.pop('myid')
