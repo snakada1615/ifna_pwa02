@@ -73,7 +73,8 @@ class CropAvailable(TemplateView):
         context["mydata"] = d
 
         # send selected crop by community ######
-        tmp01 = myCrop.objects.all()
+        tmp = Family.objects.get(id=self.kwargs['familyid']).country_test.AEZ_id
+        tmp01 = myCrop.objects.filter(AEZ_id = tmp)
         d = []
         for tmp02 in tmp01:
             dd = {}

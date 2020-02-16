@@ -12,6 +12,8 @@ class Countries(models.Model):
     NAME_2 = models.CharField(max_length=200)
     GID_3 = models.CharField(max_length=200)
     NAME_3 = models.CharField(max_length=200)
+    AEZ_id = models.CharField(max_length=200, default = "none")
+
 
 def __str__(self):
     return self.GID_0
