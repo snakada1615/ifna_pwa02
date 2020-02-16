@@ -89,33 +89,47 @@
             });
           });
 
-          //////////////////crop calendar edit function////
-          $("#selected_crops_tbl").on("click", "td", function () {
-            let tmp = Number($(this).text());
-            tmp = (tmp + 1) % 4;
-            switch (tmp) {
-              case 0:
-                $(this).css("background-color", "");
-                tmp = "";
-                break;
-              case 1:
-                $(this).css("background-color", "red");
-                $(this).css("color", "red");
-                break;
-              case 2:
-                $(this).css("background-color", "yellow");
-                $(this).css("color", "yellow");
-                break;
-              case 3:
-                $(this).css("background-color", "blue");
-                $(this).css("color", "blue");
-                break;
-            }
-            $(this).html(tmp);
-          });
-
         } ////// finish initcomplete//////////
       }); //////mytable setup complete/////
+
+      //////////////////crop calendar edit function////
+      $('#selected_crops_tbl').on("click", "td", function () {
+        let tmp = Number($(this).text());
+        let x = $(this)[0].cellIndex;
+        let y = $(this).closest('tr').index();
+        let tmp_food_id = $('#selected_crops_tbl tr').eq(y).children('td').eq(13).text();
+        tmp = (tmp + 1) % 4;
+        switch (tmp) {
+          case 0:
+            $(this).css("background-color", "");
+            tmp = "";
+            break;
+          case 1:
+            $(this).css("background-color", "red");
+            $(this).css("color", "red");
+            break;
+          case 2:
+            $(this).css("background-color", "yellow");
+            $(this).css("color", "yellow");
+            break;
+          case 3:
+            $(this).css("background-color", "blue");
+            $(this).css("color", "blue");
+            break;
+        }
+        $(this).html(tmp);
+        let res = get_selected_food();
+        let tmp_id = res.indexOf(Number(tmp_food_id));
+        /*
+        console.log('tr: ' + y + ', td:' + x);
+        console.log('tmp_food_id: ' + tmp_food_id);
+        console.log('res: ' + res.join('-'));
+        console.log('tmp_id: ' + tmp_id);
+        console.log('halo: ' + selected_org[tmp_id]['m1']);
+        */
+        selected_org[tmp_id]['m' + String(x)] = tmp;
+
+      });
 
       /////////////////// initialize myTable///
       drawSelected2(selected_org);
@@ -129,16 +143,7 @@
         }
       });
 
-      ////// get selected food list ///
-      function get_selected_food() {
-        var res = [];
-        selected_org.map(function (i,j) {
-          let sel_id=i["food_item_id"];
-          res.push(sel_id);
-        });
-        return res;
-      }
-      //////////////////on click -> crop list ///
+      //////////////////on click -> crop list /
       $('#croplist tbody').on('click', 'tr', function () {
         $(this).toggleClass('selected');
         let res = get_selected_food();
@@ -151,7 +156,7 @@
           dd["Food_name"] = data.Food_name;
           dd["food_item_id"] = data.food_item_id;
           let tmp_id = res.indexOf(data.food_item_id);
-          console.log('tmp_id:'+tmp_id+ ', food_id:' + data.food_item_id);
+          //          console.log('tmp_id:' + tmp_id + ', food_id:' + data.food_item_id);
           if (tmp_id > 0) {
             dd["m1"] = selected_org[tmp_id].m1;
             dd["m2"] = selected_org[tmp_id].m2;
@@ -182,11 +187,20 @@
           d.push(dd);
         });
         selected_org = d;
-        console.log(selected_org);
         drawSelected2(selected_org);
       });
 
+      ////// get selected food list /
+      function get_selected_food() {
+        var res = [];
+        selected_org.map(function (i, j) {
+          let sel_id = i["food_item_id"];
+          res.push(sel_id);
+        });
+        return res;
+      }
 
+      /*
       //////////////////re-draw all selected raws into #croplist
       function drawSelected() {
         jQuery('#selected_crops_tbl tr').remove();
@@ -216,7 +230,7 @@
         jQuery('#selected_crops_tbl').append(cr);
         return;
       }
-
+*/
       //////////////set cell color////////////////
       function SetCellColor(cNum) {
         switch (cNum) {
