@@ -28,6 +28,8 @@ def registCropAvail(request):
 
     json_str = request.body.decode("utf-8")
     json_data = json.loads(json_str)
+    tmp_myFamily_id = 0
+    tmp_newcrop_list = []
 
     for myrow in json_data['myJson']:
         newcrop = {}
@@ -36,11 +38,23 @@ def registCropAvail(request):
         newcrop['myFCT'] = FCT.objects.get(food_item_id=myrow['myFCT_id'])
         newcrop['myFamily'] = Family.objects.get(id=myrow['myFamily_id'])
 
+        tmp_myFamily_id = myrow['myFamily_id'] # 後で使う(part 2)
+        tmp_newcrop_list.append(myrow['myFCT_id']) #後で使う(part 2)
+
         tmp = myCrop.objects.filter(myFCT=myrow['myFCT_id'])
         if tmp.count() == 0:
             p = myCrop.objects.create(**newcrop)
         else:
             p = tmp.update(**newcrop)
+
+    # (part 2) delete non-selected records
+    tmp = myCrop.objects.filter(myFamily_id = tmp_myFamily_id)
+    for rec in tmp:
+        myConsole(str(rec.myFCT.food_item_id))
+        if str(rec.myFCT.food_item_id) not in tmp_newcrop_list:
+            rec.selected_status = 9999
+            rec.save()
+    myCrop.objects.filter(selected_status=9999).delete()
 
     return HttpResponse(json_str)
 

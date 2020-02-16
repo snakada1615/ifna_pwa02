@@ -131,18 +131,6 @@
 
       });
 
-      /////////////////// initialize myTable///
-      drawSelected2(selected_org);
-
-      var res = get_selected_food();
-
-      mytable.rows().every(function (rowIdx, tableLoop, rowLoop) {
-        var data = this.data();
-        if (res.indexOf(data.food_item_id) >= 0) {
-          this.select();
-        }
-      });
-
       //////////////////on click -> crop list /
       $('#croplist tbody').on('click', 'tr', function () {
         $(this).toggleClass('selected');
@@ -190,6 +178,18 @@
         drawSelected2(selected_org);
       });
 
+      /////////////////// initialize myTable///
+      drawSelected2(selected_org);
+
+      var res = get_selected_food();
+
+      mytable.rows().every(function (rowIdx, tableLoop, rowLoop) {
+        var data = this.data();
+        if (res.indexOf(data.food_item_id) >= 0) {
+          this.select();
+        }
+      });
+
       ////// get selected food list /
       function get_selected_food() {
         var res = [];
@@ -199,38 +199,6 @@
         });
         return res;
       }
-
-      /*
-      //////////////////re-draw all selected raws into #croplist
-      function drawSelected() {
-        jQuery('#selected_crops_tbl tr').remove();
-        selected_rows_id.length = 0;
-        cr = '<tr><th class="px-0 text-sm-center">name</th><th class="px-0">01</th><th class="px-0">02</th><th class="px-0">03</th><th class="px-0">04</th><th class="px-0">05</th><th class="px-0">06</th><th class="px-0">07</th><th class="px-0">08</th><th class="' +
-            'px-0">09</th><th class="px-0">10</th><th class="px-0">11</th><th class="px-0">12</th><th class="px-0 hide_dom">food id</th></tr>';
-        mytable.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
-          var data = this.data();
-          cr += '<tr><td class="px-0 text-sm-center">' + data.Food_name + '</td>';
-          cr += '<td class="px-0 text-sm-center"></td>';
-          cr += '<td class="px-0 text-sm-center"></td>';
-          cr += '<td class="px-0 text-sm-center"></td>';
-          cr += '<td class="px-0 text-sm-center"></td>';
-          cr += '<td class="px-0 text-sm-center"></td>';
-          cr += '<td class="px-0 text-sm-center"></td>';
-          cr += '<td class="px-0 text-sm-center"></td>';
-          cr += '<td class="px-0 text-sm-center"></td>';
-          cr += '<td class="px-0 text-sm-center"></td>';
-          cr += '<td class="px-0 text-sm-center"></td>';
-          cr += '<td class="px-0 text-sm-center"></td>';
-          cr += '<td class="px-0 text-sm-center"></td>';
-          cr += '<td class="px-0 text-sm-center hide_dom">' + data.food_item_id + '</td>';
-          cr += '<td class="px-0 text-sm-center hide_dom">' + myFamily + '</td>';
-          cr += '</tr>';
-          selected_rows_id.push(rowIdx);
-        });
-        jQuery('#selected_crops_tbl').append(cr);
-        return;
-      }
-*/
       //////////////set cell color////////////////
       function SetCellColor(cNum) {
         switch (cNum) {
@@ -358,13 +326,12 @@
         }).then(
           // Success
           function (response) {
-            //alert("success");
-            $("#response").html(JSON.stringify(response));
+            //alert("success"); $("#response").html(JSON.stringify(response));
           },
           // error
           function (response) {
-            //                alert("error");
-            $("#response").html(JSON.stringify(response));
+            alert("error");
+            alert(JSON.stringify(response));
           },
         );
       };
