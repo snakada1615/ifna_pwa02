@@ -159,6 +159,26 @@ class Diet_Plan1(TemplateView):
             for crop in tmp.split('-'):
                 crops.append(FCT.objects.get(food_item_id=crop).Food_name)
         context['crop_list'] = crops
+
+        # send selected crop by community ######
+        tmp01 = myCrop.objects.filter(myFamily_id=self.kwargs['familyid'])
+        d = []
+        for tmp02 in tmp01:
+            dd = {}
+            dd["row_sel"] = "0"
+            dd["Food_grp"] = tmp02.myFCT.Food_grp
+            dd["Food_name"] = tmp02.myFCT.Food_name
+            dd["Energy"] = tmp02.myFCT.Energy
+            dd["Protein"] = tmp02.myFCT.Protein
+            dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
+            dd["FE"] = tmp02.myFCT.FE
+            dd["row_filter"] = "0"
+            dd["Weight"] = "100"
+            dd["food_item_id"] = tmp02.myFCT.food_item_id
+            d.append(dd)
+        context["myselected"] = d
+
+
         return context
 
 
