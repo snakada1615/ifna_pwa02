@@ -365,6 +365,13 @@ class Person(models.Model):
         (5, 'answer 5'),
     )
 
+    Nut_Choices = (
+        ('Stunting', 'Stunting'),
+        ('Wasting', 'Wasting'),
+        ('Anemia', 'Anemia'),
+        ('Other', 'Other'),
+    )
+
     Nut_GROUP = (
         ('children under 5', 'children 6 to 59 month'),
         ('pregnant women', 'pregnant women'),
@@ -443,6 +450,7 @@ class Person(models.Model):
 
     target_nutrition = models.CharField(
         verbose_name='target_nut',
+        choices=Nut_Choices,
         max_length=40,
         default='stunting'
     )

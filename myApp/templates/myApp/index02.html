@@ -95,12 +95,11 @@
 			document.getElementById('btn07').classList.add("disabled");
 			document.getElementById('btn08').classList.add("disabled");
 			document.getElementById('btn09').classList.add("disabled");
-
 			if (DATA.family_id > 0) {
 				document.getElementById('btn02').classList.remove("disabled");
 				var myURL = '/crop_avail/' + DATA.family_id + '/' + DATA.conv_crop_grow_list + '/';
 				document.getElementById('btn02').href = myURL;
-				if (DATA.conv_crop_sold_list != "0") {
+				if (DATA.conv_crop_grow_list != "0") {
 					document.getElementById('btn04').classList.remove("disabled");
 					var myURL = '/person/list/' + DATA.family_id + '/';
 					document.getElementById('btn04').href = myURL;
