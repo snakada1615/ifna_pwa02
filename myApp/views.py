@@ -54,8 +54,12 @@ def registCropAvail(request):
             rec.selected_status = 9999
             rec.save()
     myCrop.objects.filter(selected_status=9999).delete()
+    myProgress.objects.filter(user_id=request.user.id).update(
+        conv_crop_grow_list='1')
 
-    return HttpResponse(json_str)
+
+    myURL = reverse_lazy('index02')
+    return HttpResponseRedirect(myURL)
 
 
 class CropAvailable(TemplateView):

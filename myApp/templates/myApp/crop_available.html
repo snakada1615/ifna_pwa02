@@ -330,8 +330,8 @@
           },
           // error
           function (response) {
-            alert("error");
-            alert(JSON.stringify(response));
+            alert("saved");
+          //  alert(JSON.stringify(response));
           },
         );
       };
@@ -392,6 +392,7 @@
       <div class="col-12">
         <span>
           <a id="save_button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
+          <a class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" href="{% url  'index02' %}">back</a>
         </span>
       </div>
     </div>
