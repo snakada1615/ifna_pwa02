@@ -80,11 +80,7 @@
         "columnDefs": [
           {
             targets: [
-              1,
-              2,
-              3,
-              4,
-              5
+              1, 2, 3, 4, 5
             ],
             visible: true
           }, {
@@ -155,11 +151,11 @@
           sum_fe += data.FE * data.Weight / 100;
           selected_rows_id.push(rowIdx);
         });
-        cr += '<tr><td>total</td><td>' + Math.round(sum_en) + '</td><td>'  + Math.round(sum_pr) + '</td><td>' + Math.round(sum_va) + '</td><td>' + Math.round(sum_fe) + '</td><td></td></tr>';
+        cr += '<tr><td>total</td><td>' + Math.round(sum_en) + '</td><td>' + Math.round(sum_pr) + '</td><td>' + Math.round(sum_va) + '</td><td>' + Math.round(sum_fe) + '</td><td></td></tr>';
         jQuery('#selected_crops_tbl').append(cr);
       });
 
-      //////////////////register selected commodity ////
+      //////////////////register selected commodity //
       $('#button').click(function () {
         var w = "";
         var n = "";
@@ -184,42 +180,55 @@
       //////////////////add table edit function////
       $("#selected_crops_tbl").on("click", "td", function () {
         $('#selected_row').val($(this).closest('tr').index());
-        $('#rewriteCell').val($(this).text());
+        let foodVal = $("td", $(this).parent());
+        let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th></tr><tr>';
+        cr += '<td>' + foodVal.eq(0).text() + '</td>';
+        cr += '<td>' + foodVal.eq(1).text() + '</td>';
+        cr += '<td>' + foodVal.eq(2).text() + '</td>';
+        cr += '<td>' + foodVal.eq(3).text() + '</td>';
+        cr += '<td>' + foodVal.eq(4).text() + '</td>';
+        $('#foodInfo tr').remove();
+        $('#foodInfo').append(cr);
+        $('#rewriteCell').val(foodVal.eq(5).text());
+        $('#exampleModal').modal('show');
       });
 
-      ////////////////// button click to reflect the modification ////
-      $('#button2').click(function () {
+      ////////////////// button click to reflect the modification //
+      $('#change_weight').click(function () {
         var tmp_v = $('#rewriteCell').val();
-        $('#selected_crops_tbl tr').eq($('#selected_row').val()).children('td').eq(4).text(tmp_v);
-        mytable.row(selected_rows_id[$('#selected_row').val()-1]).data().Weight = tmp_v;
+        $('#selected_crops_tbl tr').eq($('#selected_row').val()).children('td').eq(5).text(tmp_v);
+        mytable.row(selected_rows_id[$('#selected_row').val() - 1]).data().Weight = tmp_v;
 
         ///////////////////
         jQuery('#selected_crops_tbl tr').remove();
         selected_rows_id.length = 0;
+        sum_en = 0;
         sum_pr = 0;
         sum_va = 0;
         sum_fe = 0;
-        cr = '<tr><th>name</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th></tr><tr>';
+        cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th></tr><tr>';
         mytable.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
           var data = this.data();
           cr += '<td>' + data.Food_name + '</td>';
+          cr += '<td>' + Math.round(data.Energy * data.Weight / 100, 1) + '</td>';
           cr += '<td>' + Math.round(data.Protein * data.Weight / 100, 1) + '</td>';
           cr += '<td>' + Math.round(data.VITA_RAE * data.Weight / 100, 1) + '</td>';
           cr += '<td>' + Math.round(data.FE * data.Weight / 100, 1) + '</td>';
           cr += '<td>' + data.Weight + '</td>';
           cr += '</tr>';
+          sum_en += data.Energy * data.Weight / 100;
           sum_pr += data.Protein * data.Weight / 100;
           sum_va += data.VITA_RAE * data.Weight / 100;
           sum_fe += data.FE * data.Weight / 100;
           selected_rows_id.push(rowIdx);
         });
-        cr += '<tr><td>total</td><td>' + Math.round(sum_pr) + '</td><td>' + Math.round(sum_va) + '</td><td>' + Math.round(sum_fe) + '</td><td></td></tr>';
+        cr += '<tr><td>total</td><td>' + Math.round(sum_en) + '</td><td>' + Math.round(sum_pr) + '</td><td>' + Math.round(sum_va) + '</td><td>' + Math.round(sum_fe) + '</td><td></td></tr>';
         jQuery('#selected_crops_tbl').append(cr);
         //////////////////
+        $('#exampleModal').modal('hide');
       });
     });
   </script>
-
 
   <input type="hidden" value="" id="selected_row">
 
@@ -342,6 +351,49 @@
             <p class="card-title text-warning my-0">
               selected commodities
             </p>
+
+            <!-- モーダルの設定 ----------------------------->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title text-dark" id="exampleModalLabel">Edit the weight of food item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body text-dark">
+                    <table border="1" id="foodInfo">
+                      <tr>
+                        <th>name</th>
+                        <th>En</th>
+                        <th>Pr</th>
+                        <th>Va</th>
+                        <th>Fe</th>
+                        <th>Wt</th>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </table>
+                    <span class="text-dark">weight</span>
+                    <input type="number" id="rewriteCell" pattern="[0-9]*">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+                    <button type="button" class="btn btn-primary" id="change_weight">change value</button>
+                  </div>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-------------------------------------->
+
             <table border="1" id="selected_crops_tbl">
               <tr>
                 <th>name</th>
@@ -360,8 +412,6 @@
                 <td></td>
               </tr>
             </table>
-            <input type="text" id="rewriteCell" value=''>
-            <a id="button2" class="btn btn-warning text-dark mt-2 my-0 py-0 btn-sm">change</a>
           </div>
         </div>
       </div>
