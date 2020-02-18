@@ -251,6 +251,10 @@ class DRI_aggr(models.Model):
         verbose_name='group',
         default='children 6 to 59 month'
     )
+    energy = models.FloatField(
+        verbose_name='nut_energy',
+        default=0
+    )
     protein = models.FloatField(
         verbose_name='nut_protein',
         default=0
@@ -262,18 +266,6 @@ class DRI_aggr(models.Model):
     fe = models.FloatField(
         verbose_name='iron',
         default=0
-    )
-    created_at = models.DateTimeField(
-        verbose_name='record_date',
-        null=True,
-        blank=True,
-        auto_now_add=True
-    )
-    created_by = models.ForeignKey(
-        User,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE
     )
 
 class Crop_Region(models.Model):
@@ -436,6 +428,11 @@ class Person(models.Model):
     women_s = models.IntegerField(
         verbose_name='women_special',
         choices=WOMEN_SPECIAL,
+        default=0,
+    )
+
+    energy = models.FloatField(
+        verbose_name='protein',
         default=0,
     )
 

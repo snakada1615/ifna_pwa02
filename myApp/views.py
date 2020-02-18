@@ -8,7 +8,7 @@ import json
 from django.http.response import JsonResponse
 
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
-from .models import FCT, Person, DRI, DRI_women, Family, Crop, myProgress, Countries, myCrop, Crop_AEZ
+from .models import FCT, Person, DRI, DRI_women, Family, Crop, myProgress, Countries, myCrop, Crop_AEZ, DRI_aggr
 from .forms import Order_Key_Form, FamilyForm, Person_Create_Form, CropForm, Person_new_Create_Form
 from django.db.models import Q, Sum
 
@@ -213,6 +213,7 @@ class Person_new_UpdateView(LoginRequiredMixin, UpdateView):
         # do something with self.object
         # remember the import: from django.http import HttpResponseRedirect
         myid = self.kwargs['familyid']
+        energy1 = 0
         protein1 = 0
         vita1 = 0
         fe1 = 0
@@ -223,11 +224,13 @@ class Person_new_UpdateView(LoginRequiredMixin, UpdateView):
             rec.size = Persons.count()
 
             for myPerson in Persons:
+                energy1 += myPerson.energy * myPerson.target_pop
                 protein1 += myPerson.protein * myPerson.target_pop
                 vita1 += myPerson.vita * myPerson.target_pop
                 fe1 += myPerson.fe * myPerson.target_pop
-                rec = Family.objects.filter(id=myid).first()
 
+            rec = Family.objects.filter(id=myid).first()
+            rec.energy = energy1
             rec.protein = protein1
             rec.vita = vita1
             rec.fe = fe1
@@ -273,6 +276,7 @@ class Person_new_CreateView(LoginRequiredMixin, CreateView):
         form.instance.created_by = self.request.user
         myid = self.kwargs['familyid']
 
+        energy1 = 0
         protein1 = 0
         vita1 = 0
         fe1 = 0
@@ -283,11 +287,13 @@ class Person_new_CreateView(LoginRequiredMixin, CreateView):
             rec.size = Persons.count()
 
             for myPerson in Persons:
+                energy1 += myPerson.energy * myPerson.target_pop
                 protein1 += myPerson.protein * myPerson.target_pop
                 vita1 += myPerson.vita * myPerson.target_pop
                 fe1 += myPerson.fe * myPerson.target_pop
-                rec = Family.objects.filter(id=myid).first()
 
+            rec = Family.objects.filter(id=myid).first()
+            rec.energy = energy1
             rec.protein = protein1
             rec.vita = vita1
             rec.fe = fe1
@@ -493,6 +499,19 @@ def ChangeCow(request):
     tmp.VITB6C = 0
     tmp.Food_name = "Butter, from cow-s milk (without salt)"
     tmp.save()
+
+def ChangeDRI(request):
+    tmp1 = DRI_aggr.objects.all()
+    for tmp2 in tmp1:
+        if tmp2.id == 1:
+            tmp2.energy = 608
+        if tmp2.id == 2:
+            tmp2.energy = 4751
+        if tmp2.id == 3:
+            tmp2.energy = 2162
+        if tmp2.id == 4:
+            tmp2.energy = 2677
+        tmp2.save()
 
 def UpdateAEZ(request):
     import random

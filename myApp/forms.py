@@ -71,12 +71,13 @@ class Person_new_Create_Form(forms.ModelForm):
     class Meta:
         model = Person
         fields = ("familyid", "nut_group", "name",
-            "protein", "vita", "fe",
+            "energy", "protein", "vita", "fe",
             "target_nutrition", "target_pop"
             )
         widgets = {
             'familyid': forms.HiddenInput(),
             'name': forms.HiddenInput(),
+            'energy': forms.HiddenInput(),
             'protein': forms.HiddenInput(),
             'vita': forms.HiddenInput(),
             'fe': forms.HiddenInput(),
@@ -96,6 +97,7 @@ class Person_new_Create_Form(forms.ModelForm):
         a = self.cleaned_data['nut_group']
         self.cleaned_data['familyid'] = self.myid
         self.cleaned_data['name'] = Family.objects.get(id = self.myid).name
+        self.cleaned_data['energy'] = DRI_aggr.objects.get(nut_group = a).energy
         self.cleaned_data['protein'] = DRI_aggr.objects.get(nut_group = a).protein
         self.cleaned_data['vita'] = DRI_aggr.objects.get(nut_group = a).vita
         self.cleaned_data['fe'] = DRI_aggr.objects.get(nut_group = a).fe
