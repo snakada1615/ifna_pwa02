@@ -8,6 +8,10 @@
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
 
+  <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fontawesome-stars.css' %}">
+
   <script>
     // URLパラメータの取得
     var myFamily = '';
@@ -50,6 +54,12 @@
       }
       return tmp1;
     }
+
+    ////star rating/////
+    $(function () {
+      $('#mystar').barrating({theme: 'fontawesome-stars'});
+    });
+    ////////////
 
     $(document).ready(function () {
       var mytable = $('#example').DataTable({
@@ -221,6 +231,7 @@
         var tmp_v = $('#rewriteCell').val();
         $('#selected_crops_tbl tr').eq($('#selected_row').val()).children('td').eq(5).text(tmp_v);
         mytable.row(selected_rows_id[$('#selected_row').val() - 1]).data().Weight = tmp_v;
+        alert($('#mystar').children("option:selected").val());
 
         ///////////////////
         jQuery('#selected_crops_tbl tr').remove();
@@ -382,8 +393,8 @@
               selected commodities
             </p>
             <p class="card-title text-dark my-0">
-              <span style="color:red">■</span>: less than 50%
-              <span style="color:yellow">■</span>: 50-100%
+              <span style="color:red">■</span>: less than 50%,
+              <span style="color:yellow">■</span>: 50-100%,
               <span style="color:blue">■</span>: over 100%
             </p>
 
@@ -416,6 +427,16 @@
                         <td></td>
                       </tr>
                     </table>
+
+                    <label for="mystar">consumption target:</label>
+                    <select id="mystar" name="mystar">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+
                     <span class="text-dark">weight</span>
                     <input type="number" id="rewriteCell" pattern="[0-9]*">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>

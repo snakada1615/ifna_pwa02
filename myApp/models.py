@@ -55,6 +55,7 @@ class FCT(models.Model):
     FOL = models.FloatField(default=0)
     VITB12 = models.FloatField(default=0)
     VITC = models.FloatField(default=0)
+    portion_size = models.IntegerField(default=100)
 
     def __str__(self):
         return self.Food_name
@@ -830,4 +831,7 @@ class Crop(models.Model):
         null=True,
         blank=True,
         on_delete=models.CASCADE
+    )
+    portion_size = models.IntegerField(
+        default=100,
     )
