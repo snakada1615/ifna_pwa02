@@ -176,6 +176,7 @@ class Diet_Plan1(TemplateView):
             dd["row_filter"] = "0"
             dd["Weight"] = "100"
             dd["food_item_id"] = tmp02.myFCT.food_item_id
+            dd["portion_size"] = tmp02.myFCT.portion_size
             d.append(dd)
         context["myselected"] = d
 
@@ -1147,7 +1148,7 @@ def registCalendar(request, familyid, pk, itemstr):
     return HttpResponseRedirect(myURL)
 
 
-def registCrops(request, familyid, items, items_w, avail_type):
+def registCrops(request, familyid, items, items_w, items_p):
 
     if items != '0':
         mytarget = Family.objects.get(pk=familyid)
@@ -1172,6 +1173,12 @@ def registCrops(request, familyid, items, items_w, avail_type):
         else:
             Weight.append(items_w)
 
+        portion_size = []
+        if ('-' in items_p):
+            portion_size = items_p.split('-')
+        else:
+            portion_size.append(items_p)
+
 #        myConsole(selectedItem)
 
         # set new/update crop item
@@ -1193,8 +1200,8 @@ def registCrops(request, familyid, items, items_w, avail_type):
             newcrop['vita'] = myfood.VITA_RAE
             newcrop['fe'] = myfood.FE
             newcrop['familyid'] = familyid
-            newcrop['avail_type'] = avail_type
             newcrop['food_wt'] = Weight[i]
+            newcrop['portion_size'] = portion_size[i]
 
             newcrop['created_by'] = request.user
 

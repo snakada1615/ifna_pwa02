@@ -84,6 +84,8 @@
             "data": "Food_grp"
           }, {
             "data": "Weight"
+          }, {
+            "data": "portion_size"
           }
         ],
 
@@ -167,12 +169,14 @@
 
       //////////////////register selected commodity
       $('#button').click(function () {
-        var w = "";
-        var n = "";
+        let w = "";
+        let n = "";
+        let p = "";
         mytable.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
           var data = this.data();
           n += "-" + data.food_item_id;
           w += "-" + data.Weight;
+          p += "-" + data.portion_size;
 
           // ... do something with data(), or this.node(), etc
         });
@@ -184,7 +188,11 @@
         if (w == '') {
           w = 0;
         }
-        location.href = myRoot + 'registCrops/' + myFamily + '/' + n + '/' + w + '/1/';
+        p = p.substring(1);
+        if (p == '') {
+          p = 0;
+        }
+        location.href = myRoot + 'registCrops/' + myFamily + '/' + n + '/' + w + '/' + p + '/';
       });
 
       //////////////set cell color////////////////
@@ -212,6 +220,8 @@
 
       //////////////////add table edit function////
       $("#selected_crops_tbl").on("click", "td", function () {
+        let por = mytable.row(selected_rows_id[$('#selected_row').val() - 1]).data().portion_size;
+        let cou = Number(mytable.row(selected_rows_id[$('#selected_row').val() - 1]).data().Weight / por,10);
         $('#selected_row').val($(this).closest('tr').index());
         let foodVal = $("td", $(this).parent());
         let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th></tr><tr>';
@@ -222,16 +232,19 @@
         cr += '<td>' + foodVal.eq(4).text() + '</td>';
         $('#foodInfo tr').remove();
         $('#foodInfo').append(cr);
-        $('#rewriteCell').val(foodVal.eq(5).text());
+        $('#mystar-label').text("consumption target(one portion=" + por + 'g)');
+        $('#mystar-label').val(cou);
+
         $('#exampleModal').modal('show');
       });
 
       ////////////////// button click to reflect the modification
       $('#change_weight').click(function () {
-        var tmp_v = $('#rewriteCell').val();
+        let por = mytable.row(selected_rows_id[$('#selected_row').val() - 1]).data().portion_size;
+        let cou = $('#mystar').children("option:selected").val();
+        let tmp_v = por*cou
         $('#selected_crops_tbl tr').eq($('#selected_row').val()).children('td').eq(5).text(tmp_v);
         mytable.row(selected_rows_id[$('#selected_row').val() - 1]).data().Weight = tmp_v;
-        alert($('#mystar').children("option:selected").val());
 
         ///////////////////
         jQuery('#selected_crops_tbl tr').remove();
@@ -428,8 +441,8 @@
                       </tr>
                     </table>
 
-                    <label for="mystar">consumption target:</label>
-                    <select id="mystar" name="mystar">
+                    <label for="mystar" id="mystar-label">consumption target (1 portion=):</label>
+                    <select id="mystar">
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -437,8 +450,6 @@
                       <option value="5">5</option>
                     </select>
 
-                    <span class="text-dark">weight</span>
-                    <input type="number" id="rewriteCell" pattern="[0-9]*">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
                     <button type="button" class="btn btn-primary" id="change_weight">change value</button>
                   </div>
