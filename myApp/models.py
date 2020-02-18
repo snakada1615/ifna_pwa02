@@ -128,10 +128,16 @@ class Family(models.Model):
         blank=True
     )
 
+    energy = models.FloatField(
+        verbose_name='energy',
+        default=0
+    )
+
     protein = models.FloatField(
         verbose_name='protein',
         default=0
     )
+
     vita = models.FloatField(
         verbose_name='Vit-A',
         default=0

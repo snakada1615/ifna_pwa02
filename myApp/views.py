@@ -133,6 +133,7 @@ class Diet_Plan1(TemplateView):
             id=self.kwargs['familyid']).region
         context['nutrition_target'] = Family.objects.get(
             id=self.kwargs['familyid']).nutrition_target
+        context['dri_e'] = Family.objects.get(id=self.kwargs['familyid']).energy
         context['dri_p'] = Family.objects.get(
             id=self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
@@ -493,7 +494,6 @@ def ChangeCow(request):
     tmp.Food_name = "Butter, from cow-s milk (without salt)"
     tmp.save()
 
-
 def UpdateAEZ(request):
     import random
 
@@ -752,6 +752,7 @@ class Person_CreateView(LoginRequiredMixin, CreateView):
         form.instance.created_by = self.request.user
         myid = self.kwargs['familyid']
 
+        energy1 = 0
         protein1 = 0
         vita1 = 0
         fe1 = 0
@@ -762,11 +763,13 @@ class Person_CreateView(LoginRequiredMixin, CreateView):
             rec.size = Persons.count()
 
             for myPerson in Persons:
+                energy1 += myPerson.energy * myPerson.target_pop
                 protein1 += myPerson.protein * myPerson.target_pop
                 vita1 += myPerson.vita * myPerson.target_pop
                 fe1 += myPerson.fe * myPerson.target_pop
                 rec = Family.objects.filter(id=myid).first()
 
+            rec.energy = energy1
             rec.protein = protein1
             rec.vita = vita1
             rec.fe = fe1
@@ -797,6 +800,7 @@ class Person_UpdateView(LoginRequiredMixin, UpdateView):
         # do something with self.object
         # remember the import: from django.http import HttpResponseRedirect
         myid = self.kwargs['familyid']
+        energy1 = 0
         protein1 = 0
         vita1 = 0
         fe1 = 0
@@ -807,11 +811,13 @@ class Person_UpdateView(LoginRequiredMixin, UpdateView):
             rec.size = Persons.count()
 
             for myPerson in Persons:
+                energy1 += myPerson.energy * myPerson.target_pop
                 protein1 += myPerson.protein * myPerson.target_pop
                 vita1 += myPerson.vita * myPerson.target_pop
                 fe1 += myPerson.fe * myPerson.target_pop
                 rec = Family.objects.filter(id=myid).first()
 
+            rec.energy = energy1
             rec.protein = protein1
             rec.vita = vita1
             rec.fe = fe1
@@ -971,6 +977,7 @@ class Crop_CreateView(LoginRequiredMixin, CreateView):
         myid = self.kwargs['familyid']
         context = super().get_context_data(**kwargs)
         context['myid'] = myid
+        context['dri_e'] = Family.objects.get(id=self.kwargs['familyid']).energy
         context['dri_p'] = Family.objects.get(
             id=self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
@@ -1025,6 +1032,7 @@ class Crop_UpdateView(LoginRequiredMixin, UpdateView):
         context['myid'] = myid
         context['myCal'] = myitem
         context['pk'] = self.kwargs['pk']
+        context['dri_e'] = Family.objects.get(id=self.kwargs['familyid']).energy
         context['dri_p'] = Family.objects.get(
             id=self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita

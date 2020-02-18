@@ -155,7 +155,7 @@
         jQuery('#selected_crops_tbl').append(cr);
       });
 
-      //////////////////register selected commodity //
+      //////////////////register selected commodity
       $('#button').click(function () {
         var w = "";
         var n = "";
@@ -193,7 +193,7 @@
         $('#exampleModal').modal('show');
       });
 
-      ////////////////// button click to reflect the modification //
+      ////////////////// button click to reflect the modification
       $('#change_weight').click(function () {
         var tmp_v = $('#rewriteCell').val();
         $('#selected_crops_tbl tr').eq($('#selected_row').val()).children('td').eq(5).text(tmp_v);
@@ -222,8 +222,32 @@
           sum_fe += data.FE * data.Weight / 100;
           selected_rows_id.push(rowIdx);
         });
-        cr += '<tr><td>total</td><td>' + Math.round(sum_en) + '</td><td>' + Math.round(sum_pr) + '</td><td>' + Math.round(sum_va) + '</td><td>' + Math.round(sum_fe) + '</td><td></td></tr>';
+        cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), {{dri_e}}) + SetCellColor(Math.round(sum_pr), {{dri_p}}) + SetCellColor(Math.round(sum_va), {{dri_v}}) + SetCellColor(Math.round(sum_fe), {{dri_f}}) + '<td></td></tr>';
         jQuery('#selected_crops_tbl').append(cr);
+
+        //////////////set cell color////////////////
+        function SetCellColor(i_cell, i_target) {
+          cNum = parseInt(i_cell * 100 / i_target, 10);
+          switch (true) {
+            case 0 <= cNum && cNum < 50:
+              res = '<td class="table-danger">' + i_cell + '</td>';
+              break;
+
+            case 50 <= cNum && cNum < 100:
+              res = '<td class="table-warning">' + i_cell + '</td>';
+              break;
+
+            case 100 <= cNum:
+              res = '<td class="table-success">' + i_cell + '</td>';
+              break;
+
+            default:
+              res = '<td>' + i_cell + '</td>';
+              break;
+          }
+          return res;
+        }
+
         //////////////////
         $('#exampleModal').modal('hide');
       });
@@ -316,6 +340,12 @@
                 <td class="text-warning px-1">population size</td>
                 {% for family in families %}
                   <td class="px-1">{{family.target_pop}}</td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <td class="text-warning px-1">energy(kcal/day)</td>
+                {% for family in families %}
+                  <td class="px-1">{{family.energy|floatformat:2}}</td>
                 {% endfor %}
               </tr>
               <tr>
