@@ -220,9 +220,9 @@
 
       //////////////////add table edit function////
       $("#selected_crops_tbl").on("click", "td", function () {
+        $('#selected_row').val($(this).closest('tr').index());
         let por = mytable.row(selected_rows_id[$('#selected_row').val() - 1]).data().portion_size;
         let cou = Number(mytable.row(selected_rows_id[$('#selected_row').val() - 1]).data().Weight / por,10);
-        $('#selected_row').val($(this).closest('tr').index());
         let foodVal = $("td", $(this).parent());
         let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th></tr><tr>';
         cr += '<td>' + foodVal.eq(0).text() + '</td>';
@@ -233,7 +233,7 @@
         $('#foodInfo tr').remove();
         $('#foodInfo').append(cr);
         $('#mystar-label').text("consumption target(one portion=" + por + 'g)');
-        $('#mystar-label').val(cou);
+        $('#mystar').barrating('set', cou);
 
         $('#exampleModal').modal('show');
       });
