@@ -9,7 +9,7 @@ from .views import Trial_View, off_Family_CreateView, FCTdatable_View, Under_Con
 from .views import Crop_Feas_View, Crop_Calendar_View, FamilyFiltered_ListView
 from .views import convCrop_Grow, convCrop_Sold, TestView01
 from .views import Person_new_CreateView, Person_new_UpdateView, Diet_Plan1, Diet_Plan2
-from .views import CropAvailable, registCropAvail, ChangeCow, UpdateAEZ, ChangeDRI
+from .views import CropAvailable, registCropAvail, ChangeCow, UpdateAEZ, ChangeDRI, aboutNFA
 
 from django.contrib import admin
 from django.urls import include
@@ -32,6 +32,7 @@ urlpatterns = [
     path('ChangeCow/', views.ChangeCow, name='changecow'),
     path('ChangeDRI/', views.ChangeDRI, name='changedri'),
     path('UpdaetAEZ/', views.UpdateAEZ, name='UpdateAEZ'),
+    path('aboutNFA/', aboutNFA.as_view(), name='aboutnfa'),
 
 
 

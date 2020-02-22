@@ -24,6 +24,9 @@ import logging
 #from tkinter import messagebox
 
 
+class aboutNFA(TemplateView):
+    template_name = "myApp/whatisNFA.html"
+
 def registCropAvail(request):
 
     json_str = request.body.decode("utf-8")
