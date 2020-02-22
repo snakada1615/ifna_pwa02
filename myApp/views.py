@@ -117,6 +117,7 @@ class CropAvailable(TemplateView):
             dd["m12"] = tmp02.m12
             d.append(dd)
         context["myselected"] = d
+        context['myuser'] = self.request.user
 
         return context
 
@@ -182,6 +183,7 @@ class Diet_Plan1(TemplateView):
             dd["portion_size"] = tmp02.myFCT.portion_size
             d.append(dd)
         context["myselected"] = d
+        context['myuser'] = self.request.user
 
 
         return context
@@ -265,6 +267,7 @@ class Diet_Plan2(TemplateView):
                 d.append(dd)
             context["myselected"] = d
 
+        context['myuser'] = self.request.user
 
         return context
 
@@ -292,6 +295,7 @@ class Person_new_UpdateView(LoginRequiredMixin, UpdateView):
         context['myid'] = myid
         context["families"] = Person.objects.filter(
             familyid=self.kwargs['familyid']).order_by('age')
+        context['myuser'] = self.request.user
         return context
 
     def form_valid(self, form):
@@ -350,6 +354,7 @@ class Person_new_CreateView(LoginRequiredMixin, CreateView):
         context['name'] = mydata
         context["families"] = Family.objects.filter(
             id=self.kwargs['familyid']).order_by('age')
+        context['myuser'] = self.request.user
         return context
 
     def get_success_url(self, **kwargs):
@@ -427,6 +432,7 @@ class TestView01(LoginRequiredMixin, TemplateView):
         }
         json_str = json.dumps(data)
         context['myParam'] = json_str
+        context['myuser'] = self.request.user
 
         return context
 
@@ -691,12 +697,21 @@ class FamilyFiltered_ListView(LoginRequiredMixin, ListView):
         queryset = super().get_queryset().filter(created_by=self.request.user)
         return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['myuser'] = self.request.user
+        return context
+
 
 class Family_DeleteView(LoginRequiredMixin, DeleteView):
     model = Family
     template_name = 'myApp/family_confirm_delete.html'
     success_url = reverse_lazy('Family_filter')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['myuser'] = self.request.user
+        return context
 
 class Family_CreateView(LoginRequiredMixin, CreateView):
     model = Family
@@ -742,6 +757,7 @@ class Family_CreateView(LoginRequiredMixin, CreateView):
         context['coutry_selected'] = ''
         context['region_selected'] = ''
         context['province_selected'] = ''
+        context['myuser'] = self.request.user
         return context
 
 
@@ -768,6 +784,7 @@ class Family_UpdateView(LoginRequiredMixin, UpdateView):
         context['coutry_selected'] = myFamily.country
         context['region_selected'] = myFamily.region
         context['province_selected'] = myFamily.province
+        context['myuser'] = self.request.user
         return context
 
 #    def get_success_url(self, **kwargs):
@@ -793,6 +810,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['myfamily'] = Family.objects.get(id=self.kwargs['familyid'])
+        context['myuser'] = self.request.user
 
         return context
 
