@@ -9,7 +9,8 @@ from .views import Trial_View, off_Family_CreateView, FCTdatable_View, Under_Con
 from .views import Crop_Feas_View, Crop_Calendar_View, FamilyFiltered_ListView
 from .views import convCrop_Grow, convCrop_Sold, TestView01
 from .views import Person_new_CreateView, Person_new_UpdateView, Diet_Plan1, Diet_Plan2
-from .views import CropAvailable, registCropAvail, ChangeCow, UpdateAEZ, ChangeDRI, aboutNFA
+from .views import CropAvailable, registCropAvail, ChangeCow, UpdateAEZ
+from .views import ChangeDRI, aboutNFA, SignUp, UserEdit
 
 from django.contrib import admin
 from django.urls import include
@@ -33,6 +34,8 @@ urlpatterns = [
     path('ChangeDRI/', views.ChangeDRI, name='changedri'),
     path('UpdaetAEZ/', views.UpdateAEZ, name='UpdateAEZ'),
     path('aboutNFA/', aboutNFA.as_view(), name='aboutnfa'),
+    path('SignUp/',  SignUp.as_view(), name='signup'),
+    path('UserEdit/<int:pk>/',  UserEdit.as_view(), name='useredit'),
 
 
 
@@ -66,7 +69,6 @@ urlpatterns = [
     path('registCalendar/<int:familyid>/<int:pk>/<str:itemstr>/',  views.registCalendar, name='registcalendar'),
     path('registCrops/<int:familyid>/<str:items>/<str:items_w>/<str:items_p>/',  views.registCrops, name='registcrops'),
     path('funcTest/',  views.funcTest, name='funcTest'),
-    path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='myApp/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('SetCal/',  views.SetCal, name='setcal'),

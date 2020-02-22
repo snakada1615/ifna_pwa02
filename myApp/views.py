@@ -14,7 +14,7 @@ from django.db.models import Q, Sum
 
 # for user registration
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User
 
@@ -1336,20 +1336,59 @@ def funcTest(request):
     return HttpResponse(test)
 
 
+class UserEditForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'username')
+
+class UserEdit(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = UserEditForm
+    template_name = "myApp/signup_edit.html"
+    success_url = reverse_lazy('test')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['myuser'] = self.request.user
+        return context
+
+    def form_valid(self, form):
+        if form.is_valid():
+            user = form.save() # formの情報を保存
+            login(self.request, user) # 認証
+            self.object = user
+            return HttpResponseRedirect(self.get_success_url()) # リダイレクト
+
+        else:
+            for msg in form.error_messages:
+                print(form.error_messages[msg])
+
+            return render(request=request,
+                          template_name="myApp/signup_edit.html",
+                          context={"form": form})
+
+
 class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username', 'password1', 'password2')
 
-def register(request):
+class SignUp(CreateView):
+    form_class = SignUpForm
+    template_name = "myApp/signup.html"
+    success_url = reverse_lazy('test')
 
-    if request.method == "POST":
-        form = SignUpForm(request.POST)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['myuser'] = self.request.user
+        return context
+
+    def form_valid(self, form):
         if form.is_valid():
-            user = form.save()
-            username = form.cleaned_data.get('username')
-            login(request, user)
-            return redirect("test")
+            user = form.save() # formの情報を保存
+            login(self.request, user) # 認証
+            self.object = user
+            return HttpResponseRedirect(self.get_success_url()) # リダイレクト
 
         else:
             for msg in form.error_messages:
@@ -1359,10 +1398,6 @@ def register(request):
                           template_name="myApp/signup.html",
                           context={"form": form})
 
-    form = SignUpForm
-    return render(request=request,
-                  template_name="myApp/signup.html",
-                  context={"form": form})
 
 
 def SetCal(request):
