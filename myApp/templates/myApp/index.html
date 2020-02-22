@@ -43,18 +43,8 @@
 		</div>
 
 		<div class="row">
-			<div class="col-6 col-md-4">
-				<div class="card bg-info">
-					<div class="card img-thumbnail bg-info">
-						<div class="card-body py-2 px-2">
-							<p class="card-text">Start from here!</p>
-							<a class="btn btn-warning m-auto btn-block" href="{% url 'index02' %}">Start Application</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-6 col-md-4">
-				<div class="card bg-info">
+			<div class="col-6 col-md-4 px-1">
+				<div class="card bg-info h-100">
 					<div class="card img-thumbnail bg-info">
 						<div class="card-body py-2 px-2">
 							<p class="card-text text-warning">about NFA tool</p>
@@ -63,9 +53,19 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4"></div>
-			<div class="col-6 col-md-4">
-				<div class="card bg-info">
+			<div class="col-6 col-md-4 px-1">
+				<div class="card bg-info h-100">
+					<div class="card img-thumbnail bg-info">
+						<div class="card-body py-2 px-2">
+							<p class="card-text">Start from here!</p>
+							<a class="btn btn-warning m-auto btn-block" href="{% url 'index02' %}">Start Application</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 px-1"></div>
+			<div class="col-6 col-md-4 px-1">
+				<div class="card bg-info h-100">
 					<div class="card img-thumbnail bg-info">
 						<div class="card-body py-2 px-2">
 							<p class="card-text">Sign in from here if you have changed your device</p>
@@ -74,8 +74,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-6 col-md-4">
-				<div class="card bg-info">
+			<div class="col-6 col-md-4 px-1">
+				<div class="card bg-info h-100">
 					<div class="card img-thumbnail bg-info">
 						<div class="card-body py-2 px-2">
 							<p class="card-text">Sign out if you want to change user</p>
@@ -84,8 +84,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-6 col-md-4">
-				<div class="card bg-info">
+			<div class="col-6 col-md-4 px-1">
+				<div class="card bg-info h-100">
 					<div class="card img-thumbnail bg-info">
 						<div class="card-body py-2 px-2">
 							<p class="card-text">If you are new user, please register from here</p>
@@ -97,8 +97,8 @@
 		</div>
 	</div>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 		$('#carousel-1').carousel('cycle');
-</script>
+	</script>
 
 {% endblock %}
