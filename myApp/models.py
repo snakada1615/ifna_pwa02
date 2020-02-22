@@ -365,10 +365,10 @@ class Person(models.Model):
     )
 
     Nut_Choices = (
-        ('Stunting', 'Stunting'),
-        ('Wasting', 'Wasting'),
-        ('Anemia', 'Anemia'),
-        ('Other', 'Other'),
+        ('stunting', 'stunting'),
+        ('wasting', 'wasting'),
+        ('anemia', 'anemia'),
+        ('other', 'other'),
     )
 
     Nut_GROUP = (
