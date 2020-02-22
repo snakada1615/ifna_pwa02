@@ -183,6 +183,88 @@ class Diet_Plan1(TemplateView):
 
         return context
 
+class Diet_Plan2(TemplateView):
+    template_name = "myApp/Diet_Plan2.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['families'] = Person.objects.filter(
+            familyid=self.kwargs['familyid'])
+        context['name'] = Family.objects.get(id=self.kwargs['familyid'])
+        context['myid'] = Family.objects.get(id=self.kwargs['familyid']).id
+        context['country'] = Family.objects.get(
+            id=self.kwargs['familyid']).country
+        context['region'] = Family.objects.get(
+            id=self.kwargs['familyid']).region
+        context['nutrition_target'] = Family.objects.get(
+            id=self.kwargs['familyid']).nutrition_target
+        context['dri_e'] = Family.objects.get(id=self.kwargs['familyid']).energy
+        context['dri_p'] = Family.objects.get(
+            id=self.kwargs['familyid']).protein
+        context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
+        context['dri_f'] = Family.objects.get(id=self.kwargs['familyid']).fe
+
+        tmp_sex = ''
+        try:
+            data = Person.objects.filter(familyid=self.kwargs['familyid'])[0]
+            tmp_sex = Person.SEX_CHOICES[data.sex - 1][1]
+        except:
+            tmp_sex = 'no data'
+        tmp_age = ''
+        try:
+            data = Person.objects.filter(familyid=self.kwargs['familyid'])[0]
+            tmp_age = Person.AGE_CHOICES[data.age - 1][1]
+        except:
+            tmp_age = 'no data'
+        context['sex'] = tmp_sex
+        context['age'] = tmp_age
+
+        tmp = Crop.objects.filter(familyid=self.kwargs['familyid'])
+        crops = []
+        d = []
+        for tmp02 in tmp:
+            crops.append(tmp02.Food_name)
+            dd = {}
+            dd["row_sel"] = "0"
+            dd["Food_grp"] = tmp02.food_grp
+            dd["Food_name"] = tmp02.Food_name
+            dd["Energy"] = tmp02.protein
+            dd["Protein"] = tmp02.protein
+            dd["VITA_RAE"] = tmp02.vita
+            dd["FE"] = tmp02.fe
+            dd["row_filter"] = 100
+            dd["Weight"] = tmp02.food_wt
+            dd["food_item_id"] = tmp02.food_item_id
+            dd["portion_size"] = tmp02.portion_size
+            d.append(dd)
+        context['crop_list'] = crops
+        context['already_selected'] = d
+
+        # send selected crop by community ######
+        tmp = Family.objects.get(
+            id=self.kwargs['familyid']).country_test.AEZ_id
+        tmp01 = Crop_AEZ.objects.filter(AEZ_id=tmp)
+        d = []
+        for tmp02 in tmp01:
+            if (tmp02.myFCT.Food_name not in crops):
+                dd = {}
+                dd["row_sel"] = "0"
+                dd["Food_grp"] = tmp02.myFCT.Food_grp
+                dd["Food_name"] = tmp02.myFCT.Food_name
+                dd["Energy"] = tmp02.myFCT.Energy
+                dd["Protein"] = tmp02.myFCT.Protein
+                dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
+                dd["FE"] = tmp02.myFCT.FE
+                dd["row_filter"] = "0"
+                dd["Weight"] = "100"
+                dd["food_item_id"] = tmp02.myFCT.food_item_id
+                dd["portion_size"] = tmp02.myFCT.portion_size
+                d.append(dd)
+            context["myselected"] = d
+
+
+        return context
+
 
 class Person_new_UpdateView(LoginRequiredMixin, UpdateView):
     model = Person
@@ -469,30 +551,6 @@ class Crop_Feas_View(TemplateView):
 class Trial_View(TemplateView):
     template_name = "myApp/trial.html"
 
-    def get_context_data(self, **kwargs):
-
-        context = super().get_context_data(**kwargs)
-        context['name'] = Family.objects.get(id=self.kwargs['familyid'])
-
-        tmp = Family.objects.get(id=self.kwargs['familyid']).conv_crop_grow
-        crops = []
-        if ('-' in tmp):
-            for crop in tmp.split('-'):
-                crops.append(FCT.objects.get(food_item_id=crop).Food_name)
-        context['crop_list'] = crops
-
-        tmp01 = FCT.objects.all()
-        d = []
-        for tmp02 in tmp01:
-            dd = {}
-            dd["row_sel"] = "0"
-            dd["Food_grp"] = tmp02.Food_grp
-            dd["Food_name"] = tmp02.Food_name
-            dd["food_item_id"] = tmp02.food_item_id
-            d.append(dd)
-        context["mydata"] = d
-
-        return context
 
 
 def ChangeCow(request):

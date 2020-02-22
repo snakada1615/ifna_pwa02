@@ -22,6 +22,7 @@
     // グローバル変数の作成
     var selected_rows_id = []
     var jsonData = {{myselected|safe}};
+    var already_Selected = {{crop_list|safe}};
 
     getHTML_param = function () {
       var url_tmp = window.location.href.split('/');
