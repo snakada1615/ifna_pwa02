@@ -1318,9 +1318,15 @@ def funcTest(request):
     return HttpResponse(test)
 
 
+class SignUpForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'username', 'password1', 'password2')
+
 def register(request):
+
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
@@ -1335,7 +1341,7 @@ def register(request):
                           template_name="myApp/signup.html",
                           context={"form": form})
 
-    form = UserCreationForm
+    form = SignUpForm
     return render(request=request,
                   template_name="myApp/signup.html",
                   context={"form": form})
