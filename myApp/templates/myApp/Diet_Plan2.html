@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
 
   <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
-  <link rel="stylesheet" href="{% static 'css/fontawesome-stars.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fontawesome-apple.css' %}">
 
   <script>
     // URLパラメータの取得
@@ -57,7 +57,7 @@
 
     ////star rating/////
     $(function () {
-      $('#mystar').barrating({theme: 'fontawesome-stars'});
+      $('#mystar').barrating({theme: 'fontawesome-apple'});
     });
     ////////////
 
@@ -117,7 +117,7 @@
           getHTML_param();
 
           //////////////////add filtering dropdown list
-          this.api().columns([6]).every(function () {
+          this.api().columns([7]).every(function () {
             var column = this;
             var select = $('<select><option value=""></option></select>').appendTo($('#myFilter')).on('change', function () {
               var val = $.fn.dataTable.util.escapeRegex($(this).val());
