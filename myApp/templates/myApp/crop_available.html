@@ -17,7 +17,7 @@
     // グローバル変数の作成
     var selected_rows_id = []
     var selected_org = {{myselected|safe}};
-    var jsonData = {{mydata|safe}};
+    var jsonData = {{dat_mycrop|safe}};
 
     getHTML_param = function () {
       var url_tmp = window.location.href.split('/');
@@ -42,7 +42,7 @@
 
     //////////////////add selected rows to text box
     $(document).ready(function () {
-      var mytable = $('#croplist').DataTable({
+      var mytable = $('#tbl_crop_aez').DataTable({
         data: jsonData,
         "pageLength": 50,
         "columns": [
@@ -93,11 +93,11 @@
       }); //////mytable setup complete/////
 
       //////////////////crop calendar edit function////
-      $('#selected_crops_tbl').on("click", "td", function () {
+      $('#tbl_crop_community').on("click", "td", function () {
         let tmp = Number($(this).text());
         let x = $(this)[0].cellIndex;
         let y = $(this).closest('tr').index();
-        let tmp_food_id = $('#selected_crops_tbl tr').eq(y).children('td').eq(13).text();
+        let tmp_food_id = $('#tbl_crop_community tr').eq(y).children('td').eq(13).text();
         tmp = (tmp + 1) % 4;
         switch (tmp) {
           case 0:
@@ -132,14 +132,14 @@
       });
 
       //////////////////on click -> crop list /
-      $('#croplist tbody').on('click', 'tr', function () {
+      $('#tbl_crop_aez tbody').on('click', 'tr', function () {
         $(this).toggleClass('selected');
         let res = get_selected_food();
         let d = [];
         mytable.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
           let data = this.data();
           let dd = {};
-          dd["row_sel"] = "0";
+          dd["row_sel"] = "1";
           dd["Food_grp"] = data.Food_grp;
           dd["Food_name"] = data.Food_name;
           dd["food_item_id"] = data.food_item_id;
@@ -219,12 +219,12 @@
         return res;
       }
 
-      //////////////////re-draw all selected raws into #croplist
+      //////////////////re-draw all selected raws into #tbl_crop_aez
       function drawSelected2(mylist) {
         if (mylist.length == 0)
           return;
 
-        jQuery('#selected_crops_tbl tr').remove();
+        jQuery('#tbl_crop_community tr').remove();
         selected_rows_id.length = 0;
         cr = '<tr><th class="px-0 text-sm-center">name</th><th class="px-0">01</th><th class="px-0">02</th><th class="px-0">03</th><th class="px-0">04</th><th class="px-0">05</th><th class="px-0">06</th><th class="px-0">07</th><th class="px-0">08</th><th class="' +
             'px-0">09</th><th class="px-0">10</th><th class="px-0">11</th><th class="px-0">12</th><th class="px-0 hide_dom">food id</th></tr>';
@@ -246,7 +246,7 @@
           cr += '<td class="px-0 text-sm-center hide_dom">' + myFamily + '</td>';
           cr += '</tr>';
         };
-        jQuery('#selected_crops_tbl').append(cr);
+        jQuery('#tbl_crop_community').append(cr);
         return;
       }
 
@@ -288,7 +288,7 @@
       //////////////////get data from table
       function getTblData() {
         let d = [];
-        $('#selected_crops_tbl tr').each(function (i, e) {
+        $('#tbl_crop_community tr').each(function (i, e) {
           let dd = {};
           let myFCT_id
           if (i != 0) {
@@ -365,7 +365,7 @@
             </p>
 
             <div class="table-responsive">
-              <div id="selected_crops_tbl" class="table table-bordered table-striped mx-0 px-0"></div>
+              <div id="tbl_crop_community" class="table table-bordered table-striped mx-0 px-0"></div>
               <tr>
                 <td></td>
                 <td></td>
@@ -402,7 +402,7 @@
   <div class="container" style="max-width: 540px;">
     <div class="my-2" id="newSearchPlace">Food group:
     </div>
-    <table id="croplist" class="display compact" cellspacing="0" width="100%">
+    <table id="tbl_crop_aez" class="display compact" cellspacing="0" width="100%">
       <thead>
         <tr>
           <th>Group</th>

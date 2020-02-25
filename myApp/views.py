@@ -81,18 +81,28 @@ class CropAvailable(TemplateView):
         context['crop_list'] = crops
 
         # send filtered crop by AEZ ######
-        tmp = Family.objects.get(
-            id=self.kwargs['familyid']).country_test.AEZ_id
-        tmp01 = Crop_AEZ.objects.filter(AEZ_id=tmp)
+        tmp01 = myCrop.objects.filter(myFamily_id = self.kwargs['familyid'])
         d = []
         for tmp02 in tmp01:
             dd = {}
-            dd["row_sel"] = "0"
+            dd["row_sel"] = tmp02.selected_status
             dd["Food_grp"] = tmp02.myFCT.Food_grp
             dd["Food_name"] = tmp02.myFCT.Food_name
             dd["food_item_id"] = tmp02.myFCT.food_item_id
+            dd["m1"] = tmp02.m1
+            dd["m2"] = tmp02.m2
+            dd["m3"] = tmp02.m3
+            dd["m4"] = tmp02.m4
+            dd["m5"] = tmp02.m5
+            dd["m6"] = tmp02.m6
+            dd["m7"] = tmp02.m7
+            dd["m8"] = tmp02.m8
+            dd["m9"] = tmp02.m9
+            dd["m10"] = tmp02.m10
+            dd["m11"] = tmp02.m11
+            dd["m12"] = tmp02.m12
             d.append(dd)
-        context["mydata"] = d
+        context["dat_mycrop"] = d
 
         # send selected crop by community ######
         tmp01 = myCrop.objects.filter(myFamily_id=self.kwargs['familyid'])
@@ -735,6 +745,18 @@ class Family_CreateView(LoginRequiredMixin, CreateView):
             p = tmp.update(**keys)
 
 #        keys_all.update(**keys)
+# ---------------------
+# --------------------update myCrop-------------------------
+        tmp_aez = Countries.objects.filter(
+            GID_2=form.instance.province).first().AEZ_id
+        tmp = Crop_AEZ.objects.filter(AEZ_id = tmp_aez)
+        if tmp.count() != 0:
+            for tmp01 in tmp:
+                keys = {}
+                keys['myFamily'] = Family.objects.get(id = form.instance.pk)
+                keys['myFCT'] = FCT.objects.get(food_item_id = tmp01.myFCT.food_item_id)
+                keys['selected_status'] = 0
+                p = myCrop.objects.create(**keys)
 # ---------------------
         form.instance.created_by = self.request.user
         form.instance.country_test = Countries.objects.filter(
