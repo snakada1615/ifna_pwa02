@@ -18,6 +18,11 @@
     var selected_rows_id = []
     var selected_org = {{myselected|safe}};
     var jsonData = {{dat_mycrop|safe}};
+    var jsonData2 = jsonData.filter(function (item, index) {
+      if (item.row_sel == '1')
+        return true;
+      }
+    );
 
     getHTML_param = function () {
       var url_tmp = window.location.href.split('/');
@@ -40,11 +45,11 @@
       return tmp1;
     }
 
-    //////////////////add selected rows to text box
+    //////////////////add rows to tbl_crop_aez
     $(document).ready(function () {
       var mytable = $('#tbl_crop_aez').DataTable({
         data: jsonData,
-        "pageLength": 50,
+        "pageLength": 20,
         "columns": [
           {
             "data": "row_sel"
@@ -52,6 +57,32 @@
             "data": "Food_grp"
           }, {
             "data": "Food_name"
+          }, {
+            "data": "m1"
+          }, {
+            "data": "m2"
+          }, {
+            "data": "m3"
+          }, {
+            "data": "m4"
+          }, {
+            "data": "m5"
+          }, {
+            "data": "m6"
+          }, {
+            "data": "m7"
+          }, {
+            "data": "m8"
+          }, {
+            "data": "m9"
+          }, {
+            "data": "m10"
+          }, {
+            "data": "m11"
+          }, {
+            "data": "m12"
+          }, {
+            "data": "food_item_id"
           }
         ],
         "columnDefs": [
@@ -89,261 +120,313 @@
             });
           });
 
+          //////////////////on click -> crop list /
+          $('#tbl_crop_aez tbody').on('click', 'tr', function () {
+            $(this).toggleClass('selected');
+            if ($(this).hasClass('selected')) {
+              let myR = mytable.row(this).index();
+
+              // prepare zero value
+              let d = [];
+              for (var i = 3; i < 15; i++) {
+                if (mytable.cell(myR, i).data() == 0) {
+                  d.push('');
+                } else {
+                  d.push(mytable.cell(myR, i).data());
+                }
+              }
+
+              mytable2.row.add({
+                "row_sel": 1,
+                "Food_grp": mytable.cell(myR, 1).data(),
+                "Food_name": mytable.cell(myR, 2).data(),
+                "m1": d[0],
+                "m2": d[1],
+                "m3": d[2],
+                "m4": d[3],
+                "m5": d[4],
+                "m6": d[5],
+                "m7": d[6],
+                "m8": d[7],
+                "m9": d[8],
+                "m10": d[9],
+                "m11": d[10],
+                "m12": d[11],
+                "food_item_id": mytable.cell(myR, 15).data()
+              }).draw();
+              $(this).css("background-color", "");
+
+            } else {
+              let fn = $(this).children('td').eq(1).text();
+              // Find indexes of rows which have `Yes` in the second column
+              let indexes = mytable2.rows().eq(0).filter(function (rowIdx) {
+                return mytable2.cell(rowIdx, 2).data() === fn
+                  ? true
+                  : false;
+              });
+              mytable2.row(indexes[0]).remove().draw();
+            }
+          });
+
+          //////////////////on click -> crop list /
+          $('#tbl_crop_community2').on('click', 'td', function () {
+            if (mytable2.column(this).index() > 2) {
+              let myRow = mytable2.row(this).index();
+              let myCol = mytable2.column(this).index();
+
+              let tmp = Number($(this).text());
+              tmp = (tmp + 1) % 4;
+              switch (tmp) {
+                case 0:
+                  $(this).css("background-color", "");
+                  tmp = "";
+                  break;
+                case 1:
+                  $(this).css("background-color", "red");
+                  $(this).css("color", "red");
+                  break;
+                case 2:
+                  $(this).css("background-color", "green");
+                  $(this).css("color", "green");
+                  break;
+                case 3:
+                  $(this).css("background-color", "blue");
+                  $(this).css("color", "blue");
+                  break;
+              }
+              mytable2.cell(myRow, myCol).data(tmp);
+            }
+          });
+
+          //////////////send crop list to django////
+          $("#save_button").click(function () {
+            let hostUrl = myRoot + 'registCropAvail/';
+            let mydat = getTblData();
+
+            //  mydat = {'myJson': [{"abc": 3, "ABCS": 3}, {"def": 4, "DEFG": 4}]}
+            console.log(mydat);
+            Set_CRSF();
+            sendJson(mydat, hostUrl);
+          }); ///////////////////
+
+          //////////////////get data from table
+          function getTblData() {
+            let d = [];
+            for (let i = 0; i < mytable2.rows().count(); i++) {
+              let dd = {};
+              for (let j = 0; j < 16; j++) {
+                let tmp = mytable2.cell(i, j).data();
+                switch (true) {
+                  case j == 0:
+                    dd["selected_status"] = tmp;
+                    break;
+                  case j > 2 && j < 15:
+                    dd["m" + String(j - 2)] = tmp;
+                    break;
+                  case j == 15:
+                    dd["myFCT_id"] = tmp;
+                    break;
+                }
+              }
+              dd["myFamily_id"] = {{familyid}};
+              d.push(dd);
+            }
+            return {"myJson": d};
+          };
+
+          // /// initialize myTable/// drawSelected2(selected_org);  var res = get_selected_food();    mytable.rows().every(function (rowIdx, tableLoop, rowLoop) {      var data = this.data();      if (res.indexOf(data.food_item_id) >= 0) {
+
         } ////// finish initcomplete//////////
       }); //////mytable setup complete/////
 
-      //////////////////crop calendar edit function////
-      $('#tbl_crop_community').on("click", "td", function () {
-        let tmp = Number($(this).text());
-        let x = $(this)[0].cellIndex;
-        let y = $(this).closest('tr').index();
-        let tmp_food_id = $('#tbl_crop_community tr').eq(y).children('td').eq(13).text();
-        tmp = (tmp + 1) % 4;
-        switch (tmp) {
-          case 0:
-            $(this).css("background-color", "");
-            tmp = "";
-            break;
-          case 1:
-            $(this).css("background-color", "red");
-            $(this).css("color", "red");
-            break;
-          case 2:
-            $(this).css("background-color", "yellow");
-            $(this).css("color", "yellow");
-            break;
-          case 3:
-            $(this).css("background-color", "blue");
-            $(this).css("color", "blue");
-            break;
-        }
-        $(this).html(tmp);
-        let res = get_selected_food();
-        let tmp_id = res.indexOf(Number(tmp_food_id));
-        /*
-        console.log('tr: ' + y + ', td:' + x);
-        console.log('tmp_food_id: ' + tmp_food_id);
-        console.log('res: ' + res.join('-'));
-        console.log('tmp_id: ' + tmp_id);
-        console.log('halo: ' + selected_org[tmp_id]['m1']);
-        */
-        selected_org[tmp_id]['m' + String(x)] = tmp;
-
-      });
-
-      //////////////////on click -> crop list /
-      $('#tbl_crop_aez tbody').on('click', 'tr', function () {
-        $(this).toggleClass('selected');
-        let res = get_selected_food();
-        let d = [];
-        mytable.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
-          let data = this.data();
-          let dd = {};
-          dd["row_sel"] = "1";
-          dd["Food_grp"] = data.Food_grp;
-          dd["Food_name"] = data.Food_name;
-          dd["food_item_id"] = data.food_item_id;
-          let tmp_id = res.indexOf(data.food_item_id);
-          //          console.log('tmp_id:' + tmp_id + ', food_id:' + data.food_item_id);
-          if (tmp_id >= 0) {
-            dd["m1"] = selected_org[tmp_id].m1;
-            dd["m2"] = selected_org[tmp_id].m2;
-            dd["m3"] = selected_org[tmp_id].m3;
-            dd["m4"] = selected_org[tmp_id].m4;
-            dd["m5"] = selected_org[tmp_id].m5;
-            dd["m6"] = selected_org[tmp_id].m6;
-            dd["m7"] = selected_org[tmp_id].m7;
-            dd["m8"] = selected_org[tmp_id].m8;
-            dd["m9"] = selected_org[tmp_id].m9;
-            dd["m10"] = selected_org[tmp_id].m10;
-            dd["m11"] = selected_org[tmp_id].m11;
-            dd["m12"] = selected_org[tmp_id].m12;
-          } else {
-            dd["m1"] = 0;
-            dd["m2"] = 0;
-            dd["m3"] = 0;
-            dd["m4"] = 0;
-            dd["m5"] = 0;
-            dd["m6"] = 0;
-            dd["m7"] = 0;
-            dd["m8"] = 0;
-            dd["m9"] = 0;
-            dd["m10"] = 0;
-            dd["m11"] = 0;
-            dd["m12"] = 0;
+      //////////////////add selected rows to tbl_crop_community2
+      var mytable2 = $('#tbl_crop_community2').DataTable({
+        data: jsonData2,
+        "scrollX": true,
+        "scrollCollapse": true,
+        "paging": false,
+        "ordering": false,
+        "searching": false,
+        "columns": [
+          {
+            "data": "row_sel"
+          }, {
+            "data": "Food_grp"
+          }, {
+            "data": "Food_name"
+          }, {
+            "data": "m1"
+          }, {
+            "data": "m2"
+          }, {
+            "data": "m3"
+          }, {
+            "data": "m4"
+          }, {
+            "data": "m5"
+          }, {
+            "data": "m6"
+          }, {
+            "data": "m7"
+          }, {
+            "data": "m8"
+          }, {
+            "data": "m9"
+          }, {
+            "data": "m10"
+          }, {
+            "data": "m11"
+          }, {
+            "data": "m12"
+          }, {
+            "data": "food_item_id"
           }
-          d.push(dd);
-        });
-        selected_org = d;
-        drawSelected2(selected_org);
+        ],
+        "columnDefs": [
+          {
+            targets: [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            visible: true
+          }, {
+            targets: '_all',
+            visible: false
+          }
+        ]
+      }); //////mytable setup complete/////
+    }); ////// $(document).ready complete/////
+
+    ////// get selected food list /
+    function get_selected_food() {
+      var res = [];
+      selected_org.map(function (i, j) {
+        let sel_id = i["food_item_id"];
+        res.push(sel_id);
       });
-
-      /////////////////// initialize myTable///
-      drawSelected2(selected_org);
-
-      var res = get_selected_food();
-
-      mytable.rows().every(function (rowIdx, tableLoop, rowLoop) {
-        var data = this.data();
-        if (res.indexOf(data.food_item_id) >= 0) {
-          this.select();
-        }
-      });
-
-      ////// get selected food list /
-      function get_selected_food() {
-        var res = [];
-        selected_org.map(function (i, j) {
-          let sel_id = i["food_item_id"];
-          res.push(sel_id);
-        });
-        return res;
+      return res;
+    }
+    //////////////set cell color////////////////
+    function SetCellColor(cNum) {
+      switch (cNum) {
+        case 0:
+          $(this).css("background-color", "");
+          res = '<td class="px-0 text-sm-center"></td>';
+          break;
+        case 1:
+          res = '<td class="px-0 text-sm-center" style ="background-color:red"><font color="red">1</font></td>';
+          break;
+        case 2:
+          res = '<td class="px-0 text-sm-center" style ="background-color:yellow"><font color="yellow">2</font></td>';
+          break;
+        case 3:
+          res = '<td class="px-0 text-sm-center" style ="background-color:blue"><font color="blue">3</font></td>';
+          break;
       }
-      //////////////set cell color////////////////
-      function SetCellColor(cNum) {
-        switch (cNum) {
-          case 0:
-            $(this).css("background-color", "");
-            res = '<td class="px-0 text-sm-center"></td>';
-            break;
-          case 1:
-            res = '<td class="px-0 text-sm-center" style ="background-color:red"><font color="red">1</font></td>';
-            break;
-          case 2:
-            res = '<td class="px-0 text-sm-center" style ="background-color:yellow"><font color="yellow">2</font></td>';
-            break;
-          case 3:
-            res = '<td class="px-0 text-sm-center" style ="background-color:blue"><font color="blue">3</font></td>';
-            break;
-        }
-        return res;
-      }
+      return res;
+    }
 
-      //////////////////re-draw all selected raws into #tbl_crop_aez
-      function drawSelected2(mylist) {
-        if (mylist.length == 0)
-          return;
-
-        jQuery('#tbl_crop_community tr').remove();
-        selected_rows_id.length = 0;
-        cr = '<tr><th class="px-0 text-sm-center">name</th><th class="px-0">01</th><th class="px-0">02</th><th class="px-0">03</th><th class="px-0">04</th><th class="px-0">05</th><th class="px-0">06</th><th class="px-0">07</th><th class="px-0">08</th><th class="' +
-            'px-0">09</th><th class="px-0">10</th><th class="px-0">11</th><th class="px-0">12</th><th class="px-0 hide_dom">food id</th></tr>';
-        for (var data in mylist) {
-          cr += '<tr><td class="px-0 text-sm-center">' + mylist[data].Food_name + '</td>';
-          cr += SetCellColor(mylist[data].m1);
-          cr += SetCellColor(mylist[data].m2);
-          cr += SetCellColor(mylist[data].m3);
-          cr += SetCellColor(mylist[data].m4);
-          cr += SetCellColor(mylist[data].m5);
-          cr += SetCellColor(mylist[data].m6);
-          cr += SetCellColor(mylist[data].m7);
-          cr += SetCellColor(mylist[data].m8);
-          cr += SetCellColor(mylist[data].m9);
-          cr += SetCellColor(mylist[data].m10);
-          cr += SetCellColor(mylist[data].m11);
-          cr += SetCellColor(mylist[data].m12);
-          cr += '<td class="px-0 text-sm-center hide_dom">' + mylist[data].food_item_id + '</td>';
-          cr += '<td class="px-0 text-sm-center hide_dom">' + myFamily + '</td>';
-          cr += '</tr>';
-        };
-        jQuery('#tbl_crop_community').append(cr);
+    //////////////////re-draw all selected raws into #tbl_crop_aez
+    function drawSelected2(mylist) {
+      if (mylist.length == 0)
         return;
-      }
 
-      ////// csrf_tokenの取得に使う//////////////
-      function getCookie(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-          var cookies = document.cookie.split(';');
-          for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-              break;
-            }
+      jQuery('#tbl_crop_community tr').remove();
+      selected_rows_id.length = 0;
+      cr = '<tr><th class="px-0 text-sm-center">name</th><th class="px-0">01</th><th class="px-0">02</th><th class="px-0">03</th><th class="px-0">04</th><th class="px-0">05</th><th class="px-0">06</th><th class="px-0">07</th><th class="px-0">08</th><th class="' +
+          'px-0">09</th><th class="px-0">10</th><th class="px-0">11</th><th class="px-0">12</th><th class="px-0 hide_dom">food id</th></tr>';
+      for (var data in mylist) {
+        cr += '<tr><td class="px-0 text-sm-center">' + mylist[data].Food_name + '</td>';
+        cr += SetCellColor(mylist[data].m1);
+        cr += SetCellColor(mylist[data].m2);
+        cr += SetCellColor(mylist[data].m3);
+        cr += SetCellColor(mylist[data].m4);
+        cr += SetCellColor(mylist[data].m5);
+        cr += SetCellColor(mylist[data].m6);
+        cr += SetCellColor(mylist[data].m7);
+        cr += SetCellColor(mylist[data].m8);
+        cr += SetCellColor(mylist[data].m9);
+        cr += SetCellColor(mylist[data].m10);
+        cr += SetCellColor(mylist[data].m11);
+        cr += SetCellColor(mylist[data].m12);
+        cr += '<td class="px-0 text-sm-center hide_dom">' + mylist[data].food_item_id + '</td>';
+        cr += '<td class="px-0 text-sm-center hide_dom">' + myFamily + '</td>';
+        cr += '</tr>';
+      };
+      jQuery('#tbl_crop_community').append(cr);
+      return;
+    }
+
+    ////// csrf_tokenの取得に使う//////////////
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = jQuery.trim(cookies[i]);
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
           }
         }
-        return cookieValue;
       }
+      return cookieValue;
+    }
 
-      function csrfSafeMethod(method) {
-        // these HTTP methods do not require CSRF protection
-        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-      }
+    function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
 
-      function Set_CRSF() {
-        var csrf_token = getCookie("csrftoken");
-        $.ajaxSetup({
-          crossDomain: false, // obviates need for sameOrigin test
-          beforeSend: function (xhr, settings) {
-            if (!csrfSafeMethod(settings.type)) {
-              xhr.setRequestHeader("X-CSRFToken", csrf_token);
-            }
+    function Set_CRSF() {
+      var csrf_token = getCookie("csrftoken");
+      $.ajaxSetup({
+        crossDomain: false, // obviates need for sameOrigin test
+        beforeSend: function (xhr, settings) {
+          if (!csrfSafeMethod(settings.type)) {
+            xhr.setRequestHeader("X-CSRFToken", csrf_token);
           }
-        });
-        return;
-      }
+        }
+      });
+      return;
+    }
 
-      //////////////////get data from table
-      function getTblData() {
-        let d = [];
-        $('#tbl_crop_community tr').each(function (i, e) {
-          let dd = {};
-          let myFCT_id
-          if (i != 0) {
-            $(this).find('td').each(function (j, el) {
-              let tmp = $(this).text();
-              if (tmp == "") {
-                tmp = '0'
-              };
-              switch (true) {
-                case j > 0 && j < 13:
-                  dd['m' + String(j)] = tmp;
-                  break;
-                case j == 13:
-                  dd['myFCT_id'] = tmp;
-                  break;
-                case j == 14:
-                  dd['myFamily_id'] = tmp;
-                  break;
-              }
-            });
-            d.push(dd);
-          }
-        });
-        return {"myJson": d};
-      };
-      //////////////////sendJson////
-      function sendJson(myjson, hostUrl) {
-        $.ajax({
-          type: 'post',
-          url: hostUrl,
-          data: JSON.stringify(myjson),
-          contentType: 'application/JSON',
-          dataType: 'JSON',
-          scriptCharset: 'utf-8'
-        }).then(
-          // Success
-          function (response) {
-            //alert("success"); $("#response").html(JSON.stringify(response));
-          },
-          // error
-          function (response) {
-            alert("saved");
-          //  alert(JSON.stringify(response));
-          },
-        );
-      };
-      //////////////send crop list to django////
-      $("#save_button").click(function () {
-        var hostUrl = myRoot + 'registCropAvail/';
-        var mydat = getTblData();
-        Set_CRSF();
-//        alert(JSON.stringify(mydat));
-        sendJson(mydat, hostUrl);
-      }); ///////////////////
-    }); ////finish $(document).ready///////////////////
+    //////////////////sendJson////
+    function sendJson(myjson, hostUrl) {
+      $.ajax({
+        type: 'post',
+        url: hostUrl,
+        data: myjson,
+        contentType: 'application/JSON',
+        dataType: 'JSON',
+        scriptCharset: 'utf-8',
+        success: function (response) {
+          alert("success");
+          $("#response").html(JSON.stringify(response));
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          alert("saved");
+  				console.log(jqXHR.status); //例：404
+  				console.log(textStatus); //例：error
+  				console.log(errorThrown); //例：NOT FOUND
+          console.log(JSON.stringify(myjson)); //例：NOT FOUND
+          console.log(myjson); //例：NOT FOUND
+        }
+      });
+    };
+    ////scfript end///////////////////
   </script>
 
   <style>
@@ -355,70 +438,79 @@
   <div class="container text-white" style="max-width:570px;">
     <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
       <div class="row">
+        <div class="col-12"></div>
+      </div>
+      <div class="row">
         <div class="col-12">
           <div class="card-body py-0 px-0">
             <p class="card-title text-warning my-0">
               availability
               <span style="color:red">■</span>: market&prod
-              <span style="color:yellow">■</span>: prod only
+              <span style="color:green">■</span>: prod only
               <span style="color:blue">■</span>: market only
             </p>
-
-            <div class="table-responsive">
-              <div id="tbl_crop_community" class="table table-bordered table-striped mx-0 px-0"></div>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="hide_dom"></td>
-                <td class="hide_dom"></td>
-              </tr>
+            <table id="tbl_crop_community2" class="display compact mx-0 px-0 text-dark" cellspacing="0">
+              <thead>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td colspan="12" align="center" style="width:400px;">month</td>
+                  <tr>
+                    <th>s</th>
+                    <th>grp</th>
+                    <th>Name</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                    <th>10</th>
+                    <th>11</th>
+                    <th>12</th>
+                    <th>id</th>
+                  </tr>
+                </thead>
+              </table>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <span>
-          <a id="save_button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
-          <a class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" href="{% url  'index02' %}">back</a>
-        </span>
+      <div class="row">
+        <div class="col-12">
+          <span>
+            <a id="save_button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
+            <a class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" href="{% url  'index02' %}">back</a>
+          </span>
+        </div>
       </div>
     </div>
-  </div>
 
-  <hr>
-  <div class="container" style="max-width: 540px;">
-    <div class="my-2" id="newSearchPlace">Food group:
+    <hr>
+    <div class="container" style="max-width: 540px;">
+      <div class="my-2" id="newSearchPlace">Food group:
+      </div>
+      <table id="tbl_crop_aez" class="display compact" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>Group</th>
+            <th>Group</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+
+        <tfoot>
+          <tr>
+            <th>Group</th>
+            <th>Group</th>
+            <th>Name</th>
+          </tr>
+        </tfoot>
+      </table>
     </div>
-    <table id="tbl_crop_aez" class="display compact" cellspacing="0" width="100%">
-      <thead>
-        <tr>
-          <th>Group</th>
-          <th>Group</th>
-          <th>Name</th>
-        </tr>
-      </thead>
 
-      <tfoot>
-        <tr>
-          <th>Group</th>
-          <th>Group</th>
-          <th>Name</th>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-
-{% endblock %}
+  {% endblock %}

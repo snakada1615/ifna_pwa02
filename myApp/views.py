@@ -4,7 +4,6 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.core import serializers
-import json
 from django.http.response import JsonResponse
 
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
@@ -18,31 +17,43 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User
 
+# python component
+import json
+
+# python logging component
+import logging
+from datetime import datetime
+date_name = datetime.now().strftime("%Y%m%d-%H%M%S")
+logdir = r"C:\web-app\ifna_pwa03\myApp\templates\myApp\log"
+file_name = logdir + "\\" + date_name + "_test.log"
+logging.basicConfig(filename=file_name,level=logging.INFO,format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+
 # for 正規表現チェック
 import re
-import logging
-#from tkinter import messagebox
-
 
 class aboutNFA(TemplateView):
     template_name = "myApp/whatisNFA.html"
 
-def registCropAvail(request):
 
-    json_str = request.body.decode("utf-8")
-    json_data = json.loads(json_str)
+def registCropAvail(request):
+    #json_str = request.body.decode("utf-8")
+    json_data = json.loads(request.body)
     tmp_myFamily_id = 0
     tmp_newcrop_list = []
 
     for myrow in json_data['myJson']:
         newcrop = {}
-        for j in range(1, 13):
-            newcrop['m' + str(j)] = myrow['m' + str(j)]
         newcrop['myFCT'] = FCT.objects.get(food_item_id=myrow['myFCT_id'])
         newcrop['myFamily'] = Family.objects.get(id=myrow['myFamily_id'])
+        newcrop['selected_status'] = myrow['selected_status']
+        for j in range(1, 13):
+            tmpM = myrow['m' + str(j)]
+            if tmpM == '':
+                tmpM = '0'
+            newcrop['m' + str(j)] = tmpM
 
-        tmp_myFamily_id = myrow['myFamily_id'] # 後で使う(part 2)
-        tmp_newcrop_list.append(myrow['myFCT_id']) #後で使う(part 2)
+        tmp_myFamily_id = myrow['myFamily_id']  # 後で使う(part 2)
+        tmp_newcrop_list.append(myrow['myFCT_id'])  # 後で使う(part 2)
 
         tmp = myCrop.objects.filter(myFCT=myrow['myFCT_id'])
         if tmp.count() == 0:
@@ -51,18 +62,23 @@ def registCropAvail(request):
             p = tmp.update(**newcrop)
 
     # (part 2) delete non-selected records
-    tmp = myCrop.objects.filter(myFamily_id = tmp_myFamily_id)
+    tmp = myCrop.objects.filter(myFamily_id=tmp_myFamily_id)
+    logging.info(tmp_newcrop_list)
     for rec in tmp:
-        if str(rec.myFCT.food_item_id) not in tmp_newcrop_list:
-            rec.selected_status = 9999
+        if int(rec.myFCT.food_item_id) not in tmp_newcrop_list:
+            rec.selected_status = 0
             rec.save()
-    myCrop.objects.filter(selected_status=9999).delete()
+
     myProgress.objects.filter(user_id=request.user.id).update(
         conv_crop_grow_list='1')
 
-
-    myURL = reverse_lazy('index02')
-    return HttpResponseRedirect(myURL)
+    #myURL = reverse_lazy('index02')
+    if request.method == 'POST':
+        logging.info('こっちかな？')
+        return redirect(str('index02'))
+    else:
+        logging.info('それとも？')
+        return render(request, 'index02')
 
 
 class CropAvailable(TemplateView):
@@ -81,7 +97,7 @@ class CropAvailable(TemplateView):
         context['crop_list'] = crops
 
         # send filtered crop by AEZ ######
-        tmp01 = myCrop.objects.filter(myFamily_id = self.kwargs['familyid'])
+        tmp01 = myCrop.objects.filter(myFamily_id=self.kwargs['familyid'])
         d = []
         for tmp02 in tmp01:
             dd = {}
@@ -147,7 +163,8 @@ class Diet_Plan1(TemplateView):
             id=self.kwargs['familyid']).region
         context['nutrition_target'] = Family.objects.get(
             id=self.kwargs['familyid']).nutrition_target
-        context['dri_e'] = Family.objects.get(id=self.kwargs['familyid']).energy
+        context['dri_e'] = Family.objects.get(
+            id=self.kwargs['familyid']).energy
         context['dri_p'] = Family.objects.get(
             id=self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
@@ -195,8 +212,8 @@ class Diet_Plan1(TemplateView):
         context["myselected"] = d
         context['myuser'] = self.request.user
 
-
         return context
+
 
 class Diet_Plan2(TemplateView):
     template_name = "myApp/Diet_Plan2.html"
@@ -213,7 +230,8 @@ class Diet_Plan2(TemplateView):
             id=self.kwargs['familyid']).region
         context['nutrition_target'] = Family.objects.get(
             id=self.kwargs['familyid']).nutrition_target
-        context['dri_e'] = Family.objects.get(id=self.kwargs['familyid']).energy
+        context['dri_e'] = Family.objects.get(
+            id=self.kwargs['familyid']).energy
         context['dri_p'] = Family.objects.get(
             id=self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
@@ -571,12 +589,12 @@ class Trial_View(TemplateView):
     template_name = "myApp/trial.html"
 
 
-
 def ChangeCow(request):
     tmp = FCT.objects.get(Food_name="Butter, from cow's milk (without salt)")
     tmp.VITB6C = 0
     tmp.Food_name = "Butter, from cow-s milk (without salt)"
     tmp.save()
+
 
 def ChangeDRI(request):
     tmp1 = DRI_aggr.objects.all()
@@ -590,6 +608,7 @@ def ChangeDRI(request):
         if tmp2.id == 4:
             tmp2.energy = 2677
         tmp2.save()
+
 
 def UpdateAEZ(request):
     import random
@@ -723,6 +742,7 @@ class Family_DeleteView(LoginRequiredMixin, DeleteView):
         context['myuser'] = self.request.user
         return context
 
+
 class Family_CreateView(LoginRequiredMixin, CreateView):
     model = Family
     form_class = FamilyForm
@@ -749,12 +769,13 @@ class Family_CreateView(LoginRequiredMixin, CreateView):
 # --------------------update myCrop-------------------------
         tmp_aez = Countries.objects.filter(
             GID_2=form.instance.province).first().AEZ_id
-        tmp = Crop_AEZ.objects.filter(AEZ_id = tmp_aez)
+        tmp = Crop_AEZ.objects.filter(AEZ_id=tmp_aez)
         if tmp.count() != 0:
             for tmp01 in tmp:
                 keys = {}
-                keys['myFamily'] = Family.objects.get(id = form.instance.pk)
-                keys['myFCT'] = FCT.objects.get(food_item_id = tmp01.myFCT.food_item_id)
+                keys['myFamily'] = Family.objects.get(id=form.instance.pk)
+                keys['myFCT'] = FCT.objects.get(
+                    food_item_id=tmp01.myFCT.food_item_id)
                 keys['selected_status'] = 0
                 p = myCrop.objects.create(**keys)
 # ---------------------
@@ -1098,7 +1119,8 @@ class Crop_CreateView(LoginRequiredMixin, CreateView):
         myid = self.kwargs['familyid']
         context = super().get_context_data(**kwargs)
         context['myid'] = myid
-        context['dri_e'] = Family.objects.get(id=self.kwargs['familyid']).energy
+        context['dri_e'] = Family.objects.get(
+            id=self.kwargs['familyid']).energy
         context['dri_p'] = Family.objects.get(
             id=self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
@@ -1153,7 +1175,8 @@ class Crop_UpdateView(LoginRequiredMixin, UpdateView):
         context['myid'] = myid
         context['myCal'] = myitem
         context['pk'] = self.kwargs['pk']
-        context['dri_e'] = Family.objects.get(id=self.kwargs['familyid']).energy
+        context['dri_e'] = Family.objects.get(
+            id=self.kwargs['familyid']).energy
         context['dri_p'] = Family.objects.get(
             id=self.kwargs['familyid']).protein
         context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
@@ -1363,6 +1386,7 @@ class UserEditForm(UserChangeForm):
         model = User
         fields = ('first_name', 'last_name', 'username')
 
+
 class UserEdit(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserEditForm
@@ -1376,10 +1400,10 @@ class UserEdit(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         if form.is_valid():
-            user = form.save() # formの情報を保存
-            login(self.request, user) # 認証
+            user = form.save()  # formの情報を保存
+            login(self.request, user)  # 認証
             self.object = user
-            return HttpResponseRedirect(self.get_success_url()) # リダイレクト
+            return HttpResponseRedirect(self.get_success_url())  # リダイレクト
 
         else:
             for msg in form.error_messages:
@@ -1393,7 +1417,9 @@ class UserEdit(LoginRequiredMixin, UpdateView):
 class SignUpForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'password1', 'password2')
+        fields = ('first_name', 'last_name',
+                  'username', 'password1', 'password2')
+
 
 class SignUp(CreateView):
     form_class = SignUpForm
@@ -1407,10 +1433,10 @@ class SignUp(CreateView):
 
     def form_valid(self, form):
         if form.is_valid():
-            user = form.save() # formの情報を保存
-            login(self.request, user) # 認証
+            user = form.save()  # formの情報を保存
+            login(self.request, user)  # 認証
             self.object = user
-            return HttpResponseRedirect(self.get_success_url()) # リダイレクト
+            return HttpResponseRedirect(self.get_success_url())  # リダイレクト
 
         else:
             for msg in form.error_messages:
@@ -1419,7 +1445,6 @@ class SignUp(CreateView):
             return render(request=request,
                           template_name="myApp/signup.html",
                           context={"form": form})
-
 
 
 def SetCal(request):
