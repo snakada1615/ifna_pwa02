@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.urls import reverse_lazy
@@ -26,10 +27,11 @@ from datetime import datetime
 date_name = datetime.now().strftime("%Y%m%d-%H%M%S")
 logdir = r"C:\web-app\ifna_pwa03\myApp\templates\myApp\log"
 file_name = logdir + "\\" + date_name + "_test.log"
-logging.basicConfig(filename=file_name,level=logging.INFO,format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+logging.basicConfig(filename=file_name, level=logging.INFO,
+                    format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 
 # for 正規表現チェック
-import re
+
 
 class aboutNFA(TemplateView):
     template_name = "myApp/whatisNFA.html"
@@ -72,13 +74,11 @@ def registCropAvail(request):
     myProgress.objects.filter(user_id=request.user.id).update(
         conv_crop_grow_list='1')
 
-    #myURL = reverse_lazy('index02')
-    if request.method == 'POST':
-        logging.info('こっちかな？')
-        return redirect(str('index02'))
-    else:
-        logging.info('それとも？')
-        return render(request, 'index02')
+    myURL = reverse_lazy('index02')
+    return JsonResponse({
+        'success': True,
+        'url': myURL,
+    })
 
 
 class CropAvailable(TemplateView):

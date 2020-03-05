@@ -203,7 +203,7 @@
             let hostUrl = myRoot + 'registCropAvail/';
             let mydat = getTblData();
 
-            //  mydat = {'myJson': [{"abc": 3, "ABCS": 3}, {"def": 4, "DEFG": 4}]}
+            // mydat = {'myJson': [{"abc": 3, "ABCS": 3}, {"def": 4, "DEFG": 4}]}
             console.log(mydat);
             Set_CRSF();
             sendJson(mydat, hostUrl);
@@ -408,16 +408,17 @@
       $.ajax({
         type: 'post',
         url: hostUrl,
-        data: myjson,
+        data: JSON.stringify(myjson),
         contentType: 'application/JSON',
         dataType: 'JSON',
         scriptCharset: 'utf-8',
         success: function (response) {
-          alert("success");
-          $("#response").html(JSON.stringify(response));
+//          alert("success");
+          window.location.href = response.url;
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          alert("saved");
+          alert("fail");
+          console.log(jqXHR.responseText)
   				console.log(jqXHR.status); //例：404
   				console.log(textStatus); //例：error
   				console.log(errorThrown); //例：NOT FOUND
