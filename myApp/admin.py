@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import FCT, DRI, DRI_women, Family, Person, Crop, Crop_AEZ
+from .models import myCrop, myProgress, DRI_aggr, Crop_Region
 
 
 # Register your models here.
@@ -14,5 +15,3 @@ admin.site.register(myCrop)
 admin.site.register(myProgress)
 admin.site.register(DRI_aggr)
 admin.site.register(Crop_Region)
-admin.site.register(Crop_AEZ)
-admin.site.register(Crop_AEZ)
