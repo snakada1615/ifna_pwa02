@@ -3,514 +3,463 @@
 {% load humanize %}
 
 {% block content %}
-  <script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
-  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
-  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
+<script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
+<link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
 
-  <script>
-    // URLパラメータの取得
-    var myFamily = '';
-    var myRoot = '';
-    var items = [];
+<script>
+  // URLパラメータの取得
+  var myFamily = '';
+  var myRoot = '';
+  var items = [];
 
-    // グローバル変数の作成
-    var selected_rows_id = []
-    var selected_org = {{myselected|safe}};
-    var jsonData = {{dat_mycrop|safe}};
-    var jsonData2 = jsonData.filter(function (item, index) {
-      if (item.row_sel == '1')
-        return true;
-      }
-    );
+  // グローバル変数の作成
+  var selected_rows_id = [];
+  var selected_org = {{myselected | safe}};
+  var jsonData = {{dat_mycrop | safe}};
+  var jsonData2 = jsonData.filter(function(item, index) {
+    if (item.row_sel == '1')
+      return true;
+  });
 
-    getHTML_param = function () {
-      var url_tmp = window.location.href.split('/');
-      var tmp1 = url_tmp[url_tmp.length - 3];
-      var tmp2 = url_tmp[url_tmp.length - 2];
-      url_tmp.pop();
-      url_tmp.pop();
-      url_tmp.pop();
-      url_tmp.pop();
-      myRoot = url_tmp.join("/") + '/';
-      myFamily = tmp1;
-      items.length = 0;
-      if (tmp2 == '0') {
-        items.push('0');
-      } else if (tmp2.indexOf('-') < 0) {
-        items.push(tmp2);
-      } else {
-        items = tmp2.split('-');
-      }
-      return tmp1;
+  getHTML_param = function() {
+    var url_tmp = window.location.href.split('/');
+    var tmp1 = url_tmp[url_tmp.length - 3];
+    var tmp2 = url_tmp[url_tmp.length - 2];
+    url_tmp.pop();
+    url_tmp.pop();
+    url_tmp.pop();
+    url_tmp.pop();
+    myRoot = url_tmp.join("/") + '/';
+    myFamily = tmp1;
+    items.length = 0;
+    if (tmp2 == '0') {
+      items.push('0');
+    } else if (tmp2.indexOf('-') < 0) {
+      items.push(tmp2);
+    } else {
+      items = tmp2.split('-');
     }
+    return tmp1;
+  }
 
-    //////////////////add rows to tbl_crop_aez
-    $(document).ready(function () {
-      var mytable = $('#tbl_crop_aez').DataTable({
-        data: jsonData,
-        "pageLength": 20,
-        "columns": [
-          {
-            "data": "row_sel"
-          }, {
-            "data": "Food_grp"
-          }, {
-            "data": "Food_name"
-          }, {
-            "data": "m1"
-          }, {
-            "data": "m2"
-          }, {
-            "data": "m3"
-          }, {
-            "data": "m4"
-          }, {
-            "data": "m5"
-          }, {
-            "data": "m6"
-          }, {
-            "data": "m7"
-          }, {
-            "data": "m8"
-          }, {
-            "data": "m9"
-          }, {
-            "data": "m10"
-          }, {
-            "data": "m11"
-          }, {
-            "data": "m12"
-          }, {
-            "data": "food_item_id"
+  //////////////////add rows to tbl_crop_aez
+  $(document).ready(function() {
+    var mytable = $('#tbl_crop_aez').DataTable({
+      data: jsonData,
+      "pageLength": 20,
+      ///initialize selection///
+      "createdRow": function( row, data, dataIndex){
+          if( data.row_sel ==  '1'){
+              $(row).addClass('selected');
           }
+      },
+      /////////////////////////
+      "columns": [{
+        "data": "row_sel"
+      }, {
+        "data": "Food_grp"
+      }, {
+        "data": "Food_name"
+      }, {
+        "data": "m1"
+      }, {
+        "data": "m2"
+      }, {
+        "data": "m3"
+      }, {
+        "data": "m4"
+      }, {
+        "data": "m5"
+      }, {
+        "data": "m6"
+      }, {
+        "data": "m7"
+      }, {
+        "data": "m8"
+      }, {
+        "data": "m9"
+      }, {
+        "data": "m10"
+      }, {
+        "data": "m11"
+      }, {
+        "data": "m12"
+      }, {
+        "data": "food_item_id"
+      }],
+      "columnDefs": [{
+        targets: [
+          1, 2
         ],
-        "columnDefs": [
-          {
-            targets: [
-              1, 2
-            ],
-            visible: true
-          }, {
-            targets: '_all',
-            visible: false
+        visible: true
+      },{
+        targets: '_all',
+        visible: false
+      }],
+      //////////////////all the initialization process after this
+      "initComplete": function(settings, json) {
+        getHTML_param();
+
+        //////////////////add filtering dropdown list
+        this.api().columns([1]).every(function() {
+          var column = this;
+          var select = $('<select class="selectpicker" style="max-width: 250px;"><option value=""></option></select>').appendTo($('#newSearchPlace')).on('change', function() {
+            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+            column.search(
+              val ?
+              '^' + val + '$' :
+              '',
+              true,
+              false
+            ).draw();
+          });
+
+          column.data().unique().sort().each(function(d, j) {
+            select.append('<option value="' + d + '">' + d + '</option>');
+          });
+        });
+
+        //////////////////on click -> crop list /
+        $('#tbl_crop_aez tbody').on('click', 'tr', function() {
+          $(this).toggleClass('selected');
+          if ($(this).hasClass('selected')) {
+            let myR = mytable.row(this).index();
+
+            mytable2.row.add({
+              "row_sel": 1,
+              "Food_grp": mytable.cell(myR, 1).data(),
+              "Food_name": mytable.cell(myR, 2).data(),
+              "m1": mytable.cell(myR, 3).data(),
+              "m2": mytable.cell(myR, 4).data(),
+              "m3": mytable.cell(myR, 5).data(),
+              "m4": mytable.cell(myR, 6).data(),
+              "m5": mytable.cell(myR, 7).data(),
+              "m6": mytable.cell(myR, 8).data(),
+              "m7": mytable.cell(myR, 9).data(),
+              "m8": mytable.cell(myR, 10).data(),
+              "m9": mytable.cell(myR, 11).data(),
+              "m10": mytable.cell(myR, 12).data(),
+              "m11": mytable.cell(myR, 13).data(),
+              "m12": mytable.cell(myR, 14).data(),
+              "food_item_id": mytable.cell(myR, 15).data()
+            }).draw();
+
+          } else {
+            let fn = $(this).children('td').eq(1).text();
+            // Find indexes of rows which have `Yes` in the second column
+            let indexes = mytable2.rows().eq(0).filter(function(rowIdx) {
+              return mytable2.cell(rowIdx, 2).data() === fn ?
+                true :
+                false;
+            });
+            mytable2.row(indexes[0]).remove().draw();
           }
-        ],
-        //////////////////all the initialization process after this
-        "initComplete": function (settings, json) {
-          getHTML_param();
+        });
 
-          //////////////////add filtering dropdown list
-          this.api().columns([1]).every(function () {
-            var column = this;
-            var select = $('<select class="selectpicker" style="max-width: 250px;"><option value=""></option></select>').appendTo($('#newSearchPlace')).on('change', function () {
-              var val = $.fn.dataTable.util.escapeRegex($(this).val());
+        //////////////////on click -> crop list /
+        $('#tbl_crop_community2').on('click', 'td', function() {
+          if (mytable2.column(this).index() > 2) {
+            let myRow = mytable2.row(this).index();
+            let myCol = mytable2.column(this).index();
 
-              column.search(
-                val
-                  ? '^' + val + '$'
-                  : '',
-                true,
-                false
-              ).draw();
-            });
-
-            column.data().unique().sort().each(function (d, j) {
-              select.append('<option value="' + d + '">' + d + '</option>');
-            });
-          });
-
-          //////////////////on click -> crop list /
-          $('#tbl_crop_aez tbody').on('click', 'tr', function () {
-            $(this).toggleClass('selected');
-            if ($(this).hasClass('selected')) {
-              let myR = mytable.row(this).index();
-
-              // prepare zero value
-              let d = [];
-              for (var i = 3; i < 15; i++) {
-                if (mytable.cell(myR, i).data() == 0) {
-                  d.push('');
-                } else {
-                  d.push(mytable.cell(myR, i).data());
-                }
-              }
-
-              mytable2.row.add({
-                "row_sel": 1,
-                "Food_grp": mytable.cell(myR, 1).data(),
-                "Food_name": mytable.cell(myR, 2).data(),
-                "m1": d[0],
-                "m2": d[1],
-                "m3": d[2],
-                "m4": d[3],
-                "m5": d[4],
-                "m6": d[5],
-                "m7": d[6],
-                "m8": d[7],
-                "m9": d[8],
-                "m10": d[9],
-                "m11": d[10],
-                "m12": d[11],
-                "food_item_id": mytable.cell(myR, 15).data()
-              }).draw();
-              $(this).css("background-color", "");
-
-            } else {
-              let fn = $(this).children('td').eq(1).text();
-              // Find indexes of rows which have `Yes` in the second column
-              let indexes = mytable2.rows().eq(0).filter(function (rowIdx) {
-                return mytable2.cell(rowIdx, 2).data() === fn
-                  ? true
-                  : false;
-              });
-              mytable2.row(indexes[0]).remove().draw();
+            let tmp = Number($(this).text());
+            tmp = (tmp + 1) % 4;
+            switch (tmp) {
+              case 0:
+                $(this).css("background-color", "");
+                $(this).css("color", "white");
+                break;
+              case 1:
+                $(this).css("background-color", "red");
+                $(this).css("color", "red");
+                break;
+              case 2:
+                $(this).css("background-color", "green");
+                $(this).css("color", "green");
+                break;
+              case 3:
+                $(this).css("background-color", "blue");
+                $(this).css("color", "blue");
+                break;
             }
-          });
+            mytable2.cell(myRow, myCol).data(tmp);
+          }
+        });
 
-          //////////////////on click -> crop list /
-          $('#tbl_crop_community2').on('click', 'td', function () {
-            if (mytable2.column(this).index() > 2) {
-              let myRow = mytable2.row(this).index();
-              let myCol = mytable2.column(this).index();
+        //////////////send crop list to django////
+        $("#save_button").click(function() {
+          let hostUrl = myRoot + 'registCropAvail/';
+          let mydat = getTblData();
 
-              let tmp = Number($(this).text());
-              tmp = (tmp + 1) % 4;
-              switch (tmp) {
-                case 0:
-                  $(this).css("background-color", "");
-                  tmp = "";
+          console.log(mydat);
+          Set_CRSF();
+          sendJson(mydat, hostUrl);
+        }); ///////////////////
+
+        //////////////////get data from table
+        function getTblData() {
+          let d = [];
+          for (let i = 0; i < mytable2.rows().count(); i++) {
+            let dd = {};
+            for (let j = 0; j < 16; j++) {
+              let tmp = mytable2.cell(i, j).data();
+              switch (true) {
+                case j == 0:
+                  dd["selected_status"] = tmp;
                   break;
-                case 1:
-                  $(this).css("background-color", "red");
-                  $(this).css("color", "red");
+                case j > 2 && j < 15:
+                  dd["m" + String(j - 2)] = tmp;
                   break;
-                case 2:
-                  $(this).css("background-color", "green");
-                  $(this).css("color", "green");
-                  break;
-                case 3:
-                  $(this).css("background-color", "blue");
-                  $(this).css("color", "blue");
+                case j == 15:
+                  dd["myFCT_id"] = tmp;
                   break;
               }
-              mytable2.cell(myRow, myCol).data(tmp);
             }
-          });
-
-          //////////////send crop list to django////
-          $("#save_button").click(function () {
-            let hostUrl = myRoot + 'registCropAvail/';
-            let mydat = getTblData();
-
-            // mydat = {'myJson': [{"abc": 3, "ABCS": 3}, {"def": 4, "DEFG": 4}]}
-            console.log(mydat);
-            Set_CRSF();
-            sendJson(mydat, hostUrl);
-          }); ///////////////////
-
-          //////////////////get data from table
-          function getTblData() {
-            let d = [];
-            for (let i = 0; i < mytable2.rows().count(); i++) {
-              let dd = {};
-              for (let j = 0; j < 16; j++) {
-                let tmp = mytable2.cell(i, j).data();
-                switch (true) {
-                  case j == 0:
-                    dd["selected_status"] = tmp;
-                    break;
-                  case j > 2 && j < 15:
-                    dd["m" + String(j - 2)] = tmp;
-                    break;
-                  case j == 15:
-                    dd["myFCT_id"] = tmp;
-                    break;
-                }
-              }
-              dd["myFamily_id"] = {{familyid}};
-              d.push(dd);
-            }
-            return {"myJson": d};
+            dd["myFamily_id"] = {{familyid}};
+            d.push(dd);
+          }
+          return {
+            "myJson": d
           };
+        };
 
-          // /// initialize myTable/// drawSelected2(selected_org);  var res = get_selected_food();    mytable.rows().every(function (rowIdx, tableLoop, rowLoop) {      var data = this.data();      if (res.indexOf(data.food_item_id) >= 0) {
+        // /// initialize myTable/// drawSelected2(selected_org);  var res = get_selected_food();    mytable.rows().every(function (rowIdx, tableLoop, rowLoop) {      var data = this.data();      if (res.indexOf(data.food_item_id) >= 0) {
 
-        } ////// finish initcomplete//////////
-      }); //////mytable setup complete/////
+      } ////// finish initcomplete//////////
+    }); //////mytable setup complete/////
 
-      //////////////////add selected rows to tbl_crop_community2
-      var mytable2 = $('#tbl_crop_community2').DataTable({
-        data: jsonData2,
-        "scrollX": true,
-        "scrollCollapse": true,
-        "paging": false,
-        "ordering": false,
-        "searching": false,
-        "columns": [
-          {
-            "data": "row_sel"
-          }, {
-            "data": "Food_grp"
-          }, {
-            "data": "Food_name"
-          }, {
-            "data": "m1"
-          }, {
-            "data": "m2"
-          }, {
-            "data": "m3"
-          }, {
-            "data": "m4"
-          }, {
-            "data": "m5"
-          }, {
-            "data": "m6"
-          }, {
-            "data": "m7"
-          }, {
-            "data": "m8"
-          }, {
-            "data": "m9"
-          }, {
-            "data": "m10"
-          }, {
-            "data": "m11"
-          }, {
-            "data": "m12"
-          }, {
-            "data": "food_item_id"
-          }
+    //////////////////add selected rows to tbl_crop_community2
+    var mytable2 = $('#tbl_crop_community2').DataTable({
+      data: jsonData2,
+      "scrollX": true,
+      "scrollCollapse": true,
+      "paging": false,
+      "ordering": false,
+      "searching": false,
+      "columns": [{
+        "data": "row_sel"
+      }, {
+        "data": "Food_grp"
+      }, {
+        "data": "Food_name"
+      }, {
+        "data": "m1"
+      }, {
+        "data": "m2"
+      }, {
+        "data": "m3"
+      }, {
+        "data": "m4"
+      }, {
+        "data": "m5"
+      }, {
+        "data": "m6"
+      }, {
+        "data": "m7"
+      }, {
+        "data": "m8"
+      }, {
+        "data": "m9"
+      }, {
+        "data": "m10"
+      }, {
+        "data": "m11"
+      }, {
+        "data": "m12"
+      }, {
+        "data": "food_item_id"
+      }],
+      "columnDefs": [{
+        targets: [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
         ],
-        "columnDefs": [
-          {
-            targets: [
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14
-            ],
-            visible: true
-          }, {
-            targets: '_all',
-            visible: false
+        visible: true
+      }, {
+        targets: '_all',
+        visible: false
+      }, {
+        // 初期読み込み時のセルの色////////
+        "targets": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+        "createdCell": function(td, cellData, rowData, row, col) {
+          if (cellData == 0) {
+            $(td).css('background-color', '')
+            $(td).css('color', 'white')
+          } else if (cellData == 1) {
+            $(td).css('background-color', 'red')
+            $(td).css('color', 'red')
+          } else if (cellData == 2) {
+            $(td).css('background-color', 'yellow')
+            $(td).css('color', 'yellow')
+          } else if (cellData == 3) {
+            $(td).css('background-color', 'blue')
+            $(td).css('color', 'blue')
           }
-        ]
-      }); //////mytable setup complete/////
-    }); ////// $(document).ready complete/////
+        }
+      }]
+    }); //////mytable setup complete/////
+  }); ////// $(document).ready complete/////
 
-    ////// get selected food list /
-    function get_selected_food() {
-      var res = [];
-      selected_org.map(function (i, j) {
-        let sel_id = i["food_item_id"];
-        res.push(sel_id);
-      });
-      return res;
-    }
-    //////////////set cell color////////////////
-    function SetCellColor(cNum) {
-      switch (cNum) {
-        case 0:
-          $(this).css("background-color", "");
-          res = '<td class="px-0 text-sm-center"></td>';
+  ////// get selected food list /
+  function get_selected_food() {
+    var res = [];
+    selected_org.map(function(i, j) {
+      let sel_id = i["food_item_id"];
+      res.push(sel_id);
+    });
+    return res;
+  }
+  ////// csrf_tokenの取得に使う//////////////
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = jQuery.trim(cookies[i]);
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
           break;
-        case 1:
-          res = '<td class="px-0 text-sm-center" style ="background-color:red"><font color="red">1</font></td>';
-          break;
-        case 2:
-          res = '<td class="px-0 text-sm-center" style ="background-color:yellow"><font color="yellow">2</font></td>';
-          break;
-        case 3:
-          res = '<td class="px-0 text-sm-center" style ="background-color:blue"><font color="blue">3</font></td>';
-          break;
-      }
-      return res;
-    }
-
-    //////////////////re-draw all selected raws into #tbl_crop_aez
-    function drawSelected2(mylist) {
-      if (mylist.length == 0)
-        return;
-
-      jQuery('#tbl_crop_community tr').remove();
-      selected_rows_id.length = 0;
-      cr = '<tr><th class="px-0 text-sm-center">name</th><th class="px-0">01</th><th class="px-0">02</th><th class="px-0">03</th><th class="px-0">04</th><th class="px-0">05</th><th class="px-0">06</th><th class="px-0">07</th><th class="px-0">08</th><th class="' +
-          'px-0">09</th><th class="px-0">10</th><th class="px-0">11</th><th class="px-0">12</th><th class="px-0 hide_dom">food id</th></tr>';
-      for (var data in mylist) {
-        cr += '<tr><td class="px-0 text-sm-center">' + mylist[data].Food_name + '</td>';
-        cr += SetCellColor(mylist[data].m1);
-        cr += SetCellColor(mylist[data].m2);
-        cr += SetCellColor(mylist[data].m3);
-        cr += SetCellColor(mylist[data].m4);
-        cr += SetCellColor(mylist[data].m5);
-        cr += SetCellColor(mylist[data].m6);
-        cr += SetCellColor(mylist[data].m7);
-        cr += SetCellColor(mylist[data].m8);
-        cr += SetCellColor(mylist[data].m9);
-        cr += SetCellColor(mylist[data].m10);
-        cr += SetCellColor(mylist[data].m11);
-        cr += SetCellColor(mylist[data].m12);
-        cr += '<td class="px-0 text-sm-center hide_dom">' + mylist[data].food_item_id + '</td>';
-        cr += '<td class="px-0 text-sm-center hide_dom">' + myFamily + '</td>';
-        cr += '</tr>';
-      };
-      jQuery('#tbl_crop_community').append(cr);
-      return;
-    }
-
-    ////// csrf_tokenの取得に使う//////////////
-    function getCookie(name) {
-      var cookieValue = null;
-      if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-          var cookie = jQuery.trim(cookies[i]);
-          // Does this cookie string begin with the name we want?
-          if (cookie.substring(0, name.length + 1) === (name + '=')) {
-            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-            break;
-          }
         }
       }
-      return cookieValue;
     }
+    return cookieValue;
+  }
 
-    function csrfSafeMethod(method) {
-      // these HTTP methods do not require CSRF protection
-      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-    }
+  function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
 
-    function Set_CRSF() {
-      var csrf_token = getCookie("csrftoken");
-      $.ajaxSetup({
-        crossDomain: false, // obviates need for sameOrigin test
-        beforeSend: function (xhr, settings) {
-          if (!csrfSafeMethod(settings.type)) {
-            xhr.setRequestHeader("X-CSRFToken", csrf_token);
-          }
+  function Set_CRSF() {
+    var csrf_token = getCookie("csrftoken");
+    $.ajaxSetup({
+      crossDomain: false, // obviates need for sameOrigin test
+      beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type)) {
+          xhr.setRequestHeader("X-CSRFToken", csrf_token);
         }
-      });
-      return;
-    }
+      }
+    });
+    return;
+  }
 
-    //////////////////sendJson////
-    function sendJson(myjson, hostUrl) {
-      $.ajax({
-        type: 'post',
-        url: hostUrl,
-        data: JSON.stringify(myjson),
-        contentType: 'application/JSON',
-        dataType: 'JSON',
-        scriptCharset: 'utf-8',
-        success: function (response) {
-          window.location.href = response.url;
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          alert("fail");
-          console.log(jqXHR.responseText)
-  				console.log(jqXHR.status); //例：404
-  				console.log(textStatus); //例：error
-  				console.log(errorThrown); //例：NOT FOUND
-          console.log(JSON.stringify(myjson)); //例：NOT FOUND
-          console.log(myjson); //例：NOT FOUND
-        }
-      });
-    };
-    ////scfript end///////////////////
-  </script>
+  //////////////////sendJson////
+  function sendJson(myjson, hostUrl) {
+    $.ajax({
+      type: 'post',
+      url: hostUrl,
+      data: JSON.stringify(myjson),
+      contentType: 'application/JSON',
+      dataType: 'JSON',
+      scriptCharset: 'utf-8',
+      success: function(response) {
+        window.location.href = response.url;
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert("fail");
+        console.log(jqXHR.responseText)
+        console.log(jqXHR.status); //例：404
+        console.log(textStatus); //例：error
+        console.log(errorThrown); //例：NOT FOUND
+        console.log(JSON.stringify(myjson)); //例：NOT FOUND
+        console.log(myjson); //例：NOT FOUND
+      }
+    });
+  };
+  ////scfript end///////////////////
+</script>
 
-  <style>
-    .hide_dom {
-      display: none;
-    }
-  </style>
-
-  <div class="container text-white" style="max-width:570px;">
-    <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
-      <div class="row">
-        <div class="col-12"></div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="card-body py-0 px-0">
-            <p class="card-title text-warning my-0">
-              availability
-              <span style="color:red">■</span>: market&prod
-              <span style="color:green">■</span>: prod only
-              <span style="color:blue">■</span>: market only
-            </p>
-            <table id="tbl_crop_community2" class="display compact mx-0 px-0 text-dark" cellspacing="0">
-              <thead>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td colspan="12" align="center" style="width:400px;">month</td>
-                  <tr>
-                    <th>s</th>
-                    <th>grp</th>
-                    <th>Name</th>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
-                    <th>7</th>
-                    <th>8</th>
-                    <th>9</th>
-                    <th>10</th>
-                    <th>11</th>
-                    <th>12</th>
-                    <th>id</th>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <span>
-            <a id="save_button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
-            <a class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" href="{% url  'index02' %}">back</a>
-          </span>
+<div class="container text-white" style="max-width:570px;">
+  <div class="card border-primary bg-info col-12 mt-2 py-0" style="max-width: 540px;">
+    <div class="row">
+      <div class="col-12"></div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card-body py-0 px-0">
+          <p class="card-title text-warning my-0">
+            availability
+            <span style="color:red">■</span>: market&prod
+            <span style="color:green">■</span>: prod only
+            <span style="color:blue">■</span>: market only
+          </p>
+          <table id="tbl_crop_community2" class="display compact mx-0 px-0 text-dark" cellspacing="0">
+            <thead>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="12" align="center" style="width:400px;">month</td>
+              <tr>
+                <th>s</th>
+                <th>grp</th>
+                <th>Name</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+                <th>12</th>
+                <th>id</th>
+              </tr>
+            </thead>
+          </table>
         </div>
       </div>
     </div>
-
-    <hr>
-    <div class="container" style="max-width: 540px;">
-      <div class="my-2" id="newSearchPlace">Food group:
-      </div>
-      <table id="tbl_crop_aez" class="display compact" cellspacing="0" width="100%">
-        <thead>
-          <tr>
-            <th>Group</th>
-            <th>Group</th>
-            <th>Name</th>
-          </tr>
-        </thead>
-
-        <tfoot>
-          <tr>
-            <th>Group</th>
-            <th>Group</th>
-            <th>Name</th>
-          </tr>
-        </tfoot>
-      </table>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <span>
+        <a id="save_button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
+        <a class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" href="{% url  'index02' %}">back</a>
+      </span>
     </div>
+  </div>
+</div>
 
-  {% endblock %}
+<hr>
+<div class="container" style="max-width: 540px;">
+  <div class="my-2" id="newSearchPlace">Food group:
+  </div>
+  <table id="tbl_crop_aez" class="display compact" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th>Group</th>
+        <th>Group</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+
+    <tfoot>
+      <tr>
+        <th>Group</th>
+        <th>Group</th>
+        <th>Name</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+{% endblock %}
