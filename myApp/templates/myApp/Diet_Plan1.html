@@ -8,8 +8,10 @@
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
 
-  <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.barrating.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/fontawesome-apple.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bars-1to10.css' %}">
 
   <script>
     // URLパラメータの取得
@@ -20,7 +22,7 @@
 
     // グローバル変数の作成
     var selected_rows_id = []
-    var jsonData = {{myselected|safe}};
+    var jsonData = {{mylist|safe}};
 
     getHTML_param = function () {
       var url_tmp = window.location.href.split('/');
@@ -58,9 +60,9 @@
     $(function () {
       $('#mystar').barrating({theme: 'fontawesome-apple'});
     });
-    //////////// //////////////init first table
+    //////////// init first table
     $(document).ready(function () {
-      var mytable = $('#example').DataTable({
+      var mytable = $('#localCrop').DataTable({
         data: jsonData,
         "pageLength": 50,
         "columns": [
@@ -128,7 +130,6 @@
                 false
               ).draw();
             });
-
             column.data().unique().sort().each(function (d, j) {
               select.append('<option value="' + d + '">' + d + '</option>');
             });
@@ -136,7 +137,7 @@
         }
       });
 
-      //////////////////init second table as dialog
+      //////////////////init second table as modal dialog
       var mytable2 = $('#tbl_adddata').DataTable({
         data: jsonData,
         "scrollY": "200px",
@@ -189,18 +190,34 @@
             "orderSequence": ["desc"],
             "targets": [5]
           }
-        ]
+        ],
+        "initComplete": function (settings, json) {
+          $('#rating_en').barrating({theme: 'bars-1to10'});
+          $('#rating_pr').barrating({theme: 'bars-1to10'});
+          $('#rating_va').barrating({theme: 'bars-1to10'});
+          $('#rating_fe').barrating({theme: 'bars-1to10'});
+          DrawSelectedTbl();
+        }
       });
 
-      //////////////////add selected rows to text box
-      $('#example tbody').on('click', 'tr', function () {
+      //////////////////init second table as modal dialog add selected rows to text box
+      $('#localCrop tbody').on('click', 'tr', function () {
         $(this).toggleClass('selected');
-        jQuery('#selected_crops_tbl tr').remove();
+        DrawSelectedTbl();
+      });
+
+      //////////////////funcition DrawSelected/////////
+      function DrawSelectedTbl() {
+        jQuery('#selected_crops_tbl tr').remove(); //remove all rows
         selected_rows_id.length = 0;
-        sum_en = 0;
-        sum_pr = 0;
-        sum_va = 0;
-        sum_fe = 0;
+        let target_en = {{dri_e}};
+        let target_pr = {{dri_p}};
+        let target_va = {{dri_v}};
+        let target_fe = {{dri_f}};
+        let sum_en = 0;
+        let sum_pr = 0;
+        let sum_va = 0;
+        let sum_fe = 0;
         cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th></tr><tr>';
         mytable.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
           var data = this.data();
@@ -217,12 +234,48 @@
           sum_fe += data.FE * data.Weight / 100;
           selected_rows_id.push(rowIdx);
         });
-        cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), {{dri_e}}) + SetCellColor(Math.round(sum_pr), {{dri_p}}) + SetCellColor(Math.round(sum_va), {{dri_v}}) + SetCellColor(Math.round(sum_fe), {{dri_f}}) + '<td></td></tr>';
+        cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en) + SetCellColor(Math.round(sum_pr), target_pr) + SetCellColor(Math.round(sum_va), target_va) + SetCellColor(Math.round(sum_fe), target_fe) + '<td></td></tr>';
         jQuery('#selected_crops_tbl').append(cr);
-      });
+        $('#lbl_target_en').text(target_en);
+        $('#lbl_target_pr').text(target_pr);
+        $('#lbl_target_va').text(target_va);
+        $('#lbl_target_fe').text(target_fe);
 
-      //////////////////register selected commodity
-      $('#button').click(function () {
+        /////////////// set barrating /
+        let rate_en = Math.round(sum_en * 10 / target_en);
+        if (rate_en > 10) {
+          rate_en = 10
+        } else if (rate_en < 1) {
+          rate_en = 1
+        };
+        let rate_pr = Math.round(sum_pr * 10 / target_pr);
+        if (rate_pr > 10) {
+          rate_pr = 10
+        } else if (rate_pr < 1) {
+          rate_pr = 1
+        };
+        let rate_va = Math.round(sum_va * 10 / target_va);
+        if (rate_va > 10) {
+          rate_va = 10
+        } else if (rate_va < 1) {
+          rate_va = 1
+        };
+        let rate_fe = Math.round(sum_fe * 10 / target_fe);
+        if (rate_fe > 10) {
+          rate_fe = 10
+        } else if (rate_fe < 1) {
+          rate_fe = 1
+        };
+
+        $('#rating_en').barrating('set', rate_en); // set barrating
+        $('#rating_pr').barrating('set', rate_pr); // set barrating
+        $('#rating_va').barrating('set', rate_va); // set barrating
+        $('#rating_fe').barrating('set', rate_fe); // set barrating
+
+        return;
+      }
+      ////////////////////////////////////////////// register selected commodity
+      $('#btn_save').click(function () {
         let w = "";
         let n = "";
         let p = "";
@@ -335,6 +388,15 @@
         $('#myModal02').modal('show');
       });
 
+      //////////////////register selected commodity
+      $('#btn_add').click(function () {
+        $('#myModal03').modal('show');
+      });
+      //////////////////register selected commodity
+      $('#btn_exit01').click(function () {
+        $('#myModal03').modal('hide');
+      });
+
     });
   </script>
 
@@ -406,59 +468,7 @@
   </div>
 
   <div class="container text-white" style="max-width: 540px;">
-    <div class="card border-primary bg-info col-12 mt-2" style="max-width: 540px;">
-      <div class="card-body py-2 px-0">
-        <p class="card-text my-0">
-          Nutrition Target:
-        </p>
-        <div class="table-responsive table-bordered table-striped text-white">
-          <table>
-            <tbody>
-              <tr>
-                <td class="text-warning px-1">Target group</td>
-                {% for family in families %}
-                  <td class="px-1">{{family.nut_group}}</td>
-                {% endfor %}
-              </tr>
-              <tr>
-                <td class="text-warning px-1">population size</td>
-                {% for family in families %}
-                  <td class="px-1">{{family.target_pop}}</td>
-                {% endfor %}
-              </tr>
-              <tr>
-                <td class="text-warning px-1">energy(kcal/day)</td>
-                {% for family in families %}
-                  <td class="px-1">{{family.energy|floatformat:2}}</td>
-                {% endfor %}
-              </tr>
-              <tr>
-                <td class="text-warning px-1">protein(g/day)</td>
-                {% for family in families %}
-                  <td class="px-1">{{family.protein|floatformat:2}}</td>
-                {% endfor %}
-              </tr>
-              <tr>
-                <td class="text-warning px-1">VitA(μg/day)</td>
-                {% for family in families %}
-                  <td class="px-1">{{family.vita|floatformat:2}}</td>
-                {% endfor %}
-              </tr>
-              <tr>
-                <td class="text-warning px-1">Fe(mg/day)</td>
-                {% for family in families %}
-                  <td class="px-1">{{family.fe|floatformat:2}}</td>
-                {% endfor %}
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container text-white" style="max-width: 540px;">
-    <div class="card border-primary col-12 mt-2 py-0" style="max-width: 540px;">
+    <div class="card border-primary col-12 mt-2 py-1" style="max-width: 540px;">
       <div class="row">
         <div class="col-12">
           <div class="card-body py-0 px-0">
@@ -470,56 +480,6 @@
               <span style="color:yellow">■</span>: 50-100%,
               <span style="color:blue">■</span>: over 100%
             </p>
-
-            <!-- モーダルの設定 ----------------------------->
-            <div class="modal fade" id="myModal01" tabindex="-1" role="dialog" aria-labelledby="myModal01Label">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title text-dark" id="myModal01Label">Edit the weight of food item</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body text-dark">
-                    <table border="1" class="table table-striped" id="foodInfo">
-                      <tr>
-                        <th>name</th>
-                        <th>En</th>
-                        <th>Pr</th>
-                        <th>Va</th>
-                        <th>Fe</th>
-                        <th>Wt</th>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                    </table>
-
-                    <label for="mystar" id="mystar-label">consumption target (1 portion=):</label>
-                    <select id="mystar">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </select>
-
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
-                    <button type="button" class="btn btn-primary" id="change_weight">change value</button>
-                  </div>
-                </div>
-                <!-- /.modal-content -->
-              </div>
-              <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal -->
-            <!-------------------------------------->
 
             <table border="1" class="table table-striped" id="selected_crops_tbl">
               <tr>
@@ -539,6 +499,104 @@
                 <td></td>
               </tr>
             </table>
+
+            <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+              <div class="col-2">
+                <label class="text-dark" for="rating_en">Energy</label>
+              </div>
+              <div class="col-2">
+                <div class="text-dark" id="lbl_target_en"></div>
+              </div>
+              <div class="col-8">
+                <select class="form-control" id="rating_en">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+              <div class="col-2">
+                <label class="text-dark" for="rating_pr">Protein</label>
+              </div>
+              <div class="col-2">
+                <div class="text-dark" id="lbl_target_pr"></div>
+              </div>
+              <div class="col-8">
+                <select id="rating_pr">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row no-gutters my-0" style="height:30px;">
+              <div class="col-2">
+                <label class="text-dark ml-3 mr-4" for="rating_va">VitA</label>
+              </div>
+              <div class="col-2">
+                <div class="text-dark" id="lbl_target_va"></div>
+              </div>
+              <div class="col-8">
+                <select id="rating_va">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row no-gutters my-0" style="height:30px;">
+              <div class="col-2">
+                <label class="text-dark ml-3 mr-4" for="rating_fe">Iron</label>
+              </div>
+              <div class="col-2">
+                <div class="text-dark" id="lbl_target_fe"></div>
+              </div>
+              <div class="col-8">
+                <select id="rating_fe">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row no-gutters my-0 py-0" style="height:30px;">
+              <div class="col-4 text-dark">Target group</div>
+              <div class="col-8 text-dark">{{nutrient_target}}</div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -549,7 +607,10 @@
           <a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_list' familyid=familyid %}">back</a>
         </span>
         <span>
-          <a id="button" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
+          <a id="btn_save" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
+        </span>
+        <span>
+          <a id="btn_add" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">add</a>
         </span>
       </div>
     </div>
@@ -557,36 +618,57 @@
 
   <hr>
 
-  <div class="container" style="max-width: 540px;">
-    <div class="my-2" id="myFilter">Food group:
-    </div>
-    <table id="example" class="display compact" cellspacing="0" width="100%">
-      <thead>
-        <tr>
-          <th>s</th>
-          <th>Name</th>
-          <th>En</th>
-          <th>Pr</th>
-          <th>VA</th>
-          <th>Fe</th>
-          <th>c</th>
-        </tr>
-      </thead>
+  <div class="container" style="max-width: 540px;"></div>
 
-      <tfoot>
-        <tr>
-          <th>s</th>
-          <th>Name</th>
-          <th>En</th>
-          <th>Pr</th>
-          <th>VA</th>
-          <th>Fe</th>
-          <th>c</th>
-        </tr>
-      </tfoot>
-    </table>
-    <a id="btn_addnew" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">add food item not in the list above</a>
+  <!-- モーダルの設定 ----------------------------->
+  <div class="modal fade" id="myModal01" tabindex="-1" role="dialog" aria-labelledby="myModal01Label">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="myModal01Label">Edit the weight of food item</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-dark">
+          <table border="1" class="table table-striped" id="foodInfo">
+            <tr>
+              <th>name</th>
+              <th>En</th>
+              <th>Pr</th>
+              <th>Va</th>
+              <th>Fe</th>
+              <th>Wt</th>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+
+          <label for="mystar" id="mystar-label">consumption target (1 portion=):</label>
+          <select id="mystar">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+          <button type="button" class="btn btn-primary" id="change_weight">change value</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
   </div>
+  <!-- /.modal -->
+  <!-------------------------------------->
 
   <!-- モーダルの設定2 ----------------------------->
   <div class="modal fade" id="myModal02" tabindex="-1" role="dialog" aria-labelledby="myModal02Label">
@@ -595,7 +677,7 @@
         <div class="modal-header">
           <h5 class="modal-title">Introduce new food item</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span class ="text-danger" aria-hidden="true">&times;</span>
+            <span class="text-danger" aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body text-dark">
@@ -642,15 +724,41 @@
     <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Introduce new food item</h5>
+          <h5 class="modal-title">Add/remove food item</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span class ="text-danger" aria-hidden="true">&times;</span>
+            <span class="text-danger" aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body text-dark">
-          <div class="container" style="max-width: 540px;">
-
+          <div class="my-2" id="myFilter">Food group:
           </div>
+          <table id="localCrop" class="display compact" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th>s</th>
+                <th>Name</th>
+                <th>En</th>
+                <th>Pr</th>
+                <th>VA</th>
+                <th>Fe</th>
+                <th>c</th>
+              </tr>
+            </thead>
+
+            <tfoot>
+              <tr>
+                <th>s</th>
+                <th>Name</th>
+                <th>En</th>
+                <th>Pr</th>
+                <th>VA</th>
+                <th>Fe</th>
+                <th>c</th>
+              </tr>
+            </tfoot>
+          </table>
+          <a id="btn_addnew" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">add food item not in the list above</a>
+          <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">close</a>
         </div>
       </div>
       <!-- /.modal-content -->

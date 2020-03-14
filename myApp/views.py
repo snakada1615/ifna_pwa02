@@ -170,6 +170,12 @@ class Diet_Plan1(TemplateView):
         context['dri_v'] = Family.objects.get(id=self.kwargs['familyid']).vita
         context['dri_f'] = Family.objects.get(id=self.kwargs['familyid']).fe
 
+        tmp_target = ''
+        try:
+            data = Person.objects.filter(familyid=self.kwargs['familyid'])[0]
+            tmp_target = data.nut_group
+        except:
+            tmp_target = 'no data'
         tmp_sex = ''
         try:
             data = Person.objects.filter(familyid=self.kwargs['familyid'])[0]
@@ -182,6 +188,7 @@ class Diet_Plan1(TemplateView):
             tmp_age = Person.AGE_CHOICES[data.age - 1][1]
         except:
             tmp_age = 'no data'
+        context['nutrient_target'] = tmp_target
         context['sex'] = tmp_sex
         context['age'] = tmp_age
 
@@ -209,7 +216,7 @@ class Diet_Plan1(TemplateView):
             dd["food_item_id"] = tmp02.myFCT.food_item_id
             dd["portion_size"] = tmp02.myFCT.portion_size
             d.append(dd)
-        context["myselected"] = d
+        context["mylist"] = d
         context['myuser'] = self.request.user
 
         return context
