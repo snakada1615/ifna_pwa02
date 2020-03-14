@@ -163,6 +163,17 @@
               });
               mytable2.row(indexes[0]).remove().draw();
             }
+
+            ////////////// set foodname color /
+            $('#tbl_crop_community > tbody  > tr').each(function (index, tr) {
+              //    let mycell = $('#tbl_crop_community tr').eq(i).children('td').eq(0);
+              if (index % 2 == 1) {
+                $(this).css("background-color", "#17a2b8");
+                $(this).css("color", "white");
+                $(this).css("vertical-align", "text-top");
+                $(this).children('td').css("padding-top", "0px");
+              }
+            });
           });
 
           //////////////////on click -> crop list /
@@ -355,9 +366,10 @@
           $('#tbl_crop_community > tbody  > tr').each(function (index, tr) {
             //    let mycell = $('#tbl_crop_community tr').eq(i).children('td').eq(0);
             if (index % 2 == 1) {
-              //              $(this).css("background-color", "silver");
-              $(this).css("color", "green");
+              $(this).css("background-color", "#17a2b8");
+              $(this).css("color", "white");
               $(this).css("vertical-align", "text-top");
+              $(this).children('td').css("padding-top", "0px");
             }
           });
           ////////////// set foodname color /
@@ -465,7 +477,7 @@
               <span style="color:green">■</span>: prod only
               <span style="color:blue">■</span>: market only
             </p>
-            <table id="tbl_crop_community" class="table table-bordered display compact text-dark px-1" cellspacing="0" style="width:100%">
+            <table id="tbl_crop_community" class="table table-bordered display compact text-white px-1" cellspacing="0" style="width:100%">
               <thead>
                 <tr>
                   <th>s</th>
