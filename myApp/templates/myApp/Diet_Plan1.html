@@ -94,6 +94,30 @@
             "data": "Weight"
           }, {
             "data": "portion_size"
+          }, {
+            "data": "m1"
+          }, {
+            "data": "m2"
+          }, {
+            "data": "m3"
+          }, {
+            "data": "m4"
+          }, {
+            "data": "m5"
+          }, {
+            "data": "m6"
+          }, {
+            "data": "m7"
+          }, {
+            "data": "m8"
+          }, {
+            "data": "m9"
+          }, {
+            "data": "m10"
+          }, {
+            "data": "m11"
+          }, {
+            "data": "m12"
           }
         ],
 
@@ -181,8 +205,6 @@
               rate_fe = 1
             };
 
-            console.log(sum_va + '_' + target_va + '_' + rate_va);
-
             $('#rating_en').barrating('set', rate_en); // set barrating
             $('#rating_pr').barrating('set', rate_pr); // set barrating
             $('#rating_va').barrating('set', rate_va); // set barrating
@@ -195,6 +217,42 @@
             $(this).toggleClass('selected');
             DrawSelected();
 
+          });
+
+          //////////////////////////////////////////////
+          $('#lst_month').change(function () {
+            let search_col = '';
+            let tmp_mon = $(this).val();
+            if (tmp_mon == 'jan') {
+              search_col = 10;
+            } else if (tmp_mon == 'feb') {
+              search_col = 11;
+            } else if (tmp_mon == 'mar') {
+              search_col = 12;
+            } else if (tmp_mon == 'apr') {
+              search_col = 13;
+            } else if (tmp_mon == 'may') {
+              search_col = 14;
+            } else if (tmp_mon == 'jun') {
+              search_col = 15;
+            } else if (tmp_mon == 'jul') {
+              search_col = 16;
+            } else if (tmp_mon == 'aug') {
+              search_col = 17;
+            } else if (tmp_mon == 'sep') {
+              search_col = 18;
+            } else if (tmp_mon == 'oct') {
+              search_col = 19;
+            } else if (tmp_mon == 'nov') {
+              search_col = 20;
+            } else if (tmp_mon == 'dec') {
+              search_col = 21;
+            }
+            console.log(tblObj_localCrop.cell(0,search_col).data());
+            tblObj_localCrop
+                .column( search_col )
+                .search('[123]',true)
+                .draw();
           });
 
           //////////////////add table edit function////
@@ -217,7 +275,7 @@
 
             DrawSelected();
 
-            $('#myModal01').modal('show');
+            $('#Modal_foodVol').modal('show');
           });
 
           ////////////////// button click to reflect the modification
@@ -256,14 +314,12 @@
 
             DrawSelected();
             //////////////////
-            $('#myModal01').modal('hide');
+            $('#Modal_foodVol').modal('hide');
           });
 
           /// initialization///////
           getHTML_param();
-//          DrawSelected();
-
-          //////////////////add filtering dropdown list
+          //          DrawSelected(); //////////////add filtering dropdown list
           this.api().columns([7]).every(function () {
             var column = this;
             var select = $('<select style="border: 1px grey double;"><option value=""></option></select>').appendTo($('#myFilter')).on('change', function () {
@@ -317,15 +373,15 @@
         cNum = parseInt(i_cell * 100 / i_target, 10);
         switch (true) {
           case 0 <= cNum && cNum < 50:
-            res = '<td class="table-danger">' + i_cell + '</td>';
+            res = '<td style="color:red;">' + i_cell + '</td>';
             break;
 
           case 50 <= cNum && cNum < 100:
-            res = '<td class="table-warning">' + i_cell + '</td>';
+            res = '<td style="color:orange;">' + i_cell + '</td>';
             break;
 
           case 100 <= cNum:
-            res = '<td class="table-success">' + i_cell + '</td>';
+            res = '<td style="color:green;">' + i_cell + '</td>';
             break;
 
           default:
@@ -337,11 +393,11 @@
 
       //////////////////register selected commodity
       $('#btn_add').click(function () {
-        $('#myModal03').modal('show');
+        $('#Modal_localCrop').modal('show');
       });
       //////////////////register selected commodity
       $('#btn_exit01').click(function () {
-        $('#myModal03').modal('hide');
+        $('#Modal_localCrop').modal('hide');
       });
 
     });
@@ -424,8 +480,8 @@
             </p>
             <p class="card-title text-dark my-0">
               <span style="color:red">■</span>: less than 50%,
-              <span style="color:yellow">■</span>: 50-100%,
-              <span style="color:blue">■</span>: over 100%
+              <span style="color:orange">■</span>: 50-100%,
+              <span style="color:green">■</span>: over 100%
             </p>
 
             <table border="1" class="table table-striped" id="selected_crops_tbl">
@@ -547,19 +603,19 @@
             <div class="row no-gutters my-0 py-0" style="height:30px;">
               <div class="col-4 text-dark">Month</div>
               <div class="col-8 text-dark">
-                <select name="”month”" style="border: 1px grey double;">
-                  <option value="”jan”">Jan</option>
-                  <option value="”feb”">Feb</option>
-                  <option value="”mar”">Mar</option>
-                  <option value="”apr”">Apr</option>
-                  <option value="”may”">May</option>
-                  <option value="”jun”">Jun</option>
-                  <option value="”jul”">Jul</option>
-                  <option value="”aug”">Aug</option>
-                  <option value="”sep”">Sep</option>
-                  <option value="”oct”">Oct</option>
-                  <option value="”nov”">Nov</option>
-                  <option value="”dec”">Dec</option>
+                <select id="lst_month" style="border: 1px grey double;">
+                  <option value="jan">Jan</option>
+                  <option value="feb">Feb</option>
+                  <option value="mar">Mar</option>
+                  <option value="apr">Apr</option>
+                  <option value="may">May</option>
+                  <option value="jun">Jun</option>
+                  <option value="jul">Jul</option>
+                  <option value="aug">Aug</option>
+                  <option value="sep">Sep</option>
+                  <option value="oct">Oct</option>
+                  <option value="nov">Nov</option>
+                  <option value="dec">Dec</option>
                 </select>
               </div>
             </div>
@@ -577,7 +633,7 @@
           <a id="btn_save" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
         </span>
         <span>
-          <a id="btn_add" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">add123</a>
+          <a id="btn_add" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">add</a>
         </span>
       </div>
     </div>
@@ -588,11 +644,11 @@
   <div class="container" style="max-width: 540px;"></div>
 
   <!-- モーダルの設定 ----------------------------->
-  <div class="modal fade" id="myModal01" tabindex="-1" role="dialog" aria-labelledby="myModal01Label">
+  <div class="modal fade" id="Modal_foodVol" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-dark" id="myModal01Label">Edit the weight of food item</h5>
+          <h5 class="modal-title text-dark" id="Modal_foodVolLabel">Edit the weight of food item</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -638,7 +694,7 @@
   <!-------------------------------------->
 
   <!-- モーダルの設定3 ----------------------------->
-  <div class="modal fade" id="myModal03" tabindex="-1" role="dialog" aria-labelledby="myModal03Label">
+  <div class="modal fade" id="Modal_localCrop" tabindex="-1" role="dialog" aria-labelledby="Modal_localCropLabel">
     <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header">

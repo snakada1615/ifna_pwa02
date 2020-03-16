@@ -215,6 +215,18 @@ class Diet_Plan1(TemplateView):
             dd["Weight"] = "100"
             dd["food_item_id"] = tmp02.myFCT.food_item_id
             dd["portion_size"] = tmp02.myFCT.portion_size
+            dd["m1"] = tmp02.m1
+            dd["m2"] = tmp02.m2
+            dd["m3"] = tmp02.m3
+            dd["m4"] = tmp02.m4
+            dd["m5"] = tmp02.m5
+            dd["m6"] = tmp02.m6
+            dd["m7"] = tmp02.m7
+            dd["m8"] = tmp02.m8
+            dd["m9"] = tmp02.m9
+            dd["m10"] = tmp02.m10
+            dd["m11"] = tmp02.m11
+            dd["m12"] = tmp02.m12
             d.append(dd)
         context["mylist"] = d
         context['myuser'] = self.request.user
