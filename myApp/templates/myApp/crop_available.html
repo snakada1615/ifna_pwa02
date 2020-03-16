@@ -47,6 +47,18 @@
       return tmp1;
     }
 
+    //////////////////set foodname color///////////////////////
+    function SetFnameCol() {
+      $('#tbl_crop_community > tbody  > tr').each(function (index, tr) {
+        if (index % 2 == 1) {
+          $(this).css("background-color", "#17a2b8");
+          $(this).css("color", "white");
+          $(this).css("vertical-align", "text-top");
+          $(this).children('td').css("padding-top", "0px");
+        }
+      });
+    }/////////////
+
     //////////////////add rows to tbl_crop_aez
     $(document).ready(function () {
       var mytable = $('#tbl_crop_aez').DataTable({
@@ -111,7 +123,7 @@
           //////////////////add filtering dropdown list
           this.api().columns([1]).every(function () {
             var column = this;
-            var select = $('<select class="selectpicker" style="max-width: 250px;"><option value=""></option></select>').appendTo($('#newSearchPlace')).on('change', function () {
+            var select = $('<select class="selectpicker" style="max-width: 250px;border: 1px grey double;"><option value=""></option></select>').appendTo($('#newSearchPlace')).on('change', function () {
               var val = $.fn.dataTable.util.escapeRegex($(this).val());
 
               column.search(
@@ -163,19 +175,8 @@
               });
               mytable2.row(indexes[0]).remove().draw();
             }
-
-            ////////////// set foodname color /
-            $('#tbl_crop_community > tbody  > tr').each(function (index, tr) {
-              //    let mycell = $('#tbl_crop_community tr').eq(i).children('td').eq(0);
-              if (index % 2 == 1) {
-                $(this).css("background-color", "#17a2b8");
-                $(this).css("color", "white");
-                $(this).css("vertical-align", "text-top");
-                $(this).children('td').css("padding-top", "0px");
-              }
-            });
+            SetFnameCol();
           });
-
           //////////////////on click -> crop list /
           $('#tbl_crop_community').on('click', 'td', function () {
             if (mytable2.column(this).index() > 2) {
@@ -248,7 +249,6 @@
             }
             return {"myJson": d};
           };
-
         } ////// finish initcomplete//////////
       }); //////mytable setup complete/////
 
@@ -362,19 +362,8 @@
         ],
         //////////////////all the initialization process after this
         "initComplete": function (settings, json) {
-          ////////////// set foodname color /
-          $('#tbl_crop_community > tbody  > tr').each(function (index, tr) {
-            //    let mycell = $('#tbl_crop_community tr').eq(i).children('td').eq(0);
-            if (index % 2 == 1) {
-              $(this).css("background-color", "#17a2b8");
-              $(this).css("color", "white");
-              $(this).css("vertical-align", "text-top");
-              $(this).children('td').css("padding-top", "0px");
-            }
-          });
-          ////////////// set foodname color /
+          SetFnameCol();
         }
-
       }); //////mytable setup complete/////
     }); ////// $(document).ready complete/////
 
@@ -445,12 +434,12 @@
         }
       });
     };
-    //////////////////sendJson//// //scfript end///////////////////
+    //////////////////sendJson//// scfript end///////////////////
   </script>
 
   <style media="screen">
     /* force rotate when screen width less than 450 */
-    @media screen and (max-width: 450px) and (orientation: portrait) {
+    @media screen and (min-width: 320px) and (max-width: 450px) and (orientation: portrait) {
       html {
         transform: rotate(-90deg);
         transform-origin: left top;
@@ -528,7 +517,6 @@
           </button>
         </div>
         <div class="modal-body text-dark">
-          helo
           <div class="my-2" id="newSearchPlace">Food group:
           </div>
           <table id="tbl_crop_aez" class="display compact" cellspacing="0" width="100%">
