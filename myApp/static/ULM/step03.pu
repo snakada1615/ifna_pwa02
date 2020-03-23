@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+
+title step3: suitable crop_list --> choice by local stakeholder
+
+actor :user: as user
+actor :system: as admin
+actor :table_Crop: as table1
+actor :table_myCrop: as table2
+
+  package "User interface" <<Rect>> {
+      user --> (user info):"1"
+      (user info) --> admin:"1"
+      user <-- (crop list):"2"
+      (crop list) <-- admin:"2"
+      user --> (user choice):"3"
+      (user choice) --> admin:"3"
+      user --> (seasonality):"4"
+      (seasonality) --> admin:"4"
+  }
+
+  package "Backend DB" {
+    admin --> (user_info):"1"
+    (user_info) --> table1:"1"
+    (crop_list) <-- table1:"2"
+    admin <-- (crop_list):"2"
+    admin --> (crop_mylist):"3, 4"
+    (crop_mylist) --> table2:"3, 4"
+  }
+
+
+@enduml

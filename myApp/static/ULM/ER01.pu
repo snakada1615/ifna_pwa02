@@ -1,0 +1,271 @@
+@startuml
+title ER図
+package "システム" {
+  entity Countries {
+      - id
+      +  AEZ_id(FK)
+--
+      GID_0
+      NAME_0
+      GID_1
+      NAME_1
+      GID_2
+      NAME_2
+      GID_3
+      NAME_3
+  }
+
+  entity FCT {
+    - id
+    - FCT_id
+--
+      food_grp_id
+      food_item_id
+      Food_grp
+      Food_name
+      Crop_ref
+      Edible
+      Energy
+      ・・・・
+      VITC
+      portion_size
+  }
+
+  entity Family {
+    - id
+    + country_test(FK)
+    ~ country
+    ~ region
+    ~ province
+    ~ community
+--
+      name
+      stunting_rate
+      wasting_rate
+      anemia_rate
+      nutrition_target
+      major_commodity
+      crop_list
+      conv_crop_grow
+      conv_crop_sold
+      month_start
+      month_end
+      remark
+      energy
+      protein
+      vita
+      fe
+      size
+      created_at
+      created_by
+  }
+
+  entity myCrop {
+    - id
+    +  myFCT(FK)
+    +  myFamily(FK)
+--
+      selected_status
+      m1
+      m2
+      m3
+      m4
+      m5
+      m6
+      m7
+      m8
+      m9
+      m10
+      m11
+      m12
+  }
+
+  entity myProgress {
+    - id
+    +  user_id(FK)
+    ~  user_name
+    +  family_id(FK)
+    +  aez_id(FK)
+    +  person_id(FK)
+    +  crop_id(FK)
+--
+      conv_crop_grow_list
+      conv_crop_sold_list
+      crop_list
+  }
+
+  entity DRI_aggr {
+    - id
+--
+      nut_group
+      energy
+      protein
+      vita
+      fe
+  }
+
+  entity Crop_Region {
+    - id
+    ~  country
+    +  GID_1(FK)
+    +  FCT_id(FK)
+    +  food_grp_id(FK)
+    +  food_item_id(FK)
+    ~  Food_grp
+    ~  Food_name
+--
+      suitable_class
+      Hrv_strt
+      Hrv_end
+      created_at
+      created_by
+  }
+
+  entity Crop_AEZ {
+    - id
+    +  myFCT(FK)
+    +  AEZ_id(FK)
+--
+  }
+
+  entity DRI {
+    - id
+--
+      age_id
+      male_protain
+      male_vitA
+      male_fe
+      female_protain
+      female_vitA
+      female_fe
+  }
+
+  entity DRI_women {
+    - id
+--
+      status
+      female_prot2
+      female_vit2
+      female_fe2
+  }
+
+  entity Person {
+    - id
+    +  familyid(FK)
+--
+      name
+      nut_group
+      age
+      sex
+      target_pop
+      women_s
+      energy
+      protein
+      vita
+      fe
+      target_nutrition
+      nut_question1
+      nut_question2
+      nut_question3
+      nut_question4
+      nut_question5
+      created_at
+      created_by
+  }
+
+  entity Crop {
+    - id
+    + familyid(FK)
+    + food_item_id(FK)
+    ~ food_grp
+    ~ Food_name
+--
+      choices_ascending
+      choices_descending
+      choices_availability
+      choices_non_availability
+      choices_DRI_realistic
+      choices_social_barrier
+      choices_prod_skill
+      choices_tech_service
+      choices_workload
+      choices_prod_skill
+      choices_invest_fixed
+      choices_invest_variable
+      nutrient_choices
+      diet_choices
+      nutrient_target
+      diet_type
+      food_wt
+      food_wt_p
+      food_wt_va
+      food_wt_fe
+      protein
+      vita
+      fe
+      feas_DRI
+      feas_DRI_p
+      feas_DRI_a
+      feas_DRI_f
+      feas_soc_acceptable
+      feas_soc_acceptable_wo
+      feas_soc_acceptable_c5
+      feas_prod_skill
+      feas_workload
+      feas_tech_service
+      feas_invest_fixed
+      feas_invest_variable
+      feas_availability_non
+      feas_availability_prod
+      feas_affordability
+      feas_storability
+      crop_score
+      m1_p
+      m2_p
+      m3_p
+      m4_p
+      m5_p
+      m6_p
+      m7_p
+      m8_p
+      m9_p
+      m10_p
+      m11_p
+      m12_p
+      m1_m
+      m2_m
+      m3_m
+      m4_m
+      m5_m
+      m6_m
+      m7_m
+      m8_m
+      m9_m
+      m10_m
+      m11_m
+      m12_m
+      avail_type
+      created_at
+      created_by
+      portion_size
+}
+
+Countries --{ Family
+Family --{ Person
+Family --{ Crop
+FCT --{ Crop
+Countries -- Crop_Region
+FCT --{ Crop_Region
+FCT --{ myCrop
+Family --{ myCrop
+
+
+/'
+------ :1
+----|| :1 and only 1
+----o| :0 or 1
+-----{ :many
+----|{ :1 or more
+----o{ :0 or many
+'/
+@enduml

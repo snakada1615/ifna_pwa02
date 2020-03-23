@@ -129,7 +129,7 @@
             visible: true
           }, {
             targets: '_all',
-            visible: false
+            bVisible: false
           }, {
             "orderSequence": ["desc"],
             "targets": [2]
@@ -221,7 +221,7 @@
 
           //////////////////////////////////////////////
           $('#lst_month').change(function () {
-            let search_col = '';
+            let search_col = 0;
             let tmp_mon = $(this).val();
             if (tmp_mon == 'jan') {
               search_col = 10;
@@ -248,11 +248,8 @@
             } else if (tmp_mon == 'dec') {
               search_col = 21;
             }
-            console.log(tblObj_localCrop.cell(0,search_col).data());
-            tblObj_localCrop
-                .column( search_col )
-                .search('[123]',true)
-                .draw();
+            tblObj_localCrop.column(search_col).search('').columns().search('').draw();
+            tblObj_localCrop.column(search_col).search('[123]', true, false).draw();
           });
 
           //////////////////add table edit function////
@@ -319,7 +316,7 @@
 
           /// initialization///////
           getHTML_param();
-          //          DrawSelected(); //////////////add filtering dropdown list
+          //          DrawSelected(); ////////////add filtering dropdown list
           this.api().columns([7]).every(function () {
             var column = this;
             var select = $('<select style="border: 1px grey double;"><option value=""></option></select>').appendTo($('#myFilter')).on('change', function () {
@@ -680,11 +677,11 @@
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
-            <option value="6">5</option>
-            <option value="7">5</option>
-            <option value="8">5</option>
-            <option value="9">5</option>
-            <option value="10">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
           </select>
 
           <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>

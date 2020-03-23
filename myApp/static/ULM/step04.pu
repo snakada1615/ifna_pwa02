@@ -1,0 +1,23 @@
+@startuml
+left to right direction
+
+title step3: target selection --> target info (with DRI)
+
+actor :user: as user
+actor :system: as admin
+actor :table_Person: as table1
+
+  package "User interface" <<Rect>> {
+      user --> (user info):"1"
+      (user info) --> admin:"1"
+      user --> (target select):"2"
+      (target select) --> admin:"2"
+  }
+
+  package "Backend DB" {
+    admin --> (target_info):"3"
+    (target_info) --> table1:"3"
+  }
+
+
+@enduml

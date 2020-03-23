@@ -212,7 +212,7 @@ class Diet_Plan1(TemplateView):
             dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
             dd["FE"] = tmp02.myFCT.FE
             dd["row_filter"] = "0"
-            dd["Weight"] = "100"
+            dd["Weight"] = "30"
             dd["food_item_id"] = tmp02.myFCT.food_item_id
             dd["portion_size"] = tmp02.myFCT.portion_size
             dd["m1"] = tmp02.m1
@@ -628,7 +628,6 @@ def ChangeDRI(request):
             tmp2.energy = 2677
         tmp2.save()
 
-
 def UpdateAEZ(request):
     import random
 
@@ -655,6 +654,13 @@ def UpdateAEZ(request):
             res = "ETH-H2"
 
         tmp1.AEZ_id = res
+        tmp1.save()
+
+
+def UpdateFCT(request):
+    tmp = FCT.objects.all()
+    for tmp1 in tmp:
+        tmp1.portion_size = 30
         tmp1.save()
 
 
