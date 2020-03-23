@@ -254,8 +254,8 @@ Countries --{ Family
 Family --{ Person
 Family --{ Crop
 FCT --{ Crop
-Countries -- Crop_Region
-FCT --{ Crop_Region
+Countries -- Crop_AEZ
+FCT --{ Crop_AEZ
 FCT --{ myCrop
 Family --{ myCrop
 
