@@ -1,18 +1,18 @@
 from django.contrib import admin
-from .models import FCT, DRI, DRI_women, Family, Person, Crop, Crop_AEZ
-from .models import myCrop, myProgress, DRI_aggr, Crop_Region,Countries
+from .models import FCT, DRI, Community, Person, Crop_Individual, Crop_National
+from .models import Crop_SubNational, Crop_Feasibility,Countries
 
 
 # Register your models here.
 admin.site.register(FCT)
 admin.site.register(DRI)
-admin.site.register(DRI_women)
-admin.site.register(Family)
+admin.site.register(Community)
 admin.site.register(Person)
-admin.site.register(Crop)
-admin.site.register(Crop_AEZ)
-admin.site.register(myCrop)
-admin.site.register(myProgress)
-admin.site.register(DRI_aggr)
-admin.site.register(Crop_Region)
+admin.site.register(Crop_Individual)
+admin.site.register(Crop_National)
+admin.site.register(Crop_SubNational)
+admin.site.register(Crop_Feasibility)
 admin.site.register(Countries)
+
+
+# Register your models here.

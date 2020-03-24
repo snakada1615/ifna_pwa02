@@ -14,13 +14,45 @@ class Countries(models.Model):
     NAME_3 = models.CharField(max_length=200)
     AEZ_id = models.CharField(max_length=200, default = "none")
 
-
 def __str__(self):
     return self.GID_0
 
 
-class FCT(models.Model):
+class Community(models.Model):
+    myCountry = models.ForeignKey(
+        Countries,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
+    stunting_rate = models.IntegerField(
+        default=0,
+        blank=True
+    )
+    wasting_rate = models.IntegerField(
+        default=0,
+        blank=True
+    )
+    anemia_rate = models.IntegerField(
+        default=0,
+        blank=True
+    )
+    created_at = models.DateTimeField(
+        verbose_name='record_date',
+        auto_now_add=True
+    )
+    created_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
 
+    def __str__(self):
+        return self.name
+
+
+class FCT(models.Model):
     FCT_id = models.IntegerField(default=1, unique = True)
     food_grp_id = models.IntegerField(default=1)
     food_item_id = models.IntegerField(default=1, unique = True)
@@ -55,198 +87,12 @@ class FCT(models.Model):
     FOL = models.FloatField(default=0)
     VITB12 = models.FloatField(default=0)
     VITC = models.FloatField(default=0)
-    portion_size = models.IntegerField(default=30)
+    portion_size_init = models.IntegerField(default=30)
 
     def __str__(self):
         return self.Food_name
 
-
-class Family(models.Model):
-    name = models.CharField(
-        verbose_name='name',
-        max_length=200,
-        unique=True,
-    )
-    country = models.CharField(
-        max_length=200,
-    )
-
-    region = models.CharField(
-        max_length=200,
-        blank=True
-    )
-    province = models.CharField(
-        max_length=200,
-        blank=True
-    )
-    community = models.CharField(
-        max_length=200,
-        blank=True
-    )
-    stunting_rate = models.IntegerField(
-        default=0,
-        blank=True
-    )
-    wasting_rate = models.IntegerField(
-        default=0,
-        blank=True
-    )
-    anemia_rate = models.IntegerField(
-        default=0,
-        blank=True
-    )
-    nutrition_target = models.CharField(
-        max_length=200,
-        blank=True
-    )
-    major_commodity = models.CharField(
-        max_length=200,
-        blank=True
-    )
-    crop_list = models.CharField(
-        max_length=1000,
-        default='0',
-    )
-    conv_crop_grow = models.CharField(
-        max_length=1000,
-        default='0',
-    )
-    conv_crop_sold = models.CharField(
-        max_length=1000,
-        default='0',
-    )
-
-    month_start = models.IntegerField(
-        default=0,
-    )
-    month_end = models.IntegerField(
-        default=0,
-    )
-
-    remark = models.CharField(
-        verbose_name='remark',
-        max_length=600,
-        blank=True
-    )
-
-    energy = models.FloatField(
-        verbose_name='energy',
-        default=0
-    )
-
-    protein = models.FloatField(
-        verbose_name='protein',
-        default=0
-    )
-
-    vita = models.FloatField(
-        verbose_name='Vit-A',
-        default=0
-    )
-    fe = models.FloatField(
-        verbose_name='iron',
-        default=0
-    )
-    size = models.IntegerField(
-        default=0,
-    )
-    created_at = models.DateTimeField(
-        verbose_name='record_date',
-        auto_now_add=True
-    )
-    created_by = models.ForeignKey(
-        User,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE
-    )
-    country_test = models.ForeignKey(
-        Countries,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE
-    )
-
-    def __str__(self):
-        return self.name
-
-class myCrop(models.Model):
-    myFCT = models.ForeignKey(
-        FCT,
-        to_field='food_item_id',
-        default = 436,
-        on_delete=models.CASCADE
-    )
-    myFamily = models.ForeignKey(
-        Family,
-        default = 0,
-        on_delete=models.CASCADE
-    )
-    selected_status = models.IntegerField(
-        verbose_name='mon01_prod',
-        default=0,
-    )
-    m1 = models.IntegerField(
-        verbose_name='mon01_prod',
-        default=0,
-    )
-    m2 = models.IntegerField(
-        verbose_name='mon02_prod',
-        default=0,
-    )
-    m3 = models.IntegerField(
-        verbose_name='mon03_prod',
-        default=0,
-    )
-    m4 = models.IntegerField(
-        verbose_name='mon04_prod',
-        default=0,
-    )
-    m5 = models.IntegerField(
-        verbose_name='mon05_prod',
-        default=0,
-    )
-    m6 = models.IntegerField(
-        verbose_name='mon06_prod',
-        default=0,
-    )
-    m7 = models.IntegerField(
-        verbose_name='mon07_prod',
-        default=0,
-    )
-    m8 = models.IntegerField(
-        verbose_name='mon08_prod',
-        default=0,
-    )
-    m9 = models.IntegerField(
-        verbose_name='mon09_prod',
-        default=0,
-    )
-    m10 = models.IntegerField(
-        verbose_name='mon10_prod',
-        default=0,
-    )
-    m11 = models.IntegerField(
-        verbose_name='mon11_prod',
-        default=0,
-    )
-    m12 = models.IntegerField(
-        verbose_name='mon12_prod',
-        default=0,
-    )
-
-class myProgress(models.Model):
-    user_id = models.IntegerField(default=0, unique=True)
-    user_name = models.CharField(max_length=200,default = "")
-    family_id = models.IntegerField(default=0,blank=True, null=True)
-    aez_id = models.CharField(max_length=200,default = "",blank=True)
-    conv_crop_grow_list = models.CharField(max_length=200,default = "0",blank=True)
-    conv_crop_sold_list = models.CharField(max_length=200,default = "0",blank=True)
-    crop_list = models.CharField(max_length=200,default = "0",blank=True)
-    person_id = models.IntegerField(default=0,blank=True)
-    crop_id = models.IntegerField(default=0,blank=True)
-
-class DRI_aggr(models.Model):
+class DRI(models.Model):
     nut_group = models.CharField(
         max_length=200,
         verbose_name='group',
@@ -269,247 +115,7 @@ class DRI_aggr(models.Model):
         default=0
     )
 
-class Crop_Region(models.Model):
-    country=models.CharField(max_length=200)
-    GID_1=models.CharField(max_length=200)
-    FCT_id=models.IntegerField(default=1)
-    food_grp_id=models.IntegerField(default=1)
-    food_item_id=models.IntegerField(default=1)
-    Food_grp=models.CharField(max_length=200)
-    Food_name=models.CharField(max_length=200)
-    suitable_class=models.IntegerField(default=1)
-    Hrv_strt=models.IntegerField(default=1)
-    Hrv_end=models.IntegerField(default=1)
-    created_at = models.DateTimeField(
-        verbose_name='record_date',
-        null=True,
-        blank=True,
-        auto_now_add=True
-    )
-    created_by = models.ForeignKey(
-        User,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE
-    )
-
-class Crop_AEZ(models.Model):
-    myFCT = models.ForeignKey(
-        FCT,
-        to_field='food_item_id',
-        default = 436,
-        on_delete=models.CASCADE
-    )
-    AEZ_id = models.CharField(max_length=200)
-
-
-class DRI(models.Model):
-
-    age_id = models.IntegerField(default=1)
-    male_protain = models.FloatField(default=0)
-    male_vitA = models.FloatField(default=0)
-    male_fe = models.FloatField(default=0)
-    female_protain = models.FloatField(default=0)
-    female_vitA = models.FloatField(default=0)
-    female_fe = models.FloatField(default=0)
-
-    def __str__(self):
-        return self.age_id
-
-
-class DRI_women(models.Model):
-
-    status = models.CharField(max_length=200)
-    female_prot2 = models.FloatField(default=0)
-    female_vit2 = models.FloatField(default=0)
-    female_fe2 = models.FloatField(default=0)
-
-    def __str__(self):
-        return self.status
-
-
-class Person(models.Model):
-    # bookid : INTEGER型で、主キー
-    AGE_CHOICES = (
-        (1, 'less than 6 mon'),
-        (2, '6 mon to age 1'),
-        (3, 'age 1 to 1.5'),
-        (4, 'age 1.5 to 2'),
-        (5, 'age 2 to 3'),
-        (6, 'age 3 to 4'),
-        (7, 'age 4 to 5'),
-        (8, 'age 5 to 6'),
-        (9, 'age 6 to 7'),
-        (10, 'age 7 to 8'),
-        (11, 'age 8 to 9'),
-        (11, 'age 9 to 10'),
-        (12, 'age 10 to 11'),
-        (13, 'age 11 to 12'),
-        (14, 'age 12 to 13'),
-        (15, 'age 13 to 14'),
-        (16, 'age 14 to 15'),
-        (17, 'age 15 to 16'),
-        (18, 'age 16 to 17'),
-        (19, 'age 17 to 18'),
-        (20, 'age 18 to 19'),
-        (21, 'age 19 to 65'),
-        (22, 'age 65 <= age'),
-    )
-
-    Nut_ANSWERS = (
-        (1, 'answer 1'),
-        (2, 'answer 2'),
-        (3, 'answer 3'),
-        (4, 'answer 4'),
-        (5, 'answer 5'),
-    )
-
-    Nut_Choices = (
-        ('stunting', 'stunting'),
-        ('wasting', 'wasting'),
-        ('anemia', 'anemia'),
-        ('other', 'other'),
-    )
-
-    Nut_GROUP = (
-        ('children under 5', 'children 6 to 59 month'),
-        ('pregnant women', 'pregnant women'),
-        ('adlescent girl', 'adlescent girl'),
-        ('adult', 'adult'),
-    )
-
-    SEX_CHOICES = (
-        (1, 'male'),
-        (2, 'female'),
-    )
-
-    WOMEN_SPECIAL = (
-        (0, 'no'),
-        (1, 'pregnancy first 3 month'),
-        (2, 'pregnancy 4 to 6 month'),
-        (3, 'pregnancy 7 to 9 month'),
-        (4, 'lactation 0-6 month'),
-        (5, 'lactation over 7 month'),
-    )
-
-    familyid = models.IntegerField(
-        default=0,
-    )
-
-    name = models.CharField(
-        verbose_name='name',
-        max_length=200,
-        default='no name'
-    )
-
-    nut_group = models.CharField(
-        verbose_name='nut_group',
-        choices=Nut_GROUP,
-        max_length=200,
-        default='children 6 to 59 month'
-    )
-
-    age = models.IntegerField(
-        verbose_name='age',
-        choices=AGE_CHOICES,
-        default=1,
-    )
-
-    sex = models.IntegerField(
-        verbose_name='sex',
-        choices=SEX_CHOICES,
-        default=1,
-    )
-
-    target_pop = models.IntegerField(
-        verbose_name='target population',
-        default=1,
-    )
-
-    women_s = models.IntegerField(
-        verbose_name='women_special',
-        choices=WOMEN_SPECIAL,
-        default=0,
-    )
-
-    energy = models.FloatField(
-        verbose_name='protein',
-        default=0,
-    )
-
-    protein = models.FloatField(
-        verbose_name='protein',
-        default=0,
-    )
-
-    vita = models.FloatField(
-        verbose_name='Vit-A',
-        default=0,
-    )
-
-    fe = models.FloatField(
-        verbose_name='iron',
-        default=0,
-    )
-
-    target_nutrition = models.CharField(
-        verbose_name='target_nut',
-        choices=Nut_Choices,
-        max_length=40,
-        default='stunting'
-    )
-
-    nut_question1 = models.IntegerField(
-        verbose_name='nut_question1',
-        choices=Nut_ANSWERS,
-        default=1,
-    )
-
-    nut_question2 = models.IntegerField(
-        verbose_name='nut_question2',
-        choices=Nut_ANSWERS,
-        default=1,
-    )
-
-    nut_question3 = models.IntegerField(
-        verbose_name='nut_question3',
-        choices=Nut_ANSWERS,
-        default=1,
-    )
-
-    nut_question4 = models.IntegerField(
-        verbose_name='nut_question4',
-        choices=Nut_ANSWERS,
-        default=1,
-    )
-
-    nut_question5 = models.IntegerField(
-        verbose_name='nut_question5',
-        choices=Nut_ANSWERS,
-        default=1,
-    )
-
-    created_at = models.DateTimeField(
-        verbose_name='record_date',
-        auto_now_add=True
-    )
-    created_by = models.ForeignKey(
-        User,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE
-    )
-
-    # 以下は管理サイト上の表示設定
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'Person informatin'
-        verbose_name_plural = 'Person information'
-
-
-class Crop(models.Model):
+class Crop_Feasibility(models.Model):
     choices_ascending = (
         (0, 'no'),
         (1, 'maybe no'),
@@ -582,63 +188,7 @@ class Crop(models.Model):
         (3, 'maybe yes'),
         (4, 'yes'),
     )
-    nutrient_choices = (
-        (1, 'protein'),
-        (2, 'vit-a'),
-        (3, 'iron'),
-    )
-    diet_choices = (
-        (1, 'conventional'),
-        (2, 'new crop'),
-    )
-
-    familyid = models.IntegerField(default=0)
-    food_item_id = models.IntegerField(default=1)
-    food_grp = models.CharField(
-        max_length=200,
-        blank=True
-    )
-    Food_name = models.CharField(
-        max_length=200,
-        blank=True
-    )
-    nutrient_target = models.IntegerField(
-        default=1,
-        choices=nutrient_choices,
-    )
-    diet_type = models.IntegerField(
-        default=1,
-        choices=diet_choices,
-    )
-    food_wt = models.FloatField(
-        verbose_name='weight',
-        default=0
-    )
-    food_wt_p = models.FloatField(
-        verbose_name='weight_prot',
-        default=0
-    )
-    food_wt_va = models.FloatField(
-        verbose_name='weight_vitA',
-        default=0
-    )
-    food_wt_fe = models.FloatField(
-        verbose_name='weight_Iron',
-        default=0
-    )
-    protein = models.FloatField(
-        verbose_name='protein',
-        default=0
-    )
-    vita = models.FloatField(
-        verbose_name='Vit-A',
-        default=0
-    )
-    fe = models.FloatField(
-        verbose_name='iron',
-        default=0
-    )
-    feas_DRI = models.IntegerField(
+    feas_DRI_e = models.IntegerField(
         verbose_name='feas_DRI',
         choices=choices_DRI_realistic,
         default=0,
@@ -722,104 +272,265 @@ class Crop(models.Model):
         verbose_name='crop_score',
         default=0,
     )
-    m1_p = models.IntegerField(
+    created_at = models.DateTimeField(
+        verbose_name='record_date',
+        auto_now_add=True
+    )
+    created_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
+
+
+class Crop_National(models.Model):
+    myFCT = models.ForeignKey(
+        FCT,
+        to_field='food_item_id',
+        default = 436,
+        on_delete=models.CASCADE
+    )
+    AEZ_id = models.CharField(max_length=200)
+
+
+class Crop_SubNational(models.Model):
+    myFCT = models.ForeignKey(
+        FCT,
+        to_field='food_item_id',
+        default = 436,
+        on_delete=models.CASCADE
+    )
+    myCommunity = models.ForeignKey(
+        Community,
+        default = 0,
+        on_delete=models.CASCADE
+    )
+    selected_status = models.IntegerField(
+        verbose_name='selected_status',
+        default=0,
+    )
+    m1_avail= models.IntegerField(
+        verbose_name='mon01_avail',
+        default=0,
+    )
+    m2_avail= models.IntegerField(
+        verbose_name='mon02_avail',
+        default=0,
+    )
+    m3_avail= models.IntegerField(
+        verbose_name='mon03_avail',
+        default=0,
+    )
+    m4_avail= models.IntegerField(
+        verbose_name='mon04_avail',
+        default=0,
+    )
+    m5_avail= models.IntegerField(
+        verbose_name='mon05_avail',
+        default=0,
+    )
+    m6_avail= models.IntegerField(
+        verbose_name='mon06_avail',
+        default=0,
+    )
+    m7_avail= models.IntegerField(
+        verbose_name='mon07_avail',
+        default=0,
+    )
+    m8_avail= models.IntegerField(
+        verbose_name='mon08_avail',
+        default=0,
+    )
+    m9_avail= models.IntegerField(
+        verbose_name='mon09_avail',
+        default=0,
+    )
+    m10_avail= models.IntegerField(
+        verbose_name='mon10_avail',
+        default=0,
+    )
+    m11_avail= models.IntegerField(
+        verbose_name='mon11_avail',
+        default=0,
+    )
+    m12_avail= models.IntegerField(
+        verbose_name='mon12_avail',
+        default=0,
+    )
+    crop_feas = models.ForeignKey(
+        Crop_Feasibility,
+        default = 0,
+        on_delete=models.CASCADE
+    )
+    created_at = models.DateTimeField(
+        verbose_name='record_date',
+        auto_now_add=True
+    )
+    created_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
+
+class Crop_Individual(models.Model):
+    myFCT = models.ForeignKey(
+        FCT,
+        to_field='food_item_id',
+        default = 436,
+        on_delete=models.CASCADE
+    )
+    myCommunity = models.ForeignKey(
+        Community,
+        default = 0,
+        on_delete=models.CASCADE
+    )
+    class_aggr = models.IntegerField(
+        verbose_name='class_aggr',
+        default=0,
+    )
+    portion_size = models.IntegerField(
+        default=100,
+    )
+    m1_prod = models.IntegerField(
         verbose_name='mon01_prod',
         default=0,
     )
-    m2_p = models.IntegerField(
+    m2_prod = models.IntegerField(
         verbose_name='mon02_prod',
         default=0,
     )
-    m3_p = models.IntegerField(
+    m3_prod = models.IntegerField(
         verbose_name='mon03_prod',
         default=0,
     )
-    m4_p = models.IntegerField(
+    m4_prod = models.IntegerField(
         verbose_name='mon04_prod',
         default=0,
     )
-    m5_p = models.IntegerField(
+    m5_prod = models.IntegerField(
         verbose_name='mon05_prod',
         default=0,
     )
-    m6_p = models.IntegerField(
+    m6_prod = models.IntegerField(
         verbose_name='mon06_prod',
         default=0,
     )
-    m7_p = models.IntegerField(
+    m7_prod = models.IntegerField(
         verbose_name='mon07_prod',
         default=0,
     )
-    m8_p = models.IntegerField(
+    m8_prod = models.IntegerField(
         verbose_name='mon08_prod',
         default=0,
     )
-    m9_p = models.IntegerField(
+    m9_prod = models.IntegerField(
         verbose_name='mon09_prod',
         default=0,
     )
-    m10_p = models.IntegerField(
+    m10_prod = models.IntegerField(
         verbose_name='mon10_prod',
         default=0,
     )
-    m11_p = models.IntegerField(
+    m11_prod = models.IntegerField(
         verbose_name='mon11_prod',
         default=0,
     )
-    m12_p = models.IntegerField(
+    m12_prod = models.IntegerField(
         verbose_name='mon12_prod',
         default=0,
     )
-    m1_m = models.IntegerField(
-        verbose_name='mon01_market',
+    m1_buy = models.IntegerField(
+        verbose_name='mon01_buy',
         default=0,
     )
-    m2_m = models.IntegerField(
-        verbose_name='mon02_market',
+    m2_buy = models.IntegerField(
+        verbose_name='mon02_buy',
         default=0,
     )
-    m3_m = models.IntegerField(
-        verbose_name='mon03_market',
+    m3_buy = models.IntegerField(
+        verbose_name='mon03_buy',
         default=0,
     )
-    m4_m = models.IntegerField(
-        verbose_name='mon04_market',
+    m4_buy = models.IntegerField(
+        verbose_name='mon04_buy',
         default=0,
     )
-    m5_m = models.IntegerField(
-        verbose_name='mon05_market',
+    m5_buy = models.IntegerField(
+        verbose_name='mon05_buy',
         default=0,
     )
-    m6_m = models.IntegerField(
-        verbose_name='mon06_market',
+    m6_buy = models.IntegerField(
+        verbose_name='mon06_buy',
         default=0,
     )
-    m7_m = models.IntegerField(
-        verbose_name='mon07_market',
+    m7_buy = models.IntegerField(
+        verbose_name='mon07_buy',
         default=0,
     )
-    m8_m = models.IntegerField(
-        verbose_name='mon08_market',
+    m8_buy = models.IntegerField(
+        verbose_name='mon08_buy',
         default=0,
     )
-    m9_m = models.IntegerField(
-        verbose_name='mon09_market',
+    m9_buy = models.IntegerField(
+        verbose_name='mon09_buy',
         default=0,
     )
-    m10_m = models.IntegerField(
-        verbose_name='mon10_market',
+    m10_buy = models.IntegerField(
+        verbose_name='mon10_buy',
         default=0,
     )
-    m11_m = models.IntegerField(
-        verbose_name='mon11_market',
+    m11_buy = models.IntegerField(
+        verbose_name='mon11_buy',
         default=0,
     )
-    m12_m = models.IntegerField(
-        verbose_name='mon12_market',
+    m12_buy = models.IntegerField(
+        verbose_name='mon12_buy',
         default=0,
     )
-    avail_type = models.IntegerField(
-        verbose_name='available_farm',
+
+    created_at = models.DateTimeField(
+        verbose_name='record_date',
+        auto_now_add=True
+    )
+    created_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
+
+
+class Person(models.Model):
+    Nut_GROUP = (
+        ('children under 5', 'children 6 to 59 month'),
+        ('pregnant women', 'pregnant women'),
+        ('adlescent girl', 'adlescent girl'),
+        ('adult', 'adult'),
+    )
+    myCommunity = models.ForeignKey(
+        Community,
+        default = 0,
+        on_delete=models.CASCADE
+    )
+    myDRI = models.ForeignKey(
+        DRI,
+        default = 0,
+        on_delete=models.CASCADE
+    )
+    nut_group = models.CharField(
+        verbose_name='nut_group',
+        choices=Nut_GROUP,
+        max_length=200,
+        default='children 6 to 59 month'
+    )
+    class_aggr = models.IntegerField(
+        verbose_name='class_aggr',
+        default=0,
+    )
+    target_pop = models.IntegerField(
+        verbose_name='target population',
         default=1,
     )
     created_at = models.DateTimeField(
@@ -832,6 +543,7 @@ class Crop(models.Model):
         blank=True,
         on_delete=models.CASCADE
     )
-    portion_size = models.IntegerField(
-        default=100,
-    )
+
+    # 以下は管理サイト上の表示設定
+    def __str__(self):
+        return self.name

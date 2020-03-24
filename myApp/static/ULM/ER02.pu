@@ -1,0 +1,195 @@
+@startuml
+title ER図
+package "Master" {
+  entity FCT {
+    - ID
+--
+      FCT_id
+      food_grp_id
+      food_item_id
+      Food_grp
+      Food_name
+      Crop_ref
+      Edible
+      Energy
+      WATER
+      Protein
+      Fat
+      Carbohydrate
+      Fiber
+      ASH
+      CA
+      FE
+      MG
+      P
+      K
+      NA
+      ZN
+      CU
+      VITA_RAE
+      RETOL
+      B_Cart_eq
+      VITD
+      VITE
+      THIA
+      RIBF
+      NIA
+      VITB6C
+      FOL
+      VITB12
+      VITC
+      portion_size_init
+  }
+  entity Countries {
+    - ID
+--
+      GID_0
+      NAME_0
+      GID_1
+      NAME_1
+      GID_2
+      NAME_2
+      GID_3
+      NAME_3
+      AEZ_id
+  }
+  entity DRI {
+    - ID
+--
+      nut_group
+      energy
+      protein
+      vita
+      fe
+    }
+  entity Crop_National {
+    - ID
+    + myFCT(FK)
+    + AEZ_id(FK)
+--
+    }
+  }
+
+package "Transaction" {
+  entity Crop_Feasibility {
+    - ID
+    + created_by(FK)
+--
+      feas_DRI_e
+      feas_DRI_p
+      feas_DRI_a
+      feas_DRI_f
+      feas_soc_acceptable
+      feas_soc_acceptable_wo
+      feas_soc_acceptable_c5
+      feas_prod_skill
+      feas_workload
+      feas_tech_service
+      feas_invest_fixed
+      feas_invest_variable
+      feas_availability_non
+      feas_availability_prod
+      feas_affordability
+      feas_storability
+      crop_score
+      created_at
+    }
+  entity Person {
+    - ID
+    + myCommunity(FK)
+    + myDRI(FK)
+    + created_by(FK)
+--
+      Nut_GROUP
+      nut_group
+          default='children 6 to 59 month'
+      class_aggr
+      target_pop
+      created_at
+    }
+    entity Community {
+      - ID
+      + myCountry(FK)
+      + created_by(FK)
+  --
+        stunting_rate
+        wasting_rate
+        anemia_rate
+        created_at
+    }
+  entity Crop_SubNational {
+    - ID
+    + myFCT(FK)
+    + myCommunity(FK)
+    + crop_feas(FK)
+    + created_by(FK)
+--
+      selected_status
+      m1_avail
+      m2_avail
+      m3_avail
+      m4_avail
+      m5_avail
+      m6_avail
+      m7_avail
+      m8_avail
+      m9_avail
+      m10_avail
+      m11_avail
+      m12_avail
+      created_at
+    }
+  entity Crop_Individual {
+    - ID
+    + myFCT(FK)
+    + myCommunity(FK)
+    + created_by(FK)
+--
+      class_aggr
+      portion_size
+      m1_prod
+      m2_prod
+      m3_prod
+      m4_prod
+      m5_prod
+      m6_prod
+      m7_prod
+      m8_prod
+      m9_prod
+      m10_prod
+      m11_prod
+      m12_prod
+      m1_buy
+      m2_buy
+      m3_buy
+      m4_buy
+      m5_buy
+      m6_buy
+      m7_buy
+      m8_buy
+      m9_buy
+      m10_buy
+      m11_buy
+      m12_buy
+      created_at
+    }
+}
+Countries -{ Community
+Community -{ Person
+Countries -{ Crop_National
+FCT -{ Crop_National
+FCT -{ Crop_SubNational
+FCT -{ Crop_Individual
+Crop_Feasibility -{ Crop_SubNational
+DRI -{ Person
+Community -{ Crop_Individual
+
+/'
+------ :1
+----|| :1 and only 1
+----o| :0 or 1
+-----{ :many
+----|{ :1 or more
+----o{ :0 or many
+'/
+@enduml
