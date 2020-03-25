@@ -18,12 +18,29 @@ def __str__(self):
     return self.GID_0
 
 
-class Community(models.Model):
-    myCountry = models.ForeignKey(
-        Countries,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE
+class Location(models.Model):
+    name = models.CharField(
+        verbose_name='name',
+        max_length=200,
+        unique=True,
+    )
+    country = models.CharField(
+        max_length=200,
+    )
+    region = models.CharField(
+        max_length=200,
+        blank=True
+    )
+    province = models.CharField(
+        max_length=200,
+        blank=True
+    )
+    community = models.CharField(
+        max_length=200,
+        blank=True
+    )
+    AEZ_id = models.CharField(
+        max_length=200,
     )
     stunting_rate = models.IntegerField(
         default=0,
@@ -301,8 +318,8 @@ class Crop_SubNational(models.Model):
         default = 436,
         on_delete=models.CASCADE
     )
-    myCommunity = models.ForeignKey(
-        Community,
+    myLocation = models.ForeignKey(
+        Location,
         default = 0,
         on_delete=models.CASCADE
     )
@@ -381,8 +398,8 @@ class Crop_Individual(models.Model):
         default = 436,
         on_delete=models.CASCADE
     )
-    myCommunity = models.ForeignKey(
-        Community,
+    myLocation = models.ForeignKey(
+        Location,
         default = 0,
         on_delete=models.CASCADE
     )
@@ -509,8 +526,8 @@ class Person(models.Model):
         ('adlescent girl', 'adlescent girl'),
         ('adult', 'adult'),
     )
-    myCommunity = models.ForeignKey(
-        Community,
+    myLocation = models.ForeignKey(
+        Location,
         default = 0,
         on_delete=models.CASCADE
     )
@@ -549,17 +566,7 @@ class Person(models.Model):
         return self.name
 
 class myStatus(models.Model):
-    curr_User = models.ForeignKey(
-        User,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE
-    )
-    myLocation = models.ForeignKey(
-        Community,
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE
-    )
-    crop_Community = models.IntegerField(default=0,blank=True)
-    crop_Individual = models.IntegerField(default=0,blank=True)
+    curr_User = models.IntegerField(default=0,blank=True)
+    myLocation = models.IntegerField(default=0,blank=True)
+    myCrop = models.IntegerField(default=0,blank=True)
+    myDiet = models.IntegerField(default=0,blank=True)

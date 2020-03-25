@@ -96,7 +96,7 @@ package "Transaction" {
     }
   entity Person {
     - ID
-    + myCommunity(FK)
+    + myLocation(FK)
     + myDRI(FK)
     + created_by(FK)
 --
@@ -107,11 +107,16 @@ package "Transaction" {
       target_pop
       created_at
     }
-    entity Community {
+  entity Location {
       - ID
-      + myCountry(FK)
       + created_by(FK)
   --
+        name
+        country
+        region
+        province
+        community
+        AEZ_id
         stunting_rate
         wasting_rate
         anemia_rate
@@ -120,7 +125,7 @@ package "Transaction" {
   entity Crop_SubNational {
     - ID
     + myFCT(FK)
-    + myCommunity(FK)
+    + myLocation(FK)
     + crop_feas(FK)
     + created_by(FK)
 --
@@ -142,7 +147,7 @@ package "Transaction" {
   entity Crop_Individual {
     - ID
     + myFCT(FK)
-    + myCommunity(FK)
+    + myLocation(FK)
     + created_by(FK)
 --
       class_aggr
@@ -173,16 +178,25 @@ package "Transaction" {
       m12_buy
       created_at
     }
+  entity myStatus{
+    - ID
+    + curr_User(FK)
+    + myLocation(FK)
+--
+      myCrop
+      myDiet
+    }
 }
-Countries -{ Community
-Community -{ Person
+Countries -{ Location
+Location -{ Person
 Countries -{ Crop_National
 FCT -{ Crop_National
 FCT -{ Crop_SubNational
 FCT -{ Crop_Individual
 Crop_Feasibility -{ Crop_SubNational
 DRI -{ Person
-Community -{ Crop_Individual
+Location -{ Crop_Individual
+myStatus -- Countries
 
 /'
 ------ :1

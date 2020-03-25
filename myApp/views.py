@@ -7,8 +7,9 @@ from django.http import HttpResponse
 from django.core import serializers
 from django.http.response import JsonResponse
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
+from .forms import LocationForm
 
-from .models import myStatus
+from .models import myStatus,Location
 
 # for user registration
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -103,16 +104,16 @@ class IndexView02(LoginRequiredMixin, TemplateView):
         tmp = myStatus.objects.filter(curr_User=self.request.user.id)
         if tmp.count() == 0:
             keys = {}
-            keys['curr_User'] = self.request.user
+            keys['curr_User'] = self.request.user.id
             p = myStatus.objects.create(**keys)
         ###############################################
 
         keys_all = myStatus.objects.get(curr_User=self.request.user.id)
         data = {
-            'curr_User': keys_all.curr_User.id,
+            'curr_User': keys_all.curr_User,
             'myLocation': keys_all.myLocation,
-            'crop_Community': keys_all.crop_Community,
-            'crop_Individual': keys_all.crop_Individual,
+            'myCrop': keys_all.myCrop,
+            'myDiet': keys_all.myDiet,
         }
         json_str = json.dumps(data)
         context['myParam'] = json_str
@@ -120,10 +121,10 @@ class IndexView02(LoginRequiredMixin, TemplateView):
         return context
 
 
-class Community_ListView(LoginRequiredMixin, ListView):
-    model = Community
+class Location_ListView(LoginRequiredMixin, ListView):
+    model =Location
     context_object_name = "mylist"
-    template_name = 'myApp/Community_list.html'
+    template_name = 'myApp/Location_list.html'
 
     def get_queryset(self):
         queryset = super().get_queryset().filter(created_by=self.request.user)
@@ -135,10 +136,10 @@ class Community_ListView(LoginRequiredMixin, ListView):
         return context
 
 
-class Community_DeleteView(LoginRequiredMixin, DeleteView):
-    model = Community
-    template_name = 'myApp/Community_confirm_delete.html'
-    success_url = reverse_lazy('Community_filter')
+class Location_DeleteView(LoginRequiredMixin, DeleteView):
+    model =Location
+    template_name = 'myApp/Location_confirm_delete.html'
+    success_url = reverse_lazy('Location_list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -146,20 +147,17 @@ class Community_DeleteView(LoginRequiredMixin, DeleteView):
         return context
 
 
-class Community_CreateView(LoginRequiredMixin, CreateView):
-    model = Community
-    form_class = CommunityForm
-    template_name = 'myApp/Community_form.html'
-    success_url = reverse_lazy('Community_filter')
+class Location_CreateView(LoginRequiredMixin, CreateView):
+    model =Location
+    form_class = LocationForm
+    template_name = 'myApp/Location_form.html'
+    success_url = reverse_lazy('Location_list')
 
     def form_valid(self, form):
         self.object = form.save()
 # --------------------update myProgress-------------------------
         keys = {}
-        keys['Community_id'] = form.instance.pk
-        keys['conv_crop_grow_list'] = "0"
-        keys['conv_crop_sold_list'] = "0"
-        keys['person_id'] = 0
+        keys['Location_id'] = form.instance.pk
         tmp = myProgress.objects.filter(user_id=self.request.user.id)
         if tmp.count() == 0:
             keys['user_id'] = self.request.user.id
@@ -176,7 +174,7 @@ class Community_CreateView(LoginRequiredMixin, CreateView):
         if tmp.count() != 0:
             for tmp01 in tmp:
                 keys = {}
-                keys['myCommunity'] = Community.objects.get(id=form.instance.pk)
+                keys['myLocation'] =Location.objects.get(id=form.instance.pk)
                 keys['myFCT'] = FCT.objects.get(
                     food_item_id=tmp01.myFCT.food_item_id)
                 keys['selected_status'] = 0
@@ -185,13 +183,13 @@ class Community_CreateView(LoginRequiredMixin, CreateView):
         form.instance.created_by = self.request.user
         form.instance.country_test = Countries.objects.filter(
             GID_2=form.instance.province).first()
-        return super(Community_CreateView, self).form_valid(form)
+        return super(Location_CreateView, self).form_valid(form)
 
     def get_form_kwargs(self):
         """This method is what injects forms with their keyword
             arguments."""
         # grab the current set of form #kwargs
-        kwargs = super(Community_CreateView, self).get_form_kwargs()
+        kwargs = super(Location_CreateView, self).get_form_kwargs()
         # Update the kwargs with the user_id
         kwargs['myid'] = '0'
         return kwargs
@@ -207,17 +205,17 @@ class Community_CreateView(LoginRequiredMixin, CreateView):
         return context
 
 
-class Community_UpdateView(LoginRequiredMixin, UpdateView):
-    model = Community
-    form_class = CommunityForm
-    template_name = 'myApp/Community_form.html'
-    success_url = reverse_lazy('Community_filter')
+class Location_UpdateView(LoginRequiredMixin, UpdateView):
+    model =Location
+    form_class =LocationForm
+    template_name = 'myApp/Location_form.html'
+    success_url = reverse_lazy('Location_list')
 
     def get_form_kwargs(self):
         """This method is what injects forms with their keyword
             arguments."""
         # grab the current set of form #kwargs
-        kwargs = super(Community_UpdateView, self).get_form_kwargs()
+        kwargs = super(Location_UpdateView, self).get_form_kwargs()
         # Update the kwargs with the user_id
         kwargs['myid'] = self.kwargs['pk']
         return kwargs
@@ -226,18 +224,18 @@ class Community_UpdateView(LoginRequiredMixin, UpdateView):
         data = Countries.objects.all()
         context = super().get_context_data(**kwargs)
         context['countries'] = serializers.serialize('json', data)
-        myCommunity = Community.objects.get(id=self.kwargs['pk'])
-        context['coutry_selected'] = myCommunity.country
-        context['region_selected'] = myCommunity.region
-        context['province_selected'] = myCommunity.province
+        myLocation =Location.objects.get(id=self.kwargs['pk'])
+        context['coutry_selected'] = myLocation.country
+        context['region_selected'] = myLocation.region
+        context['province_selected'] = myLocation.province
         context['myuser'] = self.request.user
         return context
 
 #    def get_success_url(self, **kwargs):
-#        return reverse_lazy('Community_filter', kwargs = "")
+#        return reverse_lazy('Location_list', kwargs = "")
 
     def form_valid(self, form):
         form.instance.country_test = Countries.objects.filter(
             GID_2=form.instance.province).first()
-#        return super(Community_UpdateView, self).form_valid(form)
+#        return super(Location_UpdateView, self).form_valid(form)
         return HttpResponseRedirect(self.get_success_url())

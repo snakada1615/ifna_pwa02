@@ -1,0 +1,157 @@
+{% extends "myApp/_base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<input type="hidden" value="{{coutry_selected}}" id="sel_country">
+<input type="hidden" value="{{region_selected}}" id="sel_region">
+<input type="hidden" value="{{province_selected}}" id="sel_province">
+
+  {{ form.certifications.errors }}
+  <div class="container text-white bg-info" style="max-width: 540px;">
+    <form method="post" id="myform">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-12">
+          <h2 class="text-center">Information for Target Area</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="float-right">
+            <a class="btn btn-secondary" href="{% url 'Location_list' %}">return</a>
+            <button class="btn btn-secondary" type="submit">save</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          {{ form|crispy }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="float-right">
+            <a class="btn btn-secondary my-2" href="{% url 'Location_list' %}">return</a>
+            <button class="btn btn-secondary my-2" type="submit">save</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script type="text/javascript">
+    var cnt_arr = {{countries | safe}};
+    var cnt_list = [];
+    var cnt_key = [];
+    var subDiv_list1 = [];
+    var subDiv_list2 = [];
+    var subDiv_key1 = [];
+    var subDiv_key2 = [];
+
+    function getCountry() {
+      cnt_list = [];
+      cnt_list.push("--select country--")
+      cnt_key.push("")
+      cnt_arr.forEach(function (val) {
+        if (cnt_list.indexOf(val.fields["NAME_0"]) == -1) {
+          cnt_list.push(val.fields["NAME_0"]);
+          cnt_key.push(val.fields["GID_0"]);
+        }
+      });
+    }
+
+    function getSubDiv1(parentAdm) {
+      subDiv_list1 = [];
+      subDiv_key1 = [];
+      subDiv_list1.push("--select subdivision1--");
+      subDiv_key1.push("");
+      cnt_arr.forEach(function (val) {
+        if (val.fields["GID_0"] == parentAdm) {
+          if (subDiv_list1.indexOf(val.fields["NAME_1"]) == -1) {
+            subDiv_list1.push(val.fields["NAME_1"]);
+            subDiv_key1.push(val.fields["GID_1"]);
+          }
+        }
+      });
+    }
+
+    function getSubDiv2(parentAdm) {
+      subDiv_list2 = [];
+      subDiv_key2 = [];
+      subDiv_list2.push("--select subdivision2--");
+      subDiv_key2.push("");
+      cnt_arr.forEach(function (val) {
+        if (val.fields["GID_1"] == parentAdm) {
+          if (subDiv_list2.indexOf(val.fields["NAME_2"]) == -1) {
+            subDiv_list2.push(val.fields["NAME_2"]);
+            subDiv_key2.push(val.fields["GID_2"]);
+          }
+        }
+      });
+    }
+
+    function selCnt() {
+      var selected_cnt = document.getElementById('id_country').value;
+      getSubDiv1(selected_cnt);
+      var selObj = document.getElementById('id_region');
+      while (selObj.lastChild) {
+        selObj.removeChild(selObj.lastChild);
+      }
+      for (var i = 0; i < subDiv_list1.length; i++) {
+        let op = document.createElement("option");
+        op.value = subDiv_key1[i];
+        op.text = subDiv_list1[i];
+        selObj.appendChild(op);
+      }
+
+      // delete subdiv2 list also
+      var selObj = document.getElementById('id_province');
+      while (selObj.lastChild) {
+        selObj.removeChild(selObj.lastChild);
+      }
+    }
+
+    function selSub1() {
+      var selected_sub1 = document.getElementById('id_region').value;
+      getSubDiv2(selected_sub1);
+      var selObj = document.getElementById('id_province');
+      while (selObj.lastChild) {
+        selObj.removeChild(selObj.lastChild);
+      }
+      for (var i = 0; i < subDiv_list2.length; i++) {
+        let op = document.createElement("option");
+        op.value = subDiv_key2[i];
+        op.text = subDiv_list2[i];
+        selObj.appendChild(op);
+      }
+    }
+
+    // initislize country list -------------------
+    var selected1 = document.getElementById('sel_country').value;
+    var selected2 = document.getElementById('sel_region').value;
+    var selected3 = document.getElementById('sel_province').value;
+
+    getCountry();
+    for (var i = 0; i < cnt_list.length; i++) {
+      let op = document.createElement("option");
+      op.value = cnt_key[i];
+      op.text = cnt_list[i];
+      document.getElementById("id_country").appendChild(op);
+    }
+
+    if (selected1 != "") {
+      document.getElementById('id_country').value = selected1;
+      selCnt();
+      if (selected2 != "") {
+        document.getElementById('id_region').value = selected2;
+        selSub1();
+        if (selected3 != "") {
+          document.getElementById('id_province').value = selected3;
+        }
+      }
+    }
+
+  </script>
+
+{% endblock %}
