@@ -23,7 +23,7 @@ urlpatterns = [
     path('UserEdit/<int:pk>/',  UserEdit.as_view(), name='useredit'),
     path('login/', auth_views.LoginView.as_view(template_name='myApp/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('Location/create/<int:pk>/', Location_CreateView.as_view(), name='Location_create'),
+    path('Location/create/', Location_CreateView.as_view(), name='Location_create'),
     path('Location/update/<int:pk>/', Location_UpdateView.as_view(), name='Location_update'),
     path('Location/delete/<int:pk>/', Location_DeleteView.as_view(), name='Location_delete'),
     path('Location/list/', Location_ListView.as_view(), name='Location_list'),

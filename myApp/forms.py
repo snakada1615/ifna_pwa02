@@ -25,18 +25,3 @@ class LocationForm(forms.ModelForm):
             "province":"Woreda",
             "Location":"Kebele",
         }
-
-    def __init__(self, *args, **kwargs):
-        self.myid = kwargs.pop('myid')
-        super(LocationForm, self).__init__(*args, **kwargs)
-
-    def clean_crop_list(self):
-        d='0'
-        if self.myid != '0':
-            d = ''
-            for crp in Crop.objects.filter(Locationid = self.myid):
-                d += "-" + str(crp.food_item_id)
-                if d[0] == '-':
-                    d = d[1:]
-        crop_list = d
-        return crop_list

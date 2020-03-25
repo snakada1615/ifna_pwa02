@@ -9,7 +9,9 @@ from django.http.response import JsonResponse
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 from .forms import LocationForm
 
-from .models import myStatus,Location
+from .models import myStatus,Location, Countries, Crop_National, Crop_SubNational
+from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person
+
 
 # for user registration
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -153,46 +155,43 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
     template_name = 'myApp/Location_form.html'
     success_url = reverse_lazy('Location_list')
 
+    def form_invalid(self, form):
+        res = super().form_invalid(form)
+        res.status_code = 400
+        return res
+
     def form_valid(self, form):
         self.object = form.save()
-# --------------------update myProgress-------------------------
+# --------------------update myStatus-------------------------
         keys = {}
-        keys['Location_id'] = form.instance.pk
-        tmp = myProgress.objects.filter(user_id=self.request.user.id)
+        keys['myLocation'] = form.instance.pk
+        tmp = myStatus.objects.filter(curr_User = self.request.user.id)
         if tmp.count() == 0:
-            keys['user_id'] = self.request.user.id
-            p = myProgress.objects.create(**keys)
-        else:
+            keys['curr_User'] = self.request.user.id
+            p = myStatus.objects.create(**keys)
+        elif tmp.count() == 1:
             p = tmp.update(**keys)
+        else:
+            raise Exception("例外が発生しました")
 
 #        keys_all.update(**keys)
 # ---------------------
 # --------------------update myCrop-------------------------
         tmp_aez = Countries.objects.filter(
             GID_2=form.instance.province).first().AEZ_id
-        tmp = Crop_AEZ.objects.filter(AEZ_id=tmp_aez)
+        tmp = Crop_National.objects.filter(AEZ_id=tmp_aez)
         if tmp.count() != 0:
             for tmp01 in tmp:
                 keys = {}
                 keys['myLocation'] =Location.objects.get(id=form.instance.pk)
-                keys['myFCT'] = FCT.objects.get(
-                    food_item_id=tmp01.myFCT.food_item_id)
+                keys['myFCT'] = FCT.objects.get(food_item_id=tmp01.myFCT.food_item_id)
                 keys['selected_status'] = 0
-                p = myCrop.objects.create(**keys)
+                keys['created_by'] = self.request.user
+                p = Crop_SubNational.objects.create(**keys)
 # ---------------------
+        form.instance.AEZ_id = tmp_aez
         form.instance.created_by = self.request.user
-        form.instance.country_test = Countries.objects.filter(
-            GID_2=form.instance.province).first()
         return super(Location_CreateView, self).form_valid(form)
-
-    def get_form_kwargs(self):
-        """This method is what injects forms with their keyword
-            arguments."""
-        # grab the current set of form #kwargs
-        kwargs = super(Location_CreateView, self).get_form_kwargs()
-        # Update the kwargs with the user_id
-        kwargs['myid'] = '0'
-        return kwargs
 
     def get_context_data(self, **kwargs):
         data = Countries.objects.all()
@@ -211,15 +210,6 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'myApp/Location_form.html'
     success_url = reverse_lazy('Location_list')
 
-    def get_form_kwargs(self):
-        """This method is what injects forms with their keyword
-            arguments."""
-        # grab the current set of form #kwargs
-        kwargs = super(Location_UpdateView, self).get_form_kwargs()
-        # Update the kwargs with the user_id
-        kwargs['myid'] = self.kwargs['pk']
-        return kwargs
-
     def get_context_data(self, **kwargs):
         data = Countries.objects.all()
         context = super().get_context_data(**kwargs)
@@ -231,11 +221,42 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
         context['myuser'] = self.request.user
         return context
 
-#    def get_success_url(self, **kwargs):
-#        return reverse_lazy('Location_list', kwargs = "")
+
+    def form_invalid(self, form):
+        res = super().form_invalid(form)
+        res.status_code = 400
+        return res
 
     def form_valid(self, form):
-        form.instance.country_test = Countries.objects.filter(
-            GID_2=form.instance.province).first()
-#        return super(Location_UpdateView, self).form_valid(form)
-        return HttpResponseRedirect(self.get_success_url())
+        self.object = form.save()
+# --------------------update myStatus-------------------------
+        keys = {}
+        keys['myLocation'] = form.instance.pk
+        tmp = myStatus.objects.filter(curr_User = self.request.user.id)
+        if tmp.count() == 0:
+            keys['curr_User'] = self.request.user.id
+            p = myStatus.objects.create(**keys)
+        elif tmp.count() == 1:
+            p = tmp.update(**keys)
+        else:
+            raise Exception("例外が発生しました")
+
+#        keys_all.update(**keys)
+# ---------------------
+# --------------------update myCrop-------------------------
+        Crop_SubNational.objects.filter(myLocation_id=form.instance.pk).delete()
+        tmp_aez = Countries.objects.filter(
+            GID_2=form.instance.province).first().AEZ_id
+        tmp = Crop_National.objects.filter(AEZ_id = tmp_aez)
+        if tmp.count() != 0:
+            for tmp01 in tmp:
+                keys = {}
+                keys['myLocation'] = Location.objects.get(id=form.instance.pk)
+                keys['myFCT'] = FCT.objects.get(food_item_id=tmp01.myFCT.food_item_id)
+                keys['selected_status'] = 0
+                keys['created_by'] = self.request.user
+                p = Crop_SubNational.objects.create(**keys)
+# ---------------------
+        form.instance.AEZ_id = tmp_aez
+        form.instance.created_by = self.request.user
+        return super(Location_UpdateView, self).form_valid(form)

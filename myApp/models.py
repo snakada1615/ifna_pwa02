@@ -26,6 +26,7 @@ class Location(models.Model):
     )
     country = models.CharField(
         max_length=200,
+        blank=True
     )
     region = models.CharField(
         max_length=200,
@@ -41,6 +42,7 @@ class Location(models.Model):
     )
     AEZ_id = models.CharField(
         max_length=200,
+        blank=True
     )
     stunting_rate = models.IntegerField(
         default=0,
@@ -315,12 +317,14 @@ class Crop_SubNational(models.Model):
     myFCT = models.ForeignKey(
         FCT,
         to_field='food_item_id',
-        default = 436,
+        null=True,
+        blank=True,
         on_delete=models.CASCADE
     )
     myLocation = models.ForeignKey(
         Location,
-        default = 0,
+        null=True,
+        blank=True,
         on_delete=models.CASCADE
     )
     selected_status = models.IntegerField(
@@ -377,7 +381,8 @@ class Crop_SubNational(models.Model):
     )
     crop_feas = models.ForeignKey(
         Crop_Feasibility,
-        default = 0,
+        null=True,
+        blank=True,
         on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(
