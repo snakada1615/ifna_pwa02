@@ -370,18 +370,18 @@ class Person_UpdateView(LoginRequiredMixin, UpdateView):
         # grab the current set of form #kwargs
         kwargs = super(Person_UpdateView, self).get_form_kwargs()
         # Update the kwargs with the user_id
-        kwargs['myid'] = self.kwargs['myLocation']
+        kwargs['myLocation'] = self.kwargs['myLocation']
         return kwargs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        myid = self.kwargs['myLocation']
-        mydata = Location.objects.get(id=myid)
+        myLocation = self.kwargs['myLocation']
+        mydata = Location.objects.get(id=myLocation)
         context['name'] = mydata
-        context['myid'] = myid
+        context['myLocation'] = myLocation
         context["locations"] = Person.objects.filter(
-            myLocation_id=myid)
+            myLocation_id=myLocation)
         context['myuser'] = self.request.user
         return context
 
@@ -400,17 +400,12 @@ class Person_CreateView(LoginRequiredMixin, CreateView):
         # grab the current set of form #kwargs
         kwargs = super(Person_CreateView, self).get_form_kwargs()
         # Update the kwargs with the user_id
-        kwargs['myid'] = self.kwargs['myLocation']
+        kwargs['myLocation'] = self.kwargs['myLocation']
         return kwargs
 
     def get_context_data(self, **kwargs):
-        myid = self.kwargs['myLocation']
-        mydata = Location.objects.get(id=myid)
         context = super().get_context_data(**kwargs)
-        context['myid'] = myid
-        context['name'] = mydata
-        context["locations"] = Location.objects.filter(id = myid)
-        context['myuser'] = self.request.user
+        context['myLocation'] =  self.kwargs['myLocation']
         return context
 
     def get_success_url(self, **kwargs):
@@ -418,10 +413,11 @@ class Person_CreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
+        form.instance.created_by = self.request.user
         # do something with self.object
         # remember the import: from django.http import HttpResponseRedirect
         tmp_myStatus = myStatus.objects.filter(
-            user_id=self.request.user.id).first()
+            curr_User=self.request.user.id).first()
         tmp_myStatus.myDiet = '1'
         tmp_myStatus.save()
 
@@ -434,7 +430,7 @@ class Person_DeleteView(LoginRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['myLocation'] = self.kwargs['myLocation']
+        context['myLocation'] =  self.kwargs['myLocation']
         return context
 
     def get_success_url(self, **kwargs):

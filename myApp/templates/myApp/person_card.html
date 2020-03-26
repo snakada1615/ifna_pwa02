@@ -1,40 +1,24 @@
 <div class="row">
-    <div class="col-3">
-        <p>name</p>
-    </div>
+  <div class="col-3">
+      <p>location</p>
+  </div>
     <div class="col-9">
-        <p>{{ object.family_name }}</p>
+        <p>{{ object.Location.country}}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-3">
-        <p>age</p>
+        <p>target group</p>
     </div>
     <div class="col-9">
-        <p>{{ object.get_age_display }}</p>
+        <p>{{ object.nut_group }}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-3">
-        <p>sex</p>
+        <p>number</p>
     </div>
     <div class="col-9">
-        <p>{{ object.get_sex_display }}</p>
-    </div>
-</div>
-<div class="row">
-    <div class="col-3">
-        <p>women status</p>
-    </div>
-    <div class="col-9">
-        <p>{{ object.get_women_s_display }}</p>
-    </div>
-</div>
-<div class="row">
-    <div class="col-3">
-        <p>register date</p>
-    </div>
-    <div class="col-9">
-        <p>{{ object.created_at|date:"Y/m/d G:i:s" }}</p>
+        <p>{{ object.target_pop }}</p>
     </div>
 </div>

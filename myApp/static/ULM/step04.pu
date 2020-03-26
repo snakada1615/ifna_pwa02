@@ -1,22 +1,31 @@
 @startuml
 left to right direction
 
-title step3: target selection --> target info (with DRI)
+title step4: target selection --> target info (with DRI)
 
 actor :user: as user
 actor :system: as admin
 actor :table_Person: as table1
+actor :table_DRI: as table2
 
   package "User interface" <<Rect>> {
       user --> (user info):"1"
       (user info) --> admin:"1"
-      user --> (target select):"2"
-      (target select) --> admin:"2"
+      package "stepwise targeting" {
+        user --> (individual target):"2"
+        (individual target) --> admin:"2"
+        user --> (family target):"3"
+        (family target) --> admin:"3"
+        user --> (community target):"4"
+        (community target) --> admin:"4"
+      }
   }
 
   package "Backend DB" {
-    admin --> (target_info):"3"
-    (target_info) --> table1:"3"
+    admin --> (target_info):"4"
+    (target_info) --> table1:"4"
+    (target_info) --> table2:"4"
+    table2 -> table1:"5"
   }
 
 

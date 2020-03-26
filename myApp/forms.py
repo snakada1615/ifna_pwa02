@@ -36,13 +36,11 @@ class Person_Form(forms.ModelForm):
             }
 
     def __init__(self, *args, **kwargs):
-        self.myid = kwargs.pop('myid')
-        super(Person_Create_Form, self).__init__(*args, **kwargs)
+        self.myLocation = kwargs.pop('myLocation')
+        super(Person_Form, self).__init__(*args, **kwargs)
 
     def clean(self):
-        cleaned_data = super(Person_Create_Form, self).clean()
-
-        a = self.cleaned_data['nut_group']
-        self.cleaned_data['myLocation'] = self.myid
+        cleaned_data = super(Person_Form, self).clean()
+        self.cleaned_data['myLocation'] = Location.objects.get(id=self.myLocation)
 
         return cleaned_data

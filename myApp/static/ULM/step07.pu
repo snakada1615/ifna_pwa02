@@ -1,23 +1,23 @@
 @startuml
 left to right direction
 
-title step5: optimize diet for single target
+title step7: set sub-national level target
 
 actor :user: as user
 actor :system: as admin
 actor :table_myCrop: as table1
-actor :diet guideline: as table2
+actor :Production Target: as table3
 
   package "User interface" <<Rect>> {
       user --> (user info):"1"
       (user info) --> admin:"1"
       user <-- (crop list\nDRI info):"2"
       (crop list\nDRI info) <-- admin:"2"
-      package "repeat \n for each season"{
-        user --> (diet optimize1):"3"
-        (diet optimize1) --> admin:"3"
-        user --> (diet optimize2):"4"
-        (diet optimize2) --> admin:"4"
+      package "repeat \n for each month"{
+      user --> (diet optimize1):"3"
+      (diet optimize1) --> admin:"3"
+      user --> (diet optimize2):"4"
+      (diet optimize2) --> admin:"4"
     }
   }
 
@@ -26,8 +26,8 @@ actor :diet guideline: as table2
     (user_info) --> table1:"1"
     (crop_list\nDRI_info) <-- table1:"2"
     admin <-- (crop_list\nDRI_info):"2"
-    admin --> (diet guidance):"3, 4"
-    (diet guidance) --> table2:"3, 4"
+    admin --> (production target):"3, 4"
+    (production target) --> table3:"3, 4"
   }
 
 

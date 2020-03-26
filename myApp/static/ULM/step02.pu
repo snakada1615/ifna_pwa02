@@ -1,7 +1,7 @@
 @startuml
 left to right direction
 
-title step2: location infor --> suitable crop list
+title step2: location info --> suitable crop list
 
 actor :user: as user
 actor :system: as admin
@@ -11,8 +11,6 @@ actor :table_Country: as table2
   package "User interface" <<Rect>> {
       user --> (user info):"1"
       (user info) --> admin:"1"
-      user <-- (user info):"1 auth"
-      (user info) <-- admin:"1 auth"
       user --> (location info):"2"
       (location info) --> admin:"2"
   }
@@ -21,7 +19,7 @@ actor :table_Country: as table2
     admin --> (location):"2"
     (location) --> table2:"2"
     table2 <-> table1
-    (suitable crop) <-- table1
+    (suitable crop\nlist) <-- table1:"3"
   }
 
 

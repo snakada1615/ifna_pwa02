@@ -533,12 +533,14 @@ class Person(models.Model):
     )
     myLocation = models.ForeignKey(
         Location,
-        default = 0,
+        null=True,
+        blank=True,
         on_delete=models.CASCADE
     )
     myDRI = models.ForeignKey(
         DRI,
-        default = 0,
+        null=True,
+        blank=True,
         on_delete=models.CASCADE
     )
     nut_group = models.CharField(

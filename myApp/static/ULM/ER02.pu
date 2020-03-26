@@ -100,7 +100,6 @@ package "Transaction" {
     + myDRI(FK)
     + created_by(FK)
 --
-      Nut_GROUP
       nut_group
       class_aggr
       target_pop
