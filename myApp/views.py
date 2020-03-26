@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.core import serializers
 from django.http.response import JsonResponse
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
-from .forms import LocationForm
+from .forms import LocationForm, Person_Form
 
 from .models import myStatus,Location, Countries, Crop_National, Crop_SubNational
 from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person
@@ -22,6 +22,8 @@ from django.contrib.auth.models import User
 # python component
 import json
 
+class Trial_View(TemplateView):
+    template_name = "myApp/person_tab.html"
 
 class IndexView(TemplateView):
     template_name = "myApp/index01.html"
@@ -337,3 +339,104 @@ def registCropAvail(request):
         'success': True,
         'url': myURL,
     })
+
+class Person_ListView(LoginRequiredMixin, ListView):
+    template_name = 'myApp/person_list.html'  # この行でテンプレート指定
+    context_object_name = 'persons'
+    model = Person
+
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(
+            myLocation=self.kwargs['myLocation'])
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
+        context['myuser'] = self.request.user
+
+        return context
+
+class Person_UpdateView(LoginRequiredMixin, UpdateView):
+    model = Person
+    form_class = Person_Form
+    template_name = 'myApp/person_form.html'
+
+    def get_form_kwargs(self):
+        """This method is what injects forms with their keyword
+            arguments."""
+        # grab the current set of form #kwargs
+        kwargs = super(Person_UpdateView, self).get_form_kwargs()
+        # Update the kwargs with the user_id
+        kwargs['myid'] = self.kwargs['myLocation']
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        myid = self.kwargs['myLocation']
+        mydata = Location.objects.get(id=myid)
+        context['name'] = mydata
+        context['myid'] = myid
+        context["locations"] = Person.objects.filter(
+            myLocation_id=myid)
+        context['myuser'] = self.request.user
+        return context
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('person_list', kwargs={'myLocation_id': self.kwargs['myLocation']})
+
+
+class Person_CreateView(LoginRequiredMixin, CreateView):
+    model = Person
+    form_class = Person_Form
+    template_name = 'myApp/person_form.html'
+
+    def get_form_kwargs(self):
+        """This method is what injects forms with their keyword
+            arguments."""
+        # grab the current set of form #kwargs
+        kwargs = super(Person_CreateView, self).get_form_kwargs()
+        # Update the kwargs with the user_id
+        kwargs['myid'] = self.kwargs['myLocation']
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        myid = self.kwargs['myLocation']
+        mydata = Location.objects.get(id=myid)
+        context = super().get_context_data(**kwargs)
+        context['myid'] = myid
+        context['name'] = mydata
+        context["locations"] = Location.objects.filter(id = myid)
+        context['myuser'] = self.request.user
+        return context
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('person_list', kwargs={'myLocation': self.kwargs['myLocation']})
+
+    def form_valid(self, form):
+        self.object = form.save()
+        # do something with self.object
+        # remember the import: from django.http import HttpResponseRedirect
+        tmp_myStatus = myStatus.objects.filter(
+            user_id=self.request.user.id).first()
+        tmp_myStatus.myDiet = '1'
+        tmp_myStatus.save()
+
+        return super(Person_CreateView, self).form_valid(form)
+#        return HttpResponseRedirect(self.get_success_url())
+
+class Person_DeleteView(LoginRequiredMixin, DeleteView):
+    model = Person
+    template_name = 'myApp/person_confirm_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['myLocation'] = self.kwargs['myLocation']
+        return context
+
+    def get_success_url(self, **kwargs):
+        if kwargs != None:
+            return reverse_lazy('person_list', kwargs={'myLocation': self.kwargs['myLocation']})
+        else:
+            return reverse_lazy('person_list', args=(self.object.id,))

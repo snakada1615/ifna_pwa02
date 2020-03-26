@@ -102,7 +102,6 @@ package "Transaction" {
 --
       Nut_GROUP
       nut_group
-          default='children 6 to 59 month'
       class_aggr
       target_pop
       created_at

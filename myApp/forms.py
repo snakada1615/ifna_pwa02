@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.admin import widgets
 from django.db.models import Q, Sum
-from .models import Location
+from .models import Location, Person
 
 
 class LocationForm(forms.ModelForm):
@@ -25,3 +25,24 @@ class LocationForm(forms.ModelForm):
             "province":"Woreda",
             "Location":"Kebele",
         }
+
+class Person_Form(forms.ModelForm):
+    class Meta:
+        model = Person
+        fields = ("myLocation", "nut_group", "target_pop", "myDRI",)
+        widgets = {
+            'myLocation': forms.HiddenInput(),
+            'myDRI': forms.HiddenInput(),
+            }
+
+    def __init__(self, *args, **kwargs):
+        self.myid = kwargs.pop('myid')
+        super(Person_Create_Form, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super(Person_Create_Form, self).clean()
+
+        a = self.cleaned_data['nut_group']
+        self.cleaned_data['myLocation'] = self.myid
+
+        return cleaned_data
