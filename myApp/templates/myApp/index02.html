@@ -95,22 +95,24 @@
 			document.getElementById('btn07').classList.add("disabled");
 			document.getElementById('btn08').classList.add("disabled");
 			document.getElementById('btn09').classList.add("disabled");
-/*
+
+console.log(DATA);
+
 			if (DATA.myLocation > 0) {
 				document.getElementById('btn02').classList.remove("disabled");
-				var myURL = '/crop_avail/' + DATA.myLocation + '/' + DATA.crop_Community + '/';
+				var myURL = '/crop_select/' + DATA.myLocation + '/' ;
 				document.getElementById('btn02').href = myURL;
-				if (DATA.crop_Community != "0") {
+/*				if (DATA.myCrop != "0") {
 					document.getElementById('btn04').classList.remove("disabled");
 					var myURL = '/person/list/' + DATA.myLocation + '/';
 					document.getElementById('btn04').href = myURL;
 					if (DATA.crop_Individual > 0) {
 						document.getElementById('btn05').classList.remove("disabled");
-						var myURL = '/Diet1/' + DATA.myLocation + '/' + DATA.crop_Community;
+						var myURL = '/Diet1/' + DATA.myLocation + '/' + DATA.myCrop;
 						document.getElementById('btn05').href = myURL;
 					}
-				}
-			} */
+				}*/
+			}
 		}
 
 	</script>

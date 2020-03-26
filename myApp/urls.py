@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 from .views import IndexView, Under_Construction_View, aboutNFA, UserChangeForm
 from .views import SignUpForm, SignUp, UserEdit, IndexView02, Location_CreateView
 from .views import Location_UpdateView, Location_DeleteView, Location_ListView
+from .views import CropSelect, registCropAvail
 
 from django.contrib import admin
 from django.urls import include
@@ -27,5 +28,7 @@ urlpatterns = [
     path('Location/update/<int:pk>/', Location_UpdateView.as_view(), name='Location_update'),
     path('Location/delete/<int:pk>/', Location_DeleteView.as_view(), name='Location_delete'),
     path('Location/list/', Location_ListView.as_view(), name='Location_list'),
+    path('crop_select/<int:myLocation>/',  CropSelect.as_view(), name='crop_select'),
+    path('registCropAvail/', views.registCropAvail, name='regist_crop_avail'),
 
 ]

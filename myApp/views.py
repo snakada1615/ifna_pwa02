@@ -260,3 +260,80 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
         form.instance.AEZ_id = tmp_aez
         form.instance.created_by = self.request.user
         return super(Location_UpdateView, self).form_valid(form)
+
+
+class CropSelect(TemplateView):
+    template_name = "myApp/crop_available.html"
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+
+        # send filtered crop by AEZ ######
+        tmp01 = Crop_SubNational.objects.filter(myLocation=self.kwargs['myLocation'])
+        d = []
+        for tmp02 in tmp01:
+            dd = {}
+            dd["selected_status"] = tmp02.selected_status
+            dd["Food_grp"] = tmp02.myFCT.Food_grp
+            dd["Food_name"] = tmp02.myFCT.Food_name
+            dd["food_item_id"] = tmp02.myFCT.food_item_id
+            dd["m1"] = tmp02.m1_avail
+            dd["m2"] = tmp02.m2_avail
+            dd["m3"] = tmp02.m3_avail
+            dd["m4"] = tmp02.m4_avail
+            dd["m5"] = tmp02.m5_avail
+            dd["m6"] = tmp02.m6_avail
+            dd["m7"] = tmp02.m7_avail
+            dd["m8"] = tmp02.m8_avail
+            dd["m9"] = tmp02.m9_avail
+            dd["m10"] = tmp02.m10_avail
+            dd["m11"] = tmp02.m11_avail
+            dd["m12"] = tmp02.m12_avail
+            d.append(dd)
+        context["dat_mycrop"] = d
+
+
+        return context
+
+
+def registCropAvail(request):
+    #json_str = request.body.decode("utf-8")
+    json_data = json.loads(request.body)
+    tmp_myLocation_id = 0
+    tmp_newcrop_list = []
+
+    for myrow in json_data['myJson']:
+        newcrop = {}
+        newcrop['myFCT'] = FCT.objects.get(food_item_id=myrow['myFCT_id'])
+        newcrop['myLocation'] = Location.objects.get(id=myrow['myLocation'])
+        newcrop['selected_status'] = myrow['selected_status']
+        for j in range(1, 13):
+            tmpM = myrow['m' + str(j)]
+            if tmpM == '':
+                tmpM = '0'
+            newcrop['m' + str(j) + '_avail'] = tmpM
+
+        tmp_myLocation_id = myrow['myLocation']  # 後で使う(part 2)
+        tmp_newcrop_list.append(myrow['myFCT_id'])  # 後で使う(part 2)
+
+        tmp = Crop_SubNational.objects.filter(myFCT_id=myrow['myFCT_id'])
+        if tmp.count() == 0:
+            p = Crop_SubNational.objects.create(**newcrop)
+        else:
+            p = tmp.update(**newcrop)
+
+    # (part 2) delete non-selected records
+    tmp = Crop_SubNational.objects.filter(myLocation_id=tmp_myLocation_id)
+    for rec in tmp:
+        if int(rec.myFCT.food_item_id) not in tmp_newcrop_list:
+            rec.selected_status = 0
+            rec.save()
+
+    myStatus.objects.filter(curr_User=request.user.id).update(myCrop='1')
+
+    myURL = reverse_lazy('index02')
+    return JsonResponse({
+        'success': True,
+        'url': myURL,
+    })
