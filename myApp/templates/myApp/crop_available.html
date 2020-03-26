@@ -26,6 +26,7 @@
       }
     );
 
+
     getHTML_param = function () {
       var url_tmp = window.location.href.split('/');
       var tmp1 = url_tmp[url_tmp.length - 3];
@@ -212,6 +213,7 @@
                 switch (true) {
                   case j == 0:
                     dd["selected_status"] = tmp;
+                    console.log(tmp);
                     break;
                   case j > 2 && j < 15:
                     dd["m" + String(j - 2)] = tmp;
@@ -324,8 +326,9 @@
             if ($(this).hasClass('selected')) {
               let myR = mytable_all.row(this).index();
 
+              mytable_all.cell(myR, 0).data('1')
               mytable_selected.row.add({
-                "selected_status": mytable_all.cell(myR, 0).data('1'),
+                "selected_status": mytable_all.cell(myR, 0).data(),
                 "Food_grp": mytable_all.cell(myR, 1).data(),
                 "Food_name": mytable_all.cell(myR, 2).data(),
                 "m1": mytable_all.cell(myR, 3).data(),

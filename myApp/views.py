@@ -305,32 +305,23 @@ def registCropAvail(request):
     tmp_myLocation_id = 0
     tmp_newcrop_list = []
 
+    ### existing records ###
+    Crop_SubNational.objects.filter(myLocation_id=tmp_myLocation_id).delete
+
+    ### add records ###
     for myrow in json_data['myJson']:
         newcrop = {}
         newcrop['myFCT'] = FCT.objects.get(food_item_id=myrow['myFCT_id'])
         newcrop['myLocation'] = Location.objects.get(id=myrow['myLocation'])
         newcrop['selected_status'] = myrow['selected_status']
+        newcrop['created_by'] = request.user
         for j in range(1, 13):
             tmpM = myrow['m' + str(j)]
             if tmpM == '':
                 tmpM = '0'
             newcrop['m' + str(j) + '_avail'] = tmpM
 
-        tmp_myLocation_id = myrow['myLocation']  # 後で使う(part 2)
-        tmp_newcrop_list.append(myrow['myFCT_id'])  # 後で使う(part 2)
-
-        tmp = Crop_SubNational.objects.filter(myFCT_id=myrow['myFCT_id'])
-        if tmp.count() == 0:
             p = Crop_SubNational.objects.create(**newcrop)
-        else:
-            p = tmp.update(**newcrop)
-
-    # (part 2) delete non-selected records
-    tmp = Crop_SubNational.objects.filter(myLocation_id=tmp_myLocation_id)
-    for rec in tmp:
-        if int(rec.myFCT.food_item_id) not in tmp_newcrop_list:
-            rec.selected_status = 0
-            rec.save()
 
     myStatus.objects.filter(curr_User=request.user.id).update(myCrop='1')
 
