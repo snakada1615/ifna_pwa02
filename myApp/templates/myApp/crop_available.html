@@ -231,7 +231,6 @@
             let hostUrl = myRoot + 'registCropAvail/';
             let mydat = getTblData();
 
-            console.log(hostUrl);
             Set_CRSF();
             sendJson(mydat, hostUrl);
           }); ///////////////////
@@ -242,6 +241,7 @@
       var mytable_all = $('#tbl_crop_all').DataTable({
         data: Json_Crop_All,
         "pageLength": 20,
+        "ordering": false,
         ///initialize selection///
         "createdRow": function (row, data, dataIndex) {
           if (data.selected_status == '1') {
@@ -298,7 +298,6 @@
         //////////////////all the initialization process after this
         "initComplete": function (settings, json) {
           getHTML_param();
-          myTmp = mytable_all.context[0].aoData;
           //////////////////add filtering dropdown list
           this.api().columns([1]).every(function () {
             var column = this;
@@ -363,7 +362,6 @@
           }); ///////////////////
           //////////////////register selected commodity
           $('#btn_exit01').click(function () {
-            console.log(mytable_all.context[0].aoData);
             $('#myModal01').modal('hide');
           }); ///////////////////
         } ////// finish initcomplete//////////
