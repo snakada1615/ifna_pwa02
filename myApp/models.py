@@ -582,4 +582,5 @@ class myStatus(models.Model):
     curr_User = models.IntegerField(default=0,blank=True)
     myLocation = models.IntegerField(default=0,blank=True)
     myCrop = models.IntegerField(default=0,blank=True)
+    myTarget = models.IntegerField(default=0,blank=True)
     myDiet = models.IntegerField(default=0,blank=True)

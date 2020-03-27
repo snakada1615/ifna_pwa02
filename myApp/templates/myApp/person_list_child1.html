@@ -1,0 +1,36 @@
+{% for person in persons %}
+	<div class="card border-success col-12 my-2" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC";">
+		<div class="row">
+			<div class="col-12">
+				<div class="card-body py-0 px-0">
+					<p class="card-text my-0">
+						Target group:
+						{{ person.nut_group }}
+					</p>
+					<p class="card-text my-0">
+						energy Requirement:
+						{{ person.myDRI.energy }}
+					</p>
+					<p class="card-text my-0">
+						protein DRI:
+						{{ person.myDRI.protein }}
+					</p>
+					<p class="card-text my-0">
+						vit-A DRI :
+						{{ person.myDRI.vita }}
+					</p>
+					<p class="card-text my-0">
+						Fe DRI :
+						{{ person.myDRI.fe }}
+					</p>
+					<span>
+						<a class="btn mb-2 btn-info btn-sm align-middle " href="{% url 'person_new_update' myLocation=myLocation.id pk=person.id %}">edit</a>
+					</span>
+					<span>
+						<a class="btn mb-2 btn-info btn-sm align-middle " href="{% url 'person_delete' myLocation=myLocation.id pk=person.id %}">del</a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endfor %}
