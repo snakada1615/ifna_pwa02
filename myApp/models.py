@@ -19,6 +19,12 @@ def __str__(self):
 
 
 class Location(models.Model):
+    myCountry= models.ForeignKey(
+        Countries,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
     name = models.CharField(
         verbose_name='name',
         max_length=200,

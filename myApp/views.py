@@ -192,6 +192,8 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
                 p = Crop_SubNational.objects.create(**keys)
 # ---------------------
         form.instance.AEZ_id = tmp_aez
+        form.instance.myCountry = Countries.objects.filter(
+            GID_2=form.instance.province).first()
         form.instance.created_by = self.request.user
         return super(Location_CreateView, self).form_valid(form)
 
@@ -414,6 +416,8 @@ class Person_CreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save()
         form.instance.created_by = self.request.user
+        form.instance.myDRI = DRI.objects.filter(
+            nut_group=form.instance.nut_group).first()
         # do something with self.object
         # remember the import: from django.http import HttpResponseRedirect
         tmp_myStatus = myStatus.objects.filter(

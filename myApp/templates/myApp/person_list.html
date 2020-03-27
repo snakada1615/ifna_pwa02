@@ -11,7 +11,7 @@
 		<div class="col-10 my-0 px-1">
 			<h5>
 				agree on nutrition target for
-				{{myLocation.province}}
+				{{myLocation.myCountry.NAME_1}}
 			</h5>
 		</div>
 	</div>
@@ -29,15 +29,15 @@
 						</p>
 						<p class="card-text my-0">
 							country:
-							{{ myLocation.country }}
+							{{ myLocation.myCountry.NAME_0 }}
 						</p>
 						<p class="card-text my-0">
 							region:
-							{{ myLocation.region }}
+							{{ myLocation.myCountry.NAME_1 }}
 						</p>
 						<p class="card-text my-0">
 							province:
-							{{ myLocation.province }}
+							{{ myLocation.myCountry.NAME_2 }}
 						</p>
 						<button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true" aria-controls="more_info">
 							more info
@@ -89,16 +89,20 @@
 						{{ person.nut_group }}
 					</p>
 					<p class="card-text my-0">
+						energy Requirement:
+						{{ person.myDRI.energy }}
+					</p>
+					<p class="card-text my-0">
 						protein DRI:
-						{{ person.protein }}
+						{{ person.myDRI.protein }}
 					</p>
 					<p class="card-text my-0">
 						vit-A DRI :
-						{{ person.vita }}
+						{{ person.myDRI.vita }}
 					</p>
 					<p class="card-text my-0">
 						Fe DRI :
-						{{ person.fe }}
+						{{ person.myDRI.fe }}
 					</p>
 					<span>
 						<a class="btn mb-2 btn-outline-success btn-sm align-middle " href="{% url 'person_new_update' myLocation=myLocation.id pk=person.id %}">edit</a>

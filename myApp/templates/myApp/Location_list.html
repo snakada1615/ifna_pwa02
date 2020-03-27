@@ -26,13 +26,13 @@
 							{{ Location.name }}
 						</h5>
 						<p class="card-text my-0">
-							{{ Location.country }}
+							{{ Location.myCountry.NAME_0 }}
 						</p>
 						<p class="card-text my-0">
-							{{ Location.region }}
+							{{ Location.myCountry.NAME_1 }}
 						</p>
 						<p class="card-text my-0">
-							{{ Location.province }}
+							{{ Location.myCountry.NAME_2 }}
 						</p>
 							<span><a class="btn my-0 btn-outline-secondary btn-sm align-middle badge" href="{% url 'Location_update' pk=Location.pk %}">edit</a></span>
 							<span><a class="btn my-0 btn-outline-secondary btn-sm align-middle badge " href="{% url 'Location_delete' pk=Location.pk %}">delete</a></span>
