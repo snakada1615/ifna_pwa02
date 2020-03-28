@@ -1,3 +1,11 @@
+<div class="row">
+	<div class="col-12">
+		<span>
+			<a id="btn_add1" class="btn btn-block btn-info mt-2 btn-sm" href="{% url 'person_new_create' myLocation=myLocation.id %}">add new target</a>
+		</span>
+	</div>
+</div>
+
 {% for person in persons %}
 	<div class="card border-success col-12 my-2" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC";">
 		<div class="row">

@@ -356,6 +356,14 @@ class Person_ListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        tmpClass = 0
+        tmpPersons = Person.objects.filter(myLocation=self.kwargs['myLocation'])
+        for tmpPerson in tmpPersons:
+            if tmpPerson.class_aggr > tmpClass:
+                tmpClass = tmpPerson.class_aggr
+
+        context['myClass'] = tmpClass
         context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
         context['myuser'] = self.request.user
 
