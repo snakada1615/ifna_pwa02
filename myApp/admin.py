@@ -13,6 +13,8 @@ admin.site.register(Crop_National)
 admin.site.register(Crop_SubNational)
 admin.site.register(Crop_Feasibility)
 admin.site.register(Countries)
+admin.site.register(Country_label)
+admin.site.register(myStatus)
 
 
 # Register your models here.

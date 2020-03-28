@@ -17,6 +17,34 @@ class Countries(models.Model):
 def __str__(self):
     return self.GID_0
 
+class Country_label(models.Model):
+    myCountry= models.ForeignKey(
+        Countries,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
+    adm_name_1 = models.CharField(
+        max_length=200,
+        blank=True
+    )
+    adm_name_2 = models.CharField(
+        max_length=200,
+        blank=True
+    )
+    adm_name_3 = models.CharField(
+        max_length=200,
+        blank=True
+    )
+    adm_name_4 = models.CharField(
+        max_length=200,
+        blank=True
+    )
+    adm_name_5 = models.CharField(
+        max_length=200,
+        blank=True
+    )
+
 
 class Location(models.Model):
     myCountry= models.ForeignKey(

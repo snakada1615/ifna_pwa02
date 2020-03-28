@@ -117,6 +117,7 @@ class IndexView02(LoginRequiredMixin, TemplateView):
             'curr_User': keys_all.curr_User,
             'myLocation': keys_all.myLocation,
             'myCrop': keys_all.myCrop,
+            'myTarget': keys_all.myTarget,
             'myDiet': keys_all.myDiet,
         }
         json_str = json.dumps(data)
@@ -136,6 +137,7 @@ class Location_ListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['myLocation'] = myStatus.objects.all().first().myLocation
         context['myuser'] = self.request.user
         return context
 
@@ -446,7 +448,7 @@ class Person_CreateView(LoginRequiredMixin, CreateView):
         # remember the import: from django.http import HttpResponseRedirect
         tmp_myStatus = myStatus.objects.filter(
             curr_User=self.request.user.id).first()
-        tmp_myStatus.myDiet = self.kwargs['myClass_Aggr']
+        tmp_myStatus.myTarget = 1
         tmp_myStatus.save()
 
         return super(Person_CreateView, self).form_valid(form)
