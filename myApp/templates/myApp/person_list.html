@@ -4,15 +4,18 @@
 {% block content %}
 
   <div class="container" style="max-width: 540px;">
-    <div class="row">
-      <div class="col-2 my-0 px-3">
-        <img src="{% static 'img/no4.png' %}">
-      </div>
-      <div class="col-10 my-0 px-1">
-        <h5>
-          agree on nutrition target for
-          {{myLocation.myCountry.NAME_1}}
-        </h5>
+      <div class="row">
+        <div class="col-2 my-0 px-3">
+          <img src="{% static 'img/no4.png' %}">
+        </div>
+        <div class="col-8 my-0 px-1">
+          <h5>
+            agree on nutrition target for
+            {{myLocation.myCountry.NAME_1}}
+          </h5>
+        </div>
+        <div class="col-2 my-0 px-1">
+          <a class="btn btn-warning btn-sm" href="{% url 'index02' %}">back</a>
       </div>
     </div>
   </div>
@@ -34,7 +37,7 @@
               <p class="card-text my-0">
                 region:
                 {{ myLocation.myCountry.NAME_1 }}
-                <span class="fb fb-help" id="popup" data-toggle="tooltip" title="Tooltip message"></span>
+                <span class="fb fb-help" data-toggle="tooltip" title="Tooltip message"></span>
               </p>
               <p class="card-text my-0">
                 province:
@@ -66,12 +69,7 @@
 
     <div class="row">
       <div class="col-12">
-        <span>
-          <a class="btn btn-info mt-2 my-0 py-0 btn-sm" href="{% url 'index02' %}">back to menu</a>
-        </span>
-        <span>
-          <a id="btn_add1" class="btn btn-info mt-2 my-0 py-0 btn-sm" href="{% url 'person_new_create' myLocation=myLocation.id %}">+</a>
-        </span>
+        <span></span>
       </div>
     </div>
   </div>
@@ -80,32 +78,48 @@
     <!-- 4個分のタブ -->
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a href="#photo1" class="nav-link active" id="tab1" data-toggle="tab">individual</a>
+        <a href="#tab1_link" class="nav-link active" id="tab1" data-toggle="tab">individual</a>
       </li>
       <li class="nav-item">
-        <a href="#photo2" class="nav-link" id="tab2" data-toggle="tab">family</a>
+        <a href="#tab2_link" class="nav-link" id="tab2" data-toggle="tab">family</a>
       </li>
       <li class="nav-item">
-        <a href="#photo3" class="nav-link" id="tab3" data-toggle="tab">community</a>
+        <a href="#tab3_link" class="nav-link" id="tab3" data-toggle="tab">community</a>
       </li>
     </ul>
 
     <!-- 写真部分 -->
     <div class="tab-content">
-      <div id="photo1" class="tab-pane active">
+      <div id="tab1_link" class="tab-pane active">
         {% include "./person_list_child1.html" %}
       </div>
-      <div id="photo2" class="tab-pane">
-        <img src="images/photo2.jpg" class="img-fluid" alt=""/>
+      <div id="tab2_link" class="tab-pane">
+        {% include "./person_list_child2.html" %}
       </div>
-      <div id="photo3" class="tab-pane">
-        <img src="images/photo3.jpg" class="img-fluid" alt=""/>
+      <div id="tab3_link" class="tab-pane">
+        {% include "./person_list_child3.html" %}
       </div>
     </div>
   </div>
 
   <script type="text/javascript">
     $('[data-toggle="tooltip"]').tooltip()
+
+    let myClass_Aggr_Sum = {{myClass_Aggr_Sum}}
+    if (myClass_Aggr_Sum < 100) {
+      $('#btn_add1').removeClass('disabled');
+      $('#tab2').addClass('disabled');
+      $('#tab2').removeAttr("data-toggle");
+      $('#tab3').addClass('disabled');
+      $('#tab3').removeAttr("data-toggle");
+    } else {
+      $('#btn_add1').addClass('disabled');
+      $('#tab2').removeClass('disabled');
+      $('#tab2').attr("data-toggle", "tab");
+      $('#tab3').removeClass('disabled');
+      $('#tab3').attr("data-toggle", "tab");
+    }
+    //    $('a[data-toggle="tab"]').on('show.bs. tab', function (e) {      let tmpTab = e.target.id      if (tmpTab == "tab1") {        $('#btn_add1').addClass('disabled');      } else {        $('#btn_add1').removeClass('disabled');      }    })
   </script>
 
 {% endblock %}

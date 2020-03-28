@@ -357,13 +357,21 @@ class Person_ListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        tmpClass = 0
+        tmpClass1 = 0
+        tmpClass2 = 0
+        tmpClass3 = 0
+        tmpClass_sum = 0
         tmpPersons = Person.objects.filter(myLocation=self.kwargs['myLocation'])
         for tmpPerson in tmpPersons:
-            if tmpPerson.class_aggr > tmpClass:
-                tmpClass = tmpPerson.class_aggr
+            if tmpPerson.class_aggr == 1:
+                tmpClass1 = 1
+            if tmpPerson.class_aggr == 2:
+                tmpClass2 = 1
+            if tmpPerson.class_aggr == 3:
+                tmpClass3 = 1
+        tmpClass_sum = 100*tmpClass1 + 10*tmpClass2 + tmpClass3
 
-        context['myClass'] = tmpClass
+        context['myClass_Aggr_Sum'] = tmpClass_sum
         context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
         context['myuser'] = self.request.user
 
@@ -426,6 +434,7 @@ class Person_CreateView(LoginRequiredMixin, CreateView):
         form.instance.created_by = self.request.user
         form.instance.myDRI = DRI.objects.filter(
             nut_group=form.instance.nut_group).first()
+        form.instance.class_aggr = self.kwargs['myClass_Aggr']
         # do something with self.object
         # remember the import: from django.http import HttpResponseRedirect
         tmp_myStatus = myStatus.objects.filter(

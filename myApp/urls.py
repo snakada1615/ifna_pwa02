@@ -33,8 +33,8 @@ urlpatterns = [
     path('crop_select/<int:myLocation>/',  CropSelect.as_view(), name='crop_select'),
     path('registCropAvail/', views.registCropAvail, name='regist_crop_avail'),
     path('person/list/<int:myLocation>/',  Person_ListView.as_view(), name='person_list'),
-    path('person/create/<int:myLocation>/', Person_CreateView.as_view(), name='person_new_create'),
-    path('person/update/<int:myLocation>/<int:pk>/', Person_UpdateView.as_view(), name='person_new_update'),
+    path('person/create/<int:myLocation>/<int:myClass_Aggr>', Person_CreateView.as_view(), name='person_create'),
+    path('person/update/<int:myLocation>/<int:pk>/', Person_UpdateView.as_view(), name='person_update'),
     path('person/delete/<int:myLocation>/<int:pk>/', Person_DeleteView.as_view(), name='person_delete'),
 
 ]
