@@ -1,24 +1,32 @@
-<div class="row">
-  <div class="col-3">
-      <p>location</p>
+<div class="card border-success col-12 my-2" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC" ;"=" ;""=";""">
+  <div class="row">
+    <div class="col-12">
+      <div class="card-body py-0 px-0">
+        <p class="card-text my-0">
+          Target group:
+          {{ object.nut_group }}
+        </p>
+        <p class="card-text my-0">
+          number:
+          {{ object.target_pop }}
+        </p>
+        <p class="card-text my-0">
+          energy Requirement:
+          {{ object.myDRI.energy }}
+        </p>
+        <p class="card-text my-0">
+          protein DRI:
+          {{ object.myDRI.protein }}
+        </p>
+        <p class="card-text my-0">
+          vit-A DRI :
+          {{ object.myDRI.vita }}
+        </p>
+        <p class="card-text my-0">
+          Fe DRI :
+          {{ object.myDRI.fe }}
+        </p>
+      </div>
+    </div>
   </div>
-    <div class="col-9">
-        <p>{{ object.Location.country}}</p>
-    </div>
-</div>
-<div class="row">
-    <div class="col-3">
-        <p>target group</p>
-    </div>
-    <div class="col-9">
-        <p>{{ object.nut_group }}</p>
-    </div>
-</div>
-<div class="row">
-    <div class="col-3">
-        <p>number</p>
-    </div>
-    <div class="col-9">
-        <p>{{ object.target_pop }}</p>
-    </div>
 </div>

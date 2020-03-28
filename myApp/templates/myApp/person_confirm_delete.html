@@ -1,29 +1,20 @@
 {% extends "myApp/_base.html" %}
-<!--  -->
+<!-- -->
 {% block content %}
-<div class="container" style="max-width: 540px;">
-    <h2 class="text-center">Delete data</h2>
-    <p>Deta will be deleted. Are you OK?</p>
-
+  <div class="container" style="max-width: 540px;">
+    <h5 class="text-center">Delete data</h5>
+    <p>Data will be deleted. Are you OK?</p>
     <form action="" method="post">
-        {% csrf_token %}
-        <div class="row">
-            <div class="col-12">
-                <div class="float-right">
-                    <a class="btn btn-outline-secondary" href="{% url 'person_list' myLocation %}">return</a>
-                    <input type="submit" class="btn btn-outline-secondary" value="delete" name="confirm_delete" />
-                </div>
-            </div>
+      {% csrf_token %}
+      {% include "./person_card.html" %}
+      <div class="row">
+        <div class="col-12">
+          <div class="float-right">
+            <a class="btn btn-sm btn-info" href="{% url 'person_list' myLocation %}">return</a>
+            <input type="submit" class="btn btn-sm btn-danger" value="delete" name="confirm_delete"/>
+          </div>
         </div>
-        {% include "./person_card.html" %}
-        <div class="row">
-            <div class="col-12">
-                <div class="float-right">
-                    <a class="btn btn-outline-secondary" href="{% url 'person_list' myLocation %}">return</a>
-                    <input type="submit" class="btn btn-outline-secondary" value="delete" name="confirm_delete"  />
-                </div>
-            </div>
-        </div>
+      </div>
     </form>
-</div>
+  </div>
 {% endblock %}

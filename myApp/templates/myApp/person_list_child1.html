@@ -8,13 +8,17 @@
 
 {% for person in persons %}
 	{% ifequal person.class_aggr 1 %}
-	<div class="card border-success col-12 my-2" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC" ;"=";"">
+	<div class="card border-success col-12 my-2" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
 		<div class="row">
 			<div class="col-12">
 				<div class="card-body py-0 px-0">
 					<p class="card-text my-0">
 						Target group:
 						{{ person.nut_group }}
+					</p>
+					<p class="card-text my-0">
+						number:
+						{{ person.target_pop }}
 					</p>
 					<p class="card-text my-0">
 						energy Requirement:

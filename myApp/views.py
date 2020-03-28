@@ -404,7 +404,14 @@ class Person_UpdateView(LoginRequiredMixin, UpdateView):
         return context
 
     def get_success_url(self, **kwargs):
-        return reverse_lazy('person_list', kwargs={'myLocation_id': self.kwargs['myLocation']})
+        return reverse_lazy('person_list', kwargs={'myLocation': self.kwargs['myLocation']})
+
+    def form_valid(self, form):
+        self.object = form.save()
+        form.instance.myDRI = DRI.objects.filter(
+            nut_group=form.instance.nut_group).first()
+        return super(Person_CreateView, self).form_valid(form)
+#        return HttpResponseRedirect(self.get_success_url())
 
 
 class Person_CreateView(LoginRequiredMixin, CreateView):
@@ -439,7 +446,7 @@ class Person_CreateView(LoginRequiredMixin, CreateView):
         # remember the import: from django.http import HttpResponseRedirect
         tmp_myStatus = myStatus.objects.filter(
             curr_User=self.request.user.id).first()
-        tmp_myStatus.myDiet = '1'
+        tmp_myStatus.myDiet = self.kwargs['myClass_Aggr']
         tmp_myStatus.save()
 
         return super(Person_CreateView, self).form_valid(form)
