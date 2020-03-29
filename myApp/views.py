@@ -475,19 +475,61 @@ class Diet_Plan1(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
-        context['nutrient_target'] = Person.objects.filter(
-            myLocation=self.kwargs['myLocation'])[0].nut_group
-        context['dri_e'] = 1
-        context['dri_p'] = 2
-        context['dri_v'] = 3
-        context['dri_f'] = 4
+        tmp_nut_group = Person.objects.filter(
+            myLocation=self.kwargs['myLocation'])
+        context['nutrient_target'] = tmp_nut_group[0].nut_group
+
+        tmp_nut_group1 = tmp_nut_group.filter(class_aggr=1)
+        tmp_e=0
+        tmp_p=0
+        tmp_v=0
+        tmp_f=0
+        for tmp in tmp_nut_group1:
+            tmp_e += tmp.myDRI.energy
+            tmp_p += tmp.myDRI.protein
+            tmp_v += tmp.myDRI.vita
+            tmp_p += tmp.myDRI.fe
+        context['dri_e1'] = tmp_e
+        context['dri_p1'] = tmp_p
+        context['dri_v1'] = tmp_v
+        context['dri_f1'] = tmp_f
+
+        tmp_nut_group2 = tmp_nut_group.filter(class_aggr=2)
+        tmp_e=0
+        tmp_p=0
+        tmp_v=0
+        tmp_f=0
+        for tmp in tmp_nut_group2:
+            tmp_e += tmp.myDRI.energy
+            tmp_p += tmp.myDRI.protein
+            tmp_v += tmp.myDRI.vita
+            tmp_p += tmp.myDRI.fe
+        context['dri_e2'] = tmp_e
+        context['dri_p2'] = tmp_p
+        context['dri_v2'] = tmp_v
+        context['dri_f2'] = tmp_f
+
+        tmp_nut_group3 = tmp_nut_group.filter(class_aggr=3)
+        tmp_e=0
+        tmp_p=0
+        tmp_v=0
+        tmp_f=0
+        for tmp in tmp_nut_group3:
+            tmp_e += tmp.myDRI.energy
+            tmp_p += tmp.myDRI.protein
+            tmp_v += tmp.myDRI.vita
+            tmp_p += tmp.myDRI.fe
+        context['dri_e3'] = tmp_e
+        context['dri_p3'] = tmp_p
+        context['dri_v3'] = tmp_v
+        context['dri_f3'] = tmp_f
 
         # send selected crop by community ######
         tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation'])
         d = []
         for tmp02 in tmp01:
             dd = {}
-            dd["selected_status"] = "0"
+            dd["selected_status"] = tmp02.selected_status
             dd["Food_grp"] = tmp02.myFCT.Food_grp
             dd["Food_name"] = tmp02.myFCT.Food_name
             dd["Energy"] = tmp02.myFCT.Energy
@@ -520,26 +562,37 @@ class Diet_Plan1(TemplateView):
             dd["class_aggr"] = tmp02.class_aggr
             dd["Food_grp"] = tmp02.myFCT.Food_grp
             dd["Food_name"] = tmp02.myFCT.Food_name
-            dd["Energy"] = tmp02.myFCT.Energy
+            dd["Energy"] = tmp02.myFCT.energy
             dd["Protein"] = tmp02.myFCT.Protein
             dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
             dd["FE"] = tmp02.myFCT.FE
             dd["food_item_id"] = tmp02.myFCT.food_item_id
             dd["portion_size"] = tmp02.portion_size
-            dd["portion_count"] = tmp02.portion_count
-            dd["Weight"] = tmp02.portion_size * tmp02.portion_count
-            dd["m1"] = tmp02.m1_avail
-            dd["m2"] = tmp02.m2_avail
-            dd["m3"] = tmp02.m3_avail
-            dd["m4"] = tmp02.m4_avail
-            dd["m5"] = tmp02.m5_avail
-            dd["m6"] = tmp02.m6_avail
-            dd["m7"] = tmp02.m7_avail
-            dd["m8"] = tmp02.m8_avail
-            dd["m9"] = tmp02.m9_avail
-            dd["m10"] = tmp02.m10_avail
-            dd["m11"] = tmp02.m11_avail
-            dd["m12"] = tmp02.m12_avail
+            dd["total_weight"] = tmp02.total_weight
+            dd["m1_prod"] = tmp02.m1_prod
+            dd["m2_prod"] = tmp02.m2_prod
+            dd["m3_prod"] = tmp02.m3_prod
+            dd["m4_prod"] = tmp02.m4_prod
+            dd["m5_prod"] = tmp02.m5_prod
+            dd["m6_prod"] = tmp02.m6_prod
+            dd["m7_prod"] = tmp02.m7_prod
+            dd["m8_prod"] = tmp02.m8_prod
+            dd["m9_prod"] = tmp02.m9_prod
+            dd["m10_prod"] = tmp02.m10_prod
+            dd["m11_prod"] = tmp02.m11_prod
+            dd["m12_prod"] = tmp02.m12_prod
+            dd["m1_buy"] = tmp02.m1_buy
+            dd["m2_buy"] = tmp02.m2_buy
+            dd["m3_buy"] = tmp02.m3_buy
+            dd["m4_buy"] = tmp02.m4_buy
+            dd["m5_buy"] = tmp02.m5_buy
+            dd["m6_buy"] = tmp02.m6_buy
+            dd["m7_buy"] = tmp02.m7_buy
+            dd["m8_buy"] = tmp02.m8_buy
+            dd["m9_buy"] = tmp02.m9_buy
+            dd["m10_buy"] = tmp02.m10_buy
+            dd["m11_buy"] = tmp02.m11_buy
+            dd["m12_buy"] = tmp02.m12_buy
             d.append(dd)
         context["mylist_selected"] = d
 

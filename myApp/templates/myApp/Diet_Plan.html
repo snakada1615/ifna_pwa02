@@ -13,40 +13,6 @@
   <link rel="stylesheet" href="{% static 'css/fontawesome-apple.css' %}">
   <link rel="stylesheet" href="{% static 'css/bars-1to10.css' %}">
 
-  <script>
-    // グローバル変数の作成
-    var myLocation = '';
-    var myRoot = '';
-    var selected_rows_id = []
-    var jsonData = {{mylist|safe}};
-    var target_en = {{dri_e}};
-    var target_pr = {{dri_p}};
-    var target_va = {{dri_v}};
-    var target_fe = {{dri_f}};
-
-    let url_tmp = window.location.href.split('/');
-    let tmp1 = url_tmp[url_tmp.length - 2];
-    url_tmp.pop();
-    url_tmp.pop();
-    url_tmp.pop();
-    myRoot = url_tmp.join("/") + '/';
-    myLocation = tmp1;
-    ////////////////
-
-    ////star rating/////
-    $(function () {
-      $('.rating_DRI').barrating({
-        theme: 'bars-1to10',
-        showSelectedRating:false,
-        readonly:true
-      }); // set barrating
-      $('#mystar').barrating({
-        theme: 'fontawesome-apple'
-      });
-    });
-    /////////////
-
-  </script>
 
   <input type="hidden" value="" id="selected_row">
 
@@ -115,7 +81,8 @@
     </div>
   </div>
 
-  <div class="container border-secondary py-1 my-1" style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
+
+  <div class="container border-secondary py-1 my-1 px-0" style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
     <!-- 4個分のタブ -->
     <ul class="nav nav-tabs">
       <li class="nav-item">
@@ -129,19 +96,24 @@
       </li>
     </ul>
 
-    <!-- 写真部分 -->
+
+    <!-- タブの移動先指定 -->
     <div class="tab-content">
       <div id="tab1_link" class="tab-pane active">
         {% include "./Diet_Sub1.html" %}
       </div>
       <div id="tab2_link" class="tab-pane">
-        {% include "./person_list_child2.html" %}
+        {% include "./Diet_Sub2.html" %}
       </div>
       <div id="tab3_link" class="tab-pane">
-        {% include "./person_list_child3.html" %}
+        {% include "./Diet_Sub3.html" %}
       </div>
     </div>
   </div>
+
+  <!-- ダイアログ 読み込み -->
+  {% include "./Diet_Modal.html" %}
+  <!-- ---------------- -->
 
   <style media="screen">
     /* nav-item activeの文字色 */
@@ -151,5 +123,63 @@
       background-color: #87BFCD;
     }
   </style>
+
+
+  <script>
+    // グローバル変数の作成
+    var myLocation = '';
+    var myRoot = '';
+    var jsonData = {{mylist_available|safe}};
+    var target_en1 = {{dri_e1}};
+    var target_pr1 = {{dri_p1}};
+    var target_va1 = {{dri_v1}};
+    var target_fe1 = {{dri_f1}};
+    var target_en2 = {{dri_e2}};
+    var target_pr2 = {{dri_p2}};
+    var target_va2 = {{dri_v2}};
+    var target_fe2 = {{dri_f2}};
+    var target_en3 = {{dri_e3}};
+    var target_pr3 = {{dri_p3}};
+    var target_va3 = {{dri_v3}};
+    var target_fe3 = {{dri_f3}};
+
+    let url_tmp = window.location.href.split('/');
+    let tmp1 = url_tmp[url_tmp.length - 2];
+    url_tmp.pop();
+    url_tmp.pop();
+    url_tmp.pop();
+    myRoot = url_tmp.join("/") + '/';
+    myLocation = tmp1;
+    ////////////////
+
+    ////star rating/////
+    $(function () {
+      $('.rating_DRI').barrating({
+        theme: 'bars-1to10',
+        showSelectedRating:false,
+        readonly:true
+      }); // set barrating
+      $('#mystar').barrating({
+        theme: 'fontawesome-apple'
+      });
+    });
+
+    ////////////////////////////////
+    $('#lbl_target_en1').text(target_en1);
+    $('#lbl_target_pr1').text(target_pr1);
+    $('#lbl_target_va1').text(target_va1);
+    $('#lbl_target_fe1').text(target_fe1);
+    $('#lbl_target_en2').text(target_en2);
+    $('#lbl_target_pr2').text(target_pr2);
+    $('#lbl_target_va2').text(target_va2);
+    $('#lbl_target_fe2').text(target_fe2);
+    $('#lbl_target_en3').text(target_en3);
+    $('#lbl_target_pr3').text(target_pr3);
+    $('#lbl_target_va3').text(target_va3);
+    $('#lbl_target_fe3').text(target_fe3);
+    /////////////////////////////
+
+  </script>
+
 
 {% endblock %}
