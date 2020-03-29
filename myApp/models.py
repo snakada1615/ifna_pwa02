@@ -449,6 +449,9 @@ class Crop_Individual(models.Model):
     portion_size = models.IntegerField(
         default=100,
     )
+    portion_count= models.IntegerField(
+        default=100,
+    )
     m1_prod = models.IntegerField(
         verbose_name='mon01_prod',
         default=0,

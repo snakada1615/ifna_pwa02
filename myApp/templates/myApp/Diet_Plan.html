@@ -1,34 +1,78 @@
 {% extends 'myApp/_base.html' %}
 {% load static %}
 {% load humanize %}
+
 {% block content %}
+  <script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
+  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
+
+  <script type="text/javascript" src="{% static 'js/jquery.barrating.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fontawesome-apple.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bars-1to10.css' %}">
+
+  <script>
+    // グローバル変数の作成
+    var myLocation = '';
+    var myRoot = '';
+    var selected_rows_id = []
+    var jsonData = {{mylist|safe}};
+    var target_en = {{dri_e}};
+    var target_pr = {{dri_p}};
+    var target_va = {{dri_v}};
+    var target_fe = {{dri_f}};
+
+    let url_tmp = window.location.href.split('/');
+    let tmp1 = url_tmp[url_tmp.length - 2];
+    url_tmp.pop();
+    url_tmp.pop();
+    url_tmp.pop();
+    myRoot = url_tmp.join("/") + '/';
+    myLocation = tmp1;
+    ////////////////
+
+    ////star rating/////
+    $(function () {
+      $('.rating_DRI').barrating({
+        theme: 'bars-1to10',
+        showSelectedRating:false,
+        readonly:true
+      }); // set barrating
+      $('#mystar').barrating({
+        theme: 'fontawesome-apple'
+      });
+    });
+    /////////////
+
+  </script>
+
+  <input type="hidden" value="" id="selected_row">
 
   <div class="container" style="max-width: 540px;">
     <div class="row">
       <div class="col-2 my-0 px-3">
-        <img src="{% static 'img/no3.png' %}">
+        <img src="{% static 'img/no4.png' %}">
       </div>
-      <div class="col-8 my-0 px-1">
+      <div class="col-10 my-0 px-1">
         <h5>
-          agree on nutrition target for
-          {{myLocation.myCountry.NAME_1}}
+          Diet planning for
+          {{myLocation}}
         </h5>
-      </div>
-      <div class="col-2 my-0 px-1">
-        <a class="btn btn-warning btn-sm" href="{% url 'index02' %}">back</a>
       </div>
     </div>
   </div>
 
   <div class="container" style="max-width: 540px;">
     <div id="accordion">
-      <div class="card border-dark bg-light col-12 mt-2 py-0" style="max-width: 540px;">
+      <div class="card  border-dark bg-light col-12 mt-2 py-0" style="max-width: 540px;">
         <div class="row">
           <div class="col-12">
             <div class="card-body py-0 px-0">
               <p class="card-text text-success my-0">
-                name:
-                {{ myLocation.name }}
+                myLocation:
+                {{ myLocation }}
               </p>
               <p class="card-text my-0">
                 country:
@@ -37,17 +81,20 @@
               <p class="card-text my-0">
                 region:
                 {{ myLocation.myCountry.NAME_1 }}
-                <span class="fb fb-help" data-toggle="tooltip" title="Tooltip message"></span>
               </p>
               <p class="card-text my-0">
                 province:
                 {{ myLocation.myCountry.NAME_2 }}
               </p>
+              <p class="card-text my-0">
+                nutrition target:
+                {{ myLocation.nutrition_target }}
+              </p>
               <button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true" aria-controls="more_info">
                 more info
               </button>
 
-              <div id="more_info" class="collapse" aria-labelledby="more_info1" data-parent="#accordion">
+              <div id="more_info" class="collapse" aria-labelledby="heading{{crop.food_item_id}}" data-parent="#accordion">
                 <p class="card-text my-0">
                   stunting rate:
                   {{ myLocation.stunting_rate }}
@@ -64,12 +111,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
-        <span></span>
       </div>
     </div>
   </div>
@@ -91,7 +132,7 @@
     <!-- 写真部分 -->
     <div class="tab-content">
       <div id="tab1_link" class="tab-pane active">
-        {% include "./person_list_child1.html" %}
+        {% include "./Diet_Sub1.html" %}
       </div>
       <div id="tab2_link" class="tab-pane">
         {% include "./person_list_child2.html" %}
@@ -104,30 +145,11 @@
 
   <style media="screen">
     /* nav-item activeの文字色 */
-    .nav-tabs .nav-link.active, .nav-pills .show > .nav-link {
+    .nav-pills .show > .nav-link,
+    .nav-tabs .nav-link.active {
       color: red;
       background-color: #87BFCD;
     }
   </style>
-
-  <script type="text/javascript">
-    $('[data-toggle="tooltip"]').tooltip()
-
-    let myClass_Aggr_Sum = {{myClass_Aggr_Sum}}
-    if (myClass_Aggr_Sum < 100) {
-      $('#btn_add1').removeClass('disabled');
-      $('#tab2').addClass('disabled');
-      $('#tab2').removeAttr("data-toggle");
-      $('#tab3').addClass('disabled');
-      $('#tab3').removeAttr("data-toggle");
-    } else {
-      $('#btn_add1').addClass('disabled');
-      $('#tab2').removeClass('disabled');
-      $('#tab2').attr("data-toggle", "tab");
-      $('#tab3').removeClass('disabled');
-      $('#tab3').attr("data-toggle", "tab");
-    }
-    //    $('a[data-toggle="tab"]').on('show.bs. tab', function (e) {      let tmpTab = e.target.id      if (tmpTab == "tab1") {        $('#btn_add1').addClass('disabled');      } else {        $('#btn_add1').removeClass('disabled');      }    })
-  </script>
 
 {% endblock %}

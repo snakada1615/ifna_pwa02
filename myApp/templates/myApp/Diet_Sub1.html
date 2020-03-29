@@ -1,0 +1,269 @@
+<div class="card border-success col-12 mt-2 py-1" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+  <div class="row">
+    <div class="col-12">
+      <div class="card-body py-0 px-0">
+        <p class="card-title text-dark my-0">
+          selected commodities
+        </p>
+        <p class="card-title text-dark my-0">
+          <span style="color:red">■</span>: less than 50%,
+          <span style="color:orange">■</span>: 50-100%,
+          <span style="color:green">■</span>: over 100%
+        </p>
+
+        <table border="1" class="table table-striped" id="selected_crops_tbl">
+          <tr>
+            <th>name</th>
+            <th>En</th>
+            <th>Pr</th>
+            <th>Va</th>
+            <th>Fe</th>
+            <th>Wt</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+
+        <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+          <div class="col-2">
+            <label class="text-dark" for="rating_en">Energy</label>
+          </div>
+          <div class="col-2">
+            <div class="text-dark" id="lbl_target_en"></div>
+          </div>
+          <div class="col-8">
+            <select class="form-control rating_DRI" id="rating_en">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+          <div class="col-2">
+            <label class="text-dark" for="rating_pr">Protein</label>
+          </div>
+          <div class="col-2">
+            <div class="text-dark" id="lbl_target_pr"></div>
+          </div>
+          <div class="col-8">
+            <select id="rating_pr" class="rating_DRI">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row no-gutters my-0" style="height:30px;">
+          <div class="col-2">
+            <label class="text-dark ml-3 mr-4" for="rating_va">VitA</label>
+          </div>
+          <div class="col-2">
+            <div class="text-dark" id="lbl_target_va"></div>
+          </div>
+          <div class="col-8">
+            <select id="rating_va" class="rating_DRI">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row no-gutters my-0" style="height:30px;">
+          <div class="col-2">
+            <label class="text-dark ml-3 mr-4" for="rating_fe">Iron</label>
+          </div>
+          <div class="col-2">
+            <div class="text-dark" id="lbl_target_fe"></div>
+          </div>
+          <div class="col-8">
+            <select id="rating_fe" class="rating_DRI">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row no-gutters my-0 py-0" style="height:30px;">
+          <div class="col-4 text-dark">Target group</div>
+          <div class="col-8 text-dark">{{nutrient_target}}</div>
+        </div>
+
+        <div class="row no-gutters my-0 py-0" style="height:30px;">
+          <div class="col-4 text-dark">Month</div>
+          <div class="col-8 text-dark">
+            <select id="lst_month" style="border: 1px grey double;">
+              <option value="jan">Jan</option>
+              <option value="feb">Feb</option>
+              <option value="mar">Mar</option>
+              <option value="apr">Apr</option>
+              <option value="may">May</option>
+              <option value="jun">Jun</option>
+              <option value="jul">Jul</option>
+              <option value="aug">Aug</option>
+              <option value="sep">Sep</option>
+              <option value="oct">Oct</option>
+              <option value="nov">Nov</option>
+              <option value="dec">Dec</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <span>
+      <a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_list' myLocation=myLocation.id %}">back</a>
+    </span>
+    <span>
+      <a id="btn_save1" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
+    </span>
+    <span>
+      <a id="btn_add1" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm"  data-toggle="modal" data-target="#Modal_localCrop">add</a>
+    </span>
+  </div>
+</div>
+
+<!-- モーダルの設定 ----------------------------->
+<div class="modal fade" id="Modal_foodVol" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark" id="Modal_foodVolLabel">Edit the weight of food item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-dark">
+        <table border="1" class="table table-striped" id="foodInfo">
+          <tr>
+            <th>name</th>
+            <th>En</th>
+            <th>Pr</th>
+            <th>Va</th>
+            <th>Fe</th>
+            <th>Wt</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+
+        <label for="mystar" id="mystar-label">consumption target (1 portion=):</label>
+        <select id="mystar">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+        <button type="button" class="btn btn-primary" id="change_weight">change value</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-------------------------------------->
+
+<!-- モーダルの設定3 ----------------------------->
+<div class="modal fade" id="Modal_localCrop" tabindex="-1" role="dialog" aria-labelledby="Modal_localCropLabel">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add/remove food item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span class="text-danger" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-dark">
+        <div class="my-2" id="myFilter">Food group:
+        </div>
+        <table id="localCrop" class="display compact" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>s</th>
+              <th>Name</th>
+              <th>En</th>
+              <th>Pr</th>
+              <th>VA</th>
+              <th>Fe</th>
+              <th>c</th>
+            </tr>
+          </thead>
+
+          <tfoot>
+            <tr>
+              <th>s</th>
+              <th>Name</th>
+              <th>En</th>
+              <th>Pr</th>
+              <th>VA</th>
+              <th>Fe</th>
+              <th>c</th>
+            </tr>
+          </tfoot>
+        </table>
+        <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" data-dismiss="modal">close</a>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-------------------------------------->

@@ -23,7 +23,7 @@ from django.contrib.auth.models import User
 import json
 
 class Trial_View(TemplateView):
-    template_name = "myApp/person_tab.html"
+    template_name = "myApp/_test.html"
 
 class IndexView(TemplateView):
     template_name = "myApp/index01.html"
@@ -468,3 +468,80 @@ class Person_DeleteView(LoginRequiredMixin, DeleteView):
             return reverse_lazy('person_list', kwargs={'myLocation': self.kwargs['myLocation']})
         else:
             return reverse_lazy('person_list', args=(self.object.id,))
+
+class Diet_Plan1(TemplateView):
+    template_name = "myApp/Diet_Plan.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
+        context['nutrient_target'] = Person.objects.filter(
+            myLocation=self.kwargs['myLocation'])[0].nut_group
+        context['dri_e'] = 1
+        context['dri_p'] = 2
+        context['dri_v'] = 3
+        context['dri_f'] = 4
+
+        # send selected crop by community ######
+        tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation'])
+        d = []
+        for tmp02 in tmp01:
+            dd = {}
+            dd["selected_status"] = "0"
+            dd["Food_grp"] = tmp02.myFCT.Food_grp
+            dd["Food_name"] = tmp02.myFCT.Food_name
+            dd["Energy"] = tmp02.myFCT.Energy
+            dd["Protein"] = tmp02.myFCT.Protein
+            dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
+            dd["FE"] = tmp02.myFCT.FE
+            dd["Weight"] = "0"
+            dd["food_item_id"] = tmp02.myFCT.food_item_id
+            dd["portion_size"] = tmp02.myFCT.portion_size_init
+            dd["m1"] = tmp02.m1_avail
+            dd["m2"] = tmp02.m2_avail
+            dd["m3"] = tmp02.m3_avail
+            dd["m4"] = tmp02.m4_avail
+            dd["m5"] = tmp02.m5_avail
+            dd["m6"] = tmp02.m6_avail
+            dd["m7"] = tmp02.m7_avail
+            dd["m8"] = tmp02.m8_avail
+            dd["m9"] = tmp02.m9_avail
+            dd["m10"] = tmp02.m10_avail
+            dd["m11"] = tmp02.m11_avail
+            dd["m12"] = tmp02.m12_avail
+            d.append(dd)
+        context["mylist_available"] = d
+
+        # send selected crop by community ######
+        tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation'])
+        d = []
+        for tmp02 in tmp01:
+            dd = {}
+            dd["class_aggr"] = tmp02.class_aggr
+            dd["Food_grp"] = tmp02.myFCT.Food_grp
+            dd["Food_name"] = tmp02.myFCT.Food_name
+            dd["Energy"] = tmp02.myFCT.Energy
+            dd["Protein"] = tmp02.myFCT.Protein
+            dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
+            dd["FE"] = tmp02.myFCT.FE
+            dd["Weight"] = "30"
+            dd["food_item_id"] = tmp02.myFCT.food_item_id
+            dd["portion_size"] = tmp02.portion_size
+            dd["m1"] = tmp02.m1_avail
+            dd["m2"] = tmp02.m2_avail
+            dd["m3"] = tmp02.m3_avail
+            dd["m4"] = tmp02.m4_avail
+            dd["m5"] = tmp02.m5_avail
+            dd["m6"] = tmp02.m6_avail
+            dd["m7"] = tmp02.m7_avail
+            dd["m8"] = tmp02.m8_avail
+            dd["m9"] = tmp02.m9_avail
+            dd["m10"] = tmp02.m10_avail
+            dd["m11"] = tmp02.m11_avail
+            dd["m12"] = tmp02.m12_avail
+            d.append(dd)
+        context["mylist_selected"] = d
+
+        context['myuser'] = self.request.user
+
+        return context
