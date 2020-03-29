@@ -524,9 +524,10 @@ class Diet_Plan1(TemplateView):
             dd["Protein"] = tmp02.myFCT.Protein
             dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
             dd["FE"] = tmp02.myFCT.FE
-            dd["Weight"] = "30"
             dd["food_item_id"] = tmp02.myFCT.food_item_id
             dd["portion_size"] = tmp02.portion_size
+            dd["portion_count"] = tmp02.portion_count
+            dd["Weight"] = tmp02.portion_size * tmp02.portion_count
             dd["m1"] = tmp02.m1_avail
             dd["m2"] = tmp02.m2_avail
             dd["m3"] = tmp02.m3_avail
