@@ -447,10 +447,10 @@ class Crop_Individual(models.Model):
         default=0,
     )
     portion_size = models.IntegerField(
-        default=100,
+        default=10,
     )
     total_weight= models.IntegerField(
-        default=100,
+        default=0,
     )
     m1_prod = models.IntegerField(
         verbose_name='mon01_prod',
