@@ -412,8 +412,15 @@ class Person_UpdateView(LoginRequiredMixin, UpdateView):
         self.object = form.save()
         form.instance.myDRI = DRI.objects.filter(
             nut_group=form.instance.nut_group).first()
-        return super(Person_CreateView, self).form_valid(form)
-#        return HttpResponseRedirect(self.get_success_url())
+        # form.instance.class_aggr = self.kwargs['myClass_Aggr']
+        # do something with self.object
+        # remember the import: from django.http import HttpResponseRedirect
+        tmp_myStatus = myStatus.objects.filter(
+            curr_User=self.request.user.id).first()
+        tmp_myStatus.myTarget = 1
+        tmp_myStatus.save()
+#        return super(Person_CreateView, self).form_valid(form)
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class Person_CreateView(LoginRequiredMixin, CreateView):
@@ -525,7 +532,7 @@ class Diet_Plan1(TemplateView):
         context['dri_f3'] = tmp_f
 
         # send selected crop by community ######
-        tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation'])
+        tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).filter(selected_status__gt=0)
         d = []
         for tmp02 in tmp01:
             dd = {}
@@ -536,7 +543,7 @@ class Diet_Plan1(TemplateView):
             dd["Protein"] = tmp02.myFCT.Protein
             dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
             dd["FE"] = tmp02.myFCT.FE
-            dd["Weight"] = "0"
+            dd["Weight"] = 0
             dd["food_item_id"] = tmp02.myFCT.food_item_id
             dd["portion_size"] = tmp02.myFCT.portion_size_init
             dd["m1"] = tmp02.m1_avail
@@ -551,6 +558,7 @@ class Diet_Plan1(TemplateView):
             dd["m10"] = tmp02.m10_avail
             dd["m11"] = tmp02.m11_avail
             dd["m12"] = tmp02.m12_avail
+            dd["myLocation"] = tmp02.myLocation_id
             d.append(dd)
         context["mylist_available"] = d
 

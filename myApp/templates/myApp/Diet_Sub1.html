@@ -1,4 +1,4 @@
-<div class="card border-success col-12 mt-2 py-1 mx-0 px-1" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+<div class="card border-success col-12 mt-2 py-1" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
   <div class="row">
     <div class="col-12">
       <div class="card-body py-0 px-0">
@@ -163,3 +163,106 @@
     </span>
   </div>
 </div>
+
+<!-- モーダルの設定 local crop ----------------------------->
+<div class="modal fade" id="Modal_localCrop1" tabindex="-1" role="dialog" aria-labelledby="Modal_localCropLabel">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add/remove food item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span class="text-danger" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-dark">
+        <div class="my-2" id="myFilter1">Food group:
+        </div>
+        <table id="localCrop1" class="display compact" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>s</th>
+              <th>Name</th>
+              <th>En</th>
+              <th>Pr</th>
+              <th>VA</th>
+              <th>Fe</th>
+              <th>c</th>
+            </tr>
+          </thead>
+
+          <tfoot>
+            <tr>
+              <th>s</th>
+              <th>Name</th>
+              <th>En</th>
+              <th>Pr</th>
+              <th>VA</th>
+              <th>Fe</th>
+              <th>c</th>
+            </tr>
+          </tfoot>
+        </table>
+        <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" data-dismiss="modal">close</a>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-------------------------------------->
+
+<!-- モーダルの設定 change diet ----------------------------->
+<div class="modal fade" id="Modal_foodVol1" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Edit the weight of food item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-dark">
+        <table border="1" class="table table-striped" id="foodInfo1">
+          <tr>
+            <th>name</th>
+            <th>En</th>
+            <th>Pr</th>
+            <th>Va</th>
+            <th>Fe</th>
+            <th>Wt</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+
+        <label for="mystar" id="mystar-label1">consumption target (1 portion=):</label>
+        <select id="mystar1">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+        <button type="button" class="btn btn-primary" id="change_weight1">change value</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-------------------------------------->

@@ -13,7 +13,6 @@
   <link rel="stylesheet" href="{% static 'css/fontawesome-apple.css' %}">
   <link rel="stylesheet" href="{% static 'css/bars-1to10.css' %}">
 
-
   <input type="hidden" value="" id="selected_row">
 
   <div class="container" style="max-width: 540px;">
@@ -81,7 +80,6 @@
     </div>
   </div>
 
-
   <div class="container border-secondary py-1 my-1 px-0" style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
     <!-- 4個分のタブ -->
     <ul class="nav nav-tabs">
@@ -95,7 +93,6 @@
         <a href="#tab3_link" class="nav-link" id="tab3" data-toggle="tab">community</a>
       </li>
     </ul>
-
 
     <!-- タブの移動先指定 -->
     <div class="tab-content">
@@ -111,10 +108,7 @@
     </div>
   </div>
 
-  <!-- ダイアログ 読み込み -->
-  {% include "./Diet_Modal.html" %}
-  <!-- ---------------- -->
-
+  <!------------------------------------------------------------->
   <style media="screen">
     /* nav-item activeの文字色 */
     .nav-pills .show > .nav-link,
@@ -124,12 +118,14 @@
     }
   </style>
 
-
+  <!------------------------------------------------------------->
   <script>
     // グローバル変数の作成
+    var selected_rows_id = []
     var myLocation = '';
     var myRoot = '';
-    var jsonData = {{mylist_available|safe}};
+    var json_crop_local = {{mylist_available|safe}};
+    var json_crop_selected = {{mylist_selected|safe}};
     var target_en1 = {{dri_e1}};
     var target_pr1 = {{dri_p1}};
     var target_va1 = {{dri_v1}};
@@ -149,19 +145,11 @@
     url_tmp.pop();
     url_tmp.pop();
     myRoot = url_tmp.join("/") + '/';
-    myLocation = tmp1;
-    ////////////////
-
-    ////star rating/////
+    myLocation_id = tmp1;
+    //////////////// star rating/////
     $(function () {
-      $('.rating_DRI').barrating({
-        theme: 'bars-1to10',
-        showSelectedRating:false,
-        readonly:true
-      }); // set barrating
-      $('#mystar').barrating({
-        theme: 'fontawesome-apple'
-      });
+      $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
+      $('#mystar1').barrating({theme: 'fontawesome-apple'});
     });
 
     ////////////////////////////////
@@ -178,8 +166,258 @@
     $('#lbl_target_va3').text(target_va3);
     $('#lbl_target_fe3').text(target_fe3);
     /////////////////////////////
+    var tblObj_localCrop1 = $('#localCrop1').DataTable({
+      "data": json_crop_local,
+      "pageLength": 50,
+      "columns": [
+        {
+          "data": "selected_status"
+        }, {
+          "data": "Food_name"
+        }, {
+          "data": "Energy"
+        }, {
+          "data": "Protein"
+        }, {
+          "data": "VITA_RAE"
+        }, {
+          "data": "FE"
+        }, {
+          "data": "Food_grp"
+        }, {
+          "data": "Weight"
+        }, {
+          "data": "portion_size"
+        }, {
+          "data": "m1"
+        }, {
+          "data": "m2"
+        }, {
+          "data": "m3"
+        }, {
+          "data": "m4"
+        }, {
+          "data": "m5"
+        }, {
+          "data": "m6"
+        }, {
+          "data": "m7"
+        }, {
+          "data": "m8"
+        }, {
+          "data": "m9"
+        }, {
+          "data": "m10"
+        }, {
+          "data": "m11"
+        }, {
+          "data": "m12"
+        }
+      ],
 
+      "columnDefs": [
+        {
+          targets: [
+            1, 2, 3, 4, 5
+          ],
+          visible: true
+        }, {
+          targets: '_all',
+          bVisible: false
+        }, {
+          "orderSequence": ["desc"],
+          "targets": [2]
+        }, {
+          "orderSequence": ["desc"],
+          "targets": [3]
+        }, {
+          "orderSequence": ["desc"],
+          "targets": [4]
+        }, {
+          "orderSequence": ["desc"],
+          "targets": [5]
+        }
+      ],
+      "initComplete": function (settings, json) {
+        // //////////add filtering dropdown list
+        this.api().columns([6]).every(function () {
+          var column = this;
+          var select = $('<select style="border: 1px grey double;"><option value=""></option></select>').appendTo($('#myFilter1')).on('change', function () {
+            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+            column.search(
+              val
+                ? '^' + val + '$'
+                : '',
+              true,
+              false
+            ).draw();
+          });
+          column.data().unique().sort().each(function (d, j) {
+            select.append('<option value="' + d + '">' + d + '</option>');
+          });
+        })
+        ////////////////////////////////////
+        //////////////set cell color////////////////
+        function SetCellColor(i_cell, i_target) {
+          cNum = parseInt(i_cell * 100 / i_target, 10);
+          switch (true) {
+            case 0 <= cNum && cNum < 50:
+              res = '<td style="color:red;">' + i_cell + '</td>';
+              break;
+
+            case 50 <= cNum && cNum < 100:
+              res = '<td style="color:orange;">' + i_cell + '</td>';
+              break;
+
+            case 100 <= cNum:
+              res = '<td style="color:green;">' + i_cell + '</td>';
+              break;
+
+            default:
+              res = '<td>' + i_cell + '</td>';
+              break;
+          }
+          return res;
+        }
+
+        /////////////////////////////////////////////
+        //////////////////////////////////////////////
+        $('#lst_month1').change(function () {
+          let search_col = 0;
+          let tmp_mon = $(this).val();
+          if (tmp_mon == 'jan') {
+            search_col = 10;
+          } else if (tmp_mon == 'feb') {
+            search_col = 11;
+          } else if (tmp_mon == 'mar') {
+            search_col = 12;
+          } else if (tmp_mon == 'apr') {
+            search_col = 13;
+          } else if (tmp_mon == 'may') {
+            search_col = 14;
+          } else if (tmp_mon == 'jun') {
+            search_col = 15;
+          } else if (tmp_mon == 'jul') {
+            search_col = 16;
+          } else if (tmp_mon == 'aug') {
+            search_col = 17;
+          } else if (tmp_mon == 'sep') {
+            search_col = 18;
+          } else if (tmp_mon == 'oct') {
+            search_col = 19;
+          } else if (tmp_mon == 'nov') {
+            search_col = 20;
+          } else if (tmp_mon == 'dec') {
+            search_col = 21;
+          }
+          tblObj_localCrop1.column(search_col).search('').columns().search('').draw();
+          tblObj_localCrop1.column(search_col).search('[123]', true, false).draw();
+        });
+        ////////////////////////////////////////////// //////////DrawSelected ////////////////////////////////
+        function DrawSelected() { /// render selected_crops_tbl
+          $('#selected_crops_tbl1 tr').remove(); //remove all rows
+          selected_rows_id.length = 0;
+          let sum_en = 0;
+          let sum_pr = 0;
+          let sum_va = 0;
+          let sum_fe = 0;
+          cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th></tr><tr>';
+          tblObj_localCrop1.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
+            var data = this.data();
+            cr += '<td>' + data.Food_name + '</td>';
+            cr += '<td>' + Math.round(data.Energy * data.Weight / 100, 1) + '</td>';
+            cr += '<td>' + Math.round(data.Protein * data.Weight / 100, 1) + '</td>';
+            cr += '<td>' + Math.round(data.VITA_RAE * data.Weight / 100, 1) + '</td>';
+            cr += '<td>' + Math.round(data.FE * data.Weight / 100, 1) + '</td>';
+            cr += '<td>' + data.Weight + '</td>';
+            cr += '</tr>';
+            sum_en += data.Energy * data.Weight / 100;
+            sum_pr += data.Protein * data.Weight / 100;
+            sum_va += data.VITA_RAE * data.Weight / 100;
+            sum_fe += data.FE * data.Weight / 100;
+            selected_rows_id.push(rowIdx);
+          });
+          cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en1) + SetCellColor(Math.round(sum_pr), target_pr1) + SetCellColor(Math.round(sum_va), target_va1) + SetCellColor(Math.round(sum_fe), target_fe1) + '<td></td></tr>';
+          $('#selected_crops_tbl1').append(cr);
+
+          /////////////// set barrating /
+          let rate_en = Math.round(sum_en * 10 / target_en1);
+          if (rate_en > 10) {
+            rate_en = 10
+          } else if (rate_en < 1) {
+            rate_en = 1
+          };
+          let rate_pr = Math.round(sum_pr * 10 / target_pr1);
+          if (rate_pr > 10) {
+            rate_pr = 10
+          } else if (rate_pr < 1) {
+            rate_pr = 1
+          };
+          let rate_va = Math.round(sum_va * 10 / target_va1);
+          if (rate_va > 10) {
+            rate_va = 10
+          } else if (rate_va < 1) {
+            rate_va = 1
+          };
+          let rate_fe = Math.round(sum_fe * 10 / target_fe1);
+          if (rate_fe > 10) {
+            rate_fe = 10
+          } else if (rate_fe < 1) {
+            rate_fe = 1
+          };
+
+          $('#rating_en1').barrating('set', rate_en); // set barrating
+          $('#rating_pr1').barrating('set', rate_pr); // set barrating
+          $('#rating_va1').barrating('set', rate_va); // set barrating
+          $('#rating_fe1').barrating('set', rate_fe); // set barrating
+
+          return;
+        };
+        ////////////////////////////////////////////// ////////////////init second table as modal dialog add selected rows to text box
+        $('#localCrop1 tbody').on('click', 'tr', function () {
+          $(this).toggleClass('selected');
+          DrawSelected();
+        });//////////////////////////////////////////////
+        //////////////////add table edit function////
+        $("#selected_crops_tbl1").on("click", "td", function () {
+          $('#selected_row').val($(this).closest('tr').index());
+          $('#foodInfo1 tr').remove();
+
+          let por = tblObj_localCrop1.row(selected_rows_id[$('#selected_row').val() - 1]).data().portion_size;
+          let cou = Number(tblObj_localCrop1.row(selected_rows_id[$('#selected_row').val() - 1]).data().Weight / por, 10);
+          let foodVal = $("td", $(this).parent());
+          let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th></tr><tr>';
+          cr += '<td>' + foodVal.eq(0).text() + '</td>';
+          cr += '<td>' + foodVal.eq(1).text() + '</td>';
+          cr += '<td>' + foodVal.eq(2).text() + '</td>';
+          cr += '<td>' + foodVal.eq(3).text() + '</td>';
+          cr += '<td>' + foodVal.eq(4).text() + '</td>';
+          $('#foodInfo1').append(cr);
+          $('#mystar1-label1').text("consumption target(one portion=" + por + 'g)');
+          $('#mystar1').barrating('set', cou);
+
+          DrawSelected();
+
+          $('#Modal_foodVol1').modal('show');
+        });
+
+        ////////////////// button click to reflect the modification
+        $('#change_weight1').click(function () {
+          let por = tblObj_localCrop1.row(selected_rows_id[$('#selected_row').val() - 1]).data().portion_size;
+          let cou = $('#mystar1').children("option:selected").val();
+          let tmp_v = por * cou
+          $('#selected_crops_tbl1 tr').eq($('#selected_row').val()).children('td').eq(5).text(tmp_v);
+          tblObj_localCrop1.row(selected_rows_id[$('#selected_row').val() - 1]).data().Weight = tmp_v;
+
+          ///////////////////
+          DrawSelected();
+          //////////////////
+          $('#Modal_foodVol1').modal('hide');
+        });//----------change_weight complete here-------
+      }//----initComplete finish here---////////////////////////////////////////////
+
+    });
   </script>
-
 
 {% endblock %}
