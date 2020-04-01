@@ -1,0 +1,31 @@
+{% extends 'myApp/_base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+
+  <div class="container" style="max-width: 540px;">
+    <div class="row">
+      <p>--You are going to delete all data in
+        {{tblName}}--</p>
+      <p>Proceed?</p>
+    </div>
+    <div class="row my-3">
+      <div class="col-2">
+        no
+      </div>
+      <div class="col-2">
+        <a class="btn btn-info btn-sm" href="{% url 'index02' %}">cancel</a>
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col-2">
+        yes
+      </div>
+      <div class="col-2">
+        <a class="btn btn-danger btn-sm" href="{% url 'delete_TableRec' tblName=tblName %}">delete</a>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

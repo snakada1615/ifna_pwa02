@@ -1,3 +1,7 @@
+# to get all the models in myApp
+from django.apps import apps
+from django.contrib import admin
+
 import re
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -607,3 +611,12 @@ class Diet_Plan1(TemplateView):
         context['myuser'] = self.request.user
 
         return context
+
+def delete_TableRec(request, tblName):
+    myTable = apps.get_app_config('myApp').get_model(tblName)
+    myTable.objects.all().delete()
+    result = f"{tblName} data have been deleted"
+    return HttpResponse(result)
+
+class initTable(TemplateView):
+    template_name = "myApp/_initTable.html"
