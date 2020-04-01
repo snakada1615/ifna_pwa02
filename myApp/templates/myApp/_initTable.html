@@ -7,7 +7,7 @@
   <div class="container" style="max-width: 540px;">
     <div class="row">
       <p>--You are going to delete all data in
-        {{tblName}}--</p>
+        selected table--</p>
       <p>Proceed?</p>
     </div>
     <div class="row my-3">
@@ -23,9 +23,30 @@
         yes
       </div>
       <div class="col-2">
-        <a class="btn btn-danger btn-sm" href="{% url 'delete_TableRec' tblName=tblName %}">delete</a>
+        <a class="btn btn-danger btn-sm" id="btn_delTable" href="#">delete</a>
       </div>
     </div>
+    <div class="row no-gutters my-0 py-0" style="height:30px;">
+      <div class="col-2 text-dark">table</div>
+      <div class="col-5 text-dark">
+        <select id="lst_Tables" style="border: 1px grey double;">
+          {% for myTable in myTables %}
+            <option value={{myTable}}>{{myTable}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
   </div>
+
+<script type="text/javascript">
+  $('#lst_Tables').change(function() {
+    if ($(this).val() != '---select table---') {
+      myhref = "/delete_TableRec/" + $(this).val() + "/";
+      $('#btn_delTable').attr('href', '');
+      $('#btn_delTable').attr('href', myhref);
+    }
+  });
+</script>
 
 {% endblock %}

@@ -39,5 +39,5 @@ urlpatterns = [
     path('person/delete/<int:myLocation>/<int:pk>/', Person_DeleteView.as_view(), name='person_delete'),
     path('Diet1/<int:myLocation>/',  Diet_Plan1.as_view(), name='diet1'),
     path('delete_TableRec/<str:tblName>/', views.delete_TableRec, name='delete_TableRec'),
-    path('initTable/<str:tblName>/',  initTable.as_view(), name='initTable'),
+    path('initTable/',  initTable.as_view(), name='initTable'),
 ]

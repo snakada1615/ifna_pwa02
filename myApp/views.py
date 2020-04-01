@@ -620,3 +620,14 @@ def delete_TableRec(request, tblName):
 
 class initTable(TemplateView):
     template_name = "myApp/_initTable.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        myTables = apps.get_app_config('myApp').get_models()
+        myTableName = []
+        myTableName.append('---select table---')
+        for myTable in myTables:
+            myTableName.append(myTable._meta.model_name)
+        context['myTables'] = myTableName
+
+        return context
