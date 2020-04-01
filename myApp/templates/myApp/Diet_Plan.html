@@ -379,6 +379,11 @@
           $(this).toggleClass('selected');
           DrawSelected();
         });//////////////////////////////////////////////
+        ////////////////////////////////////////////// ////////////////init second table as modal dialog add selected rows to text box
+        $('#btn_add11').on('click', function () {
+          console.log('myNum = ' + $(this).attr('myNum'));
+          $('#Modal_foodVol1').modal('show');
+        });//////////////////////////////////////////////
         //////////////////add table edit function////
         $("#selected_crops_tbl1").on("click", "td", function () {
           $('#selected_row').val($(this).closest('tr').index());
