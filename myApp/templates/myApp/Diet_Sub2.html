@@ -132,21 +132,8 @@
 
           <div class="row no-gutters my-0 py-0" style="height:30px;">
             <div class="col-3 text-dark">Month</div>
-            <div class="col-4 text-dark">
-              <select class="lst_month" myNum={{forloop.counter|add:200}} style="border: 1px #386B46 double;background-color:#A5C93F">
-                <option value="jan">Jan</option>
-                <option value="feb">Feb</option>
-                <option value="mar">Mar</option>
-                <option value="apr">Apr</option>
-                <option value="may">May</option>
-                <option value="jun">Jun</option>
-                <option value="jul">Jul</option>
-                <option value="aug">Aug</option>
-                <option value="sep">Sep</option>
-                <option value="oct">Oct</option>
-                <option value="nov">Nov</option>
-                <option value="dec">Dec</option>
-              </select>
+            <div class="col-3 text-dark">
+            <div class="lst_month" myNum={{forloop.counter|add:200}} style="border: 1px #386B46 double;background-color:#A5C93F">{{forloop.counter}}</div>
             </div>
           </div>
           <span>
