@@ -20,11 +20,23 @@
       <div class="col-2 my-0 px-3">
         <img src="{% static 'img/no4.png' %}">
       </div>
-      <div class="col-10 my-0 px-1">
+      <div class="col-8 my-0 px-1">
         <h5>
           Diet planning for
           {{myLocation}}
         </h5>
+      </div>
+      <div class="col-2 my-0 px-3">
+        <div class="row">
+          <div class="col-12">
+            <span>
+              <a class="btn btn-warning mt-2 my-0 py-0 btn-sm" href="{% url 'person_list' myLocation=myLocation.id %}">back</a>
+            </span>
+            <span>
+              <a myNum=100 class="btn_save_crop btn btn-warning mt-2 my-0 py-0 btn-sm">save</a>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -285,37 +297,6 @@
         }
 
         ///////////////////////////////////////////// ////////////////////////////////////////////
-        $('#lst_month1').change(function () {
-          let search_col = 0;
-          let tmp_mon = $(this).val();
-          if (tmp_mon == 'jan') {
-            search_col = 10;
-          } else if (tmp_mon == 'feb') {
-            search_col = 11;
-          } else if (tmp_mon == 'mar') {
-            search_col = 12;
-          } else if (tmp_mon == 'apr') {
-            search_col = 13;
-          } else if (tmp_mon == 'may') {
-            search_col = 14;
-          } else if (tmp_mon == 'jun') {
-            search_col = 15;
-          } else if (tmp_mon == 'jul') {
-            search_col = 16;
-          } else if (tmp_mon == 'aug') {
-            search_col = 17;
-          } else if (tmp_mon == 'sep') {
-            search_col = 18;
-          } else if (tmp_mon == 'oct') {
-            search_col = 19;
-          } else if (tmp_mon == 'nov') {
-            search_col = 20;
-          } else if (tmp_mon == 'dec') {
-            search_col = 21;
-          }
-          tblObj_localCrop1.column(search_col).search('').columns().search('').draw();
-          tblObj_localCrop1.column(search_col).search('[123]', true, false).draw();
-        });
         ////////////////////////////////////////////// ////////DrawSelected //////////////////////////////
         function DrawSelected() { /// render selected_crops_tbl
           let myNum_tmp = $('#container_tab_all').attr('myNum');
