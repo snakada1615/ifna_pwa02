@@ -448,7 +448,11 @@
           cr += '<td>' + foodVal.eq(4).text() + '</td>';
           $('#foodInfo1').append(cr);
           $('#mystar1-label1').text("consumption target(one portion=" + por + 'g)');
-          $('#mystar1').barrating('set', cou);
+          if (cou==0){
+            $('#mystar1').barrating('set', 1);
+          } else {
+            $('#mystar1').barrating('set', cou);
+          };
 
         //  DrawSelected();
 
