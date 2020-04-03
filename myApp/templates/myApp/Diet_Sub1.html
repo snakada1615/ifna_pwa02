@@ -1,174 +1,175 @@
-<div class="card border-success col-12 mt-2 py-1" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
-  <div class="row">
-    <div class="col-12">
-      <div class="card-body py-0 px-0">
-        <p class="card-title text-dark my-0">
-          selected commodities
-        </p>
-        <p class="card-title text-dark my-0">
-          <span style="color:red">■</span>: less than 50%,
-          <span style="color:orange">■</span>: 50-100%,
-          <span style="color:green">■</span>: over 100%
-        </p>
+{% for i in i|rjust:4 %}
+  <div class="card border-success border-5 rounded col-12 mt-2 py-1" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+    <div class="row">
+      <div class="col-12">
+        <div class="card-body py-0 px-0">
+          <p class="card-title text-dark my-0">
+            selected commodities
+          </p>
+          <p class="card-title text-dark my-0">
+            <span style="color:red">■</span>: less than 50%,
+            <span style="color:orange">■</span>: 50-100%,
+            <span style="color:green">■</span>: over 100%
+          </p>
 
-        <table border="1" class="table table-striped" id="selected_crops_tbl1">
-          <tr>
-            <th>name</th>
-            <th>En</th>
-            <th>Pr</th>
-            <th>Va</th>
-            <th>Fe</th>
-            <th>Wt</th>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </table>
+          <table border="1" class="table table-striped selected_crops_tbl" myNum={{forloop.counter|add:100}}>
+            <tr>
+              <th>name</th>
+              <th>En</th>
+              <th>Pr</th>
+              <th>Va</th>
+              <th>Fe</th>
+              <th>Wt</th>
+              <th class="tableItem_hide">id</th>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td class="tableItem_hide"></td>
+            </tr>
+          </table>
 
-        <div class="form-row no-gutters my-0 py-0" style="height:30px;">
-          <div class="col-3">
-            <label class="text-dark" for="rating_en">Energy</label>
+          <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+            <div class="col-3">
+              <label class="text-dark" for="rating_en">Energy</label>
+            </div>
+            <div class="col-2">
+              <div class="text-dark lbl_target_en" myNum={{forloop.counter|add:100}}></div>
+            </div>
+            <div class="col-7">
+              <select class="rating_DRI rating_en" myNum={{forloop.counter|add:100}}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
           </div>
-          <div class="col-2">
-            <div class="text-dark" id="lbl_target_en1"></div>
+
+          <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+            <div class="col-3">
+              <label class="text-dark" for="rating_pr">Protein</label>
+            </div>
+            <div class="col-2">
+              <div class="text-dark lbl_target_pr" myNum={{forloop.counter|add:100}}></div>
+            </div>
+            <div class="col-7">
+              <select class="rating_DRI rating_pr" myNum={{forloop.counter|add:100}}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
           </div>
-          <div class="col-7">
-            <select class="form-control rating_DRI" id="rating_en1">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
+
+          <div class="form-row no-gutters my-0" style="height:30px;">
+            <div class="col-3">
+              <label class="text-dark" for="rating_va">VitA</label>
+            </div>
+            <div class="col-2">
+              <div class="text-dark lbl_target_va" myNum={{forloop.counter|add:100}}></div>
+            </div>
+            <div class="col-7">
+              <select class="rating_DRI rating_va1" myNum={{forloop.counter|add:100}}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
           </div>
+
+          <div class="form-row no-gutters my-0" style="height:30px;">
+            <div class="col-3">
+              <label class="text-dark " for="rating_fe">Iron</label>
+            </div>
+            <div class="col-2">
+              <div class="text-dark lbl_target_fe" myNum={{forloop.counter|add:100}}></div>
+            </div>
+            <div class="col-7">
+              <select class="rating_DRI rating_fe" myNum={{forloop.counter|add:100}}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row no-gutters my-0 py-0" style="height:30px;">
+            <div class="col-3 text-dark">Target group</div>
+            <div class="col-2 text-dark">{{nutrient_target}}</div>
+          </div>
+
+          <div class="row no-gutters my-0 py-0" style="height:30px;">
+            <div class="col-3 text-dark">Month</div>
+            <div class="col-4 text-dark">
+              <select class="lst_month" myNum={{forloop.counter|add:100}} style="border: 1px #386B46 double;background-color:#A5C93F">
+                <option value="jan">Jan</option>
+                <option value="feb">Feb</option>
+                <option value="mar">Mar</option>
+                <option value="apr">Apr</option>
+                <option value="may">May</option>
+                <option value="jun">Jun</option>
+                <option value="jul">Jul</option>
+                <option value="aug">Aug</option>
+                <option value="sep">Sep</option>
+                <option value="oct">Oct</option>
+                <option value="nov">Nov</option>
+                <option value="dec">Dec</option>
+              </select>
+            </div>
+          </div>
+          <span>
+            <a myNum={{forloop.counter|add:100}} class="btn_add_crop btn btn-block btn-info text-dark mt-2 my-0 py-0 btn-sm">add commodities</a>
+          </span>
         </div>
-
-        <div class="form-row no-gutters my-0 py-0" style="height:30px;">
-          <div class="col-3">
-            <label class="text-dark" for="rating_pr">Protein</label>
-          </div>
-          <div class="col-2">
-            <div class="text-dark" id="lbl_target_pr1"></div>
-          </div>
-          <div class="col-7">
-            <select id="rating_pr1" class="rating_DRI">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-row no-gutters my-0" style="height:30px;">
-          <div class="col-3">
-            <label class="text-dark" for="rating_va">VitA</label>
-          </div>
-          <div class="col-2">
-            <div class="text-dark" id="lbl_target_va1"></div>
-          </div>
-          <div class="col-7">
-            <select id="rating_va1" class="rating_DRI">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-row no-gutters my-0" style="height:30px;">
-          <div class="col-3">
-            <label class="text-dark " for="rating_fe">Iron</label>
-          </div>
-          <div class="col-2">
-            <div class="text-dark" id="lbl_target_fe1"></div>
-          </div>
-          <div class="col-7">
-            <select id="rating_fe1" class="rating_DRI">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row no-gutters my-0 py-0" style="height:30px;">
-          <div class="col-4 text-dark">Target group</div>
-          <div class="col-8 text-dark">{{nutrient_target}}</div>
-        </div>
-
-        <div class="row no-gutters my-0 py-0" style="height:30px;">
-          <div class="col-4 text-dark">Month</div>
-          <div class="col-8 text-dark">
-            <select id="lst_month1" style="border: 1px grey double;">
-              <option value="jan">Jan</option>
-              <option value="feb">Feb</option>
-              <option value="mar">Mar</option>
-              <option value="apr">Apr</option>
-              <option value="may">May</option>
-              <option value="jun">Jun</option>
-              <option value="jul">Jul</option>
-              <option value="aug">Aug</option>
-              <option value="sep">Sep</option>
-              <option value="oct">Oct</option>
-              <option value="nov">Nov</option>
-              <option value="dec">Dec</option>
-            </select>
-          </div>
-        </div>
-        <span>
-          <a id="btn_add11" myNum="11" class="btn btn-block btn-info text-dark mt-2 my-0 py-0 btn-sm">add commodities</a>
-        </span>
       </div>
     </div>
   </div>
-</div>
+{% endfor %}
 <div class="row">
   <div class="col-12">
     <span>
       <a class="btn btn-outline-secondary mt-2 my-0 py-0 btn-sm" href="{% url 'person_list' myLocation=myLocation.id %}">back</a>
     </span>
     <span>
-      <a id="btn_save1" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
-    </span>
-    <span>
-      <a id="btn_add1" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" data-toggle="modal" data-target="#Modal_localCrop1">add</a>
+      <a myNum=100 class="btn_save_crop btn btn-outline-secondary mt-2 my-0 py-0 btn-sm">save</a>
     </span>
   </div>
 </div>
 
 <!-- モーダルの設定 local crop ----------------------------->
-<div class="modal fade" id="Modal_localCrop1" tabindex="-1" role="dialog" aria-labelledby="Modal_localCropLabel">
+<div class="modal fade" id="Modal_localCrop1" myNum=0 tabindex="-1" role="dialog" aria-labelledby="Modal_localCropLabel">
   <div class="modal-dialog " role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -260,7 +261,7 @@
         </select>
 
         <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
-        <button type="button" class="btn btn-primary" id="change_weight1">change value</button>
+        <button type="button" class="btn btn-primary" mynum=0 id="change_weight1">change value</button>
       </div>
     </div>
     <!-- /.modal-content -->
