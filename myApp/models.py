@@ -452,103 +452,18 @@ class Crop_Individual(models.Model):
     total_weight= models.IntegerField(
         default=0,
     )
-    m1_prod = models.IntegerField(
-        verbose_name='mon01_prod',
+    count_prod = models.IntegerField(
+        verbose_name='count_prod',
         default=0,
     )
-    m2_prod = models.IntegerField(
-        verbose_name='mon02_prod',
+    count_buy = models.IntegerField(
+        verbose_name='count_buy',
         default=0,
     )
-    m3_prod = models.IntegerField(
-        verbose_name='mon03_prod',
+    month = models.IntegerField(
+        verbose_name='month',
         default=0,
     )
-    m4_prod = models.IntegerField(
-        verbose_name='mon04_prod',
-        default=0,
-    )
-    m5_prod = models.IntegerField(
-        verbose_name='mon05_prod',
-        default=0,
-    )
-    m6_prod = models.IntegerField(
-        verbose_name='mon06_prod',
-        default=0,
-    )
-    m7_prod = models.IntegerField(
-        verbose_name='mon07_prod',
-        default=0,
-    )
-    m8_prod = models.IntegerField(
-        verbose_name='mon08_prod',
-        default=0,
-    )
-    m9_prod = models.IntegerField(
-        verbose_name='mon09_prod',
-        default=0,
-    )
-    m10_prod = models.IntegerField(
-        verbose_name='mon10_prod',
-        default=0,
-    )
-    m11_prod = models.IntegerField(
-        verbose_name='mon11_prod',
-        default=0,
-    )
-    m12_prod = models.IntegerField(
-        verbose_name='mon12_prod',
-        default=0,
-    )
-    m1_buy = models.IntegerField(
-        verbose_name='mon01_buy',
-        default=0,
-    )
-    m2_buy = models.IntegerField(
-        verbose_name='mon02_buy',
-        default=0,
-    )
-    m3_buy = models.IntegerField(
-        verbose_name='mon03_buy',
-        default=0,
-    )
-    m4_buy = models.IntegerField(
-        verbose_name='mon04_buy',
-        default=0,
-    )
-    m5_buy = models.IntegerField(
-        verbose_name='mon05_buy',
-        default=0,
-    )
-    m6_buy = models.IntegerField(
-        verbose_name='mon06_buy',
-        default=0,
-    )
-    m7_buy = models.IntegerField(
-        verbose_name='mon07_buy',
-        default=0,
-    )
-    m8_buy = models.IntegerField(
-        verbose_name='mon08_buy',
-        default=0,
-    )
-    m9_buy = models.IntegerField(
-        verbose_name='mon09_buy',
-        default=0,
-    )
-    m10_buy = models.IntegerField(
-        verbose_name='mon10_buy',
-        default=0,
-    )
-    m11_buy = models.IntegerField(
-        verbose_name='mon11_buy',
-        default=0,
-    )
-    m12_buy = models.IntegerField(
-        verbose_name='mon12_buy',
-        default=0,
-    )
-
     created_at = models.DateTimeField(
         verbose_name='record_date',
         auto_now_add=True

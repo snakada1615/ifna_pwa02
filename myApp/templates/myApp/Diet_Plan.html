@@ -344,6 +344,8 @@
           "data": "m11"
         }, {
           "data": "m12"
+        }, {
+          "data": "food_item_id"
         }
       ],
 
@@ -497,11 +499,10 @@
           }
           let myMonth = 0;
           if (myNum_tmp < 200) {
-            myMonth=$('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex");
+            myMosnth=$('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex");
           } else {
             myMonth=$('.lst_month[myNum=' + myNum_tmp + ']').text()-1;
           }
-          console.log(myMonth);
           tblObj_localCrop1.column(myMonth + 10).search('[123]', true, false).draw();
 
           /// get currently selected row//
@@ -577,6 +578,33 @@
           //////////////////
           $('#Modal_foodVol1').modal('hide');
         }); //----------change_weight complete here-------
+        //////////////////init second table as modal dialog
+        $('#btn_save_crop').click(function () {
+          let w = "";
+          let n = "";
+          let p = "";
+          tblObj_localCrop.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
+            var data = this.data();
+            n += "-" + data.food_item_id;
+            w += "-" + data.Weight;
+            p += "-" + data.portion_size;
+
+            // ... do something with data(), or this.node(), etc
+          });
+          n = n.substring(1);
+          if (n == '') {
+            n = 0;
+          }
+          w = w.substring(1);
+          if (w == '') {
+            w = 0;
+          }
+          p = p.substring(1);
+          if (p == '') {
+            p = 0;
+          }
+          location.href = myRoot + 'registCrops/' + myFamily + '/' + n + '/' + w + '/' + p + '/';
+        });
       } //----initComplete finish here---////////////////////////////////////////////
 
     });
