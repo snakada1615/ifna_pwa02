@@ -150,30 +150,10 @@ package "Transaction" {
 --
       class_aggr
       portion_size
-      m1_prod
-      m2_prod
-      m3_prod
-      m4_prod
-      m5_prod
-      m6_prod
-      m7_prod
-      m8_prod
-      m9_prod
-      m10_prod
-      m11_prod
-      m12_prod
-      m1_buy
-      m2_buy
-      m3_buy
-      m4_buy
-      m5_buy
-      m6_buy
-      m7_buy
-      m8_buy
-      m9_buy
-      m10_buy
-      m11_buy
-      m12_buy
+      total_weight
+      count_prod
+      count_buy
+      month
       created_at
     }
   entity myStatus{

@@ -343,6 +343,10 @@
           "data": "m12"
         }, {
           "data": "food_item_id"
+        }, {
+          "data": "count_prod"
+        }, {
+          "data": "count_buy"
         }
       ],
 
@@ -421,7 +425,10 @@
           let sum_pr = 0;
           let sum_va = 0;
           let sum_fe = 0;
-          cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th><th class="tableItem_hide">id</th></tr><tr>';
+          cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th>'+
+                  '<th class="tableItem_hide">id</th><th class="tableItem_hide">food_item_id</th>'+
+                  '<th class="tableItem_hide">portion_size</th><th class="tableItem_hide">count_prod</th>'+
+                  '<th class="tableItem_hide">count_buy</th></tr><tr>';
           tblObj_localCrop1.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
             var data = this.data();
             cr += '<td>' + data.Food_name + '</td>';
@@ -431,6 +438,10 @@
             cr += '<td>' + Math.round(data.FE * data.Weight / 100, 1) + '</td>';
             cr += '<td>' + data.Weight + '</td>';
             cr += '<td class="tableItem_hide">' + rowIdx + '</td>';
+            cr += '<td class="tableItem_hide">' + data.food_item_id + '</td>';
+            cr += '<td class="tableItem_hide">' + data.portion_size + '</td>';
+            cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
+            cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
             cr += '</tr>';
             sum_en += data.Energy * data.Weight / 100;
             sum_pr += data.Protein * data.Weight / 100;
@@ -438,8 +449,11 @@
             sum_fe += data.FE * data.Weight / 100;
             selected_rows_id.push(rowIdx);
           });
-          cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en1) + SetCellColor(Math.round(sum_pr), target_pr1) + SetCellColor(Math.round(sum_va), target_va1) + SetCellColor(Math.round(sum_fe), target_fe1) + '<td></td><td class="tableItem_hide"><' +
-              '/td></tr>';
+          cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en1) +
+                  SetCellColor(Math.round(sum_pr), target_pr1) + SetCellColor(Math.round(sum_va), target_va1) +
+                  SetCellColor(Math.round(sum_fe), target_fe1) + '<td></td><td class="tableItem_hide"><' +
+                  '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">'+
+                  '</td><td class="tableItem_hide"></td></tr>';
           $('.selected_crops_tbl[myNum=' + myNum_tmp + ']').append(cr);
 
           /////////////// set barrating /
@@ -525,17 +539,19 @@
         }); //////////////////////////////////////////////
         //////////////////add table edit function////
         $(".selected_crops_tbl").on("click", "td", function () {
-          $('#selected_row').val($(this).closest('tr').index());
-          $('#foodInfo1 tr').remove();
-          let myrowid = $(this).closest('tr').children('td').eq(6).text();
-          let por = tblObj_localCrop1.row(myrowid).data().portion_size;
-          let cou = Number(tblObj_localCrop1.row(myrowid).data().Weight / por, 10);
+          $('#selected_row').val($(this).closest('tr').index());//いらない？
+          $('#foodInfo1 tr').remove();//foodinfo1のテーブル初期化
+          let myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');
           let foodVal = $("td", $(this).parent());
+          let myrowid = foodVal.eq(6).text();
+          let myData =  tblObj_localCrop1.row(foodVal.eq(6).text()).data();
+          let por = myData.portion_size;
+          let cou = Number(myData.Weight / por, 10);
+//          cou = myData.count_prod + myData.count_buy;
           let $foodInfo = $('#foodInfo1');
-          $foodInfo.attr('myrowid', myrowid);
 
-          myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');
-          $foodInfo1.attr('myNum', myrowid);
+          $foodInfo.attr('myrowid', myrowid);
+          $foodInfo.attr('myNum', myrowid);
           $('#container_tab_all').attr('myNum', myNum_tmp);
 
           let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th></tr><tr>';
@@ -572,6 +588,7 @@
           //////////////////
           $('#Modal_foodVol1').modal('hide');
         }); //----------change_weight complete here-------
+
         //////////////////btn_save_crop
         $('#btn_save_crop').click(function () {
           let hostUrl = myRoot + 'registCropAvail/';
@@ -595,6 +612,10 @@
           });
         return {"myJson": d};
       }
+
+
+      console.log('test');
+
       //////////////////getTblData //// csrf_tokenの取得に使う//////////////
       function getCookie(name) {
         var cookieValue = null;

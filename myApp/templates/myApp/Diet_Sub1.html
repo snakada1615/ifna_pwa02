@@ -21,6 +21,10 @@
               <th>Fe</th>
               <th>Wt</th>
               <th class="tableItem_hide">id</th>
+              <th class="tableItem_hide">food_item_id</th>
+              <th class="tableItem_hide">portion_size</th>
+              <th class="tableItem_hide">count_prod</th>
+              <th class="tableItem_hide">count_buy</th>
             </tr>
             <tr>
               <td></td>
@@ -29,6 +33,10 @@
               <td></td>
               <td></td>
               <td></td>
+              <td class="tableItem_hide"></td>
+              <td class="tableItem_hide"></td>
+              <td class="tableItem_hide"></td>
+              <td class="tableItem_hide"></td>
               <td class="tableItem_hide"></td>
             </tr>
           </table>
@@ -157,116 +165,3 @@
     </div>
   </div>
 {% endfor %}
-
-<!-- モーダルの設定 local crop ----------------------------->
-<div class="modal fade" id="Modal_localCrop1" myNum=0 tabindex="-1" role="dialog" aria-labelledby="Modal_localCropLabel">
-  <div class="modal-dialog " role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Add/remove food item</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-          <span class="text-danger" aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-dark">
-        <div class="my-2" id="myFilter1">Food group:
-        </div>
-        <table id="localCrop1" class="display compact" cellspacing="0" width="100%">
-          <thead>
-            <tr>
-              <th>s</th>
-              <th>Name</th>
-              <th>En</th>
-              <th>Pr</th>
-              <th>VA</th>
-              <th>Fe</th>
-              <th>c</th>
-            </tr>
-          </thead>
-
-          <tfoot>
-            <tr>
-              <th>s</th>
-              <th>Name</th>
-              <th>En</th>
-              <th>Pr</th>
-              <th>VA</th>
-              <th>Fe</th>
-              <th>c</th>
-            </tr>
-          </tfoot>
-        </table>
-        <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" data-dismiss="modal">close</a>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-<!-------------------------------------->
-
-<!-- モーダルの設定 change diet ----------------------------->
-<div class="modal fade" id="Modal_foodVol1" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Edit the weight of food item</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-dark">
-        <table border="1" class="table table-striped" id="foodInfo1">
-          <tr>
-            <th>name</th>
-            <th>En</th>
-            <th>Pr</th>
-            <th>Va</th>
-            <th>Fe</th>
-            <th>Wt</th>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </table>
-
-        <label for="mystar1" id="mystar-label1">consumption target (1 portion=):</label>
-        <select id="mystar1">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="15">15</option>
-          <option value="16">16</option>
-          <option value="17">17</option>
-          <option value="18">18</option>
-          <option value="19">19</option>
-          <option value="20">20</option>
-        </select>
-
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
-        <button type="button" class="btn btn-primary" mynum=0 id="change_weight1">change value</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-<!-------------------------------------->
