@@ -23,7 +23,7 @@
       <div class="col-8 my-0 px-1">
         <h5>
           Diet planning for
-          {{myLocation}}
+          {{ myLocation }}
         </h5>
       </div>
       <div class="col-2 my-0 px-3">
@@ -67,11 +67,13 @@
                 nutrition target:
                 {{ myLocation.nutrition_target }}
               </p>
-              <button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true" aria-controls="more_info">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true"
+                      aria-controls="more_info">
                 more info
               </button>
 
-              <div id="more_info" class="collapse" aria-labelledby="heading{{crop.food_item_id}}" data-parent="#accordion">
+              <div id="more_info" class="collapse" aria-labelledby="heading{{ crop.food_item_id }}"
+                   data-parent="#accordion">
                 <p class="card-text my-0">
                   stunting rate:
                   {{ myLocation.stunting_rate }}
@@ -93,7 +95,8 @@
   </div>
 
   <!-- モーダルの設定 local crop ----------------------------->
-  <div class="modal fade" id="Modal_localCrop1" mynum="0" tabindex="-1" role="dialog" aria-labelledby="Modal_localCropLabel">
+  <div class="modal fade" id="Modal_localCrop1" mynum="0" tabindex="-1" role="dialog"
+       aria-labelledby="Modal_localCropLabel">
     <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -107,27 +110,27 @@
           </div>
           <table id="localCrop1" class="display compact" cellspacing="0" width="100%">
             <thead>
-              <tr>
-                <th>s</th>
-                <th>Name</th>
-                <th>En</th>
-                <th>Pr</th>
-                <th>VA</th>
-                <th>Fe</th>
-                <th>c</th>
-              </tr>
+            <tr>
+              <th>s</th>
+              <th>Name</th>
+              <th>En</th>
+              <th>Pr</th>
+              <th>VA</th>
+              <th>Fe</th>
+              <th>c</th>
+            </tr>
             </thead>
 
             <tfoot>
-              <tr>
-                <th>s</th>
-                <th>Name</th>
-                <th>En</th>
-                <th>Pr</th>
-                <th>VA</th>
-                <th>Fe</th>
-                <th>c</th>
-              </tr>
+            <tr>
+              <th>s</th>
+              <th>Name</th>
+              <th>En</th>
+              <th>Pr</th>
+              <th>VA</th>
+              <th>Fe</th>
+              <th>c</th>
+            </tr>
             </tfoot>
           </table>
           <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" data-dismiss="modal">close</a>
@@ -205,7 +208,8 @@
   <!-- /.modal -->
   <!-------------------------------------->
 
-  <div id="container_tab_all" class="container border-secondary py-1 my-1 px-0" style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
+  <div id="container_tab_all" class="container border-secondary py-1 my-1 px-0"
+       style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
     <!-- 4個分のタブ -->
     <ul class="nav nav-tabs">
       <li class="nav-item">
@@ -241,6 +245,7 @@
       color: red;
       background-color: #87BFCD;
     }
+
     /* 行または列の非表示*/
     .tableItem_hide {
       display: none;
@@ -381,17 +386,18 @@
             var val = $.fn.dataTable.util.escapeRegex($(this).val());
 
             column.search(
-              val
-                ? '^' + val + '$'
-                : '',
-              true,
-              false
+                    val
+                            ? '^' + val + '$'
+                            : '',
+                    true,
+                    false
             ).draw();
           });
           column.data().unique().sort().each(function (d, j) {
             select.append('<option value="' + d + '">' + d + '</option>');
           });
         });
+
         //////////////////////////////////// ////////set cell color////////////////
         function SetCellColor(i_cell, i_target) {
           let res = '';
@@ -426,9 +432,9 @@
           let sum_pr = 0;
           let sum_va = 0;
           let sum_fe = 0;
-          cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th>'+
-                  '<th class="tableItem_hide">id</th><th class="tableItem_hide">food_item_id</th>'+
-                  '<th class="tableItem_hide">portion_size</th><th class="tableItem_hide">count_prod</th>'+
+          cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th>' +
+                  '<th class="tableItem_hide">id</th><th class="tableItem_hide">food_item_id</th>' +
+                  '<th class="tableItem_hide">portion_size</th><th class="tableItem_hide">count_prod</th>' +
                   '<th class="tableItem_hide">count_buy</th></tr><tr>';
           tblObj_localCrop1.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
             var data = this.data();
@@ -453,7 +459,7 @@
           cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en1) +
                   SetCellColor(Math.round(sum_pr), target_pr1) + SetCellColor(Math.round(sum_va), target_va1) +
                   SetCellColor(Math.round(sum_fe), target_fe1) + '<td></td><td class="tableItem_hide"><' +
-                  '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">'+
+                  '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
                   '</td><td class="tableItem_hide"></td></tr>';
           $myTable.append(cr);
 
@@ -488,34 +494,31 @@
           $('.rating_va[myNum=' + myNum_tmp + ']').barrating('set', rate_va); // set barrating
           $('.rating_fe[myNum=' + myNum_tmp + ']').barrating('set', rate_fe); // set barrating
         }
+
         ////////////////////////////////////////////// //////////init second table as modal dialog add selected rows to text box
         $('#localCrop1 tbody').on('click', 'tr', function () {
           $(this).toggleClass('selected');
           DrawSelected();
         }); //////////////////////////////////////////////
-        ////////////////////////////////////////////// //////////init second table as modal dialog add selected rows to text box
-        $('.btn_add_crop').on('click', function () {
+        /////CreateSelection/////
+        function CreateSelection(myNum) {
+          let myNum_tmp = myNum;
           let selected_list = [];
-          let myNum_tmp = $(this).attr('myNum');
           let $modal_localCrop = $('#Modal_localCrop1');
           $('#container_tab_all').attr('myNum', myNum_tmp);
           $modal_localCrop.attr('myNum', myNum_tmp);
 
           /// get currently selected row//
           $('.selected_crops_tbl[myNum=' + myNum_tmp + '] tr').each(function (myRow) {
-            $(this).children().each(function (myIndex, myElement) {
-              if (myIndex == 0 && myRow != 0) {
-                if ($(myElement).text() != '' && $(myElement).text() != 'total') {
-                  selected_list.push($(myElement).text());
-                }
-              }
-            });
+            myFood_item = $(this).children('td').eq(0).text();
+            myFood_item_id = $(this).children('td').eq(7).text();
+            if (myFood_item != '' && myFood_item != 'total') {
+              selected_list.push(myFood_item_id);
+            }
           });
 
           // de-select all crop in the list
           tblObj_localCrop1.rows().deselect();
-//          let $localCrop = $('#localCrop1 tr');
-//          $localCrop.removeClass('selected');
 
           //filter crop by month//
           for (var i = 10; i < 22; i++) {
@@ -530,14 +533,22 @@
           tblObj_localCrop1.column(myMonth + 10).search('[123]', true, false).draw();
 
           /// give selected status to the currently selected item//
-          tblObj_localCrop1.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+          tblObj_localCrop1.rows().every(function (rowIdx, tableLoop, rowLoop) {
             let myrow = this.data();
-            if (selected_list.indexOf(myrow.Food_name)>=0) {
+            if (selected_list.indexOf(String(myrow.food_item_id)) >= 0) {
               this.select();
             }
           });
-          $modal_localCrop.modal('show');
+        }
+
+        /////CreateSelection/////
+
+        ////////// start crop selection (local -> selected)
+        $('.btn_add_crop').on('click', function () {
+          CreateSelection($(this).attr('myNum'));
+          $('#Modal_localCrop1').modal('show');
         }); //////////////////////////////////////////////
+
         //////////////////add table edit function////
         $(".selected_crops_tbl").on("click", "td", function () {
           $('#selected_row').val($(this).closest('tr').index());//いらない？
@@ -545,7 +556,7 @@
           let myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');
           let foodVal = $("td", $(this).parent());
           let myrowid = foodVal.eq(6).text();
-          let myData =  tblObj_localCrop1.row(foodVal.eq(6).text()).data();
+          let myData = tblObj_localCrop1.row(foodVal.eq(6).text()).data();
           let por = myData.portion_size;
           let cou = Number(myData.Weight / por, 10);
 //          cou = myData.count_prod + myData.count_buy;
@@ -567,7 +578,8 @@
             $('#mystar1').barrating('set', 1);
           } else {
             $('#mystar1').barrating('set', cou);
-          };
+          }
+          ;
 
           //  DrawSelected();
 
@@ -583,6 +595,7 @@
           tblObj_localCrop1.row(myrowid).data().count_prod = cou;
           tblObj_localCrop1.row(myrowid).data().count_buy = 0;
           tblObj_localCrop1.row(myrowid).data().Weight = por * cou;
+          CreateSelection(myNum_tmp);
 
           ///////////////////
           DrawSelected();
@@ -600,7 +613,7 @@
         //////////////////getTblData
         function getTblData() {
           let d = [];
-          $('.selected_crops_tbl').each(function(i) {
+          $('.selected_crops_tbl').each(function (i) {
             let dd = {};
             let myName = $(this).children('tr').eq(2).children('td').eq(0).text();
             let myID = $(this).children('tr').eq(2).children('td').eq(6).text();
@@ -611,74 +624,73 @@
             dd["myFood_index"] = myFood_index;
             d.push(dd);
           });
-        return {"myJson": d};
-      }
-
-
-      console.log('test');
-
-      //////////////////getTblData //// csrf_tokenの取得に使う//////////////
-      function getCookie(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-          var cookies = document.cookie.split(';');
-          for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-              break;
-            }
-          }
+          return {"myJson": d};
         }
-        return cookieValue;
-      }
 
-      function csrfSafeMethod(method) {
-        // these HTTP methods do not require CSRF protection
-        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-      }
 
-      function Set_CRSF() {
-        var csrf_token = getCookie("csrftoken");
-        $.ajaxSetup({
-          crossDomain: false, // obviates need for sameOrigin test
-          beforeSend: function (xhr, settings) {
-            if (!csrfSafeMethod(settings.type)) {
-              xhr.setRequestHeader("X-CSRFToken", csrf_token);
+        //////////////////getTblData //// csrf_tokenの取得に使う//////////////
+        function getCookie(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+              var cookie = jQuery.trim(cookies[i]);
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+              }
             }
           }
-        });
-      }
+          return cookieValue;
+        }
 
-      //////////////////sendJson////
-      function sendJson(myjson, hostUrl) {
-        $.ajax({
-          type: 'post',
-          url: hostUrl,
-          data: JSON.stringify(myjson),
-          contentType: 'application/JSON',
-          dataType: 'JSON',
-          scriptCharset: 'utf-8',
-          success: function (response) {
-            window.location.href = response.url;
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-            alert("fail");
-            console.log(jqXHR.responseText);
-            console.log(jqXHR.status); //例：404
-            console.log(textStatus); //例：error
-            console.log(errorThrown); //例：NOT FOUND
-            console.log(JSON.stringify(myjson)); //例：NOT FOUND
-            console.log(myjson); //例：NOT FOUND
-          }
-        });
-      }
-      //////////////////sendJson//// scfript end///////////////////
+        function csrfSafeMethod(method) {
+          // these HTTP methods do not require CSRF protection
+          return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
 
-    } //----initComplete finish here---////////////////////////////////////////////
+        function Set_CRSF() {
+          var csrf_token = getCookie("csrftoken");
+          $.ajaxSetup({
+            crossDomain: false, // obviates need for sameOrigin test
+            beforeSend: function (xhr, settings) {
+              if (!csrfSafeMethod(settings.type)) {
+                xhr.setRequestHeader("X-CSRFToken", csrf_token);
+              }
+            }
+          });
+        }
 
-  });
+        //////////////////sendJson////
+        function sendJson(myjson, hostUrl) {
+          $.ajax({
+            type: 'post',
+            url: hostUrl,
+            data: JSON.stringify(myjson),
+            contentType: 'application/JSON',
+            dataType: 'JSON',
+            scriptCharset: 'utf-8',
+            success: function (response) {
+              window.location.href = response.url;
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              alert("fail");
+              console.log(jqXHR.responseText);
+              console.log(jqXHR.status); //例：404
+              console.log(textStatus); //例：error
+              console.log(errorThrown); //例：NOT FOUND
+              console.log(JSON.stringify(myjson)); //例：NOT FOUND
+              console.log(myjson); //例：NOT FOUND
+            }
+          });
+        }
+
+        //////////////////sendJson//// scfript end///////////////////
+
+      } //----initComplete finish here---////////////////////////////////////////////
+
+    });
   </script>
 
 {% endblock %}

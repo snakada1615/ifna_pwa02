@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+
+title step7: set sub-national level target
+
+  package "m_localcrop"{
+    Local_crop --> (diet optimize1):"3"
+    (diet optimize1) --> admin:"3"
+    Local_crop --> (diet optimize2):"4"
+    (diet optimize2) --> admin:"4"
+  }
+
+  package "メイン画面" <<Rect>> {
+      Local_crop --> (user info):"1"
+      (user info) --> admin:"1"
+      Local_crop <-- (crop list\nDRI info):"2"
+      (crop list\nDRI info) <-- admin:"2"
+  }
+
+  package "m_diet_design" {
+    selected_crop --> (user_info):"1"
+    selected_crop <-- (crop_list\nDRI_info):"2"
+    selected_crop --> (production target):"3, 4"
+  }
+
+
+@enduml
