@@ -617,9 +617,23 @@
             $(myTbl).children('tbody').children('tr').each(function (j, myRow) {
               let dd = {};
               if ($(myRow).children('td').eq(0).text() !== '' && $(myRow).children('td').eq(0).text() !== 'total') {
-                dd["myName"] = $(myRow).children('td').eq(0).text();
-                dd["myID"] = $(myRow).children('td').eq(6).text();
-                dd["myFood_index"] = $(myRow).children('td').eq(7).text();
+                //   dd["myName"] = $(myRow).children('td').eq(0).text();
+                dd["total_weight"] = $(myRow).children('td').eq(5).text();
+                dd["food_item_id"] = $(myRow).children('td').eq(7).text();
+                dd["portion_size"] = $(myRow).children('td').eq(8).text();
+                dd["count_prod"] = $(myRow).children('td').eq(9).text();
+                dd["count_buy"] = $(myRow).children('td').eq(10).text();
+
+                let myNum_tmp = $(myTbl).attr('myNum');
+                let myMonth = 0;
+                if (myNum_tmp < 200) {
+                  myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex") + 1;
+                } else {
+                  myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').text();
+                }
+                dd["month"] = myMonth;
+                dd["class_aggr"] = Math.trunc(myNum_tmp / 100);
+
                 d.push(dd);
               }
             })
