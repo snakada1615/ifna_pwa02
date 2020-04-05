@@ -611,18 +611,18 @@
         }); ////////btn_save_crop///////////
 
         //////////////////getTblData
-        function getTblData() {
+        function getTblData() { //#todo
           let d = [];
-          $('.selected_crops_tbl').each(function (i) {
-            let dd = {};
-            let myName = $(this).children('tr').eq(2).children('td').eq(0).text();
-            let myID = $(this).children('tr').eq(2).children('td').eq(6).text();
-            let myFood_index = $(this).children('tr').eq(2).children('td').eq(7).text();
-
-            dd["myName"] = myName;
-            dd["myID"] = myID;
-            dd["myFood_index"] = myFood_index;
-            d.push(dd);
+          $('.selected_crops_tbl').each(function (i, myTbl) {
+            $(myTbl).children('tbody').children('tr').each(function (j, myRow) {
+              let dd = {};
+              if ($(myRow).children('td').eq(0).text() !== '' && $(myRow).children('td').eq(0).text() !== 'total') {
+                dd["myName"] = $(myRow).children('td').eq(0).text();
+                dd["myID"] = $(myRow).children('td').eq(6).text();
+                dd["myFood_index"] = $(myRow).children('td').eq(7).text();
+                d.push(dd);
+              }
+            })
           });
           return {"myJson": d};
         }
