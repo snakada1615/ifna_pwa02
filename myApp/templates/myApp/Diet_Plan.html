@@ -18,7 +18,7 @@
   <div class="container" style="max-width: 540px;">
     <div class="row">
       <div class="col-2 my-0 px-3">
-        <img src="{% static 'img/no4.png' %}">
+        <img src="{% static 'img/no4.png' %}" alt="number 4">
       </div>
       <div class="col-8 my-0 px-1">
         <h5>
@@ -33,7 +33,7 @@
               <a class="btn btn-warning mt-2 my-0 py-0 btn-sm" href="{% url 'person_list' myLocation=myLocation.id %}">back</a>
             </span>
             <span>
-              <a myNum=100 class="btn_save_crop btn btn-warning mt-2 my-0 py-0 btn-sm">save</a>
+              <a mynum="100" id="btn_save_crop" class="btn btn-warning mt-2 my-0 py-0 btn-sm">save</a>
             </span>
           </div>
         </div>
@@ -92,120 +92,118 @@
     </div>
   </div>
 
-
-    <!-- モーダルの設定 local crop ----------------------------->
-    <div class="modal fade" id="Modal_localCrop1" myNum=0 tabindex="-1" role="dialog" aria-labelledby="Modal_localCropLabel">
-      <div class="modal-dialog " role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Add/remove food item</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span class="text-danger" aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body text-dark">
-            <div class="my-2" id="myFilter1">Food group:
-            </div>
-            <table id="localCrop1" class="display compact" cellspacing="0" width="100%">
-              <thead>
-                <tr>
-                  <th>s</th>
-                  <th>Name</th>
-                  <th>En</th>
-                  <th>Pr</th>
-                  <th>VA</th>
-                  <th>Fe</th>
-                  <th>c</th>
-                </tr>
-              </thead>
-
-              <tfoot>
-                <tr>
-                  <th>s</th>
-                  <th>Name</th>
-                  <th>En</th>
-                  <th>Pr</th>
-                  <th>VA</th>
-                  <th>Fe</th>
-                  <th>c</th>
-                </tr>
-              </tfoot>
-            </table>
-            <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" data-dismiss="modal">close</a>
-          </div>
+  <!-- モーダルの設定 local crop ----------------------------->
+  <div class="modal fade" id="Modal_localCrop1" mynum="0" tabindex="-1" role="dialog" aria-labelledby="Modal_localCropLabel">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add/remove food item</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span class="text-danger" aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <!-- /.modal-content -->
-      </div>
-      <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-    <!-------------------------------------->
-
-    <!-- モーダルの設定 change diet ----------------------------->
-    <div class="modal fade" id="Modal_foodVol1" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Edit the weight of food item</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="modal-body text-dark">
+          <div class="my-2" id="myFilter1">Food group:
           </div>
-          <div class="modal-body text-dark">
-            <table border="1" class="table table-striped" id="foodInfo1">
+          <table id="localCrop1" class="display compact" cellspacing="0" width="100%">
+            <thead>
               <tr>
-                <th>name</th>
+                <th>s</th>
+                <th>Name</th>
                 <th>En</th>
                 <th>Pr</th>
-                <th>Va</th>
+                <th>VA</th>
                 <th>Fe</th>
-                <th>Wt</th>
+                <th>c</th>
               </tr>
+            </thead>
+
+            <tfoot>
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <th>s</th>
+                <th>Name</th>
+                <th>En</th>
+                <th>Pr</th>
+                <th>VA</th>
+                <th>Fe</th>
+                <th>c</th>
               </tr>
-            </table>
-
-            <label for="mystar1" id="mystar-label1">consumption target (1 portion=):</label>
-            <select id="mystar1">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-            </select>
-
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
-            <button type="button" class="btn btn-primary" mynum=0 id="change_weight1">change value</button>
-          </div>
+            </tfoot>
+          </table>
+          <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" data-dismiss="modal">close</a>
         </div>
-        <!-- /.modal-content -->
       </div>
-      <!-- /.modal-dialog -->
+      <!-- /.modal-content -->
     </div>
-    <!-- /.modal -->
-    <!-------------------------------------->
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  <!-------------------------------------->
 
+  <!-- モーダルの設定 change diet ----------------------------->
+  <div class="modal fade" id="Modal_foodVol1" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Edit the weight of food item</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-dark">
+          <table border="1" class="table table-striped" id="foodInfo1">
+            <tr>
+              <th>name</th>
+              <th>En</th>
+              <th>Pr</th>
+              <th>Va</th>
+              <th>Fe</th>
+              <th>Wt</th>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+
+          <label for="mystar1" id="mystar-label1">consumption target (1 portion=):</label>
+          <select id="mystar1">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+          </select>
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+          <button type="button" class="btn btn-primary" mynum="0" id="change_weight1">change value</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  <!-------------------------------------->
 
   <div id="container_tab_all" class="container border-secondary py-1 my-1 px-0" style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
     <!-- 4個分のタブ -->
@@ -235,7 +233,6 @@
     </div>
   </div>
 
-
   <!------------------------------------------------------------->
   <style media="screen">
     /* nav-item activeの文字色 */
@@ -253,7 +250,7 @@
   <!------------------------------------------------------------->
   <script>
     // グローバル変数の作成
-    var selected_rows_id = []
+    var selected_rows_id = [];
     var myLocation = '';
     var myRoot = '';
     var json_crop_local = {{mylist_available|safe}};
@@ -373,7 +370,7 @@
         }
       ],
       "initComplete": function (settings, json) {
-        // ////////add filtering dropdown list
+        // ////add filtering dropdown list
         this.api().columns([6]).every(function () {
           var column = this;
           var select = $('<select style="border: 1px grey double;"><option value=""></option></select>').appendTo($('#myFilter1')).on('change', function () {
@@ -390,9 +387,10 @@
           column.data().unique().sort().each(function (d, j) {
             select.append('<option value="' + d + '">' + d + '</option>');
           });
-        })
-        //////////////////////////////////// ////////////set cell color////////////////
+        });
+        //////////////////////////////////// ////////set cell color////////////////
         function SetCellColor(i_cell, i_target) {
+          let res = '';
           cNum = parseInt(i_cell * 100 / i_target, 10);
           switch (true) {
             case 0 <= cNum && cNum < 50:
@@ -414,8 +412,7 @@
           return res;
         }
 
-        ///////////////////////////////////////////// ////////////////////////////////////////////
-        ////////////////////////////////////////////// ////////DrawSelected //////////////////////////////
+        ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
         function DrawSelected() { /// render selected_crops_tbl
           let myNum_tmp = $('#container_tab_all').attr('myNum');
           $('.selected_crops_tbl[myNum=' + myNum_tmp + '] tr').remove(); //remove all rows
@@ -451,65 +448,67 @@
             rate_en = 10
           } else if (rate_en < 1) {
             rate_en = 1
-          };
+          }
           let rate_pr = Math.round(sum_pr * 10 / target_pr1);
           if (rate_pr > 10) {
             rate_pr = 10
           } else if (rate_pr < 1) {
             rate_pr = 1
-          };
+          }
           let rate_va = Math.round(sum_va * 10 / target_va1);
           if (rate_va > 10) {
             rate_va = 10
           } else if (rate_va < 1) {
             rate_va = 1
-          };
+          }
           let rate_fe = Math.round(sum_fe * 10 / target_fe1);
           if (rate_fe > 10) {
             rate_fe = 10
           } else if (rate_fe < 1) {
             rate_fe = 1
-          };
+          }
 
           $('.rating_en[myNum=' + myNum_tmp + ']').barrating('set', rate_en); // set barrating
           $('.rating_pr[myNum=' + myNum_tmp + ']').barrating('set', rate_pr); // set barrating
           $('.rating_va[myNum=' + myNum_tmp + ']').barrating('set', rate_va); // set barrating
           $('.rating_fe[myNum=' + myNum_tmp + ']').barrating('set', rate_fe); // set barrating
-
-          return;
-        };
-        ////////////////////////////////////////////// //////////////init second table as modal dialog add selected rows to text box
+        }
+        ////////////////////////////////////////////// //////////init second table as modal dialog add selected rows to text box
         $('#localCrop1 tbody').on('click', 'tr', function () {
           $(this).toggleClass('selected');
           DrawSelected();
         }); //////////////////////////////////////////////
-        ////////////////////////////////////////////// //////////////init second table as modal dialog add selected rows to text box
+        ////////////////////////////////////////////// //////////init second table as modal dialog add selected rows to text box
         $('.btn_add_crop').on('click', function () {
           let selected_list = [];
           let myNum_tmp = $(this).attr('myNum');
+          let $modal_localCrop = $('#Modal_localCrop1');
           $('#container_tab_all').attr('myNum', myNum_tmp);
-          $('#Modal_localCrop1').attr('myNum', myNum_tmp);
+          $modal_localCrop.attr('myNum', myNum_tmp);
 
-          // de-select all crop //
-          $('#localCrop1 tr').removeClass('selected');
+          // de-select all crop
+          let $localCrop = $('#localCrop1 tr');
+          $localCrop.removeClass('selected');
 
           //filter crop by month//
-          for ( var i = 10;  i < 22;  i++  ) {
+          for (var i = 10; i < 22; i++) {
             tblObj_localCrop1.column(i).search('').columns().search('').draw();
           }
           let myMonth = 0;
           if (myNum_tmp < 200) {
-            myMosnth=$('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex");
+            myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex");
           } else {
-            myMonth=$('.lst_month[myNum=' + myNum_tmp + ']').text()-1;
+            myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').text() - 1;
           }
+
+          console.log('myNum_tmp= '+ myNum_tmp + ': myMonth=' + myMonth + ': lst_month.length=' + $('.lst_month').length);
           tblObj_localCrop1.column(myMonth + 10).search('[123]', true, false).draw();
 
           /// get currently selected row//
           $('.selected_crops_tbl[myNum=' + myNum_tmp + '] tr').each(function (myRow) {
             $(this).children().each(function (myIndex, myElement) {
-              if (myIndex==0 && myRow!=0){
-                if ($(myElement).text()!='' && $(myElement).text()!='total') {
+              if (myIndex == 0 && myRow != 0) {
+                if ($(myElement).text() != '' && $(myElement).text() != 'total') {
                   selected_list.push($(myElement).text());
                 }
               }
@@ -517,18 +516,18 @@
           });
 
           /// give selected status to the currently selected item//
-          $('#localCrop1 tr').each(function(myRow){
+          $localCrop.each(function (myRow) {
             $(this).children().each(function (myIndex, myElement) {
-              if (myIndex==0 && myRow!=0){
+              if (myIndex == 0 && myRow != 0) {
                 tmp = $(myElement).text()
-                if (selected_list.indexOf(tmp)>=0) {
+                if (selected_list.indexOf(tmp) >= 0) {
                   $(this).parent().addClass('selected');
                 }
               }
             });
           })
 
-          $('#Modal_localCrop1').modal('show');
+          $modal_localCrop.modal('show');
         }); //////////////////////////////////////////////
         //////////////////add table edit function////
         $(".selected_crops_tbl").on("click", "td", function () {
@@ -538,10 +537,11 @@
           let por = tblObj_localCrop1.row(myrowid).data().portion_size;
           let cou = Number(tblObj_localCrop1.row(myrowid).data().Weight / por, 10);
           let foodVal = $("td", $(this).parent());
-          $('#foodInfo1').attr('myrowid', myrowid);
+          let $foodInfo = $('#foodInfo1');
+          $foodInfo.attr('myrowid', myrowid);
 
           myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');
-          $('#foodInfo1').attr('myNum', myrowid);
+          $foodInfo1.attr('myNum', myrowid);
           $('#container_tab_all').attr('myNum', myNum_tmp);
 
           let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th></tr><tr>';
@@ -550,15 +550,15 @@
           cr += '<td>' + foodVal.eq(2).text() + '</td>';
           cr += '<td>' + foodVal.eq(3).text() + '</td>';
           cr += '<td>' + foodVal.eq(4).text() + '</td>';
-          $('#foodInfo1').append(cr);
+          $foodInfo.append(cr);
           $('#mystar1-label1').text("consumption target(one portion=" + por + 'g)');
-          if (cou==0){
+          if (cou == 0) {
             $('#mystar1').barrating('set', 1);
           } else {
             $('#mystar1').barrating('set', cou);
           };
 
-        //  DrawSelected();
+          //  DrawSelected();
 
           $('#Modal_foodVol1').modal('show');
         });
@@ -568,7 +568,7 @@
           let myrowid = $('#foodInfo1').attr('myrowid');
           let por = tblObj_localCrop1.row(myrowid).data().portion_size;
           let cou = $('#mystar1').children("option:selected").val();
-          let tmp_v = por * cou
+          let tmp_v = por * cou;
           myNum_tmp = $('#container_tab_all').attr('myNum');
           $('.selected_crops_tbl[myNum=' + myNum_tmp + '] tr').eq($('#selected_row').val()).children('td').eq(5).text(tmp_v);
           tblObj_localCrop1.row(myrowid).data().Weight = tmp_v;
@@ -578,36 +578,91 @@
           //////////////////
           $('#Modal_foodVol1').modal('hide');
         }); //----------change_weight complete here-------
-        //////////////////init second table as modal dialog
+        //////////////////btn_save_crop
         $('#btn_save_crop').click(function () {
-          let w = "";
-          let n = "";
-          let p = "";
-          tblObj_localCrop.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
-            var data = this.data();
-            n += "-" + data.food_item_id;
-            w += "-" + data.Weight;
-            p += "-" + data.portion_size;
+          let hostUrl = myRoot + 'registCropAvail/';
+          let mydat = getTblData();
+          console.log(mydat);
+        }); ////////btn_save_crop///////////
 
-            // ... do something with data(), or this.node(), etc
+        //////////////////getTblData
+        function getTblData() {
+          let d = [];
+          $('.selected_crops_tbl').each(function(i) {
+            let dd = {};
+            let myName = $(this).children('tr').eq(2).children('td').eq(0).text();
+            let myID = $(this).children('tr').eq(2).children('td').eq(6).text();
+            let myFood_index = $(this).children('tr').eq(2).children('td').eq(7).text();
+
+            dd["myName"] = myName;
+            dd["myID"] = myID;
+            dd["myFood_index"] = myFood_index;
+            d.push(dd);
           });
-          n = n.substring(1);
-          if (n == '') {
-            n = 0;
+        return {"myJson": d};
+      }
+      //////////////////getTblData //// csrf_tokenの取得に使う//////////////
+      function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+          var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
           }
-          w = w.substring(1);
-          if (w == '') {
-            w = 0;
-          }
-          p = p.substring(1);
-          if (p == '') {
-            p = 0;
-          }
-          location.href = myRoot + 'registCrops/' + myFamily + '/' + n + '/' + w + '/' + p + '/';
-        });
-      } //----initComplete finish here---////////////////////////////////////////////
+        }
+        return cookieValue;
+      }
 
-    });
+      function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+      }
+
+      function Set_CRSF() {
+        var csrf_token = getCookie("csrftoken");
+        $.ajaxSetup({
+          crossDomain: false, // obviates need for sameOrigin test
+          beforeSend: function (xhr, settings) {
+            if (!csrfSafeMethod(settings.type)) {
+              xhr.setRequestHeader("X-CSRFToken", csrf_token);
+            }
+          }
+        });
+      }
+
+      //////////////////sendJson////
+      function sendJson(myjson, hostUrl) {
+        $.ajax({
+          type: 'post',
+          url: hostUrl,
+          data: JSON.stringify(myjson),
+          contentType: 'application/JSON',
+          dataType: 'JSON',
+          scriptCharset: 'utf-8',
+          success: function (response) {
+            window.location.href = response.url;
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            alert("fail");
+            console.log(jqXHR.responseText);
+            console.log(jqXHR.status); //例：404
+            console.log(textStatus); //例：error
+            console.log(errorThrown); //例：NOT FOUND
+            console.log(JSON.stringify(myjson)); //例：NOT FOUND
+            console.log(myjson); //例：NOT FOUND
+          }
+        });
+      }
+      //////////////////sendJson//// scfript end///////////////////
+
+    } //----initComplete finish here---////////////////////////////////////////////
+
+  });
   </script>
 
 {% endblock %}
