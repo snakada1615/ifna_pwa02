@@ -223,12 +223,6 @@ class Crop_Feasibility(models.Model):
         (3, 'maybe yes'),
         (4, 'yes'),
     )
-    choices_prod_skill = (
-        (1, 'no'),
-        (2, 'maybe no'),
-        (3, 'maybe yes'),
-        (4, 'yes'),
-    )
     choices_invest_fixed = (
         (1, 'no'),
         (2, 'maybe no'),
