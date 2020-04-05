@@ -419,7 +419,8 @@
         ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
         function DrawSelected() { /// render selected_crops_tbl
           let myNum_tmp = $('#container_tab_all').attr('myNum');
-          $('.selected_crops_tbl[myNum=' + myNum_tmp + '] tr').remove(); //remove all rows
+          $myTable = $('.selected_crops_tbl[myNum=' + myNum_tmp + ']');
+          $myTable.find('tr').remove(); //remove all rows
           selected_rows_id.length = 0;
           let sum_en = 0;
           let sum_pr = 0;
@@ -454,7 +455,7 @@
                   SetCellColor(Math.round(sum_fe), target_fe1) + '<td></td><td class="tableItem_hide"><' +
                   '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">'+
                   '</td><td class="tableItem_hide"></td></tr>';
-          $('.selected_crops_tbl[myNum=' + myNum_tmp + ']').append(cr);
+          $myTable.append(cr);
 
           /////////////// set barrating /
           let rate_en = Math.round(sum_en * 10 / target_en1);
@@ -578,10 +579,10 @@
           let myrowid = $('#foodInfo1').attr('myrowid');
           let por = tblObj_localCrop1.row(myrowid).data().portion_size;
           let cou = $('#mystar1').children("option:selected").val();
-          let tmp_v = por * cou;
           myNum_tmp = $('#container_tab_all').attr('myNum');
-          $('.selected_crops_tbl[myNum=' + myNum_tmp + '] tr').eq($('#selected_row').val()).children('td').eq(5).text(tmp_v);
-          tblObj_localCrop1.row(myrowid).data().Weight = tmp_v;
+          tblObj_localCrop1.row(myrowid).data().count_prod = cou;
+          tblObj_localCrop1.row(myrowid).data().count_buy = 0;
+          tblObj_localCrop1.row(myrowid).data().Weight = por * cou;
 
           ///////////////////
           DrawSelected();
