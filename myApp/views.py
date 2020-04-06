@@ -629,22 +629,22 @@ def registDiet(request):
     newcrop = {}
     newcrop['myFCT'] = FCT.objects.get(food_item_id=myrow['food_item_id'])
     newcrop['myLocation'] = Location.objects.get(id=myrow['myLocation'])
-    newcrop['class_aggr'] = myrow['class_aggr']
+    newcrop['class_aggr'] = int(myrow['class_aggr'])
     newcrop['created_by'] = request.user
-    newcrop['month'] = myrow['month']
-    newcrop['total_weight'] = myrow['total_weight']
-    newcrop['portion_size'] = myrow['portion_size']
-    newcrop['count_prod'] = myrow['count_prod']
-    newcrop['count_buy'] = myrow['count_buy']
-    newcrop['myKey'] = myrow['myKey']
+    newcrop['month'] = int(myrow['month'])
+    newcrop['total_weight'] = int(myrow['total_weight'])
+    newcrop['portion_size'] = int(myrow['portion_size'])
+    newcrop['count_prod'] = int(myrow['count_prod'])
+    newcrop['count_buy'] = int(myrow['count_buy'])
+    newcrop['id'] = int(myrow['myKey'])
 
-    tmp_myLocation_id = myrow['myLocation']  # 後で使う(part 2)
+    tmp_myLocation_id = int(myrow['myLocation'])  # 後で使う(part 2)
 
-    tmp = myrow['myKey']
-    if tmp.count() == 0:
+    tmp = int(myrow['myKey'])
+    if tmp == 0:
       p = Crop_Individual.objects.create(**newcrop)
     else:
-      p = tmp.update(**newcrop)
+      p = Crop_Individual.objects.update(**newcrop)
 
     tmp_newcrop_list.append(p.id)  # 後で使う(part 2)
 

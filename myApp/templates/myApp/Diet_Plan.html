@@ -440,7 +440,7 @@
           cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th>' +
                   '<th class="tableItem_hide">id</th><th class="tableItem_hide">food_item_id</th>' +
                   '<th class="tableItem_hide">portion_size</th><th class="tableItem_hide">count_prod</th>' +
-                  '<th class="tableItem_hide">count_buy</th></tr><tr>';
+                  '<th class="tableItem_hide">count_buy</th><th class="tableItem_hide">myKey</th></tr><tr>';
           tblObj_localCrop1.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
             var data = this.data();
             cr += '<td>' + data.Food_name + '</td>';
@@ -454,6 +454,7 @@
             cr += '<td class="tableItem_hide">' + data.portion_size + '</td>';
             cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
             cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
+            cr += '<td class="tableItem_hide">0</td>';
             cr += '</tr>';
             sum_en += data.Energy * data.Weight / 100;
             sum_pr += data.Protein * data.Weight / 100;
@@ -465,7 +466,7 @@
                   SetCellColor(Math.round(sum_pr), target_pr1) + SetCellColor(Math.round(sum_va), target_va1) +
                   SetCellColor(Math.round(sum_fe), target_fe1) + '<td></td><td class="tableItem_hide"><' +
                   '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
-                  '</td><td class="tableItem_hide"></td></tr>';
+                  '</td><td class="tableItem_hide"></td><td class="tableItem_hide"></td></tr>';
           $myTable.append(cr);
 
           /////////////// set barrating /
@@ -580,7 +581,7 @@
           let myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');
           let foodVal = $("td", $(this).parent());
           let myrowid = foodVal.eq(6).text();
-         // let myData = tblObj_localCrop1.row(foodVal.eq(6).text()).data();
+          // let myData = tblObj_localCrop1.row(foodVal.eq(6).text()).data();
           let por = Number(foodVal.eq(8).text());
           let count_prod_tmp = Number(foodVal.eq(9).text());
           let count_buy_tmp = Number(foodVal.eq(10).text());
@@ -635,9 +636,11 @@
 
         //////////////////btn_save_crop
         $('#btn_save_crop').click(function () {
-          let hostUrl = myRoot + 'registCropAvail/';
+          let hostUrl = myRoot + 'registDiet/';
           let mydat = getTblData();
-//          sendJson(mydat, hostUrl);
+
+          Set_CRSF();
+          sendJson(mydat, hostUrl);
         }); ////////btn_save_crop///////////
 
         //////////////////getTblData
@@ -653,6 +656,7 @@
                 dd["portion_size"] = $(myRow).children('td').eq(8).text();
                 dd["count_prod"] = $(myRow).children('td').eq(9).text();
                 dd["count_buy"] = $(myRow).children('td').eq(10).text();
+                dd["myKey"] = $(myRow).children('td').eq(11).text();
 
                 let myNum_tmp = $(myTbl).attr('myNum');
                 let myMonth = 0;
