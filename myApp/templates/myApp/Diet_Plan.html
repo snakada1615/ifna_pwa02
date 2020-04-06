@@ -173,7 +173,7 @@
             </tr>
           </table>
 
-          <label for="mystar1" id="mystar-label1">consumption target (1 portion=):</label>
+          <label for="mystar1" id="mystar1-label1">*consumption target (1 portion=):</label>
           <select id="mystar1">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -196,9 +196,14 @@
             <option value="19">19</option>
             <option value="20">20</option>
           </select>
+          <div>*share (
+            <span style="color: #5bc0de">production</span> /
+            <span style="color: #cc1111">buy</span>):
+            <img id="mystar1-pie" src="#" style="width: 30px" alt="">
+          </div>
 
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
-          <button type="button" class="btn btn-primary" mynum="0" id="change_weight1">change value</button>
+          <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
+          <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_weight1">change value</button>
         </div>
       </div>
       <!-- /.modal-content -->
@@ -549,6 +554,22 @@
           $('#Modal_localCrop1').modal('show');
         }); //////////////////////////////////////////////
 
+        //set pichart image////////////
+        function SetPie_img(i_prod, i_buy) {
+          let res = Math.round(i_prod * 10 / (i_prod + i_buy));
+          let h = "/static/img/pie_" + String(res) + ".png"
+          return h;
+        }
+
+        //set pichart value////////
+        function SetPie_val(totalCount, myShare) {
+          let h = {};
+          let res = Math.round(totalCount * myShare / 10);
+          h.i_prod = res;
+          h.i_buy = totalCount - res;
+          return h;
+        }
+
         //////////////////add table edit function////
         $(".selected_crops_tbl").on("click", "td", function () {
           $('#selected_row').val($(this).closest('tr').index());//いらない？
@@ -558,9 +579,9 @@
           let myrowid = foodVal.eq(6).text();
           let myData = tblObj_localCrop1.row(foodVal.eq(6).text()).data();
           let por = myData.portion_size;
-          let cou = Number(myData.Weight / por, 10);
-//          cou = myData.count_prod + myData.count_buy;
+          let cou = myData.count_prod + myData.count_buy;
           let $foodInfo = $('#foodInfo1');
+          let mes = 'consumption target(one portion=' + por + 'g)';
 
           $foodInfo.attr('myrowid', myrowid);
           $foodInfo.attr('myNum', myrowid);
@@ -573,13 +594,14 @@
           cr += '<td>' + foodVal.eq(3).text() + '</td>';
           cr += '<td>' + foodVal.eq(4).text() + '</td>';
           $foodInfo.append(cr);
-          $('#mystar1-label1').text("consumption target(one portion=" + por + 'g)');
+          $('#mystar1-label1').text('consumption target(one portion=' + por + 'g)');
           if (cou == 0) {
             $('#mystar1').barrating('set', 1);
           } else {
             $('#mystar1').barrating('set', cou);
           }
-          ;
+          $('#mystar1-pie').attr('src', SetPie_img(myData.count_prod, myData.count_buy));
+
 
           //  DrawSelected();
 
