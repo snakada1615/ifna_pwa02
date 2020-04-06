@@ -608,7 +608,7 @@
           $('#Modal_foodVol1').modal('show');
         });
 
-        ////////////////// button click to reflect the modification
+        ////////////////// button click to reflect the modificatio　#todo シェア変更機能
         $('#change_weight1').click(function () {
           let myrowid = $('#foodInfo1').attr('myrowid');
           let por = tblObj_localCrop1.row(myrowid).data().portion_size;
@@ -630,6 +630,7 @@
           let hostUrl = myRoot + 'registCropAvail/';
           let mydat = getTblData();
           console.log(mydat);
+//          sendJson(mydat, hostUrl);
         }); ////////btn_save_crop///////////
 
         //////////////////getTblData
@@ -654,6 +655,7 @@
                   myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').text();
                 }
                 dd["month"] = myMonth;
+                dd["myLocation"] = myLocation_id;
                 dd["class_aggr"] = Math.trunc(myNum_tmp / 100);
 
                 d.push(dd);

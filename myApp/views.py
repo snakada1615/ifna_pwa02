@@ -634,3 +634,48 @@ class initTable(TemplateView):
         context['myTables'] = myTableName
 
         return context
+
+
+def registDiet(request):
+  # json_str = request.body.decode("utf-8")
+  json_data = json.loads(request.body)
+  tmp_myLocation_id = 0
+  tmp_newcrop_list = []
+
+  for myrow in json_data['myJson']:
+    newcrop = {}
+    newcrop['myFCT'] = FCT.objects.get(food_item_id=myrow['food_item_id'])
+    newcrop['myLocation'] = Location.objects.get(id=myrow['myLocation'])
+    newcrop['class_aggr'] = myrow['class_aggr']
+    newcrop['created_by'] = request.user
+    newcrop['month'] = myrow['month']
+    newcrop['total_weight'] = myrow['total_weight']
+    newcrop['portion_size'] = myrow['portion_size']
+    newcrop['count_prod'] = myrow['count_prod']
+    newcrop['count_buy'] = myrow['count_buy']
+    newcrop['myKey'] = myrow['myKey']
+
+    tmp_myLocation_id = myrow['myLocation']  # 後で使う(part 2)
+    tmp_newcrop_list.append(myrow['myKey'])  # 後で使う(part 2)
+
+    tmp = myrow['myKey']
+    if tmp.count() == 0:
+      p = Crop_Individual.objects.create(**newcrop)
+    else:
+      p = tmp.update(**newcrop)
+
+  # (part 2) delete non-selected records
+  tmp = Crop_Individual.objects.filter(myLocation_id=tmp_myLocation_id)
+  for rec in tmp:
+    if int(rec.myFCT.food_item_id) not in tmp_newcrop_list:
+      rec.selected_status = 0
+      rec.save()
+
+  myStatus.objects.filter(curr_User=request.user.id).update(myCrop='1')
+
+  myURL = reverse_lazy('index02')
+  return JsonResponse({
+    'success': True,
+    'url': myURL,
+  })
+
