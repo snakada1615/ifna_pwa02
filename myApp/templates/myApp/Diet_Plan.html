@@ -556,7 +556,10 @@
 
         //set pichart image////////////
         function SetPie_img(i_prod, i_buy) {
-          let res = Math.round(i_prod * 10 / (i_prod + i_buy));
+          let res = 10;
+          if (i_prod + i_buy > 0) {
+            let res = Math.round(i_prod * 10 / (i_prod + i_buy));
+          }
           let h = "/static/img/pie_" + String(res) + ".png"
           return h;
         }
@@ -570,18 +573,23 @@
           return h;
         }
 
-        //////////////////add table edit function////
+        //////////////////add table edit function////#
         $(".selected_crops_tbl").on("click", "td", function () {
           $('#selected_row').val($(this).closest('tr').index());//いらない？
           $('#foodInfo1 tr').remove();//foodinfo1のテーブル初期化
           let myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');
           let foodVal = $("td", $(this).parent());
           let myrowid = foodVal.eq(6).text();
-          let myData = tblObj_localCrop1.row(foodVal.eq(6).text()).data();
-          let por = myData.portion_size;
-          let cou = myData.count_prod + myData.count_buy;
+         // let myData = tblObj_localCrop1.row(foodVal.eq(6).text()).data();
+          let por = Number(foodVal.eq(8).text());
+          let count_prod_tmp = Number(foodVal.eq(9).text());
+          let count_buy_tmp = Number(foodVal.eq(10).text());
+          let cou = count_buy_tmp + count_prod_tmp;
           let $foodInfo = $('#foodInfo1');
           let mes = 'consumption target(one portion=' + por + 'g)';
+
+          //mytmpdat = tblObj_localCrop1.column(7).search(336);
+          //console.log(mytmpdat);
 
           $foodInfo.attr('myrowid', myrowid);
           $foodInfo.attr('myNum', myrowid);
@@ -600,7 +608,7 @@
           } else {
             $('#mystar1').barrating('set', cou);
           }
-          $('#mystar1-pie').attr('src', SetPie_img(myData.count_prod, myData.count_buy));
+          $('#mystar1-pie').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
 
 
           //  DrawSelected();
@@ -629,7 +637,6 @@
         $('#btn_save_crop').click(function () {
           let hostUrl = myRoot + 'registCropAvail/';
           let mydat = getTblData();
-          console.log(mydat);
 //          sendJson(mydat, hostUrl);
         }); ////////btn_save_crop///////////
 

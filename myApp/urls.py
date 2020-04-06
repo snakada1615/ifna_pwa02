@@ -10,7 +10,7 @@ from .views import SignUpForm, SignUp, UserEdit, IndexView02, Location_CreateVie
 from .views import Location_UpdateView, Location_DeleteView, Location_ListView
 from .views import CropSelect, registCropAvail, Trial_View, Diet_Plan1
 from .views import Person_ListView, Person_UpdateView, Person_CreateView, Person_DeleteView
-from .views import initTable, delete_TableRec
+from .views import initTable, delete_TableRec, registDiet
 
 from django.contrib import admin
 from django.urls import include
@@ -38,6 +38,7 @@ urlpatterns = [
     path('person/update/<int:myLocation>/<int:pk>/', Person_UpdateView.as_view(), name='person_update'),
     path('person/delete/<int:myLocation>/<int:pk>/', Person_DeleteView.as_view(), name='person_delete'),
     path('Diet1/<int:myLocation>/',  Diet_Plan1.as_view(), name='diet1'),
+    path('registDiet/', views.registDiet, name='regist_diet'),
     path('delete_TableRec/<str:tblName>/', views.delete_TableRec, name='delete_TableRec'),
     path('initTable/',  initTable.as_view(), name='initTable'),
 ]
