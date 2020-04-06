@@ -581,39 +581,14 @@ class Diet_Plan1(TemplateView):
     for tmp02 in tmp01:
       dd = {}
       dd["class_aggr"] = tmp02.class_aggr
-      dd["Food_grp"] = tmp02.myFCT.Food_grp
-      dd["Food_name"] = tmp02.myFCT.Food_name
-      dd["Energy"] = tmp02.myFCT.energy
-      dd["Protein"] = tmp02.myFCT.Protein
-      dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
-      dd["FE"] = tmp02.myFCT.FE
       dd["food_item_id"] = tmp02.myFCT.food_item_id
       dd["portion_size"] = tmp02.portion_size
       dd["total_weight"] = tmp02.total_weight
-      dd["m1_prod"] = tmp02.m1_prod
-      dd["m2_prod"] = tmp02.m2_prod
-      dd["m3_prod"] = tmp02.m3_prod
-      dd["m4_prod"] = tmp02.m4_prod
-      dd["m5_prod"] = tmp02.m5_prod
-      dd["m6_prod"] = tmp02.m6_prod
-      dd["m7_prod"] = tmp02.m7_prod
-      dd["m8_prod"] = tmp02.m8_prod
-      dd["m9_prod"] = tmp02.m9_prod
-      dd["m10_prod"] = tmp02.m10_prod
-      dd["m11_prod"] = tmp02.m11_prod
-      dd["m12_prod"] = tmp02.m12_prod
-      dd["m1_buy"] = tmp02.m1_buy
-      dd["m2_buy"] = tmp02.m2_buy
-      dd["m3_buy"] = tmp02.m3_buy
-      dd["m4_buy"] = tmp02.m4_buy
-      dd["m5_buy"] = tmp02.m5_buy
-      dd["m6_buy"] = tmp02.m6_buy
-      dd["m7_buy"] = tmp02.m7_buy
-      dd["m8_buy"] = tmp02.m8_buy
-      dd["m9_buy"] = tmp02.m9_buy
-      dd["m10_buy"] = tmp02.m10_buy
-      dd["m11_buy"] = tmp02.m11_buy
-      dd["m12_buy"] = tmp02.m12_buy
+      dd["count_prod"] = tmp02.count_prod
+      dd["count_buy"] = tmp02.count_buy
+      dd["month"] = tmp02.month
+      dd["myLocation"] = tmp02.myLocation_id
+      dd["myKey"] = tmp02.id
       d.append(dd)
     context["mylist_selected"] = d
 
@@ -664,7 +639,6 @@ def registDiet(request):
     newcrop['myKey'] = myrow['myKey']
 
     tmp_myLocation_id = myrow['myLocation']  # 後で使う(part 2)
-    tmp_newcrop_list.append(myrow['myKey'])  # 後で使う(part 2)
 
     tmp = myrow['myKey']
     if tmp.count() == 0:
@@ -672,12 +646,16 @@ def registDiet(request):
     else:
       p = tmp.update(**newcrop)
 
+    tmp_newcrop_list.append(p.id)  # 後で使う(part 2)
+
   # (part 2) delete non-selected records
   tmp = Crop_Individual.objects.filter(myLocation_id=tmp_myLocation_id)
   for rec in tmp:
-    if int(rec.myFCT.food_item_id) not in tmp_newcrop_list:
-      rec.selected_status = 0
+    if int(rec.id) not in tmp_newcrop_list:
+      rec.class_aggr = 999
       rec.save()
+
+  Crop_Individual.objects.filter(class_aggr=999).delete()
 
   myStatus.objects.filter(curr_User=request.user.id).update(myCrop='1')
 
