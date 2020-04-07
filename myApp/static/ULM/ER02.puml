@@ -101,7 +101,7 @@ package "Transaction" {
     + created_by(FK)
 --
       nut_group
-      class_aggr
+      target_scope
       target_pop
       created_at
     }
@@ -148,7 +148,8 @@ package "Transaction" {
     + myLocation(FK)
     + created_by(FK)
 --
-      class_aggr
+      target_scope
+      id_table
       portion_size
       total_weight
       count_prod

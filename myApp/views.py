@@ -151,7 +151,7 @@ class Location_ListView(LoginRequiredMixin, ListView):
     return context
 
 
-class Location_DeleteView(LoginRequiredMixin, DeleteView): #todo これをmodal dialogueにする,削除時のmyStatusへの反映
+class Location_DeleteView(LoginRequiredMixin, DeleteView):  # todo これをmodal dialogueにする,削除時のmyStatusへの反映
   model = Location
   template_name = 'myApp/Location_confirm_delete.html'
   success_url = reverse_lazy('Location_list')
@@ -276,7 +276,7 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
     return super(Location_UpdateView, self).form_valid(form)
 
 
-class CropSelect(TemplateView): #todo まだ縦横表示がおかしいです
+class CropSelect(TemplateView):  # todo まだ縦横表示がおかしいです
   template_name = "myApp/crop_available.html"
 
   def get_context_data(self, **kwargs):
@@ -430,7 +430,7 @@ class Person_UpdateView(LoginRequiredMixin, UpdateView):
     return HttpResponseRedirect(self.get_success_url())
 
 
-class Person_CreateView(LoginRequiredMixin, CreateView): #todo 新規追加後のタブの戻り位置が変、person毎のパネルの枠を太くする
+class Person_CreateView(LoginRequiredMixin, CreateView):  # todo 新規追加後のタブの戻り位置が変、person毎のパネルの枠を太くする
   model = Person
   form_class = Person_Form
   template_name = 'myApp/person_form.html'
@@ -626,36 +626,22 @@ def registDiet(request):
   tmp_newcrop_list = []
 
   for myrow in json_data['myJson']:
-    newcrop = {}
-    newcrop['myFCT'] = FCT.objects.get(food_item_id=myrow['food_item_id'])
-    newcrop['myLocation'] = Location.objects.get(id=myrow['myLocation'])
-    newcrop['target_scope'] = int(myrow['target_scope'])
-    newcrop['created_by'] = request.user
-    newcrop['month'] = int(myrow['month'])
-    newcrop['total_weight'] = int(myrow['total_weight'])
-    newcrop['portion_size'] = int(myrow['portion_size'])
-    newcrop['count_prod'] = int(myrow['count_prod'])
-    newcrop['count_buy'] = int(myrow['count_buy'])
-    newcrop['id'] = int(myrow['myKey'])
-
-    tmp_myLocation_id = int(myrow['myLocation'])  # 後で使う(part 2)
-
-    tmp = int(myrow['myKey'])
-    if tmp == 0:
-      p = Crop_Individual.objects.create(**newcrop)
-    else:
-      p = Crop_Individual.objects.update(**newcrop)
-
-    tmp_newcrop_list.append(p.id)  # 後で使う(part 2)
-
-  # (part 2) delete non-selected records
-  tmp = Crop_Individual.objects.filter(myLocation_id=tmp_myLocation_id)
-  for rec in tmp:
-    if int(rec.id) not in tmp_newcrop_list:
-      rec.target_scope = 999
-      rec.save()
-
-  Crop_Individual.objects.filter(target_scope=999).delete()
+    # 最初に参照するキー（複数可）を指定する
+    # defaultsで指定した列・値で更新する
+    Crop_Individual.objects.update_or_create(
+      id_table=int(myrow['myid_tbl']),
+      defaults={
+        'myFCT': FCT.objects.get(food_item_id=myrow['food_item_id']),
+        'myLocation': Location.objects.get(id=myrow['myLocation']),
+        'target_scope': int(myrow['target_scope']),
+        'created_by': request.user,
+        'month': int(myrow['month']),
+        'total_weight': int(myrow['total_weight']),
+        'portion_size': int(myrow['portion_size']),
+        'count_prod': int(myrow['count_prod']),
+        'count_buy': int(myrow['count_buy'])
+      }
+    )
 
   myStatus.objects.filter(curr_User=request.user.id).update(myCrop='1')
 

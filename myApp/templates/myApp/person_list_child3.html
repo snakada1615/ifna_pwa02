@@ -1,13 +1,13 @@
 <div class="row">
 	<div class="col-12">
 		<span>
-			<a id="btn_add1" class="btn btn-block btn-info mt-2 btn-sm" href="{% url 'person_create' myLocation=myLocation.id myClass_Aggr=3 %}">add new target</a>
+			<a id="btn_add1" class="btn btn-block btn-info mt-2 btn-sm" href="{% url 'person_create' myLocation=myLocation.id mytarget_scope=3 %}">add new target</a>
 		</span>
 	</div>
 </div>
 
 {% for person in persons %}
-	{% ifequal person.class_aggr 3 %}
+	{% ifequal person.target_scope 3 %}
 	<div class="card border-success col-12 my-2" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC" ;"=";"">
 		<div class="row">
 			<div class="col-12">

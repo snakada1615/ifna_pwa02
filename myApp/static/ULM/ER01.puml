@@ -28,36 +28,24 @@ package "システム" {
       Energy
       ・・・・
       VITC
-      portion_size
+      portion_size_init
   }
 
-  entity Family {
+  entity Location {
     - id
-    + country_test(FK)
-    ~ country
-    ~ region
-    ~ province
-    ~ community
+    + myCountry(FK)
+    + created_by(FK)
 --
       name
+      country
+      region
+      province
+      community
       stunting_rate
       wasting_rate
       anemia_rate
-      nutrition_target
-      major_commodity
-      crop_list
-      conv_crop_grow
-      conv_crop_sold
-      month_start
-      month_end
-      remark
-      energy
-      protein
-      vita
-      fe
-      size
+      AEZ_id
       created_at
-      created_by
   }
 
   entity myCrop {
@@ -250,14 +238,14 @@ package "システム" {
       portion_size
 }
 
-Countries --{ Family
-Family --{ Person
-Family --{ Crop
+Countries --{ Location
+Location --{ Person
+Location --{ Crop
 FCT --{ Crop
 Countries -- Crop_AEZ
 FCT --{ Crop_AEZ
 FCT --{ myCrop
-Family --{ myCrop
+Location --{ myCrop
 
 
 /'

@@ -424,7 +424,7 @@ class Crop_SubNational(models.Model):
         on_delete=models.CASCADE
     )
 
-class Crop_Individual(models.Model):
+class Crop_Individual(models.Model): #
     myFCT = models.ForeignKey(
         FCT,
         to_field='food_item_id',
@@ -436,9 +436,12 @@ class Crop_Individual(models.Model):
         default = 0,
         on_delete=models.CASCADE
     )
-    class_aggr = models.IntegerField(
-        verbose_name='class_aggr',
+    target_scope = models.IntegerField(
+        verbose_name='target_scope',
         default=0,
+    )
+    id_table = models.IntegerField(
+      default=0,
     )
     portion_size = models.IntegerField(
         default=10,
@@ -495,7 +498,7 @@ class Person(models.Model):
         max_length=200,
         default='children 6 to 59 month'
     )
-    class_aggr = models.IntegerField(
+    target_scope = models.IntegerField(
         verbose_name='class_aggr',
         default=0,
     )
