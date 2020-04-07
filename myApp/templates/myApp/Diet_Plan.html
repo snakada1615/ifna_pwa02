@@ -510,51 +510,6 @@
 
 
                 ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
-                function DrawSelected_SingleTable(id_table) { /// render selected_crops_tbl
-                  $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
-                  $myTable.find('tr').remove(); //remove all rows
-                  let sum_en = 0;
-                  let sum_pr = 0;
-                  let sum_va = 0;
-                  let sum_fe = 0;
-                  let cr = '';
-                  for (var i = 0; i < json_crop_selected.length; i++) {
-                    data = json_crop_selected[i];
-                    if (data.myid_tbl === id_table) {
-                      cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th>' +
-                              '<th class="tableItem_hide">id</th><th class="tableItem_hide">food_item_id</th>' +
-                              '<th class="tableItem_hide">portion_size</th><th class="tableItem_hide">count_prod</th>' +
-                              '<th class="tableItem_hide">count_buy</th></tr><tr>';
-                      cr += '<td>' + data.name + '</td>';
-                      cr += '<td>' + Math.round(data.Energy * data.total_weight / 100, 1) + '</td>';
-                      cr += '<td>' + Math.round(data.Protein * data.total_weight / 100, 1) + '</td>';
-                      cr += '<td>' + Math.round(data.VITA_RAE * data.total_weight / 100, 1) + '</td>';
-                      cr += '<td>' + Math.round(data.FE * data.total_weight / 100, 1) + '</td>';
-                      cr += '<td>' + data.total_weight + '</td>';
-                      cr += '<td class="tableItem_hide"></td>';
-                      cr += '<td class="tableItem_hide">' + data.food_item_id + '</td>';
-                      cr += '<td class="tableItem_hide">' + data.portion_size + '</td>';
-                      cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
-                      cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
-                      cr += '</tr>';
-                      sum_en += data.Energy * data.total_weight / 100;
-                      sum_pr += data.Protein * data.total_weight / 100;
-                      sum_va += data.VITA_RAE * data.total_weight / 100;
-                      sum_fe += data.FE * data.total_weight / 100;
-                    }
-                  }
-                  cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[data.target_scope]) +
-                          SetCellColor(Math.round(sum_pr), target_pr[data.target_scope]) +
-                          SetCellColor(Math.round(sum_va), target_va[data.target_scope]) +
-                          SetCellColor(Math.round(sum_fe), target_fe[data.target_scope]) + '<td></td><td class="tableItem_hide"><' +
-                          '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
-                          '</td><td class="tableItem_hide"></td></tr>';
-                  $myTable.append(cr);
-                  SetBarrating(id_table, sum_en, target_en[data.target_scope], sum_pr, target_pr[data.target_scope],
-                          sum_va, target_va[data.target_scope], sum_fe, target_fe[data.target_scope]);
-                }
-
-                ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
                 function DrawSelected_AllTable(id_table) { /// render selected_crops_tbl
                   $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
                   $myTable.find('tr').remove(); //remove all rows
@@ -601,86 +556,18 @@
 
                 ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
                 function DrawSelected_addRow(id_table, add_data) { /// render selected_crops_tbl
-                  let myNum_tmp = $('#container_tab_all').attr('myNum');
-                  $myTable = $('.selected_crops_tbl[myNum=' + myNum_tmp + ']');
-                  $myTable.find('tr').remove(); //remove all rows
-                  selected_rows_id.length = 0;
-                  let sum_en = 0;
-                  let sum_pr = 0;
-                  let sum_va = 0;
-                  let sum_fe = 0;
-                  cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th>' +
-                          '<th class="tableItem_hide">id</th><th class="tableItem_hide">food_item_id</th>' +
-                          '<th class="tableItem_hide">portion_size</th><th class="tableItem_hide">count_prod</th>' +
-                          '<th class="tableItem_hide">count_buy</th></tr><tr>';
-                  tblObj_localCrop1.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
-                    var data = this.data();
-                    cr += '<td>' + data.Food_name + '</td>';
-                    cr += '<td>' + Math.round(data.Energy * data.Weight / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(data.Protein * data.Weight / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(data.VITA_RAE * data.Weight / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(data.FE * data.Weight / 100, 1) + '</td>';
-                    cr += '<td>' + data.Weight + '</td>';
-                    cr += '<td class="tableItem_hide">' + rowIdx + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.food_item_id + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.portion_size + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
-                    cr += '</tr>';
-                    sum_en += data.Energy * data.Weight / 100;
-                    sum_pr += data.Protein * data.Weight / 100;
-                    sum_va += data.VITA_RAE * data.Weight / 100;
-                    sum_fe += data.FE * data.Weight / 100;
-                    selected_rows_id.push(rowIdx);
-                  });
-                  cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en1) +
-                          SetCellColor(Math.round(sum_pr), target_pr1) + SetCellColor(Math.round(sum_va), target_va1) +
-                          SetCellColor(Math.round(sum_fe), target_fe1) + '<td></td><td class="tableItem_hide"><' +
-                          '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
-                          '</td><td class="tableItem_hide"></td></tr>';
-                  $myTable.append(cr);
+                  $('.selected_crops_tbl[myNum=' + id_table + ']').append(add_data);
                 }
 
                 ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
-                function DrawSelected_delRow(id_table) { /// render selected_crops_tbl
-                  let myNum_tmp = $('#container_tab_all').attr('myNum');
-                  $myTable = $('.selected_crops_tbl[myNum=' + myNum_tmp + ']');
-                  $myTable.find('tr').remove(); //remove all rows
-                  selected_rows_id.length = 0;
-                  let sum_en = 0;
-                  let sum_pr = 0;
-                  let sum_va = 0;
-                  let sum_fe = 0;
-                  cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th>' +
-                          '<th class="tableItem_hide">id</th><th class="tableItem_hide">food_item_id</th>' +
-                          '<th class="tableItem_hide">portion_size</th><th class="tableItem_hide">count_prod</th>' +
-                          '<th class="tableItem_hide">count_buy</th></tr><tr>';
-                  tblObj_localCrop1.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
-                    var data = this.data();
-                    cr += '<td>' + data.Food_name + '</td>';
-                    cr += '<td>' + Math.round(data.Energy * data.Weight / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(data.Protein * data.Weight / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(data.VITA_RAE * data.Weight / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(data.FE * data.Weight / 100, 1) + '</td>';
-                    cr += '<td>' + data.Weight + '</td>';
-                    cr += '<td class="tableItem_hide">' + rowIdx + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.food_item_id + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.portion_size + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
-                    cr += '</tr>';
-                    sum_en += data.Energy * data.Weight / 100;
-                    sum_pr += data.Protein * data.Weight / 100;
-                    sum_va += data.VITA_RAE * data.Weight / 100;
-                    sum_fe += data.FE * data.Weight / 100;
-                    selected_rows_id.push(rowIdx);
-                  });
-                  cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en1) +
-                          SetCellColor(Math.round(sum_pr), target_pr1) + SetCellColor(Math.round(sum_va), target_va1) +
-                          SetCellColor(Math.round(sum_fe), target_fe1) + '<td></td><td class="tableItem_hide"><' +
-                          '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
-                          '</td><td class="tableItem_hide"></td></tr>';
-                  $myTable.append(cr);
+                function DrawSelected_delRow(id_table, food_item_id) { /// render selected_crops_tbl
+                  $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
+                  $myTable.children('tbody').children('tr').each(function (j, myRow) {
+                    if ($(myRow).children('td').eq(7).text() === food_item_id) {
+                      $(myRow).remove();
+                      return false;
+                    }
+                  })
                 }
 
                 ////////////////////////////////////////////// //////////init second table as modal dialog add selected rows to text box
@@ -920,7 +807,28 @@
 
                 //////////////////sendJson//// scfript end///////////////////
 
-                DrawSelected_SingleTable(202);
+                // initialize all table (selected_table)
+                for (var i = 0; i < json_crop_selected.length; i++) {
+                  data = json_crop_selected[i];
+                  if (data.myLocation == myLocation_id) {
+                    let cr = '';
+                    cr += '<tr>';
+                    cr += '<td>' + data.name + '</td>';
+                    cr += '<td>' + Math.round(data.Energy * data.total_weight / 100, 1) + '</td>';
+                    cr += '<td>' + Math.round(data.Protein * data.total_weight / 100, 1) + '</td>';
+                    cr += '<td>' + Math.round(data.VITA_RAE * data.total_weight / 100, 1) + '</td>';
+                    cr += '<td>' + Math.round(data.FE * data.total_weight / 100, 1) + '</td>';
+                    cr += '<td>' + data.total_weight + '</td>';
+                    cr += '<td class="tableItem_hide"></td>';
+                    cr += '<td class="tableItem_hide">' + data.food_item_id + '</td>';
+                    cr += '<td class="tableItem_hide">' + data.portion_size + '</td>';
+                    cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
+                    cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
+                    cr += '</tr>';
+                    DrawSelected_addRow(data.myid_tbl, cr);
+                  }
+                }
+
               } //----initComplete finish here---////////////////////////////////////////////
 
             }
