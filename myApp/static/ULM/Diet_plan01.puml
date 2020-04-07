@@ -1,27 +1,44 @@
 @startuml
 left to right direction
 
-title step7: set sub-national level target
+title step7: diet planning
 
-  package "m_localcrop"{
-    Local_crop --> (diet optimize1):"3"
-    (diet optimize1) --> admin:"3"
-    Local_crop --> (diet optimize2):"4"
-    (diet optimize2) --> admin:"4"
-  }
+entity crop_list {
+  -id
+  --
+  crop_id
+  m1_availability
+  m2_availability
+  m3_availability
+  m4_availability
+  m5_availability
+  m6_availability
+  m7_availability
+  m8_availability
+  m9_availability
+  m10_availability
+  m11_availability
+  m12_availability
+}
+entity crop_selected {
+  -id
+  --
+  crop_id
+  month
+  volume
+  energy
+  protein
+  vita
+  iron
+}
 
-  package "メイン画面" <<Rect>> {
-      Local_crop --> (user info):"1"
-      (user info) --> admin:"1"
-      Local_crop <-- (crop list\nDRI info):"2"
-      (crop list\nDRI info) <-- admin:"2"
-  }
 
-  package "m_diet_design" {
-    selected_crop --> (user_info):"1"
-    selected_crop <-- (crop_list\nDRI_info):"2"
-    selected_crop --> (production target):"3, 4"
-  }
+crop_list <-- crop_selected:"1:作物リストを参照"
+crop_list --> crop_selected:"2:作物を選択・保存"
+
+crop_selected --> crop_vol:"3:摂取量を調整"
+crop_selected <-- crop_vol:"4:摂取量を保存"
+
 
 
 @enduml

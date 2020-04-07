@@ -576,20 +576,47 @@ class Diet_Plan1(TemplateView):
     context["mylist_available"] = d
 
     # send selected crop by community ######
+    # --------------------create 16 Crop_individual-------------------------
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation'])
+    myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212]
     d = []
-    for tmp02 in tmp01:
-      dd = {}
-      dd["target_scope"] = tmp02.target_scope
-      dd["food_item_id"] = tmp02.myFCT.food_item_id
-      dd["portion_size"] = tmp02.portion_size
-      dd["total_weight"] = tmp02.total_weight
-      dd["count_prod"] = tmp02.count_prod
-      dd["count_buy"] = tmp02.count_buy
-      dd["month"] = tmp02.month
-      dd["myLocation"] = tmp02.myLocation_id
-      dd["myKey"] = tmp02.id
-      d.append(dd)
+    for i in myRange:
+      tmp02 = tmp01.filter(id_table=i)
+      if tmp02.count() == 0:
+        dd = {}
+        dd["name"] = ''
+        dd["Energy"] = ''
+        dd["Protein"] = ''
+        dd["VITA_RAE"] = ''
+        dd["FE"] = ''
+        dd["target_scope"] = ''
+        dd["food_item_id"] = ''
+        dd["portion_size"] = ''
+        dd["total_weight"] = ''
+        dd["count_prod"] = ''
+        dd["count_buy"] = ''
+        dd["month"] = ''
+        dd["myLocation"] = ''
+        dd["myid_tbl"] = i
+        d.append(dd)
+      else:
+        for tmp03 in tmp02:
+          dd = {}
+          dd["name"] = tmp03.myFCT.Food_name
+          dd["Energy"] = tmp03.myFCT.Energy
+          dd["Protein"] = tmp03.myFCT.Protein
+          dd["VITA_RAE"] = tmp03.myFCT.VITA_RAE
+          dd["FE"] = tmp03.myFCT.FE
+          dd["target_scope"] = tmp03.target_scope
+          dd["food_item_id"] = tmp03.myFCT.food_item_id
+          dd["portion_size"] = tmp03.portion_size
+          dd["total_weight"] = tmp03.total_weight
+          dd["count_prod"] = tmp03.count_prod
+          dd["count_buy"] = tmp03.count_buy
+          dd["month"] = tmp03.month
+          dd["myLocation"] = tmp03.myLocation_id
+          dd["myid_tbl"] = tmp03.id_table
+          d.append(dd)
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
@@ -630,8 +657,8 @@ def registDiet(request):
     # defaultsで指定した列・値で更新する
     Crop_Individual.objects.update_or_create(
       id_table=int(myrow['myid_tbl']),
+      myFCT=FCT.objects.get(food_item_id=myrow['food_item_id']),
       defaults={
-        'myFCT': FCT.objects.get(food_item_id=myrow['food_item_id']),
         'myLocation': Location.objects.get(id=myrow['myLocation']),
         'target_scope': int(myrow['target_scope']),
         'created_by': request.user,
