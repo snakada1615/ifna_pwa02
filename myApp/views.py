@@ -151,7 +151,7 @@ class Location_ListView(LoginRequiredMixin, ListView):
     return context
 
 
-class Location_DeleteView(LoginRequiredMixin, DeleteView):
+class Location_DeleteView(LoginRequiredMixin, DeleteView): #todo これをmodal dialogueにする,削除時のmyStatusへの反映
   model = Location
   template_name = 'myApp/Location_confirm_delete.html'
   success_url = reverse_lazy('Location_list')
@@ -276,7 +276,7 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
     return super(Location_UpdateView, self).form_valid(form)
 
 
-class CropSelect(TemplateView):
+class CropSelect(TemplateView): #todo まだ縦横表示がおかしいです
   template_name = "myApp/crop_available.html"
 
   def get_context_data(self, **kwargs):
@@ -371,15 +371,15 @@ class Person_ListView(LoginRequiredMixin, ListView):
     tmpClass_sum = 0
     tmpPersons = Person.objects.filter(myLocation=self.kwargs['myLocation'])
     for tmpPerson in tmpPersons:
-      if tmpPerson.class_aggr == 1:
+      if tmpPerson.target_scope == 1:
         tmpClass1 = 1
-      if tmpPerson.class_aggr == 2:
+      if tmpPerson.target_scope == 2:
         tmpClass2 = 1
-      if tmpPerson.class_aggr == 3:
+      if tmpPerson.target_scope == 3:
         tmpClass3 = 1
     tmpClass_sum = 100 * tmpClass1 + 10 * tmpClass2 + tmpClass3
 
-    context['myClass_Aggr_Sum'] = tmpClass_sum
+    context['mytarget_scope_Sum'] = tmpClass_sum
     context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
     context['myuser'] = self.request.user
 
@@ -419,7 +419,7 @@ class Person_UpdateView(LoginRequiredMixin, UpdateView):
     self.object = form.save()
     form.instance.myDRI = DRI.objects.filter(
       nut_group=form.instance.nut_group).first()
-    # form.instance.class_aggr = self.kwargs['myClass_Aggr']
+    # form.instance.target_scope = self.kwargs['mytarget_scope']
     # do something with self.object
     # remember the import: from django.http import HttpResponseRedirect
     tmp_myStatus = myStatus.objects.filter(
@@ -430,7 +430,7 @@ class Person_UpdateView(LoginRequiredMixin, UpdateView):
     return HttpResponseRedirect(self.get_success_url())
 
 
-class Person_CreateView(LoginRequiredMixin, CreateView):
+class Person_CreateView(LoginRequiredMixin, CreateView): #todo 新規追加後のタブの戻り位置が変、person毎のパネルの枠を太くする
   model = Person
   form_class = Person_Form
   template_name = 'myApp/person_form.html'
@@ -457,7 +457,7 @@ class Person_CreateView(LoginRequiredMixin, CreateView):
     form.instance.created_by = self.request.user
     form.instance.myDRI = DRI.objects.filter(
       nut_group=form.instance.nut_group).first()
-    form.instance.class_aggr = self.kwargs['myClass_Aggr']
+    form.instance.target_scope = self.kwargs['mytarget_scope']
     # do something with self.object
     # remember the import: from django.http import HttpResponseRedirect
     tmp_myStatus = myStatus.objects.filter(
@@ -496,7 +496,7 @@ class Diet_Plan1(TemplateView):
       myLocation=self.kwargs['myLocation'])
     context['nutrient_target'] = tmp_nut_group[0].nut_group
 
-    tmp_nut_group1 = tmp_nut_group.filter(class_aggr=1)
+    tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
     tmp_e = 0
     tmp_p = 0
     tmp_v = 0
@@ -511,7 +511,7 @@ class Diet_Plan1(TemplateView):
     context['dri_v1'] = tmp_v
     context['dri_f1'] = tmp_f
 
-    tmp_nut_group2 = tmp_nut_group.filter(class_aggr=2)
+    tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
     tmp_e = 0
     tmp_p = 0
     tmp_v = 0
@@ -526,7 +526,7 @@ class Diet_Plan1(TemplateView):
     context['dri_v2'] = tmp_v
     context['dri_f2'] = tmp_f
 
-    tmp_nut_group3 = tmp_nut_group.filter(class_aggr=3)
+    tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
     tmp_e = 0
     tmp_p = 0
     tmp_v = 0
@@ -580,7 +580,7 @@ class Diet_Plan1(TemplateView):
     d = []
     for tmp02 in tmp01:
       dd = {}
-      dd["class_aggr"] = tmp02.class_aggr
+      dd["target_scope"] = tmp02.target_scope
       dd["food_item_id"] = tmp02.myFCT.food_item_id
       dd["portion_size"] = tmp02.portion_size
       dd["total_weight"] = tmp02.total_weight
@@ -629,7 +629,7 @@ def registDiet(request):
     newcrop = {}
     newcrop['myFCT'] = FCT.objects.get(food_item_id=myrow['food_item_id'])
     newcrop['myLocation'] = Location.objects.get(id=myrow['myLocation'])
-    newcrop['class_aggr'] = int(myrow['class_aggr'])
+    newcrop['target_scope'] = int(myrow['target_scope'])
     newcrop['created_by'] = request.user
     newcrop['month'] = int(myrow['month'])
     newcrop['total_weight'] = int(myrow['total_weight'])
@@ -652,10 +652,10 @@ def registDiet(request):
   tmp = Crop_Individual.objects.filter(myLocation_id=tmp_myLocation_id)
   for rec in tmp:
     if int(rec.id) not in tmp_newcrop_list:
-      rec.class_aggr = 999
+      rec.target_scope = 999
       rec.save()
 
-  Crop_Individual.objects.filter(class_aggr=999).delete()
+  Crop_Individual.objects.filter(target_scope=999).delete()
 
   myStatus.objects.filter(curr_User=request.user.id).update(myCrop='1')
 
