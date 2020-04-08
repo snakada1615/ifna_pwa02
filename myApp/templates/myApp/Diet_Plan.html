@@ -212,6 +212,45 @@
   <!-- /.modal -->
   <!-------------------------------------->
 
+  <!-- モーダルの設定 change balance ----------------------------->
+  <div class="modal fade" id="Modal_Prod_Buy" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Edit the weight of food item</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <label class="modal-body text-dark">
+          <label for="my_Prod_Buy" id="my_Prod_Buy-label1">*share (
+            <span style="color: #5bc0de">production</span> /
+            <span style="color: #cc1111">buy</span>):
+          </label>
+          <select id="my_Prod_Buy">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+
+          <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
+          <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_share1">change share</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  <!-------------------------------------->
+
   <div id="container_tab_all" class="container border-secondary py-1 my-1 px-0"
        style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
     <!-- 4個分のタブ -->
@@ -286,6 +325,7 @@
     //////////////// star rating/////
     $(function () {
       $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
+      $('#my_Prod_Buy').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: false}); // set barrating)
       $('#mystar1').barrating({theme: 'fontawesome-apple'});
     });
 
@@ -561,7 +601,7 @@
                     dd["Energy"] = mydata['Energy'];
                     dd["Protein"] = mydata['Protein'];
                     dd["VITA_RAE"] = mydata['VITA_RAE'];
-                    dd["FE"] = mydata['FE']
+                    dd["FE"] = mydata['FE'];
                     dd["food_item_id"] = mydata['food_item_id'];
                     dd["portion_size"] = mydata['portion_size'];
                     dd["total_weight"] = 0;
@@ -651,9 +691,10 @@
                 function SetPie_img(i_prod, i_buy) {
                   let res = 10;
                   if (i_prod + i_buy > 0) {
-                    let res = Math.round(i_prod * 10 / (i_prod + i_buy));
+                    res = Math.round(i_prod * 10 / (i_prod + i_buy));
                   }
                   let h = "/static/img/pie_" + String(res) + ".png";
+                  console.log(h);
                   return h;
                 }
 
@@ -724,12 +765,22 @@
 
                   let por = Number(mydata.children('td').eq(8).text());
                   let cou = Number($('#mystar1').children("option:selected").val());
-                  mydata.children('td').eq(1).text(Number(mydata.children('td').eq(11).text()) * por * cou);
-                  mydata.children('td').eq(2).text(Number(mydata.children('td').eq(12).text()) * por * cou);
-                  mydata.children('td').eq(3).text(Number(mydata.children('td').eq(13).text()) * por * cou);
-                  mydata.children('td').eq(4).text(Number(mydata.children('td').eq(14).text()) * por * cou);
-                  mydata.children('td').eq(9).text(cou);
-                  mydata.children('td').eq(10).text(0);
+                  let tmp_prod = mydata.children('td').eq(9).text(9);
+                  let tmp_buy = mydata.children('td').eq(10).text(9);
+                  let tmp_all = tmp_prod + tmp_buy
+                  let myShare = 10;
+                  if (tmp_all !== 0) {
+                    myShare = Math.trunc(tmp_prod * 10 / tmp_all);
+                  }
+                  tmp_prod = Math.trunc(cou * myShare / 10);
+                  tmp_buy = cou - tmp_prod;
+
+                  mydata.children('td').eq(1).text(Number(mydata.children('td').eq(11).text()) * por * cou/100);
+                  mydata.children('td').eq(2).text(Number(mydata.children('td').eq(12).text()) * por * cou/100);
+                  mydata.children('td').eq(3).text(Number(mydata.children('td').eq(13).text()) * por * cou/100);
+                  mydata.children('td').eq(4).text(Number(mydata.children('td').eq(14).text()) * por * cou/100);
+                  mydata.children('td').eq(9).text(tmp_prod);
+                  mydata.children('td').eq(10).text(tmp_buy);
                   mydata.children('td').eq(5).text(por * cou);
                   CreateSelection(myNum_tmp);
 
@@ -739,6 +790,35 @@
                   //////////////////
                   $('#Modal_foodVol1').modal('hide');
                 }); //----------change_weight complete here-------
+
+                //// set balance pruduce/purchase //
+                $('#mystar1-pie').on('click', function () {
+                  $('#Modal_Prod_Buy').modal('show');
+                });
+
+                //// set balance pruduce/purchase //
+                $('#change_share1').on('click', function () {
+                  console.log('are you with me?');
+                  let myShare = Number($('#my_Prod_Buy').children("option:selected").val());
+                  let motherTable = $('#tbl_food_SetWeight');
+                  let myrowid = motherTable.attr('myrowid');
+                  let myid_table = motherTable.attr('myNum');
+                  let mytable = $('.selected_crops_tbl[myNum=' + myid_table + ']');
+                  let mydata = mytable.children('tbody').children('tr').eq(myrowid);//修正行に移動
+                  let count_prod_tmp = Number(mydata.children('td').eq(9).text());
+                  let count_buy_tmp = Number(mydata.children('td').eq(10).text());
+                  let total_count = count_prod_tmp + count_buy_tmp;
+                  console.log('count_prod_tmp' + count_prod_tmp + ', count_prod_tmpbuy:' + count_buy_tmp);
+                  console.log('myshare=' + myShare);
+                  count_prod_tmp = Math.trunc(total_count * myShare / 10);
+                  count_buy_tmp = total_count - count_prod_tmp;
+                  mydata.children('td').eq(9).text(count_prod_tmp);
+                  mydata.children('td').eq(10).text(count_buy_tmp);
+                  console.log('count_prod_tmp' + count_prod_tmp + ', count_prod_tmpbuy:' + count_buy_tmp);
+
+                  $('#mystar1-pie').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
+                  $('#Modal_Prod_Buy').modal('hide');
+                });
 
                 //////////////////btn_save_crop
                 $('#btn_save_crop').click(function () {
