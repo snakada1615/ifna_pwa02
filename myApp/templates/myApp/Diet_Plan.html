@@ -478,26 +478,50 @@
                 }
 
                 /////////////// set barrating /
-                function SetBarrating(id_table, sum_en, target_en, sum_pr, target_pr, sum_va, target_va, sum_fe, target_fe) {
-                  let rate_en = Math.round(sum_en * 10 / target_en);
+                function SetBarrating(id_table) {
+                  $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
+                  let sum_en = 0;
+                  let sum_pr = 0;
+                  let sum_va = 0;
+                  let sum_fe = 0;
+                  let cr = '';
+
+                  //ここからBarratingの記入
+                  $myTable.children('tbody').children('tr').each(function (j, myRow) {
+                    sum_en += Number($(myRow).children('td').eq(1).text());
+                    sum_pr += Number($(myRow).children('td').eq(2).text());
+                    sum_va += Number($(myRow).children('td').eq(3).text());
+                    sum_fe += Number($(myRow).children('td').eq(4).text());
+                  })
+                  target_scope = Math.trunc(id_table / 100);
+
+                  cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[target_scope]) +
+                          SetCellColor(Math.round(sum_pr), target_pr[target_scope]) +
+                          SetCellColor(Math.round(sum_va), target_va[target_scope]) +
+                          SetCellColor(Math.round(sum_fe), target_fe[target_scope]) + '<td></td><td class="tableItem_hide"><' +
+                          '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
+                          '</td><td class="tableItem_hide"></td></tr>';
+                  $myTable.append(cr);
+
+                  let rate_en = Math.round(sum_en * 10 / target_en[target_scope]);
                   if (rate_en > 10) {
                     rate_en = 10
                   } else if (rate_en < 1) {
                     rate_en = 1
                   }
-                  let rate_pr = Math.round(sum_pr * 10 / target_pr);
+                  let rate_pr = Math.round(sum_pr * 10 / target_pr[target_scope]);
                   if (rate_pr > 10) {
                     rate_pr = 10
                   } else if (rate_pr < 1) {
                     rate_pr = 1
                   }
-                  let rate_va = Math.round(sum_va * 10 / target_va);
+                  let rate_va = Math.round(sum_va * 10 / target_va[target_scope]);
                   if (rate_va > 10) {
                     rate_va = 10
                   } else if (rate_va < 1) {
                     rate_va = 1
                   }
-                  let rate_fe = Math.round(sum_fe * 10 / target_fe);
+                  let rate_fe = Math.round(sum_fe * 10 / target_fe[target_scope]);
                   if (rate_fe > 10) {
                     rate_fe = 10
                   } else if (rate_fe < 1) {
@@ -539,21 +563,10 @@
                       cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
                       cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
                       cr += '</tr>';
-                      sum_en += data.Energy * data.total_weight / 100;
-                      sum_pr += data.Protein * data.total_weight / 100;
-                      sum_va += data.VITA_RAE * data.total_weight / 100;
-                      sum_fe += data.FE * data.total_weight / 100;
                     }
                   }
-                  cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[data.target_scope]) +
-                          SetCellColor(Math.round(sum_pr), target_pr[data.target_scope]) +
-                          SetCellColor(Math.round(sum_va), target_va[data.target_scope]) +
-                          SetCellColor(Math.round(sum_fe), target_fe[data.target_scope]) + '<td></td><td class="tableItem_hide"><' +
-                          '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
-                          '</td><td class="tableItem_hide"></td></tr>';
                   $myTable.append(cr);
-                  SetBarrating(id_table, sum_en, target_en[data.target_scope], sum_pr, target_pr[data.target_scope],
-                          sum_va, target_va[data.target_scope], sum_fe, target_fe[data.target_scope]);
+                  SetBarrating(id_table);
                 }
 
                 ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
@@ -568,24 +581,7 @@
                   //  $("tr:eq(" + ($("tr").length - 2) + ")").remove();
                   $myTbl.append(add_data);
 
-                  //ここからBarratingの記入
-                  $myTbl.children('tbody').children('tr').each(function (j, myRow) {
-                    sum_en += Number($(myRow).children('td').eq(1).text());
-                    sum_pr += Number($(myRow).children('td').eq(2).text());
-                    sum_va += Number($(myRow).children('td').eq(3).text());
-                    sum_fe += Number($(myRow).children('td').eq(4).text());
-                  })
-                  target_scope = Math.trunc(id_table / 100);
-
-                  cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[target_scope]) +
-                          SetCellColor(Math.round(sum_pr), target_pr[target_scope]) +
-                          SetCellColor(Math.round(sum_va), target_va[target_scope]) +
-                          SetCellColor(Math.round(sum_fe), target_fe[target_scope]) + '<td></td><td class="tableItem_hide"><' +
-                          '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
-                          '</td><td class="tableItem_hide"></td></tr>';
-                  $myTbl.append(cr);
-                  SetBarrating(id_table, sum_en, target_en[target_scope], sum_pr, target_pr[target_scope],
-                          sum_va, target_va[target_scope], sum_fe, target_fe[target_scope]);
+                  SetBarrating(id_table);
                 }
 
                 ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
@@ -702,7 +698,7 @@
                   if (i_prod + i_buy > 0) {
                     let res = Math.round(i_prod * 10 / (i_prod + i_buy));
                   }
-                  let h = "/static/img/pie_" + String(res) + ".png"
+                  let h = "/static/img/pie_" + String(res) + ".png";
                   return h;
                 }
 
@@ -720,12 +716,12 @@
                   $('#selected_row').val($(this).closest('tr').index());//いらない？
                   $('#tbl_food_SetWeight tr').remove();//tbl_food_SetWeightのテーブル初期化
                   let myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');
-                  let foodVal = $("td", $(this).parent());
-                  let myrowid = foodVal.eq(6).text();
-                  // let myData = tblObj_localCrop1.row(foodVal.eq(6).text()).data();
-                  let por = Number(foodVal.eq(8).text());
-                  let count_prod_tmp = Number(foodVal.eq(9).text());
-                  let count_buy_tmp = Number(foodVal.eq(10).text());
+                  let row_food_SetWeight = $("td", $(this).parent());
+                  let myrowid = row_food_SetWeight.eq(6).text();
+                  // let myData = tblObj_localCrop1.row(row_food_SetWeight.eq(6).text()).data();
+                  let por = Number(row_food_SetWeight.eq(8).text());
+                  let count_prod_tmp = Number(row_food_SetWeight.eq(9).text());
+                  let count_buy_tmp = Number(row_food_SetWeight.eq(10).text());
                   let cou = count_buy_tmp + count_prod_tmp;
                   let $foodInfo = $('#tbl_food_SetWeight');
                   let mes = 'consumption target(one portion=' + por + 'g)';
@@ -738,14 +734,14 @@
                   $('#container_tab_all').attr('myNum', myNum_tmp);
 
                   let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th></tr><tr>';
-                  cr += '<td>' + foodVal.eq(0).text() + '</td>';
-                  cr += '<td>' + foodVal.eq(1).text() + '</td>';
-                  cr += '<td>' + foodVal.eq(2).text() + '</td>';
-                  cr += '<td>' + foodVal.eq(3).text() + '</td>';
-                  cr += '<td>' + foodVal.eq(4).text() + '</td>';
+                  cr += '<td>' + row_food_SetWeight.eq(0).text() + '</td>';
+                  cr += '<td>' + row_food_SetWeight.eq(1).text() + '</td>';
+                  cr += '<td>' + row_food_SetWeight.eq(2).text() + '</td>';
+                  cr += '<td>' + row_food_SetWeight.eq(3).text() + '</td>';
+                  cr += '<td>' + row_food_SetWeight.eq(4).text() + '</td>';
                   $foodInfo.append(cr);
                   $('#mystar1-label1').text('consumption target(one portion=' + por + 'g)');
-                  if (cou == 0) {
+                  if (cou === 0) {
                     $('#mystar1').barrating('set', 1);
                   } else {
                     $('#mystar1').barrating('set', cou);
