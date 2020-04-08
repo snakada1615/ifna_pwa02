@@ -185,7 +185,7 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
     elif tmp.count() == 1:
       p = tmp.update(**keys)
     else:
-      raise Exception("例外が発生しました")
+      raise Exception("例外が発生しました:Location_CreateView")
 
     #        keys_all.update(**keys)
     # ---------------------
@@ -195,12 +195,15 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
     tmp = Crop_National.objects.filter(AEZ_id=tmp_aez)
     if tmp.count() != 0:
       for tmp01 in tmp:
-        keys = {}
-        keys['myLocation'] = Location.objects.get(id=form.instance.pk)
-        keys['myFCT'] = FCT.objects.get(food_item_id=tmp01.myFCT.food_item_id)
-        keys['selected_status'] = 0
-        keys['created_by'] = self.request.user
-        p = Crop_SubNational.objects.create(**keys)
+        Crop_SubNational.objects.update_or_create(
+          myLocation=Location.objects.get(id=form.instance.pk),
+          myFCT=FCT.objects.get(food_item_id=tmp01.myFCT.food_item_id),
+          defaults={
+            'selected_status': '0',
+            'created_by': self.request.user
+          }
+        )
+
     # ---------------------
     form.instance.AEZ_id = tmp_aez
     form.instance.myCountry = Countries.objects.filter(
@@ -678,6 +681,7 @@ def registDiet(request):
     'url': myURL,
   })
 
+
 class Output1(TemplateView):
   template_name = "myApp/Output1.html"
 
@@ -780,6 +784,7 @@ class Output1(TemplateView):
     context['myuser'] = self.request.user
 
     return context
+
 
 class Output2(TemplateView):
   template_name = "myApp/Output2.html"
@@ -884,6 +889,7 @@ class Output2(TemplateView):
 
     return context
 
+
 class Output3(TemplateView):
   template_name = "myApp/Output3.html"
 
@@ -969,4 +975,3 @@ class Output3(TemplateView):
     context['myuser'] = self.request.user
 
     return context
-
