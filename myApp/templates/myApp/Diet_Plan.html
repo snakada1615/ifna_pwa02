@@ -217,15 +217,15 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Edit the weight of food item</h5>
+          <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Where do you get food (field or market)?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <label class="modal-body text-dark">
           <label for="my_Prod_Buy" id="my_Prod_Buy-label1">*share (
-            <span style="color: #5bc0de">production</span> /
-            <span style="color: #cc1111">buy</span>):
+            <span style="color: #cc1111">buy</span> /
+            <span style="color: #5bc0de">production</span>):
           </label>
           <select id="my_Prod_Buy">
             <option value="1">1</option>
@@ -285,6 +285,9 @@
     /* 行または列の非表示*/
     .tableItem_hide {
       display: none;
+
+    }
+
     }
   </style>
 
@@ -325,7 +328,7 @@
     //////////////// star rating/////
     $(function () {
       $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
-      $('#my_Prod_Buy').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: false}); // set barrating)
+      $('#my_Prod_Buy').barrating({theme: 'bars-1to10', showSelectedRating: true, readonly: false}); // set barrating)
       $('#mystar1').barrating({theme: 'fontawesome-apple'});
     });
 
@@ -522,7 +525,6 @@
                   $('.rating_fe[myNum=' + id_table + ']').val(rate_fe); // set barrating
                 }
 
-
                 ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
                 function DrawSelected_AllTable(id_table) { /// render selected_crops_tbl
                   $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
@@ -718,6 +720,9 @@
                   let por = Number(row_food_SetWeight.eq(8).text());
                   let count_prod_tmp = Number(row_food_SetWeight.eq(9).text());
                   let count_buy_tmp = Number(row_food_SetWeight.eq(10).text());
+
+                  console.log('count_prod_tmp' + count_prod_tmp + ', count_prod_tmpbuy:' + count_buy_tmp);
+
                   let cou = count_buy_tmp + count_prod_tmp;
                   let $foodInfo = $('#tbl_food_SetWeight');
                   let mes = 'consumption target(one portion=' + por + 'g)';
@@ -764,21 +769,22 @@
                   mydata = mytable.children('tbody').children('tr').eq(myrowid);//修正行に移動
 
                   let por = Number(mydata.children('td').eq(8).text());
+                  //ここからprod-buyのシェア計算///
                   let cou = Number($('#mystar1').children("option:selected").val());
-                  let tmp_prod = mydata.children('td').eq(9).text(9);
-                  let tmp_buy = mydata.children('td').eq(10).text(9);
-                  let tmp_all = tmp_prod + tmp_buy
+                  let tmp_prod = mydata.children('td').eq(9).text();
+                  let tmp_buy = mydata.children('td').eq(10).text();
+                  let tmp_all = tmp_prod + tmp_buy;
                   let myShare = 10;
-                  if (tmp_all !== 0) {
-                    myShare = Math.trunc(tmp_prod * 10 / tmp_all);
+                  if (tmp_all > 0) {
+                    myShare = Math.round(tmp_prod * 10 / tmp_all);
                   }
-                  tmp_prod = Math.trunc(cou * myShare / 10);
+                  tmp_prod = Math.round(cou * myShare / 10);
                   tmp_buy = cou - tmp_prod;
 
-                  mydata.children('td').eq(1).text(Number(mydata.children('td').eq(11).text()) * por * cou/100);
-                  mydata.children('td').eq(2).text(Number(mydata.children('td').eq(12).text()) * por * cou/100);
-                  mydata.children('td').eq(3).text(Number(mydata.children('td').eq(13).text()) * por * cou/100);
-                  mydata.children('td').eq(4).text(Number(mydata.children('td').eq(14).text()) * por * cou/100);
+                  mydata.children('td').eq(1).text(Number(mydata.children('td').eq(11).text()) * por * cou / 100);
+                  mydata.children('td').eq(2).text(Number(mydata.children('td').eq(12).text()) * por * cou / 100);
+                  mydata.children('td').eq(3).text(Number(mydata.children('td').eq(13).text()) * por * cou / 100);
+                  mydata.children('td').eq(4).text(Number(mydata.children('td').eq(14).text()) * por * cou / 100);
                   mydata.children('td').eq(9).text(tmp_prod);
                   mydata.children('td').eq(10).text(tmp_buy);
                   mydata.children('td').eq(5).text(por * cou);
@@ -798,7 +804,6 @@
 
                 //// set balance pruduce/purchase //
                 $('#change_share1').on('click', function () {
-                  console.log('are you with me?');
                   let myShare = Number($('#my_Prod_Buy').children("option:selected").val());
                   let motherTable = $('#tbl_food_SetWeight');
                   let myrowid = motherTable.attr('myrowid');
@@ -808,9 +813,9 @@
                   let count_prod_tmp = Number(mydata.children('td').eq(9).text());
                   let count_buy_tmp = Number(mydata.children('td').eq(10).text());
                   let total_count = count_prod_tmp + count_buy_tmp;
-                  console.log('count_prod_tmp' + count_prod_tmp + ', count_prod_tmpbuy:' + count_buy_tmp);
+                  console.log('count_prod_tmp' + count_prod_tmp + ', count_buy_tmp:' + count_buy_tmp);
                   console.log('myshare=' + myShare);
-                  count_prod_tmp = Math.trunc(total_count * myShare / 10);
+                  count_prod_tmp = Math.round(total_count * myShare / 10);
                   count_buy_tmp = total_count - count_prod_tmp;
                   mydata.children('td').eq(9).text(count_prod_tmp);
                   mydata.children('td').eq(10).text(count_buy_tmp);

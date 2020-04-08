@@ -275,8 +275,12 @@
       }
     }
     console.log(dd);
-    for (tmp in dd) {
-      console.log(tmp.0)
+    for (var tmp in dd) {
+      console.log(tmp);
+    //  console.log(Object.keys(tmp));
+      console.log(dd[tmp]);
+      console.log(dd[tmp][0]);
+
     }
 
 
