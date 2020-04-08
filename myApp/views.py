@@ -677,3 +677,107 @@ def registDiet(request):
     'success': True,
     'url': myURL,
   })
+
+class Output1(TemplateView):
+  template_name = "myApp/Output1.html"
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
+    tmp_nut_group = Person.objects.filter(
+      myLocation=self.kwargs['myLocation'])
+    context['nutrient_target'] = tmp_nut_group[0].nut_group
+
+    tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
+    tmp_e = 0
+    tmp_p = 0
+    tmp_v = 0
+    tmp_f = 0
+    for tmp in tmp_nut_group1:
+      tmp_e += tmp.myDRI.energy
+      tmp_p += tmp.myDRI.protein
+      tmp_v += tmp.myDRI.vita
+      tmp_p += tmp.myDRI.fe
+    context['dri_e1'] = tmp_e
+    context['dri_p1'] = tmp_p
+    context['dri_v1'] = tmp_v
+    context['dri_f1'] = tmp_f
+
+    tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
+    tmp_e = 0
+    tmp_p = 0
+    tmp_v = 0
+    tmp_f = 0
+    for tmp in tmp_nut_group2:
+      tmp_e += tmp.myDRI.energy
+      tmp_p += tmp.myDRI.protein
+      tmp_v += tmp.myDRI.vita
+      tmp_p += tmp.myDRI.fe
+    context['dri_e2'] = tmp_e
+    context['dri_p2'] = tmp_p
+    context['dri_v2'] = tmp_v
+    context['dri_f2'] = tmp_f
+
+    tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
+    tmp_e = 0
+    tmp_p = 0
+    tmp_v = 0
+    tmp_f = 0
+    for tmp in tmp_nut_group3:
+      tmp_e += tmp.myDRI.energy
+      tmp_p += tmp.myDRI.protein
+      tmp_v += tmp.myDRI.vita
+      tmp_p += tmp.myDRI.fe
+    context['dri_e3'] = tmp_e
+    context['dri_p3'] = tmp_p
+    context['dri_v3'] = tmp_v
+    context['dri_f3'] = tmp_f
+
+    # send selected crop by community ######
+    # --------------------create 16 Crop_individual-------------------------
+    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation'])
+    myRange = [101, 102, 103, 104]
+    d = []
+    for i in myRange:
+      tmp02 = tmp01.filter(id_table=i)
+      if tmp02.count() == 0:
+        dd = {}
+        dd["name"] = ''
+        dd["Energy"] = ''
+        dd["Protein"] = ''
+        dd["VITA_RAE"] = ''
+        dd["FE"] = ''
+        dd["target_scope"] = ''
+        dd["food_item_id"] = ''
+        dd["portion_size"] = ''
+        dd["total_weight"] = ''
+        dd["count_prod"] = ''
+        dd["count_buy"] = ''
+        dd["month"] = ''
+        dd["myLocation"] = ''
+        dd["myid_tbl"] = i
+        d.append(dd)
+      else:
+        for tmp03 in tmp02:
+          dd = {}
+          dd["name"] = tmp03.myFCT.Food_name
+          dd["Energy"] = tmp03.myFCT.Energy
+          dd["Protein"] = tmp03.myFCT.Protein
+          dd["VITA_RAE"] = tmp03.myFCT.VITA_RAE
+          dd["FE"] = tmp03.myFCT.FE
+          dd["target_scope"] = tmp03.target_scope
+          dd["food_item_id"] = tmp03.myFCT.food_item_id
+          dd["portion_size"] = tmp03.portion_size
+          dd["total_weight"] = tmp03.total_weight
+          dd["count_prod"] = tmp03.count_prod
+          dd["count_buy"] = tmp03.count_buy
+          dd["month"] = tmp03.month
+          dd["myLocation"] = tmp03.myLocation_id
+          dd["myid_tbl"] = tmp03.id_table
+          d.append(dd)
+    context["mylist_selected"] = d
+
+    context['myuser'] = self.request.user
+
+    return context
+

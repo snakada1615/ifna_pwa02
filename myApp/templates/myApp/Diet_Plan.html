@@ -9,7 +9,6 @@
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
 
   <script type="text/javascript" src="{% static 'js/jquery.barrating.min.js' %}"></script>
-  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/fontawesome-apple.css' %}">
   <link rel="stylesheet" href="{% static 'css/bars-1to10.css' %}">
 
@@ -244,13 +243,6 @@
 
   <!------------------------------------------------------------->
   <style media="screen">
-    /* nav-item activeの文字色 */
-    .nav-pills .show > .nav-link,
-    .nav-tabs .nav-link.active {
-      color: red;
-      background-color: #87BFCD;
-    }
-
     /* 行または列の非表示*/
     .tableItem_hide {
       display: none;
@@ -433,50 +425,6 @@
                   return res;
                 }
 
-                ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
-                function DrawSelected() { /// render selected_crops_tbl
-                  let myNum_tmp = $('#container_tab_all').attr('myNum');
-                  $myTable = $('.selected_crops_tbl[myNum=' + myNum_tmp + ']');
-                  $myTable.find('tr').remove(); //remove all rows
-                  selected_rows_id.length = 0;
-                  let sum_en = 0;
-                  let sum_pr = 0;
-                  let sum_va = 0;
-                  let sum_fe = 0;
-                  cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th>' +
-                          '<th class="tableItem_hide">id</th><th class="tableItem_hide">food_item_id</th>' +
-                          '<th class="tableItem_hide">portion_size</th><th class="tableItem_hide">count_prod</th>' +
-                          '<th class="tableItem_hide">count_buy</th></tr><tr>';
-                  tblObj_localCrop1.rows('.selected').every(function (rowIdx, tableLoop, rowLoop) {
-                    var data = this.data();
-                    cr += '<td>' + data.Food_name + '</td>';
-                    cr += '<td>' + Math.round(data.Energy * data.Weight / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(data.Protein * data.Weight / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(data.VITA_RAE * data.Weight / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(data.FE * data.Weight / 100, 1) + '</td>';
-                    cr += '<td>' + data.Weight + '</td>';
-                    cr += '<td class="tableItem_hide">' + rowIdx + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.food_item_id + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.portion_size + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
-                    cr += '</tr>';
-                    sum_en += data.Energy * data.Weight / 100;
-                    sum_pr += data.Protein * data.Weight / 100;
-                    sum_va += data.VITA_RAE * data.Weight / 100;
-                    sum_fe += data.FE * data.Weight / 100;
-                    selected_rows_id.push(rowIdx);
-                  });
-                  cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[1]) +
-                          SetCellColor(Math.round(sum_pr), target_pr[1]) + SetCellColor(Math.round(sum_va), target_va[1]) +
-                          SetCellColor(Math.round(sum_fe), target_fe[1]) + '<td></td><td class="tableItem_hide"><' +
-                          '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
-                          '</td><td class="tableItem_hide"></td></tr>';
-                  $myTable.append(cr);
-                  SetBarrating(myNum_tmp, sum_en, target_en[1], sum_pr, target_pr[1], sum_va, target_va[1], sum_fe, target_fe[1]);
-
-                }
-
                 /////////////// set barrating /
                 function SetBarrating(id_table) {
                   $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
@@ -492,7 +440,7 @@
                     sum_pr += Number($(myRow).children('td').eq(2).text());
                     sum_va += Number($(myRow).children('td').eq(3).text());
                     sum_fe += Number($(myRow).children('td').eq(4).text());
-                  })
+                  });
                   target_scope = Math.trunc(id_table / 100);
 
                   cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[target_scope]) +
@@ -765,8 +713,9 @@
 
                 ////////////////// button click to reflect the modificatio　#todo シェア変更機能
                 $('#change_weight1').click(function () {
-                  let myrowid = $('#tbl_food_SetWeight').attr('myrowid');
-                  let myid_table = $('#tbl_food_SetWeight').attr('myNum');
+                  let motherTable = $('#tbl_food_SetWeight');
+                  let myrowid = motherTable.attr('myrowid');
+                  let myid_table = motherTable.attr('myNum');
                   myNum_tmp = $('#container_tab_all').attr('myNum');//多分削除可能
                   mytable = $('.selected_crops_tbl[myNum=' + myid_table + ']');
                   mytable.children('tbody').children('tr').last().remove();//最終行（合計）を削除
@@ -920,7 +869,6 @@
                     DrawSelected_addRow(data.myid_tbl, cr);
                   }
                 }
-                $('.rating_en[myNum=101]').barrating('set', '8');
 
               } //----initComplete finish here---////////////////////////////////////////////
 

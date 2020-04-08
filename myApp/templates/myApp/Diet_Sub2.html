@@ -1,5 +1,6 @@
 {% for i in i|rjust:12 %}
-  <div class="card border-success border-5 rounded col-12 mt-2 py-1" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+  <div class="card border-success border-5 rounded col-12 mt-2 py-1"
+       style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
     <div class="row">
       <div class="col-12">
         <div class="card-body py-0 px-0">
@@ -12,7 +13,7 @@
             <span style="color:green">■</span>: over 100%
           </p>
 
-          <table border="1" class="table table-striped selected_crops_tbl" myNum={{forloop.counter|add:200}}>
+          <table border="1" class="table table-striped selected_crops_tbl" myNum={{ forloop.counter|add:200 }}>
             <tr>
               <th>name</th>
               <th>En</th>
@@ -25,6 +26,10 @@
               <th class="tableItem_hide">portion_size</th>
               <th class="tableItem_hide">count_prod</th>
               <th class="tableItem_hide">count_buy</th>
+              <th class="tableItem_hide">En0</th>
+              <th class="tableItem_hide">Pr0</th>
+              <th class="tableItem_hide">Va0</th>
+              <th class="tableItem_hide">Fe0</th>
             </tr>
             <tr>
               <td>total</td>
@@ -38,6 +43,10 @@
               <th class="tableItem_hide"></th>
               <th class="tableItem_hide"></th>
               <th class="tableItem_hide"></th>
+              <th class="tableItem_hide"></th>
+              <th class="tableItem_hide"></th>
+              <th class="tableItem_hide"></th>
+              <th class="tableItem_hide"></th>
             </tr>
           </table>
 
@@ -46,10 +55,10 @@
               <label class="text-dark" for="rating_en">Energy</label>
             </div>
             <div class="col-2">
-              <div class="text-dark lbl_target_en" myNum={{forloop.counter|add:200}}></div>
+              <div class="text-dark lbl_target_en" myNum={{ forloop.counter|add:200 }}></div>
             </div>
             <div class="col-7">
-              <select class="rating_DRI rating_en" myNum={{forloop.counter|add:200}}>
+              <select class="rating_DRI rating_en" myNum={{ forloop.counter|add:200 }}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -69,10 +78,10 @@
               <label class="text-dark" for="rating_pr">Protein</label>
             </div>
             <div class="col-2">
-              <div class="text-dark lbl_target_pr" myNum={{forloop.counter|add:200}}></div>
+              <div class="text-dark lbl_target_pr" myNum={{ forloop.counter|add:200 }}></div>
             </div>
             <div class="col-7">
-              <select class="rating_DRI rating_pr" myNum={{forloop.counter|add:200}}>
+              <select class="rating_DRI rating_pr" myNum={{ forloop.counter|add:200 }}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -92,10 +101,10 @@
               <label class="text-dark" for="rating_va">VitA</label>
             </div>
             <div class="col-2">
-              <div class="text-dark lbl_target_va" myNum={{forloop.counter|add:200}}></div>
+              <div class="text-dark lbl_target_va" myNum={{ forloop.counter|add:200 }}></div>
             </div>
             <div class="col-7">
-              <select class="rating_DRI rating_va1" myNum={{forloop.counter|add:200}}>
+              <select class="rating_DRI rating_va1" myNum={{ forloop.counter|add:200 }}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -115,10 +124,10 @@
               <label class="text-dark " for="rating_fe">Iron</label>
             </div>
             <div class="col-2">
-              <div class="text-dark lbl_target_fe" myNum={{forloop.counter|add:200}}></div>
+              <div class="text-dark lbl_target_fe" myNum={{ forloop.counter|add:200 }}></div>
             </div>
             <div class="col-7">
-              <select class="rating_DRI rating_fe" myNum={{forloop.counter|add:200}}>
+              <select class="rating_DRI rating_fe" myNum={{ forloop.counter|add:200 }}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -135,20 +144,23 @@
 
           <div class="row no-gutters my-0 py-0" style="height:30px;">
             <div class="col-3 text-dark">Target group</div>
-            <div class="col-2 text-dark">{{nutrient_target}}</div>
+            <div class="col-2 text-dark">{{ nutrient_target }}</div>
           </div>
 
           <div class="row no-gutters my-0 py-0" style="height:30px;">
             <div class="col-3 text-dark">Month</div>
             <div class="col-3 text-dark">
-            <div class="lst_month" myNum={{forloop.counter|add:200}} style="border: 1px #386B46 double;background-color:#A5C93F">{{forloop.counter}}</div>
-            </div>
+              <div class="lst_month" myNum={{ forloop.counter|add:200 }} style="border: 1px #386B46
+                   double;background-color:#A5C93F
+              ">{{ forloop.counter }}</div>
           </div>
-          <span>
-            <a myNum={{forloop.counter|add:200}} class="btn_add_crop btn btn-block btn-info text-dark mt-2 my-0 py-0 btn-sm">add commodities</a>
-          </span>
         </div>
+        <span>
+            <a myNum={{ forloop.counter|add:200 }} class="btn_add_crop btn btn-block btn-info text-dark mt-2 my-0 py-0
+               btn-sm">add commodities</a>
+          </span>
       </div>
     </div>
+  </div>
   </div>
 {% endfor %}
