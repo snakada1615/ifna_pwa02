@@ -269,6 +269,8 @@
     var target_va = [];
     var target_fe = [];
 
+    console.log(json_crop_selected);
+
     target_en[1] = {{dri_e1}};
     target_pr[1] = {{dri_p1}};
     target_va[1] = {{dri_v1}};
@@ -288,7 +290,7 @@
     url_tmp.pop();
     url_tmp.pop();
     myRoot = url_tmp.join("/") + '/';
-    myLocation_id = tmp1;
+    var myLocation_id = tmp1;
     //////////////// star rating/////
     $(function () {
       $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
@@ -565,6 +567,8 @@
                   $myTbl.children('tbody').children('tr').last().remove();
                   //  $("tr:eq(" + ($("tr").length - 2) + ")").remove();
                   $myTbl.append(add_data);
+
+                  //ここからBarratingの記入
                   $myTbl.children('tbody').children('tr').each(function (j, myRow) {
                     sum_en += Number($(myRow).children('td').eq(1).text());
                     sum_pr += Number($(myRow).children('td').eq(2).text());
@@ -580,8 +584,6 @@
                           '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
                           '</td><td class="tableItem_hide"></td></tr>';
                   $myTbl.append(cr);
-                  console.log(target_en[target_scope]);
-                  console.log(id_table);
                   SetBarrating(id_table, sum_en, target_en[target_scope], sum_pr, target_pr[target_scope],
                           sum_va, target_va[target_scope], sum_fe, target_fe[target_scope]);
                 }
@@ -600,7 +602,50 @@
                 ////////////////////////////////////////////// //////////init second table as modal dialog add selected rows to text box
                 $('#localCrop1 tbody').on('click', 'tr', function () {
                   $(this).toggleClass('selected');
-                  DrawSelected();
+                  if ($(this).hasClass('selected')) {
+                    mydata = tblObj_localCrop1.row( this ).data();
+
+                    //元データ（json_crop_selected）に追加
+                    dd = {};
+                    dd["name"] = mydata['Food_name'];
+                    dd["Energy"] = mydata['Energy'];
+                    dd["Protein"] = mydata['Protein'];
+                    dd["VITA_RAE"] = mydata['VITA_RAE'];
+                    dd["FE"] = mydata['FE']
+                    dd["food_item_id"] = mydata['food_item_id'];
+                    dd["portion_size"] = mydata['portion_size'];
+                    dd["total_weight"] = 0;
+                    dd["count_prod"] = 0;
+                    dd["count_buy"] = 0;
+                    dd["month"] = '';
+                    dd["myLocation"] = myLocation_id;
+                    dd["myid_tbl"] = $('#container_tab_all').attr('myNum');
+                    dd["target_scope"] = Math.trunc(Number(dd["myid_tbl"]) / 100);
+
+                    json_crop_selected.push(dd);
+                    console.log(dd);
+
+                    //tableにデータを表示
+                    let cr = '';
+                    cr += '<tr>';
+                    cr += '<td>' + dd["name"] + '</td>';
+                    cr += '<td>' + Math.round(Number(dd["Energy"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
+                    cr += '<td>' + Math.round(Number(dd["Protein"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
+                    cr += '<td>' + Math.round(Number(dd["VITA_RAE"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
+                    cr += '<td>' + Math.round(Number(dd["FE"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
+                    cr += '<td>0</td>';
+                    cr += '<td class="tableItem_hide"></td>';
+                    cr += '<td class="tableItem_hide">' + dd["food_item_id"] + '</td>';
+                    cr += '<td class="tableItem_hide">' + dd["portion_size"] + '</td>';
+                    cr += '<td class="tableItem_hide">' + 0 + '</td>';
+                    cr += '<td class="tableItem_hide">' + 0 + '</td>';
+                    cr += '</tr>';
+
+                    DrawSelected_addRow(dd["myid_tbl"], cr);
+
+                  } else {
+                    DrawSelected_delRow(dd["myid_tbl"], dd["food_item_id"])
+                  }
                 }); //////////////////////////////////////////////
                 /////CreateSelection/////
                 function CreateSelection(myNum) {
