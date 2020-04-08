@@ -154,7 +154,7 @@
           </button>
         </div>
         <div class="modal-body text-dark">
-          <table border="1" class="table table-striped" id="foodInfo1">
+          <table border="1" class="table table-striped" id="tbl_food_SetWeight">
             <tr>
               <th>name</th>
               <th>En</th>
@@ -718,7 +718,7 @@
                 //////////////////add table edit function////#
                 $(".selected_crops_tbl").on("click", "td", function () {
                   $('#selected_row').val($(this).closest('tr').index());//いらない？
-                  $('#foodInfo1 tr').remove();//foodinfo1のテーブル初期化
+                  $('#tbl_food_SetWeight tr').remove();//tbl_food_SetWeightのテーブル初期化
                   let myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');
                   let foodVal = $("td", $(this).parent());
                   let myrowid = foodVal.eq(6).text();
@@ -727,7 +727,7 @@
                   let count_prod_tmp = Number(foodVal.eq(9).text());
                   let count_buy_tmp = Number(foodVal.eq(10).text());
                   let cou = count_buy_tmp + count_prod_tmp;
-                  let $foodInfo = $('#foodInfo1');
+                  let $foodInfo = $('#tbl_food_SetWeight');
                   let mes = 'consumption target(one portion=' + por + 'g)';
 
                   //mytmpdat = tblObj_localCrop1.column(7).search(336);
@@ -760,7 +760,7 @@
 
                 ////////////////// button click to reflect the modificatio　#todo シェア変更機能
                 $('#change_weight1').click(function () {
-                  let myrowid = $('#foodInfo1').attr('myrowid');
+                  let myrowid = $('#tbl_food_SetWeight').attr('myrowid');
                   let por = tblObj_localCrop1.row(myrowid).data().portion_size;
                   let cou = $('#mystar1').children("option:selected").val();
                   myNum_tmp = $('#container_tab_all').attr('myNum');
