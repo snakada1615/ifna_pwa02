@@ -502,10 +502,10 @@
                     rate_fe = 1
                   }
 
-                  $('.rating_en[myNum=' + id_table + ']').barrating('set', rate_en); // set barrating
-                  $('.rating_pr[myNum=' + id_table + ']').barrating('set', rate_pr); // set barrating
-                  $('.rating_va[myNum=' + id_table + ']').barrating('set', rate_va); // set barrating
-                  $('.rating_fe[myNum=' + id_table + ']').barrating('set', rate_fe); // set barrating
+                  $('.rating_en[myNum=' + id_table + ']').val(rate_en); // set barrating
+                  $('.rating_pr[myNum=' + id_table + ']').val(rate_pr); // set barrating
+                  $('.rating_va[myNum=' + id_table + ']').val(rate_va); // set barrating
+                  $('.rating_fe[myNum=' + id_table + ']').val(rate_fe); // set barrating
                 }
 
 
@@ -556,7 +556,34 @@
 
                 ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
                 function DrawSelected_addRow(id_table, add_data) { /// render selected_crops_tbl
-                  $('.selected_crops_tbl[myNum=' + id_table + ']').append(add_data);
+                  let sum_en = 0;
+                  let sum_pr = 0;
+                  let sum_va = 0;
+                  let sum_fe = 0;
+                  let cr = '';
+                  $myTbl = $('.selected_crops_tbl[myNum=' + id_table + ']');
+                  $myTbl.children('tbody').children('tr').last().remove();
+                  //  $("tr:eq(" + ($("tr").length - 2) + ")").remove();
+                  $myTbl.append(add_data);
+                  $myTbl.children('tbody').children('tr').each(function (j, myRow) {
+                    sum_en += Number($(myRow).children('td').eq(1).text());
+                    sum_pr += Number($(myRow).children('td').eq(2).text());
+                    sum_va += Number($(myRow).children('td').eq(3).text());
+                    sum_fe += Number($(myRow).children('td').eq(4).text());
+                  })
+                  target_scope = Math.trunc(id_table / 100);
+
+                  cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[target_scope]) +
+                          SetCellColor(Math.round(sum_pr), target_pr[target_scope]) +
+                          SetCellColor(Math.round(sum_va), target_va[target_scope]) +
+                          SetCellColor(Math.round(sum_fe), target_fe[target_scope]) + '<td></td><td class="tableItem_hide"><' +
+                          '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
+                          '</td><td class="tableItem_hide"></td></tr>';
+                  $myTbl.append(cr);
+                  console.log(target_en[target_scope]);
+                  console.log(id_table);
+                  SetBarrating(id_table, sum_en, target_en[target_scope], sum_pr, target_pr[target_scope],
+                          sum_va, target_va[target_scope], sum_fe, target_fe[target_scope]);
                 }
 
                 ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
@@ -828,6 +855,7 @@
                     DrawSelected_addRow(data.myid_tbl, cr);
                   }
                 }
+                $('.rating_en[myNum=101]').barrating('set', '8');
 
               } //----initComplete finish here---////////////////////////////////////////////
 
