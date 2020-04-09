@@ -50,7 +50,7 @@
 									<img src="{% static 'img/no5.png' %}">
 								</div>
 								<div class="col-10 mx-1">
-									<a class="btn btn-block btn-warning my-1" href="#" style="max-width:540px" id='btn06'>Result</a>
+									<a class="btn btn-block btn-warning my-1" href="#" style="max-width:540px" id='btn06'>Cropping Feasibility</a>
 								</div>
 							</div>
 						</div>
@@ -82,9 +82,6 @@
 						document.getElementById('btn05').classList.remove("disabled");
 						var myURL = '/Diet1/' + DATA.myLocation;
 						document.getElementById('btn05').href = myURL;
-						document.getElementById('btn06').classList.remove("disabled");
-						var myURL = '/Output_list/' + DATA.myLocation;
-						document.getElementById('btn06').href = myURL;
 					}
 				}
 			}

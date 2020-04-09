@@ -975,3 +975,12 @@ class Output3(TemplateView):
     context['myuser'] = self.request.user
 
     return context
+
+
+class Output_list(TemplateView):
+  template_name = "myApp/Output_list.html"
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myLocation'] = self.kwargs['myLocation']
+    return context

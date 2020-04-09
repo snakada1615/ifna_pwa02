@@ -303,6 +303,7 @@
     var target_va = [];
     var target_fe = [];
 
+    console.log(json_crop_local);
     console.log(json_crop_selected);
 
     target_en[1] = {{dri_e1}};
@@ -696,7 +697,7 @@
                     res = Math.round(i_prod * 10 / (i_prod + i_buy));
                   }
                   let h = "/static/img/pie_" + String(res) + ".png";
-                  console.log(h);
+                  //console.log(h);
                   return h;
                 }
 
@@ -721,7 +722,7 @@
                   let count_prod_tmp = Number(row_food_SetWeight.eq(9).text());
                   let count_buy_tmp = Number(row_food_SetWeight.eq(10).text());
 
-                  console.log('count_prod_tmp' + count_prod_tmp + ', count_prod_tmpbuy:' + count_buy_tmp);
+                  //console.log('count_prod_tmp' + count_prod_tmp + ', count_prod_tmpbuy:' + count_buy_tmp);
 
                   let cou = count_buy_tmp + count_prod_tmp;
                   let $foodInfo = $('#tbl_food_SetWeight');
@@ -813,13 +814,13 @@
                   let count_prod_tmp = Number(mydata.children('td').eq(9).text());
                   let count_buy_tmp = Number(mydata.children('td').eq(10).text());
                   let total_count = count_prod_tmp + count_buy_tmp;
-                  console.log('count_prod_tmp' + count_prod_tmp + ', count_buy_tmp:' + count_buy_tmp);
-                  console.log('myshare=' + myShare);
+                  //console.log('count_prod_tmp' + count_prod_tmp + ', count_buy_tmp:' + count_buy_tmp);
+                  //console.log('myshare=' + myShare);
                   count_prod_tmp = Math.round(total_count * myShare / 10);
                   count_buy_tmp = total_count - count_prod_tmp;
                   mydata.children('td').eq(9).text(count_prod_tmp);
                   mydata.children('td').eq(10).text(count_buy_tmp);
-                  console.log('count_prod_tmp' + count_prod_tmp + ', count_prod_tmpbuy:' + count_buy_tmp);
+                  //console.log('count_prod_tmp' + count_prod_tmp + ', count_prod_tmpbuy:' + count_buy_tmp);
 
                   $('#mystar1-pie').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
                   $('#Modal_Prod_Buy').modal('hide');
@@ -830,7 +831,7 @@
                   let hostUrl = myRoot + 'registDiet/';
                   let mydat = getTblData();
 
-                  console.log(mydat);
+                  //console.log(mydat);
                   Set_CRSF();
                   sendJson(mydat, hostUrl);
                 }); ////////btn_save_crop///////////
