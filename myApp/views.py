@@ -64,6 +64,7 @@ class UserEdit(LoginRequiredMixin, UpdateView):
       user = form.save()  # formの情報を保存
       login(self.request, user)  # 認証
       self.object = user
+
       return HttpResponseRedirect(self.get_success_url())  # リダイレクト
 
     else:
@@ -97,6 +98,23 @@ class SignUp(CreateView):
       user = form.save()  # formの情報を保存
       login(self.request, user)  # 認証
       self.object = user
+
+      # --------------------update myStatus-------------------------
+      keys = {}
+      keys['myLocation'] = form.instance.pk
+      if myStatus.objects.all().count() != 0:
+        mydat = myStatus.objects.all().first()
+        mydat.curr_User = self.request.user.id
+        mydat.myLocation = 0
+        mydat.myTarget = 0
+        mydat.myTarget = 0
+        mydat.myDiet = 0
+        mydat.save()
+      else:
+        myStatus.objects.create(
+          curr_User=self.request.user.id
+        )
+
       return HttpResponseRedirect(self.get_success_url())  # リダイレクト
 
     else:
@@ -161,6 +179,22 @@ class Location_DeleteView(LoginRequiredMixin, DeleteView):  # todo これをmoda
     context['myuser'] = self.request.user
     return context
 
+  def delete(self, *args, **kwargs):
+      self.object = self.get_object()
+      # myStatusの設定
+      tmp_myLoc = 0
+      if Location.objects.filter(created_by_id=self.request.user.id).count() > 0:
+        tmp_myLoc = Location.objects.first().id
+      myStatus.objects.filter(curr_User=self.request.user.id).update(
+        myLocation=tmp_myLoc
+      )
+      myStatus.objects.filter(curr_User=self.request.user.id).update(myCrop='0')
+      myStatus.objects.filter(curr_User=self.request.user.id).update(myTarget='0')
+      myStatus.objects.filter(curr_User=self.request.user.id).update(myDiet='0')
+
+      return super(Location_DeleteView, self).delete(*args, **kwargs)
+
+
 
 class Location_CreateView(LoginRequiredMixin, CreateView):
   model = Location
@@ -178,6 +212,9 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
     # --------------------update myStatus-------------------------
     keys = {}
     keys['myLocation'] = form.instance.pk
+    keys['myTarget'] = 0
+    keys['myCrop'] = 0
+    keys['myDiet'] = 0
     tmp = myStatus.objects.filter(curr_User=self.request.user.id)
     if tmp.count() == 0:
       keys['curr_User'] = self.request.user.id
@@ -249,6 +286,9 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
     # --------------------update myStatus-------------------------
     keys = {}
     keys['myLocation'] = form.instance.pk
+    keys['myTarget'] = 0
+    keys['myCrop'] = 0
+    keys['myDiet'] = 0
     tmp = myStatus.objects.filter(curr_User=self.request.user.id)
     if tmp.count() == 0:
       keys['curr_User'] = self.request.user.id
@@ -279,7 +319,7 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
     return super(Location_UpdateView, self).form_valid(form)
 
 
-class CropSelect(TemplateView):  # todo まだ縦横表示がおかしいです
+class CropSelect(LoginRequiredMixin, TemplateView):  # todo まだ縦横表示がおかしいです
   template_name = "myApp/crop_available.html"
 
   def get_context_data(self, **kwargs):
@@ -346,7 +386,10 @@ def registCropAvail(request):
       rec.selected_status = 0
       rec.save()
 
+  # myStatusの設定
   myStatus.objects.filter(curr_User=request.user.id).update(myCrop='1')
+  myStatus.objects.filter(curr_User=request.user.id).update(myTarget='0')
+  myStatus.objects.filter(curr_User=request.user.id).update(myDiet='0')
 
   myURL = reverse_lazy('index02')
   return JsonResponse({
@@ -425,9 +468,12 @@ class Person_UpdateView(LoginRequiredMixin, UpdateView):
     # form.instance.target_scope = self.kwargs['mytarget_scope']
     # do something with self.object
     # remember the import: from django.http import HttpResponseRedirect
+
+    # myStatusの設定
     tmp_myStatus = myStatus.objects.filter(
       curr_User=self.request.user.id).first()
     tmp_myStatus.myTarget = 1
+    tmp_myStatus.myDiet = 0
     tmp_myStatus.save()
     #        return super(Person_CreateView, self).form_valid(form)
     return HttpResponseRedirect(self.get_success_url())
@@ -463,9 +509,12 @@ class Person_CreateView(LoginRequiredMixin, CreateView):  # todo 新規追加後
     form.instance.target_scope = self.kwargs['mytarget_scope']
     # do something with self.object
     # remember the import: from django.http import HttpResponseRedirect
+
+    # myStatusの設定
     tmp_myStatus = myStatus.objects.filter(
       curr_User=self.request.user.id).first()
     tmp_myStatus.myTarget = 1
+    tmp_myStatus.myDiet = 0
     tmp_myStatus.save()
 
     return super(Person_CreateView, self).form_valid(form)
@@ -489,7 +538,7 @@ class Person_DeleteView(LoginRequiredMixin, DeleteView):
       return reverse_lazy('person_list', args=(self.object.id,))
 
 
-class Diet_Plan1(TemplateView):
+class Diet_Plan1(LoginRequiredMixin, TemplateView):
   template_name = "myApp/Diet_Plan.html"
 
   def get_context_data(self, **kwargs):
@@ -673,7 +722,8 @@ def registDiet(request):
       }
     )
 
-  myStatus.objects.filter(curr_User=request.user.id).update(myCrop='1')
+  # update myStatus
+  myStatus.objects.filter(curr_User=request.user.id).update(myDiet='1')
 
   myURL = reverse_lazy('index02')
   return JsonResponse({
@@ -682,7 +732,7 @@ def registDiet(request):
   })
 
 
-class Output1(TemplateView):
+class Output1(LoginRequiredMixin, TemplateView):
   template_name = "myApp/Output1.html"
 
   def get_context_data(self, **kwargs):
@@ -786,7 +836,7 @@ class Output1(TemplateView):
     return context
 
 
-class Output2(TemplateView):
+class Output2(LoginRequiredMixin, TemplateView):
   template_name = "myApp/Output2.html"
 
   def get_context_data(self, **kwargs):
@@ -890,7 +940,7 @@ class Output2(TemplateView):
     return context
 
 
-class Output3(TemplateView):
+class Output3(LoginRequiredMixin, TemplateView):
   template_name = "myApp/Output3.html"
 
   def get_context_data(self, **kwargs):
@@ -977,7 +1027,7 @@ class Output3(TemplateView):
     return context
 
 
-class Output_list(TemplateView):
+class Output_list(LoginRequiredMixin, TemplateView):
   template_name = "myApp/Output_list.html"
 
   def get_context_data(self, **kwargs):
