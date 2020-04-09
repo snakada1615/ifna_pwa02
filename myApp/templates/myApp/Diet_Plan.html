@@ -303,8 +303,6 @@
     var target_va = [];
     var target_fe = [];
 
-    console.log(json_crop_local);
-    console.log(json_crop_selected);
 
     target_en[1] = {{dri_e1}};
     target_pr[1] = {{dri_p1}};
@@ -520,10 +518,10 @@
                     rate_fe = 1
                   }
 
-                  $('.rating_en[myNum=' + id_table + ']').barrating('set',rate_en); // set barrating
-                  $('.rating_pr[myNum=' + id_table + ']').barrating('set',rate_pr); // set barrating
-                  $('.rating_va[myNum=' + id_table + ']').barrating('set',rate_va); // set barrating
-                  $('.rating_fe[myNum=' + id_table + ']').barrating('set',rate_fe); // set barrating
+                  $('.rating_en[myNum=' + id_table + ']').barrating('set', rate_en); // set barrating
+                  $('.rating_pr[myNum=' + id_table + ']').barrating('set', rate_pr); // set barrating
+                  $('.rating_va[myNum=' + id_table + ']').barrating('set', rate_va); // set barrating
+                  $('.rating_fe[myNum=' + id_table + ']').barrating('set', rate_fe); // set barrating
                 }
 
                 ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
@@ -798,10 +796,20 @@
                   $('#Modal_foodVol1').modal('hide');
                 }); //----------change_weight complete here-------
 
-                //// set balance pruduce/purchase //
+                //---------set balance pruduce/purchase-----------
                 $('#mystar1-pie').on('click', function () {
+                  let motherTable = $('#tbl_food_SetWeight');
+                  let myrowid = motherTable.attr('myrowid');
+                  let myid_table = motherTable.attr('myNum');
+                  let mytable = $('.selected_crops_tbl[myNum=' + myid_table + ']');
+                  let mydata = mytable.children('tbody').children('tr').eq(myrowid);//修正行に移動
+                  let count_prod_tmp = Number(mydata.children('td').eq(9).text());
+                  let count_buy_tmp = Number(mydata.children('td').eq(10).text());
+                  myShare = Math.round(count_prod_tmp * 10 / (count_prod_tmp + count_buy_tmp));
+
+                  $('#my_Prod_Buy').barrating('set', myShare);// set barrating
                   $('#Modal_Prod_Buy').modal('show');
-                });
+                });//----------balance pruduce/purchase complete here-------
 
                 //// set balance pruduce/purchase //
                 $('#change_share1').on('click', function () {
@@ -834,6 +842,7 @@
                   //console.log(mydat);
                   Set_CRSF();
                   sendJson(mydat, hostUrl);
+                  //console.log(mydat);
                 }); ////////btn_save_crop///////////
 
                 //////////////////getTblData
@@ -930,10 +939,10 @@
 
                 //////////////////sendJson//// scfript end///////////////////
 
-                // initialize all table (selected_table)
+                //---------- initialize all table (selected_table)---------#todo 初期読み込みでBarratingが反映されない？
                 for (var i = 0; i < json_crop_selected.length; i++) {
                   data = json_crop_selected[i];
-                  if (data.myLocation == myLocation_id) {
+                  if (data.myLocation === Number(myLocation_id)) {
                     let cr = '';
                     cr += '<tr>';
                     cr += '<td>' + data.name + '</td>';
@@ -953,9 +962,9 @@
                     cr += '<td class="tableItem_hide">' + data.FE + '</td>';
                     cr += '</tr>';
                     DrawSelected_addRow(data.myid_tbl, cr);
+                    }
                   }
                 }
-
               } //----initComplete finish here---////////////////////////////////////////////
 
             }
