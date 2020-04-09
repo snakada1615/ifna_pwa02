@@ -537,6 +537,15 @@ class Person_DeleteView(LoginRequiredMixin, DeleteView):
     else:
       return reverse_lazy('person_list', args=(self.object.id,))
 
+  def delete(self, *args, **kwargs):
+      self.object = self.get_object()
+      # myStatusの設定
+      myStatus.objects.filter(curr_User=self.request.user.id).update(myTarget='0')
+      myStatus.objects.filter(curr_User=self.request.user.id).update(myDiet='0')
+
+      return super(Location_DeleteView, self).delete(*args, **kwargs)
+
+
 
 class Diet_Plan1(LoginRequiredMixin, TemplateView):
   template_name = "myApp/Diet_Plan.html"
