@@ -1,287 +1,294 @@
+{% extends 'myApp/_base_for_output.html' %}
 {% load static %}
-<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+{% load humanize %}
 
-<div class="mod-tbl">
-  <table id="tbl_cropping" class="wTable">
-    <thead>
-    <tr>
-      <th>name</th>
-      <th>Jan</th>
-      <th>Feb</th>
-      <th>Mar</th>
-      <th>Apr</th>
-      <th>May</th>
-      <th>Jun</th>
-      <th>Jul</th>
-      <th>Aug</th>
-      <th>Sep</th>
-      <th>Oct</th>
-      <th>Nov</th>
-      <th>Dec</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>aaaaaaaaaaaaaaaaaaaaaaaaa</td>
-      <td>Jan</td>
-      <td>Feb</td>
-      <td>Mar</td>
-      <td>Apr</td>
-      <td>May</td>
-      <td>Jun</td>
-      <td>Jul</td>
-      <td>Aug</td>
-      <td>Sep</td>
-      <td>Oct</td>
-      <td>Nov</td>
-      <td>Dec</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+{% block content %}
 
-<!------------------------------------------------------------->
-<style media="screen">
-  .mod-tbl {
-    max-width: 650px;
-    overflow: auto;
-  }
+  <div class="container" style="max-width: 650px;">
+    <div class="mod-tbl">
+      <table id="tbl_cropping" class="wTable">
+        <thead>
+        <tr>
+          <th>name</th>
+          <th>Jan</th>
+          <th>Feb</th>
+          <th>Mar</th>
+          <th>Apr</th>
+          <th>May</th>
+          <th>Jun</th>
+          <th>Jul</th>
+          <th>Aug</th>
+          <th>Sep</th>
+          <th>Oct</th>
+          <th>Nov</th>
+          <th>Dec</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>aaaaaaaaaaaaaaaaaaaaaaaaa</td>
+          <td>Jan</td>
+          <td>Feb</td>
+          <td>Mar</td>
+          <td>Apr</td>
+          <td>May</td>
+          <td>Jun</td>
+          <td>Jul</td>
+          <td>Aug</td>
+          <td>Sep</td>
+          <td>Oct</td>
+          <td>Nov</td>
+          <td>Dec</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-  table {
-    table-layout: fixed;
-    border: 2px grey solid;
-    border-collapse: collapse;
-    min-width: 100%;
-  }
-
-  tbody th {
-    width: 200px;
-    min-width: 200px;
-    border-collapse: collapse;
-    border: 2px grey solid;
-  }
-
-  td {
-    width: 50px;
-    min-width: 50px;
-    border: 2px grey solid;
-    border-collapse: collapse;
-    text-align: center;
-    vertical-align: middle;
-  }
-
-  th {
-    color: whitesmoke;
-    background-color: #5a88fd;
-  }
-
-
-  /* 1列目のスタイル */
-  table tr td:nth-of-type(1) {
-    width: 200px;
-    min-width: 200px;
-  }
-
-  table tr:nth-child(odd) td {
-    background-color: #EAF6FD;
-  }
-
-  table tr:nth-child(even) td {
-    background-color: #EFEFEF;
-  }
-
-
-</style>
-
-<script>
-  // グローバル変数の作成
-  var selected_rows_id = [];
-  var myLocation = '';
-  var myRoot = '';
-  var json_crop_selected = {{mylist_selected|safe}};
-  var target_en = [];
-  var target_pr = [];
-  var target_va = [];
-  var target_fe = [];
-
-  target_en[1] = {{dri_e1}};
-  target_pr[1] = {{dri_p1}};
-  target_va[1] = {{dri_v1}};
-  target_fe[1] = {{dri_f1}};
-  target_en[2] = {{dri_e2}};
-  target_pr[2] = {{dri_p2}};
-  target_va[2] = {{dri_v2}};
-  target_fe[2] = {{dri_f2}};
-  target_en[3] = {{dri_e3}};
-  target_pr[3] = {{dri_p3}};
-  target_va[3] = {{dri_v3}};
-  target_fe[3] = {{dri_f3}};
-
-  let url_tmp = window.location.href.split('/');
-  let tmp1 = url_tmp[url_tmp.length - 2];
-  url_tmp.pop();
-  url_tmp.pop();
-  url_tmp.pop();
-  myRoot = url_tmp.join("/") + '/';
-  var myLocation_id = tmp1;
-  //////////////// star rating/////
-  $(function () {
-    $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
-  });
-  ////////////////////////////////
-  $('.lbl_target_en[myNum^=4]').text(target_en[1].toFixed(0));
-  $('.lbl_target_pr[myNum^=4]').text(target_pr[1].toFixed(0));
-  $('.lbl_target_va[myNum^=4]').text(target_va[1].toFixed(0));
-  $('.lbl_target_fe[myNum^=4]').text(target_fe[1].toFixed(0));
-  $('.lbl_target_en[myNum^=5]').text(target_en[2].toFixed(0));
-  $('.lbl_target_pr[myNum^=5]').text(target_pr[2].toFixed(0));
-  $('.lbl_target_va[myNum^=5]').text(target_va[2].toFixed(0));
-  $('.lbl_target_fe[myNum^=5]').text(target_fe[2].toFixed(0));
-  $('.lbl_target_en[myNum^=3]').text(target_en[3].toFixed(0));
-  $('.lbl_target_pr[myNum^=3]').text(target_pr[3].toFixed(0));
-  $('.lbl_target_va[myNum^=3]').text(target_va[3].toFixed(0));
-  $('.lbl_target_fe[myNum^=3]').text(target_fe[3].toFixed(0));
-  /////////////////////////////
-  //////////////////////////////////// ////////set cell color////////////////
-  function SetCellColor(i_cell, i_target) {
-    let res = '';
-    cNum = parseInt(i_cell * 100 / i_target, 10);
-    switch (true) {
-      case 0 <= cNum && cNum < 50:
-        res = '<td style="color:red;">' + i_cell + '</td>';
-        break;
-
-      case 50 <= cNum && cNum < 100:
-        res = '<td style="color:orange;">' + i_cell + '</td>';
-        break;
-
-      case 100 <= cNum:
-        res = '<td style="color:green;">' + i_cell + '</td>';
-        break;
-
-      default:
-        res = '<td>' + i_cell + '</td>';
-        break;
+  <!------------------------------------------------------------->
+  <style media="screen">
+    .mod-tbl {
+      max-width: 650px;
+      overflow: auto;
     }
-    return res;
-  }
 
-  ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
-  /////////////// set barrating /
-  function SetBarrating(id_table) {
-    $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
-    let sum_en = 0;
-    let sum_pr = 0;
-    let sum_va = 0;
-    let sum_fe = 0;
-    let cr = '';
+    table {
+      table-layout: fixed;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      min-width: 100%;
+    }
 
-    //ここからBarratingの記入
-    $myTable.children('tbody').children('tr').each(function (j, myRow) {
-      sum_en += Number($(myRow).children('td').eq(1).text());
-      sum_pr += Number($(myRow).children('td').eq(2).text());
-      sum_va += Number($(myRow).children('td').eq(3).text());
-      sum_fe += Number($(myRow).children('td').eq(4).text());
+    tbody th {
+      width: 200px;
+      min-width: 200px;
+      border-collapse: collapse;
+      border: 2px grey solid;
+    }
+
+    td {
+      width: 50px;
+      min-width: 50px;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    th {
+      color: whitesmoke;
+      background-color: #5a88fd;
+    }
+
+
+    /* 1列目のスタイル */
+    table tr td:nth-of-type(1) {
+      width: 200px;
+      min-width: 200px;
+    }
+
+    table tr:nth-child(odd) td {
+      background-color: #EAF6FD;
+    }
+
+    table tr:nth-child(even) td {
+      background-color: #EFEFEF;
+    }
+
+
+  </style>
+
+  <script>
+    // グローバル変数の作成
+    var selected_rows_id = [];
+    var myLocation = '';
+    var myRoot = '';
+    var json_crop_selected = {{mylist_selected|safe}};
+    var target_en = [];
+    var target_pr = [];
+    var target_va = [];
+    var target_fe = [];
+
+    target_en[1] = {{dri_e1}};
+    target_pr[1] = {{dri_p1}};
+    target_va[1] = {{dri_v1}};
+    target_fe[1] = {{dri_f1}};
+    target_en[2] = {{dri_e2}};
+    target_pr[2] = {{dri_p2}};
+    target_va[2] = {{dri_v2}};
+    target_fe[2] = {{dri_f2}};
+    target_en[3] = {{dri_e3}};
+    target_pr[3] = {{dri_p3}};
+    target_va[3] = {{dri_v3}};
+    target_fe[3] = {{dri_f3}};
+
+    let url_tmp = window.location.href.split('/');
+    let tmp1 = url_tmp[url_tmp.length - 2];
+    url_tmp.pop();
+    url_tmp.pop();
+    url_tmp.pop();
+    myRoot = url_tmp.join("/") + '/';
+    var myLocation_id = tmp1;
+    //////////////// star rating/////
+    $(function () {
+      $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
     });
-    target_scope = Math.trunc((id_table - 300) / 100);
+    ////////////////////////////////
+    $('.lbl_target_en[myNum^=4]').text(target_en[1].toFixed(0));
+    $('.lbl_target_pr[myNum^=4]').text(target_pr[1].toFixed(0));
+    $('.lbl_target_va[myNum^=4]').text(target_va[1].toFixed(0));
+    $('.lbl_target_fe[myNum^=4]').text(target_fe[1].toFixed(0));
+    $('.lbl_target_en[myNum^=5]').text(target_en[2].toFixed(0));
+    $('.lbl_target_pr[myNum^=5]').text(target_pr[2].toFixed(0));
+    $('.lbl_target_va[myNum^=5]').text(target_va[2].toFixed(0));
+    $('.lbl_target_fe[myNum^=5]').text(target_fe[2].toFixed(0));
+    $('.lbl_target_en[myNum^=3]').text(target_en[3].toFixed(0));
+    $('.lbl_target_pr[myNum^=3]').text(target_pr[3].toFixed(0));
+    $('.lbl_target_va[myNum^=3]').text(target_va[3].toFixed(0));
+    $('.lbl_target_fe[myNum^=3]').text(target_fe[3].toFixed(0));
+    /////////////////////////////
+    //////////////////////////////////// ////////set cell color////////////////
+    function SetCellColor(i_cell, i_target) {
+      let res = '';
+      cNum = parseInt(i_cell * 100 / i_target, 10);
+      switch (true) {
+        case 0 <= cNum && cNum < 50:
+          res = '<td style="color:red;">' + i_cell + '</td>';
+          break;
 
-    cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[target_scope]) +
-            SetCellColor(Math.round(sum_pr), target_pr[target_scope]) +
-            SetCellColor(Math.round(sum_va), target_va[target_scope]) +
-            SetCellColor(Math.round(sum_fe), target_fe[target_scope]) + '<td></td><td class="tableItem_hide"><' +
-            '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
-            '</td><td class="tableItem_hide"></td></tr>';
-    $myTable.append(cr);
+        case 50 <= cNum && cNum < 100:
+          res = '<td style="color:orange;">' + i_cell + '</td>';
+          break;
 
-    let rate_en = Math.round(sum_en * 10 / target_en[target_scope]);
-    if (rate_en > 10) {
-      rate_en = 10
-    } else if (rate_en < 1) {
-      rate_en = 1
+        case 100 <= cNum:
+          res = '<td style="color:green;">' + i_cell + '</td>';
+          break;
+
+        default:
+          res = '<td>' + i_cell + '</td>';
+          break;
+      }
+      return res;
     }
-    let rate_pr = Math.round(sum_pr * 10 / target_pr[target_scope]);
-    if (rate_pr > 10) {
-      rate_pr = 10
-    } else if (rate_pr < 1) {
-      rate_pr = 1
+
+    ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
+    /////////////// set barrating /
+    function SetBarrating(id_table) {
+      $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
+      let sum_en = 0;
+      let sum_pr = 0;
+      let sum_va = 0;
+      let sum_fe = 0;
+      let cr = '';
+
+      //ここからBarratingの記入
+      $myTable.children('tbody').children('tr').each(function (j, myRow) {
+        sum_en += Number($(myRow).children('td').eq(1).text());
+        sum_pr += Number($(myRow).children('td').eq(2).text());
+        sum_va += Number($(myRow).children('td').eq(3).text());
+        sum_fe += Number($(myRow).children('td').eq(4).text());
+      });
+      target_scope = Math.trunc((id_table - 300) / 100);
+
+      cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[target_scope]) +
+              SetCellColor(Math.round(sum_pr), target_pr[target_scope]) +
+              SetCellColor(Math.round(sum_va), target_va[target_scope]) +
+              SetCellColor(Math.round(sum_fe), target_fe[target_scope]) + '<td></td><td class="tableItem_hide"><' +
+              '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
+              '</td><td class="tableItem_hide"></td></tr>';
+      $myTable.append(cr);
+
+      let rate_en = Math.round(sum_en * 10 / target_en[target_scope]);
+      if (rate_en > 10) {
+        rate_en = 10
+      } else if (rate_en < 1) {
+        rate_en = 1
+      }
+      let rate_pr = Math.round(sum_pr * 10 / target_pr[target_scope]);
+      if (rate_pr > 10) {
+        rate_pr = 10
+      } else if (rate_pr < 1) {
+        rate_pr = 1
+      }
+      let rate_va = Math.round(sum_va * 10 / target_va[target_scope]);
+      if (rate_va > 10) {
+        rate_va = 10
+      } else if (rate_va < 1) {
+        rate_va = 1
+      }
+      let rate_fe = Math.round(sum_fe * 10 / target_fe[target_scope]);
+      if (rate_fe > 10) {
+        rate_fe = 10
+      } else if (rate_fe < 1) {
+        rate_fe = 1
+      }
+
+      $('.rating_en[myNum=' + id_table + ']').val(rate_en); // set barrating
+      $('.rating_pr[myNum=' + id_table + ']').val(rate_pr); // set barrating
+      $('.rating_va[myNum=' + id_table + ']').val(rate_va); // set barrating
+      $('.rating_fe[myNum=' + id_table + ']').val(rate_fe); // set barrating
     }
-    let rate_va = Math.round(sum_va * 10 / target_va[target_scope]);
-    if (rate_va > 10) {
-      rate_va = 10
-    } else if (rate_va < 1) {
-      rate_va = 1
+
+    ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
+    function DrawSelected_addRow(id_table, add_data) { /// render selected_crops_tbl
+      let sum_en = 0;
+      let sum_pr = 0;
+      let sum_va = 0;
+      let sum_fe = 0;
+      let cr = '';
+      $myTbl = $('.selected_crops_tbl[myNum=' + id_table + ']');
+      $myTbl.children('tbody').children('tr').last().remove();
+      //  $("tr:eq(" + ($("tr").length - 2) + ")").remove();
+      $myTbl.append(add_data);
+
+      SetBarrating(id_table);
     }
-    let rate_fe = Math.round(sum_fe * 10 / target_fe[target_scope]);
-    if (rate_fe > 10) {
-      rate_fe = 10
-    } else if (rate_fe < 1) {
-      rate_fe = 1
-    }
 
-    $('.rating_en[myNum=' + id_table + ']').val(rate_en); // set barrating
-    $('.rating_pr[myNum=' + id_table + ']').val(rate_pr); // set barrating
-    $('.rating_va[myNum=' + id_table + ']').val(rate_va); // set barrating
-    $('.rating_fe[myNum=' + id_table + ']').val(rate_fe); // set barrating
-  }
-
-  ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
-  function DrawSelected_addRow(id_table, add_data) { /// render selected_crops_tbl
-    let sum_en = 0;
-    let sum_pr = 0;
-    let sum_va = 0;
-    let sum_fe = 0;
-    let cr = '';
-    $myTbl = $('.selected_crops_tbl[myNum=' + id_table + ']');
-    $myTbl.children('tbody').children('tr').last().remove();
-    //  $("tr:eq(" + ($("tr").length - 2) + ")").remove();
-    $myTbl.append(add_data);
-
-    SetBarrating(id_table);
-  }
-
-  ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
-  // initialize all table (selected_table)
-  mytable = $('#tbl_cropping').children('tbody');
-  mytable.children('tr').remove();
-  let dd = {};
-  for (var i = 0; i < json_crop_selected.length; i++) {
-    data = json_crop_selected[i];
-    if (dd[data.name]) {
-      let d = {};
-      dd[data.name][data.month - 1] = [data.total_weight, data.count_prod, data.count_buy];
-    } else {
-      let d = {};
-      d[String(data.month - 1)] = [data.total_weight, data.count_prod, data.count_buy];
-      dd[data.name] = d;
-    }
-  }
-
-  for (var tmp in dd) {
-    let cr = '<tr><td>' + tmp + '</td>';
-    for (var i = 0; i < 12; i++) {
-      if (dd[tmp][i]) {
-        console.log('count=' + i + ':' + dd[tmp][i]);
-        cr += SetDiv(dd[tmp][i]);
-//          console.log(SetDiv(dd[tmp][i]));
+    ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
+    // initialize all table (selected_table)
+    mytable = $('#tbl_cropping').children('tbody');
+    mytable.children('tr').remove();
+    let dd = {};
+    for (var i = 0; i < json_crop_selected.length; i++) {
+      data = json_crop_selected[i];
+      if (dd[data.name]) {
+        let d = {};
+        dd[data.name][data.month - 1] = [data.total_weight, data.count_prod, data.count_buy];
       } else {
-        cr += '<td></td>';
+        let d = {};
+        d[String(data.month - 1)] = [data.total_weight, data.count_prod, data.count_buy];
+        dd[data.name] = d;
       }
     }
-    cr += '</tr>';
-    mytable.append(cr);
-  }
 
-  function SetDiv(myKey) {
-    let newKey = '';
-    let picNum = 0;
-    console.log()
-    if (myKey[1] + myKey[2] > 0) {
-      picNum = Math.round(myKey[1] * 10 / (myKey[1] + myKey[2]));
+    for (var tmp in dd) {
+      let cr = '<tr><td>' + tmp + '</td>';
+      for (var i = 0; i < 12; i++) {
+        if (dd[tmp][i]) {
+          console.log('count=' + i + ':' + dd[tmp][i]);
+          cr += SetDiv(dd[tmp][i]);
+//          console.log(SetDiv(dd[tmp][i]));
+        } else {
+          cr += '<td></td>';
+        }
+      }
+      cr += '</tr>';
+      mytable.append(cr);
     }
-    newKey = '<td><img src="/static/img/pie_' + String(picNum) + '.png" style="width: 30px">' + String(myKey[0]) + '</td>';
 
-    return newKey;
-  }
+    function SetDiv(myKey) {
+      let newKey = '';
+      let picNum = 0;
+      console.log()
+      if (myKey[1] + myKey[2] > 0) {
+        picNum = Math.round(myKey[1] * 10 / (myKey[1] + myKey[2]));
+      }
+      newKey = '<td><img src="/static/img/pie_' + String(picNum) + '.png" style="width: 30px">' + String(myKey[0]) + '</td>';
+
+      return newKey;
+    }
 
 
-</script>
+  </script>
+
+{% endblock %}
