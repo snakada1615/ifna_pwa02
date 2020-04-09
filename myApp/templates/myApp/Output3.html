@@ -22,6 +22,7 @@
           <th>Oct</th>
           <th>Nov</th>
           <th>Dec</th>
+          <th>Sum</th>
         </tr>
         </thead>
         <tbody>
@@ -39,6 +40,7 @@
           <td>Oct</td>
           <td>Nov</td>
           <td>Dec</td>
+          <th>Sum</th>
         </tr>
         </tbody>
       </table>
@@ -129,10 +131,6 @@
     url_tmp.pop();
     myRoot = url_tmp.join("/") + '/';
     var myLocation_id = tmp1;
-    //////////////// star rating/////
-    $(function () {
-      $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
-    });
     ////////////////////////////////
     $('.lbl_target_en[myNum^=4]').text(target_en[1].toFixed(0));
     $('.lbl_target_pr[myNum^=4]').text(target_pr[1].toFixed(0));
@@ -263,11 +261,15 @@
 
     for (var tmp in dd) {
       let cr = '<tr><td>' + tmp + '</td>';
-      for (var i = 0; i < 12; i++) {
+      let total_w = 0;
+      for (var i = 0; i < 13; i++) {
         if (dd[tmp][i]) {
           console.log('count=' + i + ':' + dd[tmp][i]);
+          total_w += Number(dd[tmp][i][0]);
           cr += SetDiv(dd[tmp][i]);
 //          console.log(SetDiv(dd[tmp][i]));
+        } else if (i == 12) {
+          cr += '<td>' + total_w + '</td>';
         } else {
           cr += '<td></td>';
         }
