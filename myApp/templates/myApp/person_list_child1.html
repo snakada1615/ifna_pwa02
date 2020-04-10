@@ -37,10 +37,10 @@
 						{{ person.myDRI.fe }}
 					</p>
 					<span>
-						<a class="btn mb-2 btn-info btn-sm align-middle " href="{% url 'person_update' myLocation=myLocation.id pk=person.id %}">edit</a>
+						<a class="btn mb-2 btn-info btn-sm align-middle " href="{% url 'person_update' myLocation=myLocation.id pk=person.id mytarget_scope=person.target_scope %}">edit</a>
 					</span>
 					<span>
-						<a class="btn mb-2 btn-info btn-sm align-middle " href="{% url 'person_delete' myLocation=myLocation.id pk=person.id %}">del</a>
+						<a class="btn mb-2 btn-info btn-sm align-middle " href="{% url 'person_delete' myLocation=myLocation.id pk=person.id mytarget_scope=person.target_scope %}">del</a>
 					</span>
 				</div>
 			</div>

@@ -180,20 +180,19 @@ class Location_DeleteView(LoginRequiredMixin, DeleteView):  # todo これをmoda
     return context
 
   def delete(self, *args, **kwargs):
-      self.object = self.get_object()
-      # myStatusの設定
-      tmp_myLoc = 0
-      if Location.objects.filter(created_by_id=self.request.user.id).count() > 0:
-        tmp_myLoc = Location.objects.first().id
-      myStatus.objects.filter(curr_User=self.request.user.id).update(
-        myLocation=tmp_myLoc
-      )
-      myStatus.objects.filter(curr_User=self.request.user.id).update(myCrop='0')
-      myStatus.objects.filter(curr_User=self.request.user.id).update(myTarget='0')
-      myStatus.objects.filter(curr_User=self.request.user.id).update(myDiet='0')
+    self.object = self.get_object()
+    # myStatusの設定
+    tmp_myLoc = 0
+    if Location.objects.filter(created_by_id=self.request.user.id).count() > 0:
+      tmp_myLoc = Location.objects.first().id
+    myStatus.objects.filter(curr_User=self.request.user.id).update(
+      myLocation=tmp_myLoc
+    )
+    myStatus.objects.filter(curr_User=self.request.user.id).update(myCrop='0')
+    myStatus.objects.filter(curr_User=self.request.user.id).update(myTarget='0')
+    myStatus.objects.filter(curr_User=self.request.user.id).update(myDiet='0')
 
-      return super(Location_DeleteView, self).delete(*args, **kwargs)
-
+    return super(Location_DeleteView, self).delete(*args, **kwargs)
 
 
 class Location_CreateView(LoginRequiredMixin, CreateView):
@@ -428,6 +427,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
     context['mytarget_scope_Sum'] = tmpClass_sum
     context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
     context['myuser'] = self.request.user
+    context['page'] = self.kwargs['page']
 
     return context
 
@@ -456,10 +456,12 @@ class Person_UpdateView(LoginRequiredMixin, UpdateView):
     context["locations"] = Person.objects.filter(
       myLocation_id=myLocation)
     context['myuser'] = self.request.user
+    context['mytarget_scope'] = self.kwargs['mytarget_scope']
     return context
 
   def get_success_url(self, **kwargs):
-    return reverse_lazy('person_list', kwargs={'myLocation': self.kwargs['myLocation']})
+    return reverse_lazy('person_list',
+                        kwargs={'myLocation': self.kwargs['myLocation'], 'page': self.kwargs['mytarget_scope']})
 
   def form_valid(self, form):
     self.object = form.save()
@@ -479,7 +481,7 @@ class Person_UpdateView(LoginRequiredMixin, UpdateView):
     return HttpResponseRedirect(self.get_success_url())
 
 
-class Person_CreateView(LoginRequiredMixin, CreateView):  # todo 新規追加後のタブの戻り位置が変、person毎のパネルの枠を太くする
+class Person_CreateView(LoginRequiredMixin, CreateView):  # todo person毎のパネルの枠を太くする
   model = Person
   form_class = Person_Form
   template_name = 'myApp/person_form.html'
@@ -496,10 +498,12 @@ class Person_CreateView(LoginRequiredMixin, CreateView):  # todo 新規追加後
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myLocation'] = self.kwargs['myLocation']
+    context['mytarget_scope'] = self.kwargs['mytarget_scope']
     return context
 
   def get_success_url(self, **kwargs):
-    return reverse_lazy('person_list', kwargs={'myLocation': self.kwargs['myLocation']})
+    return reverse_lazy('person_list',
+                        kwargs={'myLocation': self.kwargs['myLocation'], 'page': self.kwargs['mytarget_scope']})
 
   def form_valid(self, form):
     self.object = form.save()
@@ -529,22 +533,20 @@ class Person_DeleteView(LoginRequiredMixin, DeleteView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myLocation'] = self.kwargs['myLocation']
+    context['mytarget_scope'] = self.kwargs['mytarget_scope']
     return context
 
   def get_success_url(self, **kwargs):
-    if kwargs != None:
-      return reverse_lazy('person_list', kwargs={'myLocation': self.kwargs['myLocation']})
-    else:
-      return reverse_lazy('person_list', args=(self.object.id,))
+    return reverse_lazy('person_list',
+                        kwargs={'myLocation': self.kwargs['myLocation'], 'page': self.kwargs['mytarget_scope']})
 
   def delete(self, *args, **kwargs):
-      self.object = self.get_object()
-      # myStatusの設定
-      myStatus.objects.filter(curr_User=self.request.user.id).update(myTarget='0')
-      myStatus.objects.filter(curr_User=self.request.user.id).update(myDiet='0')
+    self.object = self.get_object()
+    # myStatusの設定
+    myStatus.objects.filter(curr_User=self.request.user.id).update(myTarget='0')
+    myStatus.objects.filter(curr_User=self.request.user.id).update(myDiet='0')
 
-      return super(Location_DeleteView, self).delete(*args, **kwargs)
-
+    return super(Person_DeleteView, self).delete(*args, **kwargs)
 
 
 class Diet_Plan1(LoginRequiredMixin, TemplateView):

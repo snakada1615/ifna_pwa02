@@ -11,7 +11,7 @@
       <div class="col-8 my-0 px-1">
         <h5>
           agree on nutrition target for
-          {{myLocation.myCountry.NAME_1}}
+          {{ myLocation.myCountry.NAME_1 }}
         </h5>
       </div>
       <div class="col-2 my-0 px-1">
@@ -43,7 +43,8 @@
                 province:
                 {{ myLocation.myCountry.NAME_2 }}
               </p>
-              <button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true" aria-controls="more_info">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true"
+                      aria-controls="more_info">
                 more info
               </button>
 
@@ -74,29 +75,32 @@
     </div>
   </div>
 
-  <div class="container border-secondary py-1 my-1" style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
+  <div class="container border-secondary py-1 my-1"
+       style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
     <!-- 4個分のタブ -->
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a href="#tab1_link" class="nav-link active" id="tab1" data-toggle="tab">individual</a>
+        <a href="#tab1_link" class="nav-link {% ifequal page 1 %}active{% endifequal %}" id="tab1"
+           data-toggle="tab">individual</a>
       </li>
       <li class="nav-item">
-        <a href="#tab2_link" class="nav-link" id="tab2" data-toggle="tab">family</a>
+        <a href="#tab2_link" class="nav-link {% ifequal page 2 %}active{% endifequal %}" id="tab2" data-toggle="tab">family</a>
       </li>
       <li class="nav-item">
-        <a href="#tab3_link" class="nav-link" id="tab3" data-toggle="tab">community</a>
+        <a href="#tab3_link" class="nav-link {% ifequal page 3 %}active{% endifequal %}" id="tab3"
+           data-toggle="tab">community</a>
       </li>
     </ul>
 
     <!-- 写真部分 -->
     <div class="tab-content">
-      <div id="tab1_link" class="tab-pane active">
+      <div id="tab1_link" class="tab-pane {% ifequal page 1 %}active{% endifequal %}">
         {% include "./person_list_child1.html" %}
       </div>
-      <div id="tab2_link" class="tab-pane">
+      <div id="tab2_link" class="tab-pane {% ifequal page 2 %}active{% endifequal %}">
         {% include "./person_list_child2.html" %}
       </div>
-      <div id="tab3_link" class="tab-pane">
+      <div id="tab3_link" class="tab-pane {% ifequal page 3 %}active{% endifequal %}">
         {% include "./person_list_child3.html" %}
       </div>
     </div>
@@ -113,7 +117,8 @@
   <script type="text/javascript">
     $('[data-toggle="tooltip"]').tooltip()
 
-    let mytarget_scope_Sum = {{mytarget_scope_Sum}}
+    let mytarget_scope_Sum =
+    {{mytarget_scope_Sum}}
     if (mytarget_scope_Sum < 100) {
       $('#btn_add1').removeClass('disabled');
       $('#tab2').addClass('disabled');
