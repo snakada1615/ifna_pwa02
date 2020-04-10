@@ -29,7 +29,7 @@
         <div class="row">
           <div class="col-12">
             <span>
-              <a class="btn btn-warning mt-2 my-0 py-0 btn-sm" href="{% url 'person_list' myLocation=myLocation.id %}">back</a>
+              <a class="btn btn-warning mt-2 my-0 py-0 btn-sm" href="{% url 'index02' %}">back</a>
             </span>
             <span>
               <a mynum="100" id="btn_save_crop" class="btn btn-warning mt-2 my-0 py-0 btn-sm">save</a>
@@ -227,6 +227,8 @@
             <span style="color: #cc1111">buy</span> /
             <span style="color: #5bc0de">production</span>):
           </label>
+          <span class="fb fb-help" data-toggle="tooltip" title="Tooltip message"></span>
+
           <select id="my_Prod_Buy">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -292,6 +294,9 @@
   </style>
 
   <script>
+    //ツールチップの初期化
+    $('[data-toggle="tooltip"]').tooltip()
+
     // グローバル変数の作成
     var selected_rows_id = [];
     var myLocation = '';
@@ -346,629 +351,627 @@
     $('.lbl_target_fe[myNum^=3]').text(target_fe[3].toFixed(0));
     /////////////////////////////
     var tblObj_localCrop1 = $('#localCrop1').DataTable({
-              "data": json_crop_local,
-              "pageLength": 50,
-              "columns": [
-                {
-                  "data": "selected_status"
-                }, {
-                  "data": "Food_name"
-                }, {
-                  "data": "Energy"
-                }, {
-                  "data": "Protein"
-                }, {
-                  "data": "VITA_RAE"
-                }, {
-                  "data": "FE"
-                }, {
-                  "data": "Food_grp"
-                }, {
-                  "data": "Weight"
-                }, {
-                  "data": "portion_size"
-                }, {
-                  "data": "m1"
-                }, {
-                  "data": "m2"
-                }, {
-                  "data": "m3"
-                }, {
-                  "data": "m4"
-                }, {
-                  "data": "m5"
-                }, {
-                  "data": "m6"
-                }, {
-                  "data": "m7"
-                }, {
-                  "data": "m8"
-                }, {
-                  "data": "m9"
-                }, {
-                  "data": "m10"
-                }, {
-                  "data": "m11"
-                }, {
-                  "data": "m12"
-                }, {
-                  "data": "food_item_id"
-                }, {
-                  "data": "count_prod"
-                }, {
-                  "data": "count_buy"
-                }
-              ],
+      "data": json_crop_local,
+      "pageLength": 50,
+      "columns": [
+        {
+          "data": "selected_status"
+        }, {
+          "data": "Food_name"
+        }, {
+          "data": "Energy"
+        }, {
+          "data": "Protein"
+        }, {
+          "data": "VITA_RAE"
+        }, {
+          "data": "FE"
+        }, {
+          "data": "Food_grp"
+        }, {
+          "data": "Weight"
+        }, {
+          "data": "portion_size"
+        }, {
+          "data": "m1"
+        }, {
+          "data": "m2"
+        }, {
+          "data": "m3"
+        }, {
+          "data": "m4"
+        }, {
+          "data": "m5"
+        }, {
+          "data": "m6"
+        }, {
+          "data": "m7"
+        }, {
+          "data": "m8"
+        }, {
+          "data": "m9"
+        }, {
+          "data": "m10"
+        }, {
+          "data": "m11"
+        }, {
+          "data": "m12"
+        }, {
+          "data": "food_item_id"
+        }, {
+          "data": "count_prod"
+        }, {
+          "data": "count_buy"
+        }
+      ],
 
-              "columnDefs": [
-                {
-                  targets: [
-                    1, 2, 3, 4, 5
-                  ],
-                  visible: true
-                }, {
-                  targets: '_all',
-                  bVisible: false
-                }, {
-                  "orderSequence": ["desc"],
-                  "targets": [2]
-                }, {
-                  "orderSequence": ["desc"],
-                  "targets": [3]
-                }, {
-                  "orderSequence": ["desc"],
-                  "targets": [4]
-                }, {
-                  "orderSequence": ["desc"],
-                  "targets": [5]
-                }
-              ],
-              "initComplete": function (settings, json) {
-                // ////add filtering dropdown list
-                this.api().columns([6]).every(function () {
-                  var column = this;
-                  var select = $('<select style="border: 1px grey double;"><option value=""></option></select>').appendTo($('#myFilter1')).on('change', function () {
-                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+      "columnDefs": [
+        {
+          targets: [
+            1, 2, 3, 4, 5
+          ],
+          visible: true
+        }, {
+          targets: '_all',
+          bVisible: false
+        }, {
+          "orderSequence": ["desc"],
+          "targets": [2]
+        }, {
+          "orderSequence": ["desc"],
+          "targets": [3]
+        }, {
+          "orderSequence": ["desc"],
+          "targets": [4]
+        }, {
+          "orderSequence": ["desc"],
+          "targets": [5]
+        }
+      ],
+      "initComplete": function (settings, json) {
+        // ////add filtering dropdown list
+        this.api().columns([6]).every(function () {
+          var column = this;
+          var select = $('<select style="border: 1px grey double;"><option value=""></option></select>').appendTo($('#myFilter1')).on('change', function () {
+            var val = $.fn.dataTable.util.escapeRegex($(this).val());
 
-                    column.search(
-                            val
-                                    ? '^' + val + '$'
-                                    : '',
-                            true,
-                            false
-                    ).draw();
-                  });
-                  column.data().unique().sort().each(function (d, j) {
-                    select.append('<option value="' + d + '">' + d + '</option>');
-                  });
-                });
+            column.search(
+                    val
+                            ? '^' + val + '$'
+                            : '',
+                    true,
+                    false
+            ).draw();
+          });
+          column.data().unique().sort().each(function (d, j) {
+            select.append('<option value="' + d + '">' + d + '</option>');
+          });
+        });
 
-                //////////////////////////////////// ////////set cell color////////////////
-                function SetCellColor(i_cell, i_target) {
-                  let res = '';
-                  cNum = parseInt(i_cell * 100 / i_target, 10);
-                  switch (true) {
-                    case 0 <= cNum && cNum < 50:
-                      res = '<td style="color:red;">' + i_cell + '</td>';
-                      break;
+        //////////////////////////////////// ////////set cell color////////////////
+        function SetCellColor(i_cell, i_target) {
+          let res = '';
+          cNum = parseInt(i_cell * 100 / i_target, 10);
+          switch (true) {
+            case 0 <= cNum && cNum < 50:
+              res = '<td style="color:red;">' + i_cell + '</td>';
+              break;
 
-                    case 50 <= cNum && cNum < 100:
-                      res = '<td style="color:orange;">' + i_cell + '</td>';
-                      break;
+            case 50 <= cNum && cNum < 100:
+              res = '<td style="color:orange;">' + i_cell + '</td>';
+              break;
 
-                    case 100 <= cNum:
-                      res = '<td style="color:green;">' + i_cell + '</td>';
-                      break;
+            case 100 <= cNum:
+              res = '<td style="color:green;">' + i_cell + '</td>';
+              break;
 
-                    default:
-                      res = '<td>' + i_cell + '</td>';
-                      break;
-                  }
-                  return res;
-                }
+            default:
+              res = '<td>' + i_cell + '</td>';
+              break;
+          }
+          return res;
+        }
 
-                /////////////// set barrating /
-                function SetBarrating(id_table) {
-                  $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
-                  let sum_en = 0;
-                  let sum_pr = 0;
-                  let sum_va = 0;
-                  let sum_fe = 0;
-                  let cr = '';
+        /////////////// set barrating /
+        function SetBarrating(id_table) {
+          $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
+          let sum_en = 0;
+          let sum_pr = 0;
+          let sum_va = 0;
+          let sum_fe = 0;
+          let cr = '';
 
-                  //ここからBarratingの記入
-                  $myTable.children('tbody').children('tr').each(function (j, myRow) {
-                    sum_en += Number($(myRow).children('td').eq(1).text());
-                    sum_pr += Number($(myRow).children('td').eq(2).text());
-                    sum_va += Number($(myRow).children('td').eq(3).text());
-                    sum_fe += Number($(myRow).children('td').eq(4).text());
-                  });
-                  target_scope = Math.trunc(id_table / 100);
+          //ここからBarratingの記入
+          $myTable.children('tbody').children('tr').each(function (j, myRow) {
+            sum_en += Number($(myRow).children('td').eq(1).text());
+            sum_pr += Number($(myRow).children('td').eq(2).text());
+            sum_va += Number($(myRow).children('td').eq(3).text());
+            sum_fe += Number($(myRow).children('td').eq(4).text());
+          });
+          target_scope = Math.trunc(id_table / 100);
 
-                  cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[target_scope]) +
-                          SetCellColor(Math.round(sum_pr), target_pr[target_scope]) +
-                          SetCellColor(Math.round(sum_va), target_va[target_scope]) +
-                          SetCellColor(Math.round(sum_fe), target_fe[target_scope]) + '<td></td><td class="tableItem_hide"><' +
-                          '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
-                          '</td><td class="tableItem_hide"></td></tr>';
-                  $myTable.append(cr);
+          cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[target_scope]) +
+                  SetCellColor(Math.round(sum_pr), target_pr[target_scope]) +
+                  SetCellColor(Math.round(sum_va), target_va[target_scope]) +
+                  SetCellColor(Math.round(sum_fe), target_fe[target_scope]) + '<td></td><td class="tableItem_hide"><' +
+                  '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
+                  '</td><td class="tableItem_hide"></td></tr>';
+          $myTable.append(cr);
 
-                  let rate_en = Math.round(sum_en * 10 / target_en[target_scope]);
-                  if (rate_en > 10) {
-                    rate_en = 10
-                  } else if (rate_en < 1) {
-                    rate_en = 1
-                  }
-                  let rate_pr = Math.round(sum_pr * 10 / target_pr[target_scope]);
-                  if (rate_pr > 10) {
-                    rate_pr = 10
-                  } else if (rate_pr < 1) {
-                    rate_pr = 1
-                  }
-                  let rate_va = Math.round(sum_va * 10 / target_va[target_scope]);
-                  if (rate_va > 10) {
-                    rate_va = 10
-                  } else if (rate_va < 1) {
-                    rate_va = 1
-                  }
-                  let rate_fe = Math.round(sum_fe * 10 / target_fe[target_scope]);
-                  if (rate_fe > 10) {
-                    rate_fe = 10
-                  } else if (rate_fe < 1) {
-                    rate_fe = 1
-                  }
+          let rate_en = Math.round(sum_en * 10 / target_en[target_scope]);
+          if (rate_en > 10) {
+            rate_en = 10
+          } else if (rate_en < 1) {
+            rate_en = 1
+          }
+          let rate_pr = Math.round(sum_pr * 10 / target_pr[target_scope]);
+          if (rate_pr > 10) {
+            rate_pr = 10
+          } else if (rate_pr < 1) {
+            rate_pr = 1
+          }
+          let rate_va = Math.round(sum_va * 10 / target_va[target_scope]);
+          if (rate_va > 10) {
+            rate_va = 10
+          } else if (rate_va < 1) {
+            rate_va = 1
+          }
+          let rate_fe = Math.round(sum_fe * 10 / target_fe[target_scope]);
+          if (rate_fe > 10) {
+            rate_fe = 10
+          } else if (rate_fe < 1) {
+            rate_fe = 1
+          }
 
-                  $('.rating_en[myNum=' + id_table + ']').barrating('set', rate_en); // set barrating
-                  $('.rating_pr[myNum=' + id_table + ']').barrating('set', rate_pr); // set barrating
-                  $('.rating_va[myNum=' + id_table + ']').barrating('set', rate_va); // set barrating
-                  $('.rating_fe[myNum=' + id_table + ']').barrating('set', rate_fe); // set barrating
-                }
+          $('.rating_en[myNum=' + id_table + ']').barrating('set', rate_en); // set barrating
+          $('.rating_pr[myNum=' + id_table + ']').barrating('set', rate_pr); // set barrating
+          $('.rating_va[myNum=' + id_table + ']').barrating('set', rate_va); // set barrating
+          $('.rating_fe[myNum=' + id_table + ']').barrating('set', rate_fe); // set barrating
+        }
 
-                ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
-                function DrawSelected_AllTable(id_table) { /// render selected_crops_tbl
-                  $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
-                  $myTable.find('tr').remove(); //remove all rows
-                  let sum_en = 0;
-                  let sum_pr = 0;
-                  let sum_va = 0;
-                  let sum_fe = 0;
-                  let cr = '';
-                  for (var i = 0; i < json_crop_selected.length; i++) {
-                    data = json_crop_selected[i];
-                    if (data.myid_tbl === id_table) {
-                      cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th>' +
-                              '<th class="tableItem_hide">id</th><th class="tableItem_hide">food_item_id</th>' +
-                              '<th class="tableItem_hide">portion_size</th><th class="tableItem_hide">count_prod</th>' +
-                              '<th class="tableItem_hide">count_buy</th><th class="tableItem_hide">En0</th>' +
-                              '<th class="tableItem_hide">Pr0</th><th class="tableItem_hide">Va0</th>' +
-                              '<th class="tableItem_hide">Fe0</th></tr><tr>';
-                      cr += '<td>' + data.name + '</td>';
-                      cr += '<td>' + Math.round(data.Energy * data.total_weight / 100, 1) + '</td>';
-                      cr += '<td>' + Math.round(data.Protein * data.total_weight / 100, 1) + '</td>';
-                      cr += '<td>' + Math.round(data.VITA_RAE * data.total_weight / 100, 1) + '</td>';
-                      cr += '<td>' + Math.round(data.FE * data.total_weight / 100, 1) + '</td>';
-                      cr += '<td>' + data.total_weight + '</td>';
-                      cr += '<td class="tableItem_hide"></td>';
-                      cr += '<td class="tableItem_hide">' + data.food_item_id + '</td>';
-                      cr += '<td class="tableItem_hide">' + data.portion_size + '</td>';
-                      cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
-                      cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
-                      cr += '<td class="tableItem_hide">' + data.Energy + '</td>';
-                      cr += '<td class="tableItem_hide">' + data.Protein + '</td>';
-                      cr += '<td class="tableItem_hide">' + data.VITA_RAE + '</td>';
-                      cr += '<td class="tableItem_hide">' + data.FE + '</td>';
-                      cr += '</tr>';
-                    }
-                  }
-                  $myTable.append(cr);
-                  SetBarrating(id_table);
-                }
-
-                ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
-                function DrawSelected_addRow(id_table, add_data) { /// render selected_crops_tbl
-                  let sum_en = 0;
-                  let sum_pr = 0;
-                  let sum_va = 0;
-                  let sum_fe = 0;
-                  let cr = '';
-                  $myTbl = $('.selected_crops_tbl[myNum=' + id_table + ']');
-                  $myTbl.children('tbody').children('tr').last().remove();
-                  //  $("tr:eq(" + ($("tr").length - 2) + ")").remove();
-                  $myTbl.append(add_data);
-
-                  SetBarrating(id_table);
-                }
-
-                ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
-                function DrawSelected_delRow(id_table, food_item_id) { /// render selected_crops_tbl
-                  $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
-                  $myTable.children('tbody').children('tr').each(function (j, myRow) {
-                    if ($(myRow).children('td').eq(7).text() === food_item_id) {
-                      $(myRow).remove();
-                      return false;
-                    }
-                  })
-                }
-
-                ////////////////////////////////////////////// //////////init second table as modal dialog add selected rows to text box
-                $('#localCrop1 tbody').on('click', 'tr', function () {
-                  $(this).toggleClass('selected');
-                  if ($(this).hasClass('selected')) {
-                    mydata = tblObj_localCrop1.row(this).data();
-
-                    //データセットの作成
-                    dd = {};
-                    dd["name"] = mydata['Food_name'];
-                    dd["Energy"] = mydata['Energy'];
-                    dd["Protein"] = mydata['Protein'];
-                    dd["VITA_RAE"] = mydata['VITA_RAE'];
-                    dd["FE"] = mydata['FE'];
-                    dd["food_item_id"] = mydata['food_item_id'];
-                    dd["portion_size"] = mydata['portion_size'];
-                    dd["total_weight"] = 0;
-                    dd["count_prod"] = 0;
-                    dd["count_buy"] = 0;
-                    dd["month"] = '';
-                    dd["myLocation"] = myLocation_id;
-                    dd["myid_tbl"] = $('#container_tab_all').attr('myNum');
-                    dd["target_scope"] = Math.trunc(Number(dd["myid_tbl"]) / 100);
-
-                    //tableにデータを表示
-                    let cr = '';
-                    cr += '<tr>';
-                    cr += '<td>' + dd["name"] + '</td>';
-                    cr += '<td>' + Math.round(Number(dd["Energy"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(Number(dd["Protein"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(Number(dd["VITA_RAE"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(Number(dd["FE"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
-                    cr += '<td>0</td>';
-                    cr += '<td class="tableItem_hide"></td>';
-                    cr += '<td class="tableItem_hide">' + dd["food_item_id"] + '</td>';
-                    cr += '<td class="tableItem_hide">' + dd["portion_size"] + '</td>';
-                    cr += '<td class="tableItem_hide">' + 0 + '</td>';
-                    cr += '<td class="tableItem_hide">' + 0 + '</td>';
-                    cr += '<td class="tableItem_hide">' + dd["Energy"] + '</td>';
-                    cr += '<td class="tableItem_hide">' + dd["Protein"] + '</td>';
-                    cr += '<td class="tableItem_hide">' + dd["VITA_RAE"] + '</td>';
-                    cr += '<td class="tableItem_hide">' + dd["FE"] + '</td>';
-                    cr += '</tr>';
-
-                    DrawSelected_addRow(dd["myid_tbl"], cr);
-
-                  } else {
-                    DrawSelected_delRow(dd["myid_tbl"], dd["food_item_id"])
-                  }
-                }); //////////////////////////////////////////////
-                /////CreateSelection/////
-                function CreateSelection(myNum) {
-                  let myNum_tmp = myNum;
-                  let selected_list = [];
-                  let $modal_localCrop = $('#Modal_localCrop1');
-                  $('#container_tab_all').attr('myNum', myNum_tmp);
-                  $modal_localCrop.attr('myNum', myNum_tmp);
-
-                  /// get currently selected row//
-                  $('.selected_crops_tbl[myNum=' + myNum_tmp + '] tr').each(function (myRow) {
-                    myFood_item = $(this).children('td').eq(0).text();
-                    myFood_item_id = $(this).children('td').eq(7).text();
-                    if (myFood_item !== '' && myFood_item !== 'total') {
-                      selected_list.push(myFood_item_id);
-                    }
-                  });
-
-                  // de-select all crop in the list
-                  tblObj_localCrop1.rows().deselect();
-
-                  //filter crop by month//
-                  for (var i = 10; i < 22; i++) {
-                    tblObj_localCrop1.column(i).search('').columns().search('').draw();
-                  }
-                  let myMonth = 0;
-                  if (myNum_tmp < 200) {
-                    myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex");
-                  } else {
-                    myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').text() - 1;
-                  }
-                  tblObj_localCrop1.column(myMonth + 10).search('[123]', true, false).draw();
-
-                  /// give selected status to the currently selected item//
-                  tblObj_localCrop1.rows().every(function (rowIdx, tableLoop, rowLoop) {
-                    let myrow = this.data();
-                    if (selected_list.indexOf(String(myrow.food_item_id)) >= 0) {
-                      this.select();
-                    }
-                  });
-                }
-
-                /////CreateSelection/////
-
-                ////////// start crop selection (local -> selected)
-                $('.btn_add_crop').on('click', function () {
-                  CreateSelection($(this).attr('myNum'));
-                  $('#Modal_localCrop1').modal('show');
-                }); //////////////////////////////////////////////
-
-                //set pichart image////////////#todo pichartを変更する昨日追加
-                function SetPie_img(i_prod, i_buy) {
-                  let res = 10;
-                  if (i_prod + i_buy > 0) {
-                    res = Math.round(i_prod * 10 / (i_prod + i_buy));
-                  }
-                  let h = "/static/img/pie_" + String(res) + ".png";
-                  //console.log(h);
-                  return h;
-                }
-
-                //set pichart value////////
-                function SetPie_val(totalCount, myShare) {
-                  let h = {};
-                  let res = Math.round(totalCount * myShare / 10);
-                  h.i_prod = res;
-                  h.i_buy = totalCount - res;
-                  return h;
-                }
-
-                //////////////////add table edit function////#
-                $(".selected_crops_tbl").on("click", "td", function () {
-                  $('#selected_row').val($(this).closest('tr').index());//いらない？
-                  $('#tbl_food_SetWeight tr').remove();//tbl_food_SetWeightのテーブル初期化
-                  let myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');
-                  let row_food_SetWeight = $("td", $(this).parent());
-                  let myrowid = row_food_SetWeight.eq(6).text();
-                  // let myData = tblObj_localCrop1.row(row_food_SetWeight.eq(6).text()).data();
-                  let por = Number(row_food_SetWeight.eq(8).text());
-                  let count_prod_tmp = Number(row_food_SetWeight.eq(9).text());
-                  let count_buy_tmp = Number(row_food_SetWeight.eq(10).text());
-
-                  //console.log('count_prod_tmp' + count_prod_tmp + ', count_prod_tmpbuy:' + count_buy_tmp);
-
-                  let cou = count_buy_tmp + count_prod_tmp;
-                  let $foodInfo = $('#tbl_food_SetWeight');
-                  let mes = 'consumption target(one portion=' + por + 'g)';
-
-                  //mytmpdat = tblObj_localCrop1.column(7).search(336);
-                  //console.log(mytmpdat);
-
-                  $foodInfo.attr('myrowid', $(this).closest('tr').index());
-                  $foodInfo.attr('myNum', myNum_tmp);
-                  $('#container_tab_all').attr('myNum', myNum_tmp);
-
-                  let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th></tr><tr>';
-                  cr += '<tr>';
-                  cr += '<td>' + row_food_SetWeight.eq(0).text() + '</td>';
-                  cr += '<td>' + row_food_SetWeight.eq(1).text() + '</td>';
-                  cr += '<td>' + row_food_SetWeight.eq(2).text() + '</td>';
-                  cr += '<td>' + row_food_SetWeight.eq(3).text() + '</td>';
-                  cr += '<td>' + row_food_SetWeight.eq(4).text() + '</td>';
-                  cr += '</tr>';
-                  $foodInfo.append(cr);
-                  $('#mystar1-label1').text('consumption target(one portion=' + por + 'g)');
-                  if (cou === 0) {
-                    $('#mystar1').barrating('set', 1);
-                  } else {
-                    $('#mystar1').barrating('set', cou);
-                  }
-                  $('#mystar1-pie').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
-
-
-                  //  DrawSelected();
-
-                  $('#Modal_foodVol1').modal('show');
-                });
-
-                ////////////////// button click to reflect the modificatio　#todo シェア変更機能
-                $('#change_weight1').click(function () {
-                  let motherTable = $('#tbl_food_SetWeight');
-                  let myrowid = motherTable.attr('myrowid');
-                  let myid_table = motherTable.attr('myNum');
-                  myNum_tmp = $('#container_tab_all').attr('myNum');//多分削除可能
-                  mytable = $('.selected_crops_tbl[myNum=' + myid_table + ']');
-                  mytable.children('tbody').children('tr').last().remove();//最終行（合計）を削除
-
-                  mydata = mytable.children('tbody').children('tr').eq(myrowid);//修正行に移動
-
-                  let por = Number(mydata.children('td').eq(8).text());
-                  //ここからprod-buyのシェア計算///
-                  let cou = Number($('#mystar1').children("option:selected").val());
-                  let tmp_prod = mydata.children('td').eq(9).text();
-                  let tmp_buy = mydata.children('td').eq(10).text();
-                  let tmp_all = tmp_prod + tmp_buy;
-                  let myShare = 10;
-                  if (tmp_all > 0) {
-                    myShare = Math.round(tmp_prod * 10 / tmp_all);
-                  }
-                  tmp_prod = Math.round(cou * myShare / 10);
-                  tmp_buy = cou - tmp_prod;
-
-                  mydata.children('td').eq(1).text(Number(mydata.children('td').eq(11).text()) * por * cou / 100);
-                  mydata.children('td').eq(2).text(Number(mydata.children('td').eq(12).text()) * por * cou / 100);
-                  mydata.children('td').eq(3).text(Number(mydata.children('td').eq(13).text()) * por * cou / 100);
-                  mydata.children('td').eq(4).text(Number(mydata.children('td').eq(14).text()) * por * cou / 100);
-                  mydata.children('td').eq(9).text(tmp_prod);
-                  mydata.children('td').eq(10).text(tmp_buy);
-                  mydata.children('td').eq(5).text(por * cou);
-                  CreateSelection(myNum_tmp);
-
-                  ///////////////////
-//                  DrawSelected();
-                  SetBarrating(myNum_tmp);
-                  //////////////////
-                  $('#Modal_foodVol1').modal('hide');
-                }); //----------change_weight complete here-------
-
-                //---------set balance pruduce/purchase-----------
-                $('#mystar1-pie').on('click', function () {
-                  let motherTable = $('#tbl_food_SetWeight');
-                  let myrowid = motherTable.attr('myrowid');
-                  let myid_table = motherTable.attr('myNum');
-                  let mytable = $('.selected_crops_tbl[myNum=' + myid_table + ']');
-                  let mydata = mytable.children('tbody').children('tr').eq(myrowid);//修正行に移動
-                  let count_prod_tmp = Number(mydata.children('td').eq(9).text());
-                  let count_buy_tmp = Number(mydata.children('td').eq(10).text());
-                  myShare = Math.round(count_prod_tmp * 10 / (count_prod_tmp + count_buy_tmp));
-
-                  $('#my_Prod_Buy').barrating('set', myShare);// set barrating
-                  $('#Modal_Prod_Buy').modal('show');
-                });//----------balance pruduce/purchase complete here-------
-
-                //// set balance pruduce/purchase //
-                $('#change_share1').on('click', function () {
-                  let myShare = Number($('#my_Prod_Buy').children("option:selected").val());
-                  let motherTable = $('#tbl_food_SetWeight');
-                  let myrowid = motherTable.attr('myrowid');
-                  let myid_table = motherTable.attr('myNum');
-                  let mytable = $('.selected_crops_tbl[myNum=' + myid_table + ']');
-                  let mydata = mytable.children('tbody').children('tr').eq(myrowid);//修正行に移動
-                  let count_prod_tmp = Number(mydata.children('td').eq(9).text());
-                  let count_buy_tmp = Number(mydata.children('td').eq(10).text());
-                  let total_count = count_prod_tmp + count_buy_tmp;
-                  //console.log('count_prod_tmp' + count_prod_tmp + ', count_buy_tmp:' + count_buy_tmp);
-                  //console.log('myshare=' + myShare);
-                  count_prod_tmp = Math.round(total_count * myShare / 10);
-                  count_buy_tmp = total_count - count_prod_tmp;
-                  mydata.children('td').eq(9).text(count_prod_tmp);
-                  mydata.children('td').eq(10).text(count_buy_tmp);
-                  //console.log('count_prod_tmp' + count_prod_tmp + ', count_prod_tmpbuy:' + count_buy_tmp);
-
-                  $('#mystar1-pie').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
-                  $('#Modal_Prod_Buy').modal('hide');
-                });
-
-                //////////////////btn_save_crop
-                $('#btn_save_crop').click(function () {
-                  let hostUrl = myRoot + 'registDiet/';
-                  let mydat = getTblData();
-
-                  //console.log(mydat);
-                  Set_CRSF();
-                  sendJson(mydat, hostUrl);
-                  //console.log(mydat);
-                }); ////////btn_save_crop///////////
-
-                //////////////////getTblData
-                function getTblData() { //#todo
-                  let d = [];
-                  $('.selected_crops_tbl').each(function (i, myTbl) {
-                    $(myTbl).children('tbody').children('tr').each(function (j, myRow) {
-                      let dd = {};
-                      if ($(myRow).children('td').eq(0).text() !== '' && $(myRow).children('td').eq(0).text() !== 'total') {
-                        //   dd["myName"] = $(myRow).children('td').eq(0).text();
-                        dd["total_weight"] = $(myRow).children('td').eq(5).text();
-                        dd["food_item_id"] = $(myRow).children('td').eq(7).text();
-                        dd["portion_size"] = $(myRow).children('td').eq(8).text();
-                        dd["count_prod"] = $(myRow).children('td').eq(9).text();
-                        dd["count_buy"] = $(myRow).children('td').eq(10).text();
-
-                        let myNum_tmp = $(myTbl).attr('myNum');
-                        let myMonth = 0;
-                        if (myNum_tmp < 200) {
-                          myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex") + 1;
-                        } else {
-                          myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').text();
-                        }
-                        dd["month"] = myMonth;
-                        dd["myid_tbl"] = myNum_tmp;
-                        dd["myLocation"] = myLocation_id;
-                        dd["target_scope"] = Math.trunc(myNum_tmp / 100);
-
-                        d.push(dd);
-                      }
-                    })
-                  });
-                  return {"myJson": d};
-                }
-
-
-                //////////////////getTblData //// csrf_tokenの取得に使う//////////////
-                function getCookie(name) {
-                  var cookieValue = null;
-                  if (document.cookie && document.cookie !== '') {
-                    var cookies = document.cookie.split(';');
-                    for (var i = 0; i < cookies.length; i++) {
-                      var cookie = jQuery.trim(cookies[i]);
-                      // Does this cookie string begin with the name we want?
-                      if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                      }
-                    }
-                  }
-                  return cookieValue;
-                }
-
-                function csrfSafeMethod(method) {
-                  // these HTTP methods do not require CSRF protection
-                  return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-                }
-
-                function Set_CRSF() {
-                  var csrf_token = getCookie("csrftoken");
-                  $.ajaxSetup({
-                    crossDomain: false, // obviates need for sameOrigin test
-                    beforeSend: function (xhr, settings) {
-                      if (!csrfSafeMethod(settings.type)) {
-                        xhr.setRequestHeader("X-CSRFToken", csrf_token);
-                      }
-                    }
-                  });
-                }
-
-                //////////////////sendJson////
-                function sendJson(myjson, hostUrl) {
-                  $.ajax({
-                    type: 'post',
-                    url: hostUrl,
-                    data: JSON.stringify(myjson),
-                    contentType: 'application/JSON',
-                    dataType: 'JSON',
-                    scriptCharset: 'utf-8',
-                    success: function (response) {
-                      window.location.href = response.url;
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                      alert("fail");
-                      console.log(jqXHR.responseText);
-                      console.log(jqXHR.status); //例：404
-                      console.log(textStatus); //例：error
-                      console.log(errorThrown); //例：NOT FOUND
-                      console.log(JSON.stringify(myjson)); //例：NOT FOUND
-                      console.log(myjson); //例：NOT FOUND
-                    }
-                  });
-                }
-
-                //////////////////sendJson//// scfript end///////////////////
-
-                //---------- initialize all table (selected_table)---------#todo 初期読み込みでBarratingが反映されない？
-                for (var i = 0; i < json_crop_selected.length; i++) {
-                  data = json_crop_selected[i];
-                  if (data.myLocation === Number(myLocation_id)) {
-                    let cr = '';
-                    cr += '<tr>';
-                    cr += '<td>' + data.name + '</td>';
-                    cr += '<td>' + Math.round(data.Energy * data.total_weight / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(data.Protein * data.total_weight / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(data.VITA_RAE * data.total_weight / 100, 1) + '</td>';
-                    cr += '<td>' + Math.round(data.FE * data.total_weight / 100, 1) + '</td>';
-                    cr += '<td>' + data.total_weight + '</td>';
-                    cr += '<td class="tableItem_hide"></td>';
-                    cr += '<td class="tableItem_hide">' + data.food_item_id + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.portion_size + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.Energy + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.Protein + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.VITA_RAE + '</td>';
-                    cr += '<td class="tableItem_hide">' + data.FE + '</td>';
-                    cr += '</tr>';
-                    DrawSelected_addRow(data.myid_tbl, cr);
-                    }
-                  }
-                }
-              } //----initComplete finish here---////////////////////////////////////////////
-
+        ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
+        function DrawSelected_AllTable(id_table) { /// render selected_crops_tbl
+          $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
+          $myTable.find('tr').remove(); //remove all rows
+          let sum_en = 0;
+          let sum_pr = 0;
+          let sum_va = 0;
+          let sum_fe = 0;
+          let cr = '';
+          for (var i = 0; i < json_crop_selected.length; i++) {
+            data = json_crop_selected[i];
+            if (data.myid_tbl === id_table) {
+              cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th>' +
+                      '<th class="tableItem_hide">id</th><th class="tableItem_hide">food_item_id</th>' +
+                      '<th class="tableItem_hide">portion_size</th><th class="tableItem_hide">count_prod</th>' +
+                      '<th class="tableItem_hide">count_buy</th><th class="tableItem_hide">En0</th>' +
+                      '<th class="tableItem_hide">Pr0</th><th class="tableItem_hide">Va0</th>' +
+                      '<th class="tableItem_hide">Fe0</th></tr><tr>';
+              cr += '<td>' + data.name + '</td>';
+              cr += '<td>' + Math.round(data.Energy * data.total_weight / 100, 1) + '</td>';
+              cr += '<td>' + Math.round(data.Protein * data.total_weight / 100, 1) + '</td>';
+              cr += '<td>' + Math.round(data.VITA_RAE * data.total_weight / 100, 1) + '</td>';
+              cr += '<td>' + Math.round(data.FE * data.total_weight / 100, 1) + '</td>';
+              cr += '<td>' + data.total_weight + '</td>';
+              cr += '<td class="tableItem_hide"></td>';
+              cr += '<td class="tableItem_hide">' + data.food_item_id + '</td>';
+              cr += '<td class="tableItem_hide">' + data.portion_size + '</td>';
+              cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
+              cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
+              cr += '<td class="tableItem_hide">' + data.Energy + '</td>';
+              cr += '<td class="tableItem_hide">' + data.Protein + '</td>';
+              cr += '<td class="tableItem_hide">' + data.VITA_RAE + '</td>';
+              cr += '<td class="tableItem_hide">' + data.FE + '</td>';
+              cr += '</tr>';
             }
-    );
+          }
+          $myTable.append(cr);
+          SetBarrating(id_table);
+        }
+
+        ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
+        function DrawSelected_addRow(id_table, add_data) { /// render selected_crops_tbl
+          let sum_en = 0;
+          let sum_pr = 0;
+          let sum_va = 0;
+          let sum_fe = 0;
+          let cr = '';
+          $myTbl = $('.selected_crops_tbl[myNum=' + id_table + ']');
+          $myTbl.children('tbody').children('tr').last().remove();
+          //  $("tr:eq(" + ($("tr").length - 2) + ")").remove();
+          $myTbl.append(add_data);
+
+          SetBarrating(id_table);
+        }
+
+        ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
+        function DrawSelected_delRow(id_table, food_item_id) { /// render selected_crops_tbl
+          $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
+          $myTable.children('tbody').children('tr').each(function (j, myRow) {
+            if ($(myRow).children('td').eq(7).text() === food_item_id) {
+              $(myRow).remove();
+              return false;
+            }
+          })
+        }
+
+        ////////////////////////////////////////////// //////////init second table as modal dialog add selected rows to text box
+        $('#localCrop1 tbody').on('click', 'tr', function () {
+          $(this).toggleClass('selected');
+          if ($(this).hasClass('selected')) {
+            mydata = tblObj_localCrop1.row(this).data();
+
+            //データセットの作成
+            dd = {};
+            dd["name"] = mydata['Food_name'];
+            dd["Energy"] = mydata['Energy'];
+            dd["Protein"] = mydata['Protein'];
+            dd["VITA_RAE"] = mydata['VITA_RAE'];
+            dd["FE"] = mydata['FE'];
+            dd["food_item_id"] = mydata['food_item_id'];
+            dd["portion_size"] = mydata['portion_size'];
+            dd["total_weight"] = 0;
+            dd["count_prod"] = 0;
+            dd["count_buy"] = 0;
+            dd["month"] = '';
+            dd["myLocation"] = myLocation_id;
+            dd["myid_tbl"] = $('#container_tab_all').attr('myNum');
+            dd["target_scope"] = Math.trunc(Number(dd["myid_tbl"]) / 100);
+
+            //tableにデータを表示
+            let cr = '';
+            cr += '<tr>';
+            cr += '<td>' + dd["name"] + '</td>';
+            cr += '<td>' + Math.round(Number(dd["Energy"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
+            cr += '<td>' + Math.round(Number(dd["Protein"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
+            cr += '<td>' + Math.round(Number(dd["VITA_RAE"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
+            cr += '<td>' + Math.round(Number(dd["FE"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
+            cr += '<td>0</td>';
+            cr += '<td class="tableItem_hide"></td>';
+            cr += '<td class="tableItem_hide">' + dd["food_item_id"] + '</td>';
+            cr += '<td class="tableItem_hide">' + dd["portion_size"] + '</td>';
+            cr += '<td class="tableItem_hide">' + 0 + '</td>';
+            cr += '<td class="tableItem_hide">' + 0 + '</td>';
+            cr += '<td class="tableItem_hide">' + dd["Energy"] + '</td>';
+            cr += '<td class="tableItem_hide">' + dd["Protein"] + '</td>';
+            cr += '<td class="tableItem_hide">' + dd["VITA_RAE"] + '</td>';
+            cr += '<td class="tableItem_hide">' + dd["FE"] + '</td>';
+            cr += '</tr>';
+
+            DrawSelected_addRow(dd["myid_tbl"], cr);
+
+          } else {
+            DrawSelected_delRow(dd["myid_tbl"], dd["food_item_id"])
+          }
+        }); //////////////////////////////////////////////
+        /////CreateSelection/////
+        function CreateSelection(myNum) {
+          let myNum_tmp = myNum;
+          let selected_list = [];
+          let $modal_localCrop = $('#Modal_localCrop1');
+          $('#container_tab_all').attr('myNum', myNum_tmp);
+          $modal_localCrop.attr('myNum', myNum_tmp);
+
+          /// get currently selected row//
+          $('.selected_crops_tbl[myNum=' + myNum_tmp + '] tr').each(function (myRow) {
+            myFood_item = $(this).children('td').eq(0).text();
+            myFood_item_id = $(this).children('td').eq(7).text();
+            if (myFood_item !== '' && myFood_item !== 'total') {
+              selected_list.push(myFood_item_id);
+            }
+          });
+
+          // de-select all crop in the list
+          tblObj_localCrop1.rows().deselect();
+
+          //filter crop by month//
+          for (var i = 10; i < 22; i++) {
+            tblObj_localCrop1.column(i).search('').columns().search('').draw();
+          }
+          let myMonth = 0;
+          if (myNum_tmp < 200) {
+            myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex");
+          } else {
+            myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').text() - 1;
+          }
+          tblObj_localCrop1.column(myMonth + 10).search('[123]', true, false).draw();
+
+          /// give selected status to the currently selected item//
+          tblObj_localCrop1.rows().every(function (rowIdx, tableLoop, rowLoop) {
+            let myrow = this.data();
+            if (selected_list.indexOf(String(myrow.food_item_id)) >= 0) {
+              this.select();
+            }
+          });
+        }
+
+        /////CreateSelection/////
+
+        ////////// start crop selection (local -> selected)
+        $('.btn_add_crop').on('click', function () {
+          CreateSelection($(this).attr('myNum'));
+          $('#Modal_localCrop1').modal('show');
+        }); //////////////////////////////////////////////
+
+        //set pichart image////////////#todo pichartを変更する昨日追加
+        function SetPie_img(i_prod, i_buy) {
+          let res = 10;
+          if (i_prod + i_buy > 0) {
+            res = Math.round(i_prod * 10 / (i_prod + i_buy));
+          }
+          let h = "/static/img/pie_" + String(res) + ".png";
+          //console.log(h);
+          return h;
+        }
+
+        //set pichart value////////
+        function SetPie_val(totalCount, myShare) {
+          let h = {};
+          let res = Math.round(totalCount * myShare / 10);
+          h.i_prod = res;
+          h.i_buy = totalCount - res;
+          return h;
+        }
+
+        //////////////////add table edit function////#
+        $(".selected_crops_tbl").on("click", "td", function () {
+          $('#selected_row').val($(this).closest('tr').index());//いらない？
+          $('#tbl_food_SetWeight tr').remove();//tbl_food_SetWeightのテーブル初期化
+          let myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');
+          let row_food_SetWeight = $("td", $(this).parent());
+          let myrowid = row_food_SetWeight.eq(6).text();
+          // let myData = tblObj_localCrop1.row(row_food_SetWeight.eq(6).text()).data();
+          let por = Number(row_food_SetWeight.eq(8).text());
+          let count_prod_tmp = Number(row_food_SetWeight.eq(9).text());
+          let count_buy_tmp = Number(row_food_SetWeight.eq(10).text());
+
+          //console.log('count_prod_tmp' + count_prod_tmp + ', count_prod_tmpbuy:' + count_buy_tmp);
+
+          let cou = count_buy_tmp + count_prod_tmp;
+          let $foodInfo = $('#tbl_food_SetWeight');
+          let mes = 'consumption target(one portion=' + por + 'g)';
+
+          //mytmpdat = tblObj_localCrop1.column(7).search(336);
+          //console.log(mytmpdat);
+
+          $foodInfo.attr('myrowid', $(this).closest('tr').index());
+          $foodInfo.attr('myNum', myNum_tmp);
+          $('#container_tab_all').attr('myNum', myNum_tmp);
+
+          let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th></tr><tr>';
+          cr += '<tr>';
+          cr += '<td>' + row_food_SetWeight.eq(0).text() + '</td>';
+          cr += '<td>' + row_food_SetWeight.eq(1).text() + '</td>';
+          cr += '<td>' + row_food_SetWeight.eq(2).text() + '</td>';
+          cr += '<td>' + row_food_SetWeight.eq(3).text() + '</td>';
+          cr += '<td>' + row_food_SetWeight.eq(4).text() + '</td>';
+          cr += '</tr>';
+          $foodInfo.append(cr);
+          $('#mystar1-label1').text('consumption target(one portion=' + por + 'g)');
+          if (cou === 0) {
+            $('#mystar1').barrating('set', 1);
+          } else {
+            $('#mystar1').barrating('set', cou);
+          }
+          $('#mystar1-pie').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
+
+
+          //  DrawSelected();
+
+          $('#Modal_foodVol1').modal('show');
+        });
+
+        ////////////////// button click to reflect the modificatio　#todo シェア変更機能
+        $('#change_weight1').click(function () {
+          let motherTable = $('#tbl_food_SetWeight');
+          let myrowid = motherTable.attr('myrowid');
+          let myid_table = motherTable.attr('myNum');
+          myNum_tmp = $('#container_tab_all').attr('myNum');//多分削除可能
+          mytable = $('.selected_crops_tbl[myNum=' + myid_table + ']');
+          mytable.children('tbody').children('tr').last().remove();//最終行（合計）を削除
+
+          mydata = mytable.children('tbody').children('tr').eq(myrowid);//修正行に移動
+
+          let por = Number(mydata.children('td').eq(8).text());
+          //ここからprod-buyのシェア計算///
+          let cou = Number($('#mystar1').children("option:selected").val());
+          let tmp_prod = mydata.children('td').eq(9).text();
+          let tmp_buy = mydata.children('td').eq(10).text();
+          let tmp_all = tmp_prod + tmp_buy;
+          let myShare = 10;
+          if (tmp_all > 0) {
+            myShare = Math.round(tmp_prod * 10 / tmp_all);
+          }
+          tmp_prod = Math.round(cou * myShare / 10);
+          tmp_buy = cou - tmp_prod;
+
+          mydata.children('td').eq(1).text(Number(mydata.children('td').eq(11).text()) * por * cou / 100);
+          mydata.children('td').eq(2).text(Number(mydata.children('td').eq(12).text()) * por * cou / 100);
+          mydata.children('td').eq(3).text(Number(mydata.children('td').eq(13).text()) * por * cou / 100);
+          mydata.children('td').eq(4).text(Number(mydata.children('td').eq(14).text()) * por * cou / 100);
+          mydata.children('td').eq(9).text(tmp_prod);
+          mydata.children('td').eq(10).text(tmp_buy);
+          mydata.children('td').eq(5).text(por * cou);
+          CreateSelection(myNum_tmp);
+
+          ///////////////////
+//                  DrawSelected();
+          SetBarrating(myNum_tmp);
+          //////////////////
+          $('#Modal_foodVol1').modal('hide');
+        }); //----------change_weight complete here-------
+
+        //---------set balance pruduce/purchase-----------
+        $('#mystar1-pie').on('click', function () {
+          let motherTable = $('#tbl_food_SetWeight');
+          let myrowid = motherTable.attr('myrowid');
+          let myid_table = motherTable.attr('myNum');
+          let mytable = $('.selected_crops_tbl[myNum=' + myid_table + ']');
+          let mydata = mytable.children('tbody').children('tr').eq(myrowid);//修正行に移動
+          let count_prod_tmp = Number(mydata.children('td').eq(9).text());
+          let count_buy_tmp = Number(mydata.children('td').eq(10).text());
+          myShare = Math.round(count_prod_tmp * 10 / (count_prod_tmp + count_buy_tmp));
+
+          $('#my_Prod_Buy').barrating('set', myShare);// set barrating
+          $('#Modal_Prod_Buy').modal('show');
+        });//----------balance pruduce/purchase complete here-------
+
+        //// set balance pruduce/purchase //
+        $('#change_share1').on('click', function () {
+          let myShare = Number($('#my_Prod_Buy').children("option:selected").val());
+          let motherTable = $('#tbl_food_SetWeight');
+          let myrowid = motherTable.attr('myrowid');
+          let myid_table = motherTable.attr('myNum');
+          let mytable = $('.selected_crops_tbl[myNum=' + myid_table + ']');
+          let mydata = mytable.children('tbody').children('tr').eq(myrowid);//修正行に移動
+          let count_prod_tmp = Number(mydata.children('td').eq(9).text());
+          let count_buy_tmp = Number(mydata.children('td').eq(10).text());
+          let total_count = count_prod_tmp + count_buy_tmp;
+          //console.log('count_prod_tmp' + count_prod_tmp + ', count_buy_tmp:' + count_buy_tmp);
+          //console.log('myshare=' + myShare);
+          count_prod_tmp = Math.round(total_count * myShare / 10);
+          count_buy_tmp = total_count - count_prod_tmp;
+          mydata.children('td').eq(9).text(count_prod_tmp);
+          mydata.children('td').eq(10).text(count_buy_tmp);
+          //console.log('count_prod_tmp' + count_prod_tmp + ', count_prod_tmpbuy:' + count_buy_tmp);
+
+          $('#mystar1-pie').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
+          $('#Modal_Prod_Buy').modal('hide');
+        });
+
+        //////////////////btn_save_crop
+        $('#btn_save_crop').click(function () {
+          let hostUrl = myRoot + 'registDiet/';
+          let mydat = getTblData();
+
+          //console.log(mydat);
+          Set_CRSF();
+          sendJson(mydat, hostUrl);
+          //console.log(mydat);
+        }); ////////btn_save_crop///////////
+
+        //////////////////getTblData
+        function getTblData() { //#todo
+          let d = [];
+          $('.selected_crops_tbl').each(function (i, myTbl) {
+            $(myTbl).children('tbody').children('tr').each(function (j, myRow) {
+              let dd = {};
+              if ($(myRow).children('td').eq(0).text() !== '' && $(myRow).children('td').eq(0).text() !== 'total') {
+                //   dd["myName"] = $(myRow).children('td').eq(0).text();
+                dd["total_weight"] = $(myRow).children('td').eq(5).text();
+                dd["food_item_id"] = $(myRow).children('td').eq(7).text();
+                dd["portion_size"] = $(myRow).children('td').eq(8).text();
+                dd["count_prod"] = $(myRow).children('td').eq(9).text();
+                dd["count_buy"] = $(myRow).children('td').eq(10).text();
+
+                let myNum_tmp = $(myTbl).attr('myNum');
+                let myMonth = 0;
+                if (myNum_tmp < 200) {
+                  myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex") + 1;
+                } else {
+                  myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').text();
+                }
+                dd["month"] = myMonth;
+                dd["myid_tbl"] = myNum_tmp;
+                dd["myLocation"] = myLocation_id;
+                dd["target_scope"] = Math.trunc(myNum_tmp / 100);
+
+                d.push(dd);
+              }
+            })
+          });
+          return {"myJson": d};
+        }
+
+
+        //////////////////getTblData //// csrf_tokenの取得に使う//////////////
+        function getCookie(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+              var cookie = jQuery.trim(cookies[i]);
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+              }
+            }
+          }
+          return cookieValue;
+        }
+
+        function csrfSafeMethod(method) {
+          // these HTTP methods do not require CSRF protection
+          return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        function Set_CRSF() {
+          var csrf_token = getCookie("csrftoken");
+          $.ajaxSetup({
+            crossDomain: false, // obviates need for sameOrigin test
+            beforeSend: function (xhr, settings) {
+              if (!csrfSafeMethod(settings.type)) {
+                xhr.setRequestHeader("X-CSRFToken", csrf_token);
+              }
+            }
+          });
+        }
+
+        //////////////////sendJson////
+        function sendJson(myjson, hostUrl) {
+          $.ajax({
+            type: 'post',
+            url: hostUrl,
+            data: JSON.stringify(myjson),
+            contentType: 'application/JSON',
+            dataType: 'JSON',
+            scriptCharset: 'utf-8',
+            success: function (response) {
+              window.location.href = response.url;
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              alert("fail");
+              console.log(jqXHR.responseText);
+              console.log(jqXHR.status); //例：404
+              console.log(textStatus); //例：error
+              console.log(errorThrown); //例：NOT FOUND
+              console.log(JSON.stringify(myjson)); //例：NOT FOUND
+              console.log(myjson); //例：NOT FOUND
+            }
+          });
+        }
+
+        //////////////////sendJson//// scfript end///////////////////
+
+        //---------- initialize all table (selected_table)---------#todo 初期読み込みでBarratingが反映されない？
+        for (var i = 0; i < json_crop_selected.length; i++) {
+          data = json_crop_selected[i];
+          if (data.myLocation === Number(myLocation_id)) {
+            let cr = '';
+            cr += '<tr>';
+            cr += '<td>' + data.name + '</td>';
+            cr += '<td>' + Math.round(data.Energy * data.total_weight / 100, 1) + '</td>';
+            cr += '<td>' + Math.round(data.Protein * data.total_weight / 100, 1) + '</td>';
+            cr += '<td>' + Math.round(data.VITA_RAE * data.total_weight / 100, 1) + '</td>';
+            cr += '<td>' + Math.round(data.FE * data.total_weight / 100, 1) + '</td>';
+            cr += '<td>' + data.total_weight + '</td>';
+            cr += '<td class="tableItem_hide"></td>';
+            cr += '<td class="tableItem_hide">' + data.food_item_id + '</td>';
+            cr += '<td class="tableItem_hide">' + data.portion_size + '</td>';
+            cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
+            cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
+            cr += '<td class="tableItem_hide">' + data.Energy + '</td>';
+            cr += '<td class="tableItem_hide">' + data.Protein + '</td>';
+            cr += '<td class="tableItem_hide">' + data.VITA_RAE + '</td>';
+            cr += '<td class="tableItem_hide">' + data.FE + '</td>';
+            cr += '</tr>';
+            DrawSelected_addRow(data.myid_tbl, cr);
+          }
+        }
+      } //----initComplete finish here---////////////////////////////////////////////
+    })
+
   </script>
   <!------------------------------------------------------------->
 
