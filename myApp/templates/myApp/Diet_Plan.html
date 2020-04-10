@@ -727,7 +727,7 @@
           myTbl_food_Setweight.attr('myNum', myNum_tmp);//テーブル番号の記録
           $('#container_tab_all').attr('myNum', myNum_tmp);//テーブル番号の記録、不要かもしれません
           myTbl_food_Setweight.attr('myrowid', $(this).closest('tr').index());//選択行の記録
-          myTbl_food_Setweight.children('tr').remove();//tbl_food_SetWeightのテーブル初期化
+          myTbl_food_Setweight.children('tbody').children('tr').remove();//tbl_food_SetWeightのテーブル初期化
 
           let selected_crops_tbl_row = $("td", $(this).parent());//選択行からデータを抽出
           let por = Number(selected_crops_tbl_row.eq(8).text());
@@ -735,8 +735,10 @@
           let count_buy_tmp = Number(selected_crops_tbl_row.eq(10).text());
           let cou = count_buy_tmp + count_prod_tmp;
 
+          console.log('(1) por=' + por + ', cou=' + cou + ', count_p=' + count_prod_tmp + ', count_b=' + count_buy_tmp + ', myid_table=' + myNum_tmp);
+
           let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th class="tableItem_hide">por</th>'
-                  + '<th class="tableItem_hide">count_p</th><th class="tableItem_hide">count_b</th></tr><tr>';
+                  + '<th class="tableItem_hide">count_p</th><th class="tableItem_hide">count_b</th></tr>';
           cr += '<tr>';
           cr += '<td>' + selected_crops_tbl_row.eq(0).text() + '</td>';
           cr += '<td>' + selected_crops_tbl_row.eq(1).text() + '</td>';
@@ -748,6 +750,7 @@
           cr += '<td class="tableItem_hide">' + count_buy_tmp + '</td>';
           cr += '</tr>';
           myTbl_food_Setweight.append(cr);
+          console.log($('#tbl_food_SetWeight').children('tbody').children('tr').eq(1).children('td').eq(0).html());
 
           $('#mystar1-label1').html(
                   'consumption target(one portion=<a href="#" title="this function will be added later">' + por + '</a>g)'
@@ -767,31 +770,34 @@
           // まず値の取得
           let cou = Number($('#mystar1').children("option:selected").val());
 
-          let motherTable = $('#tbl_food_SetWeight');
-          let por = Number(motherTable.children('tr').eq(1).children('td').eq(5).text());
-          let tmp_prod = Number(motherTable.children('tr').eq(1).children('td').eq(6).text());
-          let tmp_buy = Number(motherTable.children('tr').eq(1).children('td').eq(7).text());
-          let tmp_all = tmp_prod + tmp_buy;
+          let motherTable = $('#tbl_food_SetWeight').children('tbody').children('tr').eq(1);
+          let por = Number(motherTable.children('td').eq(5).text());
+          let tmp_prod = Number(motherTable.children('td').eq(6).text());
+          let tmp_buy = Number(motherTable.children('td').eq(7).text());
+
+          console.log('(2) por=' + por + ', cou=' + cou + ', count_p=' + tmp_prod + ', count_b=' + tmp_buy);
 
           //ここからprod-buyのシェア計算///
           let myShare = 10;
-          if (tmp_all > 0) {
-            myShare = Math.round(tmp_prod * 10 / tmp_all);
+          if (tmp_prod + tmp_buy > 0) {
+            myShare = Math.round(tmp_prod * 10 / (tmp_prod + tmp_buy));
           }
           tmp_prod = Math.round(cou * myShare / 10);
           tmp_buy = cou - tmp_prod;
 
           // ここから値の書込み
-          let myrowid = motherTable.attr('myrowid');
-          let myid_table = motherTable.attr('myNum');
+          let myrowid = $('#tbl_food_SetWeight').attr('myrowid');
+          let myid_table = $('#tbl_food_SetWeight').attr('myNum');
           let mytable = $('.selected_crops_tbl[myNum=' + myid_table + ']');
           mytable.children('tbody').children('tr').last().remove();//最終行（合計）を削除
           let mydata = mytable.children('tbody').children('tr').eq(myrowid);//修正行に移動
 
-          mydata.children('td').eq(1).text(Number(mydata.children('td').eq(11).text()) * por * cou / 100);
-          mydata.children('td').eq(2).text(Number(mydata.children('td').eq(12).text()) * por * cou / 100);
-          mydata.children('td').eq(3).text(Number(mydata.children('td').eq(13).text()) * por * cou / 100);
-          mydata.children('td').eq(4).text(Number(mydata.children('td').eq(14).text()) * por * cou / 100);
+          console.log('(3) por=' + por + ', cou=' + cou + ', count_p=' + tmp_prod + ', count_b=' + tmp_buy + ', myid_table=' + myid_table);
+
+          mydata.children('td').eq(1).text(Math.round(mydata.children('td').eq(11).text() * por * cou / 100));
+          mydata.children('td').eq(2).text(Math.round(mydata.children('td').eq(12).text() * por * cou / 100));
+          mydata.children('td').eq(3).text(Math.round(mydata.children('td').eq(13).text() * por * cou / 100));
+          mydata.children('td').eq(4).text(Math.round(mydata.children('td').eq(14).text() * por * cou / 100));
           mydata.children('td').eq(5).text(por * cou);
           mydata.children('td').eq(8).text(por);
           mydata.children('td').eq(9).text(tmp_prod);
