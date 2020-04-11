@@ -210,7 +210,7 @@
             <div>*share (
               <span style="color: #5bc0de">production</span> /
               <span style="color: #cc1111">buy</span>):
-              <img id="BR_pie_buy_prod" src="#" style="width: 30px" alt="">
+              <img id="BR_buy_prod_pie_img" src="#" style="width: 30px" alt="">
               <span class="fb fb-help" data-toggle="tooltip" title="you can set buy or produce"></span>
             </div>
 
@@ -811,7 +811,7 @@
           }
           $('#BR_food_count').barrating('set', cou);
 
-          $('#BR_pie_buy_prod').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
+          $('#BR_buy_prod_pie_img').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
 
           $('#Modal_foodVol1').modal('show');
         });
@@ -861,7 +861,7 @@
         }); //----------change_weight complete here-------
 
         //---------set balance pruduce/purchase-----------
-        $('#BR_pie_buy_prod').on('click', function () {
+        $('#BR_buy_prod_pie_img').on('click', function () {
           let motherTable = $('#tbl_food_SetWeight');
           let count_prod_tmp = Number(motherTable.children('tbody').children('tr').eq(1).children('td').eq(6).text());
           let count_buy_tmp = Number(motherTable.children('tbody').children('tr').eq(1).children('td').eq(7).text());
@@ -883,7 +883,7 @@
           motherTable.children('tbody').children('tr').eq(1).children('td').eq(6).text(mycount.i_prod)
           motherTable.children('tbody').children('tr').eq(1).children('td').eq(7).text(mycount.i_buy)
 
-          $('#BR_pie_buy_prod').attr('src', SetPie_img(mycount.i_prod, mycount.i_buy));
+          $('#BR_buy_prod_pie_img').attr('src', SetPie_img(mycount.i_prod, mycount.i_buy));
           $('#Modal_Prod_Buy').modal('hide');
         });
 
