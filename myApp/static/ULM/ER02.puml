@@ -163,8 +163,10 @@ package "Transaction" {
     + myLocation(FK)
 --
       myCrop
+      myTarget
       myDiet
     }
+
 }
 Countries -{ Location
 Location -{ Person

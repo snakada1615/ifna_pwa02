@@ -143,77 +143,87 @@
   <!-------------------------------------->
 
   <!-- モーダルの設定 change diet ----------------------------->
-  <div class="modal fade" id="Modal_foodVol1" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Determine the volume of food item</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body text-dark">
-          <table border="1" class="table table-striped" id="tbl_food_SetWeight">
-            <tr>
-              <th>name</th>
-              <th>En</th>
-              <th>Pr</th>
-              <th>Va</th>
-              <th>Fe</th>
-              <th>Wt</th>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </table>
-
-          <label for="mystar1" id="mystar1-label1">*consumption target (1 portion=):</label>
-          <span class="fb fb-help" data-toggle="tooltip"
-                title="set volume of food by changing the number of apple icon"></span>
-          <select id="mystar1">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-          </select>
-          <div>*share (
-            <span style="color: #5bc0de">production</span> /
-            <span style="color: #cc1111">buy</span>):
-            <span class="fb fb-help" data-toggle="tooltip" title="you can set buy or produce"></span>
-
-            <img id="mystar1-pie" src="#" style="width: 30px" alt="">
+  <div class="container mx-0 my-0 px-0 py-0 ">
+    <div class="modal fade" id="Modal_foodVol1" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Determine the volume of food item</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
+          <div class="modal-body text-dark">
+            <table border="1" class="table table-striped" id="tbl_food_SetWeight">
+              <tr>
+                <th>name</th>
+                <th>En</th>
+                <th>Pr</th>
+                <th>Va</th>
+                <th>Fe</th>
+                <th>Wt</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
 
-          <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
-          <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_weight1">change value</button>
+            <label for="BR_food_count" id="BR_portion">*consumption target (1 portion=):</label>
+            <span class="btn btn-sm badge badge-primary">edit</span>
+
+            <div class="row pl-4">
+              <div class="column-11">
+                <select id="BR_food_count">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                </select>
+              </div>
+              <div class="column-1">
+              <span class="fb fb-help d-inline" data-toggle="tooltip"
+                    title="set volume of food by changing the number of apple icon below"></span>
+              </div>
+            </div>
+
+            <div>*share (
+              <span style="color: #5bc0de">production</span> /
+              <span style="color: #cc1111">buy</span>):
+              <img id="BR_pie_buy_prod" src="#" style="width: 30px" alt="">
+              <span class="fb fb-help" data-toggle="tooltip" title="you can set buy or produce"></span>
+            </div>
+
+            <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
+            <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_weight1">change value</button>
+          </div>
         </div>
+        <!-- /.modal-content -->
       </div>
-      <!-- /.modal-content -->
+      <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
+    <!-- /.modal -->
   </div>
-  <!-- /.modal -->
   <!-------------------------------------->
 
   <!-- モーダルの設定 change balance ----------------------------->
@@ -249,13 +259,41 @@
           <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
           <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_share1">change share</button>
       </div>
+      <!-- /.modal-content -->
     </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
+    <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
   <!-------------------------------------->
+
+  <!-- モーダルの設定 change portion ----------------------------->
+  <div class="modal fade" id="Modal_Portion" tabindex="-1" role="dialog" aria-labelledby="Modal_PortinoLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="Modal_PortionLabel1">Where do you get food (field or market)?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <label class="modal-body text-dark">
+          <label for="my_Prod_Buy" id="my_Portion-label1">*share (
+            <span style="color: #cc1111">buy</span> /
+            <span style="color: #5bc0de">production</span>):
+          </label>
+          <span class="fb fb-help" data-toggle="tooltip" title="Tooltip message"></span>
+
+
+          <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
+          <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_portion">change portion</button>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  <!-------------------------------------->
+
 
   <div id="container_tab_all" class="container border-secondary py-1 my-1 px-0"
        style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
@@ -288,12 +326,25 @@
 
   <!------------------------------------------------------------->
   <style media="screen">
+    /* force rotate when screen width less than 450 */
+    @media screen and (min-width: 320px) and (max-width: 450px) and (orientation: portrait) {
+      html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+    }
+
     /* 行または列の非表示*/
     .tableItem_hide {
       display: none;
-
     }
 
+    /* fontausomeの書式*/
     .fb-help {
       color: green;
     }
@@ -340,7 +391,7 @@
     $(function () {
       $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
       $('#my_Prod_Buy').barrating({theme: 'bars-1to10', showSelectedRating: true, readonly: false}); // set barrating)
-      $('#mystar1').barrating({theme: 'fontawesome-apple'});
+      $('#BR_food_count').barrating({theme: 'fontawesome-apple'});
     });
 
     ////////////////////////////////
@@ -735,7 +786,7 @@
           let count_buy_tmp = Number(selected_crops_tbl_row.eq(10).text());
           let cou = count_buy_tmp + count_prod_tmp;
 
-          console.log('(1) por=' + por + ', cou=' + cou + ', count_p=' + count_prod_tmp + ', count_b=' + count_buy_tmp + ', myid_table=' + myNum_tmp);
+          //console.log('(1) por=' + por + ', cou=' + cou + ', count_p=' + count_prod_tmp + ', count_b=' + count_buy_tmp + ', myid_table=' + myNum_tmp);
 
           let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th class="tableItem_hide">por</th>'
                   + '<th class="tableItem_hide">count_p</th><th class="tableItem_hide">count_b</th></tr>';
@@ -750,17 +801,17 @@
           cr += '<td class="tableItem_hide">' + count_buy_tmp + '</td>';
           cr += '</tr>';
           myTbl_food_Setweight.append(cr);
-          console.log($('#tbl_food_SetWeight').children('tbody').children('tr').eq(1).children('td').eq(0).html());
+          //console.log($('#tbl_food_SetWeight').children('tbody').children('tr').eq(1).children('td').eq(0).html());
 
-          $('#mystar1-label1').html(
+          $('#BR_portion').html(
                   'consumption target(one portion=<a href="#" title="this function will be added later">' + por + '</a>g)'
           );
           if (cou === 0) {
             cou = 1;
           }
-          $('#mystar1').barrating('set', cou);
+          $('#BR_food_count').barrating('set', cou);
 
-          $('#mystar1-pie').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
+          $('#BR_pie_buy_prod').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
 
           $('#Modal_foodVol1').modal('show');
         });
@@ -768,14 +819,14 @@
         ////////////////// button click to reflect the modificatio　#todo ポーション変更機能
         $('#change_weight1').click(function () {
           // まず値の取得
-          let cou = Number($('#mystar1').children("option:selected").val());
+          let cou = Number($('#BR_food_count').children("option:selected").val());
 
           let motherTable = $('#tbl_food_SetWeight').children('tbody').children('tr').eq(1);
           let por = Number(motherTable.children('td').eq(5).text());
           let tmp_prod = Number(motherTable.children('td').eq(6).text());
           let tmp_buy = Number(motherTable.children('td').eq(7).text());
 
-          console.log('(2) por=' + por + ', cou=' + cou + ', count_p=' + tmp_prod + ', count_b=' + tmp_buy);
+          //console.log('(2) por=' + por + ', cou=' + cou + ', count_p=' + tmp_prod + ', count_b=' + tmp_buy);
 
           //ここからprod-buyのシェア計算///
           let myShare = 10;
@@ -792,7 +843,7 @@
           mytable.children('tbody').children('tr').last().remove();//最終行（合計）を削除
           let mydata = mytable.children('tbody').children('tr').eq(myrowid);//修正行に移動
 
-          console.log('(3) por=' + por + ', cou=' + cou + ', count_p=' + tmp_prod + ', count_b=' + tmp_buy + ', myid_table=' + myid_table);
+          //console.log('(3) por=' + por + ', cou=' + cou + ', count_p=' + tmp_prod + ', count_b=' + tmp_buy + ', myid_table=' + myid_table);
 
           mydata.children('td').eq(1).text(Math.round(mydata.children('td').eq(11).text() * por * cou / 100));
           mydata.children('td').eq(2).text(Math.round(mydata.children('td').eq(12).text() * por * cou / 100));
@@ -810,7 +861,7 @@
         }); //----------change_weight complete here-------
 
         //---------set balance pruduce/purchase-----------
-        $('#mystar1-pie').on('click', function () {
+        $('#BR_pie_buy_prod').on('click', function () {
           let motherTable = $('#tbl_food_SetWeight');
           let count_prod_tmp = Number(motherTable.children('tbody').children('tr').eq(1).children('td').eq(6).text());
           let count_buy_tmp = Number(motherTable.children('tbody').children('tr').eq(1).children('td').eq(7).text());
@@ -832,7 +883,7 @@
           motherTable.children('tbody').children('tr').eq(1).children('td').eq(6).text(mycount.i_prod)
           motherTable.children('tbody').children('tr').eq(1).children('td').eq(7).text(mycount.i_buy)
 
-          $('#mystar1-pie').attr('src', SetPie_img(mycount.i_prod, mycount.i_buy));
+          $('#BR_pie_buy_prod').attr('src', SetPie_img(mycount.i_prod, mycount.i_buy));
           $('#Modal_Prod_Buy').modal('hide');
         });
 
