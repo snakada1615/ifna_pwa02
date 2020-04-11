@@ -144,7 +144,7 @@
 
   <!-- モーダルの設定 change diet ----------------------------->
   <div class="container mx-0 my-0 px-0 py-0 ">
-    <div class="modal fade" id="Modal_foodVol1" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
+    <div class="modal fade" id="Modal_food_volume" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -173,7 +173,7 @@
               </tr>
             </table>
 
-            <label for="BR_food_count" id="BR_portion">*consumption target (1 portion=):</label>
+            <span>*consumption target (1 portion=): <a href="#" id="btn_portion_change"></a>g</span>
             <span class="btn btn-sm badge badge-primary">edit</span>
 
             <div class="row pl-4">
@@ -751,6 +751,17 @@
           $('#Modal_localCrop1').modal('show');
         }); //////////////////////////////////////////////
 
+        /// ---- change portion size --------
+        $('#btn_portion_change').on('click', function () {
+          $('#Modal_food_volume').modal('hide');//(Modalの入れ替え)
+          $('#Modal_Portion').modal('show');
+        }); //////////////////////////////////////////////
+
+        /// ---- change portion size (Modalの入れ替え)--------
+        $('#Modal_Portion').on('hide.bs.modal', function () {
+          $('#Modal_food_volume').modal('show');
+        });///-------------------------------
+
         //set pichart image////////////#todo pichartを変更する昨日追加
         function SetPie_img(i_prod, i_buy) {
           let res = 10;
@@ -803,9 +814,8 @@
           myTbl_food_Setweight.append(cr);
           //console.log($('#tbl_food_SetWeight').children('tbody').children('tr').eq(1).children('td').eq(0).html());
 
-          $('#BR_portion').html(
-                  'consumption target(one portion=<a href="#" title="this function will be added later">' + por + '</a>g)'
-          );
+          $('#btn_portion_change').text(por);
+
           if (cou === 0) {
             cou = 1;
           }
@@ -813,7 +823,7 @@
 
           $('#BR_buy_prod_pie_img').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
 
-          $('#Modal_foodVol1').modal('show');
+          $('#Modal_food_volume').modal('show');
         });
 
         ////////////////// button click to reflect the modificatio　#todo ポーション変更機能
@@ -857,7 +867,7 @@
 
           SetBarrating(myid_table);
           //////////////////
-          $('#Modal_foodVol1').modal('hide');
+          $('#Modal_food_volume').modal('hide');
         }); //----------change_weight complete here-------
 
         //---------set balance pruduce/purchase-----------
@@ -868,10 +878,11 @@
           myShare = Math.round(count_prod_tmp * 10 / (count_prod_tmp + count_buy_tmp));
 
           $('#my_Prod_Buy').barrating('set', myShare);// set barrating
+          $('#Modal_food_volume').modal('hide');//(Modalの入れ替え)
           $('#Modal_Prod_Buy').modal('show');
         });//----------balance pruduce/purchase complete here-------
 
-        //// set balance pruduce/purchase //
+        //// set balance prudoce/purchase //
         $('#change_share1').on('click', function () {
           let myShare = Number($('#my_Prod_Buy').children("option:selected").val());
           let motherTable = $('#tbl_food_SetWeight');
@@ -886,6 +897,11 @@
           $('#BR_buy_prod_pie_img').attr('src', SetPie_img(mycount.i_prod, mycount.i_buy));
           $('#Modal_Prod_Buy').modal('hide');
         });
+
+        /// ---- change portion size (Modalの入れ替え)--------
+        $('#Modal_Prod_Buy').on('hide.bs.modal', function () {
+          $('#Modal_food_volume').modal('show');
+        });///-------------------------------
 
         //////////////////btn_save_crop
         $('#btn_save_crop').click(function () {
