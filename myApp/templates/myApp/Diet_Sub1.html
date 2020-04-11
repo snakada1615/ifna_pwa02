@@ -8,10 +8,25 @@
                border-width: 2px;
           ">
             <div class="card-header bg-info text-white p-1">
-              Diet plan for target beneficiaries
-              <span class="fb fb-help" data-toggle="tooltip"
-                    title="you can add/edit food item for selected month here"></span>
+              Diet plan for target beneficiaries in
+              <select class="lst_month" style="border: 1px #386B46;
+                      background-color:#D2DFD2; myNum={{ forloop.counter|add:100 }}">
+                <option value="jan">Jan</option>
+                <option value="feb">Feb</option>
+                <option value="mar">Mar</option>
+                <option value="apr">Apr</option>
+                <option value="may">May</option>
+                <option value="jun">Jun</option>
+                <option value="jul">Jul</option>
+                <option value="aug">Aug</option>
+                <option value="sep">Sep</option>
+                <option value="oct">Oct</option>
+                <option value="nov">Nov</option>
+                <option value="dec">Dec</option>
+              </select>
+              <span class="fb fb-help" data-toggle="tooltip" title="select month for diet planning"></span>
             </div>
+
             <p class="card-title text-dark my-1 pl-1">
               <span style="color:red">■</span>: less than 50%,
               <span style="color:orange">■</span>: 50-100%,
@@ -22,7 +37,7 @@
               <tr>
                 <th>
                   name:
-                  <span class="fb fb-help" data-toggle="tooltip" title="click each row to edit"></span>
+                  <span class="fb fb-help" data-toggle="tooltip" title="click each row to set food consumption recommend"></span>
                 </th>
                 <th>En</th>
                 <th>Pr</th>
@@ -58,10 +73,15 @@
               </tr>
             </table>
             <div class="btn_add_crop btn btn-block btn-secondary text-dark mt-0 my-0 py-0 btn-sm"
-                 style="background-color:#ADC757;" myNum={{ forloop.counter|add:100 }} >add food item</div>
+                 style="background-color:#ADC757;" myNum={{ forloop.counter|add:100 }}>add food item
+              <span class="fb fb-help" data-toggle="tooltip"
+                    title="you can add/edit food item for selected month here"></span>
+            </div>
           </div>
 
-          <div class="card border-success rounded col-12 px-1 py-1 my-1" style="color:#24535F ;background-color:#D9ECDC;
+          <!-- ここから 栄養バランスの評価 ----------------------------->
+
+          <div class="card border-success rounded col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
                border-width: 2px;
           ">
             <div class="card-header bg-info text-white p-1 mb-2">
@@ -167,30 +187,6 @@
               <div class="col-5 text-dark">{{ nutrient_target }}</div>
             </div>
 
-          </div>
-
-          <div class="row no-gutters my-0 py-0" style="height:30px;">
-            <div class="col-3 text-dark">
-              Month
-              <span class="fb fb-help" data-toggle="tooltip" title="select month for diet planning"></span>
-            </div>
-            <div class="col-4 text-dark">
-              <select class="lst_month" myNum={{ forloop.counter|add:100 }} style="border: 1px #386B46;
-                      background-color:#A5C93F;">
-              <option value="jan">Jan</option>
-              <option value="feb">Feb</option>
-              <option value="mar">Mar</option>
-              <option value="apr">Apr</option>
-              <option value="may">May</option>
-              <option value="jun">Jun</option>
-              <option value="jul">Jul</option>
-              <option value="aug">Aug</option>
-              <option value="sep">Sep</option>
-              <option value="oct">Oct</option>
-              <option value="nov">Nov</option>
-              <option value="dec">Dec</option>
-              </select>
-            </div>
           </div>
         </div>
       </div>
