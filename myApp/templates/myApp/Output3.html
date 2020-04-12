@@ -265,7 +265,8 @@
       for (var i = 0; i < 13; i++) {
         if (dd[tmp][i]) {
           console.log('count=' + i + ':' + dd[tmp][i]);
-          total_w += Number(dd[tmp][i][0]);
+          dd[tmp][i][0] = Math.round(Number(dd[tmp][i][0]) * 365 / 1000);//1年分に変換
+          total_w += dd[tmp][i][0];
           cr += SetDiv(dd[tmp][i]);
 //          console.log(SetDiv(dd[tmp][i]));
         } else if (i == 12) {
