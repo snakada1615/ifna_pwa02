@@ -521,6 +521,24 @@ class Person(models.Model):
     def __str__(self):
         return self.name
 
+
+class Pop(models.Model):
+    NAME_0 = models.CharField(max_length=200)
+    GID_0 = models.CharField(max_length=200)
+    Year = models.IntegerField(
+        verbose_name='Year',
+        default=0,
+    )
+    Age_class = models.CharField(max_length=50)
+    Age_class_id = models.IntegerField(
+        verbose_name='Age_Class',
+        default=0,
+    )
+    share_Pop = models.FloatField(default=0)
+    share_Preg = models.FloatField(default=0)
+    share_BF = models.FloatField(default=0)
+
+
 class myStatus(models.Model):
     curr_User = models.IntegerField(default=0,blank=True)
     myLocation = models.IntegerField(default=0,blank=True)

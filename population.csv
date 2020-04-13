@@ -1,0 +1,11 @@
+country,country_code,year,age_class,age_class_id,Pop%,Preg%,BF%
+Rwanda,RWA,2012,0-5,0,17,0,0
+Rwanda,RWA,2012,6-8,1,9,0,0
+Rwanda,RWA,2012,9-12,2,10,0,0
+Rwanda,RWA,2012,13-18,3,13,3.9,7.8
+Rwanda,RWA,2012,18-,4,51,11.9,23.8
+Ethiopia,ETH,2012,0-5,0,17,0,0
+Ethiopia,ETH,2012,6-8,1,10,0,0
+Ethiopia,ETH,2012,9-12,2,12,0,0
+Ethiopia,ETH,2012,13-18,3,15,6.7,13.3
+Ethiopia,ETH,2012,18-,4,46,12.1,24.2
