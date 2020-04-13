@@ -538,6 +538,7 @@ class Pop(models.Model):
     share_Preg = models.FloatField(default=0)
     share_BF = models.FloatField(default=0)
 
+#commit test
 
 class myStatus(models.Model):
     curr_User = models.IntegerField(default=0,blank=True)
