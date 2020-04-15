@@ -909,8 +909,10 @@
           let total_count = count_prod_tmp + count_buy_tmp;
           let mycount = SetPie_val(total_count, myShare);
 
-          motherTable.children('tbody').children('tr').eq(1).children('td').eq(6).text(mycount.i_prod)
-          motherTable.children('tbody').children('tr').eq(1).children('td').eq(7).text(mycount.i_buy)
+          console.log('count_p='+ count_prod_tmp + ', count_b='+ count_buy_tmp + ', myShare='+ myShare);
+
+          motherTable.children('tbody').children('tr').eq(1).children('td').eq(6).text(mycount.i_prod);
+          motherTable.children('tbody').children('tr').eq(1).children('td').eq(7).text(mycount.i_buy);
 
           $('#BR_buy_prod_pie_img').attr('src', SetPie_img(mycount.i_prod, mycount.i_buy));
           $('#Modal_Prod_Buy').modal('hide');

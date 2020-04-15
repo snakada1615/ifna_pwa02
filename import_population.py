@@ -5,12 +5,12 @@ import random
 con = sqlite3.connect('db.sqlite3')
 cursor = con.cursor()
 
-with open('subnational_list.csv', 'r') as f:
+with open('population.csv', 'r') as f:
     b = csv.reader(f)
     print(b)
     header = next(b)
-    sql = ('insert into myApp_Countries(GID_0, NAME_0, GID_1, NAME_1, GID_2, NAME_2, GID_3, NAME_3, AEZ_id'
-           ') VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)')
+    sql = ('insert into myApp_pop(NAME_0, GID_0, Year, Age_class, Age_class_id, share_Pop, share_Preg, share_BF'
+           ') VALUES(?, ?, ?, ?, ?, ?, ?, ?)')
 
     for t in b:
         data = t
