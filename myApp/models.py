@@ -477,6 +477,8 @@ class Person(models.Model):
     Nut_GROUP = (
         ('child 0-23 month', 'child 0-23 month'),
         ('child 24-59 month','child 24-59 month'),
+        ('child 6-9 yr','child 6-9 yr'),
+        ('adolescent boy','adolescent boy'),
         ('adolescent girl','adolescent girl'),
         ('pregnant women','pregnant women'),
         ('adult','adult'),
