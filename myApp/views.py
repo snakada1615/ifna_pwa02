@@ -14,7 +14,7 @@ from django.views.generic import TemplateView, ListView, CreateView, DetailView,
 from .forms import LocationForm, Person_Form
 
 from .models import myStatus, Location, Countries, Crop_National, Crop_SubNational
-from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person
+from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person, Pop
 
 # for user registration
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -428,6 +428,19 @@ class Person_ListView(LoginRequiredMixin, ListView):
     context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
     context['myuser'] = self.request.user
     context['page'] = self.kwargs['page']
+
+    myPop = Pop.objects.filter(GID_0=Location.objects.get(id=self.kwargs['myLocation']).country)
+    dd={}
+    dd['class0'] = myPop.get(Age_class_id=0).share_Pop
+    dd['class1'] = myPop.get(Age_class_id=1).share_Pop
+    dd['class2'] = myPop.get(Age_class_id=2).share_Pop
+    dd['class3'] = myPop.get(Age_class_id=3).share_Pop
+    dd['class3_p'] = myPop.get(Age_class_id=3).share_Preg
+    dd['class3_l'] = myPop.get(Age_class_id=3).share_BF
+    dd['class4'] = myPop.get(Age_class_id=4).share_Pop
+    dd['class4_p'] = myPop.get(Age_class_id=4).share_Preg
+    dd['class4_l'] = myPop.get(Age_class_id=4).share_BF
+    context['myPop'] = dd
 
     return context
 

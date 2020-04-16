@@ -26,28 +26,11 @@
           </thead>
           <tr>
             <td>
-              <div class="text-center">age 0-5mon</div>
-            </td>
-            <td>
-              <div class="text-center">
-                <input type="number" class="form-control-sm input-manual" disabled style="width:90%"
-                       placeholder="pop size" value="30">
-              </div>
-            </td>
-            <td>
-              <div class="text-center"></div>
-            </td>
-            <td>
-              <div class="text-center"></div>
-            </td>
-          </tr>
-          <tr>
-            <td>
               <div class="text-center">age 0-23mon</div>
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
+                <input id="inpNum0" type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="pop size" value="30">
               </div>
             </td>
@@ -64,7 +47,7 @@
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
+                <input id="inpNum1" type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
@@ -81,7 +64,7 @@
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
+                <input id="inpNum2" type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
@@ -98,19 +81,19 @@
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
+                <input id="inpNum3" type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
+                <input id="inpNum3_p" type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
+                <input id="inpNum3_l" type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
@@ -121,19 +104,19 @@
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
+                <input id="inpNum4" type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
+                <input id="inpNum4_p" type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
+                <input id="inpNum4_l" type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
@@ -144,7 +127,7 @@
             </td>
             <td>
               <div class="text-center">
-                <input type="number" class="form-control-sm input-auto" style="width:90%"
+                <input id="inpNum5" type="number" class="form-control-sm input-auto" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
@@ -163,16 +146,32 @@
 </div>
 
 <script type="text/javascript">
-  $('#chk-autoCalk').change(function() {
+  var myPop = {{ myPop|safe }};
+  console.log(myPop);
+
+  $('#chk-autoCalk').change(function () {
     if ($('#chk-autoCalk').prop('checked')) {
       $('.input-manual').prop('disabled', true);
       $('.input-auto').prop('disabled', false);
     } else {
-      $('.input-manual').prop('disabled',false);
+      $('.input-manual').prop('disabled', false);
       $('.input-auto').prop('disabled', true);
     }
-  })
+  });
 
+  $("#inpNum5").on("input", function () {
+    // Print entered value in a div box
+    $("#inpNum0").val(Math.round($(this).val() * myPop.class0 / 100));
+    $("#inpNum1").val(Math.round($(this).val() * myPop.class1 / 100));
+    $("#inpNum2").val(Math.round($(this).val() * myPop.class2 / 100));
+    $("#inpNum3").val(Math.round($(this).val() * myPop.class3 / 100));
+    $("#inpNum3_p").val(Math.round($(this).val() * myPop.class3_p / 100));
+    $("#inpNum3_l").val(Math.round($(this).val() * myPop.class3_l / 100));
+    $("#inpNum4").val(Math.round($(this).val() * myPop.class4 / 100));
+    $("#inpNum4_p").val(Math.round($(this).val() * myPop.class4_p / 100));
+    $("#inpNum4_l").val(Math.round($(this).val() * myPop.class4_l / 100));
+
+  });
 
 
 </script>
