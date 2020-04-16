@@ -443,6 +443,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
     dd['class5_l'] = myPop.get(Age_class_id=5).share_BF
     dd['class6'] = myPop.get(Age_class_id=6).share_Pop
     context['myPop'] = dd
+    context['myReturnURL'] = reverse_lazy('index01')
 
     return context
 

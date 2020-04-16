@@ -154,7 +154,11 @@
 
 <script type="text/javascript">
   var myPop = {{ myPop|safe }};
-  console.log(myPop);
+  let url_tmp = window.location.href.split('/');
+  url_tmp.pop();
+  url_tmp.pop();
+  url_tmp.pop();
+  var myRoot = url_tmp.join("/") + '/';
 
   $('#chk-autoCalk').change(function () {
     if ($('#chk-autoCalk').prop('checked')) {
@@ -181,10 +185,9 @@
 
   //////////////////btn_save_crop
   $('#btn_update3').click(function () {
-    // let hostUrl = myRoot + 'registTarget_macro/';
+    let hostUrl = myRoot + 'registTargetPop_community/';
     let mydat = getTblData();
 
-    //console.log(mydat);
     //  Set_CRSF();
     //  sendJson(mydat, hostUrl);
     console.log(mydat);
@@ -195,13 +198,13 @@
     let d = [];
     $('#tbl_pop3 tr').each(function (i, myRow) {
       if (i > 0 && i < 6) {
-        if (i == 4 || i == 5) {
+        if (i === 4 || i === 5) {
           for (var j = 0; j < 3; j++) {
             let dd = {};
             dd['target_scope'] = 3;
             dd["myLocation"] = {{myLocation.id}};
             dd['myuser'] = {{ myuser }};
-            if (i == 4) {
+            if (i === 4) {
               dd['nut_group_id'] = i + j;
             } else {
               dd['nut_group_id'] = i + j + 2;
