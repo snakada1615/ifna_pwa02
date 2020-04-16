@@ -426,7 +426,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
 
     context['mytarget_scope_Sum'] = tmpClass_sum
     context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
-    context['myuser'] = self.request.user
+    context['myuser'] = self.request.user.id
     context['page'] = self.kwargs['page']
 
     myPop = Pop.objects.filter(GID_0=Location.objects.get(id=self.kwargs['myLocation']).country)
@@ -438,9 +438,9 @@ class Person_ListView(LoginRequiredMixin, ListView):
     dd['class3_p'] = myPop.get(Age_class_id=3).share_Preg
     dd['class3_l'] = myPop.get(Age_class_id=3).share_BF
     dd['class4'] = myPop.get(Age_class_id=4).share_Pop
-    dd['class4_p'] = myPop.get(Age_class_id=4).share_Preg
-    dd['class4_l'] = myPop.get(Age_class_id=4).share_BF
     dd['class5'] = myPop.get(Age_class_id=5).share_Pop
+    dd['class5_p'] = myPop.get(Age_class_id=5).share_Preg
+    dd['class5_l'] = myPop.get(Age_class_id=5).share_BF
     dd['class6'] = myPop.get(Age_class_id=6).share_Pop
     context['myPop'] = dd
 

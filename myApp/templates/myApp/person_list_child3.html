@@ -154,6 +154,7 @@
 
 <script type="text/javascript">
   var myPop = {{ myPop|safe }};
+  console.log(myPop);
 
   $('#chk-autoCalk').change(function () {
     if ($('#chk-autoCalk').prop('checked')) {
@@ -170,17 +171,17 @@
     $("#inpNum0").val(Math.round($(this).val() * myPop.class0 / 100));
     $("#inpNum1").val(Math.round($(this).val() * myPop.class1 / 100));
     $("#inpNum2").val(Math.round($(this).val() * myPop.class2 / 100));
-    $("#inpNum3").val(Math.round($(this).val() * myPop.class3 / 100));
+    $("#inpNum3").val(Math.round($(this).val() * (myPop.class3 + myPop.class4) / 100));
     $("#inpNum3_p").val(Math.round($(this).val() * myPop.class3_p / 100));
     $("#inpNum3_l").val(Math.round($(this).val() * myPop.class3_l / 100));
-    $("#inpNum4").val(Math.round($(this).val() * myPop.class4 / 100));
-    $("#inpNum4_p").val(Math.round($(this).val() * myPop.class4_p / 100));
-    $("#inpNum4_l").val(Math.round($(this).val() * myPop.class4_l / 100));
+    $("#inpNum4").val(Math.round($(this).val() * ((myPop.class5 + myPop.class6)) / 100));
+    $("#inpNum4_p").val(Math.round($(this).val() * myPop.class5_p / 100));
+    $("#inpNum4_l").val(Math.round($(this).val() * myPop.class5_l / 100));
   });
 
   //////////////////btn_save_crop
   $('#btn_update3').click(function () {
-    let hostUrl = myRoot + 'registTarget_macro/';
+    // let hostUrl = myRoot + 'registTarget_macro/';
     let mydat = getTblData();
 
     //console.log(mydat);
@@ -190,49 +191,34 @@
   }); ////////btn_save_crop///////////
 
   //////////////////getTblData
-  function getTblData() { //#todo
+  function getTblData() { //
     let d = [];
     $('#tbl_pop3 tr').each(function (i, myRow) {
-      let dd = {};
-      dd['nut_group'] = $(myRow).children('td').eq(0).text();
-      dd['target_scope'] = 3;
-      dd["myLocation"] = {{myLocation}};
-      dd['myUser'] = {{ myUser }};
-      if (i == 4 || i == 5) {
-        for (var j = 0; j < 3; j++) {
-          dd['target_pop'] = $(myRow).children('td').eq(1).text();
-        }
-      } else {
-        dd['target_pop'] = $(myRow).children('td').eq(1).text();
-      }
-    });
-
-    $('.selected_crops_tbl').each(function (i, myTbl) {
-      $(myTbl).children('tbody').children('tr').each(function (j, myRow) {
-        let dd = {};
-        if ($(myRow).children('td').eq(0).text() !== '' && $(myRow).children('td').eq(0).text() !== 'total') {
-          //   dd["myName"] = $(myRow).children('td').eq(0).text();
-          dd["total_weight"] = $(myRow).children('td').eq(5).text();
-          dd["food_item_id"] = $(myRow).children('td').eq(7).text();
-          dd["portion_size"] = $(myRow).children('td').eq(8).text();
-          dd["count_prod"] = $(myRow).children('td').eq(9).text();
-          dd["count_buy"] = $(myRow).children('td').eq(10).text();
-
-          let myNum_tmp = $(myTbl).attr('myNum');
-          let myMonth = 0;
-          if (myNum_tmp < 200) {
-            myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex") + 1;
-          } else {
-            myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').text();
+      if (i > 0 && i < 6) {
+        if (i == 4 || i == 5) {
+          for (var j = 0; j < 3; j++) {
+            let dd = {};
+            dd['target_scope'] = 3;
+            dd["myLocation"] = {{myLocation.id}};
+            dd['myuser'] = {{ myuser }};
+            if (i == 4) {
+              dd['nut_group_id'] = i + j;
+            } else {
+              dd['nut_group_id'] = i + j + 2;
+            }
+            dd['target_pop'] = $(myRow).children('td').eq(j + 1).find('.input-manual').val();
+            d.push(dd);
           }
-          dd["month"] = myMonth;
-          dd["myid_tbl"] = myNum_tmp;
-          dd["myLocation"] = myLocation_id;
-          dd["target_scope"] = Math.trunc(myNum_tmp / 100);
-
+        } else {
+          let dd = {};
+          dd['target_scope'] = 3;
+          dd["myLocation"] = {{myLocation.id}};
+          dd['myuser'] = {{ myuser }};
+          dd['nut_group_id'] = i;
+          dd['target_pop'] = $(myRow).children('td').eq(1).find('.input-manual').val();
           d.push(dd);
         }
-      })
+      }
     });
     return {"myJson": d};
   }
