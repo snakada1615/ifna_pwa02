@@ -475,11 +475,11 @@ class Crop_Individual(models.Model): #
 
 class Person(models.Model):
     Nut_GROUP = (
-        ('children under 5', 'children 6 to 59 month'),
-        ('pregnant women', 'pregnant women'),
-        ('adlescent girl', 'adlescent girl'),
-        ('adult', 'adult'),
+        ('child 0-23 month', 'child 0-23 month'),
+        ('child 24-59 month','child 24-59 month'),
+        ('adolescent girl','adolescent girl'),
         ('pregnant women','pregnant women'),
+        ('adult','adult'),
     )
     myLocation = models.ForeignKey(
         Location,
