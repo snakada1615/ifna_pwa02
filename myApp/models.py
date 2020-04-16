@@ -479,6 +479,11 @@ class Person(models.Model):
         ('pregnant women', 'pregnant women'),
         ('adlescent girl', 'adlescent girl'),
         ('adult', 'adult'),
+        ('child 0-23 month', 'child 0-23 month'),
+        ('child 24-59 month','child 24-59 month'),
+        ('adolescent girl','adolescent girl'),
+        ('pregnant women','pregnant women'),
+        ('adult','adult'),
     )
     myLocation = models.ForeignKey(
         Location,

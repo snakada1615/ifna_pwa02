@@ -68,6 +68,17 @@ package "Master" {
     + AEZ_id(FK)
 --
     }
+  entity pop {
+    -ID
+    NAME_0
+    GID_0
+--
+    Year
+    Age_class_id
+    Age_class
+    share_Pop
+    share_Preg
+    share_BF
   }
 
 package "Transaction" {
