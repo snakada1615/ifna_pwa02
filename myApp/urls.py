@@ -8,9 +8,9 @@ from django.views.generic import TemplateView
 from .views import IndexView, Under_Construction_View, aboutNFA, UserChangeForm
 from .views import SignUpForm, SignUp, UserEdit, IndexView02, Location_CreateView
 from .views import Location_UpdateView, Location_DeleteView, Location_ListView
-from .views import CropSelect, registCropAvail, Trial_View, Diet_Plan1
 from .views import Person_ListView, Person_UpdateView, Person_CreateView, Person_DeleteView
-from .views import initTable, delete_TableRec, registDiet, Output1, Output2, Output3, Output_list
+from .views import initTable, delete_TableRec, registDiet, Output1, Output2, Output3, Output_list, registPerson
+from .views import CropSelect, registCropAvail, Trial_View, Diet_Plan1
 
 from django.contrib import admin
 from django.urls import include
@@ -36,6 +36,7 @@ urlpatterns = [
   path('person/create/<int:myLocation>/<int:mytarget_scope>/', Person_CreateView.as_view(), name='person_create'),
   path('person/update/<int:myLocation>/<int:pk><int:mytarget_scope>/', Person_UpdateView.as_view(), name='person_update'),
   path('person/delete/<int:myLocation>/<int:pk>/<int:mytarget_scope>/', Person_DeleteView.as_view(), name='person_delete'),
+  path('registPerson/', views.registPerson, name='regist_person'),
   path('Diet1/<int:myLocation>/', Diet_Plan1.as_view(), name='diet1'),
   path('registDiet/', views.registDiet, name='regist_diet'),
   path('delete_TableRec/<str:tblName>/', views.delete_TableRec, name='delete_TableRec'),

@@ -158,6 +158,8 @@
   url_tmp.pop();
   url_tmp.pop();
   url_tmp.pop();
+  url_tmp.pop();
+  url_tmp.pop();
   var myRoot = url_tmp.join("/") + '/';
 
   $('#chk-autoCalk').change(function () {
@@ -185,12 +187,12 @@
 
   //////////////////btn_save_crop
   $('#btn_update3').click(function () {
-    let hostUrl = myRoot + 'registTargetPop_community/';
+    let hostUrl = myRoot + 'registPerson/';
     let mydat = getTblData();
 
-    //  Set_CRSF();
-    //  sendJson(mydat, hostUrl);
     console.log(mydat);
+    Set_CRSF();
+    sendJson(mydat, hostUrl);
   }); ////////btn_save_crop///////////
 
   //////////////////getTblData

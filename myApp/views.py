@@ -430,7 +430,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
     context['page'] = self.kwargs['page']
 
     myPop = Pop.objects.filter(GID_0=Location.objects.get(id=self.kwargs['myLocation']).country)
-    dd={}
+    dd = {}
     dd['class0'] = myPop.get(Age_class_id=0).share_Pop
     dd['class1'] = myPop.get(Age_class_id=1).share_Pop
     dd['class2'] = myPop.get(Age_class_id=2).share_Pop
@@ -563,6 +563,40 @@ class Person_DeleteView(LoginRequiredMixin, DeleteView):
     myStatus.objects.filter(curr_User=self.request.user.id).update(myDiet='0')
 
     return super(Person_DeleteView, self).delete(*args, **kwargs)
+
+
+def registPerson(request):
+  # json_str = request.body.decode("utf-8")
+  json_data = json.loads(request.body)
+  nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent all', 'adolescent pregnant',
+                  'adolescent lact', 'adult', 'adult pregnant', 'adult lact']
+
+  for myrow in json_data['myJson']:
+    # 最初に参照するキー（複数可）を指定する
+    # defaultsで指定した列・値で更新する
+    tmp_group = nut_grp_list[int(myrow['nut_group_id']) - 1]
+    Person.objects.update_or_create(
+      myLocation=Location.objects.get(id=myrow['myLocation']),
+      nut_group=tmp_group,
+      target_scope=3,
+      defaults={
+        'target_pop': int(myrow['target_pop']),
+        'created_by': request.user,
+        'myDRI': DRI.objects.get(nut_group=tmp_group)
+      }
+    )
+
+    # update myStatus
+  myStatus.objects.filter(curr_User=request.user.id).update(
+    myTarget='1',
+    myDiet='0'
+  )
+
+  myURL = reverse_lazy('index02')
+  return JsonResponse({
+    'success': True,
+    'url': myURL,
+  })
 
 
 class Diet_Plan1(LoginRequiredMixin, TemplateView):
