@@ -112,12 +112,17 @@
       color: red;
       background-color: #87BFCD;
     }
+    /* number boxを読み取り専用に*/
+    input[type="number"]:disabled {
+      background: #dddddd;
+    }
   </style>
 
   <script type="text/javascript">
     $('[data-toggle="tooltip"]').tooltip()
 
-    let mytarget_scope_Sum ={{mytarget_scope_Sum}}
+    let mytarget_scope_Sum =
+    {{mytarget_scope_Sum}}
     if (mytarget_scope_Sum < 100) {
       $('#btn_add1').removeClass('disabled');
       $('#tab2').addClass('disabled');
