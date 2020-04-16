@@ -440,6 +440,8 @@ class Person_ListView(LoginRequiredMixin, ListView):
     dd['class4'] = myPop.get(Age_class_id=4).share_Pop
     dd['class4_p'] = myPop.get(Age_class_id=4).share_Preg
     dd['class4_l'] = myPop.get(Age_class_id=4).share_BF
+    dd['class5'] = myPop.get(Age_class_id=5).share_Pop
+    dd['class6'] = myPop.get(Age_class_id=6).share_Pop
     context['myPop'] = dd
 
     return context

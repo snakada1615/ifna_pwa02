@@ -7,7 +7,7 @@
     </div>
     <div class="col">
       <form>
-        <table class="table table-sm table-info table-striped table-bordered">
+        <table id="tbl_pop3" class="table table-sm table-info table-striped table-bordered">
           <thead>
           <tr class="bg-info text-white">
             <th style="width:40%">
@@ -140,14 +140,20 @@
           </tr>
         </table>
       </form>
+      <span>
+        <a class="btn mb-2 btn-info btn-sm align-middle "
+           href="#">clear</a>
+      </span>
+      <span>
+        <a id="btn_update3" class="btn mb-2 btn-info btn-sm align-middle "
+           href="#">update</a>
+      </span>
     </div>
-
   </div>
 </div>
 
 <script type="text/javascript">
   var myPop = {{ myPop|safe }};
-  console.log(myPop);
 
   $('#chk-autoCalk').change(function () {
     if ($('#chk-autoCalk').prop('checked')) {
@@ -170,8 +176,125 @@
     $("#inpNum4").val(Math.round($(this).val() * myPop.class4 / 100));
     $("#inpNum4_p").val(Math.round($(this).val() * myPop.class4_p / 100));
     $("#inpNum4_l").val(Math.round($(this).val() * myPop.class4_l / 100));
-
   });
 
+  //////////////////btn_save_crop
+  $('#btn_update3').click(function () {
+    let hostUrl = myRoot + 'registTarget_macro/';
+    let mydat = getTblData();
+
+    //console.log(mydat);
+    //  Set_CRSF();
+    //  sendJson(mydat, hostUrl);
+    console.log(mydat);
+  }); ////////btn_save_crop///////////
+
+  //////////////////getTblData
+  function getTblData() { //#todo
+    let d = [];
+    $('#tbl_pop3 tr').each(function (i, myRow) {
+      let dd = {};
+      dd['nut_group'] = $(myRow).children('td').eq(0).text();
+      dd['target_scope'] = 3;
+      dd["myLocation"] = {{myLocation}};
+      dd['myUser'] = {{ myUser }};
+      if (i == 4 || i == 5) {
+        for (var j = 0; j < 3; j++) {
+          dd['target_pop'] = $(myRow).children('td').eq(1).text();
+        }
+      } else {
+        dd['target_pop'] = $(myRow).children('td').eq(1).text();
+      }
+    });
+
+    $('.selected_crops_tbl').each(function (i, myTbl) {
+      $(myTbl).children('tbody').children('tr').each(function (j, myRow) {
+        let dd = {};
+        if ($(myRow).children('td').eq(0).text() !== '' && $(myRow).children('td').eq(0).text() !== 'total') {
+          //   dd["myName"] = $(myRow).children('td').eq(0).text();
+          dd["total_weight"] = $(myRow).children('td').eq(5).text();
+          dd["food_item_id"] = $(myRow).children('td').eq(7).text();
+          dd["portion_size"] = $(myRow).children('td').eq(8).text();
+          dd["count_prod"] = $(myRow).children('td').eq(9).text();
+          dd["count_buy"] = $(myRow).children('td').eq(10).text();
+
+          let myNum_tmp = $(myTbl).attr('myNum');
+          let myMonth = 0;
+          if (myNum_tmp < 200) {
+            myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex") + 1;
+          } else {
+            myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').text();
+          }
+          dd["month"] = myMonth;
+          dd["myid_tbl"] = myNum_tmp;
+          dd["myLocation"] = myLocation_id;
+          dd["target_scope"] = Math.trunc(myNum_tmp / 100);
+
+          d.push(dd);
+        }
+      })
+    });
+    return {"myJson": d};
+  }
+
+  //////////////////getTblData //// csrf_tokenの取得に使う//////////////
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = jQuery.trim(cookies[i]);
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  //------------------------------------
+  function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
+
+  //------------------------------------
+  function Set_CRSF() {
+    var csrf_token = getCookie("csrftoken");
+    $.ajaxSetup({
+      crossDomain: false, // obviates need for sameOrigin test
+      beforeSend: function (xhr, settings) {
+        if (!csrfSafeMethod(settings.type)) {
+          xhr.setRequestHeader("X-CSRFToken", csrf_token);
+        }
+      }
+    });
+  }
+
+  //////////////////sendJson////
+  function sendJson(myjson, hostUrl) {
+    $.ajax({
+      type: 'post',
+      url: hostUrl,
+      data: JSON.stringify(myjson),
+      contentType: 'application/JSON',
+      dataType: 'JSON',
+      scriptCharset: 'utf-8',
+      success: function (response) {
+        window.location.href = response.url;
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        alert("fail");
+        console.log(jqXHR.responseText);
+        console.log(jqXHR.status); //例：404
+        console.log(textStatus); //例：error
+        console.log(errorThrown); //例：NOT FOUND
+        console.log(JSON.stringify(myjson)); //例：NOT FOUND
+        console.log(myjson); //例：NOT FOUND
+      }
+    });
+  }//////////////////sendJson//// scfript end///////////////////
 
 </script>
