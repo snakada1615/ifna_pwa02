@@ -30,7 +30,7 @@
             </td>
             <td>
               <div class="text-center">
-                <input type="number" class="form-control-sm" disabled style="width:90%"
+                <input type="number" class="form-control-sm input-manual" disabled style="width:90%"
                        placeholder="pop size" value="30">
               </div>
             </td>
@@ -47,7 +47,7 @@
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm" style="width:90%"
+                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="pop size" value="30">
               </div>
             </td>
@@ -64,7 +64,7 @@
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm" style="width:90%"
+                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
@@ -77,11 +77,11 @@
           </tr>
           <tr>
             <td>
-              <div class="text-center">age 6-9</div>
+              <div class="text-center">age 6-9 yrs</div>
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm" style="width:90%"
+                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
@@ -94,23 +94,23 @@
           </tr>
           <tr>
             <td>
-              <div class="text-center">age 10-17</div>
+              <div class="text-center">age 10-17 yrs</div>
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm" style="width:90%"
+                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm" style="width:90%"
+                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm" style="width:90%"
+                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
@@ -121,19 +121,19 @@
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm" style="width:90%"
+                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm" style="width:90%"
+                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
             <td>
               <div class="text-center">
-                <input type="number" disabled class="form-control-sm" style="width:90%"
+                <input type="number" disabled class="form-control-sm input-manual" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
@@ -144,14 +144,14 @@
             </td>
             <td>
               <div class="text-center">
-                <input type="number" class="form-control-sm" style="width:90%"
+                <input type="number" class="form-control-sm input-auto" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
             <td colspan="2">
               <div class="text-center">
-                <input type="checkbox" id="auto-calk" checked><label for="auto-calk" class="ml-1"> auto
-                calculate</label>
+                <input type="checkbox" id="chk-autoCalk" checked>
+                <label for="auto-calk" class="ml-1"> auto calculate</label>
               </div>
             </td>
           </tr>
@@ -161,3 +161,18 @@
 
   </div>
 </div>
+
+<script type="text/javascript">
+  $('#chk-autoCalk').change(function() {
+    if ($('#chk-autoCalk').prop('checked')) {
+      $('.input-manual').prop('disabled', true);
+      $('.input-auto').prop('disabled', false);
+    } else {
+      $('.input-manual').prop('disabled',false);
+      $('.input-auto').prop('disabled', true);
+    }
+  })
+
+
+
+</script>
