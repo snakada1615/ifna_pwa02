@@ -9,7 +9,7 @@ from .views import IndexView, Under_Construction_View, aboutNFA, UserChangeForm
 from .views import SignUpForm, SignUp, UserEdit, IndexView02, Location_CreateView
 from .views import Location_UpdateView, Location_DeleteView, Location_ListView
 from .views import Person_ListView, Person_UpdateView, Person_CreateView, Person_DeleteView
-from .views import initTable, delete_TableRec, registDiet, Output1, Output2, Output3, Output_list, registPerson
+from .views import initTable, delete_TableRec, registDiet, Output1, Output2, Output3, Output4, Output_list, registPerson
 from .views import CropSelect, registCropAvail, Trial_View, Diet_Plan1
 
 from django.contrib import admin
@@ -44,5 +44,6 @@ urlpatterns = [
   path('Output1/<int:myLocation>/', Output1.as_view(), name='output1'),
   path('Output2/<int:myLocation>/', Output2.as_view(), name='output2'),
   path('Output3/<int:myLocation>/', Output3.as_view(), name='output3'),
+  path('Output4/<int:myLocation>/', Output4.as_view(), name='output4'),
   path('Output_list/<int:myLocation>/', Output_list.as_view(), name='output_list'),
 ]
