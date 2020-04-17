@@ -520,10 +520,6 @@ class Person(models.Model):
         on_delete=models.CASCADE
     )
 
-    # 以下は管理サイト上の表示設定
-    def __str__(self):
-        return self.Nut_GROUP
-
 
 class Pop(models.Model):
     NAME_0 = models.CharField(max_length=200)
