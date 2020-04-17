@@ -445,6 +445,20 @@ class Person_ListView(LoginRequiredMixin, ListView):
     context['myPop'] = dd
     context['myReturnURL'] = reverse_lazy('index01')
 
+    myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation']).filter(target_scope=3);
+    dd = {}
+    dd['class0'] = myPerson.get(nut_group='child 0-23 month').target_pop
+    dd['class1'] = myPerson.get(nut_group='child 24-59 month').target_pop
+    dd['class2'] = myPerson.get(nut_group='child 6-9 yr').target_pop
+    dd['class3'] = myPerson.get(nut_group='adolescent all').target_pop
+    dd['class4'] = myPerson.get(nut_group='adolescent pregnant').target_pop
+    dd['class5'] = myPerson.get(nut_group='adolescent lact').target_pop
+    dd['class6'] = myPerson.get(nut_group='adult').target_pop
+    dd['class7'] = myPerson.get(nut_group='adult pregnant').target_pop
+    dd['class8'] = myPerson.get(nut_group='adult lact').target_pop
+    context['myCommunity'] = dd
+
+
     return context
 
 

@@ -3,7 +3,7 @@
        style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
     <div class="card border-success rounded px-1 mx-1 mt-1 mb-2"
          style="color:#24535F ;background-color:#D9ECDC;border-width: 2px;">
-      aaa
+      Population structure of target area
     </div>
     <div class="col">
       <form>
@@ -154,6 +154,7 @@
 
 <script type="text/javascript">
   var myPop = {{ myPop|safe }};
+  var myCommunity = {{ myCommunity|safe }};
   let url_tmp = window.location.href.split('/');
   url_tmp.pop();
   url_tmp.pop();
@@ -287,5 +288,18 @@
       }
     });
   }//////////////////sendJson//// scfript end///////////////////
+  // Print initial value in a div box
+  $("#inpNum0").val(myCommunity.class0);
+  $("#inpNum1").val(myCommunity.class1);
+  $("#inpNum2").val(myCommunity.class2);
+  $("#inpNum3").val(myCommunity.class3);
+  $("#inpNum3_p").val(myCommunity.class4);
+  $("#inpNum3_l").val(myCommunity.class5);
+  $("#inpNum4").val(myCommunity.class6);
+  $("#inpNum4_p").val(myCommunity.class7);
+  $("#inpNum4_l").val(myCommunity.class8);
+  let tmp = myCommunity.class0 + myCommunity.class1 + myCommunity.class2 + myCommunity.class3 + myCommunity.class4
+          + myCommunity.class5 + myCommunity.class6 + myCommunity.class7 + myCommunity.class8;
+  $("#inpNum5").val(tmp);
 
 </script>
