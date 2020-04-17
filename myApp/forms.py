@@ -22,7 +22,8 @@ class LocationForm(forms.ModelForm):
         }
         labels = {
             "region":"Region",
-            "province":"Woreda",
+            "province":"Zone",
+            "community":"Woreda",
             "Location":"Kebele",
         }
 
