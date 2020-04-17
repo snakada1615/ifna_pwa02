@@ -522,7 +522,7 @@ class Person(models.Model):
 
     # 以下は管理サイト上の表示設定
     def __str__(self):
-        return self.name
+        return self.Nut_GROUP
 
 
 class Pop(models.Model):

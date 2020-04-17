@@ -388,7 +388,7 @@
     target_va[3] = {{dri_v3}};
     target_fe[3] = {{dri_f3}};
 
-    console.log('target_fe=' + target_fe + ', target_en= ' + target_en);
+    console.log('target_fe=' + target_fe[1] + ', target_en= ' + target_en[1]);
 
     let url_tmp = window.location.href.split('/');
     let tmp1 = url_tmp[url_tmp.length - 2];
@@ -911,7 +911,7 @@
           let total_count = count_prod_tmp + count_buy_tmp;
           let mycount = SetPie_val(total_count, myShare);
 
-          console.log('count_p='+ count_prod_tmp + ', count_b='+ count_buy_tmp + ', myShare='+ myShare);
+          console.log('count_p=' + count_prod_tmp + ', count_b=' + count_buy_tmp + ', myShare=' + myShare);
 
           motherTable.children('tbody').children('tr').eq(1).children('td').eq(6).text(mycount.i_prod);
           motherTable.children('tbody').children('tr').eq(1).children('td').eq(7).text(mycount.i_buy);
@@ -930,7 +930,7 @@
           let hostUrl = myRoot + 'registDiet/';
           let mydat = getTblData();
 
-          //console.log(mydat);
+          console.log(mydat);
           Set_CRSF();
           sendJson(mydat, hostUrl);
           //console.log(mydat);
@@ -954,8 +954,9 @@
                 let myMonth = 0;
                 if (myNum_tmp < 200) {
                   myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex") + 1;
+                  console.log('hey hey-- ' + myMonth + ', list=' + $('.lst_month[myNum="101"]').html());
                 } else {
-                  myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').text();
+                  myMonth = Number($('.lst_month[myNum=' + myNum_tmp + ']').text());
                 }
                 dd["month"] = myMonth;
                 dd["myid_tbl"] = myNum_tmp;
