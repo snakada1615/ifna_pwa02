@@ -458,7 +458,6 @@ class Person_ListView(LoginRequiredMixin, ListView):
     dd['class8'] = myPerson.get(nut_group='adult lact').target_pop
     context['myCommunity'] = dd
 
-
     return context
 
 
@@ -644,10 +643,10 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp_v = 0
     tmp_f = 0
     for tmp in tmp_nut_group2:
-      tmp_e += tmp.myDRI.energy
-      tmp_p += tmp.myDRI.protein
-      tmp_v += tmp.myDRI.vita
-      tmp_f += tmp.myDRI.fe
+      tmp_e += tmp.myDRI.energy * tmp.target_pop
+      tmp_p += tmp.myDRI.protein * tmp.target_pop
+      tmp_v += tmp.myDRI.vita * tmp.target_pop
+      tmp_f += tmp.myDRI.fe * tmp.target_pop
     context['dri_e2'] = tmp_e
     context['dri_p2'] = tmp_p
     context['dri_v2'] = tmp_v
@@ -659,10 +658,10 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp_v = 0
     tmp_f = 0
     for tmp in tmp_nut_group3:
-      tmp_e += tmp.myDRI.energy
-      tmp_p += tmp.myDRI.protein
-      tmp_v += tmp.myDRI.vita
-      tmp_f += tmp.myDRI.fe
+      tmp_e += tmp.myDRI.energy * tmp.target_pop
+      tmp_p += tmp.myDRI.protein * tmp.target_pop
+      tmp_v += tmp.myDRI.vita * tmp.target_pop
+      tmp_f += tmp.myDRI.fe * tmp.target_pop
     context['dri_e3'] = tmp_e
     context['dri_p3'] = tmp_p
     context['dri_v3'] = tmp_v
