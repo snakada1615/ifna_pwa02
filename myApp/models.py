@@ -11,6 +11,10 @@ class Profile(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   organization = models.CharField(max_length=200, blank=True, default="***")
   title = models.CharField(max_length=30, blank=True, default="***")
+  myLocation = models.IntegerField(default=0, blank=True)
+  myCrop = models.IntegerField(default=0, blank=True)
+  myTarget = models.IntegerField(default=0, blank=True)
+  myDiet = models.IntegerField(default=0, blank=True)
 
 
 @receiver(post_save, sender=User)

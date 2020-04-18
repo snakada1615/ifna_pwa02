@@ -80,7 +80,7 @@ class UserEdit(LoginRequiredMixin, UpdateView):
       for msg in form.error_messages:
         print(form.error_messages[msg])
 
-      return render(request=request,
+      return render(request=self.request,
                     template_name="myApp/signup_edit.html",
                     context={"form": form})
 
