@@ -1,121 +1,138 @@
 <!DOCTYPE html>
 <html>
-	{% load static %}
+{% load static %}
 
-	<head>
-		<title>NFA tool</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta charset="utf-8">
-		<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
-		<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+<head>
+  <title>NFA tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
 
 
-		<style type="text/css">
-		/* //////カードの枠線を太くする/////// */
-			.border-5 {
-    		border-width:5px !important;
-			}
-			/* //////FontAwesome用の設定/////// */
-			.fb:before
-			{
-				font-family: 'FontAwesome' ;
-				padding-right: 5px ;
-			}
-			.fb-home:before /*個別アイコンのidをここで指定*/
-			{
-				content: '\f015' ;
-			}
-			.fb-help:before /*個別アイコンのidをここで指定*/
-			{
-				content: '\f059' ;
-			}
-			/* ////////FontAwesome用の設定終わり//////// */
-			.col-6 {
-				margin-bottom: 10px;
-			}
-			.dropdown-span {
-				text-align: center;
-				color: white;
-				background-color: #5bc0de;
-			}
-			.footer {
-				text-align: center;
-				position: absolute;
-				padding: 10px;
-				color: white;
-				width: 100%;
-				bottom: 0;
-			}
-			.alink {
-				text-decoration: none;
-				color: white;
-			}
-			.alink:hover {
-				text-decoration: none;
-				color: white;
-			}
-			#content {
-				padding-bottom: 5%;
-			}
-			body,
-			html {
-				margin: 0;
-				padding: 0;
-				height: 100%;
-			}
-			.wrapper {
-				position: relative;
-				min-height: 100%;
-			}
-		</style>
-	</head>
+  <style type="text/css">
+    /* //////カードの枠線を太くする/////// */
+    .border-5 {
+      border-width: 5px !important;
+    }
 
-	<body>
-		<div class="wrapper">
+    /* //////FontAwesome用の設定/////// */
+    .fb:before {
+      font-family: 'FontAwesome';
+      padding-right: 5px;
+    }
 
-			<nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
-				<a class="navbar-brand" href="{% url 'index01' %}">
-					<span class="fb fb-home"></span>
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
+    .fb-home:before /*個別アイコンのidをここで指定*/
+    {
+      content: '\f015';
+    }
 
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
+    .fb-help:before /*個別アイコンのidをここで指定*/
+    {
+      content: '\f059';
+    }
 
-						<li class="nav-item active">
-							<a class="nav-link" href="{% url 'construction' %}">main<span class="sr-only">(current)</span></a>
-						</li>
-						<li class="nav-item active">
-							<a class="nav-link" href="{% url 'construction' %}">How to use?</a>
-						</li>
-						<li class="nav-item active">
-							<a class="nav-link" href="{% url 'construction' %}">About us</a>
-						</li>
+    /* ////////FontAwesome用の設定終わり//////// */
+    .col-6 {
+      margin-bottom: 10px;
+    }
 
-					</ul>
+    .dropdown-span {
+      text-align: center;
+      color: white;
+      background-color: #5bc0de;
+    }
 
-					<ul class="navbar-nav navbar-right">
-						<li class="nav-item"></li>
-					</ul>
-				</div>
-			</nav>
+    .footer {
+      text-align: center;
+      position: absolute;
+      padding: 10px;
+      color: white;
+      width: 100%;
+      bottom: 0;
+    }
 
-			<br><br><br>
-			<div id="content" class="container">
-				{% if myuser.first_name is not None %}
-						<div class="container bg-success mt-0 mb-1 text-white text-right" style="max-width: 540px;">
-							<h7>editor:
-								{{myuser.first_name}},
-								{{myuser.last_name}}</h7>
-						</div>
-				{% endif %}
-				{% block content %}{% endblock %}
-			</div>
-		</div>
-	</body>
+    .alink {
+      text-decoration: none;
+      color: white;
+    }
+
+    .alink:hover {
+      text-decoration: none;
+      color: white;
+    }
+
+    #content {
+      padding-bottom: 5%;
+    }
+
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    .wrapper {
+      position: relative;
+      min-height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+<div class="wrapper">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+    <a class="navbar-brand" href="{% url 'index01' %}">
+      <span class="fb fb-home"></span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'construction' %}">main<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'construction' %}">How to use?</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'construction' %}">About us</a>
+        </li>
+
+      </ul>
+
+      <ul class="navbar-nav navbar-right">
+        <li class="nav-item"></li>
+      </ul>
+    </div>
+  </nav>
+
+  <br><br><br>
+  <div id="content" class="container">
+      <div class="container bg-success mt-0 mb-1 text-white text-right" style="max-width: 540px;">
+        <h7>editor:
+          {{ myuser.first_name }},
+          {{ myuser.last_name }}</h7>
+        <h7>job title:
+          {{ myuser.profile.organization }},
+          {{ myuser.profile.title }}</h7>
+      </div>
+
+    <!-- 本体 -->
+    {% block content %}{% endblock %}
+
+    <!-- メッセージフレームワーク -->
+    {% include 'myApp/_messages.html' %}
+  </div>
+</div>
+</body>
 
 </html>

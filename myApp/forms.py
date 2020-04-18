@@ -1,8 +1,8 @@
 from django import forms
 from django.contrib.admin import widgets
+from django.contrib.auth.models import User
 from django.db.models import Q, Sum
-from .models import Location, Person
-
+from .models import Location, Person, Profile
 
 class LocationForm(forms.ModelForm):
     class Meta:
@@ -45,3 +45,15 @@ class Person_Form(forms.ModelForm):
         self.cleaned_data['myLocation'] = Location.objects.get(id=self.myLocation)
 
         return cleaned_data
+
+
+class UserForm(forms.ModelForm):
+  class Meta:
+    model = User
+    fields = ('first_name', 'last_name', 'username')
+
+
+class ProfileForm(forms.ModelForm):
+  class Meta:
+    model = Profile
+    fields = ('organization', 'title')

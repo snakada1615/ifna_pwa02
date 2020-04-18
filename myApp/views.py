@@ -2,6 +2,9 @@
 from django.apps import apps
 from django.contrib import admin
 
+#immport messaging framework
+from django.contrib import messages
+
 import re
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -11,7 +14,7 @@ from django.http import HttpResponse
 from django.core import serializers
 from django.http.response import JsonResponse
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
-from .forms import LocationForm, Person_Form
+from .forms import LocationForm, Person_Form, UserForm, ProfileForm
 
 from .models import myStatus, Location, Countries, Crop_National, Crop_SubNational
 from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person, Pop
@@ -21,6 +24,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
 
 # python component
 import json
@@ -33,6 +38,10 @@ class Trial_View(TemplateView):
 class IndexView(TemplateView):
   template_name = "myApp/index01.html"
 
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myuser'] = self.request.user
+    return context
 
 class Under_Construction_View(TemplateView):
   template_name = "myApp/under_construction.html"
@@ -126,6 +135,27 @@ class SignUp(CreateView):
                     context={"form": form})
 
 
+@login_required
+@transaction.atomic
+def update_profile(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile was successfully updated!')
+            return redirect('index01')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'myApp/profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
+
 class IndexView02(LoginRequiredMixin, TemplateView):
   template_name = "myApp/index02.html"
 
@@ -149,6 +179,7 @@ class IndexView02(LoginRequiredMixin, TemplateView):
     }
     json_str = json.dumps(data)
     context['myParam'] = json_str
+    context['myuser'] = self.request.user
 
     return context
 
@@ -347,6 +378,7 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # todo まだ縦横表示�
       dd["m12"] = tmp02.m12_avail
       d.append(dd)
     context["dat_mycrop"] = d
+    context['myuser'] = self.request.user
 
     return context
 
@@ -528,6 +560,7 @@ class Person_CreateView(LoginRequiredMixin, CreateView):  # todo person毎のパ
     context = super().get_context_data(**kwargs)
     context['myLocation'] = self.kwargs['myLocation']
     context['mytarget_scope'] = self.kwargs['mytarget_scope']
+    context['myuser'] = self.request.user
     return context
 
   def get_success_url(self, **kwargs):
@@ -563,6 +596,7 @@ class Person_DeleteView(LoginRequiredMixin, DeleteView):
     context = super().get_context_data(**kwargs)
     context['myLocation'] = self.kwargs['myLocation']
     context['mytarget_scope'] = self.kwargs['mytarget_scope']
+    context['myuser'] = self.request.user
     return context
 
   def get_success_url(self, **kwargs):
@@ -1194,4 +1228,6 @@ class Output_list(LoginRequiredMixin, TemplateView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myLocation'] = self.kwargs['myLocation']
+    context['myuser'] = self.request.user
     return context
+
