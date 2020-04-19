@@ -41,7 +41,14 @@ class IndexView(TemplateView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
+    messages.error(
+      self.request,
+      "this application is currently under development. user input data may be lost due to update"
+    )
+    context['message_dont_close'] = "true"
     return context
+
+
 
 class Under_Construction_View(TemplateView):
   template_name = "myApp/under_construction.html"

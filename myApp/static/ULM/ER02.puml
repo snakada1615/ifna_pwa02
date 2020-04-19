@@ -80,7 +80,7 @@ package "Master" {
     share_Preg
     share_BF
   }
-
+}
 package "Transaction" {
   entity Crop_Feasibility {
     - ID
@@ -180,6 +180,7 @@ package "Transaction" {
 
 }
 Countries -{ Location
+Countries -{ pop
 Location -{ Person
 Countries -{ Crop_National
 FCT -{ Crop_National
