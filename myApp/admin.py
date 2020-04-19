@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import FCT, DRI, Location, Person, Crop_Individual, Crop_National
 from .models import Crop_SubNational, Crop_Feasibility,Countries, Country_label
-from .models import myStatus, Profile
+from .models import Profile
 
 
 # Register your models here.
@@ -15,7 +15,6 @@ admin.site.register(Crop_SubNational)
 admin.site.register(Crop_Feasibility)
 admin.site.register(Countries)
 admin.site.register(Country_label)
-admin.site.register(myStatus)
 admin.site.register(Profile)
 
 

@@ -16,7 +16,7 @@ from django.http.response import JsonResponse
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 from .forms import LocationForm, Person_Form, UserForm, ProfileForm
 
-from .models import myStatus, Location, Countries, Crop_National, Crop_SubNational
+from .models import Location, Countries, Crop_National, Crop_SubNational
 from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person, Pop
 
 # for user registration
@@ -621,11 +621,12 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp_p = 0
     tmp_v = 0
     tmp_f = 0
-    for tmp in tmp_nut_group1:
-      tmp_e += tmp.myDRI.energy
-      tmp_p += tmp.myDRI.protein
-      tmp_v += tmp.myDRI.vita
-      tmp_f += tmp.myDRI.fe
+    if len(tmp_nut_group1)>0:
+      for tmp in tmp_nut_group1:
+        tmp_e += tmp.myDRI.energy
+        tmp_p += tmp.myDRI.protein
+        tmp_v += tmp.myDRI.vita
+        tmp_f += tmp.myDRI.fe
     context['dri_e1'] = tmp_e
     context['dri_p1'] = tmp_p
     context['dri_v1'] = tmp_v
@@ -636,11 +637,12 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp_p = 0
     tmp_v = 0
     tmp_f = 0
-    for tmp in tmp_nut_group2:
-      tmp_e += tmp.myDRI.energy * tmp.target_pop
-      tmp_p += tmp.myDRI.protein * tmp.target_pop
-      tmp_v += tmp.myDRI.vita * tmp.target_pop
-      tmp_f += tmp.myDRI.fe * tmp.target_pop
+    if len(tmp_nut_group2)>0:
+      for tmp in tmp_nut_group2:
+        tmp_e += tmp.myDRI.energy * tmp.target_pop
+        tmp_p += tmp.myDRI.protein * tmp.target_pop
+        tmp_v += tmp.myDRI.vita * tmp.target_pop
+        tmp_f += tmp.myDRI.fe * tmp.target_pop
     context['dri_e2'] = tmp_e
     context['dri_p2'] = tmp_p
     context['dri_v2'] = tmp_v
@@ -651,11 +653,12 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp_p = 0
     tmp_v = 0
     tmp_f = 0
-    for tmp in tmp_nut_group3:
-      tmp_e += tmp.myDRI.energy * tmp.target_pop
-      tmp_p += tmp.myDRI.protein * tmp.target_pop
-      tmp_v += tmp.myDRI.vita * tmp.target_pop
-      tmp_f += tmp.myDRI.fe * tmp.target_pop
+    if len(tmp_nut_group3)>0:
+      for tmp in tmp_nut_group3:
+        tmp_e += tmp.myDRI.energy * tmp.target_pop
+        tmp_p += tmp.myDRI.protein * tmp.target_pop
+        tmp_v += tmp.myDRI.vita * tmp.target_pop
+        tmp_f += tmp.myDRI.fe * tmp.target_pop
     context['dri_e3'] = tmp_e
     context['dri_p3'] = tmp_p
     context['dri_v3'] = tmp_v

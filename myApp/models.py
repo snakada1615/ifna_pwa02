@@ -510,7 +510,8 @@ class Person(models.Model):
     ('child 6-9 yr', 'child 6-9 yr'),
     ('adolescent boy', 'adolescent boy'),
     ('adolescent girl', 'adolescent girl'),
-    ('pregnant women', 'pregnant women'),
+    ('adolescent pregnant', 'adolescent pregnant'),
+    ('adult pregnant', 'adult pregnant'),
     ('adult', 'adult'),
   )
   myLocation = models.ForeignKey(
@@ -566,13 +567,3 @@ class Pop(models.Model):
   share_Pop = models.FloatField(default=0)
   share_Preg = models.FloatField(default=0)
   share_BF = models.FloatField(default=0)
-
-
-# commit test
-
-class myStatus(models.Model):
-  curr_User = models.IntegerField(default=0, blank=True)
-  myLocation = models.IntegerField(default=0, blank=True)
-  myCrop = models.IntegerField(default=0, blank=True)
-  myTarget = models.IntegerField(default=0, blank=True)
-  myDiet = models.IntegerField(default=0, blank=True)
