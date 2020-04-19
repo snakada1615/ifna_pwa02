@@ -108,22 +108,6 @@ class SignUp(CreateView):
       login(self.request, user)  # 認証
       self.object = user
 
-      # --------------------update myStatus-------------------------
-      keys = {}
-      keys['myLocation'] = form.instance.pk
-      if myStatus.objects.all().count() != 0:
-        mydat = myStatus.objects.all().first()
-        mydat.curr_User = self.request.user.id
-        mydat.myLocation = 0
-        mydat.myTarget = 0
-        mydat.myTarget = 0
-        mydat.myDiet = 0
-        mydat.save()
-      else:
-        myStatus.objects.create(
-          curr_User=self.request.user.id
-        )
-
       return HttpResponseRedirect(self.get_success_url())  # リダイレクト
 
     else:
@@ -161,17 +145,9 @@ class IndexView02(LoginRequiredMixin, TemplateView):
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
-    ######## create record if not exists #########
-    tmp = myStatus.objects.filter(curr_User=self.request.user.id)
-    if tmp.count() == 0:
-      keys = {}
-      keys['curr_User'] = self.request.user.id
-      p = myStatus.objects.create(**keys)
-    ###############################################
 
-    keys_all = myStatus.objects.get(curr_User=self.request.user.id)
+    keys_all = self.request.user.profile
     data = {
-      'curr_User': keys_all.curr_User,
       'myLocation': keys_all.myLocation,
       'myCrop': keys_all.myCrop,
       'myTarget': keys_all.myTarget,
@@ -195,8 +171,8 @@ class Location_ListView(LoginRequiredMixin, ListView):
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
-    context['myLocation'] = myStatus.objects.all().first().myLocation
     context['myuser'] = self.request.user
+    context['myLocation'] = self.request.user.profile.myLocation
     return context
 
 
@@ -209,22 +185,6 @@ class Location_DeleteView(LoginRequiredMixin, DeleteView):  # todo これをmoda
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
     return context
-
-  def delete(self, *args, **kwargs):
-    self.object = self.get_object()
-    # myStatusの設定
-    tmp_myLoc = 0
-    if Location.objects.filter(created_by_id=self.request.user.id).count() > 0:
-      tmp_myLoc = Location.objects.first().id
-    myStatus.objects.filter(curr_User=self.request.user.id).update(
-      myLocation=tmp_myLoc
-    )
-    myStatus.objects.filter(curr_User=self.request.user.id).update(myCrop='0')
-    myStatus.objects.filter(curr_User=self.request.user.id).update(myTarget='0')
-    myStatus.objects.filter(curr_User=self.request.user.id).update(myDiet='0')
-
-    return super(Location_DeleteView, self).delete(*args, **kwargs)
-
 
 class Location_CreateView(LoginRequiredMixin, CreateView):
   model = Location
@@ -240,19 +200,12 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
   def form_valid(self, form):
     self.object = form.save()
     # --------------------update myStatus-------------------------
-    keys = {}
-    keys['myLocation'] = form.instance.pk
-    keys['myTarget'] = 0
-    keys['myCrop'] = 0
-    keys['myDiet'] = 0
-    tmp = myStatus.objects.filter(curr_User=self.request.user.id)
-    if tmp.count() == 0:
-      keys['curr_User'] = self.request.user.id
-      p = myStatus.objects.create(**keys)
-    elif tmp.count() == 1:
-      p = tmp.update(**keys)
-    else:
-      raise Exception("例外が発生しました:Location_CreateView")
+    key = self.request.user.profile
+    key.myLocation = form.instance.pk
+    key.myTarget = 0
+    key.myCrop = 0
+    key.myDiet = 0
+    key.save()
 
     #        keys_all.update(**keys)
     # ---------------------
@@ -271,6 +224,18 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
           }
         )
 
+    # --------------------update myTarget-community-------------------------
+    nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent all', 'adolescent pregnant',
+                    'adolescent lact', 'adult', 'adult pregnant', 'adult lact']
+    for i in range(9):
+      Person.objects.create(
+        myLocation=Location.objects.get(id=form.instance.pk),
+        nut_group=nut_grp_list[i],
+        target_scope=3,
+        target_pop=100,
+        created_by=self.request.user,
+        myDRI =DRI.objects.get(nut_group=nut_grp_list[i])
+    )
     # ---------------------
     form.instance.AEZ_id = tmp_aez
     form.instance.myCountry = Countries.objects.filter(
@@ -314,19 +279,12 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
   def form_valid(self, form):
     self.object = form.save()
     # --------------------update myStatus-------------------------
-    keys = {}
-    keys['myLocation'] = form.instance.pk
-    keys['myTarget'] = 0
-    keys['myCrop'] = 0
-    keys['myDiet'] = 0
-    tmp = myStatus.objects.filter(curr_User=self.request.user.id)
-    if tmp.count() == 0:
-      keys['curr_User'] = self.request.user.id
-      p = myStatus.objects.create(**keys)
-    elif tmp.count() == 1:
-      p = tmp.update(**keys)
-    else:
-      raise Exception("例外が発生しました")
+    key = self.request.user.profile
+    key.myLocation = form.instance.pk
+    key.myTarget = 0
+    key.myCrop = 0
+    key.myDiet = 0
+    key.save()
 
     #        keys_all.update(**keys)
     # ---------------------
@@ -418,9 +376,11 @@ def registCropAvail(request):
       rec.save()
 
   # myStatusの設定
-  myStatus.objects.filter(curr_User=request.user.id).update(myCrop='1')
-  myStatus.objects.filter(curr_User=request.user.id).update(myTarget='0')
-  myStatus.objects.filter(curr_User=request.user.id).update(myDiet='0')
+  key = request.user.profile
+  key.myTarget = 0
+  key.myCrop = 1
+  key.myDiet = 0
+  key.save()
 
   myURL = reverse_lazy('index02')
   return JsonResponse({
@@ -533,12 +493,11 @@ class Person_UpdateView(LoginRequiredMixin, UpdateView):
     # remember the import: from django.http import HttpResponseRedirect
 
     # myStatusの設定
-    tmp_myStatus = myStatus.objects.filter(
-      curr_User=self.request.user.id).first()
-    tmp_myStatus.myTarget = 1
-    tmp_myStatus.myDiet = 0
-    tmp_myStatus.save()
-    #        return super(Person_CreateView, self).form_valid(form)
+    key = self.request.user.profile
+    key.myTarget = 1
+    key.myDiet = 0
+    key.save()
+
     return HttpResponseRedirect(self.get_success_url())
 
 
@@ -577,11 +536,10 @@ class Person_CreateView(LoginRequiredMixin, CreateView):  # todo person毎のパ
     # remember the import: from django.http import HttpResponseRedirect
 
     # myStatusの設定
-    tmp_myStatus = myStatus.objects.filter(
-      curr_User=self.request.user.id).first()
-    tmp_myStatus.myTarget = 1
-    tmp_myStatus.myDiet = 0
-    tmp_myStatus.save()
+    key = self.request.user.profile
+    key.myTarget = 1
+    key.myDiet = 0
+    key.save()
 
     return super(Person_CreateView, self).form_valid(form)
 
@@ -606,8 +564,10 @@ class Person_DeleteView(LoginRequiredMixin, DeleteView):
   def delete(self, *args, **kwargs):
     self.object = self.get_object()
     # myStatusの設定
-    myStatus.objects.filter(curr_User=self.request.user.id).update(myTarget='0')
-    myStatus.objects.filter(curr_User=self.request.user.id).update(myDiet='0')
+    key = self.request.user.profile
+    key.myTarget = 0
+    key.myDiet = 0
+    key.save()
 
     return super(Person_DeleteView, self).delete(*args, **kwargs)
 
@@ -633,11 +593,11 @@ def registPerson(request):
       }
     )
 
-    # update myStatus
-  myStatus.objects.filter(curr_User=request.user.id).update(
-    myTarget='1',
-    myDiet='0'
-  )
+  # update myStatus
+  key = request.user.profile
+  key.myTarget = 1
+  key.myDiet = 0
+  key.save()
 
   myURL = reverse_lazy('index02')
   return JsonResponse({
@@ -831,7 +791,9 @@ def registDiet(request):
     )
 
   # update myStatus
-  myStatus.objects.filter(curr_User=request.user.id).update(myDiet='1')
+  key = request.user.profile
+  key.myDiet = 1
+  key.save()
 
   myURL = reverse_lazy('index02')
   return JsonResponse({
