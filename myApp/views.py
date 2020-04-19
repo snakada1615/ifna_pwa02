@@ -418,7 +418,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
 
     context['mytarget_scope_Sum'] = tmpClass_sum
     context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
-    context['myuser'] = self.request.user.id
+    context['myuser'] = self.request.user
     context['page'] = self.kwargs['page']
 
     myPop = Pop.objects.filter(GID_0=Location.objects.get(id=self.kwargs['myLocation']).country)

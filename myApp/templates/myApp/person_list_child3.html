@@ -206,7 +206,7 @@
             let dd = {};
             dd['target_scope'] = 3;
             dd["myLocation"] = {{myLocation.id}};
-            dd['myuser'] = {{ myuser }};
+            dd['myuser'] = {{ myuser.id }};
             if (i === 4) {
               dd['nut_group_id'] = i + j;
             } else {
@@ -219,7 +219,7 @@
           let dd = {};
           dd['target_scope'] = 3;
           dd["myLocation"] = {{myLocation.id}};
-          dd['myuser'] = {{ myuser }};
+          dd['myuser'] = {{ myuser.id }};
           dd['nut_group_id'] = i;
           dd['target_pop'] = $(myRow).children('td').eq(1).find('.input-manual').val();
           d.push(dd);
