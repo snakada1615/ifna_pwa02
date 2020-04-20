@@ -4,8 +4,8 @@
 
 {% block content %}
   <script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
+  <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
 
   {{ form.certifications.errors }}
@@ -96,7 +96,7 @@
   <script type="text/javascript">
 
     var json_crop = {{mylist_crop|safe}};
-    console.log(json_crop);
+    //    console.log(json_crop);
 
     $(document).ready(function () {
 
@@ -105,6 +105,7 @@
         data: json_crop,
         "pageLength": 20,
         "ordering": false,
+        "select": 'single',
         /////////////////////////
         "columns": [
           {
@@ -144,9 +145,18 @@
               select.append('<option value="' + d + '">' + d + '</option>');
             });
           });
-        }
+          $('#tbl_crop_all tbody').on('click', 'tr', function () {
+            $(this).toggleClass('selected');
+            if ($(this).hasClass('selected')) {
+              mydata = mytable_all.row(this).data();
+            $('#id_crop_name').val(mydata['Food_name']);
+            $('#id_crop_name_id').val(mydata['food_item_id']);
+            }
+          })
+        }//----------- initComplete -----------
       })//---------mytable_all----------
 
+      //---------crop selection event----------
       $('#btn_add').click(function () {
         $('#dlg_crop').modal('show');
       })
