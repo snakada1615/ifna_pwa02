@@ -1244,3 +1244,19 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
     form.instance.created_by = self.request.user
     form.instance.myLocation = Location.objects.get(id=self.request.user.profile.myLocation)
     return super(Crop_Feas_CreateView, self).form_valid(form)
+
+class Crop_Feas_ListView(LoginRequiredMixin, ListView):
+  model = Crop_Feasibility
+  context_object_name = "mylist"
+  template_name = 'myApp/Crop_Feas_list.html'
+
+  def get_queryset(self):
+    queryset = super().get_queryset().filter(created_by=self.request.user).filter(
+      myLocation = self.request.user.profile.myLocation)
+    return queryset
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myuser'] = self.request.user
+    context['myLocation'] = self.request.user.profile.myLocation
+    return context
