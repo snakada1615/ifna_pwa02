@@ -6,7 +6,6 @@
     <p>Data will be deleted. Are you OK?</p>
     <form action="" method="post">
       {% csrf_token %}
-      {% include "./person_card.html" %}
       <div class="row">
         <div class="col-12">
           <div class="float-right">
@@ -15,6 +14,7 @@
           </div>
         </div>
       </div>
+      {% include "./person_card.html" %}
     </form>
   </div>
 {% endblock %}

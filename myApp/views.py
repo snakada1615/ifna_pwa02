@@ -1261,3 +1261,14 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['myLocation'] = self.request.user.profile.myLocation
     context['myLocation_name'] = Location.objects.get(id = self.request.user.profile.myLocation).name
     return context
+
+class Crop_Feas_DeleteView(LoginRequiredMixin, DeleteView):  # todo これをmodal dialogueにする
+  model = Crop_Feasibility
+  template_name = 'myApp/Crop_Feas_confirm_delete.html'
+  success_url = reverse_lazy('crop_feas_list')
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myuser'] = self.request.user
+    return context
+
