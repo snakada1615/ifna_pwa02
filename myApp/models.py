@@ -270,6 +270,11 @@ class Crop_Feasibility(models.Model):
     default=436,
     on_delete=models.CASCADE
   )
+  myLocation = models.ForeignKey(
+    Location,
+    default=6,
+    on_delete=models.CASCADE
+  )
   feas_DRI_e = models.IntegerField(
     verbose_name='feas_DRI',
     choices=choices_DRI_realistic,

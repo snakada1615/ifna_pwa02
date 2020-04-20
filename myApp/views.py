@@ -1237,5 +1237,10 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
         d.append(dd)
 
     context["mylist_crop"] = d
-
     return context
+
+  def form_valid(self, form):
+    self.object = form.save()
+    form.instance.created_by = self.request.user
+    form.instance.myLocation = Location.objects.get(id=self.request.user.profile.myLocation)
+    return super(Crop_Feas_CreateView, self).form_valid(form)

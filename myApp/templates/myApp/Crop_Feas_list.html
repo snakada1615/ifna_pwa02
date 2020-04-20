@@ -1,0 +1,60 @@
+{% extends 'myApp/_base.html' %}
+{% load static %}
+
+{% block content %}
+	<div class="container" style="max-width: 540px;">
+		<div class="row">
+			<div class="col-2 my-0 px-3">
+				<img src="{% static 'img/no_other.png' %}">
+			</div>
+			<div class="col-8 my-0 px-1">
+				<h5>
+					add new crop
+				</h5>
+			</div>
+			<div class="col-2 my-0 px-1">
+				<span>
+					<a class="btn btn-info badge text-wrap" href="{% url  'crop_feas_create' %}">+</a>
+				</span>
+				<span>
+					<a class="btn my-0 btn-warning btn-sm align-middle badge" href="{% url 'index02'  %}" id="btn_save">back</a>
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" style="max-width: 540px;">
+		{% for crop in mylist %}
+				<div class="card border-primary col-12 mt-2 py-0" style="max-width: 540px;">
+					<div class="row">
+						<div class="col-12">
+							<div class="card-body py-1 px-0">
+								<h5 class="card-title my-0">
+									{{ crop.myFCT.Food_name }}
+								</h5>
+								<p class="card-text my-0">
+									{{ crop.myFCT.Protein }}
+								</p>
+								<p class="card-text my-0">
+									{{ crop.myFCT.VITA_RAE }}
+								</p>
+								<p class="card-text my-0">
+									{{ crop.myFCT.FE }}
+								</p>
+								<p class="card-text my-0">
+									{{ crop.crop_score }}
+								</p>
+								<span>
+									<a class="btn my-0 btn-info btn-sm align-middle badge" href="{% url 'index' %}">edit / select</a>
+								</span>
+								<span>
+									<a class="btn my-0 btn-info btn-sm align-middle badge " href="{% url 'index' %}">delete</a>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+	{% endblock %}
