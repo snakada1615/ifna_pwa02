@@ -19,7 +19,9 @@
             <div class="card-body py-0 px-0">
               <div class="row">
                 <div class="col-12">
-                  <a id="btn_add" class="btn btn-sm btn-info my-2" href="#">add new crop</a>
+                  {% ifequal isUpdate 0 %}
+                    <a id="btn_add" class="btn btn-sm btn-info my-2" href="#">add new crop</a>
+                  {% endifequal %}
                   {{ form|crispy }}
                 </div>
               </div>
@@ -30,7 +32,7 @@
       <div class="row">
         <div class="col-12">
           <div class="float-right">
-            <a class="btn btn-sm btn-info mb-2" href="{% url 'index01' %}">return</a>
+            <a class="btn btn-sm btn-info mb-2" href="{% url 'crop_feas_list' %}">return</a>
             <button class="btn btn-sm btn-info mb-2" type="submit">save</button>
           </div>
         </div>
@@ -70,7 +72,7 @@
             </tfoot>
           </table>
           <a id="btn_exit01" class="close btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm"
-            data-dismiss="modal" aria-label="close">close</a>
+             data-dismiss="modal" aria-label="close">close</a>
         </div>
       </div>
       <!-- /.modal-content -->
@@ -150,8 +152,10 @@
             $(this).toggleClass('selected');
             if ($(this).hasClass('selected')) {
               mydata = mytable_all.row(this).data();
-            $('#id_crop_name').val(mydata['Food_name']);
-            $('#id_crop_name_id').val(mydata['food_item_id']);
+              $('#id_crop_name').val(mydata['Food_name']);
+              $('#id_crop_name').attr('readonly',true);
+              $('#id_crop_name_id').val(mydata['food_item_id']);
+              $('#id_crop_name_id').attr('readonly',true);
             }
           })
         }//----------- initComplete -----------
@@ -161,7 +165,13 @@
       $('#btn_add').click(function () {
         $('#dlg_crop').modal('show');
       })
-
+      //---------if crop update----------
+      if ({{ isUpdate }}) {
+        $('#id_crop_name').val("{{ crop_name }}");
+        $('#id_crop_name').attr('readonly',true);
+        $('#id_crop_name_id').val("{{ crop_name_id }}");
+        $('#id_crop_name_id').attr('readonly',true);
+      }
     })//-----document.ready()-----------
 
 

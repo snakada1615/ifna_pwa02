@@ -1210,11 +1210,12 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
   model = Crop_Feasibility
   form_class = Crop_Feas_Form
   template_name = 'myApp/Crop_Feas_form.html'
-  success_url = reverse_lazy('index02')
+  success_url = reverse_lazy('crop_feas_list')
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
+    context['isUpdate'] = 0
 
     # send non-available crop in the original list ######
     tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.request.user.profile.myLocation)
@@ -1257,6 +1258,7 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
+    context['isUpdate'] = 0
     context['myuser'] = self.request.user
     context['myLocation'] = self.request.user.profile.myLocation
     context['myLocation_name'] = Location.objects.get(id = self.request.user.profile.myLocation).name
@@ -1272,3 +1274,42 @@ class Crop_Feas_DeleteView(LoginRequiredMixin, DeleteView):  # todo これをmod
     context['myuser'] = self.request.user
     return context
 
+class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
+  model = Crop_Feasibility
+  form_class = Crop_Feas_Form
+  template_name = 'myApp/Crop_Feas_form.html'
+  success_url = reverse_lazy('crop_feas_list')
+
+  def get_context_data(self, **kwargs): #todo 無意味なcrop_listの送信をやめる
+    context = super().get_context_data(**kwargs)
+    context['isUpdate'] = 1
+    context['myuser'] = self.request.user
+    context['myLocation'] = self.request.user.profile.myLocation
+    context['crop_name'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.Food_name
+    context['crop_name_id'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.food_item_id
+    context['myLocation_name'] = Location.objects.get(id = self.request.user.profile.myLocation).name
+
+    # send non-available crop in the original list 無意味なのですが######
+    tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.request.user.profile.myLocation)
+    available_list = []
+    for tmp02 in tmp01:
+      available_list.append(tmp02.myFCT.id)
+
+    tmp01 = FCT.objects.all()
+    d = []
+    for tmp02 in tmp01:
+      if tmp02.id not in available_list:
+        dd = {}
+        dd["Food_grp"] = tmp02.Food_grp
+        dd["Food_name"] = tmp02.Food_name
+        dd["Energy"] = tmp02.Energy
+        dd["Protein"] = tmp02.Protein
+        dd["VITA_RAE"] = tmp02.VITA_RAE
+        dd["FE"] = tmp02.FE
+        dd["food_item_id"] = tmp02.food_item_id
+        d.append(dd)
+
+    context["mylist_crop"] = d
+
+
+    return context
