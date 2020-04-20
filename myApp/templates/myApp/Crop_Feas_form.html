@@ -1,6 +1,13 @@
 {% extends "myApp/_base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
+
 {% block content %}
+  <script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
+  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
+
   {{ form.certifications.errors }}
   <div class="container" style="max-width: 540px;">
     <form method="post" id="myform">
@@ -12,6 +19,7 @@
             <div class="card-body py-0 px-0">
               <div class="row">
                 <div class="col-12">
+                  <a id="btn_add" class="btn btn-sm btn-info my-2" href="#">add new crop</a>
                   {{ form|crispy }}
                 </div>
               </div>
@@ -22,11 +30,129 @@
       <div class="row">
         <div class="col-12">
           <div class="float-right">
-            <a class="btn btn-sm btn-info mb-2" href="{% url 'index01'%}">return</a>
+            <a class="btn btn-sm btn-info mb-2" href="{% url 'index01' %}">return</a>
             <button class="btn btn-sm btn-info mb-2" type="submit">save</button>
           </div>
         </div>
       </div>
     </form>
   </div>
+
+
+  <!-- モーダルの設定 ----------------------------->
+  <div class="modal fade" id="dlg_crop" tabindex="-1" role="dialog" aria-labelledby="dlg_crop_Label">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="dlg_crop_Label">Add New Crop</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-dark">
+          <div class="my-2" id="myFilter">Food group:
+          </div>
+          <table id="tbl_crop_all" class="display compact" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+              <th>Group</th>
+              <th>Name</th>
+              <th class="tableItem_hide">id</th>
+            </tr>
+            </thead>
+
+            <tfoot>
+            <tr>
+              <th>Group</th>
+              <th>Group</th>
+              <th class="tableItem_hide">id</th>
+            </tr>
+            </tfoot>
+          </table>
+          <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">close</a>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  <!-------------------------------------->
+
+  <style media="screen">
+    /* 行または列の非表示*/
+    .tableItem_hide {
+      display: none;
+    }
+
+    /* fontausomeの書式*/
+    .fb-help {
+      color: green;
+    }
+
+  </style>
+
+
+  <script type="text/javascript">
+
+    var json_crop = {{mylist_crop|safe}};
+    console.log(json_crop);
+
+    $(document).ready(function () {
+
+      ////////////////  install mytable_all  ////////////
+      var mytable_all = $('#tbl_crop_all').DataTable({
+        data: json_crop,
+        "pageLength": 20,
+        "ordering": false,
+        /////////////////////////
+        "columns": [
+          {
+            "data": "Food_grp"
+          }, {
+            "data": "Food_name"
+          }, {
+            "data": "food_item_id"
+          }
+        ],
+        "columnDefs": [
+          {
+            targets: [
+              0, 1
+            ],
+            visible: true
+          }, {
+            targets: '_all',
+            visible: false
+          }
+        ],
+        "initComplete": function (settings, json) {
+          // ////add filtering dropdown list
+          this.api().columns([0]).every(function () {
+            var column = this;
+            var select = $('<select style="border: 1px grey double;"><option value=""></option></select>').appendTo($('#myFilter')).on('change', function () {
+              var val = $.fn.dataTable.util.escapeRegex($(this).val());
+              column.search(
+                      val
+                              ? '^' + val + '$'
+                              : '',
+                      true,
+                      false
+              ).draw();
+            });
+            column.data().unique().sort().each(function (d, j) {
+              select.append('<option value="' + d + '">' + d + '</option>');
+            });
+          });
+        }
+      })//---------mytable_all----------
+
+      $('#btn_add').click(function () {
+        $('#dlg_crop').modal('show');
+      })
+
+    })//-----document.ready()-----------
+
+
+  </script>
 {% endblock %}

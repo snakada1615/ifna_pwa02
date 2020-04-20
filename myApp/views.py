@@ -2,7 +2,7 @@
 from django.apps import apps
 from django.contrib import admin
 
-#immport messaging framework
+# immport messaging framework
 from django.contrib import messages
 
 import re
@@ -45,9 +45,8 @@ class IndexView(TemplateView):
       self.request,
       "this application is currently under development. user input data may be lost due to update"
     )
-#    context['message_dont_close'] = "true"
+    #    context['message_dont_close'] = "true"
     return context
-
 
 
 class Under_Construction_View(TemplateView):
@@ -129,24 +128,25 @@ class SignUp(CreateView):
 @login_required
 @transaction.atomic
 def update_profile(request):
-    if request.method == 'POST':
-        user_form = UserForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            messages.success(request, 'Your profile was successfully updated!')
-            messages.info(request, '2nd message')
-            return redirect('index01')
-        else:
-            messages.error(request, 'Please correct the error below.')
+  if request.method == 'POST':
+    user_form = UserForm(request.POST, instance=request.user)
+    profile_form = ProfileForm(request.POST, instance=request.user.profile)
+    if user_form.is_valid() and profile_form.is_valid():
+      user_form.save()
+      profile_form.save()
+      messages.success(request, 'Your profile was successfully updated!')
+      messages.info(request, '2nd message')
+      return redirect('index01')
     else:
-        user_form = UserForm(instance=request.user)
-        profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'myApp/profile.html', {
-        'user_form': user_form,
-        'profile_form': profile_form
-    })
+      messages.error(request, 'Please correct the error below.')
+  else:
+    user_form = UserForm(instance=request.user)
+    profile_form = ProfileForm(instance=request.user.profile)
+  return render(request, 'myApp/profile.html', {
+    'user_form': user_form,
+    'profile_form': profile_form
+  })
+
 
 class IndexView02(LoginRequiredMixin, TemplateView):
   template_name = "myApp/index02.html"
@@ -193,6 +193,7 @@ class Location_DeleteView(LoginRequiredMixin, DeleteView):  # todo これをmoda
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
     return context
+
 
 class Location_CreateView(LoginRequiredMixin, CreateView):
   model = Location
@@ -242,8 +243,8 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
         target_scope=3,
         target_pop=100,
         created_by=self.request.user,
-        myDRI =DRI.objects.get(nut_group=nut_grp_list[i])
-    )
+        myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
+      )
     # ---------------------
     form.instance.AEZ_id = tmp_aez
     form.instance.myCountry = Countries.objects.filter(
@@ -629,7 +630,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp_p = 0
     tmp_v = 0
     tmp_f = 0
-    if len(tmp_nut_group1)>0:
+    if len(tmp_nut_group1) > 0:
       for tmp in tmp_nut_group1:
         tmp_e += tmp.myDRI.energy
         tmp_p += tmp.myDRI.protein
@@ -645,7 +646,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp_p = 0
     tmp_v = 0
     tmp_f = 0
-    if len(tmp_nut_group2)>0:
+    if len(tmp_nut_group2) > 0:
       for tmp in tmp_nut_group2:
         tmp_e += tmp.myDRI.energy * tmp.target_pop
         tmp_p += tmp.myDRI.protein * tmp.target_pop
@@ -661,7 +662,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp_p = 0
     tmp_v = 0
     tmp_f = 0
-    if len(tmp_nut_group3)>0:
+    if len(tmp_nut_group3) > 0:
       for tmp in tmp_nut_group3:
         tmp_e += tmp.myDRI.energy * tmp.target_pop
         tmp_p += tmp.myDRI.protein * tmp.target_pop
@@ -1204,6 +1205,7 @@ class Output_list(LoginRequiredMixin, TemplateView):
     context['myuser'] = self.request.user
     return context
 
+
 class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
   model = Crop_Feasibility
   form_class = Crop_Feas_Form
@@ -1212,4 +1214,27 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
+
+    # send non-available crop in the original list ######
+    tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.request.user.profile.myLocation)
+    available_list = []
+    for tmp02 in tmp01:
+      available_list.append(tmp02.myFCT.id)
+
+    tmp01 = FCT.objects.all()
+    d = []
+    for tmp02 in tmp01:
+      if tmp02.id not in available_list:
+        dd = {}
+        dd["Food_grp"] = tmp02.Food_grp
+        dd["Food_name"] = tmp02.Food_name
+        dd["Energy"] = tmp02.Energy
+        dd["Protein"] = tmp02.Protein
+        dd["VITA_RAE"] = tmp02.VITA_RAE
+        dd["FE"] = tmp02.FE
+        dd["food_item_id"] = tmp02.food_item_id
+        d.append(dd)
+
+    context["mylist_crop"] = d
+
     return context

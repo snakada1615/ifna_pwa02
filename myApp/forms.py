@@ -67,13 +67,16 @@ class ProfileForm(forms.ModelForm):
     fields = ('organization', 'title')
 
 class Crop_Feas_Form(forms.ModelForm):
+  crop_name = forms.CharField(max_length=200)
+
   class Meta:
     model = Crop_Feasibility
-    fields = ('feas_DRI_e', 'feas_DRI_e', 'feas_DRI_a', 'feas_DRI_f', 'feas_soc_acceptable', 'feas_soc_acceptable_wo',
+    fields = ('crop_name', 'feas_DRI_e', 'feas_DRI_e', 'feas_DRI_a', 'feas_DRI_f', 'feas_soc_acceptable', 'feas_soc_acceptable_wo',
               'feas_soc_acceptable_c5', 'feas_prod_skill', 'feas_workload', 'feas_tech_service', 'feas_invest_fixed',
               'feas_invest_variable', 'feas_availability_prod','feas_availability_non', 'feas_affordability',
               'feas_storability', 'crop_score')
     widgets = {
       'crop_score': forms.HiddenInput(),
+      'crop_name': forms.TextInput(attrs={'readonly': 'readonly'}),
     }
 
