@@ -1259,4 +1259,5 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
     context['myLocation'] = self.request.user.profile.myLocation
+    context['myLocation_name'] = Location.objects.get(id = self.request.user.profile.myLocation).name
     return context
