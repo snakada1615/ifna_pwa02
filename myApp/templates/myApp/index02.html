@@ -57,6 +57,14 @@
                   <a class="btn btn-block btn-warning my-1" href="#" style="max-width:540px" id='btn06'>Result</a>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-1 my-2">
+                  <img src="{% static 'img/no_other.png' %}">
+                </div>
+                <div class="col-10 mx-1">
+                  <a class="btn btn-block btn-warning my-1" href="#" style="max-width:540px" id='btn07'>Crop Editor</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -72,6 +80,7 @@
       document.getElementById('btn04').classList.add("disabled");
       document.getElementById('btn05').classList.add("disabled");
       document.getElementById('btn06').classList.add("disabled");
+      document.getElementById('btn07').classList.add("disabled");
 
       if (DATA.myLocation > 0) {
         document.getElementById('btn02').classList.remove("disabled");
@@ -81,7 +90,10 @@
           document.getElementById('btn04').classList.remove("disabled");
           var myURL = '/person/list/' + DATA.myLocation + '/1/';
           document.getElementById('btn04').href = myURL;
-          console.log(DATA.myTarget);
+          document.getElementById('btn07').classList.remove("disabled");
+          var myURL = '/Crop_Feas_Create/';
+          document.getElementById('btn07').href = myURL;
+//          console.log(DATA.myTarget);
           if (DATA.myTarget > 0) {
             document.getElementById('btn05').classList.remove("disabled");
             var myURL = '/Diet1/' + DATA.myLocation + '/';
