@@ -10,7 +10,7 @@ from .views import SignUpForm, SignUp, UserEdit, IndexView02, Location_CreateVie
 from .views import Location_UpdateView, Location_DeleteView, Location_ListView
 from .views import Person_ListView, Person_UpdateView, Person_CreateView, Person_DeleteView
 from .views import initTable, delete_TableRec, registDiet, Output1, Output2, Output3, Output4, Output_list, registPerson
-from .views import CropSelect, registCropAvail, Trial_View, Diet_Plan1, update_profile
+from .views import CropSelect, registCropAvail, Trial_View, Diet_Plan1, update_profile, Crop_Feas_CreateView
 
 from django.contrib import admin
 from django.urls import include
@@ -32,6 +32,7 @@ urlpatterns = [
   path('Location/delete/<int:pk>/', Location_DeleteView.as_view(), name='Location_delete'),
   path('Location/list/', Location_ListView.as_view(), name='Location_list'),
   path('crop_select/<int:myLocation>/', CropSelect.as_view(), name='crop_select'),
+  path('Crop_Feas_Create/', Crop_Feas_CreateView.as_view(), name='crop_feas_create'),
   path('registCropAvail/', views.registCropAvail, name='regist_crop_avail'),
   path('person/list/<int:myLocation>/<int:page>/', Person_ListView.as_view(), name='person_list'),
   path('person/create/<int:myLocation>/<int:mytarget_scope>/', Person_CreateView.as_view(), name='person_create'),

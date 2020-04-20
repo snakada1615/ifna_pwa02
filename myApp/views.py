@@ -14,7 +14,7 @@ from django.http import HttpResponse
 from django.core import serializers
 from django.http.response import JsonResponse
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
-from .forms import LocationForm, Person_Form, UserForm, ProfileForm
+from .forms import LocationForm, Person_Form, UserForm, ProfileForm, Crop_Feas_Form
 
 from .models import Location, Countries, Crop_National, Crop_SubNational
 from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person, Pop
@@ -45,7 +45,7 @@ class IndexView(TemplateView):
       self.request,
       "this application is currently under development. user input data may be lost due to update"
     )
-    context['message_dont_close'] = "true"
+#    context['message_dont_close'] = "true"
     return context
 
 
@@ -136,6 +136,7 @@ def update_profile(request):
             user_form.save()
             profile_form.save()
             messages.success(request, 'Your profile was successfully updated!')
+            messages.info(request, '2nd message')
             return redirect('index01')
         else:
             messages.error(request, 'Please correct the error below.')
@@ -1203,3 +1204,12 @@ class Output_list(LoginRequiredMixin, TemplateView):
     context['myuser'] = self.request.user
     return context
 
+class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
+  model = Crop_Feasibility
+  form_class = Crop_Feas_Form
+  template_name = 'myApp/Crop_Feas_form.html'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myuser'] = self.request.user
+    return context

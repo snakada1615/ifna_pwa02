@@ -264,6 +264,12 @@ class Crop_Feasibility(models.Model):
     (3, 'maybe yes'),
     (4, 'yes'),
   )
+  myFCT = models.ForeignKey(
+    FCT,
+    to_field='food_item_id',
+    default=436,
+    on_delete=models.CASCADE
+  )
   feas_DRI_e = models.IntegerField(
     verbose_name='feas_DRI',
     choices=choices_DRI_realistic,

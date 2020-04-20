@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.admin import widgets
 from django.contrib.auth.models import User
 from django.db.models import Q, Sum
-from .models import Location, Person, Profile
+from .models import Location, Person, Profile, Crop_Feasibility
 
 
 class LocationForm(forms.ModelForm):
@@ -61,8 +61,19 @@ class UserForm(forms.ModelForm):
     self.cleaned_data['is_staff'] = 1             #staffステータスの設定
     return cleaned_data
 
-
 class ProfileForm(forms.ModelForm):
   class Meta:
     model = Profile
     fields = ('organization', 'title')
+
+class Crop_Feas_Form(forms.ModelForm):
+  class Meta:
+    model = Crop_Feasibility
+    fields = ('feas_DRI_e', 'feas_DRI_e', 'feas_DRI_a', 'feas_DRI_f', 'feas_soc_acceptable', 'feas_soc_acceptable_wo',
+              'feas_soc_acceptable_c5', 'feas_prod_skill', 'feas_workload', 'feas_tech_service', 'feas_invest_fixed',
+              'feas_invest_variable', 'feas_availability_prod','feas_availability_non', 'feas_affordability',
+              'feas_storability', 'crop_score')
+    widgets = {
+      'crop_score': forms.HiddenInput(),
+    }
+
