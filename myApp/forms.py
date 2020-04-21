@@ -89,6 +89,24 @@ class Crop_Feas_Form(forms.ModelForm):
       'crop_name': forms.TextInput(attrs={'readonly': 'readonly'}),
       'crop_name_id': forms.HiddenInput(),
     }
+    labels = {
+      "feas_DRI_e": "Is required amount for energy target feasible?",
+      "feas_DRI_p": "Is required amount for protein target feasible?",
+      "feas_DRI_a": "Is required amount for vit-A target feasible?",
+      "feas_DRI_f": "Is required amount for Iron target feasible?",
+      "feas_soc_acceptable": "Is there any social bariier to consume this commodity in general?",
+      "feas_soc_acceptable_wo": "Is there any social barrier to consume this commodity for women?",
+      "feas_soc_acceptable_c5": "Is there any social barrier to consume this commodity for child?",
+      "feas_prod_skill": "do target beneficiary have enough skill to grow this commodity?",
+      "feas_workload": "Does this commodity imply incremental workload for women?",
+      "feas_tech_service": "Is technical service available for this commodity?",
+      "feas_invest_fixed": "Is there need for specific infrastructure (irrigation / postharvest, etc.)?",
+      "feas_invest_variable": "Is production input (fertilizer, seed, feed) become financial burden for small farmer?",
+      "feas_availability_non": "How many month is this commodity NOT available in a year?",
+      "feas_availability_prod": "How many month can you harvest this commodity in a year?",
+      "feas_affordability": "Is this commodity affordable in the market for ordinary population?",
+      "feas_storability": "Are there any feasible storage medhod available for this commodity?",
+    }
 
   def clean(self):
     cleaned_data = super(Crop_Feas_Form, self).clean()
