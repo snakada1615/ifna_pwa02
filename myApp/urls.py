@@ -11,8 +11,7 @@ from .views import Location_UpdateView, Location_DeleteView, Location_ListView
 from .views import Person_ListView, Person_UpdateView, Person_CreateView, Person_DeleteView
 from .views import initTable, delete_TableRec, registDiet, Output1, Output2, Output3, Output4, Output_list, registPerson
 from .views import CropSelect, registCropAvail, Trial_View, Diet_Plan1, update_profile
-from .views import Crop_Feas_CreateView, Crop_Feas_ListView, Crop_Feas_DeleteView, Crop_Feas_UpdateView
-#from .forms import UserChangeForm
+from .views import Crop_Feas_CreateView, Crop_Feas_ListView, Crop_Feas_DeleteView, Crop_Feas_UpdateView, FCT_ListView
 
 from django.contrib import admin
 from django.urls import include
@@ -52,4 +51,5 @@ urlpatterns = [
   path('Output3/<int:myLocation>/', Output3.as_view(), name='output3'),
   path('Output4/<int:myLocation>/', Output4.as_view(), name='output4'),
   path('Output_list/<int:myLocation>/', Output_list.as_view(), name='output_list'),
+  path('FCT_List/', FCT_ListView.as_view(), name='fct_list'),
 ]

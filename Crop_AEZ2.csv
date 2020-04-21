@@ -1,405 +1,667 @@
 myFCT,AEZ_id
 14,Tigray
-14,Afar
-14,Amhara
-14,Oromia
-14,Somali
-14,Bensh-G
-14,SNNPR
-14,Gambella
-14,Harari
-14,Dire Dawa
 15,Tigray
-15,Amhara
-15,Oromia
-15,Bensh-G
-15,SNNPR
-15,Gambella
-15,Harari
-15,Dire Dawa
 36,Tigray
-36,Afar
-36,Amhara
-36,Oromia
-36,Somali
-36,Bensh-G
-36,SNNPR
-36,Gambella
-36,Harari
-36,Dire Dawa
 39,Tigray
-39,Afar
-39,Amhara
-39,Oromia
-39,Somali
-39,Bensh-G
-39,SNNPR
-39,Gambella
-39,Harari
-39,Dire Dawa
 40,Tigray
-40,Amhara
-40,Oromia
-40,SNNPR
-40,Gambella
-40,Harari
-40,Dire Dawa
 52,Tigray
-52,Afar
-52,Amhara
-52,Oromia
-52,Somali
-52,Bensh-G
-52,SNNPR
-52,Gambella
-52,Harari
-52,Dire Dawa
 74,Tigray
-74,Afar
-74,Amhara
-74,Oromia
-74,Somali
-74,Bensh-G
-74,SNNPR
-74,Gambella
-74,Harari
-74,Dire Dawa
 83,Tigray
-83,Afar
-83,Amhara
-83,Oromia
-83,Somali
-83,Bensh-G
-83,SNNPR
-83,Gambella
-83,Harari
-83,Dire Dawa
-89,Oromia
-89,Bensh-G
-89,SNNPR
-89,Gambella
-93,Oromia
-93,Bensh-G
-93,SNNPR
-93,Gambella
 96,Tigray
-96,Afar
-96,Amhara
-96,Oromia
-96,Somali
-96,Bensh-G
-96,SNNPR
-96,Gambella
-96,Harari
-96,Dire Dawa
 118,Tigray
-118,Amhara
-118,Oromia
-118,Bensh-G
-118,SNNPR
-118,Gambella
 134,Tigray
-134,Afar
-134,Amhara
-134,Oromia
-134,Somali
-134,Bensh-G
-134,SNNPR
-134,Gambella
-134,Harari
-134,Dire Dawa
 140,Tigray
-140,Amhara
-140,Oromia
-140,Bensh-G
-140,SNNPR
-140,Gambella
-140,Harari
-140,Dire Dawa
 155,Tigray
-155,Afar
-155,Amhara
-155,Oromia
-155,Somali
-155,Bensh-G
-155,SNNPR
-155,Gambella
-155,Harari
-155,Dire Dawa
 156,Tigray
-156,Amhara
-156,Oromia
-156,Bensh-G
-156,SNNPR
-156,Gambella
-156,Harari
-156,Dire Dawa
 165,Tigray
-165,Amhara
-165,Oromia
-165,Somali
-165,Bensh-G
-165,SNNPR
-165,Gambella
-165,Harari
-165,Dire Dawa
-167,Bensh-G
 168,Tigray
-168,Afar
-168,Amhara
-168,Oromia
-168,Somali
-168,Bensh-G
-168,SNNPR
-168,Gambella
-168,Harari
-168,Dire Dawa
 171,Tigray
-171,Afar
-171,Amhara
-171,Oromia
-171,Somali
-171,Bensh-G
-171,SNNPR
-171,Gambella
-171,Harari
-171,Dire Dawa
 190,Tigray
-190,Amhara
-190,Oromia
-190,Bensh-G
-190,SNNPR
-190,Gambella
-190,Harari
-190,Dire Dawa
 197,Tigray
-197,Afar
-197,Amhara
-197,Oromia
-197,Bensh-G
-197,SNNPR
-197,Gambella
-197,Harari
-197,Dire Dawa
 199,Tigray
-199,Afar
-199,Amhara
-199,Oromia
-199,Somali
-199,Bensh-G
-199,SNNPR
-199,Gambella
-199,Harari
-199,Dire Dawa
 201,Tigray
-201,Amhara
-201,Oromia
-201,SNNPR
-201,Gambella
-201,Harari
-201,Dire Dawa
 222,Tigray
-222,Afar
-222,Amhara
-222,Oromia
-222,Somali
-222,Bensh-G
-222,SNNPR
-222,Gambella
-222,Harari
-222,Dire Dawa
 229,Tigray
-229,Afar
-229,Amhara
-229,Oromia
-229,Somali
-229,Bensh-G
-229,SNNPR
-229,Gambella
-229,Harari
-229,Dire Dawa
 233,Tigray
-233,Afar
-233,Amhara
-233,Oromia
-233,Somali
-233,Bensh-G
-233,SNNPR
-233,Gambella
-233,Harari
-233,Dire Dawa
 234,Tigray
-234,Afar
-234,Amhara
-234,Oromia
-234,Somali
-234,Bensh-G
-234,SNNPR
-234,Gambella
-234,Harari
-234,Dire Dawa
 235,Tigray
-235,Afar
-235,Amhara
-235,Oromia
-235,Somali
-235,Bensh-G
-235,SNNPR
-235,Gambella
-235,Harari
-235,Dire Dawa
 236,Tigray
-236,Afar
-236,Amhara
-236,Oromia
-236,Somali
-236,Bensh-G
-236,SNNPR
-236,Gambella
-236,Harari
-236,Dire Dawa
-237,Amhara
-237,Oromia
-237,Bensh-G
-237,SNNPR
-237,Gambella
 241,Tigray
-241,Afar
-241,Amhara
-241,Oromia
-241,Somali
-241,SNNPR
-241,Gambella
-241,Harari
-241,Dire Dawa
 245,Tigray
-245,Amhara
-245,Oromia
-245,SNNPR
-245,Gambella
-245,Harari
-245,Dire Dawa
 247,Tigray
-247,Afar
-247,Amhara
-247,Oromia
-247,Somali
-247,Bensh-G
-247,SNNPR
-247,Gambella
-247,Harari
-247,Dire Dawa
 272,Tigray
-272,Afar
-272,Amhara
-272,Oromia
-272,Somali
-272,Bensh-G
-272,SNNPR
-272,Gambella
-272,Harari
-272,Dire Dawa
 276,Tigray
-276,Afar
-276,Amhara
-276,Oromia
-276,Somali
-276,Bensh-G
-276,SNNPR
-276,Gambella
-276,Harari
-276,Dire Dawa
 292,Tigray
-292,Afar
-292,Amhara
-292,Oromia
-292,Somali
-292,Bensh-G
-292,SNNPR
-292,Gambella
-292,Harari
-292,Dire Dawa
 294,Tigray
-294,Afar
-294,Amhara
-294,Oromia
-294,Somali
-294,Bensh-G
-294,SNNPR
-294,Gambella
-294,Harari
-294,Dire Dawa
 326,Tigray
-326,Amhara
-326,Oromia
-326,Bensh-G
-326,SNNPR
-326,Gambella
-326,Harari
-326,Dire Dawa
 336,Tigray
-336,Afar
-336,Amhara
-336,Oromia
-336,Somali
-336,Bensh-G
-336,SNNPR
-336,Gambella
-336,Harari
-336,Dire Dawa
 354,Tigray
-354,Amhara
-354,Oromia
-354,Bensh-G
-354,SNNPR
-354,Gambella
-354,Harari
-354,Dire Dawa
 405,Tigray
-405,Afar
-405,Amhara
-405,Oromia
-405,Somali
-405,Bensh-G
-405,SNNPR
-405,Gambella
-405,Harari
-405,Dire Dawa
 407,Tigray
-407,Afar
-407,Amhara
-407,Oromia
-407,Somali
-407,SNNPR
-407,Gambella
-407,Harari
-407,Dire Dawa
 409,Tigray
-409,Afar
-409,Amhara
-409,Oromia
-409,Somali
-409,Bensh-G
-409,SNNPR
-409,Gambella
-409,Harari
-409,Dire Dawa
 412,Tigray
-412,Amhara
-412,Oromia
-412,SNNPR
-412,Gambella
-412,Harari
-412,Dire Dawa
-422,Afar
-422,Somali
 426,Tigray
+800,Tigray
+801,Tigray
+804,Tigray
+806,Tigray
+807,Tigray
+809,Tigray
+810,Tigray
+811,Tigray
+812,Tigray
+813,Tigray
+814,Tigray
+817,Tigray
+818,Tigray
+819,Tigray
+820,Tigray
+821,Tigray
+822,Tigray
+824,Tigray
+825,Tigray
+826,Tigray
+827,Tigray
+828,Tigray
+829,Tigray
+830,Tigray
+831,Tigray
+832,Tigray
+833,Tigray
+834,Tigray
+835,Tigray
+836,Tigray
+14,Afar
+36,Afar
+39,Afar
+52,Afar
+74,Afar
+83,Afar
+96,Afar
+134,Afar
+155,Afar
+168,Afar
+171,Afar
+197,Afar
+199,Afar
+222,Afar
+229,Afar
+233,Afar
+234,Afar
+235,Afar
+236,Afar
+241,Afar
+247,Afar
+272,Afar
+276,Afar
+292,Afar
+294,Afar
+336,Afar
+405,Afar
+407,Afar
+409,Afar
+422,Afar
 426,Afar
+800,Afar
+803,Afar
+804,Afar
+805,Afar
+810,Afar
+819,Afar
+820,Afar
+823,Afar
+825,Afar
+826,Afar
+830,Afar
+834,Afar
+835,Afar
+837,Afar
+14,Amhara
+15,Amhara
+36,Amhara
+39,Amhara
+40,Amhara
+52,Amhara
+74,Amhara
+83,Amhara
+96,Amhara
+118,Amhara
+134,Amhara
+140,Amhara
+155,Amhara
+156,Amhara
+165,Amhara
+168,Amhara
+171,Amhara
+190,Amhara
+197,Amhara
+199,Amhara
+201,Amhara
+222,Amhara
+229,Amhara
+233,Amhara
+234,Amhara
+235,Amhara
+236,Amhara
+237,Amhara
+241,Amhara
+245,Amhara
+247,Amhara
+272,Amhara
+276,Amhara
+292,Amhara
+294,Amhara
+326,Amhara
+336,Amhara
+354,Amhara
+405,Amhara
+407,Amhara
+409,Amhara
+412,Amhara
 426,Amhara
+800,Amhara
+801,Amhara
+804,Amhara
+806,Amhara
+807,Amhara
+808,Amhara
+809,Amhara
+810,Amhara
+811,Amhara
+812,Amhara
+813,Amhara
+814,Amhara
+816,Amhara
+817,Amhara
+818,Amhara
+819,Amhara
+820,Amhara
+821,Amhara
+822,Amhara
+824,Amhara
+825,Amhara
+826,Amhara
+827,Amhara
+828,Amhara
+829,Amhara
+830,Amhara
+831,Amhara
+832,Amhara
+833,Amhara
+834,Amhara
+835,Amhara
+836,Amhara
+14,Oromia
+15,Oromia
+36,Oromia
+39,Oromia
+40,Oromia
+52,Oromia
+74,Oromia
+83,Oromia
+89,Oromia
+93,Oromia
+96,Oromia
+118,Oromia
+134,Oromia
+140,Oromia
+155,Oromia
+156,Oromia
+165,Oromia
+168,Oromia
+171,Oromia
+190,Oromia
+197,Oromia
+199,Oromia
+201,Oromia
+222,Oromia
+229,Oromia
+233,Oromia
+234,Oromia
+235,Oromia
+236,Oromia
+237,Oromia
+241,Oromia
+245,Oromia
+247,Oromia
+272,Oromia
+276,Oromia
+292,Oromia
+294,Oromia
+326,Oromia
+336,Oromia
+354,Oromia
+405,Oromia
+407,Oromia
+409,Oromia
+412,Oromia
 426,Oromia
+800,Oromia
+801,Oromia
+804,Oromia
+806,Oromia
+807,Oromia
+808,Oromia
+809,Oromia
+810,Oromia
+811,Oromia
+812,Oromia
+813,Oromia
+814,Oromia
+816,Oromia
+817,Oromia
+818,Oromia
+819,Oromia
+820,Oromia
+821,Oromia
+822,Oromia
+824,Oromia
+825,Oromia
+826,Oromia
+827,Oromia
+828,Oromia
+829,Oromia
+830,Oromia
+831,Oromia
+832,Oromia
+833,Oromia
+834,Oromia
+835,Oromia
+836,Oromia
+14,Somali
+36,Somali
+39,Somali
+52,Somali
+74,Somali
+83,Somali
+96,Somali
+134,Somali
+155,Somali
+165,Somali
+168,Somali
+171,Somali
+199,Somali
+222,Somali
+229,Somali
+233,Somali
+234,Somali
+235,Somali
+236,Somali
+241,Somali
+247,Somali
+272,Somali
+276,Somali
+292,Somali
+294,Somali
+336,Somali
+405,Somali
+407,Somali
+409,Somali
+422,Somali
 426,Somali
+800,Somali
+803,Somali
+804,Somali
+805,Somali
+806,Somali
+809,Somali
+819,Somali
+820,Somali
+823,Somali
+825,Somali
+826,Somali
+834,Somali
+835,Somali
+837,Somali
+14,Bensh-G
+15,Bensh-G
+36,Bensh-G
+39,Bensh-G
+52,Bensh-G
+74,Bensh-G
+83,Bensh-G
+89,Bensh-G
+93,Bensh-G
+96,Bensh-G
+118,Bensh-G
+134,Bensh-G
+140,Bensh-G
+155,Bensh-G
+156,Bensh-G
+165,Bensh-G
+167,Bensh-G
+168,Bensh-G
+171,Bensh-G
+190,Bensh-G
+197,Bensh-G
+199,Bensh-G
+222,Bensh-G
+229,Bensh-G
+233,Bensh-G
+234,Bensh-G
+235,Bensh-G
+236,Bensh-G
+237,Bensh-G
+247,Bensh-G
+272,Bensh-G
+276,Bensh-G
+292,Bensh-G
+294,Bensh-G
+326,Bensh-G
+336,Bensh-G
+354,Bensh-G
+405,Bensh-G
+409,Bensh-G
 426,Bensh-G
+800,Bensh-G
+801,Bensh-G
+802,Bensh-G
+804,Bensh-G
+806,Bensh-G
+807,Bensh-G
+808,Bensh-G
+809,Bensh-G
+810,Bensh-G
+811,Bensh-G
+812,Bensh-G
+813,Bensh-G
+814,Bensh-G
+816,Bensh-G
+818,Bensh-G
+819,Bensh-G
+820,Bensh-G
+821,Bensh-G
+822,Bensh-G
+824,Bensh-G
+826,Bensh-G
+827,Bensh-G
+828,Bensh-G
+829,Bensh-G
+830,Bensh-G
+832,Bensh-G
+834,Bensh-G
+835,Bensh-G
+838,Bensh-G
+14,SNNPR
+15,SNNPR
+36,SNNPR
+39,SNNPR
+40,SNNPR
+52,SNNPR
+74,SNNPR
+83,SNNPR
+89,SNNPR
+93,SNNPR
+96,SNNPR
+118,SNNPR
+134,SNNPR
+140,SNNPR
+155,SNNPR
+156,SNNPR
+165,SNNPR
+168,SNNPR
+171,SNNPR
+190,SNNPR
+197,SNNPR
+199,SNNPR
+201,SNNPR
+222,SNNPR
+229,SNNPR
+233,SNNPR
+234,SNNPR
+235,SNNPR
+236,SNNPR
+237,SNNPR
+241,SNNPR
+245,SNNPR
+247,SNNPR
+272,SNNPR
+276,SNNPR
+292,SNNPR
+294,SNNPR
+326,SNNPR
+336,SNNPR
+354,SNNPR
+405,SNNPR
+407,SNNPR
+409,SNNPR
+412,SNNPR
 426,SNNPR
+800,SNNPR
+801,SNNPR
+804,SNNPR
+806,SNNPR
+807,SNNPR
+808,SNNPR
+809,SNNPR
+810,SNNPR
+811,SNNPR
+812,SNNPR
+813,SNNPR
+814,SNNPR
+816,SNNPR
+817,SNNPR
+818,SNNPR
+819,SNNPR
+820,SNNPR
+821,SNNPR
+822,SNNPR
+824,SNNPR
+825,SNNPR
+826,SNNPR
+827,SNNPR
+828,SNNPR
+829,SNNPR
+830,SNNPR
+831,SNNPR
+832,SNNPR
+833,SNNPR
+834,SNNPR
+835,SNNPR
+836,SNNPR
+14,Gambella
+15,Gambella
+36,Gambella
+39,Gambella
+40,Gambella
+52,Gambella
+74,Gambella
+83,Gambella
+89,Gambella
+93,Gambella
+96,Gambella
+118,Gambella
+134,Gambella
+140,Gambella
+155,Gambella
+156,Gambella
+165,Gambella
+168,Gambella
+171,Gambella
+190,Gambella
+197,Gambella
+199,Gambella
+201,Gambella
+222,Gambella
+229,Gambella
+233,Gambella
+234,Gambella
+235,Gambella
+236,Gambella
+237,Gambella
+241,Gambella
+245,Gambella
+247,Gambella
+272,Gambella
+276,Gambella
+292,Gambella
+294,Gambella
+326,Gambella
+336,Gambella
+354,Gambella
+405,Gambella
+407,Gambella
+409,Gambella
+412,Gambella
 426,Gambella
+800,Gambella
+801,Gambella
+804,Gambella
+806,Gambella
+807,Gambella
+809,Gambella
+810,Gambella
+811,Gambella
+812,Gambella
+813,Gambella
+816,Gambella
+817,Gambella
+819,Gambella
+820,Gambella
+821,Gambella
+822,Gambella
+824,Gambella
+825,Gambella
+826,Gambella
+827,Gambella
+828,Gambella
+829,Gambella
+830,Gambella
+831,Gambella
+832,Gambella
+833,Gambella
+834,Gambella
+835,Gambella
+836,Gambella
+14,Harari
+15,Harari
+36,Harari
+39,Harari
+40,Harari
+52,Harari
+74,Harari
+83,Harari
+96,Harari
+134,Harari
+140,Harari
+155,Harari
+156,Harari
+165,Harari
+168,Harari
+171,Harari
+190,Harari
+197,Harari
+199,Harari
+201,Harari
+222,Harari
+229,Harari
+233,Harari
+234,Harari
+235,Harari
+236,Harari
+241,Harari
+245,Harari
+247,Harari
+272,Harari
+276,Harari
+292,Harari
+294,Harari
+326,Harari
+336,Harari
+354,Harari
+405,Harari
+407,Harari
+409,Harari
+412,Harari
 426,Harari
+800,Harari
+801,Harari
+804,Harari
+806,Harari
+807,Harari
+809,Harari
+810,Harari
+811,Harari
+812,Harari
+813,Harari
+817,Harari
+818,Harari
+819,Harari
+820,Harari
+821,Harari
+822,Harari
+825,Harari
+827,Harari
+828,Harari
+829,Harari
+830,Harari
+831,Harari
+832,Harari
+833,Harari
+834,Harari
+835,Harari
+836,Harari
+14,Dire Dawa
+15,Dire Dawa
+36,Dire Dawa
+39,Dire Dawa
+40,Dire Dawa
+52,Dire Dawa
+74,Dire Dawa
+83,Dire Dawa
+96,Dire Dawa
+134,Dire Dawa
+140,Dire Dawa
+155,Dire Dawa
+156,Dire Dawa
+165,Dire Dawa
+168,Dire Dawa
+171,Dire Dawa
+190,Dire Dawa
+197,Dire Dawa
+199,Dire Dawa
+201,Dire Dawa
+222,Dire Dawa
+229,Dire Dawa
+233,Dire Dawa
+234,Dire Dawa
+235,Dire Dawa
+236,Dire Dawa
+241,Dire Dawa
+245,Dire Dawa
+247,Dire Dawa
+272,Dire Dawa
+276,Dire Dawa
+292,Dire Dawa
+294,Dire Dawa
+326,Dire Dawa
+336,Dire Dawa
+354,Dire Dawa
+405,Dire Dawa
+407,Dire Dawa
+409,Dire Dawa
+412,Dire Dawa
 426,Dire Dawa
+800,Dire Dawa
+801,Dire Dawa
+804,Dire Dawa
+806,Dire Dawa
+807,Dire Dawa
+809,Dire Dawa
+810,Dire Dawa
+812,Dire Dawa
+813,Dire Dawa
+814,Dire Dawa
+817,Dire Dawa
+819,Dire Dawa
+820,Dire Dawa
+822,Dire Dawa
+825,Dire Dawa
+827,Dire Dawa
+828,Dire Dawa
+830,Dire Dawa
+831,Dire Dawa
+833,Dire Dawa
+834,Dire Dawa
+835,Dire Dawa
+836,Dire Dawa

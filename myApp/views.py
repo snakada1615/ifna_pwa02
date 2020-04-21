@@ -56,6 +56,7 @@ class Under_Construction_View(TemplateView):
 class aboutNFA(TemplateView):
   template_name = "myApp/whatisNFA.html"
 
+
 @login_required
 @transaction.atomic
 def update_profile(request):
@@ -78,12 +79,13 @@ def update_profile(request):
     'profile_form': profile_form
   })
 
+
 @transaction.atomic
 def create_user_profile(request):
   if request.method == 'POST':
     user_form = UserCreateForm(request.POST)
-    #profile_form = ProfileForm(request.POST)
-    if user_form.is_valid(): #and profile_form.is_valid():
+    # profile_form = ProfileForm(request.POST)
+    if user_form.is_valid():  # and profile_form.is_valid():
       myuser = user_form.save()
       profile_form = ProfileForm(request.POST, instance=myuser.profile)
       profile_form.save()
@@ -101,6 +103,7 @@ def create_user_profile(request):
     'user_form': user_form,
     'profile_form': profile_form
   })
+
 
 class IndexView02(LoginRequiredMixin, TemplateView):
   template_name = "myApp/index02.html"
@@ -1205,6 +1208,7 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
     form.instance.myLocation = Location.objects.get(id=self.request.user.profile.myLocation)
     return super(Crop_Feas_CreateView, self).form_valid(form)
 
+
 class Crop_Feas_ListView(LoginRequiredMixin, ListView):
   model = Crop_Feasibility
   context_object_name = "mylist"
@@ -1212,7 +1216,7 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
 
   def get_queryset(self):
     queryset = super().get_queryset().filter(created_by=self.request.user).filter(
-      myLocation = self.request.user.profile.myLocation)
+      myLocation=self.request.user.profile.myLocation)
     return queryset
 
   def get_context_data(self, **kwargs):
@@ -1220,8 +1224,9 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['isUpdate'] = 0
     context['myuser'] = self.request.user
     context['myLocation'] = self.request.user.profile.myLocation
-    context['myLocation_name'] = Location.objects.get(id = self.request.user.profile.myLocation).name
+    context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
     return context
+
 
 class Crop_Feas_DeleteView(LoginRequiredMixin, DeleteView):  # todo これをmodal dialogueにする
   model = Crop_Feasibility
@@ -1237,11 +1242,12 @@ class Crop_Feas_DeleteView(LoginRequiredMixin, DeleteView):  # todo これをmod
     self.object = self.get_object()
     # Crop_Subnationalからの削除
     Crop_SubNational.objects.filter(
-     myLocation=Location.objects.get(id=self.request.user.profile.myLocation)).filter(
+      myLocation=Location.objects.get(id=self.request.user.profile.myLocation)).filter(
       myFCT=Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT
     ).delete()
 
     return super(Crop_Feas_DeleteView, self).delete(*args, **kwargs)
+
 
 class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
   model = Crop_Feasibility
@@ -1254,14 +1260,14 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
     kwargs['user'] = self.request.user
     return kwargs
 
-  def get_context_data(self, **kwargs): #todo 無意味なcrop_listの送信をやめる
+  def get_context_data(self, **kwargs):  # todo 無意味なcrop_listの送信をやめる
     context = super().get_context_data(**kwargs)
     context['isUpdate'] = 1
     context['myuser'] = self.request.user
     context['myLocation'] = self.request.user.profile.myLocation
     context['crop_name'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.Food_name
     context['crop_name_id'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.food_item_id
-    context['myLocation_name'] = Location.objects.get(id = self.request.user.profile.myLocation).name
+    context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
 
     # send non-available crop in the original list 無意味なのですが######
     tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.request.user.profile.myLocation)
@@ -1284,6 +1290,14 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
         d.append(dd)
 
     context["mylist_crop"] = d
-
-
     return context
+
+
+class FCT_ListView(LoginRequiredMixin, ListView):
+  model = FCT
+  context_object_name = "mylist"
+  template_name = 'myApp/FCT_list.html'
+
+  def get_queryset(self):
+    queryset = FCT.objects.filter(food_item_id__gte = 800)
+    return queryset
