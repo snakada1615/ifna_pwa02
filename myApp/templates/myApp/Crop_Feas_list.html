@@ -21,6 +21,14 @@
 				</span>
       </div>
     </div>
+    <div class="row">
+      <div class="col px-4">
+        <div class="card border-0 my-2" style="background-color: #ECECEC">
+          <span class="text-danger">red colored text </span>indicates that feasibility is not enough to be intorduced in
+          the target area {{ myLocation_name }}. (lower than 35)
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="container" style="max-width: 540px;">
@@ -29,7 +37,8 @@
       <div class="card border-success col-12 my-2 py-0"
            style="max-width: 540px; color:#24535F ;background-color:#D9ECDC; border-width: 2px;">
     {% else %}
-      <div class="card border-primary col-12 mt-2 py-0" style="max-width: 540px;color:#d54760 ;background-color:#D9ECDC;">
+      <div class="card border-primary col-12 mt-2 py-0"
+           style="max-width: 540px;color:#d54760 ;background-color:#D9ECDC;">
     {% endif %}
   <div class="row">
     <div class="col-12">
