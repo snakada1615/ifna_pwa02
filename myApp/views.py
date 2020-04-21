@@ -1279,6 +1279,19 @@ class Crop_Feas_DeleteView(LoginRequiredMixin, DeleteView):  # todo これをmod
     context['myuser'] = self.request.user
     return context
 
+  def delete(self, *args, **kwargs):
+    self.object = self.get_object()
+    # Crop_Subnationalからの削除
+    Crop_SubNational.objects.filter(
+     myLocation=Location.objects.get(id=self.request.user.profile.myLocation)).filter(
+      myFCT=Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT
+    ).delete()
+
+    return super(Crop_Feas_DeleteView, self).delete(*args, **kwargs)
+
+
+
+
 class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
   model = Crop_Feasibility
   form_class = Crop_Feas_Form
