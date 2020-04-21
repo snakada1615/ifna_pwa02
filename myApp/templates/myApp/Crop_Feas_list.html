@@ -24,65 +24,72 @@
   </div>
 
   <div class="container" style="max-width: 540px;">
-    {% for crop in mylist %}
-      <div class="card border-primary col-12 mt-2 py-0" style="max-width: 540px;">
+  {% for crop in mylist %}
+    {% if crop.crop_score >= 35 %}
+      <div class="card border-success col-12 my-2 py-0"
+           style="max-width: 540px; color:#24535F ;background-color:#D9ECDC; border-width: 2px;">
+    {% else %}
+      <div class="card border-primary col-12 mt-2 py-0" style="max-width: 540px;color:#d54760 ;background-color:#D9ECDC;">
+    {% endif %}
+  <div class="row">
+    <div class="col-12">
+      <div class="card-body py-1 px-0">
+        <h5 class="card-title my-0">
+          {{ crop.myFCT.Food_name }}
+        </h5>
         <div class="row">
-          <div class="col-12">
-            <div class="card-body py-1 px-0">
-              <h5 class="card-title my-0">
-                {{ crop.myFCT.Food_name }}
-              </h5>
-              <div class="row">
-                <div class="col-3">
-                  <p class="card-text my-0">Energy:</p>
-                </div>
-                <div class="col-9">
-                  <p class="card-text my-0">{{ crop.myFCT.Energy }}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-3">
-                  <p class="card-text my-0">Protein:</p>
-                </div>
-                <div class="col-9">
-                  <p class="card-text my-0">{{ crop.myFCT.Protein }}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-3">
-                  <p class="card-text my-0">VitA:</p>
-                </div>
-                <div class="col-9">
-                  <p class="card-text my-0">{{ crop.myFCT.VITA_RAE }}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-3">
-                  <p class="card-text my-0">Fe:</p>
-                </div>
-                <div class="col-9">
-                  <p class="card-text my-0">{{ crop.myFCT.FE }}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-3">
-                  <p class="card-text my-0">Score:</p>
-                </div>
-                <div class="col-9">
-                  <p class="card-text my-0">{{ crop.crop_score }}</p>
-                </div>
-              </div>
-              <span>
-									<a class="btn my-0 btn-info btn-sm align-middle badge" href="{% url 'crop_feas_update'  pk=crop.pk %}">edit</a>
-								</span>
-              <span>
-									<a class="btn my-0 btn-info btn-sm align-middle badge " href="{% url 'crop_feas_delete' pk=crop.pk %}">delete</a>
-								</span>
-            </div>
+          <div class="col-3">
+            <p class="card-text my-0">Energy:</p>
+          </div>
+          <div class="col-9">
+            <p class="card-text my-0">{{ crop.myFCT.Energy }}</p>
           </div>
         </div>
+        <div class="row">
+          <div class="col-3">
+            <p class="card-text my-0">Protein:</p>
+          </div>
+          <div class="col-9">
+            <p class="card-text my-0">{{ crop.myFCT.Protein }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <p class="card-text my-0">VitA:</p>
+          </div>
+          <div class="col-9">
+            <p class="card-text my-0">{{ crop.myFCT.VITA_RAE }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <p class="card-text my-0">Fe:</p>
+          </div>
+          <div class="col-9">
+            <p class="card-text my-0">{{ crop.myFCT.FE }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <p class="card-text my-0">Score:</p>
+          </div>
+          <div class="col-9">
+            <p class="card-text my-0">{{ crop.crop_score }}</p>
+          </div>
+        </div>
+        <span>
+									<a class="btn my-0 btn-info btn-sm align-middle badge"
+                     href="{% url 'crop_feas_update'  pk=crop.pk %}">edit</a>
+								</span>
+        <span>
+									<a class="btn my-0 btn-info btn-sm align-middle badge "
+                     href="{% url 'crop_feas_delete' pk=crop.pk %}">delete</a>
+								</span>
       </div>
-    {% endfor %}
+    </div>
   </div>
+  </div>
+  {% endfor %}
+</div>
 
 {% endblock %}
