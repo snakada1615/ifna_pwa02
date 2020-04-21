@@ -5,13 +5,14 @@ from django.contrib import admin
 from django.urls import include
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
-from .views import IndexView, Under_Construction_View, aboutNFA, UserChangeForm
-from .views import SignUpForm, SignUp, UserEdit, IndexView02, Location_CreateView
+from .views import IndexView, Under_Construction_View, aboutNFA
+from .views import IndexView02, Location_CreateView, create_user_profile
 from .views import Location_UpdateView, Location_DeleteView, Location_ListView
 from .views import Person_ListView, Person_UpdateView, Person_CreateView, Person_DeleteView
 from .views import initTable, delete_TableRec, registDiet, Output1, Output2, Output3, Output4, Output_list, registPerson
 from .views import CropSelect, registCropAvail, Trial_View, Diet_Plan1, update_profile
 from .views import Crop_Feas_CreateView, Crop_Feas_ListView, Crop_Feas_DeleteView, Crop_Feas_UpdateView
+#from .forms import UserChangeForm
 
 from django.contrib import admin
 from django.urls import include
@@ -23,10 +24,9 @@ urlpatterns = [
   path('index02/', IndexView02.as_view(), name='index02'),
   path('construction/', Under_Construction_View.as_view(), name='construction'),
   path('aboutNFA/', aboutNFA.as_view(), name='aboutnfa'),
-  path('SignUp/', SignUp.as_view(), name='signup'),
-  path('UserEdit/<int:pk>/', UserEdit.as_view(), name='useredit'),
   path('login/', auth_views.LoginView.as_view(template_name='myApp/login.html'), name='login'),
   path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+  path('create_user_profile/', views.create_user_profile, name='create_user_profile'),
   path('update_profile/', views.update_profile, name='update_profile'),
   path('Location/create/', Location_CreateView.as_view(), name='Location_create'),
   path('Location/update/<int:pk>/', Location_UpdateView.as_view(), name='Location_update'),

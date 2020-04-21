@@ -14,14 +14,14 @@ from django.http import HttpResponse
 from django.core import serializers
 from django.http.response import JsonResponse
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
-from .forms import LocationForm, Person_Form, UserForm, ProfileForm, Crop_Feas_Form
+from .forms import LocationForm, Person_Form, UserForm, ProfileForm, Crop_Feas_Form, UserEditForm, UserCreateForm
 
 from .models import Location, Countries, Crop_National, Crop_SubNational
 from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person, Pop
 
 # for user registration
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -56,75 +56,6 @@ class Under_Construction_View(TemplateView):
 class aboutNFA(TemplateView):
   template_name = "myApp/whatisNFA.html"
 
-
-class UserEditForm(UserChangeForm):
-  class Meta:
-    model = User
-    fields = ('first_name', 'last_name', 'username')
-
-
-class UserEdit(LoginRequiredMixin, UpdateView):
-  model = User
-  form_class = UserEditForm
-  template_name = "myApp/signup_edit.html"
-  success_url = reverse_lazy('index01')
-
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    context['myuser'] = self.request.user
-    return context
-
-  def form_valid(self, form):
-    if form.is_valid():
-      user = form.save()  # formの情報を保存
-      login(self.request, user)  # 認証
-      self.object = user
-
-      return HttpResponseRedirect(self.get_success_url())  # リダイレクト
-
-    else:
-      for msg in form.error_messages:
-        print(form.error_messages[msg])
-
-      return render(request=self.request,
-                    template_name="myApp/signup_edit.html",
-                    context={"form": form})
-
-
-class SignUpForm(UserCreationForm):
-  class Meta:
-    model = User
-    fields = ('first_name', 'last_name',
-              'username', 'password1', 'password2')
-
-
-class SignUp(CreateView):
-  form_class = SignUpForm
-  template_name = "myApp/signup.html"
-  success_url = reverse_lazy('index01')
-
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    context['myuser'] = self.request.user
-    return context
-
-  def form_valid(self, form):
-    if form.is_valid():
-      user = form.save()  # formの情報を保存
-      login(self.request, user)  # 認証
-      self.object = user
-
-      return HttpResponseRedirect(self.get_success_url())  # リダイレクト
-
-    else:
-      for msg in form.error_messages:
-        print(form.error_messages[msg])
-
-      return render(request=request,
-                    template_name="myApp/signup.html",
-                    context={"form": form})
-
-
 @login_required
 @transaction.atomic
 def update_profile(request):
@@ -147,6 +78,29 @@ def update_profile(request):
     'profile_form': profile_form
   })
 
+@transaction.atomic
+def create_user_profile(request):
+  if request.method == 'POST':
+    user_form = UserCreateForm(request.POST)
+    #profile_form = ProfileForm(request.POST)
+    if user_form.is_valid(): #and profile_form.is_valid():
+      myuser = user_form.save()
+      profile_form = ProfileForm(request.POST, instance=myuser.profile)
+      profile_form.save()
+      messages.success(request, 'Your profile was successfully updated!')
+      messages.info(request, '2nd message')
+
+      login(request, myuser)  # 認証
+      return redirect('index01')
+    else:
+      messages.error(request, 'Please correct the error below.')
+  else:
+    user_form = UserCreateForm()
+    profile_form = ProfileForm()
+  return render(request, 'myApp/profile.html', {
+    'user_form': user_form,
+    'profile_form': profile_form
+  })
 
 class IndexView02(LoginRequiredMixin, TemplateView):
   template_name = "myApp/index02.html"
@@ -1288,9 +1242,6 @@ class Crop_Feas_DeleteView(LoginRequiredMixin, DeleteView):  # todo これをmod
     ).delete()
 
     return super(Crop_Feas_DeleteView, self).delete(*args, **kwargs)
-
-
-
 
 class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
   model = Crop_Feasibility

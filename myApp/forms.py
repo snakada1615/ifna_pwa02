@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q, Sum
 from .models import Location, Person, Profile, Crop_Feasibility, FCT, Crop_SubNational
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
 
 class LocationForm(forms.ModelForm):
@@ -47,6 +48,27 @@ class Person_Form(forms.ModelForm):
     cleaned_data = super(Person_Form, self).clean()
     self.cleaned_data['myLocation'] = Location.objects.get(id=self.myLocation)
 
+    return cleaned_data
+
+
+class UserEditForm(UserChangeForm):
+  class Meta:
+    model = User
+    fields = ('first_name', 'last_name', 'username')
+
+
+class UserCreateForm(UserCreationForm):
+  class Meta:
+    model = User
+    fields = ('first_name', 'last_name',
+              'username', 'password1', 'password2', 'is_staff')
+    widgets = {
+      'is_staff': forms.HiddenInput(),
+    }
+
+  def clean(self):
+    cleaned_data = super(UserCreateForm, self).clean()
+    self.cleaned_data['is_staff'] = 1  # staffステータスの設定
     return cleaned_data
 
 
@@ -125,8 +147,8 @@ class Crop_Feas_Form(forms.ModelForm):
       self.cleaned_data['feas_availability_prod']) + int(self.cleaned_data['feas_availability_non']) + int(
       self.cleaned_data['feas_affordability']) + int(self.cleaned_data['feas_storability'])
 
-    #add to Crop_subnational if score is over 35
-    if self.cleaned_data['crop_score'] >=35:
+    # add to Crop_subnational if score is over 35
+    if self.cleaned_data['crop_score'] >= 35:
       Crop_SubNational.objects.update_or_create(
         myLocation=Location.objects.get(id=self.user.profile.myLocation),
         myFCT=self.cleaned_data['myFCT'],
@@ -138,8 +160,7 @@ class Crop_Feas_Form(forms.ModelForm):
     else:
       Crop_SubNational.objects.filter(
         myLocation=Location.objects.get(id=self.user.profile.myLocation)).filter(
-          myFCT=self.cleaned_data['myFCT']
-        ).delete()
-
+        myFCT=self.cleaned_data['myFCT']
+      ).delete()
 
     return cleaned_data
