@@ -1212,6 +1212,11 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
   template_name = 'myApp/Crop_Feas_form.html'
   success_url = reverse_lazy('crop_feas_list')
 
+  def get_form_kwargs(self):
+    kwargs = super(Crop_Feas_CreateView, self).get_form_kwargs()
+    kwargs['user'] = self.request.user
+    return kwargs
+
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
@@ -1279,6 +1284,11 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
   form_class = Crop_Feas_Form
   template_name = 'myApp/Crop_Feas_form.html'
   success_url = reverse_lazy('crop_feas_list')
+
+  def get_form_kwargs(self):
+    kwargs = super(Crop_Feas_UpdateView, self).get_form_kwargs()
+    kwargs['user'] = self.request.user
+    return kwargs
 
   def get_context_data(self, **kwargs): #todo 無意味なcrop_listの送信をやめる
     context = super().get_context_data(**kwargs)

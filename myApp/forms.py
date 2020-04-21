@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.admin import widgets
 from django.contrib.auth.models import User
 from django.db.models import Q, Sum
-from .models import Location, Person, Profile, Crop_Feasibility, FCT
+from .models import Location, Person, Profile, Crop_Feasibility, FCT, Crop_SubNational
 from django.contrib.auth.models import User
 
 
@@ -74,6 +74,10 @@ class Crop_Feas_Form(forms.ModelForm):
   crop_name = forms.CharField(max_length=200)
   crop_name_id = forms.IntegerField()
 
+  def __init__(self, *args, **kwargs):
+    self.user = kwargs.pop('user')
+    super(Crop_Feas_Form, self).__init__(*args, **kwargs)
+
   class Meta:
     model = Crop_Feasibility
     fields = (
@@ -120,5 +124,22 @@ class Crop_Feas_Form(forms.ModelForm):
       self.cleaned_data['feas_invest_fixed']) + int(self.cleaned_data['feas_invest_variable']) + int(
       self.cleaned_data['feas_availability_prod']) + int(self.cleaned_data['feas_availability_non']) + int(
       self.cleaned_data['feas_affordability']) + int(self.cleaned_data['feas_storability'])
+
+    #add to Crop_subnational if score is over 35
+    if self.cleaned_data['crop_score'] >=35:
+      Crop_SubNational.objects.update_or_create(
+        myLocation=Location.objects.get(id=self.user.profile.myLocation),
+        myFCT=self.cleaned_data['myFCT'],
+        defaults={
+          'selected_status': '0',
+          'created_by': self.user
+        }
+      )
+    else:
+      Crop_SubNational.objects.filter(
+        myLocation=Location.objects.get(id=self.user.profile.myLocation)).filter(
+          myFCT=self.cleaned_data['myFCT']
+        ).delete()
+
 
     return cleaned_data
