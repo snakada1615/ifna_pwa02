@@ -117,14 +117,26 @@
 
   <br><br><br>
   <div id="content" class="container">
-      <div class="container bg-success mt-0 mb-1 text-white text-right" style="max-width: 540px;">
-        <h7>editor:
+    <div class="container bg-success mt-0 mb-1 text-white text-right" style="max-width: 540px;">
+      <div class="row">
+        <div class="col">
+          editor:
+        </div>
+        <div class="col">
           {{ myuser.first_name }},
-          {{ myuser.last_name }}</h7>
-        <h7>job title:
-          {{ myuser.profile.organization }},
-          {{ myuser.profile.title }}</h7>
+          {{ myuser.last_name }}
+        </div>
       </div>
+      <div class="row">
+        <div class="col">
+          job title:
+        </div>
+        <div class="col">
+          {{ myuser.profile.organization }},
+          {{ myuser.profile.title }}
+        </div>
+      </div>
+    </div>
 
     <!-- 本体 -->
     {% block content %}{% endblock %}
