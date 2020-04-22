@@ -3,16 +3,19 @@
 
 {% block content %}
   <script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
+  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
 
   <div class="container" style="max-width: 540px;">
     <div class="card border-success col-12 my-2 py-0"
-         style="max-width: 540px; color:rgba(236,236,236,1) ;background-color:#D9ECDC; border-width: 2px;">
+         style="max-width: 540px; color:#24535F ;background-color:#D9ECDC; border-width: 2px;">
       <div class="row">
         <div class="col-12">
           <table id="tbl_crops" class="table table-striped">
             <thead>
             <tr>
+              <th>id</th>
               <th>Food group</th>
               <th>Food name</th>
             </tr>
@@ -20,11 +23,19 @@
             <tbody>
             {% for myCrop in mylist %}
               <tr>
+                <td>{{ myCrop.id }}</td>
                 <td>{{ myCrop.Food_grp }}</td>
                 <td>{{ myCrop.Food_name }}</td>
               </tr>
             {% endfor %}
             </tbody>
+            <div class="row">
+              <div class="col-12">
+                <span>
+                  <a id="btn_add1" class="btn btn-block btn-info my-2 btn-sm" href="#">edit FCT for selected item</a>
+                </span>
+              </div>
+            </div>
           </table>
         </div>
       </div>
@@ -34,9 +45,33 @@
 
 
   <script type="text/javascript">
-
+    var id_selected_row = 0;
     $(document).ready(function () {
-      $('#tbl_crops').DataTable();
+      myTbl = $('#tbl_crops').DataTable({
+        "select": 'single',
+        "columnDefs": [
+          {
+            targets: [
+              1, 2
+            ],
+            visible: true
+          }, {
+            targets: '_all',
+            bVisible: false
+          }
+        ],
+        "initComplete": function (settings, json) {
+          $('#btn_add1').click(function(){
+           if (id_selected_row >0) {
+             var myURL = '/FCT_Update/' + id_selected_row + '/';
+             $(location).attr('href',myURL);
+           }
+          });
+          $('#tbl_crops tbody').on( 'click', 'tr', function () {
+            id_selected_row = myTbl.row( this ).data()[0];
+          });
+        }
+      });
     });
 
   </script>

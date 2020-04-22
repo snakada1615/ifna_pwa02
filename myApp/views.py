@@ -14,7 +14,8 @@ from django.http import HttpResponse
 from django.core import serializers
 from django.http.response import JsonResponse
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
-from .forms import LocationForm, Person_Form, UserForm, ProfileForm, Crop_Feas_Form, UserEditForm, UserCreateForm
+from .forms import LocationForm, Person_Form, UserForm, ProfileForm, Crop_Feas_Form
+from .forms import UserEditForm, UserCreateForm, FCTForm
 
 from .models import Location, Countries, Crop_National, Crop_SubNational
 from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person, Pop
@@ -1292,7 +1293,6 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
     context["mylist_crop"] = d
     return context
 
-
 class FCT_ListView(LoginRequiredMixin, ListView):
   model = FCT
   context_object_name = "mylist"
@@ -1301,3 +1301,18 @@ class FCT_ListView(LoginRequiredMixin, ListView):
   def get_queryset(self):
     queryset = FCT.objects.filter(food_item_id__gte = 800)
     return queryset
+
+class FCT_UpdateView(LoginRequiredMixin, UpdateView):
+  model = FCT
+  form_class = FCTForm
+  template_name = 'myApp/FCT_form.html'
+  success_url = reverse_lazy('fct_list')
+
+class FCT_CreateView(LoginRequiredMixin, CreateView): #todo fail to register new record
+  model = FCT
+  form_class = FCTForm
+  template_name = 'myApp/FCT_form.html'
+  success_url = reverse_lazy('fct_list')
+
+class IndexView04(LoginRequiredMixin, TemplateView):
+  template_name = "myApp/index04.html"

@@ -5,6 +5,7 @@ from django.db.models import Q, Sum
 from .models import Location, Person, Profile, Crop_Feasibility, FCT, Crop_SubNational
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.db.models import Max
 
 
 class LocationForm(forms.ModelForm):
@@ -164,3 +165,36 @@ class Crop_Feas_Form(forms.ModelForm):
       ).delete()
 
     return cleaned_data
+
+class FCTForm(forms.ModelForm):
+  class Meta:
+    model = FCT
+    fields = (
+      'Food_grp','Food_name','Energy','WATER','Protein','Fat','Carbohydrate','Fiber','ASH','CA',
+      'FE','MG','P','K','NA','ZN','CU','VITA_RAE','RETOL','B_Cart_eq','VITD','VITE','THIA','RIBF',
+      'NIA','VITB6C','FOL','VITB12','VITC', 'FCT_id', 'food_item_id', 'Crop_ref'
+    )
+    widgets = {
+      'FCT_id': forms.HiddenInput(),
+      'food_item_id': forms.HiddenInput(),
+      'Crop_ref': forms.HiddenInput(),
+    }
+  def clean(self):
+    cleaned_data = super(FCTForm, self).clean()
+    self.cleaned_data['Crop_ref'] = 0  # staffステータスの設定
+    if self.cleaned_data['food_item_id'] > 0:
+      i=0 #dummy
+    else:
+      self.cleaned_data['food_item_id'] = FCT.aggregate(Max('food_item_id'))['food_item_id__max'] + 1
+      self.cleaned_data['FCT_id'] = FCT.aggregate(Max('FCT_id'))['FCT_id__max'] + 1
+    return cleaned_data
+
+
+  # def form_valid(self, form):
+  #   res = super().form_valid(form)
+  #   res.food_item_id = F('food_item_id') + 1
+  #   res.FCT_id = F('FCT_id') + 1
+  #   res.food_grp_id = F('food_grp_id') + 1
+  #   res.food_grp_id = 0
+  #   res.Crop_ref = 0
+  #   return res

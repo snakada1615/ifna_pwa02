@@ -11,7 +11,8 @@ from .views import Location_UpdateView, Location_DeleteView, Location_ListView
 from .views import Person_ListView, Person_UpdateView, Person_CreateView, Person_DeleteView
 from .views import initTable, delete_TableRec, registDiet, Output1, Output2, Output3, Output4, Output_list, registPerson
 from .views import CropSelect, registCropAvail, Trial_View, Diet_Plan1, update_profile
-from .views import Crop_Feas_CreateView, Crop_Feas_ListView, Crop_Feas_DeleteView, Crop_Feas_UpdateView, FCT_ListView
+from .views import Crop_Feas_CreateView, Crop_Feas_ListView, Crop_Feas_DeleteView, Crop_Feas_UpdateView
+from .views import FCT_ListView, FCT_UpdateView, FCT_CreateView, IndexView04
 
 from django.contrib import admin
 from django.urls import include
@@ -21,6 +22,7 @@ urlpatterns = [
   path('trial/', Trial_View.as_view(), name='trial'),
   path('index01/', IndexView.as_view(), name='index01'),
   path('index02/', IndexView02.as_view(), name='index02'),
+  path('index04/', IndexView04.as_view(), name='index04'),
   path('construction/', Under_Construction_View.as_view(), name='construction'),
   path('aboutNFA/', aboutNFA.as_view(), name='aboutnfa'),
   path('login/', auth_views.LoginView.as_view(template_name='myApp/login.html'), name='login'),
@@ -52,4 +54,6 @@ urlpatterns = [
   path('Output4/<int:myLocation>/', Output4.as_view(), name='output4'),
   path('Output_list/<int:myLocation>/', Output_list.as_view(), name='output_list'),
   path('FCT_List/', FCT_ListView.as_view(), name='fct_list'),
+  path('FCT_Update/<int:pk>/', FCT_UpdateView.as_view(), name='fct_update'),
+  path('FCT_Create/', FCT_CreateView.as_view(), name='fct_create'),
 ]
