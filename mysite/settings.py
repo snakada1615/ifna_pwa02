@@ -194,6 +194,48 @@ PWA_APP_SPLASH_SCREEN = [
 PWA_APP_LANG = 'en-US'
 
 
+# DataFlair #Logging Information
+LOGGING = {
+    'version': 1,
+    # Version of logging
+    'disable_existing_loggers': False,
+    #disable logging
+    # --------------Formatter-----------------------
+    'formatters': {
+      'detail': {
+        'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+        'style': '{',
+      },
+      'simple': {
+        'format': '{levelname} {message}',
+        'style': '{',
+      },
+    },
+  # Handlers #############################################################
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'shunichi-debug.log',
+            'formatter': 'simple'
+        },
+        ##------------------------------------------------------
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+    },
+    # Loggers ####################################################################
+    'loggers': {
+        'myApp': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
+        },
+    },
+}
+
 # For debugging
 if DEBUG:
     # will output to your console

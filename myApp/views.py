@@ -28,6 +28,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
+#logging用の設定
+from logging import getLogger
+logger = getLogger(__name__)
+
+
 # python component
 import json
 
@@ -109,6 +114,8 @@ def create_user_profile(request):
 class IndexView02(LoginRequiredMixin, TemplateView):
   template_name = "myApp/index02.html"
 
+  logger.debug('hihihi!')
+
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
 
@@ -188,9 +195,9 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
         myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
       )
     # ---------------------
-    form.instance.AEZ_id = tmp_aez
     form.instance.myCountry = Countries.objects.filter(
       GID_2=form.instance.province).first()
+    form.instance.AEZ_id = form.instance.myCountry.AEZ_id
     form.instance.created_by = self.request.user
     return super(Location_CreateView, self).form_valid(form)
 
@@ -228,7 +235,6 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
     return res
 
   def form_valid(self, form):
-    self.object = form.save()
     # --------------------update myStatus-------------------------
     key = self.request.user.profile
     key.myLocation = form.instance.pk

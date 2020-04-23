@@ -128,32 +128,54 @@ class Location(models.Model):
     on_delete=models.CASCADE
   )
 
+  def update(self):
+    update_fields = []
+    old_data = Location.objects.get(id=self.id)
+    if self.name != old_data['name']:
+      update_fields.append('name')
+    if self.country != old_data['country']:
+      update_fields.append('country')
+    if self.region != old_data['region']:
+      update_fields.append('region')
+    if self.province != old_data['province']:
+      update_fields.append('province')
+    if self.community != old_data['community']:
+      update_fields.append('community')
+    if self.AEZ_id != old_data['AEZ_id']:
+      update_fields.append('AEZ_id')
+    if update_fields:
+      self.save(update_fields=update_fields)
+    return True
+
   def __str__(self):
     return self.name
 
 
 @receiver(post_delete, sender=Location)
-def Del_Crop_SubNational(sender, instance):
-  Crop_SubNational.objects.filter(myLocation_id=instance.pk).delete()
+def Del_Crop_SubNational(sender, instance, **kwargs):
+  if Crop_SubNational.objects.filter(myLocation_id=instance.pk):
+    Crop_SubNational.objects.filter(myLocation_id=instance.pk).delete()
 
 
 @receiver(post_save, sender=Location)
-def Init_Crop_SubNational(sender, instance, created, update_fields, **kwargs):
+def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwargs):
+  print('hi--0---!')
   if not created:
-    if 'province' in update_fields:
-      Crop_SubNational.objects.filter(myLocation_id=instance.pk).delete()
-      tmp_aez = Countries.objects.filter(GID_2= instance.province).first().AEZ_id
-      instance.AEZ_id = tmp_aez
-      tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
-      if tmp01.count() != 0:
-        for tmp02 in tmp01:
-          keys = {}
-          keys['myLocation'] = Location.objects.get(id=instance.pk)
-          keys['myFCT'] = FCT.objects.get(food_item_id=tmp02.myFCT.food_item_id)
-          keys['selected_status'] = 0
-          keys['created_by'] = instance.created_by
-          p = Crop_SubNational.objects.create(**keys)
-      # ---------------------
+    if update_fields:
+      if 'province' in update_fields:
+        Crop_SubNational.objects.filter(myLocation_id=instance.pk).delete()
+        tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
+        instance.AEZ_id = tmp_aez
+        tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
+        if tmp01.count() != 0:
+          for tmp02 in tmp01:
+            keys = {}
+            keys['myLocation'] = Location.objects.get(id=instance.pk)
+            keys['myFCT'] = FCT.objects.get(food_item_id=tmp02.myFCT.food_item_id)
+            keys['selected_status'] = 0
+            keys['created_by'] = instance.created_by
+            p = Crop_SubNational.objects.create(**keys)
+        # ---------------------
   else:
     tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
     instance.AEZ_id = tmp_aez
@@ -161,6 +183,7 @@ def Init_Crop_SubNational(sender, instance, created, update_fields, **kwargs):
     if tmp01.count() != 0:
       for tmp02 in tmp01:
         keys = {}
+        print('hi!')
         keys['myLocation'] = Location.objects.get(id=instance.pk)
         keys['myFCT'] = FCT.objects.get(food_item_id=tmp02.myFCT.food_item_id)
         keys['selected_status'] = 0
