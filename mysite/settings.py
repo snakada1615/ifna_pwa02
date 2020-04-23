@@ -214,7 +214,7 @@ LOGGING = {
       'level': 'DEBUG',
       'class': 'logging.FileHandler',
       'filename': 'shunichi-debug.log',
-      'formatter': 'simple'
+      'formatter': 'medium'
     },
     ##------------------------------------------------------
     'console': {
@@ -225,7 +225,7 @@ LOGGING = {
   # Loggers ####################################################################
   'loggers': {
     'myApp': {
-      'handlers': ['console'],
+      'handlers': ['console', 'file'],
       'level': 'DEBUG',
       'propagate': True,
       'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')

@@ -1253,3 +1253,7 @@ File /Users/shunichinakada/Documents/webApp/ifna_pwa02/mysite/settings.py previo
 /Users/shunichinakada/Documents/webApp/ifna_pwa02/mysite/settings.py notified as changed. Signal results: [(<function translation_file_changed at 0x108e66620>, None)].
 /Users/shunichinakada/Documents/webApp/ifna_pwa02/mysite/settings.py changed, reloading.
 hihihi!
+DEBUG [views.py-Init_Crop_SubNational-259] ここまでOK
+DEBUG [views.py-Init_Crop_SubNational-278] ここまでOK
+DEBUG [views.py-Init_Crop_SubNational-283] ここまでOK
+DEBUG [views.py-Init_Crop_SubNational-259] ここまでOK

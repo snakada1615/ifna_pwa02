@@ -184,19 +184,6 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
     key.save()
 
     # ---------------------
-    # --------------------update myTarget-community-------------------------
-    nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent all', 'adolescent pregnant',
-                    'adolescent lact', 'adult', 'adult pregnant', 'adult lact']
-    for i in range(9):
-      Person.objects.create(
-        myLocation=Location.objects.get(id=form.instance.pk),
-        nut_group=nut_grp_list[i],
-        target_scope=3,
-        target_pop=100,
-        created_by=self.request.user,
-        myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
-      )
-    # ---------------------
     form.instance.myCountry = Countries.objects.filter(
       GID_2=form.instance.province).first()
     form.instance.AEZ_id = form.instance.myCountry.AEZ_id
@@ -252,16 +239,20 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
 def Del_Crop_SubNational(sender, instance, **kwargs):
   if Crop_SubNational.objects.filter(myLocation_id=instance.pk):
     Crop_SubNational.objects.filter(myLocation_id=instance.pk).delete()
+  if Person.objects.filter(myLocation_id=instance.pk):
+    Person.objects.filter(myLocation_id=instance.pk).delete()
 
 
 @receiver(post_save, sender=Location)
 def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwargs):
   logger.debug("ここまでOK")
-  if not created:
+  if not created: #Updateの場合
     if update_fields:
       if 'province' in update_fields:
         logger.debug("ここまでOK")
         Crop_SubNational.objects.filter(myLocation_id=instance.pk).delete()
+        Person.objects.filter(myLocation_id=instance.pk).delete()
+        # --------------------update Crop_SubNational-------------------------
         tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
         instance.AEZ_id = tmp_aez
         tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
@@ -274,8 +265,23 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
             keys['created_by'] = instance.created_by
             p = Crop_SubNational.objects.create(**keys)
         # ---------------------
-  else:
+        # --------------------update myTarget-community-------------------------
+        nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent all',
+                        'adolescent pregnant',
+                        'adolescent lact', 'adult', 'adult pregnant', 'adult lact']
+        for i in range(9):
+          Person.objects.create(
+            myLocation=Location.objects.get(id=instance.pk),
+            nut_group=nut_grp_list[i],
+            target_scope=3,
+            target_pop=100,
+            created_by=instance.created_by,
+            myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
+          )
+        # ---------------------
+  else: #新規レコードの場合
     logger.debug("ここまでOK")
+    # --------------------update Crop_SubNational-------------------------
     tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
     instance.AEZ_id = tmp_aez
     tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
@@ -288,6 +294,18 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
         keys['selected_status'] = 0
         keys['created_by'] = instance.created_by
         p = Crop_SubNational.objects.create(**keys)
+    # --------------------update myTarget-community-------------------------
+    nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent all', 'adolescent pregnant',
+                    'adolescent lact', 'adult', 'adult pregnant', 'adult lact']
+    for i in range(9):
+      Person.objects.create(
+        myLocation=Location.objects.get(id=instance.pk),
+        nut_group=nut_grp_list[i],
+        target_scope=3,
+        target_pop=100,
+        created_by=instance.created_by,
+        myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
+      )
     # ---------------------
 
 
