@@ -174,23 +174,7 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
     key.myDiet = 0
     key.save()
 
-    #        keys_all.update(**keys)
     # ---------------------
-    # --------------------update myCrop-------------------------
-    tmp_aez = Countries.objects.filter(
-      GID_2=form.instance.province).first().AEZ_id
-    tmp = Crop_National.objects.filter(AEZ_id=tmp_aez)
-    if tmp.count() != 0:
-      for tmp01 in tmp:
-        Crop_SubNational.objects.update_or_create(
-          myLocation=Location.objects.get(id=form.instance.pk),
-          myFCT=FCT.objects.get(food_item_id=tmp01.myFCT.food_item_id),
-          defaults={
-            'selected_status': '0',
-            'created_by': self.request.user
-          }
-        )
-
     # --------------------update myTarget-community-------------------------
     nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent all', 'adolescent pregnant',
                     'adolescent lact', 'adult', 'adult pregnant', 'adult lact']
@@ -252,25 +236,7 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
     key.myCrop = 0
     key.myDiet = 0
     key.save()
-
-    #        keys_all.update(**keys)
     # ---------------------
-    # --------------------update myCrop-------------------------
-    Crop_SubNational.objects.filter(myLocation_id=form.instance.pk).delete()
-    tmp_aez = Countries.objects.filter(
-      GID_2=form.instance.province).first().AEZ_id
-    tmp = Crop_National.objects.filter(AEZ_id=tmp_aez)
-    if tmp.count() != 0:
-      for tmp01 in tmp:
-        keys = {}
-        keys['myLocation'] = Location.objects.get(id=form.instance.pk)
-        keys['myFCT'] = FCT.objects.get(food_item_id=tmp01.myFCT.food_item_id)
-        keys['selected_status'] = 0
-        keys['created_by'] = self.request.user
-        p = Crop_SubNational.objects.create(**keys)
-    # ---------------------
-    form.instance.AEZ_id = tmp_aez
-    form.instance.created_by = self.request.user
     return super(Location_UpdateView, self).form_valid(form)
 
 

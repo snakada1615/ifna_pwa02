@@ -1,7 +1,7 @@
 from django.db import models
 # ------manage user model-----------------
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 
@@ -130,6 +130,43 @@ class Location(models.Model):
 
   def __str__(self):
     return self.name
+
+
+@receiver(post_delete, sender=Location)
+def Del_Crop_SubNational(sender, instance):
+  Crop_SubNational.objects.filter(myLocation_id=instance.pk).delete()
+
+
+@receiver(post_save, sender=Location)
+def Init_Crop_SubNational(sender, instance, created, update_fields, **kwargs):
+  if not created:
+    if 'province' in update_fields:
+      Crop_SubNational.objects.filter(myLocation_id=instance.pk).delete()
+      tmp_aez = Countries.objects.filter(GID_2= instance.province).first().AEZ_id
+      instance.AEZ_id = tmp_aez
+      tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
+      if tmp01.count() != 0:
+        for tmp02 in tmp01:
+          keys = {}
+          keys['myLocation'] = Location.objects.get(id=instance.pk)
+          keys['myFCT'] = FCT.objects.get(food_item_id=tmp02.myFCT.food_item_id)
+          keys['selected_status'] = 0
+          keys['created_by'] = instance.created_by
+          p = Crop_SubNational.objects.create(**keys)
+      # ---------------------
+  else:
+    tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
+    instance.AEZ_id = tmp_aez
+    tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
+    if tmp01.count() != 0:
+      for tmp02 in tmp01:
+        keys = {}
+        keys['myLocation'] = Location.objects.get(id=instance.pk)
+        keys['myFCT'] = FCT.objects.get(food_item_id=tmp02.myFCT.food_item_id)
+        keys['selected_status'] = 0
+        keys['created_by'] = instance.created_by
+        p = Crop_SubNational.objects.create(**keys)
+    # ---------------------
 
 
 class FCT(models.Model):

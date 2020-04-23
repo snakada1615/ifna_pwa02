@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+<input type="hidden" value="{{form.pk}}" id="sel_country">
 <input type="hidden" value="{{coutry_selected}}" id="sel_country">
 <input type="hidden" value="{{region_selected}}" id="sel_region">
 <input type="hidden" value="{{province_selected}}" id="sel_province">

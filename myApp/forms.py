@@ -188,13 +188,3 @@ class FCTForm(forms.ModelForm):
       self.cleaned_data['food_item_id'] = FCT.aggregate(Max('food_item_id'))['food_item_id__max'] + 1
       self.cleaned_data['FCT_id'] = FCT.aggregate(Max('FCT_id'))['FCT_id__max'] + 1
     return cleaned_data
-
-
-  # def form_valid(self, form):
-  #   res = super().form_valid(form)
-  #   res.food_item_id = F('food_item_id') + 1
-  #   res.FCT_id = F('FCT_id') + 1
-  #   res.food_grp_id = F('food_grp_id') + 1
-  #   res.food_grp_id = 0
-  #   res.Crop_ref = 0
-  #   return res
