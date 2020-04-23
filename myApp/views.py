@@ -5,6 +5,10 @@ from django.contrib import admin
 # immport messaging framework
 from django.contrib import messages
 
+# import receiver
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
+
 import re
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -113,8 +117,6 @@ def create_user_profile(request):
 
 class IndexView02(LoginRequiredMixin, TemplateView):
   template_name = "myApp/index02.html"
-
-  logger.debug('hihihi!')
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
@@ -244,6 +246,49 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
     key.save()
     # ---------------------
     return super(Location_UpdateView, self).form_valid(form)
+
+
+@receiver(post_delete, sender=Location)
+def Del_Crop_SubNational(sender, instance, **kwargs):
+  if Crop_SubNational.objects.filter(myLocation_id=instance.pk):
+    Crop_SubNational.objects.filter(myLocation_id=instance.pk).delete()
+
+
+@receiver(post_save, sender=Location)
+def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwargs):
+  logger.debug("ここまでOK")
+  if not created:
+    if update_fields:
+      if 'province' in update_fields:
+        logger.debug("ここまでOK")
+        Crop_SubNational.objects.filter(myLocation_id=instance.pk).delete()
+        tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
+        instance.AEZ_id = tmp_aez
+        tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
+        if tmp01.count() != 0:
+          for tmp02 in tmp01:
+            keys = {}
+            keys['myLocation'] = Location.objects.get(id=instance.pk)
+            keys['myFCT'] = FCT.objects.get(food_item_id=tmp02.myFCT.food_item_id)
+            keys['selected_status'] = 0
+            keys['created_by'] = instance.created_by
+            p = Crop_SubNational.objects.create(**keys)
+        # ---------------------
+  else:
+    logger.debug("ここまでOK")
+    tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
+    instance.AEZ_id = tmp_aez
+    tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
+    if tmp01.count() != 0:
+      logger.debug("ここまでOK")
+      for tmp02 in tmp01:
+        keys = {}
+        keys['myLocation'] = Location.objects.get(id=instance.pk)
+        keys['myFCT'] = FCT.objects.get(food_item_id=tmp02.myFCT.food_item_id)
+        keys['selected_status'] = 0
+        keys['created_by'] = instance.created_by
+        p = Crop_SubNational.objects.create(**keys)
+    # ---------------------
 
 
 class CropSelect(LoginRequiredMixin, TemplateView):  # todo まだ縦横表示がおかしいです
@@ -1288,3 +1333,5 @@ class FCT_CreateView(LoginRequiredMixin, CreateView): #todo fail to register new
 
 class IndexView04(LoginRequiredMixin, TemplateView):
   template_name = "myApp/index04.html"
+
+

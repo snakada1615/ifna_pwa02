@@ -151,47 +151,6 @@ class Location(models.Model):
     return self.name
 
 
-@receiver(post_delete, sender=Location)
-def Del_Crop_SubNational(sender, instance, **kwargs):
-  if Crop_SubNational.objects.filter(myLocation_id=instance.pk):
-    Crop_SubNational.objects.filter(myLocation_id=instance.pk).delete()
-
-
-@receiver(post_save, sender=Location)
-def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwargs):
-  print('hi--0---!')
-  if not created:
-    if update_fields:
-      if 'province' in update_fields:
-        Crop_SubNational.objects.filter(myLocation_id=instance.pk).delete()
-        tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
-        instance.AEZ_id = tmp_aez
-        tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
-        if tmp01.count() != 0:
-          for tmp02 in tmp01:
-            keys = {}
-            keys['myLocation'] = Location.objects.get(id=instance.pk)
-            keys['myFCT'] = FCT.objects.get(food_item_id=tmp02.myFCT.food_item_id)
-            keys['selected_status'] = 0
-            keys['created_by'] = instance.created_by
-            p = Crop_SubNational.objects.create(**keys)
-        # ---------------------
-  else:
-    tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
-    instance.AEZ_id = tmp_aez
-    tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
-    if tmp01.count() != 0:
-      for tmp02 in tmp01:
-        keys = {}
-        print('hi!')
-        keys['myLocation'] = Location.objects.get(id=instance.pk)
-        keys['myFCT'] = FCT.objects.get(food_item_id=tmp02.myFCT.food_item_id)
-        keys['selected_status'] = 0
-        keys['created_by'] = instance.created_by
-        p = Crop_SubNational.objects.create(**keys)
-    # ---------------------
-
-
 class FCT(models.Model):
   FCT_id = models.IntegerField(default=1, unique=True)
   food_grp_id = models.IntegerField(default=1)
