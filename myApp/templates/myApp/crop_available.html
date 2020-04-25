@@ -347,6 +347,9 @@
               }).draw();
 
             } else {
+              let myR = mytable_all.row(this).index();
+              mytable_all.cell(myR, 0).data('0')
+
               let fn = $(this).children('td').eq(1).text();
               // Find indexes of rows which have `Yes` in the second column
               let indexes = mytable_selected.rows().eq(0).filter(function (rowIdx) {

@@ -218,6 +218,7 @@ LOGGING = {
     },
     ##------------------------------------------------------
     'console': {
+      'level': 'INFO',
       'class': 'logging.StreamHandler',
       'formatter': 'medium'
     },
@@ -226,28 +227,28 @@ LOGGING = {
   'loggers': {
     'myApp': {
       'handlers': ['console'],
-      'level': 'DEBUG',
+      'level': 'INFO',
       'propagate': True,
-      'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
+#      'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')
     },
   },
 }
 
-# For debugging
-if DEBUG:
-  # will output to your console
-  logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s %(levelname)s %(message)s',
-  )
-else:
-  # will output to logging file
-  logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s %(levelname)s %(message)s',
-    filename='/my_log_file.log',
-    filemode='a'
-  )
+# # For debugging
+# if DEBUG:
+#   # will output to your console
+#   logging.basicConfig(
+#     level=logging.DEBUG,
+#     format='%(asctime)s %(levelname)s %(message)s',
+#   )
+# else:
+#   # will output to logging file
+#   logging.basicConfig(
+#     level=logging.DEBUG,
+#     format='%(asctime)s %(levelname)s %(message)s',
+#     filename='/my_log_file.log',
+#     filemode='a'
+#   )
 
 # for messaging
 from django.contrib.messages import constants as messages

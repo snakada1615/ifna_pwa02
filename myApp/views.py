@@ -253,10 +253,12 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
         Person.objects.filter(myLocation_id=myLocation).delete()
 
         # --------------------update Crop_SubNational-------------------------
+        logger.info("これからCrop＿SubNationaを追加していきます")
         tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
         instance.AEZ_id = tmp_aez
         tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
         if tmp01.count() != 0:
+          logger.info("Crop＿Natinalの中に該当品目が存在しています")
           for tmp02 in tmp01:
             keys = {}
             keys['myLocation'] = Location.objects.get(id=instance.pk)
@@ -264,11 +266,13 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
             keys['selected_status'] = 0
             keys['created_by'] = User.objects.get(id=instance.created_by.id)
             p = Crop_SubNational.objects.create(**keys)
+          logger.info("全ての該当品目をCrop_SubNationalに書き込みました!")
 
         # --------------------update myTarget-community-------------------------
         nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent all',
                         'adolescent pregnant',
                         'adolescent lact', 'adult', 'adult pregnant', 'adult lact']
+        logger.info("これからTarget communityの人口構成、初期値を追加していきます")
         for i in range(9):
           Person.objects.create(
             myLocation=Location.objects.get(id=instance.pk),
@@ -278,15 +282,17 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
             created_by=instance.created_by,
             myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
           )
+        logger.info("Target communityの書込み終了")
         # ---------------------
   else: #新規レコードの場合
-    logger.debug("ここまでOK456")
 
     # --------------------update Crop_SubNational-------------------------
     tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
     instance.AEZ_id = tmp_aez
     tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
+    logger.info("これからCrop＿SubNationaを追加していきます")
     if tmp01.count() != 0:
+      logger.info("Crop＿Natinalの中に該当品目が存在しています")
       for tmp02 in tmp01:
         keys = {}
         keys['myLocation'] = Location.objects.get(id=instance.pk)
@@ -294,10 +300,12 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
         keys['selected_status'] = 0
         keys['created_by'] = User.objects.get(id=instance.created_by.id)
         p = Crop_SubNational.objects.create(**keys)
+      logger.info("全ての該当品目をCrop_SubNationalに書き込みました!")
 
     # --------------------update myTarget-community-------------------------
     nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent all', 'adolescent pregnant',
                     'adolescent lact', 'adult', 'adult pregnant', 'adult lact']
+    logger.info("これからTarget communityの人口構成、初期値を追加していきます")
     for i in range(9):
       Person.objects.create(
         myLocation=Location.objects.get(id=instance.pk),
@@ -307,6 +315,7 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
         created_by=User.objects.get(id=instance.created_by.id),
         myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
       )
+    logger.info("Target communityの書込み終了")
     # ---------------------
 
 
@@ -365,11 +374,10 @@ def registCropAvail(request):
     tmp_myLocation_id = myrow['myLocation']  # 後で使う(part 2)
     tmp_newcrop_list.append(myrow['myFCT_id'])  # 後で使う(part 2)
 
-    tmp = Crop_SubNational.objects.filter(myFCT_id=myrow['myFCT_id'])
-    if tmp.count() == 0:
-      p = Crop_SubNational.objects.create(**newcrop)
-    else:
-      p = tmp.update(**newcrop)
+    tmp = Crop_SubNational.objects.filter(myFCT_id=myrow['myFCT_id']).filter(
+      myLocation_id= tmp_myLocation_id
+    )
+    p = tmp.update(**newcrop)
 
   # (part 2) delete non-selected records
   tmp = Crop_SubNational.objects.filter(myLocation_id=tmp_myLocation_id)
