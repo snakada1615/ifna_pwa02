@@ -16,8 +16,8 @@ actor :table_Country: as table2
   }
 
   package "Backend DB" {
-    admin --> (location):"2"
-    (location) --> table2:"2"
+    admin --> (location \n info):"2"
+    (location \n info) --> table2:"2"
     table2 <-> table1
     (suitable crop\nlist) <-- table1:"3"
   }

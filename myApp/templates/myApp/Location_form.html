@@ -129,9 +129,10 @@
     }
 
     // initislize country list -------------------
-    var selected1 = document.getElementById('sel_country').value;
-    var selected2 = document.getElementById('sel_region').value;
-    var selected3 = document.getElementById('sel_province').value;
+    let selected1 = "{{coutry_selected}}";
+    let selected2 = "{{region_selected}}";
+    let selected3 = "{{province_selected}}";
+    console.log(selected1);
 
     getCountry();
     for (var i = 0; i < cnt_list.length; i++) {

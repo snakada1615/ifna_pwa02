@@ -6,7 +6,7 @@ title step7: set sub-national level target
 actor :user: as user
 actor :system: as admin
 actor :table_myCrop: as table1
-actor :Production Target: as table3
+actor :Production Target \n for entire community: as table3
 
   package "User interface" <<Rect>> {
       user --> (user info):"1"

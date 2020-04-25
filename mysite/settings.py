@@ -225,7 +225,7 @@ LOGGING = {
   # Loggers ####################################################################
   'loggers': {
     'myApp': {
-      'handlers': ['console', 'file'],
+      'handlers': ['console'],
       'level': 'DEBUG',
       'propagate': True,
       'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG')

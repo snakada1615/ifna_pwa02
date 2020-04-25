@@ -174,20 +174,10 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
     return res
 
   def form_valid(self, form):
-    self.object = form.save()
-    # --------------------update myStatus-------------------------
-    key = self.request.user.profile
-    key.myLocation = form.instance.pk
-    key.myTarget = 0
-    key.myCrop = 0
-    key.myDiet = 0
-    key.save()
-
-    # ---------------------
     form.instance.myCountry = Countries.objects.filter(
-      GID_2=form.instance.province).first()
+     GID_2=form.instance.province).first()
     form.instance.AEZ_id = form.instance.myCountry.AEZ_id
-    form.instance.created_by = self.request.user
+    form.instance.created_by = User.objects.get(id = self.request.user.id)
     return super(Location_CreateView, self).form_valid(form)
 
   def get_context_data(self, **kwargs):
@@ -224,14 +214,10 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
     return res
 
   def form_valid(self, form):
-    # --------------------update myStatus-------------------------
-    key = self.request.user.profile
-    key.myLocation = form.instance.pk
-    key.myTarget = 0
-    key.myCrop = 0
-    key.myDiet = 0
-    key.save()
-    # ---------------------
+    form.instance.myCountry = Countries.objects.filter(
+     GID_2=form.instance.province).first()
+    form.instance.AEZ_id = form.instance.myCountry.AEZ_id
+    form.instance.created_by = User.objects.get(id = self.request.user.id)
     return super(Location_UpdateView, self).form_valid(form)
 
 
@@ -245,13 +231,27 @@ def Del_Crop_SubNational(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Location)
 def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwargs):
-  logger.debug("ここまでOK")
+
+  #myProfileの設定----------------------------------
+  myUser = instance.created_by
+  myLocation = instance.pk
+  key = myUser.profile
+  key.myLocation = myLocation
+  key.myTarget = 0
+  key.myCrop = 0
+  key.myDiet = 0
+  key.save()
+
+  #Crop_SubNationalの設定----------------------------------
   if not created: #Updateの場合
     if update_fields:
       if 'province' in update_fields:
         logger.debug("ここまでOK")
-        Crop_SubNational.objects.filter(myLocation_id=instance.pk).delete()
-        Person.objects.filter(myLocation_id=instance.pk).delete()
+
+        # -- delete existing dataset ------------------------
+        Crop_SubNational.objects.filter(myLocation_id=myLocation).delete()
+        Person.objects.filter(myLocation_id=myLocation).delete()
+
         # --------------------update Crop_SubNational-------------------------
         tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
         instance.AEZ_id = tmp_aez
@@ -262,9 +262,9 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
             keys['myLocation'] = Location.objects.get(id=instance.pk)
             keys['myFCT'] = FCT.objects.get(food_item_id=tmp02.myFCT.food_item_id)
             keys['selected_status'] = 0
-            keys['created_by'] = instance.created_by
+            keys['created_by'] = User.objects.get(id=instance.created_by.id)
             p = Crop_SubNational.objects.create(**keys)
-        # ---------------------
+
         # --------------------update myTarget-community-------------------------
         nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent all',
                         'adolescent pregnant',
@@ -280,20 +280,21 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
           )
         # ---------------------
   else: #新規レコードの場合
-    logger.debug("ここまでOK")
+    logger.debug("ここまでOK456")
+
     # --------------------update Crop_SubNational-------------------------
     tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
     instance.AEZ_id = tmp_aez
     tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
     if tmp01.count() != 0:
-      logger.debug("ここまでOK")
       for tmp02 in tmp01:
         keys = {}
         keys['myLocation'] = Location.objects.get(id=instance.pk)
         keys['myFCT'] = FCT.objects.get(food_item_id=tmp02.myFCT.food_item_id)
         keys['selected_status'] = 0
-        keys['created_by'] = instance.created_by
+        keys['created_by'] = User.objects.get(id=instance.created_by.id)
         p = Crop_SubNational.objects.create(**keys)
+
     # --------------------update myTarget-community-------------------------
     nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent all', 'adolescent pregnant',
                     'adolescent lact', 'adult', 'adult pregnant', 'adult lact']
@@ -303,7 +304,7 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
         nut_group=nut_grp_list[i],
         target_scope=3,
         target_pop=100,
-        created_by=instance.created_by,
+        created_by=User.objects.get(id=instance.created_by.id),
         myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
       )
     # ---------------------
