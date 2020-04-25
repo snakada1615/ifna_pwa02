@@ -1,0 +1,86 @@
+food_item_id,country_code,local_food_grp,local_food_name
+831,ETH,Flesh foods ,"Sheep meat, dried"
+835,ETH,"Grains, roots and tubers ","Teff, red"
+800,ETH,"Grains, roots and tubers ",Barley
+804,ETH,Dairy products ,"Buttermilk, cow"
+819,ETH,Legumes and nuts ,"Haricot beans, red"
+820,ETH,Legumes and nuts ,"Haricot beans, white"
+834,ETH,"Grains, roots and tubers ",Teff
+801,ETH,Other fruits and vegetables ,Beetroot
+806,ETH,non-category,Chat
+809,ETH,non-category,Coffee beans
+810,ETH,Other fruits and vegetables ,Ethiopian cabbage
+825,ETH,Other fruits and vegetables ,Mandarine / Tangerine
+830,ETH,Other fruits and vegetables ,Safflower
+807,ETH,Legumes and nuts ,"Chick peas, red"
+812,ETH,Legumes and nuts ,Fenugreek
+813,ETH,Legumes and nuts ,Field peas
+822,ETH,Other fruits and vegetables ,Kale(yabesha gomen)
+826,ETH,Legumes and nuts ,Mung bean / Masho
+827,ETH,Legumes and nuts ,Neug
+828,ETH,"Grains, roots and tubers ",Oats / 'Aja'
+811,ETH,Legumes and nuts ,Faba bean
+817,ETH,Flesh foods ,"Goat meat, dried"
+821,ETH,non-category,Hops
+829,ETH,Legumes and nuts ,Rape seed
+832,ETH,non-category,Sugarcane
+833,ETH,Other fruits and vegetables ,Swiss chard
+836,ETH,Legumes and nuts ,Vetch pea
+814,ETH,"Grains, roots and tubers ",Finger millet
+818,ETH,Legumes and nuts ,Grass peas
+824,ETH,Legumes and nuts ,Linseed
+816,ETH,Legumes and nuts ,Gibto
+805,ETH,Flesh foods ,"Camel meat, raw"
+808,ETH,Legumes and nuts ,"Chick peas, white"
+803,ETH,Dairy products ,"Buttermilk, camel"
+823,ETH,Legumes and nuts ,Kidniey bean
+837,ETH,Dairy products ,"Yoghurt, camel milk"
+802,ETH,"Grains, roots and tubers ",Black wheat
+838,ETH,Dairy products ,"Yoghurt, goat milk"
+234,ETH,Vitamin A rich fruits and Vegetable ,"Mango, orange"
+236,ETH,Vitamin A rich fruits and Vegetable ,"Papaya, ripe"
+247,ETH,Vitamin A rich fruits and Vegetable ,"Banana, yellow"
+197,ETH,Vitamin A rich fruits and Vegetable ,"Bell Pepper, Red"
+156,ETH,Vitamin A rich fruits and Vegetable ,Carrot
+190,ETH,Vitamin A rich fruits and Vegetable ,Lettuce
+201,ETH,Vitamin A rich fruits and Vegetable ,Pumpkin / squash
+222,ETH,Other fruits and vegetables ,Avocado
+155,ETH,Other fruits and vegetables ,Cabbage
+168,ETH,Other fruits and vegetables ,Onion
+171,ETH,Other fruits and vegetables ,Tomato
+199,ETH,Other fruits and vegetables ,"Bell Pepper, Green"
+229,ETH,Other fruits and vegetables ,Guava
+233,ETH,Other fruits and vegetables ,Lemon
+235,ETH,Other fruits and vegetables ,Orange
+165,ETH,Other fruits and vegetables ,Garlic
+241,ETH,Other fruits and vegetables ,Watermelon
+245,ETH,Other fruits and vegetables ,Apple
+237,ETH,Other fruits and vegetables ,Pineapple
+167,ETH,Other fruits and vegetables ,Okra
+134,ETH,Legumes and nuts ,Broad beans
+272,ETH,Legumes and nuts ,Groundnut
+276,ETH,Legumes and nuts ,Sesame seeds
+140,ETH,Legumes and nuts ,Lentils
+118,ETH,Legumes and nuts ,Soya bean
+52,ETH,"Grains, roots and tubers ",Macaroni
+36,ETH,"Grains, roots and tubers ","Rice, white"
+74,ETH,"Grains, roots and tubers ",Wheat
+83,ETH,"Grains, roots and tubers ",Potato
+14,ETH,"Grains, roots and tubers ",Maize
+39,ETH,"Grains, roots and tubers ",Sorghum
+96,ETH,"Grains, roots and tubers ","Sweet potato, pale yellow"
+15,ETH,"Grains, roots and tubers ",Millet
+40,ETH,"Grains, roots and tubers ",Sorghum
+89,ETH,"Grains, roots and tubers ",Taro
+93,ETH,"Grains, roots and tubers ",Yam
+292,ETH,Flesh foods ,Beef meat
+294,ETH,Flesh foods ,"Lamb/mutton, meat"
+336,ETH,Flesh foods ,"Goat, meat"
+326,ETH,Flesh foods ,"Chicken, meat"
+354,ETH,Eggs ,Egg
+405,ETH,Dairy products ,"Milk, cow"
+409,ETH,Dairy products ,Yoghurt
+426,ETH,Dairy products ,Butter
+407,ETH,Dairy products ,"Milk, goat"
+412,ETH,Dairy products ,"Cheese, Gouda"
+422,ETH,Dairy products ,"Milk, camel"

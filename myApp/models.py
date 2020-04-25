@@ -156,6 +156,7 @@ class FCT(models.Model):
   food_grp_id = models.IntegerField(default=1)
   food_item_id = models.IntegerField(default=1, unique=True)
   Food_grp = models.CharField(max_length=200)
+  Food_grp_unicef = models.CharField(default='non-category', max_length=200)
   Food_name = models.CharField(max_length=200)
   Crop_ref = models.CharField(max_length=200)
   Edible = models.FloatField(default=0)
@@ -190,6 +191,23 @@ class FCT(models.Model):
 
   def __str__(self):
     return self.Food_name
+
+
+class Crop_Name(models.Model):
+  myFCT = models.ForeignKey(
+    FCT,
+    to_field='food_item_id',
+    default=436,
+    on_delete=models.CASCADE
+  )
+  myCountry = models.ForeignKey(
+    Countries,
+    null=True,
+    blank=True,
+    on_delete=models.CASCADE
+  )
+  Food_grp = models.CharField(max_length=200)
+  Food_name = models.CharField(max_length=200)
 
 
 class DRI(models.Model):

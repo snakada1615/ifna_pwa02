@@ -225,8 +225,10 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
 def Del_Crop_SubNational(sender, instance, **kwargs):
   if Crop_SubNational.objects.filter(myLocation_id=instance.pk):
     Crop_SubNational.objects.filter(myLocation_id=instance.pk).delete()
+  logger.info("該当するCrop＿SubNationalを削除しました")
   if Person.objects.filter(myLocation_id=instance.pk):
     Person.objects.filter(myLocation_id=instance.pk).delete()
+  logger.info("該当するPersonを削除しました")
 
 
 @receiver(post_save, sender=Location)
