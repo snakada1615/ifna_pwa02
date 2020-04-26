@@ -2,47 +2,125 @@
 {% load static %}
 {% block content %}
 
-	<div class="container text-white" style="max-width: 540px;">
-		<div id="accordion2">
-			<div class="card border-primary bg-info col-12 mt-2 mb-2 py-0" style="max-width: 540px;">
-				<div class="row">
-					<div class="col-12">
-						<div class="card-body py-0 px-0">
-							<div class="row">
-								<div class="col">
-									<h5>Welcome to NFA tool!</h5>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1 my-2">
-									<img src="{% static 'img/no1.png' %}">
-								</div>
-								<div class="col-10 mx-1">
-									<a class="btn btn-block btn-warning my-1" href="{% url 'output1' myLocation=myLocation%}" style="max-width:540px" id='btn01'>Output1</a>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1 my-2">
-									<img src="{% static 'img/no2.png' %}">
-								</div>
-								<div class="col-10 mx-1">
-									<a class="btn btn-block btn-warning my-1" href="{% url 'output2' myLocation=myLocation %}" style="max-width:540px" id='btn02'>Output2</a>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1 my-2">
-									<img src="{% static 'img/no3.png' %}">
-								</div>
-								<div class="col-10 mx-1">
-									<a class="btn btn-block btn-warning my-1" href="{% url 'output3' myLocation=myLocation %}" style="max-width:540px" id='btn03'>Output2</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+  <div class="container  mt-0 mb-1 text-dark" style="max-width: 540px;">
+
+    <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;">
+      <p class="card-title text-warning my-0 pl-2">
+        availability
+        <span style="color:red">■</span>: market&prod
+        <span style="color:green">■</span>: prod only
+        <span style="color:blue">■</span>: market only
+      </p>
+
+      <div class="mod-tbl">
+        <table id="tbl_cropping">
+          <thead>
+          <tr>
+            <th>Jan</th>
+            <th>Feb</th>
+            <th>Mar</th>
+            <th>Apr</th>
+            <th>May</th>
+            <th>Jun</th>
+            <th>Jul</th>
+            <th>Aug</th>
+            <th>Sep</th>
+            <th>Oct</th>
+            <th>Nov</th>
+            <th>Dec</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td colspan="12">aaaaaaaあああaaa</td>
+          </tr>
+          <tr>
+            <td>Jan</td>
+            <td>Feb</td>
+            <td>Mar</td>
+            <td>Apr</td>
+            <td>May</td>
+            <td>Jun</td>
+            <td>Jul</td>
+            <td>Aug</td>
+            <td>Sep</td>
+            <td>Oct</td>
+            <td>Nov</td>
+            <td>Dec</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!------------------------------------------------------------->
+  <style media="screen">
+    /* set common variable */
+    :root {
+      --td_wid_normal: 30;
+    }
+
+    /* force rotate when screen width less than 450 */
+    @media screen and (min-width: 320px) and (max-width: 450px) and (orientation: portrait) {
+      html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+    }
+
+    .mod-tbl {
+      max-width: 650px;
+    }
+
+    table {
+      table-layout: fixed;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    tbody th {
+      width: var(--td_wid_normal) px;
+      min-width: var(--td_wid_normal) px;
+      border-collapse: collapse;
+      border: 2px grey solid;
+    }
+
+    td {
+      width: var(--td_wid_normal) px;
+      min-width: var(--td_wid_normal) px;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    th {
+      color: whitesmoke;
+      background-color: #49A0B5;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    table tr:nth-child(odd) td {
+      text-align: left;
+      background-color: #49A0B5;
+    }
+
+    table tr:nth-child(even) td {
+      background-color: #F9F9F9;
+    }
+
+  </style>
 
 
 {% endblock %}

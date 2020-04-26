@@ -19,7 +19,7 @@ from django.urls import include
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-  path('trial/', Trial_View.as_view(), name='trial'),
+  path('trial/<int:myLocation>/', Trial_View.as_view(), name='trial'),
   path('index01/', IndexView.as_view(), name='index01'),
   path('index02/', IndexView02.as_view(), name='index02'),
   path('index04/', IndexView04.as_view(), name='index04'),

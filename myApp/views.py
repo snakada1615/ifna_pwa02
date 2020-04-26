@@ -44,6 +44,44 @@ import json
 class Trial_View(TemplateView):
   template_name = "myApp/_test.html"
 
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+
+    # send filtered crop by AEZ ######
+    tmp01 = Crop_SubNational.objects.filter(myLocation=self.kwargs['myLocation'])
+    myUser = self.request.user
+    tmp_country_crops = Crop_Name.objects.filter(myCountry_id=myUser.profile.myLocation)
+
+    d = []
+    for tmp02 in tmp01:
+      dd = {}
+      dd["selected_status"] = tmp02.selected_status
+      dd["Food_grp"] = tmp02.myFCT.Food_grp
+      dd["Food_name"] = tmp02.myFCT.Food_name
+      if len(tmp_country_crops) != 0:
+        tmp_country = tmp_country_crops.filter().first()
+        if len(tmp_country) != 0:
+          dd["Food_grp"] = tmp02.myFCT.Food_grp
+          dd["Food_name"] = tmp02.myFCT.Food_name
+      dd["food_item_id"] = tmp02.myFCT.food_item_id
+      dd["m1"] = tmp02.m1_avail
+      dd["m2"] = tmp02.m2_avail
+      dd["m3"] = tmp02.m3_avail
+      dd["m4"] = tmp02.m4_avail
+      dd["m5"] = tmp02.m5_avail
+      dd["m6"] = tmp02.m6_avail
+      dd["m7"] = tmp02.m7_avail
+      dd["m8"] = tmp02.m8_avail
+      dd["m9"] = tmp02.m9_avail
+      dd["m10"] = tmp02.m10_avail
+      dd["m11"] = tmp02.m11_avail
+      dd["m12"] = tmp02.m12_avail
+      d.append(dd)
+    context["dat_mycrop"] = d
+    context['myuser'] = myUser
+
+    return context
+
 
 class IndexView(TemplateView):
   template_name = "myApp/index01.html"
