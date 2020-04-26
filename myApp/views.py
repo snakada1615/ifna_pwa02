@@ -22,7 +22,7 @@ from .forms import LocationForm, Person_Form, UserForm, ProfileForm, Crop_Feas_F
 from .forms import UserEditForm, UserCreateForm, FCTForm
 
 from .models import Location, Countries, Crop_National, Crop_SubNational
-from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person, Pop
+from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person, Pop, Crop_Name
 
 # for user registration
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -32,10 +32,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
-#logging用の設定
+# logging用の設定
 from logging import getLogger
-logger = getLogger(__name__)
 
+logger = getLogger(__name__)
 
 # python component
 import json
@@ -65,54 +65,6 @@ class Under_Construction_View(TemplateView):
 
 class aboutNFA(TemplateView):
   template_name = "myApp/whatisNFA.html"
-
-
-@login_required
-@transaction.atomic
-def update_profile(request):
-  if request.method == 'POST':
-    user_form = UserForm(request.POST, instance=request.user)
-    profile_form = ProfileForm(request.POST, instance=request.user.profile)
-    if user_form.is_valid() and profile_form.is_valid():
-      user_form.save()
-      profile_form.save()
-      messages.success(request, 'Your profile was successfully updated!')
-      messages.info(request, '2nd message')
-      return redirect('index01')
-    else:
-      messages.error(request, 'Please correct the error below.')
-  else:
-    user_form = UserForm(instance=request.user)
-    profile_form = ProfileForm(instance=request.user.profile)
-  return render(request, 'myApp/profile.html', {
-    'user_form': user_form,
-    'profile_form': profile_form
-  })
-
-
-@transaction.atomic
-def create_user_profile(request):
-  if request.method == 'POST':
-    user_form = UserCreateForm(request.POST)
-    # profile_form = ProfileForm(request.POST)
-    if user_form.is_valid():  # and profile_form.is_valid():
-      myuser = user_form.save()
-      profile_form = ProfileForm(request.POST, instance=myuser.profile)
-      profile_form.save()
-      messages.success(request, 'Your profile was successfully updated!')
-      messages.info(request, '2nd message')
-
-      login(request, myuser)  # 認証
-      return redirect('index01')
-    else:
-      messages.error(request, 'Please correct the error below.')
-  else:
-    user_form = UserCreateForm()
-    profile_form = ProfileForm()
-  return render(request, 'myApp/profile.html', {
-    'user_form': user_form,
-    'profile_form': profile_form
-  })
 
 
 class IndexView02(LoginRequiredMixin, TemplateView):
@@ -151,6 +103,55 @@ class Location_ListView(LoginRequiredMixin, ListView):
     return context
 
 
+@transaction.atomic
+def create_user_profile(request):
+  if request.method == 'POST':
+    user_form = UserCreateForm(request.POST)
+    # profile_form = ProfileForm(request.POST)
+    if user_form.is_valid():  # and profile_form.is_valid():
+      myuser = user_form.save()
+      profile_form = ProfileForm(request.POST, instance=myuser.profile)
+      profile_form.save()
+      logger.error('新ユーザー' + myuser.username + 'が作成されました')
+
+      login(request, myuser)  # 認証
+
+      return redirect('index01')
+    else:
+      logger.info('新ユーザー登録に失敗しました')
+  else:
+    user_form = UserCreateForm()
+    profile_form = ProfileForm()
+    logger.info('ユーザー情報を作成します')
+  return render(request, 'myApp/profile.html', {
+    'user_form': user_form,
+    'profile_form': profile_form
+  })
+
+
+@login_required
+@transaction.atomic
+def update_profile(request):
+  if request.method == 'POST':
+    user_form = UserForm(request.POST, instance=request.user)
+    profile_form = ProfileForm(request.POST, instance=request.user.profile)
+    if user_form.is_valid() and profile_form.is_valid():
+      myuser = user_form.save()
+      profile_form.save()
+      logger.info('ユーザー(' + myuser.username + ')が更新されました')
+      return redirect('index01')
+    else:
+      logger.error('新ユーザー登録に失敗しました')
+  else:
+    user_form = UserForm(instance=request.user)
+    profile_form = ProfileForm(instance=request.user.profile)
+    logger.info('ユーザー情報(' + request.user.username + ')を更新します')
+  return render(request, 'myApp/profile.html', {
+    'user_form': user_form,
+    'profile_form': profile_form
+  })
+
+
 class Location_DeleteView(LoginRequiredMixin, DeleteView):  # todo これをmodal dialogueにする,削除時のmyStatusへの反映
   model = Location
   template_name = 'myApp/Location_confirm_delete.html'
@@ -175,9 +176,9 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
 
   def form_valid(self, form):
     form.instance.myCountry = Countries.objects.filter(
-     GID_2=form.instance.province).first()
+      GID_2=form.instance.province).first()
     form.instance.AEZ_id = form.instance.myCountry.AEZ_id
-    form.instance.created_by = User.objects.get(id = self.request.user.id)
+    form.instance.created_by = User.objects.get(id=self.request.user.id)
     return super(Location_CreateView, self).form_valid(form)
 
   def get_context_data(self, **kwargs):
@@ -215,9 +216,9 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
 
   def form_valid(self, form):
     form.instance.myCountry = Countries.objects.filter(
-     GID_2=form.instance.province).first()
+      GID_2=form.instance.province).first()
     form.instance.AEZ_id = form.instance.myCountry.AEZ_id
-    form.instance.created_by = User.objects.get(id = self.request.user.id)
+    form.instance.created_by = User.objects.get(id=self.request.user.id)
     return super(Location_UpdateView, self).form_valid(form)
 
 
@@ -233,8 +234,7 @@ def Del_Crop_SubNational(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Location)
 def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwargs):
-
-  #myProfileの設定----------------------------------
+  # myProfileの設定----------------------------------
   myUser = instance.created_by
   myLocation = instance.pk
   key = myUser.profile
@@ -243,16 +243,19 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
   key.myCrop = 0
   key.myDiet = 0
   key.save()
+  logger.info("Profileを更新しました")
 
-  #Crop_SubNationalの設定----------------------------------
-  if not created: #Updateの場合
+  # Crop_SubNationalの設定----------------------------------
+  if not created:  # Updateの場合
     if update_fields:
       if 'province' in update_fields:
         logger.debug("ここまでOK")
 
         # -- delete existing dataset ------------------------
         Crop_SubNational.objects.filter(myLocation_id=myLocation).delete()
+        logger.info("該当するCrop_SubNationalを削除しました")
         Person.objects.filter(myLocation_id=myLocation).delete()
+        logger.info("該当するPersonを削除しました")
 
         # --------------------update Crop_SubNational-------------------------
         logger.info("これからCrop＿SubNationaを追加していきます")
@@ -286,7 +289,7 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
           )
         logger.info("Target communityの書込み終了")
         # ---------------------
-  else: #新規レコードの場合
+  else:  # 新規レコードの場合
 
     # --------------------update Crop_SubNational-------------------------
     tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
@@ -329,12 +332,20 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # todo まだ縦横表示�
 
     # send filtered crop by AEZ ######
     tmp01 = Crop_SubNational.objects.filter(myLocation=self.kwargs['myLocation'])
+    myUser = self.request.user
+    tmp_country_crops = Crop_Name.objects.filter(myCountry_id=myUser.profile.myLocation)
+
     d = []
     for tmp02 in tmp01:
       dd = {}
       dd["selected_status"] = tmp02.selected_status
       dd["Food_grp"] = tmp02.myFCT.Food_grp
       dd["Food_name"] = tmp02.myFCT.Food_name
+      if len(tmp_country_crops) != 0:
+        tmp_country = tmp_country_crops.filter().first()
+        if len(tmp_country) != 0:
+          dd["Food_grp"] = tmp02.myFCT.Food_grp
+          dd["Food_name"] = tmp02.myFCT.Food_name
       dd["food_item_id"] = tmp02.myFCT.food_item_id
       dd["m1"] = tmp02.m1_avail
       dd["m2"] = tmp02.m2_avail
@@ -350,7 +361,7 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # todo まだ縦横表示�
       dd["m12"] = tmp02.m12_avail
       d.append(dd)
     context["dat_mycrop"] = d
-    context['myuser'] = self.request.user
+    context['myuser'] = myUser
 
     return context
 
@@ -377,7 +388,7 @@ def registCropAvail(request):
     tmp_newcrop_list.append(myrow['myFCT_id'])  # 後で使う(part 2)
 
     tmp = Crop_SubNational.objects.filter(myFCT_id=myrow['myFCT_id']).filter(
-      myLocation_id= tmp_myLocation_id
+      myLocation_id=tmp_myLocation_id
     )
     p = tmp.update(**newcrop)
 
@@ -1339,14 +1350,16 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
     context["mylist_crop"] = d
     return context
 
+
 class FCT_ListView(LoginRequiredMixin, ListView):
   model = FCT
   context_object_name = "mylist"
   template_name = 'myApp/FCT_list.html'
 
   def get_queryset(self):
-    queryset = FCT.objects.filter(food_item_id__gte = 800)
+    queryset = FCT.objects.filter(food_item_id__gte=800)
     return queryset
+
 
 class FCT_UpdateView(LoginRequiredMixin, UpdateView):
   model = FCT
@@ -1354,13 +1367,13 @@ class FCT_UpdateView(LoginRequiredMixin, UpdateView):
   template_name = 'myApp/FCT_form.html'
   success_url = reverse_lazy('fct_list')
 
-class FCT_CreateView(LoginRequiredMixin, CreateView): #todo fail to register new record
+
+class FCT_CreateView(LoginRequiredMixin, CreateView):  # todo fail to register new record
   model = FCT
   form_class = FCTForm
   template_name = 'myApp/FCT_form.html'
   success_url = reverse_lazy('fct_list')
 
+
 class IndexView04(LoginRequiredMixin, TemplateView):
   template_name = "myApp/index04.html"
-
-

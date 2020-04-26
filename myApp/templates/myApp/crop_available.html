@@ -211,14 +211,14 @@
               for (let j = 0; j < 16; j++) {
                 let tmp = mytable_selected.cell(i, j).data();
                 switch (true) {
-                  case j == 0:
+                  case j === 0:
                     dd["selected_status"] = tmp;
                     console.log(tmp);
                     break;
                   case j > 2 && j < 15:
                     dd["m" + String(j - 2)] = tmp;
                     break;
-                  case j == 15:
+                  case j === 15:
                     dd["myFCT_id"] = tmp;
                     break;
                 }
@@ -227,7 +227,7 @@
               d.push(dd);
             }
             return {"myJson": d};
-          };
+          }
           //////////////send crop list to django////
           $("#btn_save").click(function () {
             let hostUrl = myRoot + 'registCropAvail/';
@@ -246,7 +246,7 @@
         "ordering": false,
         ///initialize selection///
         "createdRow": function (row, data, dataIndex) {
-          if (data.selected_status == '1') {
+          if (data.selected_status === '1') {
             $(row).addClass('selected');
           }
         },
@@ -326,7 +326,7 @@
             if ($(this).hasClass('selected')) {
               let myR = mytable_all.row(this).index();
 
-              mytable_all.cell(myR, 0).data('1')
+              mytable_all.cell(myR, 0).data('1');
               mytable_selected.row.add({
                 "selected_status": mytable_all.cell(myR, 0).data(),
                 "Food_grp": mytable_all.cell(myR, 1).data(),
@@ -348,14 +348,12 @@
 
             } else {
               let myR = mytable_all.row(this).index();
-              mytable_all.cell(myR, 0).data('0')
+              mytable_all.cell(myR, 0).data('0');
 
               let fn = $(this).children('td').eq(1).text();
               // Find indexes of rows which have `Yes` in the second column
               let indexes = mytable_selected.rows().eq(0).filter(function (rowIdx) {
-                return mytable_selected.cell(rowIdx, 2).data() === fn
-                  ? true
-                  : false;
+                return mytable_selected.cell(rowIdx, 2).data() === fn;
               });
               mytable_selected.row(indexes[0]).remove().draw();
             }
