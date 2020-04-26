@@ -3,124 +3,218 @@
 {% block content %}
 
 
-  <div class="container  mt-0 mb-1 text-dark" style="max-width: 540px;">
+<div class="container  mt-0 mb-1 text-dark" style="max-width: 540px;">
 
-    <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;">
-      <p class="card-title text-warning my-0 pl-2">
-        availability
-        <span style="color:red">■</span>: market&prod
-        <span style="color:green">■</span>: prod only
-        <span style="color:blue">■</span>: market only
-      </p>
+  <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;">
+    <p class="card-title text-warning my-0 pl-2">
+      availability
+      <span style="color:red">■</span>: market&prod
+      <span style="color:green">■</span>: prod only
+      <span style="color:blue">■</span>: market only
+    </p>
 
-      <div class="mod-tbl">
-        <table id="tbl_cropping">
-          <thead>
-          <tr>
-            <th>Jan</th>
-            <th>Feb</th>
-            <th>Mar</th>
-            <th>Apr</th>
-            <th>May</th>
-            <th>Jun</th>
-            <th>Jul</th>
-            <th>Aug</th>
-            <th>Sep</th>
-            <th>Oct</th>
-            <th>Nov</th>
-            <th>Dec</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td colspan="12">aaaaaaaあああaaa</td>
-          </tr>
-          <tr>
-            <td>Jan</td>
-            <td>Feb</td>
-            <td>Mar</td>
-            <td>Apr</td>
-            <td>May</td>
-            <td>Jun</td>
-            <td>Jul</td>
-            <td>Aug</td>
-            <td>Sep</td>
-            <td>Oct</td>
-            <td>Nov</td>
-            <td>Dec</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="mod-tbl">
+      <table id="tbl_cropping">
+        <thead>
+        <tr>
+          <th>Jan</th>
+          <th>Feb</th>
+          <th>Mar</th>
+          <th>Apr</th>
+          <th>May</th>
+          <th>Jun</th>
+          <th>Jul</th>
+          <th>Aug</th>
+          <th>Sep</th>
+          <th>Oct</th>
+          <th>Nov</th>
+          <th>Dec</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td colspan="12">aaaaaaaあああaaa</td>
+        </tr>
+        <tr>
+          <td>Jan</td>
+          <td>Feb</td>
+          <td>Mar</td>
+          <td>Apr</td>
+          <td>May</td>
+          <td>Jun</td>
+          <td>Jul</td>
+          <td>Aug</td>
+          <td>Sep</td>
+          <td>Oct</td>
+          <td>Nov</td>
+          <td>Dec</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
+</div>
 
-  <!------------------------------------------------------------->
-  <style media="screen">
-    /* set common variable */
-    :root {
-      --td_wid_normal: 30;
+<!-- モーダルの設定 ----------------------------->
+<div class="modal fade" id="myModal01" tabindex="-1" role="dialog" aria-labelledby="myModal01Label">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark" id="myModal01Label">Edit the weight of food item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-dark">
+        <div class="my-2" id="newSearchPlace">Food group:
+        </div>
+        <table id="tbl_crop_all" class="display compact" cellspacing="0" width="100%">
+          <thead>
+          <tr>
+            <th>Group</th>
+            <th>Group</th>
+            <th>Name</th>
+          </tr>
+          </thead>
+
+          <tfoot>
+          <tr>
+            <th>Group</th>
+            <th>Group</th>
+            <th>Name</th>
+          </tr>
+          </tfoot>
+        </table>
+        <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">close</a>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-------------------------------------->
+
+
+<!------------------------------------------------------------->
+<style media="screen">
+  /* set common variable */
+  :root {
+    --td_wid_normal: 30;
+  }
+
+  /* force rotate when screen width less than 450 */
+  @media screen and (min-width: 320px) and (max-width: 450px) and (orientation: portrait) {
+    html {
+      transform: rotate(-90deg);
+      transform-origin: left top;
+      width: 100vh;
+      overflow-x: hidden;
+      position: absolute;
+      top: 100%;
+      left: 0;
     }
+  }
 
-    /* force rotate when screen width less than 450 */
-    @media screen and (min-width: 320px) and (max-width: 450px) and (orientation: portrait) {
-      html {
-        transform: rotate(-90deg);
-        transform-origin: left top;
-        width: 100vh;
-        overflow-x: hidden;
-        position: absolute;
-        top: 100%;
-        left: 0;
+  .mod-tbl {
+    max-width: 650px;
+  }
+
+  table {
+    table-layout: fixed;
+    border: 2px grey solid;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  tbody th {
+    width: var(--td_wid_normal) px;
+    min-width: var(--td_wid_normal) px;
+    border-collapse: collapse;
+    border: 2px grey solid;
+  }
+
+  td {
+    width: var(--td_wid_normal) px;
+    min-width: var(--td_wid_normal) px;
+    border: 2px grey solid;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  th {
+    color: whitesmoke;
+    background-color: #49A0B5;
+    border: 2px grey solid;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  table tr:nth-child(odd) td {
+    text-align: left;
+    background-color: #49A0B5;
+  }
+
+  table tr:nth-child(even) td {
+    background-color: #F9F9F9;
+  }
+
+</style>
+
+<script type="text/javascript">
+
+  {% block content %}
+    <script type = "text/javascript" src = "{% static 'DataTables/js/jquery.dataTables.min.js' %}" ></script>
+    <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'DataTables/js/dataTables.responsive.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}"
+          media="screen">
+    <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}"
+          media="screen">
+    <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/responsive.dataTables.min.css' %}"
+          media="screen">
+
+    <script>
+      // URLパラメータの取得
+      var myLocation = '';
+      var myRoot = '';
+      var items = [];
+      var myTmp;
+
+      // グローバル変数の作成
+      var selected_rows_id = [];
+      var Json_Crop_All = {{dat_mycrop | safe}};
+      var Json_Crop_Selected = Json_Crop_All.filter(function (item, index) {
+                if (item.selected_status == '1')
+                  return true;
+              }
+      );
+
+
+      getHTML_param = function () {
+        var url_tmp = window.location.href.split('/');
+        var tmp1 = url_tmp[url_tmp.length - 3];
+        var tmp2 = url_tmp[url_tmp.length - 2];
+        url_tmp.pop();
+        url_tmp.pop();
+        url_tmp.pop();
+        myRoot = url_tmp.join("/") + '/';
+        myLocation = tmp1;
+        items.length = 0;
+        if (tmp2 == '0') {
+          items.push('0');
+        } else if (tmp2.indexOf('-') < 0) {
+          items.push(tmp2);
+        } else {
+          items = tmp2.split('-');
+        }
+        return tmp1;
       }
-    }
-
-    .mod-tbl {
-      max-width: 650px;
-    }
-
-    table {
-      table-layout: fixed;
-      border: 2px grey solid;
-      border-collapse: collapse;
-      width: 100%;
-    }
-
-    tbody th {
-      width: var(--td_wid_normal) px;
-      min-width: var(--td_wid_normal) px;
-      border-collapse: collapse;
-      border: 2px grey solid;
-    }
-
-    td {
-      width: var(--td_wid_normal) px;
-      min-width: var(--td_wid_normal) px;
-      border: 2px grey solid;
-      border-collapse: collapse;
-      text-align: center;
-      vertical-align: middle;
-    }
-
-    th {
-      color: whitesmoke;
-      background-color: #49A0B5;
-      border: 2px grey solid;
-      border-collapse: collapse;
-      text-align: center;
-      vertical-align: middle;
-    }
-
-    table tr:nth-child(odd) td {
-      text-align: left;
-      background-color: #49A0B5;
-    }
-
-    table tr:nth-child(even) td {
-      background-color: #F9F9F9;
-    }
-
-  </style>
 
 
-{% endblock %}
+    </script>
+
+
+  {% endblock %}
