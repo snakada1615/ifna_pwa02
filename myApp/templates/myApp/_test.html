@@ -157,11 +157,13 @@
     }
 
     .mytable tr:nth-child(odd) td {
+      color: darkblue;
       text-align: left;
       background-color: #49A0B5;
     }
 
     .mytable tr:nth-child(even) td {
+      color: white;
       background-color: #F9F9F9;
     }
 
@@ -387,6 +389,36 @@
             }
           })
         }
+
+        //////////////////on click -> chabge available status /
+        $('#tbl_crop_selected').on('click', 'td', function () {
+          let myrow = $(this).closest('tr').index();
+          let mycol = this.cellIndex;
+          if (myrow % 2 == 1) {
+            let tmp = Number($(this).text());
+            tmp = (tmp + 1) % 4;
+            $(this).text(tmp); // cellの値+1
+
+            switch (tmp) { // cellの値に応じて色変化
+              case 0:
+                $(this).css("background-color", "");
+                $(this).css("color", "white");
+                break;
+              case 1:
+                $(this).css("background-color", "red");
+                $(this).css("color", "red");
+                break;
+              case 2:
+                $(this).css("background-color", "green");
+                $(this).css("color", "green");
+                break;
+              case 3:
+                $(this).css("background-color", "blue");
+                $(this).css("color", "blue");
+                break;
+            }
+          }
+        });
 
         //////////////
 
