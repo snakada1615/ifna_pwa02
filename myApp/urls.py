@@ -12,7 +12,7 @@ from .views import Person_ListView, Person_UpdateView, Person_CreateView, Person
 from .views import initTable, delete_TableRec, registDiet, Output1, Output2, Output3, Output4, Output_list, registPerson
 from .views import CropSelect, registCropAvail, Trial_View, Diet_Plan1, update_profile
 from .views import Crop_Feas_CreateView, Crop_Feas_ListView, Crop_Feas_DeleteView, Crop_Feas_UpdateView
-from .views import FCT_ListView, FCT_UpdateView, FCT_CreateView, IndexView04
+from .views import FCT_ListView, FCT_UpdateView, FCT_CreateView, IndexView04, Crop_Name_ListView, Crop_Name_CreateView
 
 from django.contrib import admin
 from django.urls import include
@@ -56,4 +56,6 @@ urlpatterns = [
   path('FCT_List/', FCT_ListView.as_view(), name='fct_list'),
   path('FCT_Update/<int:pk>/', FCT_UpdateView.as_view(), name='fct_update'),
   path('FCT_Create/', FCT_CreateView.as_view(), name='fct_create'),
+  path('Crop_Name_List/<int:myCountry>/', Crop_Name_ListView.as_view(), name='crop_name_list'),
+  path('Crop_Name_Create/', Crop_Name_CreateView.as_view(), name='crop_name_create'),
 ]

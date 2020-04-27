@@ -2,10 +2,11 @@ from django import forms
 from django.contrib.admin import widgets
 from django.contrib.auth.models import User
 from django.db.models import Q, Sum
-from .models import Location, Person, Profile, Crop_Feasibility, FCT, Crop_SubNational, Countries
+from .models import Location, Person, Profile, Crop_Feasibility, FCT, Crop_SubNational, Countries, Crop_Name
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.db.models import Max
+from django.db.models import Max  # 集計関数の追加
 
 # logging用の設定
 from logging import getLogger
@@ -195,6 +196,17 @@ class FCTForm(forms.ModelForm):
     if self.cleaned_data['food_item_id'] > 0:
       i = 0  # dummy
     else:
-      self.cleaned_data['food_item_id'] = FCT.aggregate(Max('food_item_id'))['food_item_id__max'] + 1
-      self.cleaned_data['FCT_id'] = FCT.aggregate(Max('FCT_id'))['FCT_id__max'] + 1
+      self.cleaned_data['food_item_id'] = FCT.objects.aggregate(Max('food_item_id'))['food_item_id__max'] + 1
+      self.cleaned_data['FCT_id'] = FCT.objects.aggregate(Max('FCT_id'))['FCT_id__max'] + 1
     return cleaned_data
+
+
+class Crop_Name_Form(forms.ModelForm):
+  Food_grp = forms.ModelChoiceField(label='food group',
+                            queryset=FCT.objects.values_list('Food_grp_unicef', flat=True).distinct())
+  class Meta:
+    model = Crop_Name
+    fields = ('myFCT', 'Food_grp', 'Food_name', 'myCountry')
+    widgets = {
+      'myCountry': forms.HiddenInput(),
+    }

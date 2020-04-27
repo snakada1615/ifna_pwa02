@@ -19,7 +19,7 @@ from django.core import serializers
 from django.http.response import JsonResponse
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 from .forms import LocationForm, Person_Form, UserForm, ProfileForm, Crop_Feas_Form
-from .forms import UserEditForm, UserCreateForm, FCTForm
+from .forms import UserEditForm, UserCreateForm, FCTForm, Crop_Name_Form
 
 from .models import Location, Countries, Crop_National, Crop_SubNational
 from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person, Pop, Crop_Name
@@ -1398,12 +1398,23 @@ class FCT_ListView(LoginRequiredMixin, ListView):
     queryset = FCT.objects.filter(food_item_id__gte=800)
     return queryset
 
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myuser'] = self.request.user
+    return context
+
+
 
 class FCT_UpdateView(LoginRequiredMixin, UpdateView):
   model = FCT
   form_class = FCTForm
   template_name = 'myApp/FCT_form.html'
   success_url = reverse_lazy('fct_list')
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myuser'] = self.request.user
+    return context
 
 
 class FCT_CreateView(LoginRequiredMixin, CreateView):  # todo fail to register new record
@@ -1412,6 +1423,39 @@ class FCT_CreateView(LoginRequiredMixin, CreateView):  # todo fail to register n
   template_name = 'myApp/FCT_form.html'
   success_url = reverse_lazy('fct_list')
 
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myuser'] = self.request.user
+    return context
+
 
 class IndexView04(LoginRequiredMixin, TemplateView):
   template_name = "myApp/index04.html"
+
+class Crop_Name_ListView(LoginRequiredMixin, ListView):
+  model = Crop_Name
+  context_object_name = "mylist"
+  template_name = 'myApp/Crop_Name_list.html'
+
+  def get_queryset(self):
+    queryset = Crop_Name.objects.filter(myCountry_id=self.kwargs['myCountry'])
+    return queryset
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myuser'] = self.request.user
+    context['myCountry'] = Countries.objects.filter(id=self.kwargs['myCountry']).first().NAME_0
+    return context
+
+
+class Crop_Name_CreateView(LoginRequiredMixin, CreateView):  # todo fail to register new record
+  model = Crop_Name
+  form_class = Crop_Name_Form
+  template_name = 'myApp/Crop_Name_form.html'
+  success_url = reverse_lazy('crop_name_list')
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myuser'] = self.request.user
+    return context
+

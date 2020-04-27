@@ -1,0 +1,31 @@
+{% extends "myApp/_base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+  {{ form.certifications.errors }}
+  <div class="container text-white bg-info" style="max-width: 540px;">
+    <form method="post" id="myform">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-12">
+          <h2 class="text-center">Edit Local Name</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="float-right">
+            <a class="btn btn-secondary" href="{% url 'fct_list' %}">return</a>
+            <button class="btn btn-secondary" type="submit">save</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          {{ form|crispy }}
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+{% endblock %}

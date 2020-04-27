@@ -475,7 +475,7 @@
           $('#tbl_crop_selected').children('tbody').children('tr').each(function (index_r, myRow) {
             if (index_r % 2 == 1) {
               let dd = {};
-              dd["selected_status"] = $(this).children('td').eq(0).text();
+              dd["selected_status"] = 1;
               for (var j = 0; j < 12; j++) {
                 dd["m" + String(j + 1)] = $(this).children('td').eq(j).text();
               }
