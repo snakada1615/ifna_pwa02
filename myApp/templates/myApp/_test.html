@@ -221,7 +221,6 @@
 
       //tableに表示するためのデータ作成
       cr += '<tr>';
-      cr += '<td class="tableItem_hide">' + addRow["selected_status"] + '</td>';
       cr += '<td class="tableItem_hide">' + addRow["Food_grp"] + '</td>';
       cr += '<td colspan="12">' + addRow["Food_name"] + '</td>';
       cr += '</tr>';
@@ -238,7 +237,8 @@
       cr += '<td>' + addRow["m10"] + '</td>';
       cr += '<td>' + addRow["m11"] + '</td>';
       cr += '<td>' + addRow["m12"] + '</td>';
-      cr += '<td class="tableItem_hide">' + dd["food_item_id"] + '</td>';
+      cr += '<td class="tableItem_hide">' + addRow["food_item_id"] + '</td>';
+      cr += '<td class="tableItem_hide">' + addRow["selected_status"] + '</td>';
       cr += '</tr>';
 
       let $myTbl = $('#tbl_crop_selected');
@@ -468,6 +468,33 @@
             }
           }
         });
+
+        //////////////////get data from table
+        function getTblData() {
+          let d = [];
+          $('#tbl_crop_selected').children('tbody').children('tr').each(function (index_r, myRow) {
+            if (index_r % 2 == 1) {
+              let dd = {};
+              dd["selected_status"] = $(this).children('td').eq(0).text();
+              for (var j = 0; j < 12; j++) {
+                dd["m" + String(j + 1)] = $(this).children('td').eq(j).text();
+              }
+              dd["myFCT_id"] = $(this).children('td').eq(12).text();
+              dd["myLocation"] = {{myLocation}};
+              d.push(dd);
+            }
+          });
+          return {"myJson": d};
+        }
+
+        //////////////send crop list to django////
+        $("#btn_save").click(function () {
+          let hostUrl = myRoot + 'registCropAvail/';
+          let mydat = getTblData();
+          console.log(getTblData());
+//          Set_CRSF();
+//          sendJson(mydat, hostUrl);
+        }); ///////////////////
 
         //////////////
 
