@@ -2,219 +2,398 @@
 {% load static %}
 {% block content %}
 
+  <script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}"
+        media="screen">
+  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}"
+        media="screen">
 
-<div class="container  mt-0 mb-1 text-dark" style="max-width: 540px;">
+  <div class="container  mt-0 mb-1 text-dark" style="max-width: 540px;">
 
-  <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;">
-    <p class="card-title text-warning my-0 pl-2">
-      availability
-      <span style="color:red">■</span>: market&prod
-      <span style="color:green">■</span>: prod only
-      <span style="color:blue">■</span>: market only
-    </p>
+    <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;">
+      <p class="card-title text-warning my-0 pl-2">
+        availability
+        <span style="color:red">■</span>: market&prod
+        <span style="color:green">■</span>: prod only
+        <span style="color:blue">■</span>: market only
+      </p>
 
-    <div class="mod-tbl">
-      <table id="tbl_cropping">
-        <thead>
-        <tr>
-          <th>Jan</th>
-          <th>Feb</th>
-          <th>Mar</th>
-          <th>Apr</th>
-          <th>May</th>
-          <th>Jun</th>
-          <th>Jul</th>
-          <th>Aug</th>
-          <th>Sep</th>
-          <th>Oct</th>
-          <th>Nov</th>
-          <th>Dec</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td colspan="12">aaaaaaaあああaaa</td>
-        </tr>
-        <tr>
-          <td>Jan</td>
-          <td>Feb</td>
-          <td>Mar</td>
-          <td>Apr</td>
-          <td>May</td>
-          <td>Jun</td>
-          <td>Jul</td>
-          <td>Aug</td>
-          <td>Sep</td>
-          <td>Oct</td>
-          <td>Nov</td>
-          <td>Dec</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<!-- モーダルの設定 ----------------------------->
-<div class="modal fade" id="myModal01" tabindex="-1" role="dialog" aria-labelledby="myModal01Label">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-dark" id="myModal01Label">Edit the weight of food item</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-dark">
-        <div class="my-2" id="newSearchPlace">Food group:
-        </div>
-        <table id="tbl_crop_all" class="display compact" cellspacing="0" width="100%">
+      <div class="mod-tbl">
+        <table id="tbl_crop_selected" class="mytable">
           <thead>
           <tr>
-            <th>Group</th>
-            <th>Group</th>
-            <th>Name</th>
+            <th class="tableItem_hide">selected_status</th>
+            <th class="tableItem_hide">Food_grp</th>
+            <th class="tableItem_hide">Food_name</th>
+            <th>Jan</th>
+            <th>Feb</th>
+            <th>Mar</th>
+            <th>Apr</th>
+            <th>May</th>
+            <th>Jun</th>
+            <th>Jul</th>
+            <th>Aug</th>
+            <th>Sep</th>
+            <th>Oct</th>
+            <th>Nov</th>
+            <th>Dec</th>
+            <th class="tableItem_hide">food_item_id</th>
           </tr>
           </thead>
-
-          <tfoot>
-          <tr>
-            <th>Group</th>
-            <th>Group</th>
-            <th>Name</th>
-          </tr>
-          </tfoot>
+          <tbody>
+          </tbody>
         </table>
-        <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">close</a>
       </div>
     </div>
-    <!-- /.modal-content -->
+
+    <div class="row">
+      <div class="col-12">
+        <span>
+          <a id="btn_save" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">save</a>
+          <a class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" href="{% url  'index02' %}">back</a>
+          <a id="btn_add" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">add</a>
+        </span>
+      </div>
+    </div>
+
   </div>
-  <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-<!-------------------------------------->
+
+  <!-- モーダルの設定 ----------------------------->
+  <div class="modal fade" id="myModal01" tabindex="-1" role="dialog" aria-labelledby="myModal01Label">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="myModal01Label">Edit the weight of food item</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-dark">
+          <div class="my-2" id="newSearchPlace">Food group:
+          </div>
+          <table id="tbl_crop_candidate" class="display compact" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+              <th>Group</th>
+              <th>Group</th>
+              <th>Name</th>
+            </tr>
+            </thead>
+
+            <tfoot>
+            <tr>
+              <th>Group</th>
+              <th>Group</th>
+              <th>Name</th>
+            </tr>
+            </tfoot>
+          </table>
+          <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">close</a>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  <!-------------------------------------->
 
 
-<!------------------------------------------------------------->
-<style media="screen">
-  /* set common variable */
-  :root {
-    --td_wid_normal: 30;
-  }
-
-  /* force rotate when screen width less than 450 */
-  @media screen and (min-width: 320px) and (max-width: 450px) and (orientation: portrait) {
-    html {
-      transform: rotate(-90deg);
-      transform-origin: left top;
-      width: 100vh;
-      overflow-x: hidden;
-      position: absolute;
-      top: 100%;
-      left: 0;
+  <!------------------------------------------------------------->
+  <style media="screen">
+    /* set common variable */
+    :root {
+      --td_wid_normal: 30;
     }
-  }
 
-  .mod-tbl {
-    max-width: 650px;
-  }
-
-  table {
-    table-layout: fixed;
-    border: 2px grey solid;
-    border-collapse: collapse;
-    width: 100%;
-  }
-
-  tbody th {
-    width: var(--td_wid_normal) px;
-    min-width: var(--td_wid_normal) px;
-    border-collapse: collapse;
-    border: 2px grey solid;
-  }
-
-  td {
-    width: var(--td_wid_normal) px;
-    min-width: var(--td_wid_normal) px;
-    border: 2px grey solid;
-    border-collapse: collapse;
-    text-align: center;
-    vertical-align: middle;
-  }
-
-  th {
-    color: whitesmoke;
-    background-color: #49A0B5;
-    border: 2px grey solid;
-    border-collapse: collapse;
-    text-align: center;
-    vertical-align: middle;
-  }
-
-  table tr:nth-child(odd) td {
-    text-align: left;
-    background-color: #49A0B5;
-  }
-
-  table tr:nth-child(even) td {
-    background-color: #F9F9F9;
-  }
-
-</style>
-
-<script type="text/javascript">
-
-  {% block content %}
-    <script type = "text/javascript" src = "{% static 'DataTables/js/jquery.dataTables.min.js' %}" ></script>
-    <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'DataTables/js/dataTables.responsive.min.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}"
-          media="screen">
-    <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}"
-          media="screen">
-    <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/responsive.dataTables.min.css' %}"
-          media="screen">
-
-    <script>
-      // URLパラメータの取得
-      var myLocation = '';
-      var myRoot = '';
-      var items = [];
-      var myTmp;
-
-      // グローバル変数の作成
-      var selected_rows_id = [];
-      var Json_Crop_All = {{dat_mycrop | safe}};
-      var Json_Crop_Selected = Json_Crop_All.filter(function (item, index) {
-                if (item.selected_status == '1')
-                  return true;
-              }
-      );
-
-
-      getHTML_param = function () {
-        var url_tmp = window.location.href.split('/');
-        var tmp1 = url_tmp[url_tmp.length - 3];
-        var tmp2 = url_tmp[url_tmp.length - 2];
-        url_tmp.pop();
-        url_tmp.pop();
-        url_tmp.pop();
-        myRoot = url_tmp.join("/") + '/';
-        myLocation = tmp1;
-        items.length = 0;
-        if (tmp2 == '0') {
-          items.push('0');
-        } else if (tmp2.indexOf('-') < 0) {
-          items.push(tmp2);
-        } else {
-          items = tmp2.split('-');
-        }
-        return tmp1;
+    /* force rotate when screen width less than 450 */
+    @media screen and (min-width: 320px) and (max-width: 450px) and (orientation: portrait) {
+      html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
       }
+    }
+
+    .mod-tbl {
+      max-width: 650px;
+    }
+
+    .mytable {
+      table-layout: fixed;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .mytable tbody th {
+      width: var(--td_wid_normal) px;
+      min-width: var(--td_wid_normal) px;
+      border-collapse: collapse;
+      border: 2px grey solid;
+    }
+
+    .mytable td {
+      width: var(--td_wid_normal) px;
+      min-width: var(--td_wid_normal) px;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .mytable th {
+      color: whitesmoke;
+      background-color: #49A0B5;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .mytable tr:nth-child(odd) td {
+      text-align: left;
+      background-color: #49A0B5;
+    }
+
+    .mytable tr:nth-child(even) td {
+      background-color: #F9F9F9;
+    }
+
+    /* 行または列の非表示*/
+    .tableItem_hide {
+      display: none;
+    }
 
 
-    </script>
+  </style>
+
+  <script type="text/javascript">
 
 
-  {% endblock %}
+    // URLパラメータの取得
+    var myLocation = '';
+    var myRoot = '';
+    var items = [];
+    var myTmp;
+
+    // グローバル変数の作成
+    var selected_rows_id = [];
+    var Json_Crop_All = {{dat_mycrop | safe}};
+    var Json_Crop_Selected = Json_Crop_All.filter(function (item, index) {
+              if (item.selected_status == '1')
+                return true;
+            }
+    );
+
+
+    getHTML_param = function () {
+      var url_tmp = window.location.href.split('/');
+      var tmp1 = url_tmp[url_tmp.length - 3];
+      var tmp2 = url_tmp[url_tmp.length - 2];
+      url_tmp.pop();
+      url_tmp.pop();
+      url_tmp.pop();
+      myRoot = url_tmp.join("/") + '/';
+      myLocation = tmp1;
+      items.length = 0;
+      if (tmp2 == '0') {
+        items.push('0');
+      } else if (tmp2.indexOf('-') < 0) {
+        items.push(tmp2);
+      } else {
+        items = tmp2.split('-');
+      }
+      return tmp1;
+    }
+
+
+    ////////////////  install tbl_crop_candidate  ////////////
+    var mytable_all = $('#tbl_crop_candidate').DataTable({
+      data: Json_Crop_All,
+      "pageLength": 20,
+      "ordering": false,
+      ///initialize selection///
+      "createdRow": function (row, data, dataIndex) {
+        if (data.selected_status === '1') {
+          $(row).addClass('selected');
+        }
+      },
+      /////////////////////////
+      "columns": [
+        {
+          "data": "selected_status"
+        }, {
+          "data": "Food_grp"
+        }, {
+          "data": "Food_name"
+        }, {
+          "data": "m1"
+        }, {
+          "data": "m2"
+        }, {
+          "data": "m3"
+        }, {
+          "data": "m4"
+        }, {
+          "data": "m5"
+        }, {
+          "data": "m6"
+        }, {
+          "data": "m7"
+        }, {
+          "data": "m8"
+        }, {
+          "data": "m9"
+        }, {
+          "data": "m10"
+        }, {
+          "data": "m11"
+        }, {
+          "data": "m12"
+        }, {
+          "data": "food_item_id"
+        }
+      ],
+      "columnDefs": [
+        {
+          targets: [
+            1, 2
+          ],
+          visible: true
+        }, {
+          targets: '_all',
+          visible: false
+        }
+      ],
+
+
+      //////////////////all the initialization process after this
+      "initComplete": function (settings, json) {
+        getHTML_param();
+
+        //////////////////add filtering dropdown list
+        this.api().columns([1]).every(function () {
+          var column = this;
+          var select = $('<select class="selectpicker" style="max-width: 250px;border: 1px grey double;"><option value=""></option></select>').appendTo($('#newSearchPlace')).on('change', function () {
+            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+            column.search(
+                    val
+                            ? '^' + val + '$'
+                            : '',
+                    true,
+                    false
+            ).draw();
+          });
+
+          column.data().unique().sort().each(function (d, j) {
+            select.append('<option value="' + d + '">' + d + '</option>');
+          });
+        });
+
+        //////////////////on click -> crop list /
+        $('#tbl_crop_candidate tbody').on('click', 'tr', function () {
+          $(this).toggleClass('selected');
+          mydata = mytable_all.row(this).data();
+
+          //削除用フラグのセット
+          dd = {};
+          dd["food_item_id"] = mydata['food_item_id'];
+
+          if ($(this).hasClass('selected')) {
+
+            //データセットの作成
+            dd["selected_status"] = mydata['selected_status'];
+            dd["Food_grp"] = mydata['Food_grp'];
+            dd["Food_name"] = mydata['Food_name'];
+            dd["m1"] = mydata['m1'];
+            dd["m2"] = mydata['m2'];
+            dd["m3"] = mydata['m3'];
+            dd["m4"] = mydata['m4'];
+            dd["m5"] = mydata['m5'];
+            dd["m6"] = mydata['m6'];
+            dd["m7"] = mydata['m7'];
+            dd["m8"] = mydata['m8'];
+            dd["m9"] = mydata['m9'];
+            dd["m10"] = mydata['m10'];
+            dd["m11"] = mydata['m11'];
+            dd["m12"] = mydata['m12'];
+            dd["food_item_id"] = mydata['food_item_id'];
+
+            //tableに表示するためのデータ作成
+            let cr = '';
+            cr += '<tr>';
+            cr += '<td class="tableItem_hide">' + dd["selected_status"] + '</td>';
+            cr += '<td class="tableItem_hide">' + dd["Food_grp"] + '</td>';
+            cr += '<td colspan="12">' + dd["Food_name"] + '</td>';
+            cr += '</tr>';
+            cr += '<tr>';
+            cr += '<td>' + dd["m1"] + '</td>';
+            cr += '<td>' + dd["m2"] + '</td>';
+            cr += '<td>' + dd["m3"] + '</td>';
+            cr += '<td>' + dd["m4"] + '</td>';
+            cr += '<td>' + dd["m5"] + '</td>';
+            cr += '<td>' + dd["m6"] + '</td>';
+            cr += '<td>' + dd["m7"] + '</td>';
+            cr += '<td>' + dd["m8"] + '</td>';
+            cr += '<td>' + dd["m9"] + '</td>';
+            cr += '<td>' + dd["m10"] + '</td>';
+            cr += '<td>' + dd["m11"] + '</td>';
+            cr += '<td>' + dd["m12"] + '</td>';
+            cr += '<td class="tableItem_hide">' + dd["food_item_id"] + '</td>';
+            cr += '</tr>';
+
+            DrawSelected_addRow(cr);
+
+          } else {
+            DrawSelected_delRow(dd["food_item_id"])
+          }
+
+          //SetFoodNameColor();
+        });
+
+        //////////////open dialog////
+        $("#btn_add").click(function () {
+          $('#myModal01').modal('show');
+        }); ///////////////////
+        //////////////////close dialog
+        $('#btn_exit01').click(function () {
+          $('#myModal01').modal('hide');
+        }); ///////////////////
+
+        ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
+        function DrawSelected_addRow(add_data) { /// render selected_crops_tbl
+          let cr = '';
+          $myTbl = $('#tbl_crop_selected');
+          $myTbl.append(add_data);
+        }
+
+        ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
+        function DrawSelected_delRow(food_item_id) { /// render selected_crops_tbl
+          $myTable = $('#tbl_crop_selected');
+          $myTable.children('tbody').children('tr').each(function (index_r, myRow) {
+            if (index_r % 2 == 1) {
+              if ($(myRow).children('td').eq(12).text() == food_item_id) {
+                $(myRow).prev('tr').remove();
+                $(myRow).remove();
+                return false;
+              }
+            }
+          })
+        }
+
+        //////////////
+
+      }// ---------- initComplete finish here --------------
+    });
+
+  </script>
+
+
+{% endblock %}
