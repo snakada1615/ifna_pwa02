@@ -196,12 +196,7 @@ class Crop_Name(models.Model):
     default=436,
     on_delete=models.CASCADE
   )
-  myCountry = models.ForeignKey(
-    Countries,
-    null=True,
-    blank=True,
-    on_delete=models.CASCADE
-  )
+  myCountryName = models.CharField(default='ETH', max_length=200)
   Food_grp = models.CharField(max_length=200)
   Food_name = models.CharField(max_length=200)
 

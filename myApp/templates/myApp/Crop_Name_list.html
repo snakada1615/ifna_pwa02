@@ -32,14 +32,9 @@
             {% endfor %}
             </tbody>
             <div class="row">
-              <div class="col-6">
+              <div class="col-12">
                 <span>
                   <a id="btn_add1" class="btn btn-block btn-info my-2 btn-sm" href="#">edit selected local name</a>
-                </span>
-              </div>
-              <div class="col-6">
-                <span>
-                  <a id="btn_add2" class="btn btn-block btn-info my-2 btn-sm" href="#">add new local name</a>
                 </span>
               </div>
             </div>
@@ -89,12 +84,13 @@
           /// ------------------------------------------------
           $('#btn_add1').click(function () {
             if (id_selected_row > 0) {
-              var myURL = '/Crop_Name_Update/' + {{myCountry}} +'/' + id_selected_row + '/';
+              var myURL = '/Crop_Name_Update/' + "{{myCountryName}}" +'/' + id_selected_row + '/';
+              console.log((myURL));
               $(location).attr('href', myURL);
             }
           });
           $('#btn_add2').click(function () {
-            var myURL = '/Crop_Name_Create/' + {{ myCountry }} +'/';
+            var myURL = '/Crop_Name_Create/' + "{{ myCountryName }}" +'/';
             $(location).attr('href', myURL);
           });
           $('#tbl_crops tbody').on('click', 'tr', function () {

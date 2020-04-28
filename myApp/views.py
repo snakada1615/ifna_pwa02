@@ -362,16 +362,16 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
     # ---------------------
 
 
-class CropSelect(LoginRequiredMixin, TemplateView):  # todo まだ縦横表示がおかしいです
+class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
   template_name = "myApp/crop_available.html"
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
 
     # send filtered crop by AEZ ######
-    tmp01 = Crop_SubNational.objects.filter(myLocation=self.kwargs['myLocation'])
     myUser = self.request.user
-    tmp_country_crops = Crop_Name.objects.filter(myCountry_id=myUser.profile.myLocation)
+    tmp_country_crops = Crop_Name.objects.filter(myCountryName=self.kwargs['myCountryName']).select_related('myFCT')
+    tmp01 = Crop_SubNational.objects.filter(myLocation_id=myUser.profile.myLocation).select_related('myFCT')
 
     d = []
     for tmp02 in tmp01:
@@ -380,10 +380,11 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # todo まだ縦横表示�
       dd["Food_grp"] = tmp02.myFCT.Food_grp
       dd["Food_name"] = tmp02.myFCT.Food_name
       if len(tmp_country_crops) != 0:
-        tmp_country = tmp_country_crops.filter().first()
-        if len(tmp_country) != 0:
-          dd["Food_grp"] = tmp02.myFCT.Food_grp
-          dd["Food_name"] = tmp02.myFCT.Food_name
+        tmp_country_crop = tmp_country_crops.filter(myFCT_id=tmp02.myFCT.food_item_id)
+        if len(tmp_country_crop) != 0:
+          logger.info('ok')
+          dd["Food_grp"] = tmp_country_crop[0].Food_grp
+          dd["Food_name"] = tmp_country_crop[0].Food_name
       dd["food_item_id"] = tmp02.myFCT.food_item_id
       dd["m1"] = tmp02.m1_avail
       dd["m2"] = tmp02.m2_avail
@@ -1404,7 +1405,6 @@ class FCT_ListView(LoginRequiredMixin, ListView):
     return context
 
 
-
 class FCT_UpdateView(LoginRequiredMixin, UpdateView):
   model = FCT
   form_class = FCTForm
@@ -1431,11 +1431,13 @@ class FCT_CreateView(LoginRequiredMixin, CreateView):  # todo fail to register n
 
 class IndexView04(LoginRequiredMixin, TemplateView):
   template_name = "myApp/index04.html"
+
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
-    context['myCountry'] = self.request.user.profile.myLocation
+    context['myCountryName'] = Countries.objects.filter(id=self.request.user.profile.myLocation).first().GID_0
     return context
+
 
 class Crop_Name_ListView(LoginRequiredMixin, ListView):
   model = Crop_Name
@@ -1443,71 +1445,77 @@ class Crop_Name_ListView(LoginRequiredMixin, ListView):
   template_name = 'myApp/Crop_Name_list.html'
 
   def get_queryset(self):
-    queryset = Crop_Name.objects.filter(myCountry_id=self.kwargs['myCountry'])
+    queryset = Crop_Name.objects.filter(myCountryName=self.kwargs['myCountryName'])
     return queryset
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
-    context['myCountry'] = self.kwargs['myCountry']
+    context['myCountryName'] = self.kwargs['myCountryName']
     return context
 
 
-class Crop_Name_CreateView(LoginRequiredMixin, CreateView): #todo distinct country listで問題あり
+class Crop_Name_CreateView(LoginRequiredMixin, CreateView):  # todo distinct country listで問題あり
   model = Crop_Name
   form_class = Crop_Name_Form
   template_name = 'myApp/Crop_Name_form.html'
   success_url = reverse_lazy('crop_name_list')
 
   def get_success_url(self):
-    return reverse_lazy('crop_name_list', kwargs={'myCountry': self.kwargs['myCountry']})
+    return reverse_lazy('crop_name_list', kwargs={'myCountryName': self.kwargs['myCountryName']})
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
-    context['myCountry'] = self.kwargs['myCountry']
+    context['myCountryName'] = self.kwargs['myCountryName']
     return context
 
   def get_form_kwargs(self):
-      kwargs = super(Crop_Name_CreateView, self).get_form_kwargs()
+    kwargs = super(Crop_Name_CreateView, self).get_form_kwargs()
 
-      # myCountryドロップダウンリスト用のデータ作成
-      Country_list = []
-      country_set = (self.kwargs['myCountry'], Countries.objects.get(id=self.kwargs['myCountry']).NAME_0)
-      Country_list.append(country_set)
+    # myCountryドロップダウンリスト用のデータ作成
+    Country_list = []
+    country_set = (
+    self.kwargs['myCountryName'], Countries.objects.filter(GID_0=self.kwargs['myCountryName']).first().NAME_0)
+    Country_list.append(country_set)
 
-      # myFCTドロップダウンリスト用のデータ作成
-      tmp_FCTs = FCT.objects.exclude(food_item_id__in=[x.myFCT_id for x in Crop_Name.objects.all()])
-      myFCT_list = tuple((tmp_FCT.food_item_id, tmp_FCT.Food_name) for tmp_FCT in tmp_FCTs)
-      logger.info(myFCT_list)
+    # myFCTドロップダウンリスト用のデータ作成
+    tmp_FCTs = FCT.objects.exclude(food_item_id__in=[x.myFCT_id for x in Crop_Name.objects.all()])
+    myFCT_list = tuple((tmp_FCT.food_item_id, tmp_FCT.Food_name) for tmp_FCT in tmp_FCTs)
+    logger.info(myFCT_list)
 
-      # Food_grpドロップダウンリスト用のデータ作成
-      tmp_Food_grps = FCT.objects.values_list('Food_grp_unicef', flat=True).distinct()
-      Food_grp_list = tuple((tmp_Food_grp, tmp_Food_grp) for tmp_Food_grp in tmp_Food_grps)
+    # Food_grpドロップダウンリスト用のデータ作成
+    tmp_Food_grps = FCT.objects.values_list('Food_grp_unicef', flat=True).distinct()
+    Food_grp_list = tuple((tmp_Food_grp, tmp_Food_grp) for tmp_Food_grp in tmp_Food_grps)
 
-      kwargs['Country_list'] = Country_list
-      kwargs['FCT_list'] = myFCT_list
-      kwargs['Food_grp_list'] = Food_grp_list
-      return kwargs
+    kwargs['Country_list'] = Country_list
+    kwargs['FCT_list'] = myFCT_list
+    kwargs['Food_grp_list'] = Food_grp_list
+    return kwargs
 
-class Crop_Name_UpdateView(LoginRequiredMixin, UpdateView):#todo distinct country listで問題あり
+
+class Crop_Name_UpdateView(LoginRequiredMixin, UpdateView):  # todo distinct country listで問題あり
   model = Crop_Name
   form_class = Crop_Name_Form
   template_name = 'myApp/Crop_Name_form.html'
   success_url = reverse_lazy('crop_name_list')
 
+  def get_success_url(self):
+    return reverse_lazy('crop_name_list', kwargs={'myCountryName': self.kwargs['myCountryName']})
+
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
-    context['myCountry'] = self.kwargs['myCountry']
+    context['myCountryName'] = self.kwargs['myCountryName']
     return context
 
   def get_form_kwargs(self):
     kwargs = super(Crop_Name_UpdateView, self).get_form_kwargs()
 
     # myCountryドロップダウンリスト用のデータ作成
-    Country_list=[]
-    country_set = (self.kwargs['myCountry'], Countries.objects.get(id=self.kwargs['myCountry']).NAME_0)
+    Country_list = []
+    country_set = (
+    self.kwargs['myCountryName'], Countries.objects.filter(GID_0=self.kwargs['myCountryName']).first().NAME_0)
     Country_list.append(country_set)
 
     # myFCTドロップダウンリスト用のデータ作成

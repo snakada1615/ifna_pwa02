@@ -17,8 +17,12 @@
                 <img src="{% static 'img/no1.png' %}">
               </div>
               <div class="col-10 mx-1">
-                <a class="btn btn-block btn-warning my-1" href="{% url 'crop_feas_list' %}" style="max-width:540px"
-                   id='btn01'>Crop Feasibility Check</a>
+                <a class="btn btn-block btn-warning my-1" href="{% url 'crop_name_list' myCountryName=myCountryName %}"
+                   style="max-width:540px"
+                   id='btn02'>Edit Food name
+                  <span class="fb fb-help" data-toggle="tooltip"
+                        title="change generic food name into more familiar name"></span>
+                </a>
               </div>
             </div>
             <div class="row">
@@ -26,8 +30,11 @@
                 <img src="{% static 'img/no2.png' %}">
               </div>
               <div class="col-10 mx-1">
-                <a class="btn btn-block btn-warning my-1" href="{% url 'fct_list' %}" style="max-width:540px"
-                   id='btn02'>Edit FCT</a>
+                <a class="btn btn-block btn-warning my-1" href="{% url 'crop_feas_list' %}" style="max-width:540px"
+                   id='btn01'>Crop Feasibility Check
+                  <span class="fb fb-help" data-toggle="tooltip"
+                        title="feasibility check to introduce new food item in target area"></span>
+                </a>
               </div>
             </div>
             <div class="row">
@@ -35,12 +42,13 @@
                 <img src="{% static 'img/no3.png' %}">
               </div>
               <div class="col-10 mx-1">
-                <a class="btn btn-block btn-warning my-1" href="{% url 'crop_name_list' myCountry=1%}" style="max-width:540px"
-                   id='btn02'>Edit local name</a>
+                <a class="btn btn-block btn-warning my-1" href="{% url 'fct_list' %}" style="max-width:540px"
+                   id='btn02'>Edit FCT
+                  <span class="fb fb-help" data-toggle="tooltip"
+                        title="you can edit the number in Food Composition Talbe"></span>
+                </a>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>

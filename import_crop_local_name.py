@@ -9,7 +9,7 @@ with open('crop_local_name.csv', 'r') as f:
     b = csv.reader(f)
     print(b)
     header = next(b)
-    sql = ('insert into myApp_Crop_Name(myFCT_id, myCountry_id, Food_grp, Food_name) VALUES(?, ?, ?, ?)')
+    sql = ('insert into myApp_Crop_Name(myFCT_id, myCountryName, Food_grp, Food_name) VALUES(?, ?, ?, ?)')
 
     for t in b:
         data = t
