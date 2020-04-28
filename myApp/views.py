@@ -1431,6 +1431,11 @@ class FCT_CreateView(LoginRequiredMixin, CreateView):  # todo fail to register n
 
 class IndexView04(LoginRequiredMixin, TemplateView):
   template_name = "myApp/index04.html"
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myuser'] = self.request.user
+    context['myCountry'] = self.request.user.profile.myLocation
+    return context
 
 class Crop_Name_ListView(LoginRequiredMixin, ListView):
   model = Crop_Name
@@ -1444,11 +1449,11 @@ class Crop_Name_ListView(LoginRequiredMixin, ListView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
-    context['myCountry'] = Countries.objects.filter(id=self.kwargs['myCountry']).first().NAME_0
+    context['myCountry'] = self.kwargs['myCountry']
     return context
 
 
-class Crop_Name_CreateView(LoginRequiredMixin, CreateView):  # todo fail to register new record
+class Crop_Name_CreateView(LoginRequiredMixin, CreateView): #todo distinct country listで問題あり
   model = Crop_Name
   form_class = Crop_Name_Form
   template_name = 'myApp/Crop_Name_form.html'
@@ -1457,5 +1462,53 @@ class Crop_Name_CreateView(LoginRequiredMixin, CreateView):  # todo fail to regi
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
+    context['myCountry'] = self.kwargs['myCountry']
     return context
 
+  def get_form_kwargs(self):
+      kwargs = super(Crop_Name_CreateView, self).get_form_kwargs()
+
+      # myCountryドロップダウンリスト用のデータ作成
+      Country_list = []
+      country_set = (self.kwargs['myCountry'], Countries.objects.get(id=self.kwargs['myCountry']).NAME_0)
+      Country_list.append(country_set)
+
+      # myFCTドロップダウンリスト用のデータ作成
+      tmp_FCTs = FCT.objects.all()
+      myFCT_list = tuple((tmp_FCT.food_item_id, tmp_FCT.Food_name) for tmp_FCT in tmp_FCTs)
+      logger.info(myFCT_list)
+
+      kwargs['Country_list'] = Country_list
+      kwargs['FCT_list'] = myFCT_list
+      return kwargs
+
+class Crop_Name_UpdateView(LoginRequiredMixin, UpdateView):#todo distinct country listで問題あり
+  model = Crop_Name
+  form_class = Crop_Name_Form
+  template_name = 'myApp/Crop_Name_form.html'
+  success_url = reverse_lazy('crop_name_list')
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myuser'] = self.request.user
+    context['myCountry'] = self.kwargs['myCountry']
+    return context
+
+  def get_form_kwargs(self):
+    kwargs = super(Crop_Name_UpdateView, self).get_form_kwargs()
+
+    # myCountryドロップダウンリスト用のデータ作成
+    Country_list=[]
+    country_set = (self.kwargs['myCountry'], Countries.objects.get(id=self.kwargs['myCountry']).NAME_0)
+    Country_list.append(country_set)
+
+    # myFCTドロップダウンリスト用のデータ作成
+    myFCT_list = []
+    tmp_FCT = Crop_Name.objects.get(id=self.kwargs['pk']).myFCT
+    FCT_set = (tmp_FCT.id, tmp_FCT.Food_name)
+    myFCT_list.append(FCT_set)
+    logger.info(myFCT_list)
+
+    kwargs['Country_list'] = Country_list
+    kwargs['FCT_list'] = myFCT_list
+    return kwargs

@@ -202,11 +202,24 @@ class FCTForm(forms.ModelForm):
 
 
 class Crop_Name_Form(forms.ModelForm):
-  Food_grp = forms.ModelChoiceField(label='food group',
+  #set queryset
+  Food_grp = forms.ModelChoiceField(label='local food group',
                             queryset=FCT.objects.values_list('Food_grp_unicef', flat=True).distinct())
+  myCountry = forms.ChoiceField(label='country name')
+  myFCT = forms.ChoiceField(label='FAO defined food name')
+
+  def __init__(self, *args, **kwargs):
+    self.Country_list = kwargs.pop('Country_list', None)
+    self.FCT_list = kwargs.pop('FCT_list', None)
+    super(Crop_Name_Form, self).__init__(*args, **kwargs)
+
+    self.fields['myCountry'].choices = self.Country_list
+    self.fields['myFCT'].choices = self.FCT_list
+
   class Meta:
     model = Crop_Name
-    fields = ('myFCT', 'Food_grp', 'Food_name', 'myCountry')
-    widgets = {
-      'myCountry': forms.HiddenInput(),
+    fields = ('myCountry', 'myFCT', 'Food_grp', 'Food_name')
+    labels = {
+      "Food_name": "local food name",
     }
+

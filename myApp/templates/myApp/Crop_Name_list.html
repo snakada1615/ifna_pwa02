@@ -69,12 +69,12 @@
         "initComplete": function (settings, json) {
           $('#btn_add1').click(function () {
             if (id_selected_row > 0) {
-              var myURL = '/FCT_Update/' + id_selected_row + '/';
+              var myURL = '/Crop_Name_Update/' + {{myCountry}} + '/' + id_selected_row + '/';
               $(location).attr('href', myURL);
             }
           });
           $('#btn_add2').click(function () {
-            var myURL = '/Crop_Name_Create/';
+            var myURL = '/Crop_Name_Create/' + {{ myCountry }} + '/';
             $(location).attr('href', myURL);
           });
           $('#tbl_crops tbody').on('click', 'tr', function () {
