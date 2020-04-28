@@ -1459,6 +1459,9 @@ class Crop_Name_CreateView(LoginRequiredMixin, CreateView): #todo distinct count
   template_name = 'myApp/Crop_Name_form.html'
   success_url = reverse_lazy('crop_name_list')
 
+  def get_success_url(self):
+    return reverse_lazy('crop_name_list', kwargs={'myCountry': self.kwargs['myCountry']})
+
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
@@ -1474,12 +1477,17 @@ class Crop_Name_CreateView(LoginRequiredMixin, CreateView): #todo distinct count
       Country_list.append(country_set)
 
       # myFCTドロップダウンリスト用のデータ作成
-      tmp_FCTs = FCT.objects.all()
+      tmp_FCTs = FCT.objects.exclude(food_item_id__in=[x.myFCT_id for x in Crop_Name.objects.all()])
       myFCT_list = tuple((tmp_FCT.food_item_id, tmp_FCT.Food_name) for tmp_FCT in tmp_FCTs)
       logger.info(myFCT_list)
 
+      # Food_grpドロップダウンリスト用のデータ作成
+      tmp_Food_grps = FCT.objects.values_list('Food_grp_unicef', flat=True).distinct()
+      Food_grp_list = tuple((tmp_Food_grp, tmp_Food_grp) for tmp_Food_grp in tmp_Food_grps)
+
       kwargs['Country_list'] = Country_list
       kwargs['FCT_list'] = myFCT_list
+      kwargs['Food_grp_list'] = Food_grp_list
       return kwargs
 
 class Crop_Name_UpdateView(LoginRequiredMixin, UpdateView):#todo distinct country listで問題あり
@@ -1509,6 +1517,11 @@ class Crop_Name_UpdateView(LoginRequiredMixin, UpdateView):#todo distinct countr
     myFCT_list.append(FCT_set)
     logger.info(myFCT_list)
 
+    # Food_grpドロップダウンリスト用のデータ作成
+    tmp_Food_grps = FCT.objects.values_list('Food_grp_unicef', flat=True).distinct()
+    Food_grp_list = tuple((tmp_Food_grp, tmp_Food_grp) for tmp_Food_grp in tmp_Food_grps)
+
     kwargs['Country_list'] = Country_list
     kwargs['FCT_list'] = myFCT_list
+    kwargs['Food_grp_list'] = Food_grp_list
     return kwargs

@@ -13,6 +13,7 @@
       <div class="row">
         <div class="col-12">
           Local name of food item in {{ myCountry }}
+          <div class="my-2" id="myFilter1">Food group:</div>
           <table id="tbl_crops" class="table table-striped">
             <thead>
             <tr>
@@ -67,14 +68,33 @@
           }
         ],
         "initComplete": function (settings, json) {
+          // ////add filtering dropdown list
+          this.api().columns([1]).every(function () {
+            var column = this;
+            var select = $('<select style="border: 1px grey double;"><option value=""></option></select>').appendTo($('#myFilter1')).on('change', function () {
+              var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+              column.search(
+                      val
+                              ? '^' + val + '$'
+                              : '',
+                      true,
+                      false
+              ).draw();
+            });
+            column.data().unique().sort().each(function (d, j) {
+              select.append('<option value="' + d + '">' + d + '</option>');
+            });
+          });
+          /// ------------------------------------------------
           $('#btn_add1').click(function () {
             if (id_selected_row > 0) {
-              var myURL = '/Crop_Name_Update/' + {{myCountry}} + '/' + id_selected_row + '/';
+              var myURL = '/Crop_Name_Update/' + {{myCountry}} +'/' + id_selected_row + '/';
               $(location).attr('href', myURL);
             }
           });
           $('#btn_add2').click(function () {
-            var myURL = '/Crop_Name_Create/' + {{ myCountry }} + '/';
+            var myURL = '/Crop_Name_Create/' + {{ myCountry }} +'/';
             $(location).attr('href', myURL);
           });
           $('#tbl_crops tbody').on('click', 'tr', function () {

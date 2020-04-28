@@ -203,18 +203,21 @@ class FCTForm(forms.ModelForm):
 
 class Crop_Name_Form(forms.ModelForm):
   #set queryset
-  Food_grp = forms.ModelChoiceField(label='local food group',
-                            queryset=FCT.objects.values_list('Food_grp_unicef', flat=True).distinct())
+  # Food_grp = forms.ModelChoiceField(label='local food group',
+  #                           queryset=FCT.objects.values_list('Food_grp_unicef', flat=True).distinct())
+  Food_grp = forms.ChoiceField(label='local food group')
   myCountry = forms.ChoiceField(label='country name')
   myFCT = forms.ChoiceField(label='FAO defined food name')
 
   def __init__(self, *args, **kwargs):
     self.Country_list = kwargs.pop('Country_list', None)
     self.FCT_list = kwargs.pop('FCT_list', None)
+    self.Food_grp_list = kwargs.pop('Food_grp_list', None)
     super(Crop_Name_Form, self).__init__(*args, **kwargs)
 
     self.fields['myCountry'].choices = self.Country_list
     self.fields['myFCT'].choices = self.FCT_list
+    self.fields['Food_grp'].choices = self.Food_grp_list
 
   class Meta:
     model = Crop_Name
@@ -222,4 +225,16 @@ class Crop_Name_Form(forms.ModelForm):
     labels = {
       "Food_name": "local food name",
     }
+
+
+  def clean(self):
+    cleaned_data = super(Crop_Name_Form, self).clean()
+    logger.info(self.cleaned_data['Food_grp'])
+    self.cleaned_data['myFCT'] = FCT.objects.get(food_item_id=self.cleaned_data['myFCT'])
+    self.cleaned_data['myCountry'] = Countries.objects.get(id=self.cleaned_data['myCountry'])
+
+    return cleaned_data
+
+
+
 
