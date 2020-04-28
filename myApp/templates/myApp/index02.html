@@ -75,6 +75,7 @@
   <script type="text/javascript">
     window.onload = function () {
       var DATA = JSON.parse('{{ myParam|safe }}');
+      console.log(DATA);
 
       document.getElementById('btn02').classList.add("disabled");
       document.getElementById('btn04').classList.add("disabled");
@@ -84,7 +85,7 @@
 
       if (DATA.myLocation > 0) {
         document.getElementById('btn02').classList.remove("disabled");
-        var myURL = '/crop_select/' + DATA.myLocation + '/';
+        var myURL = '/crop_select/' + DATA.myCountryName + '/' + DATA.myLocation + '/';
         document.getElementById('btn02').href = myURL;
         if (DATA.myCrop != "0") {
           document.getElementById('btn04').classList.remove("disabled");
@@ -96,7 +97,7 @@
 //          console.log(DATA.myTarget);
           if (DATA.myTarget > 0) {
             document.getElementById('btn05').classList.remove("disabled");
-            var myURL = '/Diet1/' + DATA.myCountryName + '/';
+            var myURL = '/Diet1/' + DATA.myLocation + '/';
             document.getElementById('btn05').href = myURL;
             if (DATA.myDiet > 0) {
               document.getElementById('btn06').classList.remove("disabled");
