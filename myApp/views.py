@@ -384,7 +384,6 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
       if len(tmp_country_crops) != 0:
         tmp_country_crop = tmp_country_crops.filter(myFCT_id=tmp02.myFCT.food_item_id)
         if len(tmp_country_crop) != 0:
-          logger.info('ok')
           dd["Food_grp"] = tmp_country_crop[0].Food_grp
           dd["Food_name"] = tmp_country_crop[0].Food_name
       dd["food_item_id"] = tmp02.myFCT.food_item_id
@@ -413,6 +412,7 @@ def registCropAvail(request):
   tmp_myLocation_id = 0
   tmp_newcrop_list = []
 
+  logger.info('registCropAvail開始')
   for myrow in json_data['myJson']:
     newcrop = {}
     newcrop['myFCT'] = FCT.objects.get(food_item_id=myrow['myFCT_id'])
@@ -424,6 +424,8 @@ def registCropAvail(request):
       if tmpM == '':
         tmpM = '0'
       newcrop['m' + str(j) + '_avail'] = tmpM
+
+    logger.info('データ受信完了')
 
     tmp_myLocation_id = myrow['myLocation']  # 後で使う(part 2)
     tmp_newcrop_list.append(myrow['myFCT_id'])  # 後で使う(part 2)

@@ -201,6 +201,7 @@
       url_tmp.pop();
       url_tmp.pop();
       url_tmp.pop();
+      url_tmp.pop();
       myRoot = url_tmp.join("/") + '/';
       myLocation = tmp1;
       items.length = 0;
@@ -491,7 +492,7 @@
         $("#btn_save").click(function () {
           let hostUrl = myRoot + 'registCropAvail/';
           let mydat = getTblData();
-//          console.log(getTblData());
+          console.log(hostUrl);
           Set_CRSF();
           sendJson(mydat, hostUrl);
         }); ///////////////////
