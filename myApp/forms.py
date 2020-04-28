@@ -1,12 +1,11 @@
 from django import forms
 from django.contrib.admin import widgets
 from django.contrib.auth.models import User
-from django.db.models import Q, Sum
+from django.db.models import Q, Sum # 集計関数の追加
+from django.db.models import Max  # 集計関数の追加
 from .models import Location, Person, Profile, Crop_Feasibility, FCT, Crop_SubNational, Countries, Crop_Name
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
-from django.db.models import Max
-from django.db.models import Max  # 集計関数の追加
 
 # logging用の設定
 from logging import getLogger

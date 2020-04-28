@@ -9,6 +9,8 @@ from django.contrib import messages
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
+from django.db.models import Max  # 集計関数の追加
+
 import re
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -112,7 +114,6 @@ class IndexView02(LoginRequiredMixin, TemplateView):
     context = super().get_context_data(**kwargs)
 
     keys_all = self.request.user.profile
-    logger.info(keys_all.myLocation)
     data = {
       'myLocation': keys_all.myLocation,
       'myCrop': keys_all.myCrop,
@@ -680,7 +681,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context = super().get_context_data(**kwargs)
     context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
     tmp_nut_group = Person.objects.filter(
-      myLocation=self.kwargs['myLocation'])
+      myLocation=self.kwargs['myLocation']).select_related('myDRI')
     context['nutrient_target'] = tmp_nut_group[0].nut_group
 
     tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
@@ -732,7 +733,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context['dri_f3'] = tmp_f
 
     # send selected crop by community ######
-    tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).filter(selected_status__gt=0)
+    tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
     d = []
     for tmp02 in tmp01:
       dd = {}
@@ -765,9 +766,10 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
       d.append(dd)
     context["mylist_available"] = d
 
-    # send selected crop by community ######
+    # 現在選択されている作物をDiet_plan_formに送る
     # --------------------create 16 Crop_individual-------------------------
-    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation'])
+    #if __name__ == '__main__':
+    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
     myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212]
     d = []
     for i in myRange:
@@ -1480,7 +1482,7 @@ class Crop_Name_CreateView(LoginRequiredMixin, CreateView):  # todo distinct cou
     # myCountryドロップダウンリスト用のデータ作成
     Country_list = []
     country_set = (
-    self.kwargs['myCountryName'], Countries.objects.filter(GID_0=self.kwargs['myCountryName']).first().NAME_0)
+      self.kwargs['myCountryName'], Countries.objects.filter(GID_0=self.kwargs['myCountryName']).first().NAME_0)
     Country_list.append(country_set)
 
     # myFCTドロップダウンリスト用のデータ作成
@@ -1519,7 +1521,7 @@ class Crop_Name_UpdateView(LoginRequiredMixin, UpdateView):  # todo distinct cou
     # myCountryドロップダウンリスト用のデータ作成
     Country_list = []
     country_set = (
-    self.kwargs['myCountryName'], Countries.objects.filter(GID_0=self.kwargs['myCountryName']).first().NAME_0)
+      self.kwargs['myCountryName'], Countries.objects.filter(GID_0=self.kwargs['myCountryName']).first().NAME_0)
     Country_list.append(country_set)
 
     # myFCTドロップダウンリスト用のデータ作成
