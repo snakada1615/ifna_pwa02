@@ -799,8 +799,10 @@
         $('#btn_set_portion').on('click', function () {
           let por = $('#new_portion').val();
           console.log('#btn_set_portion#: por=' + por);
+          $('#btn_change_portion').text(por);
           $('#tbl_food_SetWeight').find('tr').eq(1).children('td').eq(5).text(por);
           $('#Modal_Portion').modal('hide');
+          console.log('Portionサイズを'+por+'gに変更しました');
         });///----------------------------
 
         //set pichart image////////////
