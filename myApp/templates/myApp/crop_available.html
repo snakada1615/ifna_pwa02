@@ -297,7 +297,6 @@
     }
 
     ////////////////  read initial value for crop selected  table ////////////
-    //  let tbl_tmp = $('#tbl_crop_selected');
     $.each(Json_Crop_Selected, function (i, row_tmp) {
       dd = {};
       //データセットの作成
@@ -319,7 +318,6 @@
       dd["food_item_id"] = row_tmp.food_item_id;
 
       DrawSelected_addRow(dd);
-
 
     });
 
@@ -439,7 +437,7 @@
             DrawSelected_addRow(dd);
 
           } else {
-            DrawSelected_delRow(dd["food_item_id"])
+            DrawSelected_delRow(dd["food_item_id"]);
           }
 
           //SetFoodNameColor();

@@ -673,9 +673,9 @@
 
         ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
         function DrawSelected_delRow(id_table, food_item_id) { /// render selected_crops_tbl
-          $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
+          let $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
           $myTable.children('tbody').children('tr').each(function (j, myRow) {
-            if ($(myRow).children('td').eq(7).text() === food_item_id) {
+            if ($(myRow).children('td').eq(7).text() == food_item_id) {
               $(myRow).remove();
               return false;
             }
@@ -685,8 +685,8 @@
         ////////////////////////////////////////////// //////////init second table as modal dialog add selected rows to text box
         $('#localCrop1 tbody').on('click', 'tr', function () {
           $(this).toggleClass('selected');
+          mydata = tblObj_localCrop1.row(this).data();
           if ($(this).hasClass('selected')) {
-            mydata = tblObj_localCrop1.row(this).data();
 
             //データセットの作成
             dd = {};
@@ -726,9 +726,11 @@
             cr += '</tr>';
 
             DrawSelected_addRow(dd["myid_tbl"], cr);
+            console.log(mydata['Food_name']+'を追加しました');
 
           } else {
-            DrawSelected_delRow(dd["myid_tbl"], dd["food_item_id"])
+            DrawSelected_delRow($('#container_tab_all').attr('myNum'), mydata["food_item_id"])
+            console.log(mydata['Food_name']+'を削除しました'+$('#container_tab_all').attr('myNum'));
           }
         }); //////////////////////////////////////////////
         /////CreateSelection/////
