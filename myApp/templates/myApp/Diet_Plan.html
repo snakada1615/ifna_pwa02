@@ -726,11 +726,11 @@
             cr += '</tr>';
 
             DrawSelected_addRow(dd["myid_tbl"], cr);
-            console.log(mydata['Food_name']+'を追加しました');
+            console.log(mydata['Food_name'] + 'を追加しました');
 
           } else {
             DrawSelected_delRow($('#container_tab_all').attr('myNum'), mydata["food_item_id"])
-            console.log(mydata['Food_name']+'を削除しました'+$('#container_tab_all').attr('myNum'));
+            console.log(mydata['Food_name'] + 'を削除しました' + $('#container_tab_all').attr('myNum'));
           }
         }); //////////////////////////////////////////////
         /////CreateSelection/////
@@ -802,7 +802,7 @@
           $('#btn_change_portion').text(por);
           $('#tbl_food_SetWeight').find('tr').eq(1).children('td').eq(5).text(por);
           $('#Modal_Portion').modal('hide');
-          console.log('Portionサイズを'+por+'gに変更しました');
+          console.log('Portionサイズを' + por + 'gに変更しました');
         });///----------------------------
 
         //set pichart image////////////
@@ -835,38 +835,44 @@
           myTbl_food_Setweight.children('tbody').children('tr').remove();//tbl_food_SetWeightのテーブル初期化
 
           let selected_crops_tbl_row = $("td", $(this).parent());//選択行からデータを抽出
-          let por = Number(selected_crops_tbl_row.eq(8).text());
-          let count_prod_tmp = Number(selected_crops_tbl_row.eq(9).text());
-          let count_buy_tmp = Number(selected_crops_tbl_row.eq(10).text());
-          let cou = count_buy_tmp + count_prod_tmp;
+          if (selected_crops_tbl_row.eq(0).text() != 'total') { //集計行をクリックした場合は無視する
+            let por = Number(selected_crops_tbl_row.eq(8).text());
+            let count_prod_tmp = Number(selected_crops_tbl_row.eq(9).text());
+            let count_buy_tmp = Number(selected_crops_tbl_row.eq(10).text());
+            let cou = count_buy_tmp + count_prod_tmp;
+            console.log(selected_crops_tbl_row.eq(0).text() + 'の摂取量を設定します');
 
-          //console.log('(1) por=' + por + ', cou=' + cou + ', count_p=' + count_prod_tmp + ', count_b=' + count_buy_tmp + ', myid_table=' + myNum_tmp);
+            //console.log('(1) por=' + por + ', cou=' + cou + ', count_p=' + count_prod_tmp + ', count_b=' + count_buy_tmp + ', myid_table=' + myNum_tmp);
 
-          let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th class="tableItem_hide">por</th>'
-                  + '<th class="tableItem_hide">count_p</th><th class="tableItem_hide">count_b</th></tr>';
-          cr += '<tr>';
-          cr += '<td>' + selected_crops_tbl_row.eq(0).text() + '</td>';
-          cr += '<td>' + selected_crops_tbl_row.eq(1).text() + '</td>';
-          cr += '<td>' + selected_crops_tbl_row.eq(2).text() + '</td>';
-          cr += '<td>' + selected_crops_tbl_row.eq(3).text() + '</td>';
-          cr += '<td>' + selected_crops_tbl_row.eq(4).text() + '</td>';
-          cr += '<td class="tableItem_hide">' + por + '</td>';
-          cr += '<td class="tableItem_hide">' + count_prod_tmp + '</td>';
-          cr += '<td class="tableItem_hide">' + count_buy_tmp + '</td>';
-          cr += '</tr>';
-          myTbl_food_Setweight.append(cr);
-          //console.log($('#tbl_food_SetWeight').children('tbody').children('tr').eq(1).children('td').eq(0).html());
+            let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th class="tableItem_hide">por</th>'
+                    + '<th class="tableItem_hide">count_p</th><th class="tableItem_hide">count_b</th></tr>';
+            cr += '<tr>';
+            cr += '<td>' + selected_crops_tbl_row.eq(0).text() + '</td>';
+            cr += '<td>' + selected_crops_tbl_row.eq(1).text() + '</td>';
+            cr += '<td>' + selected_crops_tbl_row.eq(2).text() + '</td>';
+            cr += '<td>' + selected_crops_tbl_row.eq(3).text() + '</td>';
+            cr += '<td>' + selected_crops_tbl_row.eq(4).text() + '</td>';
+            cr += '<td class="tableItem_hide">' + por + '</td>';
+            cr += '<td class="tableItem_hide">' + count_prod_tmp + '</td>';
+            cr += '<td class="tableItem_hide">' + count_buy_tmp + '</td>';
+            cr += '</tr>';
+            myTbl_food_Setweight.append(cr);
+            //console.log($('#tbl_food_SetWeight').children('tbody').children('tr').eq(1).children('td').eq(0).html());
 
-          $('#btn_change_portion').text(por);
+            $('#btn_change_portion').text(por);
+            console.log('portion sizeを' + por + 'に設定します');
 
-          if (cou === 0) {
-            cou = 1;
+            if (cou === 0) {
+              cou = 1;
+            }
+            $('#BR_food_count').barrating('set', cou);
+            console.log('bar ratingを' + cou + 'に設定します');
+
+            $('#BR_buy_prod_pie_img').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
+            console.log('prod/buy shareを' + count_prod_tmp + '/' + count_buy_tmp + 'に設定します');
+
+            $('#Modal_food_volume').modal('show');
           }
-          $('#BR_food_count').barrating('set', cou);
-
-          $('#BR_buy_prod_pie_img').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
-
-          $('#Modal_food_volume').modal('show');
         });
 
         ////////////////// button click to reflect the modification　#
