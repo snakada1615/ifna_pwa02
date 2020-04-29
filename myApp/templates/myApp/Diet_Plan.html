@@ -805,13 +805,15 @@
           console.log('Portionサイズを' + por + 'gに変更しました');
         });///----------------------------
 
-        //set pichart image////////////
+        //set pichart image///////////　#todo shareを直接DBに保存
         function SetPie_img(i_prod, i_buy) {
           let res = 10;
           if (i_prod + i_buy > 0) {
             res = Math.round(i_prod * 10 / (i_prod + i_buy));
           }
           let h = "/static/img/pie_" + String(res) + ".png";
+          console.log('prod/buy shareを' + i_prod + '/' + i_buy + 'に設定します');
+
           //console.log(h);
           return h;
         }
@@ -869,7 +871,6 @@
             console.log('bar ratingを' + cou + 'に設定します');
 
             $('#BR_buy_prod_pie_img').attr('src', SetPie_img(count_prod_tmp, count_buy_tmp));
-            console.log('prod/buy shareを' + count_prod_tmp + '/' + count_buy_tmp + 'に設定します');
 
             $('#Modal_food_volume').modal('show');
           }
