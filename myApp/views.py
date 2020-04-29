@@ -373,7 +373,6 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
 
     # send filtered crop by AEZ ######
     myUser = self.request.user
-    tmp_country_crops = Crop_Name.objects.filter(myCountryName=self.kwargs['myCountryName']).select_related('myFCT')
     tmp01 = Crop_SubNational.objects.filter(myLocation_id=myUser.profile.myLocation).select_related('myFCT')
 
     d = []
@@ -382,11 +381,6 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
       dd["selected_status"] = tmp02.selected_status
       dd["Food_grp"] = tmp02.myFCT.Food_grp
       dd["Food_name"] = tmp02.myFCT.Food_name
-      if len(tmp_country_crops) != 0:
-        tmp_country_crop = tmp_country_crops.filter(myFCT_id=tmp02.myFCT.food_item_id)
-        if len(tmp_country_crop) != 0:
-          dd["Food_grp"] = tmp_country_crop[0].Food_grp
-          dd["Food_name"] = tmp_country_crop[0].Food_name
       dd["food_item_id"] = tmp02.myFCT.food_item_id
       dd["m1"] = tmp02.m1_avail
       dd["m2"] = tmp02.m2_avail
@@ -403,6 +397,17 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
       d.append(dd)
     context["dat_mycrop"] = d
     context['myuser'] = myUser
+
+    # 作物のローカル名を送る
+    tmp01 = Crop_Name.objects.filter(myCountryName=Countries.objects.filter(id=myUser.profile.myLocation).first().GID_0)
+    d = []
+    for tmp02 in tmp01:
+      dd = {}
+      dd["Food_grp"] = tmp02.Food_grp
+      dd["Food_name"] = tmp02.Food_name
+      dd["food_item_id"] = tmp02.myFCT_id
+      d.append(dd)
+    context["mylist_local_name"] = d
 
     return context
 
@@ -427,6 +432,7 @@ def registCropAvail(request):
       newcrop['m' + str(j) + '_avail'] = tmpM
 
     logger.info('データ受信完了')
+    logger.info(newcrop['selected_status'])
 
     tmp_myLocation_id = myrow['myLocation']  # 後で使う(part 2)
     tmp_newcrop_list.append(myrow['myFCT_id'])  # 後で使う(part 2)
@@ -437,9 +443,11 @@ def registCropAvail(request):
     p = tmp.update(**newcrop)
 
   # (part 2) delete non-selected records
+  logger.info(tmp_newcrop_list)
   tmp = Crop_SubNational.objects.filter(myLocation_id=tmp_myLocation_id)
+  logger.info('受信していない作物を選択リストから外します')
   for rec in tmp:
-    if int(rec.myFCT.food_item_id) not in tmp_newcrop_list:
+    if str(rec.myFCT.food_item_id) not in tmp_newcrop_list:
       rec.selected_status = 0
       rec.save()
 

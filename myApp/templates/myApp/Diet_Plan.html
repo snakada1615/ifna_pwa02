@@ -396,6 +396,7 @@
     url_tmp.pop();
     myRoot = url_tmp.join("/") + '/';
     var myLocation_id = tmp1;
+
     //////////////// set local name/////
     let index = {};
     let json_crop_local = [];
@@ -415,8 +416,6 @@
       }
       json_crop_selected.push(token);
     });
-    console.log(json_crop_local);
-    console.log(json_crop_selected);
     //////////////// star rating/////
     $(function () {
       $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
