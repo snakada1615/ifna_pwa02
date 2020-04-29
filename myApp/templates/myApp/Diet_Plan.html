@@ -984,9 +984,10 @@
                 let myMonth = 0;
                 if (myNum_tmp < 200) {
                   myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex") + 1;
-                  console.log('hey hey-- ' + myMonth + ', list=' + $('.lst_month[myNum="101"]').html());
+                  console.log(myNum_tmp + 'hey hey-- ' + myMonth);
                 } else {
                   myMonth = Number($('.lst_month[myNum=' + myNum_tmp + ']').text());
+                  console.log(myNum_tmp + 'hey hey-- ' + myMonth);
                 }
                 dd["month"] = myMonth;
                 dd["myid_tbl"] = myNum_tmp;
@@ -997,6 +998,8 @@
               }
             })
           });
+          console.log('selected_crops_tblのデータを送信します');
+          console.log(d);
           return {"myJson": d};
         }
 
