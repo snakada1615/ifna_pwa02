@@ -367,15 +367,13 @@
     var selected_rows_id = [];
     var myLocation = '';
     var myRoot = '';
-    var json_crop_local = {{mylist_available|safe}};
-    var json_crop_selected = {{mylist_selected|safe}};
+    var json_crop_local_org = {{mylist_available|safe}};
+    var json_crop_selected_org = {{mylist_selected|safe}};
+    var json_crop_name = {{mylist_local_name|safe}};
     var target_en = [];
     var target_pr = [];
     var target_va = [];
     var target_fe = [];
-    console.log('available crop='+json_crop_local);
-    console.log('selected crop='+json_crop_selected);
-
 
     target_en[1] = {{dri_e1}};
     target_pr[1] = {{dri_p1}};
@@ -390,7 +388,6 @@
     target_va[3] = {{dri_v3}};
     target_fe[3] = {{dri_f3}};
 
-    console.log(json_crop_local);
 
     let url_tmp = window.location.href.split('/');
     let tmp1 = url_tmp[url_tmp.length - 2];
@@ -399,6 +396,27 @@
     url_tmp.pop();
     myRoot = url_tmp.join("/") + '/';
     var myLocation_id = tmp1;
+    //////////////// set local name/////
+    let index = {};
+    let json_crop_local = [];
+    let json_crop_selected = [];
+    json_crop_name.forEach(token => index[token.food_item_id] = token);
+    json_crop_local_org.forEach(token => {
+      if (index[token.food_item_id]) {
+        token.Food_grp = index[token.food_item_id].Food_grp;
+        token.Food_name = index[token.food_item_id].Food_name;
+      }
+      json_crop_local.push(token);
+    });
+    json_crop_selected_org.forEach(token => {
+      if (index[token.food_item_id]) {
+        token.Food_grp = index[token.food_item_id].Food_grp;
+        token.Food_name = index[token.food_item_id].Food_name;
+      }
+      json_crop_selected.push(token);
+    });
+    console.log(json_crop_local);
+    console.log(json_crop_selected);
     //////////////// star rating/////
     $(function () {
       $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating

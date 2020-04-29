@@ -766,9 +766,20 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
       d.append(dd)
     context["mylist_available"] = d
 
+    # 作物のローカル名を送る
+    tmp01 = Crop_Name.objects.filter(myCountryName=Countries.objects.filter(id=self.kwargs['myLocation']).first().GID_0)
+    d = []
+    for tmp02 in tmp01:
+      dd = {}
+      dd["Food_grp"] = tmp02.Food_grp
+      dd["Food_name"] = tmp02.Food_name
+      dd["food_item_id"] = tmp02.myFCT_id
+      d.append(dd)
+    context["mylist_local_name"] = d
+
     # 現在選択されている作物をDiet_plan_formに送る
     # --------------------create 16 Crop_individual-------------------------
-    #if __name__ == '__main__':
+    # if __name__ == '__main__':
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
     myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212]
     d = []
