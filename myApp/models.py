@@ -540,6 +540,10 @@ class Crop_Individual(models.Model):  #
     blank=True,
     on_delete=models.CASCADE
   )
+  share_prod_buy = models.IntegerField(
+    verbose_name='share_prod_buy',
+    default=5,
+  )
 
 
 class Person(models.Model):
