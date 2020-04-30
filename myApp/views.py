@@ -809,6 +809,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
         dd["month"] = ''
         dd["myLocation"] = ''
         dd["myid_tbl"] = i
+        dd["share_prod_buy"] = 5
         d.append(dd)
       else:
         for tmp03 in tmp02:
@@ -827,6 +828,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
           dd["month"] = tmp03.month
           dd["myLocation"] = tmp03.myLocation_id
           dd["myid_tbl"] = tmp03.id_table
+          dd["share_prod_buy"] = tmp03.share_prod_buy
           d.append(dd)
     context["mylist_selected"] = d
 
@@ -877,7 +879,8 @@ def registDiet(request):
         'total_weight': int(myrow['total_weight']),
         'portion_size': int(myrow['portion_size']),
         'count_prod': int(myrow['count_prod']),
-        'count_buy': int(myrow['count_buy'])
+        'count_buy': int(myrow['count_buy']),
+        'share_prod_buy': int(myrow['share_prod_buy'])
       }
     )
 
