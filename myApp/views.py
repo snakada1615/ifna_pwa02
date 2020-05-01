@@ -119,8 +119,8 @@ class IndexView02(LoginRequiredMixin, TemplateView):
       'myCrop': keys_all.myCrop,
       'myTarget': keys_all.myTarget,
       'myDiet': keys_all.myDiet,
-      'myCountryName': Countries.objects.filter(id=keys_all.myLocation).first().
-        GID_0 if keys_all.myLocation != 0 else 'none',
+      'myCountryName': 'none' if keys_all.myLocation == 0 else Countries.objects.
+        filter(id=keys_all.myLocation).first().GID_0
     }
     json_str = json.dumps(data)
     context['myParam'] = json_str
