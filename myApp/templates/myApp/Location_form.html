@@ -2,10 +2,10 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<input type="hidden" value="{{form.pk}}" id="sel_country">
-<input type="hidden" value="{{coutry_selected}}" id="sel_country">
-<input type="hidden" value="{{region_selected}}" id="sel_region">
-<input type="hidden" value="{{province_selected}}" id="sel_province">
+  <input type="hidden" value="{{ form.pk }}" id="sel_country">
+  <input type="hidden" value="{{ coutry_selected }}" id="sel_country">
+  <input type="hidden" value="{{ region_selected }}" id="sel_region">
+  <input type="hidden" value="{{ province_selected }}" id="sel_province">
 
   {{ form.certifications.errors }}
   <div class="container text-white bg-info" style="max-width: 540px;">
@@ -171,6 +171,9 @@
     let selected3 = "{{province_selected}}";
     let selected4 = "{{community_selected}}";
     console.log(selected1);
+    console.log(selected2);
+    console.log(selected3);
+    console.log(selected4);
 
     getCountry();
     for (var i = 0; i < cnt_list.length; i++) {
@@ -189,6 +192,9 @@
         if (selected3 != "") {
           document.getElementById('id_province').value = selected3;
           selSub2();
+          if (selected4 != "") {
+            document.getElementById('id_community').value = selected4;
+          }
         }
       }
     }
