@@ -1,694 +1,844 @@
 GID_0,NAME_0,GID_1,NAME_1,GID_2,NAME_2,GID_3,NAME_3,AEZ_id
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.4_1,Debub Gondar,ETH.3.4.9_1,Tach Gayint,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.4_1,Debub Gondar,ETH.3.4.10_1,West Esite,Amhara
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.4_1,Afar Zone 4,ETH.2.4.2_1,Ewa,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.4_1,Afar Zone 4,ETH.2.4.3_1,Gulina,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.3_1,Afar Zone 3,ETH.2.3.6_1,Gewane,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.4_1,Afar Zone 4,ETH.2.4.1_1,Awra,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.5_1,Afar Zone 5,ETH.2.5.1_1,Dalfagi,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.5_1,Afar Zone 5,ETH.2.5.2_1,Dewe,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.4_1,Afar Zone 4,ETH.2.4.4_1,Teru,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.4_1,Afar Zone 4,ETH.2.4.5_1,Yalo,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.5_1,Afar Zone 5,ETH.2.5.5_1,Telalak,Afar
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.1_1,Agew Awi,ETH.3.1.1_1,Ankasha,Amhara
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.5_1,Afar Zone 5,ETH.2.5.3_1,Hadelela,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.5_1,Afar Zone 5,ETH.2.5.4_1,Simurobi Gele'alo,Afar
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.1_1,Agew Awi,ETH.3.1.4_1,Fagta Lakoma,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.1_1,Agew Awi,ETH.3.1.5_1,Guagusa Shikudad,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.1_1,Agew Awi,ETH.3.1.2_1,Banja,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.1_1,Agew Awi,ETH.3.1.3_1,Dangila,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.6_1,Mirab Gojjam,ETH.3.6.3_1,Debub Achefer,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.6_1,Mirab Gojjam,ETH.3.6.4_1,Dega Damot,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.6_1,Mirab Gojjam,ETH.3.6.1_1,Bahir Dar Zuria,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.6_1,Mirab Gojjam,ETH.3.6.2_1,Bure,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.6_1,Mirab Gojjam,ETH.3.6.7_1,Mecha,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.6_1,Mirab Gojjam,ETH.3.6.8_1,Quarit,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.6_1,Mirab Gojjam,ETH.3.6.5_1,Dembecha,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.6_1,Mirab Gojjam,ETH.3.6.6_1,Jabi Tehnan,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.6_1,Mirab Gojjam,ETH.3.6.11_1,Wemberma,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.6_1,Mirab Gojjam,ETH.3.6.12_1,Yilmana Densa,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.6_1,Mirab Gojjam,ETH.3.6.9_1,Sekela,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.6_1,Mirab Gojjam,ETH.3.6.10_1,Semen Achefer,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.3_1,Baso Liben,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.4_1,Bibugn,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.1_1,Aneded,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.2_1,Awabel,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.5_1,Jama,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.6_1,Kalu,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.3_1,Debresina,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.4_1,Dessie Zuria,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.9_1,Legambo,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.10_1,Legehida,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.7_1,Kelela,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.8_1,Kutaber,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.13_1,Sayint,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.14_1,Tenta,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.11_1,Mehal Sayint,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.12_1,Mekdela,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.17_1,Were Ilu,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.18_1,Worebabu,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.15_1,Thehulederie,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.16_1,Wegde,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.6_1,Berehet,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.7_1,Eferatana Gidem,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.4_1,Assagirt,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.5_1,Basona Worena,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.10_1,Hagere Mariam,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.11_1,Kewet,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.8_1,Ensaro,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.9_1,Gishe Rabel,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.14_1,Menz Lalo Midir,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.15_1,Menz Mama Midir,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.12_1,Menz Gera Midir,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.13_1,Menz Keya Gabriel,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.18_1,Minjar Shenkora,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.19_1,Mojan Wedera,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.16_1,Merahbete,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.17_1,Mimo Weremo,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.7_1,Dejen,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.8_1,Enarj Enawga,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.5_1,Debay Telatgen,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.6_1,Debre Elias,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.11_1,Goncha Siso Enese,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.12_1,Gonje,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.9_1,Enbise Sar Midir,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.10_1,Enemay,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.15_1,Michakel,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.16_1,Senan,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.13_1,Guzamn,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.14_1,Hulet Ej Enese,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.2_1,Ankober,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.3_1,Antsokiya,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.7_1,Misraq Gojjam,ETH.3.7.17_1,Shebel Bereta,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.1_1,Angolelana Tera,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.11_1,Lay Armacho,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.12_1,Metema,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.9_1,Gonder Zuria,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.10_1,Janamora,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.15_1,Tach Armacho,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.16_1,Takusa,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.13_1,Mirab Armacho,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.14_1,Quara,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.19_1,Wegera,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.20_1,West Belesa,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.17_1,Tsegede,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.18_1,Tselemt,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.11_1,Semen Wello,ETH.3.11.3_1,Delanta,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.11_1,Semen Wello,ETH.3.11.4_1,Gidan,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.11_1,Semen Wello,ETH.3.11.1_1,Bugna,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.11_1,Semen Wello,ETH.3.11.2_1,Dawunt,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.22_1,Tarema Ber,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.9_1,Oromia,ETH.3.9.1_1,Artuma Fursi,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.20_1,Moretna Jiru,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.8_1,North Shewa,ETH.3.8.21_1,Siya Debirna Wayu,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.9_1,Oromia,ETH.3.9.4_1,Dewa Harewa,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.9_1,Oromia,ETH.3.9.5_1,Jille Timuga,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.9_1,Oromia,ETH.3.9.2_1,Bati,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.9_1,Oromia,ETH.3.9.3_1,Dewa Cheffa,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.3_1,Beyeda,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.4_1,Chilga,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.1_1,Addi Arekay,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.2_1,Alfa,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.7_1,Dembia,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.8_1,East Belesa,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.5_1,Dabat,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.10_1,Semen Gondar,ETH.3.10.6_1,Debark,Amhara
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.1_1,Asosa,ETH.4.1.7_1,Menge,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.1_1,Asosa,ETH.4.1.8_1,Sherkole,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.1_1,Asosa,ETH.4.1.5_1,Kurmuk,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.1_1,Asosa,ETH.4.1.6_1,Maokomo Special,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.2_1,Kemashi,ETH.4.2.3_1,Kamashi,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.2_1,Kemashi,ETH.4.2.4_1,Sirba Abay,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.2_1,Kemashi,ETH.4.2.1_1,Agalometi,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.2_1,Kemashi,ETH.4.2.2_1,Bio Jiganifado,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.3_1,Metekel,ETH.4.3.2_1,Dangura,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.3_1,Metekel,ETH.4.3.3_1,Dibat,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.2_1,Kemashi,ETH.4.2.5_1,Yaso,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.3_1,Metekel,ETH.4.3.1_1,Bulen,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.3_1,Metekel,ETH.4.3.6_1,Pawe Special,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.3_1,Metekel,ETH.4.3.7_1,Wenbera,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.3_1,Metekel,ETH.4.3.4_1,Guba,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.3_1,Metekel,ETH.4.3.5_1,Mandura,Bensh-G
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.11_1,Semen Wello,ETH.3.11.7_1,Kobo,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.11_1,Semen Wello,ETH.3.11.8_1,Lasta,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.11_1,Semen Wello,ETH.3.11.5_1,Guba Lafto,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.11_1,Semen Wello,ETH.3.11.6_1,Habru,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.12_1,Wag Himra,ETH.3.12.1_1,Abergele,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.12_1,Wag Himra,ETH.3.12.2_1,Dehana,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.11_1,Semen Wello,ETH.3.11.9_1,Meket,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.11_1,Semen Wello,ETH.3.11.10_1,Wadla,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.12_1,Wag Himra,ETH.3.12.5_1,Sekota,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.12_1,Wag Himra,ETH.3.12.6_1,Ziquala,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.12_1,Wag Himra,ETH.3.12.3_1,Gaz Gibla,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.12_1,Wag Himra,ETH.3.12.4_1,Sahla,Amhara
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.1_1,Asosa,ETH.4.1.3_1,Bilidigilu,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.1_1,Asosa,ETH.4.1.4_1,Homosha,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.1_1,Asosa,ETH.4.1.1_1,Assosa,Bensh-G
-ETH,Ethiopia,ETH.4_1,Benshangul-Gumaz,ETH.4.1_1,Asosa,ETH.4.1.2_1,Bambasi,Bensh-G
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.3_1,Bele Gesgar,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.4_1,Chole,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.1_1,Amigna,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.2_1,Aseko,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.7_1,Dodota,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.8_1,Gololcha Arsi,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.5_1,Degeluna Tijo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.6_1,Diksis,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.11_1,Inkolo Wabe,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.12_1,Jeju,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.9_1,Guna,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.10_1,Hitosa,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.15_1,Merti,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.16_1,Munessa,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.13_1,Limu Bilbilo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.14_1,Lude Hitosa,Oromia
-ETH,Ethiopia,ETH.6_1,Gambela Peoples,ETH.6.1_1,Agnuak,ETH.6.1.1_1,Abobo,Gambella
-ETH,Ethiopia,ETH.6_1,Gambela Peoples,ETH.6.1_1,Agnuak,ETH.6.1.2_1,Dima,Gambella
-ETH,Ethiopia,ETH.5_1,Dire Dawa,ETH.5.1_1,Dire Dawa,ETH.5.1.1_1,Dire Dawa,Dire Dawa
-ETH,Ethiopia,ETH.5_1,Dire Dawa,ETH.5.1_1,Dire Dawa,ETH.5.1.2_1,Dire Dawa/Town,Dire Dawa
-ETH,Ethiopia,ETH.6_1,Gambela Peoples,ETH.6.1_1,Agnuak,ETH.6.1.5_1,Gog,Gambella
-ETH,Ethiopia,ETH.6_1,Gambela Peoples,ETH.6.1_1,Agnuak,ETH.6.1.6_1,Itang,Gambella
-ETH,Ethiopia,ETH.6_1,Gambela Peoples,ETH.6.1_1,Agnuak,ETH.6.1.3_1,Gambela Zuria,Gambella
-ETH,Ethiopia,ETH.6_1,Gambela Peoples,ETH.6.1_1,Agnuak,ETH.6.1.4_1,Gambella Wild Life Reserve,Gambella
-ETH,Ethiopia,ETH.6_1,Gambela Peoples,ETH.6.2_1,Majang,ETH.6.2.2_1,Mengesh,Gambella
-ETH,Ethiopia,ETH.6_1,Gambela Peoples,ETH.6.3_1,Nuer,ETH.6.3.1_1,Akobo,Gambella
-ETH,Ethiopia,ETH.6_1,Gambela Peoples,ETH.6.1_1,Agnuak,ETH.6.1.7_1,Jore,Gambella
-ETH,Ethiopia,ETH.6_1,Gambela Peoples,ETH.6.2_1,Majang,ETH.6.2.1_1,Godere,Gambella
-ETH,Ethiopia,ETH.6_1,Gambela Peoples,ETH.6.3_1,Nuer,ETH.6.3.4_1,Wantawo,Gambella
-ETH,Ethiopia,ETH.7_1,Harari People,ETH.7.1_1,Hareri,ETH.7.1.1_1,Harar,Harari
-ETH,Ethiopia,ETH.6_1,Gambela Peoples,ETH.6.3_1,Nuer,ETH.6.3.2_1,Jikawo,Gambella
-ETH,Ethiopia,ETH.6_1,Gambela Peoples,ETH.6.3_1,Nuer,ETH.6.3.3_1,Lare,Gambella
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.11_1,Harena Buluk,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.12_1,Lege Hida,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.9_1,Goro,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.10_1,Gura Damole,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.15_1,Rayitu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.16_1,Seweyna,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.13_1,Meda Welabu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.14_1,Mena,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.3_1,Borena,ETH.8.3.2_1,Arero,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.3_1,Borena,ETH.8.3.3_1,Bule Hora,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.17_1,Sinana,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.3_1,Borena,ETH.8.3.1_1,Abaya,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.3_1,Borena,ETH.8.3.6_1,Dire,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.3_1,Borena,ETH.8.3.7_1,Dugda Dawa,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.3_1,Borena,ETH.8.3.4_1,Dehas,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.3_1,Borena,ETH.8.3.5_1,Dillo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.19_1,Shirka,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.20_1,Sire,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.17_1,Robe,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.18_1,Seru,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.23_1,Tiyo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.24_1,Ziway Dugda,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.21_1,Sude,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.1_1,Arsi,ETH.8.1.22_1,Tena,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.3_1,Dawe Kachen,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.4_1,Dinsho,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.1_1,Agarfa,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.2_1,Berbere,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.7_1,Goba,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.8_1,Gololcha Bale,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.5_1,Gasera,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.2_1,Bale,ETH.8.2.6_1,Ginir,Oromia
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.5_1,Bench Maji,ETH.10.5.6_1,Menit Shasha,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.5_1,Bench Maji,ETH.10.5.7_1,Semen Bench,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.5_1,Bench Maji,ETH.10.5.4_1,Maji,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.5_1,Bench Maji,ETH.10.5.5_1,Menit Goldiye,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.5_1,Bench Maji,ETH.10.5.10_1,Surma,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.6_1,Burji,ETH.10.6.1_1,Burji,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.5_1,Bench Maji,ETH.10.5.8_1,Shay Bench,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.5_1,Bench Maji,ETH.10.5.9_1,Sheka,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.7_1,Dawro,ETH.10.7.3_1,Loma Bosa,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.7_1,Dawro,ETH.10.7.4_1,Mareka,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.7_1,Dawro,ETH.10.7.1_1,Esira,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.7_1,Dawro,ETH.10.7.2_1,Gena Bosa,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.8_1,Debub Omo,ETH.10.8.2_1,Bena Tsemay,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.8_1,Debub Omo,ETH.10.8.3_1,Dasenech (Kuraz),SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.7_1,Dawro,ETH.10.7.5_1,Tocha,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.8_1,Debub Omo,ETH.10.8.1_1,Bako Gazer,SNNPR
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.8_1,Shabelle,ETH.9.8.7_1,Mustahil,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.9_1,Siti,ETH.9.9.1_1,Afdem,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.8_1,Shabelle,ETH.9.8.5_1,Gode,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.8_1,Shabelle,ETH.9.8.6_1,Kelafo,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.9_1,Siti,ETH.9.9.4_1,Erer,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.9_1,Siti,ETH.9.9.5_1,Miesso,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.9_1,Siti,ETH.9.9.2_1,Ayisha,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.9_1,Siti,ETH.9.9.3_1,Dembel,Somali
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.2_1,Alle,ETH.10.2.1_1,Alle,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.3_1,Amaro,ETH.10.3.1_1,Amaro,SNNPR
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.9_1,Siti,ETH.9.9.6_1,Shinile,Somali
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.1_1,Alaba,ETH.10.1.1_1,Alaba,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.5_1,Bench Maji,ETH.10.5.2_1,Debub Bench,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.5_1,Bench Maji,ETH.10.5.3_1,Gurafereda,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.4_1,Basketo,ETH.10.4.1_1,Basketo,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.5_1,Bench Maji,ETH.10.5.1_1,Bero,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.13_1,Mirab Abaya,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.14_1,Ubadebretsehay,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.11_1,Kucha,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.12_1,Melekoza,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.11_1,Gedeo,ETH.10.11.2_1,Dila Zuria,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.11_1,Gedeo,ETH.10.11.3_1,Kochere,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.15_1,Zala,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.11_1,Gedeo,ETH.10.11.1_1,Bule,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.11_1,Gedeo,ETH.10.11.6_1,Yirgachefe,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.12_1,Gurage,ETH.10.12.1_1,Abeshege,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.11_1,Gedeo,ETH.10.11.4_1,Kochere Gedeb,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.11_1,Gedeo,ETH.10.11.5_1,Wenago,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.12_1,Gurage,ETH.10.12.4_1,Enemorina Eaner,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.12_1,Gurage,ETH.10.12.5_1,Ezha,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.12_1,Gurage,ETH.10.12.2_1,Cheha,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.12_1,Gurage,ETH.10.12.3_1,Endiguagn,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.8_1,Debub Omo,ETH.10.8.6_1,Hamer,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.8_1,Debub Omo,ETH.10.8.7_1,Male,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.8_1,Debub Omo,ETH.10.8.4_1,Gelila,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.8_1,Debub Omo,ETH.10.8.5_1,Gnangatom,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.1_1,Arba Minch Zuria,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.2_1,Ayida,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.8_1,Debub Omo,ETH.10.8.8_1,Selamgo,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.9_1,Derashe,ETH.10.9.1_1,Derashe,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.5_1,Chencha,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.6_1,Daramalo,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.3_1,Bonke,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.4_1,Boreda,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.9_1,Geze Gofa,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.10_1,Kemba,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.7_1,Denibu Gofa,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.10_1,Gamo Gofa,ETH.10.10.8_1,Dita,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.14_1,Keffa,ETH.10.14.1_1,Bita,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.14_1,Keffa,ETH.10.14.2_1,Chena,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.13_1,Hadiya,ETH.10.13.9_1,Shashogo,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.13_1,Hadiya,ETH.10.13.10_1,Soro,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.14_1,Keffa,ETH.10.14.5_1,Gesha (Deka),SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.14_1,Keffa,ETH.10.14.6_1,Getawa,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.14_1,Keffa,ETH.10.14.3_1,Cheta,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.14_1,Keffa,ETH.10.14.4_1,Decha,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.14_1,Keffa,ETH.10.14.9_1,Sayilem,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.14_1,Keffa,ETH.10.14.10_1,Tulo,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.14_1,Keffa,ETH.10.14.7_1,Gimbo,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.14_1,Keffa,ETH.10.14.8_1,Menjiwo,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.15_1,Kembata Tembaro,ETH.10.15.3_1,Doya Gena,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.15_1,Kembata Tembaro,ETH.10.15.4_1,Hadero Tubito,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.15_1,Kembata Tembaro,ETH.10.15.1_1,Anigacha,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.15_1,Kembata Tembaro,ETH.10.15.2_1,Daniboya,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.12_1,Gurage,ETH.10.12.8_1,Kebena,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.12_1,Gurage,ETH.10.12.9_1,Kokir Gedbano,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.12_1,Gurage,ETH.10.12.6_1,Geta,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.12_1,Gurage,ETH.10.12.7_1,Gumer,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.12_1,Gurage,ETH.10.12.12_1,Muhur Na Aklil,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.12_1,Gurage,ETH.10.12.13_1,Sodo,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.12_1,Gurage,ETH.10.12.10_1,Mareko,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.12_1,Gurage,ETH.10.12.11_1,Meskan,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.13_1,Hadiya,ETH.10.13.3_1,Gembora,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.13_1,Hadiya,ETH.10.13.4_1,Gibe,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.13_1,Hadiya,ETH.10.13.1_1,Analemmo,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.13_1,Hadiya,ETH.10.13.2_1,Dune,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.13_1,Hadiya,ETH.10.13.7_1,Misha,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.13_1,Hadiya,ETH.10.13.8_1,Misrak Badawacho,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.13_1,Hadiya,ETH.10.13.5_1,Limu,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.13_1,Hadiya,ETH.10.13.6_1,Mierab Badawacho,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.11_1,Chuko,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.12_1,Dale,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.9_1,Bursa,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.10_1,Chire,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.15_1,Hulla,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.16_1,Loka Abaya,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.13_1,Dara,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.14_1,Gorche,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.19_1,Wondo-Genet,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.20_1,Wonosho,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.17_1,Malga,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.18_1,Shebe Dino,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.20_1,Silti,ETH.10.20.3_1,Lanfero,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.20_1,Silti,ETH.10.20.4_1,Mierab Azenet Berbere,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.20_1,Silti,ETH.10.20.1_1,Alicho Woriro,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.20_1,Silti,ETH.10.20.2_1,Dalocha,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.15_1,Kembata Tembaro,ETH.10.15.7_1,Tembaro,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.16_1,Konso,ETH.10.16.1_1,Konso,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.15_1,Kembata Tembaro,ETH.10.15.5_1,Kacha Bira,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.15_1,Kembata Tembaro,ETH.10.15.6_1,Kediada Gambela,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.18_1,Sheka,ETH.10.18.2_1,Masha,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.18_1,Sheka,ETH.10.18.3_1,Yeki,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.17_1,Konta,ETH.10.17.1_1,Konta,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.18_1,Sheka,ETH.10.18.1_1,Anderacha,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.3_1,Aroresa,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.4_1,Awasa,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.1_1,Aleta Wendo,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.2_1,Arbe Gonna,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.7_1,Bona Zuria,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.8_1,Boricha,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.5_1,Awasa Zuria,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.19_1,Sidama,ETH.10.19.6_1,Bensa,SNNPR
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.1_1,Debubawi,ETH.11.1.2_1,Alamata,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.1_1,Debubawi,ETH.11.1.3_1,Endamehoni,Tigray
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.22_1,Yem,ETH.10.22.1_1,Yem,SNNPR
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.1_1,Debubawi,ETH.11.1.1_1,Alaje,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.1_1,Debubawi,ETH.11.1.6_1,Ofla,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.1_1,Debubawi,ETH.11.1.7_1,Raya Azebo,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.1_1,Debubawi,ETH.11.1.4_1,Enderta,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.1_1,Debubawi,ETH.11.1.5_1,Hintalo Wejirat,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.2_1,Mehakelegnaw,ETH.11.2.2_1,Ahferom,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.2_1,Mehakelegnaw,ETH.11.2.3_1,Degua Temben,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.1_1,Debubawi,ETH.11.1.8_1,Saharti Samre,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.2_1,Mehakelegnaw,ETH.11.2.1_1,Adwa,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.2_1,Mehakelegnaw,ETH.11.2.6_1,Mereb Leke,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.2_1,Mehakelegnaw,ETH.11.2.7_1,Naeder Adet,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.2_1,Mehakelegnaw,ETH.11.2.4_1,Kola Temben,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.2_1,Mehakelegnaw,ETH.11.2.5_1,Laelay Maychew,Tigray
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.20_1,Silti,ETH.10.20.7_1,Selti,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.20_1,Silti,ETH.10.20.8_1,Wilbareg,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.20_1,Silti,ETH.10.20.5_1,Misrak Azenet Berbere,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.20_1,Silti,ETH.10.20.6_1,Sankura,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.21_1,Wolayita,ETH.10.21.3_1,Damot Gale,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.21_1,Wolayita,ETH.10.21.4_1,Damot Pulasa,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.21_1,Wolayita,ETH.10.21.1_1,Boloso Bombe,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.21_1,Wolayita,ETH.10.21.2_1,Boloso sore,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.21_1,Wolayita,ETH.10.21.7_1,Diguna Fango,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.21_1,Wolayita,ETH.10.21.8_1,Humbo,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.21_1,Wolayita,ETH.10.21.5_1,Damot Sore,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.21_1,Wolayita,ETH.10.21.6_1,Damot Weydie,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.21_1,Wolayita,ETH.10.21.11_1,Ofa,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.21_1,Wolayita,ETH.10.21.12_1,Sodo Zuria,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.21_1,Wolayita,ETH.10.21.9_1,Kindo Dida,SNNPR
-ETH,Ethiopia,ETH.10_1,"Southern Nations, Nationalities and Peoples",ETH.10.21_1,Wolayita,ETH.10.21.10_1,Kindo Koysha,SNNPR
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.5_1,Semien Mi'irabaw,ETH.11.5.6_1,Tselemti,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.5_1,Semien Mi'irabaw,ETH.11.5.4_1,Tahtay Adiyabo,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.5_1,Semien Mi'irabaw,ETH.11.5.5_1,Tahtay Koraro,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.2_1,Mehakelegnaw,ETH.11.2.10_1,Werei Leke,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.3_1,Mi'irabawi,ETH.11.3.1_1,Kafta Humera,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.2_1,Mehakelegnaw,ETH.11.2.8_1,Tahtay Maychew,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.2_1,Mehakelegnaw,ETH.11.2.9_1,Tanqua Abergele,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.4_1,Misraqawi,ETH.11.4.1_1,Atsbi Wenberta,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.4_1,Misraqawi,ETH.11.4.2_1,Erob,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.3_1,Mi'irabawi,ETH.11.3.2_1,Tsegede,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.3_1,Mi'irabawi,ETH.11.3.3_1,Welkait,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.4_1,Misraqawi,ETH.11.4.5_1,Hawzen,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.4_1,Misraqawi,ETH.11.4.6_1,Kelete Awelallo,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.4_1,Misraqawi,ETH.11.4.3_1,Ganta Afeshum,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.4_1,Misraqawi,ETH.11.4.4_1,Gulomekeda,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.5_1,Semien Mi'irabaw,ETH.11.5.2_1,Laelay Adiyabo,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.5_1,Semien Mi'irabaw,ETH.11.5.3_1,Medebay Zana,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.4_1,Misraqawi,ETH.11.4.7_1,Saesie Tsaedaemba,Tigray
-ETH,Ethiopia,ETH.11_1,Tigray,ETH.11.5_1,Semien Mi'irabaw,ETH.11.5.1_1,Asgede Tsimbila,Tigray
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.4_1,Debub Mirab Shewa,ETH.8.4.13_1,Wenchi,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.5_1,Guji,ETH.8.5.1_1,Adola,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.4_1,Debub Mirab Shewa,ETH.8.4.11_1,Tole,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.4_1,Debub Mirab Shewa,ETH.8.4.12_1,Waliso,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.5_1,Guji,ETH.8.5.4_1,Bore,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.5_1,Guji,ETH.8.5.5_1,Girja (Harenfema),Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.5_1,Guji,ETH.8.5.2_1,Afele Kola,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.5_1,Guji,ETH.8.5.3_1,Ana Sora,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.5_1,Guji,ETH.8.5.8_1,Kercha,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.5_1,Guji,ETH.8.5.9_1,Liben,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.5_1,Guji,ETH.8.5.6_1,Goro Dola,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.5_1,Guji,ETH.8.5.7_1,Hambela Wamena,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.5_1,Guji,ETH.8.5.12_1,Uraga,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.5_1,Guji,ETH.8.5.13_1,Wadera,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.5_1,Guji,ETH.8.5.10_1,Odo Shakiso,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.5_1,Guji,ETH.8.5.11_1,Saba Boru,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.3_1,Borena,ETH.8.3.10_1,Miyo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.3_1,Borena,ETH.8.3.11_1,Moyale,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.3_1,Borena,ETH.8.3.8_1,Gelana,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.3_1,Borena,ETH.8.3.9_1,Melka Soda,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.4_1,Debub Mirab Shewa,ETH.8.4.1_1,Alem Gena,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.4_1,Debub Mirab Shewa,ETH.8.4.2_1,Ameya,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.3_1,Borena,ETH.8.3.12_1,Teltele,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.3_1,Borena,ETH.8.3.13_1,Yabelo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.4_1,Debub Mirab Shewa,ETH.8.4.5_1,Goro,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.4_1,Debub Mirab Shewa,ETH.8.4.6_1,Ilu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.4_1,Debub Mirab Shewa,ETH.8.4.3_1,Becho,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.4_1,Debub Mirab Shewa,ETH.8.4.4_1,Dawo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.4_1,Debub Mirab Shewa,ETH.8.4.9_1,Seden Sodo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.4_1,Debub Mirab Shewa,ETH.8.4.10_1,Sodo Daci,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.4_1,Debub Mirab Shewa,ETH.8.4.7_1,Kersana Malima,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.4_1,Debub Mirab Shewa,ETH.8.4.8_1,Kondaltiti,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.10_1,Dabo Hana,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.11_1,Darimu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.8_1,Chora,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.9_1,Chwaka,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.14_1,Didu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.15_1,Dorani,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.12_1,Dedesa,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.13_1,Dega,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.18_1,Hurumu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.19_1,Meko,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.16_1,Gechi,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.17_1,Halu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.22_1,Yayu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.1_1,Chora,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.20_1,Metu Zuria,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.21_1,Sale Nono,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.6_1,Horo Guduru,ETH.8.6.3_1,Abe Dongoro,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.6_1,Horo Guduru,ETH.8.6.4_1,Amuru,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.6_1,Horo Guduru,ETH.8.6.1_1,Ababo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.6_1,Horo Guduru,ETH.8.6.2_1,Abay Chomen,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.6_1,Horo Guduru,ETH.8.6.7_1,Jarte Jardega,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.6_1,Horo Guduru,ETH.8.6.8_1,Jimma Genete,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.6_1,Horo Guduru,ETH.8.6.5_1,Guduru,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.6_1,Horo Guduru,ETH.8.6.6_1,Horo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.2_1,Alge Sachi,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.3_1,Badele Zuria,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.6_1,Horo Guduru,ETH.8.6.9_1,Jimma Rare,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.1_1,Ale,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.6_1,Borecha,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.7_1,Bure,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.4_1,Becho,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.7_1,Ilubabor,ETH.8.7.5_1,Bilo Nopha,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.9_1,Kelem Wellega,ETH.8.9.4_1,Gawo Kebe,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.9_1,Kelem Wellega,ETH.8.9.5_1,Gidami,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.9_1,Kelem Wellega,ETH.8.9.2_1,Dale Sadi,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.9_1,Kelem Wellega,ETH.8.9.3_1,Dale Wabera,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.9_1,Kelem Wellega,ETH.8.9.8_1,Lalo Kile,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.9_1,Kelem Wellega,ETH.8.9.9_1,Sayo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.9_1,Kelem Wellega,ETH.8.9.6_1,Hawa Galan,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.9_1,Kelem Wellega,ETH.8.9.7_1,Jimma Horo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.10_1,Mirab Arsi,ETH.8.10.2_1,Arsi Negele,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.10_1,Mirab Arsi,ETH.8.10.3_1,Dodola,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.9_1,Kelem Wellega,ETH.8.9.10_1,Yama Logi Welel,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.10_1,Mirab Arsi,ETH.8.10.1_1,Adaba,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.10_1,Mirab Arsi,ETH.8.10.6_1,Kokosa,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.10_1,Mirab Arsi,ETH.8.10.7_1,Kore,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.10_1,Mirab Arsi,ETH.8.10.4_1,Gedeb Asasa,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.10_1,Mirab Arsi,ETH.8.10.5_1,Kofele,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.4_1,Goma,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.5_1,Gumay,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.2_1,Dedo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.3_1,Gera,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.8_1,Limu Seka,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.9_1,Mena,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.6_1,Kersa,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.7_1,Limu Kosa,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.12_1,Sekoru,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.13_1,Setema,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.10_1,Omo Nada,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.11_1,Seka Chekorsa,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.16_1,Tiro Afeta,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.9_1,Kelem Wellega,ETH.8.9.1_1,Anfilo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.14_1,Shebe Sambo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.8_1,Jimma,ETH.8.8.15_1,Sigmo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.2_1,Adda Berga,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.3_1,Ambo Zuria,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.11_1,Mirab Hararghe,ETH.8.11.13_1,Tulo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.1_1,Abuna G/Beret,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.6_1,Dano,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.7_1,Dendi,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.4_1,Bako Tibe,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.5_1,Cheliya,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.10_1,Ifata,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.11_1,Jeldu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.8_1,Ejere,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.9_1,Ginde Beret,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.14_1,Mida Kegn,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.15_1,Nono,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.12_1,Jibat,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.13_1,Meta Robi,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.10_1,Mirab Arsi,ETH.8.10.10_1,Shashemene Zuria,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.10_1,Mirab Arsi,ETH.8.10.11_1,Siraro,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.10_1,Mirab Arsi,ETH.8.10.8_1,Nenesebo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.10_1,Mirab Arsi,ETH.8.10.9_1,Shalla,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.11_1,Mirab Hararghe,ETH.8.11.3_1,Chiro Zuria,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.11_1,Mirab Hararghe,ETH.8.11.4_1,Daro Lebu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.11_1,Mirab Hararghe,ETH.8.11.1_1,Anchar,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.11_1,Mirab Hararghe,ETH.8.11.2_1,Boke,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.11_1,Mirab Hararghe,ETH.8.11.7_1,Goba Koricha,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.11_1,Mirab Hararghe,ETH.8.11.8_1,Habro,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.11_1,Mirab Hararghe,ETH.8.11.5_1,Doba,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.11_1,Mirab Hararghe,ETH.8.11.6_1,Gemechis,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.11_1,Mirab Hararghe,ETH.8.11.11_1,Mesela,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.11_1,Mirab Hararghe,ETH.8.11.12_1,Mieso,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.11_1,Mirab Hararghe,ETH.8.11.9_1,Hawi Gudina,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.11_1,Mirab Hararghe,ETH.8.11.10_1,Kuni,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.16_1,Nejo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.17_1,Nole Kaba,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.14_1,Lalo Asabi,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.15_1,Mana Sibu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.1_1,Babile,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.2_1,Bedeno,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.18_1,Sayo Nole,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.19_1,Yubdo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.5_1,Fedis,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.6_1,Girawa,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.3_1,Chinaksen,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.4_1,Deder,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.9_1,Gursum,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.10_1,Haro Maya,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.7_1,Golo Oda,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.8_1,Goro Gutu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.18_1,Walmara,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.1_1,Ayira,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.16_1,Tikur Enchini,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.12_1,Mirab Shewa,ETH.8.12.17_1,Toke Kutaye,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.4_1,Boji Chekorsa,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.5_1,Boji Dirmeji,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.2_1,Babo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.3_1,Begi,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.8_1,Gudetu Kondole,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.9_1,Guliso,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.6_1,Gaji,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.7_1,Gimbi,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.12_1,Jarso,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.13_1,Kiltu Kara,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.10_1,Haru,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.13_1,Mirab Welega,ETH.8.13.11_1,Homa,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.15_1,Misraq Shewa,ETH.8.15.11_1,Lome,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.1_1,Bila Seyo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.15_1,Misraq Shewa,ETH.8.15.9_1,Gimbichu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.15_1,Misraq Shewa,ETH.8.15.10_1,Liben Chukala,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.4_1,Gida Ayana,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.5_1,Gobu Seyo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.2_1,Boneya Boshe,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.3_1,Diga,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.8_1,Ibantu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.9_1,Jimma Arjo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.6_1,Guto Gida,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.7_1,Haro Limu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.12_1,Limu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.13_1,Nunu Kumba,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.10_1,Kiremu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.11_1,Leka Dulecha,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.13_1,Kombolcha,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.14_1,Kurfa Chele,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.11_1,Jarso,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.12_1,Kersa,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.17_1,Meyu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.18_1,Midega Tola,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.15_1,Malka Balo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.14_1,Misraq Harerge,ETH.8.14.16_1,Meta,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.15_1,Misraq Shewa,ETH.8.15.3_1,Adami Tulu Jido Kombolcha,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.15_1,Misraq Shewa,ETH.8.15.4_1,Akaki,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.15_1,Misraq Shewa,ETH.8.15.1_1,Ada'a,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.15_1,Misraq Shewa,ETH.8.15.2_1,Adama,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.15_1,Misraq Shewa,ETH.8.15.7_1,Dugda,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.15_1,Misraq Shewa,ETH.8.15.8_1,Fentale,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.15_1,Misraq Shewa,ETH.8.15.5_1,Bora,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.15_1,Misraq Shewa,ETH.8.15.6_1,Boset,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.15_1,Wuchale,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.16_1,Yaya Gulele,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.13_1,Sululta,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.14_1,Wara Jarso,Oromia
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.1_1,Afder,ETH.9.1.3_1,Chereti/Weyib,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.1_1,Afder,ETH.9.1.4_1,Dolobay,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.1_1,Afder,ETH.9.1.1_1,Afder,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.1_1,Afder,ETH.9.1.2_1,Bare,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.1_1,Afder,ETH.9.1.7_1,Hargele,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.1_1,Afder,ETH.9.1.8_1,Serer/Elkere,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.1_1,Afder,ETH.9.1.5_1,Goro Baqaqsa,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.1_1,Afder,ETH.9.1.6_1,Guradamole,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.2_1,Doolo,ETH.9.2.2_1,Danot,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.2_1,Doolo,ETH.9.2.3_1,Geladin,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.1_1,Afder,ETH.9.1.9_1,West Imi,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.2_1,Doolo,ETH.9.2.1_1,Boh,Somali
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.16_1,Wama Hagalo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.17_1,Wayu Tuka,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.14_1,Sasiga,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.16_1,Misraq Wellega,ETH.8.16.15_1,Sibu Sire,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.3_1,Bereh,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.4_1,Debre Libanos,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.1_1,Abichuna Gne'a,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.2_1,Aleltu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.7_1,Gerar Jarso,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.8_1,Hidabu Abote,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.5_1,Degem,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.6_1,Dera,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.11_1,Kuyu,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.12_1,Mulo,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.9_1,Jida,Oromia
-ETH,Ethiopia,ETH.8_1,Oromia,ETH.8.17_1,North Shewa,ETH.8.17.10_1,Kembibit,Oromia
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.6_1,Liben,ETH.9.6.3_1,Hudet,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.6_1,Liben,ETH.9.6.4_1,Moyale,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.6_1,Liben,ETH.9.6.1_1,Dolo Odo,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.6_1,Liben,ETH.9.6.2_1,Filtu,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.7_1,Nogob,ETH.9.7.3_1,Gerbo,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.7_1,Nogob,ETH.9.7.4_1,Hamero,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.7_1,Nogob,ETH.9.7.1_1,Dihun,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.7_1,Nogob,ETH.9.7.2_1,Fik,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.7_1,Nogob,ETH.9.7.7_1,Segeg,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.7_1,Nogob,ETH.9.7.8_1,Selahad,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.7_1,Nogob,ETH.9.7.5_1,Lagahida,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.7_1,Nogob,ETH.9.7.6_1,Meyumuluka,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.8_1,Shabelle,ETH.9.8.3_1,East Imi,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.8_1,Shabelle,ETH.9.8.4_1,Ferfer,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.8_1,Shabelle,ETH.9.8.1_1,Adadle,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.8_1,Shabelle,ETH.9.8.2_1,Denan,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.3_1,Fafan,ETH.9.3.2_1,Babile,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.3_1,Fafan,ETH.9.3.3_1,Gursum,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.2_1,Doolo,ETH.9.2.4_1,Warder,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.3_1,Fafan,ETH.9.3.1_1,Aw-bare,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.3_1,Fafan,ETH.9.3.6_1,Kebribeyah,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.4_1,Jarar,ETH.9.4.1_1,Aware,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.3_1,Fafan,ETH.9.3.4_1,Hareshen,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.3_1,Fafan,ETH.9.3.5_1,Jijiga,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.4_1,Jarar,ETH.9.4.4_1,Gashamo,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.4_1,Jarar,ETH.9.4.5_1,Gunagado,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.4_1,Jarar,ETH.9.4.2_1,Degehabur,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.4_1,Jarar,ETH.9.4.3_1,Degehamedo,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.5_1,Korahe,ETH.9.5.3_1,Shekosh,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.5_1,Korahe,ETH.9.5.4_1,Shilabo,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.5_1,Korahe,ETH.9.5.1_1,Debeweyin,Somali
-ETH,Ethiopia,ETH.9_1,Somali,ETH.9.5_1,Korahe,ETH.9.5.2_1,Kebridehar,Somali
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.1_1,Afar Zone 1,ETH.2.1.8_1,Mile,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.2_1,Afar Zone 2,ETH.2.2.1_1,Ab Ala,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.1_1,Afar Zone 1,ETH.2.1.6_1,Elidar,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.1_1,Afar Zone 1,ETH.2.1.7_1,Kurri,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.2_1,Afar Zone 2,ETH.2.2.4_1,Bidu,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.2_1,Afar Zone 2,ETH.2.2.5_1,Dalul,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.2_1,Afar Zone 2,ETH.2.2.2_1,Afdera,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.2_1,Afar Zone 2,ETH.2.2.3_1,Berahile,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.2_1,Afar Zone 2,ETH.2.2.8_1,Megale,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.3_1,Afar Zone 3,ETH.2.3.1_1,Amibara,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.2_1,Afar Zone 2,ETH.2.2.6_1,Erebti,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.2_1,Afar Zone 2,ETH.2.2.7_1,Koneba,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.3_1,Afar Zone 3,ETH.2.3.4_1,Bure Mudaytu,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.3_1,Afar Zone 3,ETH.2.3.5_1,Dulecha,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.3_1,Afar Zone 3,ETH.2.3.2_1,Argoba Special Woreda,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.3_1,Afar Zone 3,ETH.2.3.3_1,Awash Fentale,Afar
-ETH,Ethiopia,ETH.1_1,Addis Abeba,ETH.1.1_1,Addis Abeba,ETH.1.1.2_1,Akaki - Kalit,Oromia
-ETH,Ethiopia,ETH.1_1,Addis Abeba,ETH.1.1_1,Addis Abeba,ETH.1.1.3_1,Arada,Oromia
-ETH,Ethiopia,ETH.1_1,Addis Abeba,ETH.1.1_1,Addis Abeba,ETH.1.1.1_1,Addis Ketema,Oromia
-ETH,Ethiopia,ETH.1_1,Addis Abeba,ETH.1.1_1,Addis Abeba,ETH.1.1.6_1,Kirkos,Oromia
-ETH,Ethiopia,ETH.1_1,Addis Abeba,ETH.1.1_1,Addis Abeba,ETH.1.1.7_1,Kolfe - Keran,Oromia
-ETH,Ethiopia,ETH.1_1,Addis Abeba,ETH.1.1_1,Addis Abeba,ETH.1.1.4_1,Bole,Oromia
-ETH,Ethiopia,ETH.1_1,Addis Abeba,ETH.1.1_1,Addis Abeba,ETH.1.1.5_1,Gulele,Oromia
-ETH,Ethiopia,ETH.1_1,Addis Abeba,ETH.1.1_1,Addis Abeba,ETH.1.1.10_1,Yeka,Oromia
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.1_1,Afar Zone 1,ETH.2.1.1_1,Adaa'r,Afar
-ETH,Ethiopia,ETH.1_1,Addis Abeba,ETH.1.1_1,Addis Abeba,ETH.1.1.8_1,Lideta,Oromia
-ETH,Ethiopia,ETH.1_1,Addis Abeba,ETH.1.1_1,Addis Abeba,ETH.1.1.9_1,Nefas Silk,Oromia
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.1_1,Afar Zone 1,ETH.2.1.4_1,Chifra,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.1_1,Afar Zone 1,ETH.2.1.5_1,Dubti,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.1_1,Afar Zone 1,ETH.2.1.2_1,Afambo,Afar
-ETH,Ethiopia,ETH.2_1,Afar,ETH.2.1_1,Afar Zone 1,ETH.2.1.3_1,Aysaita,Afar
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.2_1,Argoba,ETH.3.2.1_1,Argoba,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.3_1,Bahir Dar Special Zone,ETH.3.3.1_1,Bahir Dar,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.1_1,Agew Awi,ETH.3.1.6_1,Guangua,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.1_1,Agew Awi,ETH.3.1.7_1,Jawi,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.4_1,Debub Gondar,ETH.3.4.3_1,Ebenat,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.4_1,Debub Gondar,ETH.3.4.4_1,Farta,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.4_1,Debub Gondar,ETH.3.4.1_1,Dera,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.4_1,Debub Gondar,ETH.3.4.2_1,East Esite,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.4_1,Debub Gondar,ETH.3.4.7_1,Libo Kemkem,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.4_1,Debub Gondar,ETH.3.4.8_1,Simada,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.4_1,Debub Gondar,ETH.3.4.5_1,Fogera,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.4_1,Debub Gondar,ETH.3.4.6_1,Lay Gayint,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.1_1,Albuko,Amhara
-ETH,Ethiopia,ETH.3_1,Amhara,ETH.3.5_1,Debub Wollo,ETH.3.5.2_1,Ambasel,Amhara
+ETH,Ethiopia,ETH.1_1,Addis Ababa,ETH.1-1,Addis Ababa,ETH.1-1-1,Addis Ketema,Oromia
+ETH,Ethiopia,ETH.1_1,Addis Ababa,ETH.1-1,Addis Ababa,ETH.1-1-2,Akaki - Kalit,Oromia
+ETH,Ethiopia,ETH.1_1,Addis Ababa,ETH.1-1,Addis Ababa,ETH.1-1-3,Arada,Oromia
+ETH,Ethiopia,ETH.1_1,Addis Ababa,ETH.1-1,Addis Ababa,ETH.1-1-4,Bole,Oromia
+ETH,Ethiopia,ETH.1_1,Addis Ababa,ETH.1-1,Addis Ababa,ETH.1-1-5,Gulele,Oromia
+ETH,Ethiopia,ETH.1_1,Addis Ababa,ETH.1-1,Addis Ababa,ETH.1-1-6,Kirkos,Oromia
+ETH,Ethiopia,ETH.1_1,Addis Ababa,ETH.1-1,Addis Ababa,ETH.1-1-7,Kolfe - Keran,Oromia
+ETH,Ethiopia,ETH.1_1,Addis Ababa,ETH.1-1,Addis Ababa,ETH.1-1-8,Lideta,Oromia
+ETH,Ethiopia,ETH.1_1,Addis Ababa,ETH.1-1,Addis Ababa,ETH.1-1-9,Nefas Silk,Oromia
+ETH,Ethiopia,ETH.1_1,Addis Ababa,ETH.1-1,Addis Ababa,ETH.1-1-10,Yeka,Oromia
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Alaba Special,ETH.10_1-1-1,Halaba,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,Alaba Special,ETH.10_1-2-2,Halaba Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Amaro Special,ETH.10_1-1-1,Amaro ,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Basketo Special,ETH.10_1-1-1,Basketo ,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Bench Maji,ETH.10_1-1-1,Bero,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,Bench Maji,ETH.10_1-2-2,Debub Bench,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-3,Bench Maji,ETH.10_1-3-3,Guraferda,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-4,Bench Maji,ETH.10_1-4-4,Maji,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-5,Bench Maji,ETH.10_1-5-5,Meinit Goldeya,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-6,Bench Maji,ETH.10_1-6-6,Meinit Shasha,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-7,Bench Maji,ETH.10_1-7-7,Mizan Aman Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-8,Bench Maji,ETH.10_1-8-8,Semen Bench,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-9,Bench Maji,ETH.10_1-9-9,Shay Bench,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-10,Bench Maji,ETH.10_1-10-10,Sheko,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-11,Bench Maji,ETH.10_1-11-11,Surma,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Burji Special,ETH.10_1-1-1,Burji,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Dawro,ETH.10_1-1-1,Genabosa,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,Dawro,ETH.10_1-2-2,Isara,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-3,Dawro,ETH.10_1-3-3,Loma,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-4,Dawro,ETH.10_1-4-4,Mareka,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-5,Dawro,ETH.10_1-5-5,Tercha Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-6,Dawro,ETH.10_1-6-6,Tocha,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Derashe Special,ETH.10_1-1-1,Derashe,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Gamo Gofa,ETH.10_1-1-1,Abobo ,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,Gamo Gofa,ETH.10_1-2-2,Arba Minch Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-3,Gamo Gofa,ETH.10_1-3-3,Arba Minch Zuriya,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-4,Gamo Gofa,ETH.10_1-4-4,Ayida,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-5,Gamo Gofa,ETH.10_1-5-5,Bonke,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-6,Gamo Gofa,ETH.10_1-6-6,Boreda,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-7,Gamo Gofa,ETH.10_1-7-7,Chencha,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-8,Gamo Gofa,ETH.10_1-8-8,Demba Gofa,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-9,Gamo Gofa,ETH.10_1-9-9,Deramalo,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-10,Gamo Gofa,ETH.10_1-10-10,Dita,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-11,Gamo Gofa,ETH.10_1-11-11,Gezegofa,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-12,Gamo Gofa,ETH.10_1-12-12,Kemba,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-13,Gamo Gofa,ETH.10_1-13-13,Kucha,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-14,Gamo Gofa,ETH.10_1-14-14,Melekoza,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-15,Gamo Gofa,ETH.10_1-15-15,Merab Abaya,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-16,Gamo Gofa,ETH.10_1-16-16,Sawla Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-17,Gamo Gofa,ETH.10_1-17-17,Uba Debre Tsehay,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Gedeo,ETH.10_1-1-1,Bule,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,Gedeo,ETH.10_1-2-2,Dila Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-3,Gedeo,ETH.10_1-3-3,Dila Zuria,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-4,Gedeo,ETH.10_1-4-4,Gedeb,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-5,Gedeo,ETH.10_1-5-5,Kochire,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-6,Gedeo,ETH.10_1-6-6,Wenago,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-7,Gedeo,ETH.10_1-7-7,Yergachefe Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-8,Gedeo,ETH.10_1-8-8,Yirgachefe Woreda,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Gurage,ETH.10_1-1-1,Abeshge,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,Gurage,ETH.10_1-2-2,Butajira Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-3,Gurage,ETH.10_1-3-3,Cheha,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-4,Gurage,ETH.10_1-4-4,Endegagn,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-5,Gurage,ETH.10_1-5-5,Enemorna Ener,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-6,Gurage,ETH.10_1-6-6,Ezha,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-7,Gurage,ETH.10_1-7-7,Gedebano Gutazer Wellene,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-8,Gurage,ETH.10_1-8-8,Geta,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-9,Gurage,ETH.10_1-9-9,Gumer,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-10,Gurage,ETH.10_1-10-10,Kebena,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-11,Gurage,ETH.10_1-11-11,Mareko,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-12,Gurage,ETH.10_1-12-12,Mesekan,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-13,Gurage,ETH.10_1-13-13,Muhor Na Aklil,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-14,Gurage,ETH.10_1-14-14,Sodo,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-15,Gurage,ETH.10_1-15-15,Welkite Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Hadiya,ETH.10_1-1-1,Analimo,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,Hadiya,ETH.10_1-2-2,Duna,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-3,Hadiya,ETH.10_1-3-3,Gibe,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-4,Hadiya,ETH.10_1-4-4,Gomibora,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-5,Hadiya,ETH.10_1-5-5,Hosaena Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-6,Hadiya,ETH.10_1-6-6,Lemo,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-7,Hadiya,ETH.10_1-7-7,Merab Badwacho,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-8,Hadiya,ETH.10_1-8-8,Misha,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-9,Hadiya,ETH.10_1-9-9,Misrak Badawacho,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-10,Hadiya,ETH.10_1-10-10,Shashago,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-11,Hadiya,ETH.10_1-11-11,Soro,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Hawassa City Transitional Administration,ETH.10_1-1-1,Hawassa City Administration,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Keffa,ETH.10_1-1-1,Adyo,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,Keffa,ETH.10_1-2-2,Bitta,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-3,Keffa,ETH.10_1-3-3,Bonga Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-4,Keffa,ETH.10_1-4-4,Chena,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-5,Keffa,ETH.10_1-5-5,Cheta,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-6,Keffa,ETH.10_1-6-6,Decha,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-7,Keffa,ETH.10_1-7-7,Gesha Deka,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-8,Keffa,ETH.10_1-8-8,Gewata,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-9,Keffa,ETH.10_1-9-9,Gimbo,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-10,Keffa,ETH.10_1-10-10,Sayilem,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-11,Keffa,ETH.10_1-11-11,Telo,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Kembata Tembaro,ETH.10_1-1-1,Angacha,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,Kembata Tembaro,ETH.10_1-2-2,Deniboya,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-3,Kembata Tembaro,ETH.10_1-3-3,Doyo Gena,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-4,Kembata Tembaro,ETH.10_1-4-4,Durame Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-5,Kembata Tembaro,ETH.10_1-5-5,Hadero Tunito,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-6,Kembata Tembaro,ETH.10_1-6-6,Kacha Bira,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-7,Kembata Tembaro,ETH.10_1-7-7,Kedida Gamela,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-8,Kembata Tembaro,ETH.10_1-8-8,Tembaro,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Konso Special,ETH.10_1-1-1,Konso ,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Konta Special,ETH.10_1-1-1,Konta,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Segen,ETH.10_1-1-1,Alle,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Sheka,ETH.10_1-1-1,Anderacha,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,Sheka,ETH.10_1-2-2,Masha,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-3,Sheka,ETH.10_1-3-3,Masha Town Admin,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-4,Sheka,ETH.10_1-4-4,Tepi Town Admin,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-5,Sheka,ETH.10_1-5-5,Yeki,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Sidama,ETH.10_1-1-1,Aleta Cheko,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,Sidama,ETH.10_1-2-2,Aleta Wendo,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-3,Sidama,ETH.10_1-3-3,Aleta Wondo Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-4,Sidama,ETH.10_1-4-4,Arbegona,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-5,Sidama,ETH.10_1-5-5,Aroresa,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-6,Sidama,ETH.10_1-6-6,Bensa,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-7,Sidama,ETH.10_1-7-7,Bona Zuria,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-8,Sidama,ETH.10_1-8-8,Boricha,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-9,Sidama,ETH.10_1-9-9,Bursa,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-10,Sidama,ETH.10_1-10-10,Chere,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-11,Sidama,ETH.10_1-11-11,Dale,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-12,Sidama,ETH.10_1-12-12,Dara,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-13,Sidama,ETH.10_1-13-13,Gorche,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-14,Sidama,ETH.10_1-14-14,Hawassa Zuria,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-15,Sidama,ETH.10_1-15-15,Hawella Tulla Subsity,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-16,Sidama,ETH.10_1-16-16,Hula,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-17,Sidama,ETH.10_1-17-17,Loko Abeya,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-18,Sidama,ETH.10_1-18-18,Malga,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-19,Sidama,ETH.10_1-19-19,Shebedino,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-20,Sidama,ETH.10_1-20-20,Wendo Genet,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-21,Sidama,ETH.10_1-21-21,Wensho,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-22,Sidama,ETH.10_1-22-22,Yirgalem Town Adm.,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Silti,ETH.10_1-1-1,Alicho Werero,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,Silti,ETH.10_1-2-2,Dalocha,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-3,Silti,ETH.10_1-3-3,East Azenet Berbere,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-4,Silti,ETH.10_1-4-4,Lanfuro,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-5,Silti,ETH.10_1-5-5,Sankura,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-6,Silti,ETH.10_1-6-6,Silti,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-7,Silti,ETH.10_1-7-7,West Azenet Berbere,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-8,Silti,ETH.10_1-8-8,Worabe Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-9,Silti,ETH.10_1-9-9,Wulbareg,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,South Omo,ETH.10_1-1-1,Bena Tsemay,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,South Omo,ETH.10_1-2-2,Dasenech,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-3,South Omo,ETH.10_1-3-3,Hamer,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-4,South Omo,ETH.10_1-4-4,Jinka Town Admin,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-5,South Omo,ETH.10_1-5-5,Male,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-6,South Omo,ETH.10_1-6-6,North Ari,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-7,South Omo,ETH.10_1-7-7,Nyangatom,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-8,South Omo,ETH.10_1-8-8,Selamago,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-9,South Omo,ETH.10_1-9-9,South Ari,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Wolayita,ETH.10_1-1-1,Areka Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,Wolayita,ETH.10_1-2-2,Boditi Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-3,Wolayita,ETH.10_1-3-3,Boloso Bombe,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-4,Wolayita,ETH.10_1-4-4,Boloso Sore,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-5,Wolayita,ETH.10_1-5-5,Damot Gale,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-6,Wolayita,ETH.10_1-6-6,Damot Pulasa,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-7,Wolayita,ETH.10_1-7-7,Damot Sore,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-8,Wolayita,ETH.10_1-8-8,Damot Woyide,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-9,Wolayita,ETH.10_1-9-9,Deguna Fanigo,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-10,Wolayita,ETH.10_1-10-10,Humbo,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-11,Wolayita,ETH.10_1-11-11,Kindo Didaye,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-12,Wolayita,ETH.10_1-12-12,Kindo Koyisha,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-13,Wolayita,ETH.10_1-13-13,Ofa,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-14,Wolayita,ETH.10_1-14-14,Sodo Town,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-15,Wolayita,ETH.10_1-15-15,Sodo Zuria,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-1,Yem Special ,ETH.10_1-1-1,Yem ,SNNPR
+ETH,Ethiopia,ETH.10_1,SNNP,ETH.10_1-2,Yem Special ,ETH.10_1-2-2,Yem ,SNNPR
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-1,Central,ETH.11_1-1-1,Abi Adi Town,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-2,Central,ETH.11_1-2-2,Adwa Rural,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-3,Central,ETH.11_1-3-3,Adwa Town,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-4,Central,ETH.11_1-4-4,Ahferom,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-5,Central,ETH.11_1-5-5,Axum Town,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-6,Central,ETH.11_1-6-6,Degua Temben,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-7,Central,ETH.11_1-7-7,Kola Temben,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-8,Central,ETH.11_1-8-8,Laelay Maychew,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-9,Central,ETH.11_1-9-9,Mereb Leke,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-10,Central,ETH.11_1-10-10,Nader Adet,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-11,Central,ETH.11_1-11-11,Tahtay Maychew,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-12,Central,ETH.11_1-12-12,Tanqua Abergele,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-13,Central,ETH.11_1-13-13,Wer'e Leke,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-1,Eastern,ETH.11_1-1-1,Adigrat Town,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-2,Eastern,ETH.11_1-2-2,Atsbi Wonberta,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-3,Eastern,ETH.11_1-3-3,Erob,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-4,Eastern,ETH.11_1-4-4,Ganta Afeshum,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-5,Eastern,ETH.11_1-5-5,Gulo Mekeda,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-6,Eastern,ETH.11_1-6-6,Hawuzen,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-7,Eastern,ETH.11_1-7-7,Kilte Awlaleo,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-8,Eastern,ETH.11_1-8-8,Saesie Tsaeda Emba,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-9,Eastern,ETH.11_1-9-9,Wukro Town,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-1,Mekele Special,ETH.11_1-1-1,Adhaki,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-2,Mekele Special,ETH.11_1-2-2,Ayder,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-3,Mekele Special,ETH.11_1-3-3,Hadnet,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-4,Mekele Special,ETH.11_1-4-4,Hawelti,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-5,Mekele Special,ETH.11_1-5-5,Kedamay Weyane,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-6,Mekele Special,ETH.11_1-6-6,Kuha,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-7,Mekele Special,ETH.11_1-7-7,Semen,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-1,North Western,ETH.11_1-1-1,Asegede Tsimbila,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-2,North Western,ETH.11_1-2-2,Laelay Adiyabo,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-3,North Western,ETH.11_1-3-3,Medebay Zana,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-4,North Western,ETH.11_1-4-4,Sheraro Town,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-5,North Western,ETH.11_1-5-5,Shire,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-6,North Western,ETH.11_1-6-6,Tahtay Adiyabo,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-7,North Western,ETH.11_1-7-7,Tahtay Koraro,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-8,North Western,ETH.11_1-8-8,Tselemti,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-1,Southern,ETH.11_1-1-1,Alaje,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-2,Southern,ETH.11_1-2-2,Alamata Town,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-3,Southern,ETH.11_1-3-3,Endamekoni,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-4,Southern,ETH.11_1-4-4,Enderta,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-5,Southern,ETH.11_1-5-5,Hintalo Wajirat,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-6,Southern,ETH.11_1-6-6,Korem Town,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-7,Southern,ETH.11_1-7-7,Maychew Town,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-8,Southern,ETH.11_1-8-8,Ofla,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-9,Southern,ETH.11_1-9-9,Raya Alamata,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-10,Southern,ETH.11_1-10-10,Raya Azebo,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-11,Southern,ETH.11_1-11-11,Seharti Samre,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-1,Western,ETH.11_1-1-1,Kafta Humera,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-2,Western,ETH.11_1-2-2,Setit Humera,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-3,Western,ETH.11_1-3-3,Tsegede,Tigray
+ETH,Ethiopia,ETH.11_1,Tigray,ETH.11_1-4,Western,ETH.11_1-4-4,Welkayit,Tigray
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-1,Zone 1,ETH.2_1-1-1,Afambo,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-2,Zone 1,ETH.2_1-2-2,Aysaita,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-3,Zone 1,ETH.2_1-3-3,Chifra,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-4,Zone 1,ETH.2_1-4-4,Dubti,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-5,Zone 1,ETH.2_1-5-5,Elidar,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-6,Zone 1,ETH.2_1-6-6,Kurri,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-7,Zone 1,ETH.2_1-7-7,Mile,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-1,Zone 2,ETH.2_1-1-1,Ab Ala,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-2,Zone 2,ETH.2_1-2-2,Adaa'r,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-3,Zone 2,ETH.2_1-3-3,Afdera,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-4,Zone 2,ETH.2_1-4-4,Berahile,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-5,Zone 2,ETH.2_1-5-5,Bidu,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-6,Zone 2,ETH.2_1-6-6,Dalul,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-7,Zone 2,ETH.2_1-7-7,Erebti,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-8,Zone 2,ETH.2_1-8-8,Koneba,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-9,Zone 2,ETH.2_1-9-9,Logiya-Semera,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-10,Zone 2,ETH.2_1-10-10,Megale,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-1,Zone 3,ETH.2_1-1-1,Amibara,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-2,Zone 3,ETH.2_1-2-2,Argoba Special,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-3,Zone 3,ETH.2_1-3-3,Awash City,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-4,Zone 3,ETH.2_1-4-4,Awash Fentale,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-5,Zone 3,ETH.2_1-5-5,Bure Mudaytu,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-6,Zone 3,ETH.2_1-6-6,Dulecha,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-7,Zone 3,ETH.2_1-7-7,Gewane,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-1,Zone 4,ETH.2_1-1-1,Awra,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-2,Zone 4,ETH.2_1-2-2,Ewa,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-3,Zone 4,ETH.2_1-3-3,Gulina,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-4,Zone 4,ETH.2_1-4-4,Teru,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-5,Zone 4,ETH.2_1-5-5,Yalo,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-1,Zone 5,ETH.2_1-1-1,Dalfagi,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-2,Zone 5,ETH.2_1-2-2,Dewe,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-3,Zone 5,ETH.2_1-3-3,Hadelela,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-4,Zone 5,ETH.2_1-4-4,Simurobi Gele'alo,Afar
+ETH,Ethiopia,ETH.2_1,Afar,ETH.2_1-5,Zone 5,ETH.2_1-5-5,Telalak,Afar
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-1,Argoba Special,ETH.3_1-1-1,Argoba,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-1,Awi,ETH.3_1-1-1,Ankasha Guagusa,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-2,Awi,ETH.3_1-2-2,Banja Shekudad,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-3,Awi,ETH.3_1-3-3,Chagni Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-4,Awi,ETH.3_1-4-4,Dangila,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-5,Awi,ETH.3_1-5-5,Dangila Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-6,Awi,ETH.3_1-6-6,Fagita Lekoma,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-7,Awi,ETH.3_1-7-7,Guagusa Shikudad,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-8,Awi,ETH.3_1-8-8,Guangua,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-9,Awi,ETH.3_1-9-9,Injibara Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-10,Awi,ETH.3_1-10-10,Jawi,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-11,Awi,ETH.3_1-11-11,Zigem,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-1,Bahir Dar Special,ETH.3_1-1-1,Bahir Dar Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-1,East Gojjam,ETH.3_1-1-1,Aneded  ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-2,East Gojjam,ETH.3_1-2-2,Awabel ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-3,East Gojjam,ETH.3_1-3-3,Baso Liben ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-4,East Gojjam,ETH.3_1-4-4,Bibugn ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-5,East Gojjam,ETH.3_1-5-5,Debay Tilatgen ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-6,East Gojjam,ETH.3_1-6-6,Debre Elias,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-7,East Gojjam,ETH.3_1-7-7,Debre Markos Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-8,East Gojjam,ETH.3_1-8-8,Dejen ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-9,East Gojjam,ETH.3_1-9-9,Enarj Enawga  ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-10,East Gojjam,ETH.3_1-10-10,Enebse Sar Midir ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-11,East Gojjam,ETH.3_1-11-11,Enemay ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-12,East Gojjam,ETH.3_1-12-12,Goncha Siso Enese,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-13,East Gojjam,ETH.3_1-13-13,Gozamin ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-14,East Gojjam,ETH.3_1-14-14,Hulet Ej Enese  ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-15,East Gojjam,ETH.3_1-15-15,Machakel,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-16,East Gojjam,ETH.3_1-16-16,Mota Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-17,East Gojjam,ETH.3_1-17-17,Shebel Berenta ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-18,East Gojjam,ETH.3_1-18-18,Sinan,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-1,North Gondar,ETH.3_1-1-1,Adi Arkay,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-2,North Gondar,ETH.3_1-2-2,Alefa,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-3,North Gondar,ETH.3_1-3-3,Beyeda,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-4,North Gondar,ETH.3_1-4-4,Chilga,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-5,North Gondar,ETH.3_1-5-5,Dabat,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-6,North Gondar,ETH.3_1-6-6,Debark,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-7,North Gondar,ETH.3_1-7-7,Debark Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-8,North Gondar,ETH.3_1-8-8,Dembia,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-9,North Gondar,ETH.3_1-9-9,Gendawuha Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-10,North Gondar,ETH.3_1-10-10,Gondar Zuria,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-11,North Gondar,ETH.3_1-11-11,Gonder Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-12,North Gondar,ETH.3_1-12-12,Janamora,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-13,North Gondar,ETH.3_1-13-13,Lay Armachoho,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-14,North Gondar,ETH.3_1-14-14,Merab Armachoho,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-15,North Gondar,ETH.3_1-15-15,Merab Belesa,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-16,North Gondar,ETH.3_1-16-16,Metema,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-17,North Gondar,ETH.3_1-17-17,Misrak Belesa,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-18,North Gondar,ETH.3_1-18-18,Quara,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-19,North Gondar,ETH.3_1-19-19,Tach Armachoho,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-20,North Gondar,ETH.3_1-20-20,Takusa,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-21,North Gondar,ETH.3_1-21-21,Tegede,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-22,North Gondar,ETH.3_1-22-22,Tselemet,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-23,North Gondar,ETH.3_1-23-23,Wegera,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-1,North Shewa,ETH.3_1-1-1,Angolala Tera,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-2,North Shewa,ETH.3_1-2-2,Ankober,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-3,North Shewa,ETH.3_1-3-3,Antsokiya Gemza,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-4,North Shewa,ETH.3_1-4-4,Asagirt,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-5,North Shewa,ETH.3_1-5-5,Basona Werana,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-6,North Shewa,ETH.3_1-6-6,Berehet,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-7,North Shewa,ETH.3_1-7-7,Debre Berhan Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-8,North Shewa,ETH.3_1-8-8,Efrata Gidim,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-9,North Shewa,ETH.3_1-9-9,Ensaro ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-10,North Shewa,ETH.3_1-10-10,Gishe ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-11,North Shewa,ETH.3_1-11-11,Hagere Mariam Kesem,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-12,North Shewa,ETH.3_1-12-12,Kewet,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-13,North Shewa,ETH.3_1-13-13,Menz Gera Midir ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-14,North Shewa,ETH.3_1-14-14,Menz Keya Gebreal,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-15,North Shewa,ETH.3_1-15-15,Menz Lalo Midir ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-16,North Shewa,ETH.3_1-16-16,Menz Mama Midir,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-17,North Shewa,ETH.3_1-17-17,Merhabete,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-18,North Shewa,ETH.3_1-18-18,Mida Woremo ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-19,North Shewa,ETH.3_1-19-19,Minjar Shenkora,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-20,North Shewa,ETH.3_1-20-20,Mojana Waderea,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-21,North Shewa,ETH.3_1-21-21,Moretna Jiru ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-22,North Shewa,ETH.3_1-22-22,Saya Debirna Wayu ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-23,North Shewa,ETH.3_1-23-23,Shoa Robit,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-24,North Shewa,ETH.3_1-24-24,Tarma Ber,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-1,North Wello,ETH.3_1-1-1,Bugna,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-2,North Wello,ETH.3_1-2-2,Dawunt,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-3,North Wello,ETH.3_1-3-3,Delanta,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-4,North Wello,ETH.3_1-4-4,Gidan,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-5,North Wello,ETH.3_1-5-5,Gubalafto,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-6,North Wello,ETH.3_1-6-6,Habru,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-7,North Wello,ETH.3_1-7-7,Kobo,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-8,North Wello,ETH.3_1-8-8,Kobo Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-9,North Wello,ETH.3_1-9-9,Lalibela Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-10,North Wello,ETH.3_1-10-10,Lasta,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-11,North Wello,ETH.3_1-11-11,Meket,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-12,North Wello,ETH.3_1-12-12,Wadla,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-13,North Wello,ETH.3_1-13-13,Woldiya Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-1,Oromia,ETH.3_1-1-1,Artuma Fursi,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-2,Oromia,ETH.3_1-2-2,Bati ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-3,Oromia,ETH.3_1-3-3,Bati Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-4,Oromia,ETH.3_1-4-4,Dawa Chefa,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-5,Oromia,ETH.3_1-5-5,Dawe Harewa,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-6,Oromia,ETH.3_1-6-6,Jile Timuga,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-7,Oromia,ETH.3_1-7-7,Kemisie Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-1,South Gondar,ETH.3_1-1-1,Andabete,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-2,South Gondar,ETH.3_1-2-2,Debre Tabor Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-3,South Gondar,ETH.3_1-3-3,Dera,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-4,South Gondar,ETH.3_1-4-4,Ebinat,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-5,South Gondar,ETH.3_1-5-5,Estie,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-6,South Gondar,ETH.3_1-6-6,Farta,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-7,South Gondar,ETH.3_1-7-7,Fogera,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-8,South Gondar,ETH.3_1-8-8,Lay Gayint,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-9,South Gondar,ETH.3_1-9-9,Libokemkem,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-10,South Gondar,ETH.3_1-10-10,Simada,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-11,South Gondar,ETH.3_1-11-11,Tach Gayint,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-12,South Gondar,ETH.3_1-12-12,Woreta Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-1,South Wello,ETH.3_1-1-1,Albuko,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-2,South Wello,ETH.3_1-2-2,Ambasel,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-3,South Wello,ETH.3_1-3-3,Borena,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-4,South Wello,ETH.3_1-4-4,Dessie Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-5,South Wello,ETH.3_1-5-5,Dessie Zuria,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-6,South Wello,ETH.3_1-6-6,Jama,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-7,South Wello,ETH.3_1-7-7,Kalu,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-8,South Wello,ETH.3_1-8-8,Kelela,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-9,South Wello,ETH.3_1-9-9,Kombolcha Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-10,South Wello,ETH.3_1-10-10,Kutaber,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-11,South Wello,ETH.3_1-11-11,Legahida,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-12,South Wello,ETH.3_1-12-12,Legambo,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-13,South Wello,ETH.3_1-13-13,Mehal Saynt ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-14,South Wello,ETH.3_1-14-14,Mekdela,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-15,South Wello,ETH.3_1-15-15,Sayint,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-16,South Wello,ETH.3_1-16-16,Tehuledere,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-17,South Wello,ETH.3_1-17-17,Tenta,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-18,South Wello,ETH.3_1-18-18,Wegidi,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-19,South Wello,ETH.3_1-19-19,Were Ilu ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-20,South Wello,ETH.3_1-20-20,Werebabu,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-1,Waghemira,ETH.3_1-1-1,Abergele,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-2,Waghemira,ETH.3_1-2-2,Dehena,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-3,Waghemira,ETH.3_1-3-3,Gazgibla,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-4,Waghemira,ETH.3_1-4-4,Sehala,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-5,Waghemira,ETH.3_1-5-5,Sekota ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-6,Waghemira,ETH.3_1-6-6,Sekota Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-7,Waghemira,ETH.3_1-7-7,Ziquala,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-1,West Gojjam,ETH.3_1-1-1,Bahir Dar Zuria ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-2,West Gojjam,ETH.3_1-2-2,Bure Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-3,West Gojjam,ETH.3_1-3-3,Bure Zuria,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-4,West Gojjam,ETH.3_1-4-4,Debub Achefer ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-5,West Gojjam,ETH.3_1-5-5,Dega Damot ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-6,West Gojjam,ETH.3_1-6-6,Dembecha,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-7,West Gojjam,ETH.3_1-7-7,Finote Selam Town,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-8,West Gojjam,ETH.3_1-8-8,Gonji Kolele,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-9,West Gojjam,ETH.3_1-9-9,Jabi Tehnan ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-10,West Gojjam,ETH.3_1-10-10,Mecha ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-11,West Gojjam,ETH.3_1-11-11,Quarit ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-12,West Gojjam,ETH.3_1-12-12,Sekela ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-13,West Gojjam,ETH.3_1-13-13,Semen Achefer ,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-14,West Gojjam,ETH.3_1-14-14,Wonberma,Amhara
+ETH,Ethiopia,ETH.3_1,Amhara,ETH.3_1-15,West Gojjam,ETH.3_1-15-15,Yilma Na Densa ,Amhara
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-1,Asossa,ETH.4_1-1-1,Asossa,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-2,Asossa,ETH.4_1-2-2,Bambasi,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-3,Asossa,ETH.4_1-3-3,Homesha,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-4,Asossa,ETH.4_1-4-4,Kurmuk,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-5,Asossa,ETH.4_1-5-5,Menge,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-6,Asossa,ETH.4_1-6-6,Odabuldi-Guli,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-7,Asossa,ETH.4_1-7-7,Sherkole,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-1,Asossa City Administration,ETH.4_1-1-1,Assossa Town,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-1,Kemashi,ETH.4_1-1-1,Agelo Meti,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-2,Kemashi,ETH.4_1-2-2,Belojegonfoy,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-3,Kemashi,ETH.4_1-3-3,Kemashi,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-4,Kemashi,ETH.4_1-4-4,Sirba Abay,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-5,Kemashi,ETH.4_1-5-5,Yaso,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-1,Mao Komo Special ,ETH.4_1-1-1,Mao Komo Special ,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-1,Metekel ,ETH.4_1-1-1,Bulen,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-2,Metekel ,ETH.4_1-2-2,Dangur,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-3,Metekel ,ETH.4_1-3-3,Dibate,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-4,Metekel ,ETH.4_1-4-4,Guba,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-5,Metekel ,ETH.4_1-5-5,Mandura,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-6,Metekel ,ETH.4_1-6-6,Pawe,Bensh-G
+ETH,Ethiopia,ETH.4_1,Benishangul-Gumuz,ETH.4_1-7,Metekel ,ETH.4_1-7-7,Wenbera,Bensh-G
+ETH,Ethiopia,ETH.5_1,Dire Dawa,ETH.5_1-1,Dire Dawa,ETH.5_1-1-1,Addis Ketema,Dire Dawa
+ETH,Ethiopia,ETH.5_1,Dire Dawa,ETH.5_1-2,Dire Dawa,ETH.5_1-2-2,Biyoawale,Dire Dawa
+ETH,Ethiopia,ETH.5_1,Dire Dawa,ETH.5_1-3,Dire Dawa,ETH.5_1-3-3,Dire Dawa Town,Dire Dawa
+ETH,Ethiopia,ETH.5_1,Dire Dawa,ETH.5_1-4,Dire Dawa,ETH.5_1-4-4,Gende Kore,Dire Dawa
+ETH,Ethiopia,ETH.5_1,Dire Dawa,ETH.5_1-5,Dire Dawa,ETH.5_1-5-5,Jeldessa,Dire Dawa
+ETH,Ethiopia,ETH.5_1,Dire Dawa,ETH.5_1-6,Dire Dawa,ETH.5_1-6-6,Legehare,Dire Dawa
+ETH,Ethiopia,ETH.5_1,Dire Dawa,ETH.5_1-7,Dire Dawa,ETH.5_1-7-7,M/jebdu,Dire Dawa
+ETH,Ethiopia,ETH.5_1,Dire Dawa,ETH.5_1-8,Dire Dawa,ETH.5_1-8-8,Sabian,Dire Dawa
+ETH,Ethiopia,ETH.5_1,Dire Dawa,ETH.5_1-9,Dire Dawa,ETH.5_1-9-9,Wahil,Dire Dawa
+ETH,Ethiopia,ETH.6_1,Gambella,ETH.6_1-1,Agnewak,ETH.6_1-1-1,Dima ,Gambella
+ETH,Ethiopia,ETH.6_1,Gambella,ETH.6_1-2,Agnewak,ETH.6_1-2-2,Gambella Zuria ,Gambella
+ETH,Ethiopia,ETH.6_1,Gambella,ETH.6_1-3,Agnewak,ETH.6_1-3-3,Gog ,Gambella
+ETH,Ethiopia,ETH.6_1,Gambella,ETH.6_1-4,Agnewak,ETH.6_1-4-4,Jor ,Gambella
+ETH,Ethiopia,ETH.6_1,Gambella,ETH.6_1-1,Etang Special,ETH.6_1-1-1,Etang ,Gambella
+ETH,Ethiopia,ETH.6_1,Gambella,ETH.6_1-1,Gambella Town Administration,ETH.6_1-1-1,Gambella Town,Gambella
+ETH,Ethiopia,ETH.6_1,Gambella,ETH.6_1-1,Mezhenger,ETH.6_1-1-1,Godare ,Gambella
+ETH,Ethiopia,ETH.6_1,Gambella,ETH.6_1-2,Mezhenger,ETH.6_1-2-2,Mengesh ,Gambella
+ETH,Ethiopia,ETH.6_1,Gambella,ETH.6_1-1,Nuwer,ETH.6_1-1-1,Akobo ,Gambella
+ETH,Ethiopia,ETH.6_1,Gambella,ETH.6_1-2,Nuwer,ETH.6_1-2-2,Jikawo ,Gambella
+ETH,Ethiopia,ETH.6_1,Gambella,ETH.6_1-3,Nuwer,ETH.6_1-3-3,Lare ,Gambella
+ETH,Ethiopia,ETH.6_1,Gambella,ETH.6_1-4,Nuwer,ETH.6_1-4-4,Makuey,Gambella
+ETH,Ethiopia,ETH.6_1,Gambella,ETH.6_1-5,Nuwer,ETH.6_1-5-5,Wantawa ,Gambella
+ETH,Ethiopia,ETH.7_1,Hareri,ETH.7_1-1,Harari ,ETH.7_1-1-1,Abadir,Harari
+ETH,Ethiopia,ETH.7_1,Hareri,ETH.7_1-2,Harari ,ETH.7_1-2-2,Aboker,Harari
+ETH,Ethiopia,ETH.7_1,Hareri,ETH.7_1-3,Harari ,ETH.7_1-3-3,Amir Nur,Harari
+ETH,Ethiopia,ETH.7_1,Hareri,ETH.7_1-4,Harari ,ETH.7_1-4-4,Dire Teyara,Harari
+ETH,Ethiopia,ETH.7_1,Hareri,ETH.7_1-5,Harari ,ETH.7_1-5-5,Erer,Harari
+ETH,Ethiopia,ETH.7_1,Hareri,ETH.7_1-6,Harari ,ETH.7_1-6-6,Hakim,Harari
+ETH,Ethiopia,ETH.7_1,Hareri,ETH.7_1-7,Harari ,ETH.7_1-7-7,Jinela,Harari
+ETH,Ethiopia,ETH.7_1,Hareri,ETH.7_1-8,Harari ,ETH.7_1-8-8,Shenkor,Harari
+ETH,Ethiopia,ETH.7_1,Hareri,ETH.7_1-9,Harari ,ETH.7_1-9-9,Sofi,Harari
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,Arsi,ETH.8_1-1-1,Amigna,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,Arsi,ETH.8_1-2-2,Aseko,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,Arsi,ETH.8_1-3-3,Asela Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,Arsi,ETH.8_1-4-4,Bale Gasegar,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,Arsi,ETH.8_1-5-5,Bekoji City,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,Arsi,ETH.8_1-6-6,Chole,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,Arsi,ETH.8_1-7-7,Deksis,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,Arsi,ETH.8_1-8-8,Digluna Tijo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,Arsi,ETH.8_1-9-9,Dodota,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,Arsi,ETH.8_1-10-10,Enkelo Wabe ,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,Arsi,ETH.8_1-11-11,Gololcha,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,Arsi,ETH.8_1-12-12,Guna,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,Arsi,ETH.8_1-13-13,Hitosa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,Arsi,ETH.8_1-14-14,Jeju,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-15,Arsi,ETH.8_1-15-15,Limuna Bilbilo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-16,Arsi,ETH.8_1-16-16,Lude Hitosa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-17,Arsi,ETH.8_1-17-17,Merti,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-18,Arsi,ETH.8_1-18-18,Munesa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-19,Arsi,ETH.8_1-19-19,Robe,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-20,Arsi,ETH.8_1-20-20,Seru,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-21,Arsi,ETH.8_1-21-21,Shirka,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-22,Arsi,ETH.8_1-22-22,Sire,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-23,Arsi,ETH.8_1-23-23,Sude,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-24,Arsi,ETH.8_1-24-24,Tena,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-25,Arsi,ETH.8_1-25-25,Tiyo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-26,Arsi,ETH.8_1-26-26,Ziway Dugda,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,Bale,ETH.8_1-1-1,Agarfa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,Bale,ETH.8_1-2-2,Berbere,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,Bale,ETH.8_1-3-3,Dawe Kachen ,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,Bale,ETH.8_1-4-4,Dawe Serer,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,Bale,ETH.8_1-5-5,Dinsho,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,Bale,ETH.8_1-6-6,Dolo Mena,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,Bale,ETH.8_1-7-7,Gasera,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,Bale,ETH.8_1-8-8,Ginir Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,Bale,ETH.8_1-9-9,Ginir Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,Bale,ETH.8_1-10-10,Goba Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,Bale,ETH.8_1-11-11,Goba Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,Bale,ETH.8_1-12-12,Gololcha,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,Bale,ETH.8_1-13-13,Goro,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,Bale,ETH.8_1-14-14,Guradamole,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-15,Bale,ETH.8_1-15-15,Harena Buluk,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-16,Bale,ETH.8_1-16-16,Meda Welabu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-17,Bale,ETH.8_1-17-17,Rayitu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-18,Bale,ETH.8_1-18-18,Robe Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-19,Bale,ETH.8_1-19-19,Seweyna,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-20,Bale,ETH.8_1-20-20,Sinana ,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,Borena,ETH.8_1-1-1,Abaya,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,Borena,ETH.8_1-2-2,Arero,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,Borena,ETH.8_1-3-3,Bule Hora Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,Borena,ETH.8_1-4-4,Bule Hora Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,Borena,ETH.8_1-5-5,Dhas,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,Borena,ETH.8_1-6-6,Dillo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,Borena,ETH.8_1-7-7,Dire,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,Borena,ETH.8_1-8-8,Dugida Dawa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,Borena,ETH.8_1-9-9,Gelana,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,Borena,ETH.8_1-10-10,Melka Soda,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,Borena,ETH.8_1-11-11,Miyo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,Borena,ETH.8_1-12-12,Moyale,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,Borena,ETH.8_1-13-13,Teletele,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,Borena,ETH.8_1-14-14,Yabelo Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-15,Borena,ETH.8_1-15-15,Yabelo Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,East Hararge,ETH.8_1-1-1,Aweday Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,East Hararge,ETH.8_1-2-2,Babile,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,East Hararge,ETH.8_1-3-3,Bedeno,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,East Hararge,ETH.8_1-4-4,Chinaksan,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,East Hararge,ETH.8_1-5-5,Deder Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,East Hararge,ETH.8_1-6-6,Deder Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,East Hararge,ETH.8_1-7-7,Fedis,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,East Hararge,ETH.8_1-8-8,Girawa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,East Hararge,ETH.8_1-9-9,Gola Oda,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,East Hararge,ETH.8_1-10-10,Goro Gutu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,East Hararge,ETH.8_1-11-11,Gursum,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,East Hararge,ETH.8_1-12-12,Haro Maya Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,East Hararge,ETH.8_1-13-13,Haro Maya Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,East Hararge,ETH.8_1-14-14,Jarso,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-15,East Hararge,ETH.8_1-15-15,Kersa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-16,East Hararge,ETH.8_1-16-16,Kombolcha,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-17,East Hararge,ETH.8_1-17-17,Kumbi,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-18,East Hararge,ETH.8_1-18-18,Kurfa Chele,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-19,East Hararge,ETH.8_1-19-19,Melka Belo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-20,East Hararge,ETH.8_1-20-20,Meta,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-21,East Hararge,ETH.8_1-21-21,Meyu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-22,East Hararge,ETH.8_1-22-22,Midga Tola,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,East Shewa,ETH.8_1-1-1,Ada A,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,East Shewa,ETH.8_1-2-2,Adama Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,East Shewa,ETH.8_1-3-3,Adama Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,East Shewa,ETH.8_1-4-4,Adami Tulu Jido Kombolcha,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,East Shewa,ETH.8_1-5-5,Batu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,East Shewa,ETH.8_1-6-6,Bishoftu Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,East Shewa,ETH.8_1-7-7,Bora,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,East Shewa,ETH.8_1-8-8,Boset,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,East Shewa,ETH.8_1-9-9,Dugda,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,East Shewa,ETH.8_1-10-10,Fentale,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,East Shewa,ETH.8_1-11-11,Gimbichu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,East Shewa,ETH.8_1-12-12,Liben Chukala,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,East Shewa,ETH.8_1-13-13,Lome,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,East Shewa,ETH.8_1-14-14,Metahara City,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-15,East Shewa,ETH.8_1-15-15,Mojo Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,East Wellega,ETH.8_1-1-1,Boneya Boshe,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,East Wellega,ETH.8_1-2-2,Diga,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,East Wellega,ETH.8_1-3-3,Gida Ayana,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,East Wellega,ETH.8_1-4-4,Gobu Seyo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,East Wellega,ETH.8_1-5-5,Gudeya Bila,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,East Wellega,ETH.8_1-6-6,Guto Gida,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,East Wellega,ETH.8_1-7-7,Haro Limu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,East Wellega,ETH.8_1-8-8,Ibantu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,East Wellega,ETH.8_1-9-9,Jima Arjo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,East Wellega,ETH.8_1-10-10,Keremu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,East Wellega,ETH.8_1-11-11,Leka Dulecha,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,East Wellega,ETH.8_1-12-12,Limu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,East Wellega,ETH.8_1-13-13,Nekemte Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,East Wellega,ETH.8_1-14-14,Nunu Kumba,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-15,East Wellega,ETH.8_1-15-15,Sasiga,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-16,East Wellega,ETH.8_1-16-16,Sibu Sire,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-17,East Wellega,ETH.8_1-17-17,Wama Hagelo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-18,East Wellega,ETH.8_1-18-18,Wayu Tuka,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,Finfine Zuria,ETH.8_1-1-1,Akaki,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,Finfine Zuria,ETH.8_1-2-2,Berek,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,Finfine Zuria,ETH.8_1-3-3,Burayu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,Finfine Zuria,ETH.8_1-4-4,Duken Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,Finfine Zuria,ETH.8_1-5-5,Gelan,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,Finfine Zuria,ETH.8_1-6-6,Holeta Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,Finfine Zuria,ETH.8_1-7-7,Lega Tafo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,Finfine Zuria,ETH.8_1-8-8,Lega Tafo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,Finfine Zuria,ETH.8_1-9-9,Mulo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,Finfine Zuria,ETH.8_1-10-10,Sebeta Hawas,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,Finfine Zuria,ETH.8_1-11-11,Sendafa Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,Finfine Zuria,ETH.8_1-12-12,Sululta,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,Finfine Zuria,ETH.8_1-13-13,Sululta Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,Finfine Zuria,ETH.8_1-14-14,Wolmera,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,Guji,ETH.8_1-1-1,Adola,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,Guji,ETH.8_1-2-2,Adola Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,Guji,ETH.8_1-3-3,Anasora,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,Guji,ETH.8_1-4-4,Bore,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,Guji,ETH.8_1-5-5,Dima ,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,Guji,ETH.8_1-6-6,Girja,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,Guji,ETH.8_1-7-7,Goro Dola,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,Guji,ETH.8_1-8-8,Hambela Wamena,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,Guji,ETH.8_1-9-9,Kercha,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,Guji,ETH.8_1-10-10,Liben,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,Guji,ETH.8_1-11-11,Negele Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,Guji,ETH.8_1-12-12,Odo Shakiso,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,Guji,ETH.8_1-13-13,Sebu Boru,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,Guji,ETH.8_1-14-14,Shakiso Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-15,Guji,ETH.8_1-15-15,Uraga,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-16,Guji,ETH.8_1-16-16,Wadera,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,Horo Gudru Welega,ETH.8_1-1-1,Abay Chomen,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,Horo Gudru Welega,ETH.8_1-2-2,Abe Dongoro,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,Horo Gudru Welega,ETH.8_1-3-3,Amuru,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,Horo Gudru Welega,ETH.8_1-4-4,Guduru,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,Horo Gudru Welega,ETH.8_1-5-5,Hababo Guduru,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,Horo Gudru Welega,ETH.8_1-6-6,Horo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,Horo Gudru Welega,ETH.8_1-7-7,Jardega Jarte ,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,Horo Gudru Welega,ETH.8_1-8-8,Jima Genete,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,Horo Gudru Welega,ETH.8_1-9-9,Jima Rare,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,Horo Gudru Welega,ETH.8_1-10-10,Shambu Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,Illu Aba Bora,ETH.8_1-1-1,Ale,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,Illu Aba Bora,ETH.8_1-2-2,Alge Sachi,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,Illu Aba Bora,ETH.8_1-3-3,Bedele Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,Illu Aba Bora,ETH.8_1-4-4,Bedele Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,Illu Aba Bora,ETH.8_1-5-5,Bicho,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,Illu Aba Bora,ETH.8_1-6-6,Bilo Nopha,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,Illu Aba Bora,ETH.8_1-7-7,Borecha,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,Illu Aba Bora,ETH.8_1-8-8,Bure,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,Illu Aba Bora,ETH.8_1-9-9,Chewaka,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,Illu Aba Bora,ETH.8_1-10-10,Chora,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,Illu Aba Bora,ETH.8_1-11-11,Dabo Hana,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,Illu Aba Bora,ETH.8_1-12-12,Darimu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,Illu Aba Bora,ETH.8_1-13-13,Dedesa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,Illu Aba Bora,ETH.8_1-14-14,Dega,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-15,Illu Aba Bora,ETH.8_1-15-15,Didu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-16,Illu Aba Bora,ETH.8_1-16-16,Doreni,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-17,Illu Aba Bora,ETH.8_1-17-17,Gechi,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-18,Illu Aba Bora,ETH.8_1-18-18,Huka Halu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-19,Illu Aba Bora,ETH.8_1-19-19,Hurumu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-20,Illu Aba Bora,ETH.8_1-20-20,Mako,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-21,Illu Aba Bora,ETH.8_1-21-21,Metu Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-22,Illu Aba Bora,ETH.8_1-22-22,Metu Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-23,Illu Aba Bora,ETH.8_1-23-23,Nono Sele,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-24,Illu Aba Bora,ETH.8_1-24-24,Yayu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,Jimma,ETH.8_1-1-1,Agaro Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,Jimma,ETH.8_1-2-2,Chora Botor,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,Jimma,ETH.8_1-3-3,Dedo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,Jimma,ETH.8_1-4-4,Gera,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,Jimma,ETH.8_1-5-5,Gomma,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,Jimma,ETH.8_1-6-6,Gumay,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,Jimma,ETH.8_1-7-7,Jima Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,Jimma,ETH.8_1-8-8,Kersa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,Jimma,ETH.8_1-9-9,Limu Kosa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,Jimma,ETH.8_1-10-10,Limu Seka,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,Jimma,ETH.8_1-11-11,Mana,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,Jimma,ETH.8_1-12-12,Nono Benja,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,Jimma,ETH.8_1-13-13,Omonada,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,Jimma,ETH.8_1-14-14,Seka Chekorsa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-15,Jimma,ETH.8_1-15-15,Setema,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-16,Jimma,ETH.8_1-16-16,Shebe Senbo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-17,Jimma,ETH.8_1-17-17,Sigamo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-18,Jimma,ETH.8_1-18-18,Sokoru,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-19,Jimma,ETH.8_1-19-19,Tiro Afeta,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,Kelem Welega,ETH.8_1-1-1,Anfilo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,Kelem Welega,ETH.8_1-2-2,Dale Sadi,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,Kelem Welega,ETH.8_1-3-3,Dale Wabera,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,Kelem Welega,ETH.8_1-4-4,Denbi Dollo Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,Kelem Welega,ETH.8_1-5-5,Gawo Kebe,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,Kelem Welega,ETH.8_1-6-6,Gidami,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,Kelem Welega,ETH.8_1-7-7,Hawa Gelan,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,Kelem Welega,ETH.8_1-8-8,Jimma Horo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,Kelem Welega,ETH.8_1-9-9,Lalo Kile,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,Kelem Welega,ETH.8_1-10-10,Seyo ,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,Kelem Welega,ETH.8_1-11-11,Yemalogi Welel,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,North Shewa,ETH.8_1-1-1,Abichuna Gnaa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,North Shewa,ETH.8_1-2-2,Aleltu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,North Shewa,ETH.8_1-3-3,Debere Libanos,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,North Shewa,ETH.8_1-4-4,Degem,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,North Shewa,ETH.8_1-5-5,Dera,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,North Shewa,ETH.8_1-6-6,Fiche Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,North Shewa,ETH.8_1-7-7,Girar Jarso,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,North Shewa,ETH.8_1-8-8,Hidabu Abote,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,North Shewa,ETH.8_1-9-9,Jida,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,North Shewa,ETH.8_1-10-10,Kimbibit,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,North Shewa,ETH.8_1-11-11,Kuyu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,North Shewa,ETH.8_1-12-12,Were Jarso,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,North Shewa,ETH.8_1-13-13,Wuchale,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,North Shewa,ETH.8_1-14-14,Yaya Gulele,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,South West Shewa,ETH.8_1-1-1,Ameya,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,South West Shewa,ETH.8_1-2-2,Becho,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,South West Shewa,ETH.8_1-3-3,Dawo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,South West Shewa,ETH.8_1-4-4,Goro,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,South West Shewa,ETH.8_1-5-5,Ilu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,South West Shewa,ETH.8_1-6-6,Kersa Ena Malima,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,South West Shewa,ETH.8_1-7-7,Sebeta Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,South West Shewa,ETH.8_1-8-8,Seden Sodo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,South West Shewa,ETH.8_1-9-9,Sodo Dachi,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,South West Shewa,ETH.8_1-10-10,Tole,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,South West Shewa,ETH.8_1-11-11,Woliso Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,South West Shewa,ETH.8_1-12-12,Woliso Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,South West Shewa,ETH.8_1-13-13,Wonchi,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,West  Hararge,ETH.8_1-1-1,Anchar,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,West  Hararge,ETH.8_1-2-2,Bedesa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,West  Hararge,ETH.8_1-3-3,Boke,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,West  Hararge,ETH.8_1-4-4,Burqua Dhintu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,West  Hararge,ETH.8_1-5-5,Chiro Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,West  Hararge,ETH.8_1-6-6,Chiro Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,West  Hararge,ETH.8_1-7-7,Daro Lebu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,West  Hararge,ETH.8_1-8-8,Doba,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,West  Hararge,ETH.8_1-9-9,Gemches,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,West  Hararge,ETH.8_1-10-10,Guba Koricha,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,West  Hararge,ETH.8_1-11-11,Habro,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,West  Hararge,ETH.8_1-12-12,Hawi Gudina,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,West  Hararge,ETH.8_1-13-13,Mesela,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,West  Hararge,ETH.8_1-14-14,Mieso,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-15,West  Hararge,ETH.8_1-15-15,Odabultum,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-16,West  Hararge,ETH.8_1-16-16,Tulo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,West Arsi,ETH.8_1-1-1,Adaba,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,West Arsi,ETH.8_1-2-2,Arsi Negele Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,West Arsi,ETH.8_1-3-3,Arsi Negele Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,West Arsi,ETH.8_1-4-4,Bishan Guracha,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,West Arsi,ETH.8_1-5-5,Dodola Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,West Arsi,ETH.8_1-6-6,Dodola Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,West Arsi,ETH.8_1-7-7,Gedeb Asasa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,West Arsi,ETH.8_1-8-8,Kofele,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,West Arsi,ETH.8_1-9-9,Kokosa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,West Arsi,ETH.8_1-10-10,Kore ,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,West Arsi,ETH.8_1-11-11,Nansebo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,West Arsi,ETH.8_1-12-12,Shala,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,West Arsi,ETH.8_1-13-13,Shashemene Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,West Arsi,ETH.8_1-14-14,Siraro,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-15,West Arsi,ETH.8_1-15-15,Wondo,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,West Shewa,ETH.8_1-1-1,Abuna Gindeberet,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,West Shewa,ETH.8_1-2-2,Ada Berga,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,West Shewa,ETH.8_1-3-3,Ambo Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,West Shewa,ETH.8_1-4-4,Ambo Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,West Shewa,ETH.8_1-5-5,Bako Tibe,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,West Shewa,ETH.8_1-6-6,Cheliya,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,West Shewa,ETH.8_1-7-7,Dano,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,West Shewa,ETH.8_1-8-8,Dendi,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,West Shewa,ETH.8_1-9-9,Dire Inchini,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,West Shewa,ETH.8_1-10-10,Ejere,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,West Shewa,ETH.8_1-11-11,Elfata,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,West Shewa,ETH.8_1-12-12,Ginde Beret,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,West Shewa,ETH.8_1-13-13,Illu Galan,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,West Shewa,ETH.8_1-14-14,Jeldu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-15,West Shewa,ETH.8_1-15-15,Jibat,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-16,West Shewa,ETH.8_1-16-16,Meta Robi,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-17,West Shewa,ETH.8_1-17-17,Midakegn,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-18,West Shewa,ETH.8_1-18-18,Nono,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-19,West Shewa,ETH.8_1-19-19,Toke Kutayu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-1,West Wellega,ETH.8_1-1-1,Ayira,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-2,West Wellega,ETH.8_1-2-2,Babo Gambel,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-3,West Wellega,ETH.8_1-3-3,Begi,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-4,West Wellega,ETH.8_1-4-4,Boji Chekorsa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-5,West Wellega,ETH.8_1-5-5,Boji Dirmeji,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-6,West Wellega,ETH.8_1-6-6,Genji,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-7,West Wellega,ETH.8_1-7-7,Gimbi Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-8,West Wellega,ETH.8_1-8-8,Gimbi Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-9,West Wellega,ETH.8_1-9-9,Guliso,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-10,West Wellega,ETH.8_1-10-10,Haru,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-11,West Wellega,ETH.8_1-11-11,Homa,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-12,West Wellega,ETH.8_1-12-12,Jarso,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-13,West Wellega,ETH.8_1-13-13,Kiltu Kara,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-14,West Wellega,ETH.8_1-14-14,Kondala,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-15,West Wellega,ETH.8_1-15-15,Lalo Asabi,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-16,West Wellega,ETH.8_1-16-16,Mendi,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-17,West Wellega,ETH.8_1-17-17,Menesibu,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-18,West Wellega,ETH.8_1-18-18,Nejo Rural,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-19,West Wellega,ETH.8_1-19-19,Nejo Town,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-20,West Wellega,ETH.8_1-20-20,Nole Kaba,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-21,West Wellega,ETH.8_1-21-21,Seyo Nole,Oromia
+ETH,Ethiopia,ETH.8_1,Oromia,ETH.8_1-22,West Wellega,ETH.8_1-22-22,Yubdo,Oromia
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-1,Afder,ETH.9_1-1-1,Barey,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-2,Afder,ETH.9_1-2-2,Chereti,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-3,Afder,ETH.9_1-3-3,Elkere,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-4,Afder,ETH.9_1-4-4,Goraboqaksa,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-5,Afder,ETH.9_1-5-5,Guradamole,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-6,Afder,ETH.9_1-6-6,Hargele ,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-7,Afder,ETH.9_1-7-7,Lagahida,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-8,Afder,ETH.9_1-8-8,Qarsadula ,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-9,Afder,ETH.9_1-9-9,Raso,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-10,Afder,ETH.9_1-10-10,West Imay,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-1,Dollo,ETH.9_1-1-1,Bokh,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-2,Dollo,ETH.9_1-2-2,Danod,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-3,Dollo,ETH.9_1-3-3,Daratole,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-4,Dollo,ETH.9_1-4-4,Galadin,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-5,Dollo,ETH.9_1-5-5,Warder,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-1,Fafan,ETH.9_1-1-1,Awbare,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-2,Fafan,ETH.9_1-2-2,Babile,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-3,Fafan,ETH.9_1-3-3,Goljano,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-4,Fafan,ETH.9_1-4-4,Gursum,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-5,Fafan,ETH.9_1-5-5,Jigjiga Council,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-6,Fafan,ETH.9_1-6-6,Kebribeyah,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-7,Fafan,ETH.9_1-7-7,Mustehil,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-8,Fafan,ETH.9_1-8-8,Shabeley,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-9,Fafan,ETH.9_1-9-9,Tuliguled,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-1,Jarar,ETH.9_1-1-1,Ararso,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-2,Jarar,ETH.9_1-2-2,Aware,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-3,Jarar,ETH.9_1-3-3,Burqod,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-4,Jarar,ETH.9_1-4-4,Daror,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-5,Jarar,ETH.9_1-5-5,Degahabur City ,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-6,Jarar,ETH.9_1-6-6,Degahbur woreda,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-7,Jarar,ETH.9_1-7-7,Degahmadow,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-8,Jarar,ETH.9_1-8-8,Gashamo,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-9,Jarar,ETH.9_1-9-9,Gunagado,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-10,Jarar,ETH.9_1-10-10,Yocale,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-1,Korahe,ETH.9_1-1-1,Doloado,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-2,Korahe,ETH.9_1-2-2,Kebridehar ,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-3,Korahe,ETH.9_1-3-3,Kebridehar City ,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-4,Korahe,ETH.9_1-4-4,Marsin ,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-5,Korahe,ETH.9_1-5-5,Shaygosh,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-6,Korahe,ETH.9_1-6-6,Shilabo,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-1,Liben,ETH.9_1-1-1,Deka suftu,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-2,Liben,ETH.9_1-2-2,Erer,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-3,Liben,ETH.9_1-3-3,Filtu,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-4,Liben,ETH.9_1-4-4,Hudet,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-5,Liben,ETH.9_1-5-5,Moyale ,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-6,Liben,ETH.9_1-6-6,Mubarek ,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-1,Nogob,ETH.9_1-1-1,Afdem,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-2,Nogob,ETH.9_1-2-2,Ayshia,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-3,Nogob,ETH.9_1-3-3,Duhun,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-4,Nogob,ETH.9_1-4-4,Fik,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-5,Nogob,ETH.9_1-5-5,Garbo,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-6,Nogob,ETH.9_1-6-6,Hamaro,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-7,Nogob,ETH.9_1-7-7,Meiso,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-8,Nogob,ETH.9_1-8-8,Sagag,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-9,Nogob,ETH.9_1-9-9,Salahad,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-1,Shabele,ETH.9_1-1-1,Adadle,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-2,Shabele,ETH.9_1-2-2,Berocano,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-3,Shabele,ETH.9_1-3-3,Dhanan,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-4,Shabele,ETH.9_1-4-4,East Emi,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-5,Shabele,ETH.9_1-5-5,Elwayne,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-6,Shabele,ETH.9_1-6-6,Gode city,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-7,Shabele,ETH.9_1-7-7,Gode Woreda,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-8,Shabele,ETH.9_1-8-8,Hadhagala,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-9,Shabele,ETH.9_1-9-9,Kelafo,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-10,Shabele,ETH.9_1-10-10,Qubi,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-1,Siti,ETH.9_1-1-1,Dambal,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-2,Siti,ETH.9_1-2-2,Dobowayn,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-3,Siti,ETH.9_1-3-3,Dolobay,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-4,Siti,ETH.9_1-4-4,Ferfer,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-5,Siti,ETH.9_1-5-5,Harshim,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-6,Siti,ETH.9_1-6-6,Mayamulku,Somali
+ETH,Ethiopia,ETH.9_1,Somali,ETH.9_1-7,Siti,ETH.9_1-7-7,Shinile,Somali
 RWA,Rwanda,RWA.1_1,Amajyaruguru,RWA.1.1_1,Burera,RWA.1.1.1_1,Bungwe,Amhara
 RWA,Rwanda,RWA.1_1,Amajyaruguru,RWA.1.1_1,Burera,RWA.1.1.2_1,Butaro,Amhara
 RWA,Rwanda,RWA.1_1,Amajyaruguru,RWA.1.1_1,Burera,RWA.1.1.3_1,Cyanika,Afar

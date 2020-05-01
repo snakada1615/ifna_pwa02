@@ -92,6 +92,21 @@
       });
     }
 
+    function getSubDiv3(parentAdm) {
+      subDiv_list3 = [];
+      subDiv_key3 = [];
+      subDiv_list3.push("--select subdivision2--");
+      subDiv_key3.push("");
+      cnt_arr.forEach(function (val) {
+        if (val.fields["GID_2"] == parentAdm) {
+          if (subDiv_list3.indexOf(val.fields["NAME_3"]) == -1) {
+            subDiv_list3.push(val.fields["NAME_3"]);
+            subDiv_key3.push(val.fields["GID_3"]);
+          }
+        }
+      });
+    }
+
     function selCnt() {
       var selected_cnt = document.getElementById('id_country').value;
       getSubDiv1(selected_cnt);
