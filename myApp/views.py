@@ -107,7 +107,7 @@ class aboutNFA(TemplateView):
   template_name = "myApp/whatisNFA.html"
 
 
-class IndexView02(LoginRequiredMixin, TemplateView): #todo myCountyNameの設定がうまくいかない
+class IndexView02(LoginRequiredMixin, TemplateView):  # todo myCountyNameの設定がうまくいかない
   template_name = "myApp/index02.html"
 
   def get_context_data(self, **kwargs):
@@ -119,7 +119,7 @@ class IndexView02(LoginRequiredMixin, TemplateView): #todo myCountyNameの設定
       'myCrop': keys_all.myCrop,
       'myTarget': keys_all.myTarget,
       'myDiet': keys_all.myDiet,
-      'myCountryName': 'none'
+      'myCountryName': Location.objects.filter(id=keys_all.myLocation).first().country
     }
     json_str = json.dumps(data)
     context['myParam'] = json_str
@@ -402,7 +402,7 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     context['myuser'] = myUser
 
     # 作物のローカル名を送る
-    tmp01 = Crop_Name.objects.filter(myCountryName=Countries.objects.filter(id=myUser.profile.myLocation).first().GID_0)
+    tmp01 = Crop_Name.objects.filter(myCountryName=self.kwargs['myCountryName'])
     d = []
     for tmp02 in tmp01:
       dd = {}
@@ -778,7 +778,10 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context["mylist_available"] = d
 
     # 作物のローカル名を送る
-    tmp01 = Crop_Name.objects.filter(myCountryName=Countries.objects.filter(id=self.kwargs['myLocation']).first().GID_0)
+    tmp = Crop_Name._meta.get_fields()
+    logger.info(tmp[2])
+    tmp01 = Crop_Name.objects.filter(
+      myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
     d = []
     for tmp02 in tmp01:
       dd = {}
@@ -1466,7 +1469,7 @@ class IndexView04(LoginRequiredMixin, TemplateView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
-    context['myCountryName'] = Countries.objects.filter(id=self.request.user.profile.myLocation).first().GID_0
+    context['myCountryName'] = Location.objects.filter(id=self.request.user.profile.myLocation).country
     return context
 
 

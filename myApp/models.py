@@ -224,6 +224,7 @@ class DRI(models.Model):
     default=0
   )
 
+#this is a test
 
 class Crop_Feasibility(models.Model):
   choices_ascending = (
