@@ -107,21 +107,19 @@ class aboutNFA(TemplateView):
   template_name = "myApp/whatisNFA.html"
 
 
-class IndexView02(LoginRequiredMixin, TemplateView):
+class IndexView02(LoginRequiredMixin, TemplateView): #todo myCountyNameの設定がうまくいかない
   template_name = "myApp/index02.html"
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
 
     keys_all = self.request.user.profile
-    logger.info(keys_all.myLocation)
     data = {
       'myLocation': keys_all.myLocation,
       'myCrop': keys_all.myCrop,
       'myTarget': keys_all.myTarget,
       'myDiet': keys_all.myDiet,
-      'myCountryName': 'none' if keys_all.myLocation == 0 else Location.objects.filter(
-        id=keys_all.myLocation).first().country
+      'myCountryName': 'none'
     }
     json_str = json.dumps(data)
     context['myParam'] = json_str
