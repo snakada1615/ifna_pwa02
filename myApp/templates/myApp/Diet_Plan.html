@@ -978,8 +978,8 @@
           myShare = Number(motherTable.children('td').eq(8).text());
 
           if (myShare > 10) {
-            let mes = motherTable.children('td').eq(1).text() +
-                    ' is only available from ' + (myShare = 100 ? 'production' : 'market') + ' in this month';
+            let mes = motherTable.children('td').eq(0).text() +
+                    ' is only available from ' + (myShare = 100 ? 'production' : 'market') + ' for this month';
             alert(mes);
           } else {
             console.log('share_prod_buyを' + myShare + 'に設定します');
