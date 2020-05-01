@@ -763,7 +763,7 @@
           tblObj_localCrop1.rows().deselect();
 
           //filter crop by month//
-          for (var i = 10; i < 22; i++) {
+          for (var i = 9; i < 21; i++) {
             tblObj_localCrop1.column(i).search('').columns().search('').draw();
           }
           let myMonth = 0;
@@ -772,7 +772,7 @@
           } else {
             myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').text() - 1;
           }
-          tblObj_localCrop1.column(myMonth + 10).search('[123]', true, false).draw();
+          tblObj_localCrop1.column(myMonth + 9).search('[123]', true, false).draw();
 
           /// give selected status to the currently selected item//
           tblObj_localCrop1.rows().every(function (rowIdx, tableLoop, rowLoop) {
