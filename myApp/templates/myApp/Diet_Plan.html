@@ -692,11 +692,22 @@
         ////////////////////////////////////////////// //////////init second table as modal dialog add selected rows to text box
         $('#localCrop1 tbody').on('click', 'tr', function () {
           $(this).toggleClass('selected');
-          mydata = tblObj_localCrop1.row(this).data();
+          let mydata = tblObj_localCrop1.row(this).data();
           if ($(this).hasClass('selected')) {
 
-            //データセットの作成
-            dd = {};
+            //データセットの作成1:buy_prod_share設定
+            let tmp_share = 5;
+            let tmp_month = 'm' + $container_tab_all.attr('myMonth');
+            let tmp_val = Number(mydata[tmp_month]);
+            if (tmp_val == 2) {
+              tmp_share = 100;
+            } else if (tmp_val == 3) {
+              tmp_share = 99;
+            }
+            console.log('食品の入手先shareを'+tmp_share+'に設定します');
+
+            //データセットの作成2
+            let dd = {};
             dd["name"] = mydata['Food_name'];
             dd["Energy"] = mydata['Energy'];
             dd["Protein"] = mydata['Protein'];
@@ -704,11 +715,11 @@
             dd["FE"] = mydata['FE'];
             dd["food_item_id"] = mydata['food_item_id'];
             dd["portion_size"] = mydata['portion_size'];
-            dd["share_prod_buy"] = 5; //--初期値として5を設定<----------------------------
+            dd["share_prod_buy"] = tmp_share;
             dd["total_weight"] = 0;
             dd["count_prod"] = 0;
             dd["count_buy"] = 0;
-            dd["month"] = '';
+            //dd["month"] = '';
             dd["myLocation"] = myLocation_id;
             dd["myid_tbl"] = $container_tab_all.attr('myNum');
             dd["target_scope"] = Math.trunc(Number(dd["myid_tbl"]) / 100);
@@ -745,9 +756,16 @@
         /////CreateSelection/////
         function CreateSelection(myNum) {
           let myNum_tmp = myNum;
+          let myMonth = 0;
+          if (myNum_tmp < 200) {
+            myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex");
+          } else {
+            myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').text() - 1;
+          }
           let selected_list = [];
           let $modal_localCrop = $('#Modal_localCrop1');
-          $container_tab_all.attr('myNum', myNum_tmp);
+          $container_tab_all.attr('myNum', myNum_tmp);      //table番号の記録
+          $container_tab_all.attr('myMonth', myMonth + 1);  //該当月の記録
           $modal_localCrop.attr('myNum', myNum_tmp);
 
           /// get currently selected row//
@@ -765,12 +783,6 @@
           //filter crop by month//
           for (var i = 9; i < 21; i++) {
             tblObj_localCrop1.column(i).search('').columns().search('').draw();
-          }
-          let myMonth = 0;
-          if (myNum_tmp < 200) {
-            myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex");
-          } else {
-            myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').text() - 1;
           }
           tblObj_localCrop1.column(myMonth + 9).search('[123]', true, false).draw();
 
@@ -814,7 +826,7 @@
           console.log('Portionサイズを' + por + 'gに変更しました');
         });///----------------------------
 
-        //set piechart image///////////　#todo shareを直接DBに保存
+        //set piechart image///////////　
         function SetPie_img2(i_share) {
           if (i_share == 99) {
             i_share = 0;
@@ -828,21 +840,29 @@
           return h;
         }
 
-        function SetPie_img(i_prod, i_buy) {
-          let res = 10;
-          if (i_prod + i_buy > 0) {
-            res = Math.round(i_prod * 10 / (i_prod + i_buy));
-          }
-          let h = "/static/img/pie_" + String(res) + ".png";
-          console.log('prod/buy shareを' + i_prod + '/' + i_buy + 'に設定します');
+        {% comment %}
+                function SetPie_img(i_prod, i_buy) {
+                  let res = 10;
+                  if (i_prod + i_buy > 0) {
+                    res = Math.round(i_prod * 10 / (i_prod + i_buy));
+                  }
+                  let h = "/static/img/pie_" + String(res) + ".png";
+                  console.log('prod/buy shareを' + i_prod + '/' + i_buy + 'に設定します');
 
-          //console.log(h);
-          return h;
-        }
+                  //console.log(h);
+                  return h;
+                }
+        {% endcomment %}
 
         //set piechart value////////
         function SetPie_val(totalCount, myShare) {
           let h = {};
+          if (myShare == 99) {
+            myShare = 0
+          } else if (myShare == 100) {
+            myShare = 10
+          }
+
           let res = Math.round(totalCount * myShare / 10);
           h.i_prod = res;
           h.i_buy = totalCount - res;
@@ -906,6 +926,7 @@
           // まず値の取得
           let cou = Number($('#BR_food_count').children("option:selected").val());
 
+//          let myMom =  $('#tbl_food_SetWeight');
           let motherTable = $('#tbl_food_SetWeight').children('tbody').children('tr').eq(1);
           let por = Number(motherTable.children('td').eq(5).text());
           let tmp_prod = Number(motherTable.children('td').eq(6).text());
@@ -915,12 +936,13 @@
           //console.log('(2) por=' + por + ', cou=' + cou + ', count_p=' + tmp_prod + ', count_b=' + tmp_buy);
 
           //ここからprod-buyのシェア計算///
-          let myShare = 10;
-          if (tmp_prod + tmp_buy > 0) {
-            myShare = Math.round(tmp_prod * 10 / (tmp_prod + tmp_buy));
-          }
-          tmp_prod = Math.round(cou * myShare / 10);
-          tmp_buy = cou - tmp_prod;
+          //let myShare = 10;
+          //if (tmp_prod + tmp_buy > 0) {
+          //  myShare = Math.round(tmp_prod * 10 / (tmp_prod + tmp_buy));
+          //}
+          //tmp_prod = Math.round(cou * tmp_share / 10);
+          //tmp_buy = cou - tmp_prod;
+          let myResult = SetPie_val(cou, tmp_share);
 
           // ここから値の書込み
           let myrowid = $('#tbl_food_SetWeight').attr('myrowid');
@@ -937,8 +959,8 @@
           mydata.children('td').eq(4).text(Math.round(mydata.children('td').eq(14).text() * por * cou / 100));
           mydata.children('td').eq(5).text(por * cou);
           mydata.children('td').eq(8).text(por);
-          mydata.children('td').eq(9).text(tmp_prod);
-          mydata.children('td').eq(10).text(tmp_buy);
+          mydata.children('td').eq(9).text(myResult.i_prod);
+          mydata.children('td').eq(10).text(myResult.i_buy);
           mydata.children('td').eq(15).text(tmp_share);
           CreateSelection(myid_table);
 
@@ -947,34 +969,41 @@
           $('#Modal_food_volume').modal('hide');
         }); //----------change_weight complete here-------
 
-        //---------set balance pruduce/purchase-----------
+        //---------open dialog to change balance produce/purchase-----------
         $('#BR_buy_prod_pie_img').on('click', function () {
-          let motherTable = $('#tbl_food_SetWeight');
-          let count_prod_tmp = Number(motherTable.children('tbody').children('tr').eq(1).children('td').eq(6).text());
-          let count_buy_tmp = Number(motherTable.children('tbody').children('tr').eq(1).children('td').eq(7).text());
+          let motherTable = $('#tbl_food_SetWeight').children('tbody').children('tr').eq(1);
+          let count_prod_tmp = Number(motherTable.children('td').eq(6).text());
+          let count_buy_tmp = Number(motherTable.children('td').eq(7).text());
           //myShare = Math.round(count_prod_tmp * 10 / (count_prod_tmp + count_buy_tmp));
-          myShare = Number(motherTable.children('tbody').children('tr').eq(1).children('td').eq(8).text());
-          console.log('share_prod_buyを'+myShare+ 'に設定します');
+          myShare = Number(motherTable.children('td').eq(8).text());
 
-          $('#my_Prod_Buy').barrating('set', myShare);// set barrating
-          $('#Modal_food_volume').modal('hide');//(Modalの入れ替え)
-          $('#Modal_Prod_Buy').modal('show');
+          if (myShare > 10) {
+            let mes = motherTable.children('td').eq(1).text() +
+                    ' is only available from ' + (myShare = 100 ? 'production' : 'market') + ' in this month';
+            alert(mes);
+          } else {
+            console.log('share_prod_buyを' + myShare + 'に設定します');
+
+            $('#my_Prod_Buy').barrating('set', myShare);// set barrating
+            $('#Modal_food_volume').modal('hide');//(Modalの入れ替え)
+            $('#Modal_Prod_Buy').modal('show');
+          }
         });//----------balance pruduce/purchase complete here-------
 
-        //// set balance prudoce/purchase //
+        //// set balance prudoce/purchase ---------------------------
         $('#change_share1').on('click', function () {
           let myShare = Number($('#my_Prod_Buy').children("option:selected").val());
-          let motherTable = $('#tbl_food_SetWeight');
-          let count_prod_tmp = Number(motherTable.children('tbody').children('tr').eq(1).children('td').eq(6).text());
-          let count_buy_tmp = Number(motherTable.children('tbody').children('tr').eq(1).children('td').eq(7).text());
+          let motherTable = $('#tbl_food_SetWeight').children('tbody').children('tr').eq(1);
+          let count_prod_tmp = Number(motherTable.children('td').eq(6).text());
+          let count_buy_tmp = Number(motherTable.children('td').eq(7).text());
           let total_count = count_prod_tmp + count_buy_tmp;
           let mycount = SetPie_val(total_count, myShare);
 
           console.log('count_p=' + count_prod_tmp + ', count_b=' + count_buy_tmp + ', myShare=' + myShare);
 
-          motherTable.children('tbody').children('tr').eq(1).children('td').eq(6).text(mycount.i_prod);
-          motherTable.children('tbody').children('tr').eq(1).children('td').eq(7).text(mycount.i_buy);
-          motherTable.children('tbody').children('tr').eq(1).children('td').eq(8).text(myShare);
+          motherTable.children('td').eq(6).text(mycount.i_prod);
+          motherTable.children('td').eq(7).text(mycount.i_buy);
+          motherTable.children('td').eq(8).text(myShare);
 
           $('#BR_buy_prod_pie_img').attr('src', SetPie_img2(myShare));
           $('#Modal_Prod_Buy').modal('hide');
