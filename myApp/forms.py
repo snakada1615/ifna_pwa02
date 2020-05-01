@@ -24,7 +24,8 @@ class LocationForm(forms.ModelForm):
     widgets = {
       'country': forms.Select(attrs={'onchange': "selCnt();"}),
       'region': forms.Select(attrs={'onchange': "selSub1();"}),
-      'province': forms.Select(),
+      'province': forms.Select(attrs={'onchange': "selSub2();"}),
+      'community': forms.Select(),
       'AEZ_id': forms.HiddenInput(),
       'stunting_rate': forms.HiddenInput(),
       'wasting_rate': forms.HiddenInput(),

@@ -231,6 +231,7 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
     context['coutry_selected'] = ''
     context['region_selected'] = ''
     context['province_selected'] = ''
+    context['community_selected'] = ''
     context['myuser'] = self.request.user
     return context
 
@@ -249,6 +250,7 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
     context['coutry_selected'] = myLocation.country
     context['region_selected'] = myLocation.region
     context['province_selected'] = myLocation.province
+    context['community_selected'] = myLocation.community
     context['myuser'] = self.request.user
     return context
 

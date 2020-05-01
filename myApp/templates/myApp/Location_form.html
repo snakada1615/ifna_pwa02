@@ -126,6 +126,13 @@
       while (selObj.lastChild) {
         selObj.removeChild(selObj.lastChild);
       }
+
+      // delete subdiv3 list also
+      var selObj = document.getElementById('id_community');
+      while (selObj.lastChild) {
+        selObj.removeChild(selObj.lastChild);
+      }
+
     }
 
     function selSub1() {
@@ -143,10 +150,26 @@
       }
     }
 
+    function selSub2() {
+      var selected_sub1 = document.getElementById('id_province').value;
+      getSubDiv3(selected_sub1);
+      var selObj = document.getElementById('id_community');
+      while (selObj.lastChild) {
+        selObj.removeChild(selObj.lastChild);
+      }
+      for (var i = 0; i < subDiv_list2.length; i++) {
+        let op = document.createElement("option");
+        op.value = subDiv_key3[i];
+        op.text = subDiv_list3[i];
+        selObj.appendChild(op);
+      }
+    }
+
     // initislize country list -------------------
     let selected1 = "{{coutry_selected}}";
     let selected2 = "{{region_selected}}";
     let selected3 = "{{province_selected}}";
+    let selected4 = "{{community_selected}}";
     console.log(selected1);
 
     getCountry();
@@ -165,6 +188,7 @@
         selSub1();
         if (selected3 != "") {
           document.getElementById('id_province').value = selected3;
+          selSub2();
         }
       }
     }
