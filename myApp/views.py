@@ -114,8 +114,7 @@ class IndexView02(LoginRequiredMixin, TemplateView):  # todo myCountyNameの設�
     context = super().get_context_data(**kwargs)
 
     keys_all = self.request.user.profile
-    logger.info(keys_all.myLocation)
-    if keys_all.myLocation == '0':
+    if len(Location.objects.filter(id=keys_all.myLocation))==0:
       myCountry = 'none'
     else:
       myCountry = Location.objects.filter(id=keys_all.myLocation).first().country
