@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}"
         media="screen">
 
-  <div class="container  mt-0 mb-1 text-dark" style="max-width: 540px;">
+  <div class="container mt-0 mb-1 text-dark" style="max-width: 540px;">
     <div class="row">
       <div class="col-9"></div>
       <div class="col-3>">
@@ -23,31 +23,34 @@
         <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no1.png' %}"> Add food item</div>
         <span class="ml-3">
           Add/remove food item from the list:
-          <a id="btn_add" class="btn btn-info text-white ml-3 my-0 py-0 btn-sm">add food item</a>
+          <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+          <a id="btn_add" class="btn btn-info text-white ml-1 my-0 py-0 btn-sm">add food item</a>
         </span>
       </div>
 
       <div class="card-body mx-1 my-1 px-0 py-0">
         <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no2.png' %}"> Select brush</div>
-        <div class="ml-3">Double click to choose a brush to set availability</div>
-        <div class="row ml-3 my-0">
-          <div class="col-6">
+        <div class="ml-3">Double click appropriate brush depending on food availability</div>
+        <div class="card bg-transparent border-info">
+          <div class="row ml-3 my-0">
+            <div class="col-6">
             <span class="btn_color h4" mycol="red" style="color:red">
             <i class="fa fa-paint-brush" aria-hidden="true"></i></span>: market and production
-          </div>
-          <div class="col-6">
+            </div>
+            <div class="col-6">
             <span class="btn_color h4" mycol="green" style="color:green">
             <i class="fa fa-paint-brush" aria-hidden="true"></i></span>: production only
+            </div>
           </div>
-        </div>
-        <div class="row ml-3 my-0">
-          <div class="col-6">
+          <div class="row ml-3 my-0">
+            <div class="col-6">
             <span class="btn_color h4" mycol="blue" style="color:blue">
             <i class="fa fa-paint-brush" aria-hidden="true"></i></span>: market only
-          </div>
-          <div class="col-6">
+            </div>
+            <div class="col-6">
             <span class="btn_color h4" mycol="white" style="color:white">
             <i class="fa fa-paint-brush" aria-hidden="true"></i></span>: not available
+            </div>
           </div>
         </div>
       </div>
