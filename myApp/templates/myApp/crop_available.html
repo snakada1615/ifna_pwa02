@@ -97,6 +97,20 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
+
+  <!------toastの設定-------------->
+  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="mr-auto">Bootstrap</strong>
+      <small>11分前</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="閉じる">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      こんにちは！ これはトーストのメッセージです。
+    </div>
+  </div>
   <!-------------------------------------->
 
 
@@ -231,13 +245,18 @@
     };
 
     //---------------------------------------
-    function Cell_MultiSelect(myNum, start_x, start_y, color) {
-      this.selected_status = -1;
+    function Cell_MultiSelect(selected_status, start_x, start_y, color) {
+      this.selected_status = selected_status;
+      if (selected_status != 0 && selected_status !=1) {
+        this.selected_status = -1;
+      }
       this.start_x = start_x || -1;
       this.start_y = start_y || -1;
       this.goal_x = -1;
       this.goal_y = -1;
       this.color = color || 1;
+      console.log('オブジェクトCell_MultiSelectを作成しました');
+      console.log(this.getAll());
     }
 
     Cell_MultiSelect.prototype.setStart = function (x, y) {
@@ -246,6 +265,8 @@
       this.goal_x = 0;
       this.goal_y = 0;
       this.selected_status = 1;
+      console.log('オブジェクトのsetStartを設定しました');
+      console.log(this.getAll());
     };
     Cell_MultiSelect.prototype.setGoal = function (x, y) {
       if (this.selected_status === 1) {
@@ -537,6 +558,7 @@
           let mycol = this.cellIndex;
           if (myrow % 2 == 1) {
 
+            console.log('mySelectMonth.getAll().selected_status=' + mySelectMonth.getAll().selected_status);
             switch (mySelectMonth.getAll().selected_status) {
               case -1:
                 let tmp = Number($(this).text());
@@ -667,13 +689,7 @@
         }
 
         //////////////////sendJson//// scfript end///////////////////
-        const mySelectMonth = new Cell_MultiSelect(0, 0, 0, 2);
-        console.log(mySelectMonth.getAll());
-        mySelectMonth.setStart(3, 5);
-        console.log(mySelectMonth.getAll());
-        mySelectMonth.setGoal(1, 5);
-        console.log(mySelectMonth.getAll());
-        mySelectMonth.drawCell();
+        const mySelectMonth = new Cell_MultiSelect(0, 0, 1, 2);
 
 
       }// ---------- initComplete finish here --------------
