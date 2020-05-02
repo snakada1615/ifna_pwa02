@@ -10,15 +10,24 @@
         media="screen">
 
   <div class="container  mt-0 mb-1 text-dark" style="max-width: 540px;">
-
     <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;">
+      <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no1.png' %}"> Select brush</div>
+      <div class="ml-3">Double click to choose a brush to set availability</div>
       <p class="card-title text-warning my-0 pl-2">
-        availability
-        <span style="color:red">■</span>: market&prod
-        <span style="color:green">■</span>: prod only
-        <span style="color:blue">■</span>: market only
+        <span class="btn_color h4" mycol="red" style="color:red">
+          <i class="fa fa-paint-brush" aria-hidden="true"></i></span>: market and production
+        <span class="btn_color h4" mycol="green" style="color:green">
+          <i class="fa fa-paint-brush" aria-hidden="true"></i></span>: production only
+        <span class="btn_color h4" mycol="blue" style="color:blue">
+          <i class="fa fa-paint-brush" aria-hidden="true"></i></span>: market only
+        <span class="btn_color h4" mycol="white" style="color:white">
+          <i class="fa fa-paint-brush" aria-hidden="true"></i></span>: not available
       </p>
 
+      <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no2.png' %}"> paint cell</div>
+      <div class="ml-3">
+        Then, click (start-month and end-month) to set available period of each food item.
+      </div>
       <div class="mod-tbl">
         <table id="tbl_crop_selected" class="mytable">
           <thead>
@@ -56,7 +65,6 @@
         </span>
       </div>
     </div>
-
   </div>
 
   <!-- モーダルの設定 ----------------------------->
@@ -72,7 +80,7 @@
         <div class="modal-body text-dark">
           <div class="my-2" id="newSearchPlace">Food group:
           </div>
-          <table id="tbl_crop_candidate" class="display compact" cellspacing="0" width="100%">
+          <table id="tbl_crop_candidate" class="display compact">
             <thead>
             <tr>
               <th>Group</th>
@@ -98,20 +106,6 @@
   </div>
   <!-- /.modal -->
 
-  <!------toastの設定-------------->
-  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <strong class="mr-auto">Bootstrap</strong>
-      <small>11分前</small>
-      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="閉じる">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="toast-body">
-      こんにちは！ これはトーストのメッセージです。
-    </div>
-  </div>
-  <!-------------------------------------->
 
 
   <!------------------------------------------------------------->
@@ -247,7 +241,7 @@
     //---------------------------------------
     function Cell_MultiSelect(selected_status, start_x, start_y, color) {
       this.selected_status = selected_status;
-      if (selected_status != 0 && selected_status !=1) {
+      if (selected_status != 0 && selected_status != 1) {
         this.selected_status = -1;
       }
       this.start_x = start_x || -1;
@@ -259,6 +253,13 @@
       console.log(this.getAll());
     }
 
+    Cell_MultiSelect.prototype.setBaseColor = function (color) {
+      if (![0, 1, 2, 3].includes(color)) {
+        color = 0;
+      }
+      this.color = color;
+      this.selected_status = 0;
+    };
     Cell_MultiSelect.prototype.setStart = function (x, y) {
       this.start_x = x;
       this.start_y = y;
@@ -272,6 +273,7 @@
       if (this.selected_status === 1) {
         if (y != this.start_y) {
           console.log('yの値が不正です');
+          alert('please select month from the row of' + this.getAll().myName);
         } else if (x < 0 || x > 11) {
           console.log('xの値が不正です');
         } else {
@@ -314,6 +316,10 @@
         case 3:
           $tmp_cell.css("background-color", "blue");
           $tmp_cell.css("color", "blue");
+          break;
+        case 4:
+          $tmp_cell.css("background-color", "grey");
+          $tmp_cell.css("color", "grey");
           break;
       }
     };
@@ -505,6 +511,24 @@
           });
         });
 
+        /// ------------------------------------------------
+        $('.btn_color').dblclick(function () {
+          console.log('btn_color=' + $(this).attr('myCol'));
+          let tmp_col_num = 0;
+          let tmp_col = $(this).attr('myCol');
+          if (tmp_col == 'red') {
+            tmp_col_num = 1;
+          } else if (tmp_col == 'green') {
+            tmp_col_num = 2;
+          } else if (tmp_col == 'blue') {
+            tmp_col_num = 3;
+          } else if (tmp_col == 'white') {
+            tmp_col_num = 0;
+          }
+          mySelectMonth.setBaseColor(tmp_col_num);
+        });
+        /// ------------------------------------------------
+
         //////////////////on click -> crop list /
         $('#tbl_crop_candidate tbody').on('click', 'tr', function () {
           $(this).toggleClass('selected');
@@ -564,29 +588,33 @@
                 let tmp = Number($(this).text());
                 tmp = (tmp + 1) % 4;
                 $(this).text(tmp); // cellの値+1
-
-                switch (tmp) { // cellの値に応じて色変化
-                  case 0:
-                    $(this).css("background-color", "");
-                    $(this).css("color", "white");
-                    break;
-                  case 1:
-                    $(this).css("background-color", "red");
-                    $(this).css("color", "red");
-                    break;
-                  case 2:
-                    $(this).css("background-color", "green");
-                    $(this).css("color", "green");
-                    break;
-                  case 3:
-                    $(this).css("background-color", "blue");
-                    $(this).css("color", "blue");
-                    break;
-                }
+                tmp_y = (myrow - 1) / 2;
+                mySelectMonth.setCellColor(mycol, tmp_y, tmp);
                 break;
+                    {% comment %}
+                                    switch (tmp) { // cellの値に応じて色変化
+                                      case 0:
+                                        $(this).css("background-color", "");
+                                        $(this).css("color", "white");
+                                        break;
+                                      case 1:
+                                        $(this).css("background-color", "red");
+                                        $(this).css("color", "red");
+                                        break;
+                                      case 2:
+                                        $(this).css("background-color", "green");
+                                        $(this).css("color", "green");
+                                        break;
+                                      case 3:
+                                        $(this).css("background-color", "blue");
+                                        $(this).css("color", "blue");
+                                        break;
+                                    }
+                    {% endcomment %}
               case 0:
                 tmp_y = (myrow - 1) / 2;
                 mySelectMonth.setStart(mycol, tmp_y);
+                mySelectMonth.setCellColor(mycol, tmp_y, 4);
                 console.log('selectedd_statusは' + mySelectMonth.getAll().selected_status + 'です');
                 console.log('(' + mycol + ', ' + tmp_y + '), ' + mySelectMonth.getAll().myName + 'です');
                 break;
@@ -689,8 +717,7 @@
         }
 
         //////////////////sendJson//// scfript end///////////////////
-        const mySelectMonth = new Cell_MultiSelect(0, 0, 1, 2);
-
+        const mySelectMonth = new Cell_MultiSelect(-1, 0, 1, 2);
 
       }// ---------- initComplete finish here --------------
     });
