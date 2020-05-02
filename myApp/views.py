@@ -343,6 +343,7 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
     # --------------------update Crop_SubNational-------------------------
     tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
     instance.AEZ_id = tmp_aez
+    logger.info(tmp_aez)
     tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
     logger.info("これからCrop＿SubNationaを追加していきます")
     if tmp01.count() != 0:
