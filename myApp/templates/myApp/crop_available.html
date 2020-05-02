@@ -199,7 +199,7 @@
       }
     });
     console.log(Json_Crop_All);
-    var $myTbl =  $('#tbl_crop_selected');
+    var $myTbl = $('#tbl_crop_selected');
 
     //現在選択されている作物一覧
     var Json_Crop_Selected = Json_Crop_All.filter(function (item, index) {
@@ -232,7 +232,7 @@
 
     //---------------------------------------
     function Cell_MultiSelect(myNum, start_x, start_y, color) {
-      this.selected_status = 0;
+      this.selected_status = -1;
       this.start_x = start_x || -1;
       this.start_y = start_y || -1;
       this.goal_x = -1;
@@ -251,7 +251,7 @@
       if (this.selected_status === 1) {
         if (y != this.start_y) {
           console.log('yの値が不正です');
-        } else if (x < 1 || x > 12) {
+        } else if (x < 0 || x > 11) {
           console.log('xの値が不正です');
         } else {
           this.goal_x = x;
@@ -269,24 +269,46 @@
       goal_x = this.goal_x;
       goal_y = this.goal_y;
       color = this.color;
+      myName = $myTbl.children('tbody').children('tr').eq(2 * start_y).children('td').eq(1).text();
       selected_status = this.selected_status;
-      return {start_x, start_y, goal_x, goal_y, selected_status, color}
+      return {start_x, start_y, goal_x, goal_y, selected_status, color, myName}
+    };
+    Cell_MultiSelect.prototype.setCellColor = function (x, y, color) {
+      let tmp_y = 2 * y + 1;
+      let $tmp_cell = $myTbl.children('tbody').children('tr').eq(tmp_y).children('td').eq(x);
+
+      switch (Number(color)) { // cellの値に応じて色変化
+        case 0:
+          $tmp_cell.css("background-color", "");
+          $tmp_cell.css("color", "white");
+          break;
+        case 1:
+          $tmp_cell.css("background-color", "red");
+          $tmp_cell.css("color", "red");
+          break;
+        case 2:
+          $tmp_cell.css("background-color", "green");
+          $tmp_cell.css("color", "green");
+          break;
+        case 3:
+          $tmp_cell.css("background-color", "blue");
+          $tmp_cell.css("color", "blue");
+          break;
+      }
     };
     Cell_MultiSelect.prototype.drawCell = function () {
-      console.log('i will set color' + this.color + ' to the cell from (' + this.start_x + ', ' + this.start_y +
-              ') to (' + this.goal_x + ', ' + this.goal_y + ')');
+      console.log(this.getAll().myName + 'の色を(' + this.start_x + ', ' + this.start_y
+              + ') から (' + this.goal_x + ', ' + this.goal_y + ')の区間で' + this.color + 'に設定します');
+      let tmp_start = this.start_x;
+      let tmp_goal = this.goal_x;
+      if (this.start_x >= this.goal_x) {
+        tmp_start = this.goal_x;
+        tmp_goal = this.start_x;
+      }
+      for (i = tmp_start; i < tmp_goal + 1; i++) {
+        this.setCellColor(i, this.start_y, this.color);
+      }
     };
-
-    const myTest = new Cell_MultiSelect();
-    console.log(myTest.getAll());
-    myTest.setGoal(1, 4);
-    console.log(myTest.getAll());
-    myTest.setStart(3, 5);
-    console.log(myTest.getAll());
-    myTest.setGoal(1, 4);
-    console.log(myTest.getAll());
-    myTest.setGoal(1, 5);
-    console.log(myTest.getAll());
 
 
     ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
@@ -514,26 +536,43 @@
           let myrow = $(this).closest('tr').index();
           let mycol = this.cellIndex;
           if (myrow % 2 == 1) {
-            let tmp = Number($(this).text());
-            tmp = (tmp + 1) % 4;
-            $(this).text(tmp); // cellの値+1
 
-            switch (tmp) { // cellの値に応じて色変化
+            switch (mySelectMonth.getAll().selected_status) {
+              case -1:
+                let tmp = Number($(this).text());
+                tmp = (tmp + 1) % 4;
+                $(this).text(tmp); // cellの値+1
+
+                switch (tmp) { // cellの値に応じて色変化
+                  case 0:
+                    $(this).css("background-color", "");
+                    $(this).css("color", "white");
+                    break;
+                  case 1:
+                    $(this).css("background-color", "red");
+                    $(this).css("color", "red");
+                    break;
+                  case 2:
+                    $(this).css("background-color", "green");
+                    $(this).css("color", "green");
+                    break;
+                  case 3:
+                    $(this).css("background-color", "blue");
+                    $(this).css("color", "blue");
+                    break;
+                }
+                break;
               case 0:
-                $(this).css("background-color", "");
-                $(this).css("color", "white");
+                tmp_y = (myrow - 1) / 2;
+                mySelectMonth.setStart(mycol, tmp_y);
+                console.log('selectedd_statusは' + mySelectMonth.getAll().selected_status + 'です');
+                console.log('(' + mycol + ', ' + tmp_y + '), ' + mySelectMonth.getAll().myName + 'です');
                 break;
               case 1:
-                $(this).css("background-color", "red");
-                $(this).css("color", "red");
-                break;
-              case 2:
-                $(this).css("background-color", "green");
-                $(this).css("color", "green");
-                break;
-              case 3:
-                $(this).css("background-color", "blue");
-                $(this).css("color", "blue");
+                tmp_y = (myrow - 1) / 2;
+                mySelectMonth.setGoal(mycol, tmp_y);
+                console.log('selectedd_statusは' + mySelectMonth.getAll().selected_status + 'です');
+                console.log('(' + mycol + ', ' + tmp_y + '), ' + mySelectMonth.getAll().myName + 'です');
                 break;
             }
           }
@@ -628,6 +667,14 @@
         }
 
         //////////////////sendJson//// scfript end///////////////////
+        const mySelectMonth = new Cell_MultiSelect(0, 0, 0, 2);
+        console.log(mySelectMonth.getAll());
+        mySelectMonth.setStart(3, 5);
+        console.log(mySelectMonth.getAll());
+        mySelectMonth.setGoal(1, 5);
+        console.log(mySelectMonth.getAll());
+        mySelectMonth.drawCell();
+
 
       }// ---------- initComplete finish here --------------
     });
