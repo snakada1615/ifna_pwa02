@@ -114,12 +114,17 @@ class IndexView02(LoginRequiredMixin, TemplateView):  # todo myCountyNameの設�
     context = super().get_context_data(**kwargs)
 
     keys_all = self.request.user.profile
+    if keys_all.myLocation == 0:
+      myCountry = 'none'
+    else:
+      myCountry = Location.objects.filter(id=keys_all.myLocation).first().country
+
     data = {
       'myLocation': keys_all.myLocation,
       'myCrop': keys_all.myCrop,
       'myTarget': keys_all.myTarget,
       'myDiet': keys_all.myDiet,
-      'myCountryName': Location.objects.filter(id=keys_all.myLocation).first().country
+      'myCountryName': myCountry
     }
     json_str = json.dumps(data)
     context['myParam'] = json_str
