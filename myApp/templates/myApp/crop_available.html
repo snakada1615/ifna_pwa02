@@ -199,6 +199,7 @@
       }
     });
     console.log(Json_Crop_All);
+    var $myTbl =  $('#tbl_crop_selected');
 
     //現在選択されている作物一覧
     var Json_Crop_Selected = Json_Crop_All.filter(function (item, index) {
@@ -207,7 +208,7 @@
             }
     );
 
-//------------------------
+    //------------------------
     getHTML_param = function () {
       var url_tmp = window.location.href.split('/');
       var tmp1 = url_tmp[url_tmp.length - 3];
@@ -228,6 +229,64 @@
       }
       return tmp1;
     };
+
+    //---------------------------------------
+    function Cell_MultiSelect(myNum, start_x, start_y, color) {
+      this.selected_status = 0;
+      this.start_x = start_x || -1;
+      this.start_y = start_y || -1;
+      this.goal_x = -1;
+      this.goal_y = -1;
+      this.color = color || 1;
+    }
+
+    Cell_MultiSelect.prototype.setStart = function (x, y) {
+      this.start_x = x;
+      this.start_y = y;
+      this.goal_x = 0;
+      this.goal_y = 0;
+      this.selected_status = 1;
+    };
+    Cell_MultiSelect.prototype.setGoal = function (x, y) {
+      if (this.selected_status === 1) {
+        if (y != this.start_y) {
+          console.log('yの値が不正です');
+        } else if (x < 1 || x > 12) {
+          console.log('xの値が不正です');
+        } else {
+          this.goal_x = x;
+          this.goal_y = y;
+          this.selected_status = 0;
+          this.drawCell();
+        }
+      } else {
+        console.log('Cell_MultiSelectは選択を開始していませんん');
+      }
+    };
+    Cell_MultiSelect.prototype.getAll = function () {
+      start_x = this.start_x;
+      start_y = this.start_y;
+      goal_x = this.goal_x;
+      goal_y = this.goal_y;
+      color = this.color;
+      selected_status = this.selected_status;
+      return {start_x, start_y, goal_x, goal_y, selected_status, color}
+    };
+    Cell_MultiSelect.prototype.drawCell = function () {
+      console.log('i will set color' + this.color + ' to the cell from (' + this.start_x + ', ' + this.start_y +
+              ') to (' + this.goal_x + ', ' + this.goal_y + ')');
+    };
+
+    const myTest = new Cell_MultiSelect();
+    console.log(myTest.getAll());
+    myTest.setGoal(1, 4);
+    console.log(myTest.getAll());
+    myTest.setStart(3, 5);
+    console.log(myTest.getAll());
+    myTest.setGoal(1, 4);
+    console.log(myTest.getAll());
+    myTest.setGoal(1, 5);
+    console.log(myTest.getAll());
 
 
     ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
@@ -256,7 +315,6 @@
       cr += '<td class="tableItem_hide">' + addRow["selected_status"] + '</td>';
       cr += '</tr>';
 
-      let $myTbl = $('#tbl_crop_selected');
       $myTbl.append(cr);
 
       let tmpRow = $myTbl.find('tr').last();
@@ -284,8 +342,7 @@
 
     ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
     function DrawSelected_delRow(food_item_id) { /// render selected_crops_tbl
-      $myTable = $('#tbl_crop_selected');
-      $myTable.children('tbody').children('tr').each(function (index_r, myRow) {
+      $myTbl.children('tbody').children('tr').each(function (index_r, myRow) {
         if (index_r % 2 == 1) {
           if ($(myRow).children('td').eq(12).text() == food_item_id) {
             $(myRow).prev('tr').remove();
@@ -453,7 +510,7 @@
         }); ///////////////////
 
         //////////////////on click -> chabge available status /
-        $('#tbl_crop_selected').on('click', 'td', function () {
+        $myTbl.on('click', 'td', function () {
           let myrow = $(this).closest('tr').index();
           let mycol = this.cellIndex;
           if (myrow % 2 == 1) {
@@ -485,7 +542,7 @@
         //////////////////get data from table
         function getTblData() {
           let d = [];
-          $('#tbl_crop_selected').children('tbody').children('tr').each(function (index_r, myRow) {
+          $myTbl.children('tbody').children('tr').each(function (index_r, myRow) {
             if (index_r % 2 == 1) {
               let dd = {};
               dd["selected_status"] = 1;
@@ -569,6 +626,7 @@
             }
           });
         }
+
         //////////////////sendJson//// scfript end///////////////////
 
       }// ---------- initComplete finish here --------------

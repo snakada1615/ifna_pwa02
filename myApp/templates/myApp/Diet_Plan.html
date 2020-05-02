@@ -926,8 +926,8 @@
           // まず値の取得
           let cou = Number($('#BR_food_count').children("option:selected").val());
 
-//          let myMom =  $('#tbl_food_SetWeight');
-          let motherTable = $('#tbl_food_SetWeight').children('tbody').children('tr').eq(1);
+          let $myMom =  $('#tbl_food_SetWeight');
+          let motherTable = $myMom.children('tbody').children('tr').eq(1);
           let por = Number(motherTable.children('td').eq(5).text());
           let tmp_prod = Number(motherTable.children('td').eq(6).text());
           let tmp_buy = Number(motherTable.children('td').eq(7).text());
@@ -945,8 +945,8 @@
           let myResult = SetPie_val(cou, tmp_share);
 
           // ここから値の書込み
-          let myrowid = $('#tbl_food_SetWeight').attr('myrowid');
-          let myid_table = $('#tbl_food_SetWeight').attr('myNum');
+          let myrowid = $myMom.attr('myrowid');
+          let myid_table = $myMom.attr('myNum');
           let mytable = $('.selected_crops_tbl[myNum=' + myid_table + ']');
           mytable.children('tbody').children('tr').last().remove();//最終行（合計）を削除
           let mydata = mytable.children('tbody').children('tr').eq(myrowid);//修正行に移動
