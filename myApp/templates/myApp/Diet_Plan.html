@@ -360,6 +360,8 @@
   </style>
 
   <script>
+    //#todo 今後の予定：以下をテーブルの数と同じ４つのオブジェクトに分けて再構成
+    //#todo 今後の予定：食材のコストを追加
     //ツールチップの初期化
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -398,6 +400,31 @@
     myRoot = url_tmp.join("/") + '/';
     var myLocation_id = tmp1;
 
+    //  myRating_**を配列に組み込む -----------
+    let myRating_en = {};
+    let myRating_pr = {};
+    let myRating_va = {};
+    let myRating_fe = {};
+    $('.rating_DRI').each(function (i) {
+      let tmp_myNum = $(this).attr('myNum');
+      i = (i) % 4;
+      switch (i) {
+        case 0:
+          myRating_en[tmp_myNum] = $(this);
+          break;
+        case 1:
+          myRating_pr[tmp_myNum] = $(this);
+          break;
+        case 2:
+          myRating_va[tmp_myNum] = $(this);
+          break;
+        case 3:
+          myRating_fe[tmp_myNum] = $(this);
+          break;
+      }
+    });
+
+
     //////////////// set local name/////
     let index = {};
     let json_crop_local = [];
@@ -420,7 +447,7 @@
     console.log(json_crop_selected);
     $container_tab_all = $('#container_tab_all');
 
-    //////////////// star rating/////
+    //////////////// star rating///// #todo $('.rating_**[myNum=')4種を配列に組み込むこと
     $(function () {
       $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
       $('#my_Prod_Buy').barrating({theme: 'bars-1to10', showSelectedRating: true, readonly: false}); // set barrating)
@@ -614,10 +641,14 @@
             rate_fe = 1
           }
 
-          $('.rating_en[myNum=' + id_table + ']').barrating('set', rate_en); // set barrating
-          $('.rating_pr[myNum=' + id_table + ']').barrating('set', rate_pr); // set barrating
-          $('.rating_va[myNum=' + id_table + ']').barrating('set', rate_va); // set barrating
-          $('.rating_fe[myNum=' + id_table + ']').barrating('set', rate_fe); // set barrating
+          myRating_en[id_table].barrating('set', rate_en); // set barrating
+          myRating_pr[id_table].barrating('set', rate_en); // set barrating
+          myRating_va[id_table].barrating('set', rate_en); // set barrating
+          myRating_fe[id_table].barrating('set', rate_en); // set barrating
+          //  $('.rating_en[myNum=' + id_table + ']').barrating('set', rate_en); // set barrating
+          //  $('.rating_pr[myNum=' + id_table + ']').barrating('set', rate_pr); // set barrating
+          //  $('.rating_va[myNum=' + id_table + ']').barrating('set', rate_va); // set barrating
+          //  $('.rating_fe[myNum=' + id_table + ']').barrating('set', rate_fe); // set barrating
         }
 
         ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
@@ -704,7 +735,7 @@
             } else if (tmp_val == 3) {
               tmp_share = 99;
             }
-            console.log('食品の入手先shareを'+tmp_share+'に設定します');
+            console.log('食品の入手先shareを' + tmp_share + 'に設定します');
 
             //データセットの作成2
             let dd = {};
@@ -926,7 +957,7 @@
           // まず値の取得
           let cou = Number($('#BR_food_count').children("option:selected").val());
 
-          let $myMom =  $('#tbl_food_SetWeight');
+          let $myMom = $('#tbl_food_SetWeight');
           let motherTable = $myMom.children('tbody').children('tr').eq(1);
           let por = Number(motherTable.children('td').eq(5).text());
           let tmp_prod = Number(motherTable.children('td').eq(6).text());
