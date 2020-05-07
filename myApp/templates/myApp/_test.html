@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{% static 'css/bars-1to10.css' %}">
 
 
+  <button type="button" class="btn btn-primary" onclick="$('#toast1').toast('show')">Show</button>
 
   <!-------------title--------------------------->
   <div class="container" aria-live="polite" aria-atomic="true" style="max-width: 540px; position: relative;">
@@ -111,7 +112,7 @@
           <div class="modal-body text-dark">
             <div class="my-2" id="myFilter1">Food group:
             </div>
-            <table id="localCrop1" class="display compact" cellspacing="0" width="100%">
+            <table id="localCrop1" class="display compact">
               <thead>
               <tr>
                 <th>s</th>
@@ -239,28 +240,28 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <label class="modal-body text-dark">
-            <label for="my_Prod_Buy" id="my_Prod_Buy-label1">*share (
-              <span style="color: #cc1111">buy</span> /
-              <span style="color: #5bc0de">production</span>):
-            </label>
-            <span class="fb fb-help" data-toggle="tooltip" title="Tooltip message"></span>
+          <label class="modal-body text-dark"></label>
+          <label for="my_Prod_Buy" id="my_Prod_Buy-label1">*share (
+            <span style="color: #cc1111">buy</span> /
+            <span style="color: #5bc0de">production</span>):
+          </label>
+          <span class="fb fb-help" data-toggle="tooltip" title="Tooltip message"></span>
 
-            <select id="my_Prod_Buy">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
+          <select id="my_Prod_Buy">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
 
-            <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
-            <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_share1">change share</button>
+          <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
+          <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_share1">change share</button>
         </div>
         <!-- /.modal-content -->
       </div>
@@ -337,7 +338,6 @@
     </div>
 
     <!-------------toastの表示--------------------------->
-    <button type="button" class="btn btn-primary" onclick="$('#toast1').toast('show')">Show</button>
 
     <!-- 次の行はtoast配置のための設定 -->
     <div style="position: absolute; top: 0; right: 0;">
@@ -441,6 +441,8 @@
     $('[data-toggle="tooltip"]').tooltip();
 
     // グローバル変数の作成
+    const myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212,
+      301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312];
     var selected_rows_id = [];
     var myLocation = '';
     var myRoot = '';
@@ -475,37 +477,8 @@
     myRoot = url_tmp.join("/") + '/';
     var myLocation_id = tmp1;
 
-    //  myRating_**を配列に組み込む -----------
-    let myRating_en = {};
-    let myRating_pr = {};
-    let myRating_va = {};
-    let myRating_fe = {};
-    $('.rating_DRI').each(function (i) {
-      let tmp_myNum = $(this).attr('myNum');
-      i = (i) % 4;
-      switch (i) {
-        case 0:
-          myRating_en[tmp_myNum] = $(this);
-          break;
-        case 1:
-          myRating_pr[tmp_myNum] = $(this);
-          break;
-        case 2:
-          myRating_va[tmp_myNum] = $(this);
-          break;
-        case 3:
-          myRating_fe[tmp_myNum] = $(this);
-          break;
-      }
-    });
 
-    //  selected_crops_tbl_**を配列に組み込む -----------
-    let $tbl_Crop_Selected = {};
-    $('.selected_crops_tbl').each(function () {
-      let num_tbl = $(this).attr('myNum');
-      $tbl_Crop_Selected[num_tbl] = $(this);
-    });
-
+    let $modal_localCrop = $('#Modal_localCrop1');
 
     //////////////// set local name/////
     let index = {};
@@ -554,7 +527,6 @@
 
     //    create object setup "Crop_Selected"   -------------------------------
     function Crop_Selected(num_Tbl) {
-      const myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212];
       const found = myRange.find(element => element === num_Tbl);
       if (found) {
         this.crops = [];
@@ -563,31 +535,113 @@
         this.sum_pr = 0;
         this.sum_va = 0;
         this.sum_fe = 0;
+        this.month = 0;
 
         let target_scope = Math.trunc(num_Tbl / 100);
         this.target_en = target_en[target_scope];
         this.target_pr = target_pr[target_scope];
         this.target_va = target_va[target_scope];
         this.target_fe = target_fe[target_scope];
+
+        //関連DOM要素の指定 lbl_target_en
+        this.el_lbl_target_en = '';
+        this.el_lbl_target_pr = '';
+        this.el_lbl_target_va = '';
+        this.el_lbl_target_fe = '';
+        this.el_myRating_en = '';
+        this.el_myRating_pr = '';
+        this.el_myRating_va = '';
+        this.el_myRating_fe = '';
+        this.el_btn_add = '';
+        this.el_lst_month = '';
+        this.el_tbl_Crop = '';
+
         console.log('オブジェクトCrop_Selected' + num_Tbl + 'を作成しました');
-        console.log(this.getAllCrop());
       } else {
         console.error('オブジェクトCrop_Selected' + num_Tbl + 'を作成できません。テーブル番号が不正です');
       }
     }
 
-    Crop_Selected.prototype.getAllCrop = function () {
+    Crop_Selected.prototype.getCropList = function () {
+      let found = [];
+      this.crops.forEach(function (ele) {
+        found.push(ele.food_item_id);
+      });
+      return found || 'none';
     };
-    Crop_Selected.prototype.setAllCrop = function () {
+    Crop_Selected.prototype.receive_SelectedRow = function (num_tbl, mydata, drawFlag) {
+      if (drawFlag) {       //rowの追加
+                            //データセットの作成1:buy_prod_share設定
+        let tmp_share = 5;
+        let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
+        if (tmp_val == 2) {
+          tmp_share = 100;
+        } else if (tmp_val == 3) {
+          tmp_share = 99;
+        }
+        console.log('食品の入手先shareを' + tmp_share + 'に設定します');
+
+        //データセットの作成2
+        let dd = {};
+        dd["name"] = mydata['Food_name'];
+        dd["Energy"] = mydata['Energy'];
+        dd["Protein"] = mydata['Protein'];
+        dd["VITA_RAE"] = mydata['VITA_RAE'];
+        dd["FE"] = mydata['FE'];
+        dd["food_item_id"] = mydata['food_item_id'];
+        dd["portion_size"] = mydata['portion_size'];
+        dd["share_prod_buy"] = tmp_share;
+        dd["total_weight"] = 0;
+        dd["count_prod"] = 0;
+        dd["count_buy"] = 0;
+        dd["month"] = myCrop[num_tbl].month;
+        dd["myLocation"] = myLocation_id;
+        dd["myid_tbl"] = num_tbl;
+        dd["target_scope"] = Math.trunc(Number(num_tbl) / 100);
+        dd["Food_grp"] = mydata['Food_grp'];
+        dd["Food_name"] = mydata['Food_name'];
+        //-----
+
+        this.setCrop(dd);                   //データの追加
+        this.drawRaw(dd["food_item_id"]);   //データの描画
+        console.log(mydata['Food_name'] + 'を追加しました');
+        console.log(dd);
+
+      } else {      //rowの削除
+        this.delCrop(mydata.food_item_id);
+        this.eraseRaw(mydata.food_item_id);
+      }
+
     };
     Crop_Selected.prototype.getCrop = function (food_item_id) {
       const found = this.crops.find(element => element.food_item_id === food_item_id);
       return found || 'none';
     };
     Crop_Selected.prototype.delCrop = function (food_item_id) {
-      const found = this.crops.indexOf(food_item_id);
-      if (found > -1) {
-        this.crops[found].delete();
+      let del_index = -1;
+      const found = this.crops.find(function (ele, i) {
+        if (ele.food_item_id === food_item_id) {
+          del_index = i;
+          return i;
+        }
+      });
+      if (del_index > -1) {
+        this.crops.splice(del_index, 1);
+        console.log('food_item_id(' + food_item_id + ')の作物選択を解除しました')
+      }
+    };
+    Crop_Selected.prototype.eraseRaw = function (food_item_id) {
+      let del_flag = 0;
+      this.el_tbl_Crop.children('tbody').children('tr').each(function (j, myRow) {
+        if ($(myRow).children('td').eq(7).text() === String(food_item_id)) { // 指定行が存在した場合
+          $(myRow).remove();    // まず該当行を削除
+          del_flag = 1;
+        }
+      })
+      if (del_flag) {
+        this.el_tbl_Crop.children('tbody').children('tr').last().remove();    // 次に合計行を削除
+        this._drawRaw_total()     // 合計行を再計算してから挿入
+        console.log('food_item_id(' + food_item_id + ')を画面から消去しました');
       }
     };
     Crop_Selected.prototype.setCrop = function (crop_data) {
@@ -596,11 +650,11 @@
     };
     Crop_Selected.prototype.drawAllTable = function () {
       // まず合計行を削除
-      $tbl_Crop_Selected[this.num_Tbl].children('tbody').children('tr').last().remove();
+      this.el_tbl_Crop.children('tbody').children('tr').last().remove();
       // 追加行の挿入
       for (let mycrop in this.crops) {
         let mycrop_html = this._drawRaw_setHtml(this.crops[mycrop]);
-        $tbl_Crop_Selected[this.num_Tbl].append(mycrop_html);
+        this.el_tbl_Crop.append(mycrop_html);
       }
       // 合計行の再計算の挿入
       this._drawRaw_total();
@@ -610,11 +664,11 @@
       let add_data = this.getCrop(food_item_id);
       if (add_data !== 'none') {
         // まず合計行を削除
-        $tbl_Crop_Selected[this.num_Tbl].children('tbody').children('tr').last().remove();
+        this.el_tbl_Crop.children('tbody').children('tr').last().remove();
         // 追加行の作成
         const add_data_html = this._drawRaw_setHtml(add_data);
         // 追加行の挿入
-        $tbl_Crop_Selected[this.num_Tbl].append(add_data_html);
+        this.el_tbl_Crop.append(add_data_html);
         // 合計行の作成と挿入
         this._drawRaw_total()
 
@@ -658,7 +712,7 @@
               '<td></td><td class="tableItem_hide"><' + '/td><td class="tableItem_hide">' +
               '</td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
               '</td><td class="tableItem_hide"></td></tr>';
-      $tbl_Crop_Selected[this.num_Tbl].append(total);
+      this.el_tbl_Crop.append(total);
       // Barratingセット
       this.SetBarrating(this.num_Tbl);
     };
@@ -688,10 +742,10 @@
         rate_fe = 1
       }
 
-      myRating_en[this.num_Tbl].barrating('set', rate_en); // set barrating
-      myRating_pr[this.num_Tbl].barrating('set', rate_en); // set barrating
-      myRating_va[this.num_Tbl].barrating('set', rate_en); // set barrating
-      myRating_fe[this.num_Tbl].barrating('set', rate_en); // set barrating
+      this.el_myRating_en.barrating('set', rate_en); // set barrating
+      this.el_myRating_pr.barrating('set', rate_en); // set barrating
+      this.el_myRating_va.barrating('set', rate_en); // set barrating
+      this.el_myRating_fe.barrating('set', rate_en); // set barrating
 
     };
     Crop_Selected.prototype._setCellColor = function (i_cell, i_target) {
@@ -717,7 +771,7 @@
       return res;
     };
     Crop_Selected.prototype.Sum_Nutrition = function () {
-      $tbl_Crop_Selected[this.num_Tbl].children('tbody').children('tr').each(function (j, myRow) {
+      this.el_tbl_Crop.children('tbody').children('tr').each(function (j, myRow) {
         if ($(myRow).children('td').eq(0).text() !== 'total') {
           this.sum_en += Number($(myRow).children('td').eq(1).text());
           this.sum_pr += Number($(myRow).children('td').eq(2).text());
@@ -726,21 +780,250 @@
         }
       });
     };
-    Crop_Selected.prototype.drawCell = function () {
-    };
-    Crop_Selected.prototype.eraseRaw = function () {
-
-    };
     Crop_Selected.prototype.eraseTable = function () {
     };
 
+
+    // //////////////////////////
+    var Crop_available = $('#localCrop1').DataTable({
+      "data": json_crop_local,
+      "myFeeling": "Happy",
+      "pageLength": 50,
+      "columns": [
+        {
+          "data": "selected_status"
+        }, {
+          "data": "Food_name"
+        }, {
+          "data": "Energy"
+        }, {
+          "data": "Protein"
+        }, {
+          "data": "VITA_RAE"
+        }, {
+          "data": "FE"
+        }, {
+          "data": "Food_grp"
+        }, {
+          "data": "Weight"
+        }, {
+          "data": "portion_size"
+        }, {
+          "data": "m1"
+        }, {
+          "data": "m2"
+        }, {
+          "data": "m3"
+        }, {
+          "data": "m4"
+        }, {
+          "data": "m5"
+        }, {
+          "data": "m6"
+        }, {
+          "data": "m7"
+        }, {
+          "data": "m8"
+        }, {
+          "data": "m9"
+        }, {
+          "data": "m10"
+        }, {
+          "data": "m11"
+        }, {
+          "data": "m12"
+        }, {
+          "data": "food_item_id"
+        }, {
+          "data": "count_prod"
+        }, {
+          "data": "count_buy"
+        }
+      ],
+
+      "columnDefs": [
+        {
+          targets: [
+            1, 2, 3, 4, 5
+          ],
+          visible: true
+        }, {
+          targets: '_all',
+          bVisible: false
+        }, {
+          "orderSequence": ["desc"],
+          "targets": [2]
+        }, {
+          "orderSequence": ["desc"],
+          "targets": [3]
+        }, {
+          "orderSequence": ["desc"],
+          "targets": [4]
+        }, {
+          "orderSequence": ["desc"],
+          "targets": [5]
+        }
+      ],
+
+      "initComplete": function (settings, json) {
+        // ////add filtering dropdown list
+        this.api().columns([6]).every(function () {
+          var column = this;
+          var select = $('<select style="border: 1px grey double;"><option value=""></option></select>').appendTo($('#myFilter1')).on('change', function () {
+            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+            column.search(
+                    val
+                            ? '^' + val + '$'
+                            : '',
+                    true,
+                    false
+            ).draw();
+          });
+          column.data().unique().sort().each(function (d, j) {
+            select.append('<option value="' + d + '">' + d + '</option>');
+          });
+        });
+      },
+    });
+
+    $.fn.dataTable.Api.register('hello()', function (a) {
+      console.log(a);
+    });
+
+    $.fn.dataTable.Api.register('receive_Selection()', function (month, num_table, selected_list) {
+      let myMonth = 0;
+      if (num_table < 200) {
+        myMonth = $('.lst_month[myNum=' + num_table + ']').prop("selectedIndex");
+      } else {
+        myMonth = $('.lst_month[myNum=' + num_table + ']').text() - 1;
+      }
+      $modal_localCrop.attr('myNum', num_table);      //table番号の記録
+      $modal_localCrop.attr('myMonth', month);  //該当月の記録
+
+      this.rows().deselect();
+
+      //filter crop by month//
+      for (var i = 9; i < 21; i++) {
+        this.column(i).search('').columns().search('').draw();
+      }
+      this.column(myMonth + 9).search('[123]', true, false).draw();
+
+      /// give selected status to the currently selected item//
+      this.rows().every(function (rowIdx, tableLoop, rowLoop) {
+        let myrow = this.data();
+        if (selected_list.indexOf(myrow.food_item_id) >= 0) {
+          this.select();
+        }
+      });
+    });
+
+    $.fn.dataTable.Api.register('send_Selection()', function (id_row) {
+
+      console.log(a);
+    });
+    $.fn.dataTable.Api.register('hello()', function (a) {
+      console.log(a);
+    });
+
+    ////////// start crop selection (local -> selected)
+    $('.btn_add_crop').on('click', function () {
+      let tmp_num = $(this).attr('myNum');
+      let tmp_month = myCrop[tmp_num].month;
+      let tmp_crop_selected = myCrop[tmp_num].getCropList();
+      Crop_available.data().receive_Selection(tmp_month, tmp_num, tmp_crop_selected);
+      $('#Modal_localCrop1').modal('show');
+    }); ///////////////////////////////////////////////
+
+    ///-------------------------------
+    $('#localCrop1 tbody').on('click', 'tr', function () {
+      $(this).toggleClass('selected');
+      let mydata = Crop_available.row(this).data();
+      let num_tbl = $modal_localCrop.attr('myNum');
+      myCrop[num_tbl].receive_SelectedRow(num_tbl, mydata, $(this).hasClass('selected'));
+    });
+
+
     //---------------------------------------------
 
-    const myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212];
     let myCrop = {};
     for (let i in myRange) {
       myCrop[myRange[i]] = new Crop_Selected(myRange[i]);
     }
+
+    //  myRating_**を配列に組み込む -----------
+    $('.rating_DRI').each(function (i) {
+      let tmp_myNum = $(this).attr('myNum');
+      i = (i) % 4;
+      switch (i) {
+        case 0:
+          myCrop[tmp_myNum].el_myRating_en = $(this);
+          break;
+        case 1:
+          myCrop[tmp_myNum].el_myRating_pr = $(this);
+          break;
+        case 2:
+          myCrop[tmp_myNum].el_myRating_va = $(this);
+          break;
+        case 3:
+          myCrop[tmp_myNum].el_myRating_fe = $(this);
+          break;
+      }
+    });
+
+    //  selected_crops_tbl_**を配列に組み込む -----------
+    $('.selected_crops_tbl').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].el_tbl_Crop = $(this);
+    });
+
+    //  btn_add_crop_**を配列に組み込む -----------
+    $('.btn_add_crop').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].el_btn_add = $(this);
+    });
+
+    //  lst_monthを配列に組み込む -----------
+    $('.lst_month').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].el_lst_month = $(this);
+    });
+
+    //  テーブルごとのmonthを配列に組み込む -----------
+    for (let i in myRange) {
+      let num_tbl = myRange[i];
+      let tmp_dat = myCrop[num_tbl];
+      let tmp_mon = 0;
+      if (num_tbl < 200) {
+        tmp_mon = Number(tmp_dat.el_lst_month.prop("selectedIndex") + 1);
+      } else {
+        tmp_mon = Number(tmp_dat.el_lst_month.text());
+      }
+      myCrop[num_tbl].month = tmp_mon;
+      myCrop[num_tbl].el_btn_add.attr('myNum', num_tbl);
+    }
+
+    //  lbl_target_**を配列に組み込む -----------
+    $('.lbl_target_en').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].el_lbl_target_en = $(this);
+    });
+
+    $('.lbl_target_pr').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].el_lbl_target_pr = $(this);
+    });
+
+    $('.lbl_target_va').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].el_lbl_target_va = $(this);
+    });
+
+    $('.lbl_target_fe').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].el_lbl_target_fe = $(this);
+    });
+    //-------------
 
     for (var i = 0; i < json_crop_selected.length; i++) {
       data = json_crop_selected[i];
@@ -754,6 +1037,8 @@
       myCrop[myRange[i]].drawAllTable();
     }
 
+
+    Crop_available.data().hello("test desu");
 
 
   </script>
