@@ -479,6 +479,7 @@
 
 
     let $modal_localCrop = $('#Modal_localCrop1');
+    let myTbl_food_Setweight = $('#tbl_food_SetWeight');
 
     //////////////// set local name/////
     let index = {};
@@ -526,39 +527,39 @@
 
 
     //    create object setup "Crop_Selected"   -------------------------------
-    function Crop_Selected(num_Tbl) {
-      const found = myRange.find(element => element === num_Tbl);
+    function Crop_Selected(num_tbl) {
+      const found = myRange.find(element => element === num_tbl);
       if (found) {
         this.crops = [];
-        this.num_Tbl = num_Tbl;
+        this.num_tbl = num_tbl;
         this.sum_en = 0;
         this.sum_pr = 0;
         this.sum_va = 0;
         this.sum_fe = 0;
         this.month = 0;
 
-        let target_scope = Math.trunc(num_Tbl / 100);
+        let target_scope = Math.trunc(num_tbl / 100);
         this.target_en = target_en[target_scope];
         this.target_pr = target_pr[target_scope];
         this.target_va = target_va[target_scope];
         this.target_fe = target_fe[target_scope];
 
         //関連DOM要素の指定 lbl_target_en
-        this.el_lbl_target_en = '';
-        this.el_lbl_target_pr = '';
-        this.el_lbl_target_va = '';
-        this.el_lbl_target_fe = '';
-        this.el_myRating_en = '';
-        this.el_myRating_pr = '';
-        this.el_myRating_va = '';
-        this.el_myRating_fe = '';
-        this.el_btn_add = '';
-        this.el_lst_month = '';
-        this.el_tbl_Crop = '';
+        this.dom_lbl_target_en = '';
+        this.dom_lbl_target_pr = '';
+        this.dom_lbl_target_va = '';
+        this.dom_lbl_target_fe = '';
+        this.dom_myRating_en = '';
+        this.dom_myRating_pr = '';
+        this.dom_myRating_va = '';
+        this.dom_myRating_fe = '';
+        this.dom_btn_add = '';
+        this.dom_lst_month = '';
+        this.dom_tbl_Crop = '';
 
-        console.log('オブジェクトCrop_Selected' + num_Tbl + 'を作成しました');
+        console.log('オブジェクトCrop_Selected' + num_tbl + 'を作成しました');
       } else {
-        console.error('オブジェクトCrop_Selected' + num_Tbl + 'を作成できません。テーブル番号が不正です');
+        console.error('オブジェクトCrop_Selected' + num_tbl + 'を作成できません。テーブル番号が不正です');
       }
     }
 
@@ -613,9 +614,15 @@
       }
 
     };
-    Crop_Selected.prototype.getCrop = function (food_item_id) {
-      const found = this.crops.find(element => element.food_item_id === food_item_id);
+    Crop_Selected.prototype.getCrop_byID = function (food_item_id) {
+      console.log('food_item_idl:' + food_item_id);
+      const found = this.crops.find(element => element.food_item_id === Number(food_item_id));
       return found || 'none';
+    };
+    Crop_Selected.prototype.getCrop_byRow = function (row_id) {
+      let myrow = this.dom_tbl_Crop.find('tr').eq(row_id);
+      console.log(myrow.children('td').eq(7).text());
+      return this.getCrop_byID(myrow.children('td').eq(7).text());
     };
     Crop_Selected.prototype.delCrop = function (food_item_id) {
       let del_index = -1;
@@ -632,15 +639,15 @@
     };
     Crop_Selected.prototype.eraseRaw = function (food_item_id) {
       let del_flag = 0;
-      this.el_tbl_Crop.children('tbody').children('tr').each(function (j, myRow) {
+      this.dom_tbl_Crop.children('tbody').children('tr').each(function (j, myRow) {
         if ($(myRow).children('td').eq(7).text() === String(food_item_id)) { // 指定行が存在した場合
           $(myRow).remove();    // まず該当行を削除
           del_flag = 1;
         }
-      })
+      });
       if (del_flag) {
-        this.el_tbl_Crop.children('tbody').children('tr').last().remove();    // 次に合計行を削除
-        this._drawRaw_total()     // 合計行を再計算してから挿入
+        this.dom_tbl_Crop.children('tbody').children('tr').last().remove();    // 次に合計行を削除
+        this._drawRaw_total();     // 合計行を再計算してから挿入
         console.log('food_item_id(' + food_item_id + ')を画面から消去しました');
       }
     };
@@ -650,25 +657,25 @@
     };
     Crop_Selected.prototype.drawAllTable = function () {
       // まず合計行を削除
-      this.el_tbl_Crop.children('tbody').children('tr').last().remove();
+      this.dom_tbl_Crop.children('tbody').children('tr').last().remove();
       // 追加行の挿入
       for (let mycrop in this.crops) {
         let mycrop_html = this._drawRaw_setHtml(this.crops[mycrop]);
-        this.el_tbl_Crop.append(mycrop_html);
+        this.dom_tbl_Crop.append(mycrop_html);
       }
       // 合計行の再計算の挿入
       this._drawRaw_total();
     };
     Crop_Selected.prototype.drawRaw = function (food_item_id) {
       let total = '';
-      let add_data = this.getCrop(food_item_id);
+      let add_data = this.getCrop_byID(food_item_id);
       if (add_data !== 'none') {
         // まず合計行を削除
-        this.el_tbl_Crop.children('tbody').children('tr').last().remove();
+        this.dom_tbl_Crop.children('tbody').children('tr').last().remove();
         // 追加行の作成
         const add_data_html = this._drawRaw_setHtml(add_data);
         // 追加行の挿入
-        this.el_tbl_Crop.append(add_data_html);
+        this.dom_tbl_Crop.append(add_data_html);
         // 合計行の作成と挿入
         this._drawRaw_total()
 
@@ -703,7 +710,7 @@
       // 合計行の再計算
       this.Sum_Nutrition();
       // 合計行の挿入
-      target_scope = Math.trunc(this.num_Tbl / 100);
+      target_scope = Math.trunc(this.num_tbl / 100);
       total = '<tr><td>total</td>' +
               this._setCellColor(Math.round(this.sum_en), target_en[target_scope]) +
               this._setCellColor(Math.round(this.sum_pr), target_pr[target_scope]) +
@@ -712,9 +719,9 @@
               '<td></td><td class="tableItem_hide"><' + '/td><td class="tableItem_hide">' +
               '</td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
               '</td><td class="tableItem_hide"></td></tr>';
-      this.el_tbl_Crop.append(total);
+      this.dom_tbl_Crop.append(total);
       // Barratingセット
-      this.SetBarrating(this.num_Tbl);
+      this.SetBarrating(this.num_tbl);
     };
     Crop_Selected.prototype.SetBarrating = function () {
       let rate_en = Math.round(this.sum_en * 10 / this.target_en);
@@ -742,10 +749,10 @@
         rate_fe = 1
       }
 
-      this.el_myRating_en.barrating('set', rate_en); // set barrating
-      this.el_myRating_pr.barrating('set', rate_en); // set barrating
-      this.el_myRating_va.barrating('set', rate_en); // set barrating
-      this.el_myRating_fe.barrating('set', rate_en); // set barrating
+      this.dom_myRating_en.barrating('set', rate_en); // set barrating
+      this.dom_myRating_pr.barrating('set', rate_en); // set barrating
+      this.dom_myRating_va.barrating('set', rate_en); // set barrating
+      this.dom_myRating_fe.barrating('set', rate_en); // set barrating
 
     };
     Crop_Selected.prototype._setCellColor = function (i_cell, i_target) {
@@ -771,7 +778,7 @@
       return res;
     };
     Crop_Selected.prototype.Sum_Nutrition = function () {
-      this.el_tbl_Crop.children('tbody').children('tr').each(function (j, myRow) {
+      this.dom_tbl_Crop.children('tbody').children('tr').each(function (j, myRow) {
         if ($(myRow).children('td').eq(0).text() !== 'total') {
           this.sum_en += Number($(myRow).children('td').eq(1).text());
           this.sum_pr += Number($(myRow).children('td').eq(2).text());
@@ -780,7 +787,7 @@
         }
       });
     };
-    Crop_Selected.prototype.eraseTable = function () {
+    Crop_Selected.prototype.sayhello = function () {
     };
 
 
@@ -926,6 +933,65 @@
       console.log(a);
     });
 
+
+    /////    create object setup "Crop_Selected"   -------------------------------
+    function Crop_individual(num_tbl) {
+      const found = myRange.find(element => element === num_tbl);
+      if (found) {
+        this.num_tbl = num_tbl;
+        this.data = {};
+
+        //関連DOM要素の指定 lbl_target_en
+        this.dom_tbl = myTbl_food_Setweight;
+        this.dom_btn_por = $('#btn_change_portion');
+        this.dom_br_count = $('#BR_food_count');
+        this.dom_img_pie = $('#BR_buy_prod_pie_img');
+
+        console.log('オブジェクトCrop_individual(' + num_tbl + ')を作成しました');
+      } else {
+        console.error('オブジェクトCrop_individual(' + num_tbl + ')を作成できません。テーブル番号が不正です');
+      }
+    }
+
+    Crop_individual.prototype.init = function (data) {
+      this.data = data;
+      this.dom_tbl.children('tbody').children('tr').remove(); //tbl_food_SetWeightのテーブル初期化
+
+      let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th class="tableItem_hide">por</th>'
+              + '<th class="tableItem_hide">count_p</th><th class="tableItem_hide">count_b</th></tr>';
+      cr += '<tr>';
+      cr += '<td>' + data.name + '</td>';
+      cr += '<td>' + Math.round(data.Energy * data.total_weight / 100, 1) + '</td>';
+      cr += '<td>' + Math.round(data.Protein * data.total_weight / 100, 1) + '</td>';
+      cr += '<td>' + Math.round(data.VITA_RAE * data.total_weight / 100, 1) + '</td>';
+      cr += '<td>' + Math.round(data.FE * data.total_weight / 100, 1) + '</td>';
+      cr += '<td class="tableItem_hide">' + data.portion_size + '</td>';
+      cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
+      cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
+      cr += '<td class="tableItem_hide">' + data.share_prod_buy + '</td>';
+      cr += '</tr>';
+
+      this.dom_tbl.append(cr);
+      this.dom_btn_por.text(data.portion_size); //ポーションサイズ設定
+      this.dom_br_count.barrating('set', data.count_prod + data.count_buy); //摂取量の設定
+      this.SetPie_img(data.share_prod_buy); //Buy＿Prod _shaeの設定
+
+      console.log('テーブルCrop_individual(' + data.name + ')を描画しました');
+      $('#Modal_food_volume').modal('show');
+    };
+    Crop_individual.prototype.SetPie_img = function (i_share) {
+      if (i_share === 99) {
+        i_share = 0;
+      } else if (i_share === 100) {
+        i_share = 10;
+      }
+      let h = "/static/img/pie_" + String(i_share) + ".png";
+      console.log('prod/buy shareを' + i_share + 'に設定します');
+      this.dom_img_pie.attr('src', h);
+    };
+
+    //---------
+
     ////////// start crop selection (local -> selected)
     $('.btn_add_crop').on('click', function () {
       let tmp_num = $(this).attr('myNum');
@@ -943,12 +1009,27 @@
       myCrop[num_tbl].receive_SelectedRow(num_tbl, mydata, $(this).hasClass('selected'));
     });
 
+    //////////////////add table edit function////#
+    $(".selected_crops_tbl").on("click", "td", function () {
+      let myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');//テーブル番号の取得
+      let myrow = $(this).closest('tr')[0].rowIndex;
+      let dat = myCrop[myNum_tmp].getCrop_byRow(myrow);
+      myCrop_individual[myNum_tmp].init(dat);
+    });
 
     //---------------------------------------------
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     let myCrop = {};
     for (let i in myRange) {
       myCrop[myRange[i]] = new Crop_Selected(myRange[i]);
+    }
+
+    let myCrop_individual = {};
+    for (let i in myRange) {
+      myCrop_individual[myRange[i]] = new Crop_individual(myRange[i]);
     }
 
     //  myRating_**を配列に組み込む -----------
@@ -957,16 +1038,16 @@
       i = (i) % 4;
       switch (i) {
         case 0:
-          myCrop[tmp_myNum].el_myRating_en = $(this);
+          myCrop[tmp_myNum].dom_myRating_en = $(this);
           break;
         case 1:
-          myCrop[tmp_myNum].el_myRating_pr = $(this);
+          myCrop[tmp_myNum].dom_myRating_pr = $(this);
           break;
         case 2:
-          myCrop[tmp_myNum].el_myRating_va = $(this);
+          myCrop[tmp_myNum].dom_myRating_va = $(this);
           break;
         case 3:
-          myCrop[tmp_myNum].el_myRating_fe = $(this);
+          myCrop[tmp_myNum].dom_myRating_fe = $(this);
           break;
       }
     });
@@ -974,19 +1055,19 @@
     //  selected_crops_tbl_**を配列に組み込む -----------
     $('.selected_crops_tbl').each(function () {
       let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].el_tbl_Crop = $(this);
+      myCrop[num_tbl].dom_tbl_Crop = $(this);
     });
 
     //  btn_add_crop_**を配列に組み込む -----------
     $('.btn_add_crop').each(function () {
       let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].el_btn_add = $(this);
+      myCrop[num_tbl].dom_btn_add = $(this);
     });
 
     //  lst_monthを配列に組み込む -----------
     $('.lst_month').each(function () {
       let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].el_lst_month = $(this);
+      myCrop[num_tbl].dom_lst_month = $(this);
     });
 
     //  テーブルごとのmonthを配列に組み込む -----------
@@ -995,33 +1076,33 @@
       let tmp_dat = myCrop[num_tbl];
       let tmp_mon = 0;
       if (num_tbl < 200) {
-        tmp_mon = Number(tmp_dat.el_lst_month.prop("selectedIndex") + 1);
+        tmp_mon = Number(tmp_dat.dom_lst_month.prop("selectedIndex") + 1);
       } else {
-        tmp_mon = Number(tmp_dat.el_lst_month.text());
+        tmp_mon = Number(tmp_dat.dom_lst_month.text());
       }
       myCrop[num_tbl].month = tmp_mon;
-      myCrop[num_tbl].el_btn_add.attr('myNum', num_tbl);
+      myCrop[num_tbl].dom_btn_add.attr('myNum', num_tbl);
     }
 
     //  lbl_target_**を配列に組み込む -----------
     $('.lbl_target_en').each(function () {
       let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].el_lbl_target_en = $(this);
+      myCrop[num_tbl].dom_lbl_target_en = $(this);
     });
 
     $('.lbl_target_pr').each(function () {
       let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].el_lbl_target_pr = $(this);
+      myCrop[num_tbl].dom_lbl_target_pr = $(this);
     });
 
     $('.lbl_target_va').each(function () {
       let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].el_lbl_target_va = $(this);
+      myCrop[num_tbl].dom_lbl_target_va = $(this);
     });
 
     $('.lbl_target_fe').each(function () {
       let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].el_lbl_target_fe = $(this);
+      myCrop[num_tbl].dom_lbl_target_fe = $(this);
     });
     //-------------
 
@@ -1038,6 +1119,8 @@
     }
 
 
+    //    myCrop[201].getCrop_byID(819);
+    // console.log(myCrop_individual[201].dom_tbl_row.eq(0).html());
     Crop_available.data().hello("test desu");
 
 
