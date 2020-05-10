@@ -240,7 +240,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <label class="modal-body text-dark">
+          <div class="modal-body text-dark">
             <label for="my_Prod_Buy" id="my_Prod_Buy-label1">*share (
               <span style="color: #cc1111">buy</span> /
               <span style="color: #5bc0de">production</span>):
@@ -262,6 +262,7 @@
 
             <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
             <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_share1">change share</button>
+          </div>
         </div>
         <!-- /.modal-content -->
       </div>
@@ -606,7 +607,7 @@
     Crop_Selected.prototype.setData_fromListbox = function (num_tbl, mydata, drawFlag) {
       console.group('Crop_Selected.receive_SelectedRow:');
       if (drawFlag) {       //rowの追加
-        //データセットの作成1:buy_prod_share設定
+                            //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {
@@ -1251,7 +1252,7 @@
       if (myrow < $(this).parents().children('tr').length - 1) {
         let dat = myCrop[myNum_tmp]._getCrop_byRow(myrow);
 //      myCrop[myNum_tmp].sendData_cropInd(myrow);
-        myCrop_individual[myNum_tmp].getInitData(dat);
+        myCrop_individual[myNum_tmp].setData(dat);
         $('#Modal_food_volume').attr('myNum', myNum_tmp); //table番号の記録
         $('#Modal_food_volume').modal('show');
       }
