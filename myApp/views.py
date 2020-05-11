@@ -936,7 +936,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
         dd["count_buy"] = ''
         dd["month"] = ''
         dd["myLocation"] = ''
-        dd["myid_tbl"] = i
+        dd["num_tbl"] = i
         dd["share_prod_buy"] = 5
         d.append(dd)
       else:
@@ -955,7 +955,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
           dd["count_buy"] = tmp03.count_buy
           dd["month"] = tmp03.month
           dd["myLocation"] = tmp03.myLocation_id
-          dd["myid_tbl"] = tmp03.id_table
+          dd["num_tbl"] = tmp03.id_table
           dd["share_prod_buy"] = tmp03.share_prod_buy
           d.append(dd)
     context["mylist_selected"] = d

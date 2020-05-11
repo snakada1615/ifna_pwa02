@@ -1,220 +1,140 @@
 {% extends 'myApp/_base.html' %}
 {% load static %}
-{% load humanize %}
-
 {% block content %}
+
   <script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
-  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
-  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
-
+  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}"
+        media="screen">
+  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}"
+        media="screen">
   <script type="text/javascript" src="{% static 'js/jquery.barrating.min.js' %}"></script>
   <link rel="stylesheet" href="{% static 'css/fontawesome-apple.css' %}">
   <link rel="stylesheet" href="{% static 'css/bars-1to10.css' %}">
 
-  {#  <input type="hidden" value="" id="selected_row">#}
+  <!-------------title--------------------------->
+  <div class="container" aria-live="polite" aria-atomic="true" style="max-width: 540px; position: relative;">
 
-  <div class="container" style="max-width: 540px;">
-    <div class="row">
-      <div class="col-2 my-0 px-3">
-        <img src="{% static 'img/no4.png' %}" alt="number 4">
-      </div>
-      <div class="col-8 my-0 px-1">
-        <h5>
-          Diet planning for
-          {{ myLocation }}
-        </h5>
-      </div>
-      <div class="col-2 my-0 px-3">
-        <div class="row">
-          <div class="col-12">
+    <div class="container" style="max-width: 540px;">
+      <div class="row">
+        <div class="col-2 my-0 px-3">
+          <img src="{% static 'img/no4.png' %}" alt="number 4">
+        </div>
+        <div class="col-8 my-0 px-1">
+          <h5>
+            Diet planning for
+            {{ myLocation }}
+          </h5>
+        </div>
+        <div class="col-2 my-0 px-3">
+          <div class="row">
+            <div class="col-12">
             <span>
               <a class="btn btn-warning mt-2 my-0 py-0 btn-sm" href="{% url 'index02' %}">back</a>
             </span>
-            <span>
-              <a mynum="100" id="btn_save_crop" class="btn btn-warning mt-2 my-0 py-0 btn-sm">save</a>
+              <span>
+              <a class="btn btn-warning mt-2 my-0 py-0 btn-sm" mynum="100" id="btn_save_crop" href='#'>save</a>
             </span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="container" style="max-width: 540px;">
-    <div id="accordion">
-      <div class="card  border-dark bg-light col-12 mt-2 py-0" style="max-width: 540px;">
-        <div class="row">
-          <div class="col-12">
-            <div class="card-body py-0 px-0">
-              <p class="card-text text-success my-0">
-                myLocation:
-                {{ myLocation }}
-              </p>
-              <p class="card-text my-0">
-                country:
-                {{ myLocation.myCountry.NAME_0 }}
-              </p>
-              <p class="card-text my-0">
-                region:
-                {{ myLocation.myCountry.NAME_1 }}
-              </p>
-              <p class="card-text my-0">
-                province:
-                {{ myLocation.myCountry.NAME_2 }}
-              </p>
-              <p class="card-text my-0">
-                nutrition target:
-                {{ myLocation.nutrition_target }}
-              </p>
-              <button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true"
-                      aria-controls="more_info">
-                more info
-              </button>
+    <!-------------location information--------------------------->
+    <div class="container" style="max-width: 540px;">
+      <div id="accordion">
+        <div class="card  border-dark bg-light col-12 mt-2 py-0" style="max-width: 540px;">
+          <div class="row">
+            <div class="col-12">
+              <div class="card-body py-0 px-0">
+                <p class="card-text text-success my-0">
+                  myLocation:
+                  {{ myLocation }}
+                </p>
+                <p class="card-text my-0">
+                  country:
+                  {{ myLocation.myCountry.NAME_0 }}
+                </p>
+                <p class="card-text my-0">
+                  region:
+                  {{ myLocation.myCountry.NAME_1 }}
+                </p>
+                <p class="card-text my-0">
+                  province:
+                  {{ myLocation.myCountry.NAME_2 }}
+                </p>
+                <p class="card-text my-0">
+                  nutrition target:
+                  {{ myLocation.nutrition_target }}
+                </p>
+                <button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true"
+                        aria-controls="more_info">
+                  more info
+                </button>
 
-              <div id="more_info" class="collapse" aria-labelledby="heading{{ crop.food_item_id }}"
-                   data-parent="#accordion">
-                <p class="card-text my-0">
-                  stunting rate:
-                  {{ myLocation.stunting_rate }}
-                </p>
-                <p class="card-text my-0">
-                  wasting rate:
-                  {{ myLocation.wasting_rate }}
-                </p>
-                <p class="card-text my-0">
-                  anemia rate:
-                  {{ myLocation.anemia_rate }}
-                </p>
+                <div id="more_info" class="collapse" aria-labelledby="heading{{ crop.food_item_id }}"
+                     data-parent="#accordion">
+                  <p class="card-text my-0">
+                    stunting rate:
+                    {{ myLocation.stunting_rate }}
+                  </p>
+                  <p class="card-text my-0">
+                    wasting rate:
+                    {{ myLocation.wasting_rate }}
+                  </p>
+                  <p class="card-text my-0">
+                    anemia rate:
+                    {{ myLocation.anemia_rate }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- モーダルの設定 local crop ----------------------------->
-  <div class="modal fade" id="Modal_localCrop1" mynum="0" tabindex="-1" role="dialog"
-       aria-labelledby="Modal_localCropLabel">
-    <div class="modal-dialog " role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Add/remove food item</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span class="text-danger" aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body text-dark">
-          <div class="my-2" id="myFilter1">Food group:
-          </div>
-          <table id="localCrop1" class="display compact" cellspacing="0" width="100%">
-            <thead>
-            <tr>
-              <th>s</th>
-              <th>Name</th>
-              <th>En</th>
-              <th>Pr</th>
-              <th>VA</th>
-              <th>Fe</th>
-              <th>c</th>
-            </tr>
-            </thead>
-
-            <tfoot>
-            <tr>
-              <th>s</th>
-              <th>Name</th>
-              <th>En</th>
-              <th>Pr</th>
-              <th>VA</th>
-              <th>Fe</th>
-              <th>c</th>
-            </tr>
-            </tfoot>
-          </table>
-          <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" data-dismiss="modal">close</a>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
-  <!-------------------------------------->
-
-  <!-- モーダルの設定 change diet volume----------------------------->
-  <div class="container mx-0 my-0 px-0 py-0 ">
-    <div class="modal fade" id="Modal_food_volume" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
-      <div class="modal-dialog" role="document">
+    <!-- モーダルの設定 local crop ----------------------------->
+    <div class="modal fade" id="Modal_localCrop1" mynum="0" tabindex="-1" role="dialog"
+         aria-labelledby="Modal_localCropLabel">
+      <div class="modal-dialog " role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Determine the volume of food item</h5>
+            <h5 class="modal-title">Add/remove food item</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="close">
-              <span aria-hidden="true">&times;</span>
+              <span class="text-danger" aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body text-dark">
-            <table border="1" class="table table-striped" id="tbl_food_SetWeight">
+            <div class="my-2" id="myFilter1">Food group:
+            </div>
+            <table id="localCrop1" class="display compact">
+              <thead>
               <tr>
-                <th>name</th>
+                <th>s</th>
+                <th>Name</th>
                 <th>En</th>
                 <th>Pr</th>
-                <th>Va</th>
+                <th>VA</th>
                 <th>Fe</th>
-                <th>Wt</th>
+                <th>c</th>
               </tr>
+              </thead>
+
+              <tfoot>
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <th>s</th>
+                <th>Name</th>
+                <th>En</th>
+                <th>Pr</th>
+                <th>VA</th>
+                <th>Fe</th>
+                <th>c</th>
               </tr>
+              </tfoot>
             </table>
-
-            <span>*consumption target (1 portion=): <a href="#" id="btn_change_portion"></a>g</span>
-
-            <div class="row pl-4">
-              <div class="column-11">
-                <select id="BR_food_count">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                  <option value="13">13</option>
-                  <option value="14">14</option>
-                  <option value="15">15</option>
-                  <option value="16">16</option>
-                  <option value="17">17</option>
-                  <option value="18">18</option>
-                  <option value="19">19</option>
-                  <option value="20">20</option>
-                </select>
-              </div>
-              <div class="column-1">
-              <span class="fb fb-help d-inline" data-toggle="tooltip"
-                    title="set volume of food by changing the number of apple icon below"></span>
-              </div>
-            </div>
-
-            <div>*share (
-              <span style="color: #5bc0de">production</span> /
-              <span style="color: #cc1111">buy</span>):
-              <img id="BR_buy_prod_pie_img" src="#" style="width: 30px" alt="">
-              <span class="fb fb-help" data-toggle="tooltip" title="you can set buy or produce"></span>
-            </div>
-
-            <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
-            <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_weight1">change value</button>
+            <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" data-dismiss="modal">close</a>
           </div>
         </div>
         <!-- /.modal-content -->
@@ -222,118 +142,212 @@
       <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-  </div>
-  <!-------------------------------------->
+    <!-------------------------------------->
 
-  <!-- モーダルの設定 change balance ----------------------------->
-  <div class="modal fade" id="Modal_Prod_Buy" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Where do you get food (field or market)?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <label class="modal-body text-dark">
-          <label for="my_Prod_Buy" id="my_Prod_Buy-label1">*share (
-            <span style="color: #cc1111">buy</span> /
-            <span style="color: #5bc0de">production</span>):
-          </label>
-          <span class="fb fb-help" data-toggle="tooltip" title="Tooltip message"></span>
-
-          <select id="my_Prod_Buy">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
-
-          <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
-          <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_share1">change share</button>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
-  <!-------------------------------------->
-
-  <!-- モーダルの設定 change portion ----------------------------->
-  <div class="modal fade" id="Modal_Portion" tabindex="-1" role="dialog" aria-labelledby="Modal_PortionLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-dark" id="Modal_PortionLabel1">Please set minimum portion size</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body text-dark">
-
-          <form>
-            <div class="form-group row">
-              <label for="old_portion" class="col-sm-4 col-form-label">current value (g)</label>
-              <div class="col-sm-8">
-                <input type="number" readonly class="form-control-plaintext" class="form-control" id="old_portion"
-                       placeholder="portion size" value="30">
-              </div>
-              <label for="new_portion" class="col-sm-4 col-form-label">new value (g)</label>
-              <div class="col-sm-8">
-                <input type="number" class="form-control" id="new_portion" placeholder="50">
-              </div>
+    <!-- モーダルの設定 change diet volume----------------------------->
+    <div class="container mx-0 my-0 px-0 py-0 ">
+      <div class="modal fade" id="Modal_food_volume" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Determine the volume of food item</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-          </form>
+            <div class="modal-body text-dark">
+              <table border="1" class="table table-striped" id="tbl_food_SetWeight">
+                <tr>
+                  <th>name</th>
+                  <th>En</th>
+                  <th>Pr</th>
+                  <th>Va</th>
+                  <th>Fe</th>
+                  <th>Wt</th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </table>
 
-          <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">cancel</button>
-          <button type="button" class="btn btn-primary mt-2" mynum="0" id="btn_set_portion">change portion</button>
+              <span>*consumption target (1 portion=): <a href="#" id="btn_change_portion"></a>g</span>
+
+              <div class="row pl-4">
+                <div class="column-11">
+                  <select id="BR_food_count">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                  </select>
+                </div>
+                <div class="column-1">
+              <span class="fb fb-help d-inline" data-toggle="tooltip"
+                    title="set volume of food by changing the number of apple icon below"></span>
+                </div>
+              </div>
+
+              <div>*share (
+                <span style="color: #5bc0de">production</span> /
+                <span style="color: #cc1111">buy</span>):
+                <img id="BR_buy_prod_pie_img" src="#" style="width: 30px" alt="">
+                <span class="fb fb-help" data-toggle="tooltip" title="you can set buy or produce"></span>
+              </div>
+
+              <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
+              <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_weight1">change value</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+    </div>
+    <!-------------------------------------->
+
+    <!-- モーダルの設定 change balance ----------------------------->
+    <div class="modal fade" id="Modal_Prod_Buy" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Where do you get food (field or market)?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-dark">
+            <label for="my_Prod_Buy" id="my_Prod_Buy-label1">*share (
+              <span style="color: #cc1111">buy</span> /
+              <span style="color: #5bc0de">production</span>):
+            </label>
+            <span class="fb fb-help" data-toggle="tooltip" title="Tooltip message"></span>
+
+            <select id="my_Prod_Buy">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+
+            <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
+            <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_share1">change share</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-------------------------------------->
+
+    <!-- モーダルの設定 change portion ----------------------------->
+    <div class="modal fade" id="Modal_Portion" tabindex="-1" role="dialog" aria-labelledby="Modal_PortionLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark" id="Modal_PortionLabel1">Please set minimum portion size</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-dark">
+
+            <form>
+              <div class="form-group row">
+                <label for="old_portion" class="col-sm-4 col-form-label">current value (g)</label>
+                <div class="col-sm-8">
+                  <input type="number" readonly class="form-control-plaintext" class="form-control" id="old_portion"
+                         placeholder="portion size" value="30">
+                </div>
+                <label for="new_portion" class="col-sm-4 col-form-label">new value (g)</label>
+                <div class="col-sm-8">
+                  <input type="number" class="form-control" id="new_portion" placeholder="ex.) 50..">
+                </div>
+              </div>
+            </form>
+
+            <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">cancel</button>
+            <button type="button" class="btn btn-primary mt-2" mynum="0" id="btn_set_portion">change portion</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-------------------------------------->
+
+
+    <div id="container_tab_all" class="container border-secondary py-1 my-1 px-0"
+         style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
+      <!-- 4個分のタブ -->
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a href="#tab1_link" class="nav-link active" id="tab1" data-toggle="tab">individual</a>
+        </li>
+        <li class="nav-item">
+          <a href="#tab2_link" class="nav-link" id="tab2" data-toggle="tab">family</a>
+        </li>
+        <li class="nav-item">
+          <a href="#tab3_link" class="nav-link" id="tab3" data-toggle="tab">community</a>
+        </li>
+      </ul>
+
+      <!-- タブの移動先指定 -->
+      <div class="tab-content">
+        <div id="tab1_link" class="tab-pane active">
+          {% include "./Diet_Sub1.html" %}
+        </div>
+        <div id="tab2_link" class="tab-pane">
+          {% include "./Diet_Sub2.html" %}
+        </div>
+        <div id="tab3_link" class="tab-pane">
+          {% include "./Diet_Sub3.html" %}
         </div>
       </div>
-      <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
-  <!-------------------------------------->
 
+    <!-------------snackbarの表示--------------------------->
+    <div id="snackbar">Some text some message..</div>
+    <!------------------------------------------------------------->
 
-  <div id="container_tab_all" class="container border-secondary py-1 my-1 px-0"
-       style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
-    <!-- 4個分のタブ -->
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a href="#tab1_link" class="nav-link active" id="tab1" data-toggle="tab">individual</a>
-      </li>
-      <li class="nav-item">
-        <a href="#tab2_link" class="nav-link" id="tab2" data-toggle="tab">family</a>
-      </li>
-      <li class="nav-item">
-        <a href="#tab3_link" class="nav-link" id="tab3" data-toggle="tab">community</a>
-      </li>
-    </ul>
-
-    <!-- タブの移動先指定 -->
-    <div class="tab-content">
-      <div id="tab1_link" class="tab-pane active">
-        {% include "./Diet_Sub1.html" %}
-      </div>
-      <div id="tab2_link" class="tab-pane">
-        {% include "./Diet_Sub2.html" %}
-      </div>
-      <div id="tab3_link" class="tab-pane">
-        {% include "./Diet_Sub3.html" %}
-      </div>
-    </div>
   </div>
 
-  <!------------------------------------------------------------->
+
   <style media="screen">
+    /* set common variable */
+    :root {
+      --td_wid_normal: 30;
+    }
+
     /* force rotate when screen width less than 450 */
     @media screen and (min-width: 320px) and (max-width: 450px) and (orientation: portrait) {
       html {
@@ -347,25 +361,139 @@
       }
     }
 
+    .mod-tbl {
+      max-width: 650px;
+    }
+
+    .mytable {
+      table-layout: fixed;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .mytable tbody th {
+      width: var(--td_wid_normal) px;
+      min-width: var(--td_wid_normal) px;
+      border-collapse: collapse;
+      border: 2px grey solid;
+    }
+
+    .mytable td {
+      width: var(--td_wid_normal) px;
+      min-width: var(--td_wid_normal) px;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .mytable th {
+      color: whitesmoke;
+      background-color: #49A0B5;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .mytable tr:nth-child(odd) td {
+      color: darkblue;
+      text-align: left;
+      background-color: #49A0B5;
+    }
+
+    .mytable tr:nth-child(even) td {
+      color: white;
+      background-color: #F9F9F9;
+    }
+
     /* 行または列の非表示*/
     .tableItem_hide {
       display: none;
     }
 
-    /* fontawsomeの書式*/
-    .fb-help {
-      color: green;
+    /* ----------snackbarの設定----------*/
+    #snackbar {
+      visibility: hidden;
+      min-width: 250px;
+      margin-left: -125px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 2px;
+      padding: 16px;
+      position: fixed;
+      z-index: 1;
+      left: 50%;
+      bottom: 30px;
+      font-size: 17px;
     }
+
+    #snackbar.show {
+      visibility: visible;
+      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    @-webkit-keyframes fadein {
+      from {
+        bottom: 0;
+        opacity: 0;
+      }
+      to {
+        bottom: 30px;
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadein {
+      from {
+        bottom: 0;
+        opacity: 0;
+      }
+      to {
+        bottom: 30px;
+        opacity: 1;
+      }
+    }
+
+    @-webkit-keyframes fadeout {
+      from {
+        bottom: 30px;
+        opacity: 1;
+      }
+      to {
+        bottom: 0;
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeout {
+      from {
+        bottom: 30px;
+        opacity: 1;
+      }
+      to {
+        bottom: 0;
+        opacity: 0;
+      }
+    }
+
+    /* ----------snackbarの設定終わり----------*/
 
   </style>
 
-  <script>
-    //#todo 今後の予定：以下をテーブルの数と同じ４つのオブジェクトに分けて再構成
-    //#todo 今後の予定：食材のコストを追加
-    //ツールチップの初期化
+
+
+  <script type="text/javascript">
+
+
     $('[data-toggle="tooltip"]').tooltip();
 
     // グローバル変数の作成
+    const myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212,
+      301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312];
     var selected_rows_id = [];
     var myLocation = '';
     var myRoot = '';
@@ -400,29 +528,20 @@
     myRoot = url_tmp.join("/") + '/';
     var myLocation_id = tmp1;
 
-    //  myRating_**を配列に組み込む -----------
-    let myRating_en = {};
-    let myRating_pr = {};
-    let myRating_va = {};
-    let myRating_fe = {};
-    $('.rating_DRI').each(function (i) {
-      let tmp_myNum = $(this).attr('myNum');
-      i = (i) % 4;
-      switch (i) {
-        case 0:
-          myRating_en[tmp_myNum] = $(this);
-          break;
-        case 1:
-          myRating_pr[tmp_myNum] = $(this);
-          break;
-        case 2:
-          myRating_va[tmp_myNum] = $(this);
-          break;
-        case 3:
-          myRating_fe[tmp_myNum] = $(this);
-          break;
-      }
-    });
+    let $modal_localCrop = $('#Modal_localCrop1');
+    let myTbl_food_Setweight = $('#tbl_food_SetWeight');
+    let myfood_volume = {};
+    let myfood_portion = {};
+    let myfood_share = {};
+    myfood_volume['modal'] = $('#Modal_food_volume');
+    myfood_volume['save'] = $('#change_weight1');
+    myfood_volume['portion'] = $('#btn_change_portion');
+    myfood_volume['share'] = $('#BR_buy_prod_pie_img');
+    myfood_volume['barrating'] = $('#my_Prod_Buy');
+    myfood_share['modal'] = $('#Modal_Prod_Buy');
+    myfood_share['save'] = $('#change_share1');
+    myfood_portion['modal'] = $('#Modal_Portion');
+    myfood_portion['save'] = $('#btn_set_portion');
 
 
     //////////////// set local name/////
@@ -444,17 +563,18 @@
       }
       json_crop_selected.push(token);
     });
+    console.log('初期選択品目の一覧：');
     console.log(json_crop_selected);
-    $container_tab_all = $('#container_tab_all');
+    //---------------------------------------------
 
-    //////////////// star rating///// #todo $('.rating_**[myNum=')4種を配列に組み込むこと
+    //////////////// star rating/////
     $(function () {
       $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
       $('#my_Prod_Buy').barrating({theme: 'bars-1to10', showSelectedRating: true, readonly: false}); // set barrating)
       $('#BR_food_count').barrating({theme: 'fontawesome-apple'});
     });
 
-    ////////////////////////////////
+    ///////////set nutrition target for each table  /////////////////////
     $('.lbl_target_en[myNum^=1]').text(target_en[1].toFixed(0));
     $('.lbl_target_pr[myNum^=1]').text(target_pr[1].toFixed(0));
     $('.lbl_target_va[myNum^=1]').text(target_va[1].toFixed(0));
@@ -467,9 +587,366 @@
     $('.lbl_target_pr[myNum^=3]').text(target_pr[3].toFixed(0));
     $('.lbl_target_va[myNum^=3]').text(target_va[3].toFixed(0));
     $('.lbl_target_fe[myNum^=3]').text(target_fe[3].toFixed(0));
-    /////////////////////////////
-    var tblObj_localCrop1 = $('#localCrop1').DataTable({
+
+    // --------snackbarの設定-------
+    function my_snackbar(mes) {
+      var x = $("#snackbar");
+      x.text(mes);
+      x.toggleClass('show');
+      setTimeout(function () {
+        x.toggleClass('show');
+      }, 3000);
+    }    // ---------------------
+
+
+    //    create object setup "Crop_Selected"   -------------------------------
+    function Crop_Selected(num_tbl) {
+      const found = myRange.find(element => element === num_tbl);
+      if (found) {
+        this.crops = [];
+        this.num_tbl = num_tbl;
+        this.sum_en = 0;
+        this.sum_pr = 0;
+        this.sum_va = 0;
+        this.sum_fe = 0;
+        this.month = 0;
+
+        let target_scope = Math.trunc(num_tbl / 100);
+        this.target_en = target_en[target_scope];
+        this.target_pr = target_pr[target_scope];
+        this.target_va = target_va[target_scope];
+        this.target_fe = target_fe[target_scope];
+
+        //関連DOM要素の指定 lbl_target_en
+        this.dom_lbl_target_en = '';
+        this.dom_lbl_target_pr = '';
+        this.dom_lbl_target_va = '';
+        this.dom_lbl_target_fe = '';
+        this.dom_myRating_en = '';
+        this.dom_myRating_pr = '';
+        this.dom_myRating_va = '';
+        this.dom_myRating_fe = '';
+        this.dom_btn_add = '';
+        this.dom_lst_month = '';
+        this.dom_tbl_Crop = '';
+
+        console.log('オブジェクトCrop_Selected' + num_tbl + 'を作成しました');
+      } else {
+        console.error('オブジェクトCrop_Selected' + num_tbl + 'を作成できません。テーブル番号が不正です');
+      }
+    }
+
+    Crop_Selected.prototype.setDataDraw_Crop = function (crop_data) {
+      this.setData_Crop(crop_data);
+      this._drawRaw_single(crop_data.food_item_id);
+    };
+    Crop_Selected.prototype.setData_Crop = function (crop_data) {
+      console.group('Crop_Selected.setCrop:');
+      console.log(crop_data);
+      if (crop_data.food_item_id) {
+        console.log('table_id(' + crop_data.num_tbl + ')に' + crop_data.Food_name + 'を追加します');
+        let overwrite = this._delCrop(crop_data.food_item_id);       //重複業あれば削除
+        this.crops.push(crop_data);
+        console.groupEnd();
+        return overwrite;
+      } else {
+        console.error('no crop found');
+        console.groupEnd();
+        return false;
+      }
+    };
+    Crop_Selected.prototype.setData_fromListbox = function (num_tbl, mydata, drawFlag) {
+      console.group('Crop_Selected.receive_SelectedRow:');
+      if (drawFlag) {       //rowの追加
+        //データセットの作成1:buy_prod_share設定
+        let tmp_share = 5;
+        let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
+        if (tmp_val == 2) {
+          tmp_share = 100;
+        } else if (tmp_val == 3) {
+          tmp_share = 99;
+        }
+        console.log('食品の入手先shareを' + tmp_share + 'に設定します');
+
+        //データセットの作成2(crop_available -> crop_selected)
+        let dd = {};
+        dd["name"] = mydata['Food_name'];
+        dd["Energy"] = mydata['Energy'];
+        dd["Protein"] = mydata['Protein'];
+        dd["VITA_RAE"] = mydata['VITA_RAE'];
+        dd["FE"] = mydata['FE'];
+        dd["food_item_id"] = mydata['food_item_id'];
+        dd["portion_size"] = mydata['portion_size'];
+        dd["share_prod_buy"] = tmp_share;
+        dd["total_weight"] = 0;
+        dd["count_prod"] = 0;
+        dd["count_buy"] = 0;
+        dd["month"] = myCrop[num_tbl].month;
+        dd["myLocation"] = myLocation_id;
+        dd["num_tbl"] = num_tbl;
+        dd["target_scope"] = Math.trunc(Number(num_tbl) / 100);
+        dd["Food_grp"] = mydata['Food_grp'];
+        dd["Food_name"] = mydata['Food_name'];
+        //-----
+
+        this.setData_Crop(dd);                           //データの追加
+        this._drawRaw_single(dd["food_item_id"]);   //データの描画
+        this._drawRaw_total();                      //合計行の描画
+        console.log(mydata['Food_name'] + 'を追加しました');
+        console.log(dd);
+
+      } else {      //rowの削除
+        this._delCrop(mydata.food_item_id);
+        this._drawRaw_erase(mydata.food_item_id);
+        this._drawRaw_total();     // 合計行を再計算してから挿入
+      }
+      console.groupEnd();
+    };
+    Crop_Selected.prototype._delCrop = function (food_item_id) {
+      console.group('Crop_Selected._delCrop:');
+      let del_index = -1;
+      const found = this.crops.find(function (ele, i) {
+        if (ele.food_item_id === Number(food_item_id)) {
+          del_index = i;
+        }
+      });
+      if (del_index > -1) {
+        this.crops.splice(del_index, 1);
+        console.log('food_item_id(' + food_item_id + ')の作物選択を解除しました');
+      }
+      console.groupEnd();
+      return del_index;
+    };
+    Crop_Selected.prototype._delAll = function () {
+      this.crops = [];
+      this.dom_tbl_Crop.children('tbody').find('tr:not(:eq(0))').remove(); //先頭行以外を削除
+      console.log('削除しました');
+      this._drawRaw_total();
+    };
+    Crop_Selected.prototype.setMonth = function (month) {
+      console.group('Crop_Selected.setMonth:');
+      if ((month > -1) && (month < 12)) {
+        this._delAll();    //作物を全部消去
+        this.month = month;
+        console.groupEnd();
+        return true;
+      }
+      console.groupEnd();
+      return false;
+    };
+
+    Crop_Selected.prototype.getCropList = function () {
+      console.group('Crop_Selected.getCropList:');
+      let found = [];
+      this.crops.forEach(function (ele) {
+        found.push(ele.food_item_id);
+      });
+      console.groupEnd();
+      return found || 'none';
+    };
+    Crop_Selected.prototype._getCrop_byID = function (food_item_id) {
+      console.group('Crop_Selected._getCrop_byID:');
+      console.log('food_item_idl:' + food_item_id);
+      const found = this.crops.find(element => element.food_item_id === Number(food_item_id));
+      console.groupEnd();
+      return found || 'none';
+    };
+    Crop_Selected.prototype._getCrop_byRow = function (row_id) {
+      let myrow = this.dom_tbl_Crop.find('tr').eq(row_id);
+      console.log(myrow.children('td').eq(7).text());
+      return this._getCrop_byID(myrow.children('td').eq(7).text());
+    };
+    Crop_Selected.prototype.drawTable = function () {
+      console.group('Crop_Selected.drawTable:');
+      this.dom_tbl_Crop.children('tbody').find('tr:not(:eq(0))').remove(); //先頭行以外を削除
+      // 追加行の挿入
+      for (let mycrop in this.crops) {
+        let mycrop_html = this._drawRaw_setHtml(this.crops[mycrop]);
+        this.dom_tbl_Crop.append(mycrop_html);
+      }
+      // 合計行の再計算の挿入
+      this._drawRaw_total();
+      console.groupEnd();
+    };
+    Crop_Selected.prototype._drawRaw_erase = function (food_item_id) {
+      console.group('Crop_Selected._drawRaw_erase:');
+      let del_flag = -1;
+      this.dom_tbl_Crop.find('tr').each(function (j, myRow) {
+        if ($(myRow).children('td').eq(7).text() === String(food_item_id)) { // 指定行が存在した場合
+          del_flag = $(myRow).index();
+          $(myRow).remove();    // まず該当行を削除
+        }
+      });
+      console.groupEnd();
+      return del_flag;
+    };
+    Crop_Selected.prototype._drawRaw_eraseLast = function () {
+      console.group('Crop_Selected._drawRaw_eraseLast:');
+      // 合計行を削除
+      let lastrow = this.dom_tbl_Crop.find('tr').last();
+//      console.log(lastrow.children('td').eq(0).text());
+      if (lastrow.children('td').eq(0).text() === 'total') {
+        lastrow.remove();
+      }
+      console.groupEnd();
+    };
+    Crop_Selected.prototype._drawRaw_single = function (food_item_id) {
+      console.group('Crop_Selected._drawRaw_single:');
+      let total = '';
+      let add_data = this._getCrop_byID(food_item_id);
+      if (add_data !== 'none') {
+        // 最終行を削除
+        this._drawRaw_eraseLast();
+        // 重複行があレバ削除
+        let rowNum = this._drawRaw_erase(food_item_id);
+        // 追加行の作成
+        const add_data_html = this._drawRaw_setHtml(add_data);
+        // 追加行の挿入
+        if (rowNum > -1) {
+          this.dom_tbl_Crop.find('tr').eq(rowNum - 1).after(add_data_html);
+        } else {
+          this.dom_tbl_Crop.append(add_data_html);
+        }
+        // 合計行の作成と挿入
+        this._drawRaw_total();
+        console.log('行の追加と合計行の再計算を終えました');
+      } else {
+        console.error('指定されたfood_item_id(' + food_item_id + ')は存在しません');
+      }
+      console.groupEnd();
+    };
+    Crop_Selected.prototype._drawRaw_setHtml = function (add_data) {
+      console.group('Crop_Selected._drawRaw_setHtml:');
+      // 追加行の作成
+      let cr = '';
+      cr += '<tr>';
+      cr += '<td>' + add_data.name + '</td>';
+      cr += '<td>' + Math.round(add_data.Energy * add_data.total_weight / 100, 1) + '</td>';
+      cr += '<td>' + Math.round(add_data.Protein * add_data.total_weight / 100, 1) + '</td>';
+      cr += '<td>' + Math.round(add_data.VITA_RAE * add_data.total_weight / 100, 1) + '</td>';
+      cr += '<td>' + Math.round(add_data.FE * add_data.total_weight / 100, 1) + '</td>';
+      cr += '<td>' + add_data.total_weight + '</td>';
+      cr += '<td class="tableItem_hide"></td>';
+      cr += '<td class="tableItem_hide">' + add_data.food_item_id + '</td>';
+      cr += '<td class="tableItem_hide">' + add_data.portion_size + '</td>';
+      cr += '<td class="tableItem_hide">' + add_data.count_prod + '</td>';
+      cr += '<td class="tableItem_hide">' + add_data.count_buy + '</td>';
+      cr += '<td class="tableItem_hide">' + add_data.Energy + '</td>';
+      cr += '<td class="tableItem_hide">' + add_data.Protein + '</td>';
+      cr += '<td class="tableItem_hide">' + add_data.VITA_RAE + '</td>';
+      cr += '<td class="tableItem_hide">' + add_data.FE + '</td>';
+      cr += '<td class="tableItem_hide">' + add_data.share_prod_buy + '</td>';
+      cr += '</tr>';
+
+      console.groupEnd();
+      return cr;
+    };
+    Crop_Selected.prototype._drawRaw_total = function () {
+      console.group('Crop_Selected._drawRaw_total:');
+      // 合計行を削除
+      this._drawRaw_eraseLast();
+      // 合計行の再計算
+      this._Sum_Nutrition();
+      // 合計行の挿入
+      target_scope = Math.trunc(this.num_tbl / 100);
+      total = '<tr><td>total</td>' +
+              this._setCellColor(Math.round(this.sum_en), target_en[target_scope]) +
+              this._setCellColor(Math.round(this.sum_pr), target_pr[target_scope]) +
+              this._setCellColor(Math.round(this.sum_va), target_va[target_scope]) +
+              this._setCellColor(Math.round(this.sum_fe), target_fe[target_scope]) +
+              '<td></td><td class="tableItem_hide"><' + '/td><td class="tableItem_hide">' +
+              '</td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
+              '</td><td class="tableItem_hide"></td></tr>';
+      this.dom_tbl_Crop.append(total);
+      // Barratingセット
+      this._SetBarrating();
+      console.log('合計を再計算しました');
+      console.groupEnd();
+    };
+    Crop_Selected.prototype._SetBarrating = function () {
+      console.group('Crop_Selected._SetBarrating:');
+      let rate_en = Math.round(this.sum_en * 10 / this.target_en);
+      if (rate_en > 10) {
+        rate_en = 10;
+      } else if (rate_en < 1) {
+        rate_en = 1;
+      }
+      let rate_pr = Math.round(this.sum_pr * 10 / this.target_pr);
+      if (rate_pr > 10) {
+        rate_pr = 10;
+      } else if (rate_pr < 1) {
+        rate_pr = 1;
+      }
+      let rate_va = Math.round(this.sum_va * 10 / this.target_va);
+      if (rate_va > 10) {
+        rate_va = 10;
+      } else if (rate_va < 1) {
+        rate_va = 1;
+      }
+      let rate_fe = Math.round(this.sum_fe * 10 / this.target_fe);
+      if (rate_fe > 10) {
+        rate_fe = 10;
+      } else if (rate_fe < 1) {
+        rate_fe = 1;
+      }
+      this.dom_myRating_en.barrating('set', rate_en); // set barrating
+      this.dom_myRating_pr.barrating('set', rate_pr); // set barrating
+      this.dom_myRating_va.barrating('set', rate_va); // set barrating
+      this.dom_myRating_fe.barrating('set', rate_fe); // set barrating
+      console.groupEnd();
+    };
+    Crop_Selected.prototype._setCellColor = function (i_cell, i_target) {
+      let res = '';
+      cNum = parseInt(i_cell * 100 / i_target, 10);
+      switch (true) {
+        case 0 <= cNum && cNum < 50:
+          res = '<td style="color:red;">' + i_cell + '</td>';
+          break;
+
+        case 50 <= cNum && cNum < 100:
+          res = '<td style="color:orange;">' + i_cell + '</td>';
+          break;
+
+        case 100 <= cNum:
+          res = '<td style="color:green;">' + i_cell + '</td>';
+          break;
+
+        default:
+          res = '<td>' + i_cell + '</td>';
+          break;
+      }
+      return res;
+    };
+    Crop_Selected.prototype._Sum_Nutrition = function () {
+      console.group('Crop_Selected:Sum_Nutrition');
+      let sum_en_tmp = 0;
+      let sum_pr_tmp = 0;
+      let sum_va_tmp = 0;
+      let sum_fe_tmp = 0;
+      this.dom_tbl_Crop.find('tr').each(function (j, myRow) {
+        if ($(myRow).children('td').eq(0).text() !== 'total') {
+          sum_en_tmp += Number($(myRow).children('td').eq(1).text());
+          sum_pr_tmp += Number($(myRow).children('td').eq(2).text());
+          sum_va_tmp += Number($(myRow).children('td').eq(3).text());
+          sum_fe_tmp += Number($(myRow).children('td').eq(4).text());
+        }
+      });
+      this.sum_en = sum_en_tmp;
+      this.sum_pr = sum_pr_tmp;
+      this.sum_va = sum_va_tmp;
+      this.sum_fe = sum_fe_tmp;
+
+      console.groupEnd();
+    };
+
+    Crop_Selected.prototype.sayhello = function () {
+    };
+
+
+    // //////////////////////////
+    var Crop_available = $('#localCrop1').DataTable({
       "data": json_crop_local,
+      "myFeeling": "Happy",
       "pageLength": 50,
       "columns": [
         {
@@ -546,6 +1023,7 @@
           "targets": [5]
         }
       ],
+
       "initComplete": function (settings, json) {
         // ////add filtering dropdown list
         this.api().columns([6]).every(function () {
@@ -565,624 +1043,553 @@
             select.append('<option value="' + d + '">' + d + '</option>');
           });
         });
+      },
+    });
 
-        //////////////////////////////////// ////////set cell color////////////////
-        function SetCellColor(i_cell, i_target) {
-          let res = '';
-          cNum = parseInt(i_cell * 100 / i_target, 10);
-          switch (true) {
-            case 0 <= cNum && cNum < 50:
-              res = '<td style="color:red;">' + i_cell + '</td>';
-              break;
+    $.fn.dataTable.Api.register('hello()', function (a) {
+      console.log(a);
+    });
 
-            case 50 <= cNum && cNum < 100:
-              res = '<td style="color:orange;">' + i_cell + '</td>';
-              break;
+    $.fn.dataTable.Api.register('receive_Selection()', function (month, num_table, selected_list) {
+      let myMonth = 0;
+      if (num_table < 200) {
+        myMonth = $('.lst_month[myNum=' + num_table + ']').prop("selectedIndex");
+      } else {
+        myMonth = $('.lst_month[myNum=' + num_table + ']').text() - 1;
+      }
+      $modal_localCrop.attr('myNum', num_table);      //table番号の記録
+      $modal_localCrop.attr('myMonth', month);  //該当月の記録
 
-            case 100 <= cNum:
-              res = '<td style="color:green;">' + i_cell + '</td>';
-              break;
+      this.rows().deselect();
 
-            default:
-              res = '<td>' + i_cell + '</td>';
-              break;
-          }
-          return res;
+      //filter crop by month//
+      for (var i = 9; i < 21; i++) {
+        this.column(i).search('').columns().search('').draw();
+      }
+      this.column(myMonth + 9).search('[123]', true, false).draw();
+
+      /// give selected status to the currently selected item//
+      this.rows().every(function (rowIdx, tableLoop, rowLoop) {
+        let myrow = this.data();
+        if (selected_list.indexOf(myrow.food_item_id) >= 0) {
+          this.select();
         }
+      });
+    });
 
-        /////////////// set barrating /
-        function SetBarrating(id_table) {
-          $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
-          let sum_en = 0;
-          let sum_pr = 0;
-          let sum_va = 0;
-          let sum_fe = 0;
-          let cr = '';
+    $.fn.dataTable.Api.register('send_Selection()', function (id_row) {
 
-          //ここからBarratingの記入
-          $myTable.children('tbody').children('tr').each(function (j, myRow) {
-            sum_en += Number($(myRow).children('td').eq(1).text());
-            sum_pr += Number($(myRow).children('td').eq(2).text());
-            sum_va += Number($(myRow).children('td').eq(3).text());
-            sum_fe += Number($(myRow).children('td').eq(4).text());
-          });
-          target_scope = Math.trunc(id_table / 100);
+      console.log(a);
+    });
+    $.fn.dataTable.Api.register('hello()', function (a) {
+      console.log(a);
+    });
 
-          cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[target_scope]) +
-                  SetCellColor(Math.round(sum_pr), target_pr[target_scope]) +
-                  SetCellColor(Math.round(sum_va), target_va[target_scope]) +
-                  SetCellColor(Math.round(sum_fe), target_fe[target_scope]) + '<td></td><td class="tableItem_hide"><' +
-                  '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
-                  '</td><td class="tableItem_hide"></td></tr>';
-          $myTable.append(cr);
 
-          let rate_en = Math.round(sum_en * 10 / target_en[target_scope]);
-          if (rate_en > 10) {
-            rate_en = 10
-          } else if (rate_en < 1) {
-            rate_en = 1
-          }
-          let rate_pr = Math.round(sum_pr * 10 / target_pr[target_scope]);
-          if (rate_pr > 10) {
-            rate_pr = 10
-          } else if (rate_pr < 1) {
-            rate_pr = 1
-          }
-          let rate_va = Math.round(sum_va * 10 / target_va[target_scope]);
-          if (rate_va > 10) {
-            rate_va = 10
-          } else if (rate_va < 1) {
-            rate_va = 1
-          }
-          let rate_fe = Math.round(sum_fe * 10 / target_fe[target_scope]);
-          if (rate_fe > 10) {
-            rate_fe = 10
-          } else if (rate_fe < 1) {
-            rate_fe = 1
-          }
+    /////    create object setup "Crop_Selected"   -------------------------------
+    function Crop_individual(num_tbl) {
+      const found = myRange.find(element => element === num_tbl);
+      if (found) {
+        this.num_tbl = num_tbl;
+        this.data = {};
 
-          myRating_en[id_table].barrating('set', rate_en); // set barrating
-          myRating_pr[id_table].barrating('set', rate_pr); // set barrating
-          myRating_va[id_table].barrating('set', rate_va); // set barrating
-          myRating_fe[id_table].barrating('set', rate_fe); // set barrating
-        }
+        //関連DOM要素の指定 lbl_target_en
+        this.dom_tbl = myTbl_food_Setweight;
+        this.dom_modal = myfood_volume.modal;
+        this.dom_btn_save = myfood_volume['save'];
+        this.dom_btn_por = myfood_volume['portion'];
+        this.dom_br_count = $('#BR_food_count');
+        this.dom_img_pie = myfood_volume['share'];
 
-        ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
-        function DrawSelected_AllTable(id_table) { /// render selected_crops_tbl
-          $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
-//          ＄myTable.attr('my_BuyProd_share',current_BuyProd_share);
-          $myTable.find('tr').remove(); //remove all rows
-          let sum_en = 0;
-          let sum_pr = 0;
-          let sum_va = 0;
-          let sum_fe = 0;
-          let cr = '';
-          for (var i = 0; i < json_crop_selected.length; i++) {
-            data = json_crop_selected[i];
-            if (data.myid_tbl === id_table) {
-              cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th>Wt</th>' +
-                      '<th class="tableItem_hide">id</th><th class="tableItem_hide">food_item_id</th>' +
-                      '<th class="tableItem_hide">portion_size</th><th class="tableItem_hide">count_prod</th>' +
-                      '<th class="tableItem_hide">count_buy</th><th class="tableItem_hide">En0</th>' +
-                      '<th class="tableItem_hide">Pr0</th><th class="tableItem_hide">Va0</th>' +
-                      '<th class="tableItem_hide">Fe0</th></tr><tr>';
-              cr += '<td>' + data.name + '</td>';
-              cr += '<td>' + Math.round(data.Energy * data.total_weight / 100, 1) + '</td>';
-              cr += '<td>' + Math.round(data.Protein * data.total_weight / 100, 1) + '</td>';
-              cr += '<td>' + Math.round(data.VITA_RAE * data.total_weight / 100, 1) + '</td>';
-              cr += '<td>' + Math.round(data.FE * data.total_weight / 100, 1) + '</td>';
-              cr += '<td>' + data.total_weight + '</td>';
-              cr += '<td class="tableItem_hide"></td>';
-              cr += '<td class="tableItem_hide">' + data.food_item_id + '</td>';
-              cr += '<td class="tableItem_hide">' + data.portion_size + '</td>';
-              cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
-              cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
-              cr += '<td class="tableItem_hide">' + data.Energy + '</td>';
-              cr += '<td class="tableItem_hide">' + data.Protein + '</td>';
-              cr += '<td class="tableItem_hide">' + data.VITA_RAE + '</td>';
-              cr += '<td class="tableItem_hide">' + data.FE + '</td>';
-              cr += '<td class="tableItem_hide">' + data.share_prod_buy + '</td>';
-              cr += '</tr>';
+        console.log('オブジェクトCrop_individual(' + num_tbl + ')を作成しました');
+      } else {
+        console.error('オブジェクトCrop_individual(' + num_tbl + ')を作成できません。テーブル番号が不正です');
+      }
+    }
 
+    Crop_individual.prototype.setData = function (data) {
+      console.group('Crop_individual:init');
+      this.data = data;
+      this.dom_tbl.children('tbody').children('tr').remove(); //tbl_food_SetWeightのテーブル初期化
+
+      let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th class="tableItem_hide">por</th>'
+              + '<th class="tableItem_hide">count_p</th><th class="tableItem_hide">count_b</th></tr>';
+      cr += '<tr>';
+      cr += '<td>' + data.name + '</td>';
+      cr += '<td>' + Math.round(data.Energy * data.total_weight / 100, 1) + '</td>';
+      cr += '<td>' + Math.round(data.Protein * data.total_weight / 100, 1) + '</td>';
+      cr += '<td>' + Math.round(data.VITA_RAE * data.total_weight / 100, 1) + '</td>';
+      cr += '<td>' + Math.round(data.FE * data.total_weight / 100, 1) + '</td>';
+      cr += '<td class="tableItem_hide portion_size">' + data.portion_size + '</td>';
+      cr += '<td class="tableItem_hide count_prod">' + data.count_prod + '</td>';
+      cr += '<td class="tableItem_hide count_buy">' + data.count_buy + '</td>';
+      cr += '<td class="tableItem_hide share_prod_buy">' + data.share_prod_buy + '</td>';
+      cr += '</tr>';
+
+      console.log('作物(' + data.name + ')を描画します');
+      console.log(data);
+      this.dom_tbl.append(cr);
+      this.dom_btn_por.text(data.portion_size); //ポーションサイズ設定
+//      this.dom_br_count.barrating('set', data.count_prod + data.count_buy); //摂取量の設定
+      let count_all = Number(data.count_prod + data.count_buy) || 1;
+      this.dom_br_count.barrating('set', count_all); //摂取量の設定
+      this.setPie_img(data.share_prod_buy); //Buy＿Prod _shaeの設定
+
+      console.groupEnd();
+    };
+    Crop_individual.prototype.setData_portion = function (data) {
+      console.group('Crop_individual:receive_portion');
+      let por = data.portion_size;
+      if (por) {
+        this.data.portion_size = por;
+        this.dom_btn_por.text(por);
+        this.dom_tbl.find('tr').eq(1).children('td').eq(5).text(por);
+        console.log('portion_sizeを' + por + 'に変更しました');
+      } else {
+        console.error('portion_sizeを変更できません');
+      }
+      console.groupEnd();
+    };
+    Crop_individual.prototype.setPie_img = function (i_share) {
+      if (i_share === 99) {
+        i_share = 0;
+      } else if (i_share === 100) {
+        i_share = 10;
+      }
+      let h = "/static/img/pie_" + String(i_share) + ".png";
+      console.log('prod/buy shareを' + i_share + 'に設定します');
+      this.dom_img_pie.attr('src', h);
+    };
+    Crop_individual.prototype.getData_FoodWt = function () {
+      console.group('Crop_individual:getData_FoodWt');
+      let count_all = Number(this.dom_br_count.children("option:selected").val());
+      let share_prod_buy_tmp = Number(this.data.share_prod_buy);
+      if (share_prod_buy_tmp === 100) {
+        share_prod_buy_tmp = 10;
+      }
+      if (share_prod_buy_tmp === 99) {
+        share_prod_buy_tmp = 0;
+      }
+      let count_prod = Math.trunc(count_all * share_prod_buy_tmp / 10);
+      let count_buy = count_all - count_prod;
+      let portion_size = this.data.portion_size;
+      this.data.count_prod = count_prod;
+      this.data.count_buy = count_buy;
+      this.data.total_weight = portion_size * count_all;
+      console.log(this.data.name + 'を更新します');
+      console.log(this.data);
+      console.groupEnd();
+      return this.data;
+    };
+
+    //---------
+    function Crop_Portion() {
+      this.crop = {};
+      this.dom_modal = myfood_portion['modal'];
+      this.dom_old_portion = $('#old_portion');
+      this.dom_new_portion = $('#new_portion');
+      this.dom_btn_set_portion = myfood_portion['save'];
+    }
+
+    Crop_Portion.prototype.setData = function (data) {
+      console.group('Crop_Portion.setData');
+      myfood_volume['modal'].modal('hide');//(Modalの入れ替え)
+      this.crop = data;
+      let por = this.crop.portion_size;
+      this.dom_old_portion.val(por);
+      this.dom_new_portion.val('');
+      console.groupEnd();
+      this.dom_modal.modal('show');
+    };
+    Crop_Portion.prototype.getData = function () {
+      console.group('Crop_Portion.getData');
+      let por = this.dom_new_portion.val();
+      this.crop.portion_size = por;
+      this.dom_modal.modal('hide');
+      console.log('Portionサイズを' + por + 'gに変更します');
+      console.groupEnd();
+      return this.crop;
+    };
+    /// ---- change portion size (Modalの入れ替え)--------
+    myfood_portion['modal'].on('hide.bs.modal', function () {
+      myfood_volume['modal'].modal('show');
+    });///-------------------------------
+
+    //---------
+    function Crop_Share() {
+      this.crop = {};
+      this.dom_modal = myfood_volume['modal'];
+      this.dom_BR_share = myfood_volume['barrating'];
+    }
+
+    Crop_Share.prototype.setData = function (crop_data) {
+      console.group('Crop_Share.SetData');
+      this.crop = crop_data;
+      myShare = Number(crop_data.share_prod_buy);
+      let res = '';
+      if (myShare > 10) {
+        let mes = crop_data.name +
+                ' is only available from ' + (myShare == 100 ? 'production' : 'the market') + ' for this month';
+        alert(mes);
+        res = false;
+      } else {
+        console.log('share_prod_buyを' + myShare + 'に設定します');
+        this.dom_BR_share.barrating('set', myShare);// set barrating
+        res = true;
+      }
+      console.groupEnd();
+      return res;
+    };
+    Crop_Share.prototype.getData = function () {
+      console.group('Crop_Share.getData');
+      let myShare = Number(this.dom_BR_share.children("option:selected").val());
+      this.crop.share_prod_buy = myShare;
+      let cou = this.crop.count_prod + this.crop.count_share;
+      this.crop.count_prod = Math.trunc(myShare * cou / 10);
+      this.crop.count_buy = cou - this.crop.count_prod;
+      console.groupEnd();
+      return this.crop;
+    };
+
+    //---------
+
+    ////////// start crop selection (local -> selected)
+    $('.btn_add_crop').on('click', function () {
+      let tmp_num = $(this).attr('myNum');
+      let tmp_month = myCrop[tmp_num].month;
+      let tmp_crop_selected = myCrop[tmp_num].getCropList();
+      Crop_available.data().receive_Selection(tmp_month, tmp_num, tmp_crop_selected);
+      $('#Modal_localCrop1').modal('show');
+    }); ///////////////////////////////////////////////
+
+    ///-------------------------------
+    $('#localCrop1 tbody').on('click', 'tr', function () {
+      $(this).toggleClass('selected');
+      let mydata = Crop_available.row(this).data();
+      let num_tbl = $modal_localCrop.attr('myNum');
+      myCrop[num_tbl].setData_fromListbox(num_tbl, mydata, $(this).hasClass('selected'));
+    });
+
+    //////////////////set food volume////#
+    $(".selected_crops_tbl").on("click", "td", function () {
+      console.group('selected_crops_tbl:click');
+      let myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');//テーブル番号の取得
+      let myrow = $(this).closest('tr')[0].rowIndex;
+      if (myrow < $(this).parents().children('tr').length - 1) {
+        let dat = myCrop[myNum_tmp]._getCrop_byRow(myrow);
+//      myCrop[myNum_tmp].sendData_cropInd(myrow);
+        myCrop_individual[myNum_tmp].setData(dat);
+        myfood_volume['modal'].attr('myNum', myNum_tmp); //table番号の記録
+        myfood_volume['modal'].modal('show');
+      }
+      console.groupEnd();
+    });
+
+    ////////////////// button click to reflect the modification　#
+    myfood_volume['save'].click(function () {
+      console.group('change_weight1:click');
+      let myNum_tmp = myfood_volume.modal.attr('myNum');//テーブル番号の取得
+      console.log('table(' + myNum_tmp + ')を変更します');
+      let data = myCrop_individual[myNum_tmp].getData_FoodWt();
+      myCrop[myNum_tmp].setDataDraw_Crop(data);
+
+      myfood_volume['modal'].modal('hide');
+      console.groupEnd();
+    });
+
+    ////////////////// change month
+    $('.lst_month').change(function () {
+      console.group('#lst_month.click');
+      if (confirm('Are you sure to change month to ' + $(this).val() + '?')) {
+        myCrop[$(this).attr('myNum')].setMonth($(this).prop('selectedIndex'));
+      } else {
+        $(this).prop('selectedIndex', $(this).attr('previousIndex'));
+      }
+      console.groupEnd();
+    });
+    $(".lst_month").click(function () {
+      $(this).attr('previousIndex', $(this).prop('selectedIndex'));
+    });
+
+    /// ---- set portion size --------
+    myfood_volume['portion'].on('click', function () {
+      console.group('#btn_change_portion.click');
+      let myNum_tmp = myfood_volume.modal.attr('myNum');//テーブル番号の取得
+      console.log(myNum_tmp);
+      let crop = myCrop_individual[myNum_tmp].data;
+      myCrop_portion.setData(crop);
+      console.groupEnd();
+    });
+
+    /// ---- set portion size --------
+    myfood_portion['save'].on('click', function () {
+      console.group('#btn_set_portion.click');
+      let myNum_tmp = myfood_volume.modal.attr('myNum');//テーブル番号の取得
+      console.log(myNum_tmp);
+      let crop = myCrop_portion.getData();
+      myCrop_individual[myNum_tmp].setData_portion(crop);   //Crop_individualのdata更新
+      myCrop[myNum_tmp].setData_Crop(crop);                 //Crop_selectedのdata更新
+      console.groupEnd();
+    });
+
+    //---------set balance prodoce/purchase -----------
+    myfood_volume['share'].on('click', function () {
+      console.group('#BR_buy_prod_pie_img.click');
+      let myNum_tmp = myfood_volume.modal.attr('myNum');//テーブル番号の取得
+      console.log(myNum_tmp);
+      let crop = myCrop_individual[myNum_tmp].data;
+      let res = myCrop_share.setData(crop);
+      if (res) {
+        myfood_volume['modal'].modal('hide');//(Modalの入れ替え)
+        myfood_share['modal'].modal('show');
+      }
+      console.groupEnd();
+    });
+
+    //// set balance prodoce/purchase ---------------------------
+    myfood_share['save'].on('click', function () {
+      console.group('#change_share1.click');
+      let myNum_tmp = myfood_volume['modal'].attr('myNum');//テーブル番号の取得
+      let crop = myCrop_share.getData();
+      console.log(crop);
+      console.log('count_p=' + crop.count_prod + ', count_b= ' + crop.count_buy + ', myShare=' + crop.share_prod_buy);
+      myCrop_individual[myNum_tmp].setData(crop);   //Crop_individualのdata更新
+      myCrop[myNum_tmp].setData_Crop(crop);          //Crop_selectedのdata更新
+      myfood_volume['modal'].attr('myNum', myNum_tmp); //table番号の記録
+      myfood_volume['modal'].modal('show');
+      myfood_share['modal'].modal('hide');
+      console.groupEnd();
+    });
+
+
+    //////////////////btn_save_crop
+    $('#btn_save_crop').click(function () {
+      console.group('#btn_save_crop.click');
+      let hostUrl = myRoot + 'registDiet/';
+      let mydat = getTblData();
+
+      console.log('データを保存する準備ができました');
+      Set_CRSF();
+      sendJson(mydat, hostUrl);
+      console.groupEnd();
+    }); ////////btn_save_crop///////////
+
+    //////////////////getTblData
+    function getTblData() {
+      console.group('getTblData');
+      let d = [];
+      $('.selected_crops_tbl').each(function (i, myTbl) {
+        $(myTbl).children('tbody').children('tr').each(function (j, myRow) {
+          let dd = {};
+          if ($(myRow).children('td').eq(0).text() !== '' && $(myRow).children('td').eq(0).text() !== 'total') {
+            //   dd["myName"] = $(myRow).children('td').eq(0).text();
+            dd["total_weight"] = $(myRow).children('td').eq(5).text();
+            dd["food_item_id"] = $(myRow).children('td').eq(7).text();
+            dd["portion_size"] = $(myRow).children('td').eq(8).text();
+            dd["count_prod"] = $(myRow).children('td').eq(9).text();
+            dd["count_buy"] = $(myRow).children('td').eq(10).text();
+            dd["share_prod_buy"] = $(myRow).children('td').eq(15).text();
+
+            let myNum_tmp = $(myTbl).attr('myNum');
+            let myMonth = 0;
+            if (myNum_tmp < 200) {
+              myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex") + 1;
+              console.log(myNum_tmp + 'hey hey-- ' + myMonth);
+            } else {
+              myMonth = Number($('.lst_month[myNum=' + myNum_tmp + ']').text());
+              console.log(myNum_tmp + 'hey hey-- ' + myMonth);
             }
-          }
-          $myTable.append(cr);
-          SetBarrating(id_table);
-        }
-
-        ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
-        function DrawSelected_addRow(id_table, add_data) { /// render selected_crops_tbl
-          let sum_en = 0;
-          let sum_pr = 0;
-          let sum_va = 0;
-          let sum_fe = 0;
-          let cr = '';
-          $myTbl = $('.selected_crops_tbl[myNum=' + id_table + ']');
-          $myTbl.children('tbody').children('tr').last().remove();
-          //  $("tr:eq(" + ($("tr").length - 2) + ")").remove();
-          $myTbl.append(add_data);
-
-          SetBarrating(id_table);
-        }
-
-        ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
-        function DrawSelected_delRow(id_table, food_item_id) { /// render selected_crops_tbl
-          let $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
-          $myTable.children('tbody').children('tr').each(function (j, myRow) {
-            if ($(myRow).children('td').eq(7).text() == food_item_id) {
-              $(myRow).remove();
-              return false;
-            }
-          })
-        }
-
-        ////////////////////////////////////////////// //////////init second table as modal dialog add selected rows to text box
-        $('#localCrop1 tbody').on('click', 'tr', function () {
-          $(this).toggleClass('selected');
-          let mydata = tblObj_localCrop1.row(this).data();
-          if ($(this).hasClass('selected')) {
-
-            //データセットの作成1:buy_prod_share設定
-            let tmp_share = 5;
-            let tmp_month = 'm' + $container_tab_all.attr('myMonth');
-            let tmp_val = Number(mydata[tmp_month]);
-            if (tmp_val == 2) {
-              tmp_share = 100;
-            } else if (tmp_val == 3) {
-              tmp_share = 99;
-            }
-            console.log('食品の入手先shareを' + tmp_share + 'に設定します');
-
-            //データセットの作成2
-            let dd = {};
-            dd["name"] = mydata['Food_name'];
-            dd["Energy"] = mydata['Energy'];
-            dd["Protein"] = mydata['Protein'];
-            dd["VITA_RAE"] = mydata['VITA_RAE'];
-            dd["FE"] = mydata['FE'];
-            dd["food_item_id"] = mydata['food_item_id'];
-            dd["portion_size"] = mydata['portion_size'];
-            dd["share_prod_buy"] = tmp_share;
-            dd["total_weight"] = 0;
-            dd["count_prod"] = 0;
-            dd["count_buy"] = 0;
-            //dd["month"] = '';
+            dd["month"] = myMonth;
+            dd["myid_tbl"] = myNum_tmp;
             dd["myLocation"] = myLocation_id;
-            dd["myid_tbl"] = $container_tab_all.attr('myNum');
-            dd["target_scope"] = Math.trunc(Number(dd["myid_tbl"]) / 100);
+            dd["target_scope"] = Math.trunc(myNum_tmp / 100);
 
-            //tableにデータを表示
-            let cr = '';
-            cr += '<tr>';
-            cr += '<td>' + dd["name"] + '</td>';
-            cr += '<td>' + Math.round(Number(dd["Energy"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
-            cr += '<td>' + Math.round(Number(dd["Protein"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
-            cr += '<td>' + Math.round(Number(dd["VITA_RAE"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
-            cr += '<td>' + Math.round(Number(dd["FE"]) * Number(dd["total_weight"]) / 100, 1) + '</td>';
-            cr += '<td>0</td>';
-            cr += '<td class="tableItem_hide"></td>';
-            cr += '<td class="tableItem_hide">' + dd["food_item_id"] + '</td>';
-            cr += '<td class="tableItem_hide">' + dd["portion_size"] + '</td>';
-            cr += '<td class="tableItem_hide">' + 0 + '</td>';
-            cr += '<td class="tableItem_hide">' + 0 + '</td>';
-            cr += '<td class="tableItem_hide">' + dd["Energy"] + '</td>';
-            cr += '<td class="tableItem_hide">' + dd["Protein"] + '</td>';
-            cr += '<td class="tableItem_hide">' + dd["VITA_RAE"] + '</td>';
-            cr += '<td class="tableItem_hide">' + dd["FE"] + '</td>';
-            cr += '<td class="tableItem_hide">' + dd["share_prod_buy"] + '</td>';
-            cr += '</tr>';
-
-            DrawSelected_addRow(dd["myid_tbl"], cr);
-            console.log(mydata['Food_name'] + 'を追加しました');
-
-          } else {
-            DrawSelected_delRow($container_tab_all.attr('myNum'), mydata["food_item_id"]);
-            console.log(mydata['Food_name'] + 'を削除しました' + $container_tab_all.attr('myNum'));
+            d.push(dd);
           }
-        }); //////////////////////////////////////////////
-        /////CreateSelection/////
-        function CreateSelection(myNum) {
-          let myNum_tmp = myNum;
-          let myMonth = 0;
-          if (myNum_tmp < 200) {
-            myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex");
-          } else {
-            myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').text() - 1;
-          }
-          let selected_list = [];
-          let $modal_localCrop = $('#Modal_localCrop1');
-          $container_tab_all.attr('myNum', myNum_tmp);      //table番号の記録
-          $container_tab_all.attr('myMonth', myMonth + 1);  //該当月の記録
-          $modal_localCrop.attr('myNum', myNum_tmp);
-
-          /// get currently selected row//
-          $('.selected_crops_tbl[myNum=' + myNum_tmp + '] tr').each(function (myRow) {
-            myFood_item = $(this).children('td').eq(0).text();
-            myFood_item_id = $(this).children('td').eq(7).text();
-            if (myFood_item !== '' && myFood_item !== 'total') {
-              selected_list.push(myFood_item_id);
-            }
-          });
-
-          // de-select all crop in the list
-          tblObj_localCrop1.rows().deselect();
-
-          //filter crop by month//
-          for (var i = 9; i < 21; i++) {
-            tblObj_localCrop1.column(i).search('').columns().search('').draw();
-          }
-          tblObj_localCrop1.column(myMonth + 9).search('[123]', true, false).draw();
-
-          /// give selected status to the currently selected item//
-          tblObj_localCrop1.rows().every(function (rowIdx, tableLoop, rowLoop) {
-            let myrow = this.data();
-            if (selected_list.indexOf(String(myrow.food_item_id)) >= 0) {
-              this.select();
-            }
-          });
-        }
-
-        /////CreateSelection/////
-
-        ////////// start crop selection (local -> selected)
-        $('.btn_add_crop').on('click', function () {
-          CreateSelection($(this).attr('myNum'));
-          $('#Modal_localCrop1').modal('show');
-        }); //////////////////////////////////////////////
-
-        /// ---- change portion size --------
-        $('#btn_change_portion').on('click', function () {
-          $('#Modal_food_volume').modal('hide');//(Modalの入れ替え)
-          let por = $(this).parent().parent().find('tr').eq(1).children('td').eq(5).text();
-          $('#old_portion').attr('value', por);
-          $('#Modal_Portion').modal('show');
-        }); //////////////////////////////////////////////
-
-        /// ---- change portion size (Modalの入れ替え)--------
-        $('#Modal_Portion').on('hide.bs.modal', function () {
-          $('#Modal_food_volume').modal('show');
-        });///-------------------------------
-
-        /// ---- set portion size --------
-        $('#btn_set_portion').on('click', function () {
-          let por = $('#new_portion').val();
-          console.log('#btn_set_portion#: por=' + por);
-          $('#btn_change_portion').text(por);
-          $('#tbl_food_SetWeight').find('tr').eq(1).children('td').eq(5).text(por);
-          $('#Modal_Portion').modal('hide');
-          console.log('Portionサイズを' + por + 'gに変更しました');
-        });///----------------------------
-
-        //set piechart image///////////　
-        function SetPie_img2(i_share) {
-          if (i_share == 99) {
-            i_share = 0;
-          } else if (i_share == 100) {
-            i_share = 10;
-          }
-          let h = "/static/img/pie_" + String(i_share) + ".png";
-          console.log('prod/buy shareを' + i_share + 'に設定します');
-
-          //console.log(h);
-          return h;
-        }
-
-        {% comment %}
-                function setPie_img(i_prod, i_buy) {
-                  let res = 10;
-                  if (i_prod + i_buy > 0) {
-                    res = Math.round(i_prod * 10 / (i_prod + i_buy));
-                  }
-                  let h = "/static/img/pie_" + String(res) + ".png";
-                  console.log('prod/buy shareを' + i_prod + '/' + i_buy + 'に設定します');
-
-                  //console.log(h);
-                  return h;
-                }
-        {% endcomment %}
-
-        //set piechart value////////
-        function SetPie_val(totalCount, myShare) {
-          let h = {};
-          if (myShare == 99) {
-            myShare = 0
-          } else if (myShare == 100) {
-            myShare = 10
-          }
-
-          let res = Math.round(totalCount * myShare / 10);
-          h.i_prod = res;
-          h.i_buy = totalCount - res;
-          return h;
-        }
-
-        //////////////////add table edit function////#
-        $(".selected_crops_tbl").on("click", "td", function () {
-          let myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');//テーブル番号の取得
-          let myTbl_food_Setweight = $('#tbl_food_SetWeight');
-          myTbl_food_Setweight.attr('myNum', myNum_tmp);//テーブル番号の記録
-          $container_tab_all.attr('myNum', myNum_tmp);//テーブル番号の記録、不要かもしれません
-          myTbl_food_Setweight.attr('myrowid', $(this).closest('tr').index());//選択行の記録
-          myTbl_food_Setweight.children('tbody').children('tr').remove();//tbl_food_SetWeightのテーブル初期化
-
-          let selected_crops_tbl_row = $("td", $(this).parent());//選択行からデータを抽出
-          if (selected_crops_tbl_row.eq(0).text() != 'total') { //集計行をクリックした場合は無視する
-            let por = Number(selected_crops_tbl_row.eq(8).text());
-            let count_prod_tmp = Number(selected_crops_tbl_row.eq(9).text());
-            let count_buy_tmp = Number(selected_crops_tbl_row.eq(10).text());
-            let share_prod_buy = selected_crops_tbl_row.eq(15).text();
-            let cou = count_buy_tmp + count_prod_tmp;
-            console.log(selected_crops_tbl_row.eq(0).text() + 'の摂取量を設定します');
-            console.log('share_prod_buy=' + share_prod_buy + 'です');
-
-            //console.log('(1) por=' + por + ', cou=' + cou + ', count_p=' + count_prod_tmp + ', count_b=' + count_buy_tmp + ', myid_table=' + myNum_tmp);
-
-            let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th class="tableItem_hide">por</th>'
-                    + '<th class="tableItem_hide">count_p</th><th class="tableItem_hide">count_b</th></tr>';
-            cr += '<tr>';
-            cr += '<td>' + selected_crops_tbl_row.eq(0).text() + '</td>';
-            cr += '<td>' + selected_crops_tbl_row.eq(1).text() + '</td>';
-            cr += '<td>' + selected_crops_tbl_row.eq(2).text() + '</td>';
-            cr += '<td>' + selected_crops_tbl_row.eq(3).text() + '</td>';
-            cr += '<td>' + selected_crops_tbl_row.eq(4).text() + '</td>';
-            cr += '<td class="tableItem_hide">' + por + '</td>';
-            cr += '<td class="tableItem_hide">' + count_prod_tmp + '</td>';
-            cr += '<td class="tableItem_hide">' + count_buy_tmp + '</td>';
-            cr += '<td class="tableItem_hide">' + share_prod_buy + '</td>';
-            cr += '</tr>';
-            myTbl_food_Setweight.append(cr);
-            //console.log($('#tbl_food_SetWeight').children('tbody').children('tr').eq(1).children('td').eq(0).html());
-
-            $('#btn_change_portion').text(por);
-            console.log('portion sizeを' + por + 'に設定します');
-
-            if (cou === 0) {
-              cou = 1;
-            }
-            $('#BR_food_count').barrating('set', cou);
-            console.log('bar ratingを' + cou + 'に設定します');
-
-            $('#BR_buy_prod_pie_img').attr('src', SetPie_img2(share_prod_buy));
-
-            $('#Modal_food_volume').modal('show');
-          }
-        });
-
-        ////////////////// button click to reflect the modification　#
-        $('#change_weight1').click(function () {
-          // まず値の取得
-          let cou = Number($('#BR_food_count').children("option:selected").val());
-
-          let $myMom = $('#tbl_food_SetWeight');
-          let motherTable = $myMom.children('tbody').children('tr').eq(1);
-          let por = Number(motherTable.children('td').eq(5).text());
-          let tmp_prod = Number(motherTable.children('td').eq(6).text());
-          let tmp_buy = Number(motherTable.children('td').eq(7).text());
-          let tmp_share = Number(motherTable.children('td').eq(8).text());
-
-          //console.log('(2) por=' + por + ', cou=' + cou + ', count_p=' + tmp_prod + ', count_b=' + tmp_buy);
-
-          //ここからprod-buyのシェア計算///
-          //let myShare = 10;
-          //if (tmp_prod + tmp_buy > 0) {
-          //  myShare = Math.round(tmp_prod * 10 / (tmp_prod + tmp_buy));
-          //}
-          //tmp_prod = Math.round(cou * tmp_share / 10);
-          //tmp_buy = cou - tmp_prod;
-          let myResult = SetPie_val(cou, tmp_share);
-
-          // ここから値の書込み
-          let myrowid = $myMom.attr('myrowid');
-          let myid_table = $myMom.attr('myNum');
-          let mytable = $('.selected_crops_tbl[myNum=' + myid_table + ']');
-          mytable.children('tbody').children('tr').last().remove();//最終行（合計）を削除
-          let mydata = mytable.children('tbody').children('tr').eq(myrowid);//修正行に移動
-
-          //console.log('(3) por=' + por + ', cou=' + cou + ', count_p=' + tmp_prod + ', count_b=' + tmp_buy + ', myid_table=' + myid_table);
-
-          mydata.children('td').eq(1).text(Math.round(mydata.children('td').eq(11).text() * por * cou / 100));
-          mydata.children('td').eq(2).text(Math.round(mydata.children('td').eq(12).text() * por * cou / 100));
-          mydata.children('td').eq(3).text(Math.round(mydata.children('td').eq(13).text() * por * cou / 100));
-          mydata.children('td').eq(4).text(Math.round(mydata.children('td').eq(14).text() * por * cou / 100));
-          mydata.children('td').eq(5).text(por * cou);
-          mydata.children('td').eq(8).text(por);
-          mydata.children('td').eq(9).text(myResult.i_prod);
-          mydata.children('td').eq(10).text(myResult.i_buy);
-          mydata.children('td').eq(15).text(tmp_share);
-          CreateSelection(myid_table);
-
-          SetBarrating(myid_table);
-          //////////////////
-          $('#Modal_food_volume').modal('hide');
-        }); //----------change_weight complete here-------
-
-        //---------open dialog to change balance produce/purchase-----------
-        $('#BR_buy_prod_pie_img').on('click', function () {
-          let motherTable = $('#tbl_food_SetWeight').children('tbody').children('tr').eq(1);
-          let count_prod_tmp = Number(motherTable.children('td').eq(6).text());
-          let count_buy_tmp = Number(motherTable.children('td').eq(7).text());
-          //myShare = Math.round(count_prod_tmp * 10 / (count_prod_tmp + count_buy_tmp));
-          myShare = Number(motherTable.children('td').eq(8).text());
-
-          if (myShare > 10) {
-            let mes = motherTable.children('td').eq(0).text() +
-                    ' is only available from ' + (myShare == 100 ? 'production' : 'the market') + ' for this month';
-            alert(mes);
-          } else {
-            console.log('share_prod_buyを' + myShare + 'に設定します');
-
-            $('#my_Prod_Buy').barrating('set', myShare);// set barrating
-            $('#Modal_food_volume').modal('hide');//(Modalの入れ替え)
-            $('#Modal_Prod_Buy').modal('show');
-          }
-        });//----------balance pruduce/purchase complete here-------
-
-        //// set balance prudoce/purchase ---------------------------
-        $('#change_share1').on('click', function () {
-          let myShare = Number($('#my_Prod_Buy').children("option:selected").val());
-          let motherTable = $('#tbl_food_SetWeight').children('tbody').children('tr').eq(1);
-          let count_prod_tmp = Number(motherTable.children('td').eq(6).text());
-          let count_buy_tmp = Number(motherTable.children('td').eq(7).text());
-          let total_count = count_prod_tmp + count_buy_tmp;
-          let mycount = SetPie_val(total_count, myShare);
-
-          console.log('count_p=' + count_prod_tmp + ', count_b=' + count_buy_tmp + ', myShare=' + myShare);
-
-          motherTable.children('td').eq(6).text(mycount.i_prod);
-          motherTable.children('td').eq(7).text(mycount.i_buy);
-          motherTable.children('td').eq(8).text(myShare);
-
-          $('#BR_buy_prod_pie_img').attr('src', SetPie_img2(myShare));
-          $('#Modal_Prod_Buy').modal('hide');
-        });
-
-        /// ---- change portion size (Modalの入れ替え)--------
-        $('#Modal_Prod_Buy').on('hide.bs.modal', function () {
-          $('#Modal_food_volume').modal('show');
-        });///-------------------------------
-
-        //////////////////btn_save_crop
-        $('#btn_save_crop').click(function () {
-          let hostUrl = myRoot + 'registDiet/';
-          let mydat = getTblData();
-
-          console.log('データを保存する準備ができました');
-          console.log(mydat);
-          Set_CRSF();
-          sendJson(mydat, hostUrl);
-          //console.log(mydat);
-        }); ////////btn_save_crop///////////
-
-        //////////////////getTblData
-        function getTblData() { //#todo
-          let d = [];
-          $('.selected_crops_tbl').each(function (i, myTbl) {
-            $(myTbl).children('tbody').children('tr').each(function (j, myRow) {
-              let dd = {};
-              if ($(myRow).children('td').eq(0).text() !== '' && $(myRow).children('td').eq(0).text() !== 'total') {
-                //   dd["myName"] = $(myRow).children('td').eq(0).text();
-                dd["total_weight"] = $(myRow).children('td').eq(5).text();
-                dd["food_item_id"] = $(myRow).children('td').eq(7).text();
-                dd["portion_size"] = $(myRow).children('td').eq(8).text();
-                dd["count_prod"] = $(myRow).children('td').eq(9).text();
-                dd["count_buy"] = $(myRow).children('td').eq(10).text();
-                dd["share_prod_buy"] = $(myRow).children('td').eq(15).text();
-
-                let myNum_tmp = $(myTbl).attr('myNum');
-                let myMonth = 0;
-                if (myNum_tmp < 200) {
-                  myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex") + 1;
-                  console.log(myNum_tmp + 'hey hey-- ' + myMonth);
-                } else {
-                  myMonth = Number($('.lst_month[myNum=' + myNum_tmp + ']').text());
-                  console.log(myNum_tmp + 'hey hey-- ' + myMonth);
-                }
-                dd["month"] = myMonth;
-                dd["myid_tbl"] = myNum_tmp;
-                dd["myLocation"] = myLocation_id;
-                dd["target_scope"] = Math.trunc(myNum_tmp / 100);
-
-                d.push(dd);
-              }
-            })
-          });
-          console.log('selected_crops_tblのデータを送信します');
-          console.log(d);
-          return {"myJson": d};
-        }
+        })
+      });
+      console.log('selected_crops_tblのデータを送信します');
+      console.log(d);
+      console.groupEnd();
+      return {"myJson": d};
+    }
 
 
-        //////////////////getTblData //// csrf_tokenの取得に使う//////////////
-        function getCookie(name) {
-          var cookieValue = null;
-          if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-              var cookie = jQuery.trim(cookies[i]);
-              // Does this cookie string begin with the name we want?
-              if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-              }
-            }
-          }
-          return cookieValue;
-        }
-
-        function csrfSafeMethod(method) {
-          // these HTTP methods do not require CSRF protection
-          return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-        }
-
-        function Set_CRSF() {
-          var csrf_token = getCookie("csrftoken");
-          $.ajaxSetup({
-            crossDomain: false, // obviates need for sameOrigin test
-            beforeSend: function (xhr, settings) {
-              if (!csrfSafeMethod(settings.type)) {
-                xhr.setRequestHeader("X-CSRFToken", csrf_token);
-              }
-            }
-          });
-        }
-
-        //////////////////sendJson////
-        function sendJson(myjson, hostUrl) {
-          $.ajax({
-            type: 'post',
-            url: hostUrl,
-            data: JSON.stringify(myjson),
-            contentType: 'application/JSON',
-            dataType: 'JSON',
-            scriptCharset: 'utf-8',
-            success: function (response) {
-              window.location.href = response.url;
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-              alert("fail");
-              console.log(jqXHR.responseText);
-              console.log(jqXHR.status); //例：404
-              console.log(textStatus); //例：error
-              console.log(errorThrown); //例：NOT FOUND
-              console.log(JSON.stringify(myjson)); //例：NOT FOUND
-              console.log(myjson); //例：NOT FOUND
-            }
-          });
-        }
-
-        //////////////////sendJson//// script end///////////////////
-
-        //---------- initialize all table (selected_table)---------#todo 初期読み込みでBarratingが反映されない？
-        for (var i = 0; i < json_crop_selected.length; i++) {
-          data = json_crop_selected[i];
-          if (data.myLocation === Number(myLocation_id)) {
-            let cr = '';
-            cr += '<tr>';
-            cr += '<td>' + data.name + '</td>';
-            cr += '<td>' + Math.round(data.Energy * data.total_weight / 100, 1) + '</td>';
-            cr += '<td>' + Math.round(data.Protein * data.total_weight / 100, 1) + '</td>';
-            cr += '<td>' + Math.round(data.VITA_RAE * data.total_weight / 100, 1) + '</td>';
-            cr += '<td>' + Math.round(data.FE * data.total_weight / 100, 1) + '</td>';
-            cr += '<td>' + data.total_weight + '</td>';
-            cr += '<td class="tableItem_hide"></td>';
-            cr += '<td class="tableItem_hide">' + data.food_item_id + '</td>';
-            cr += '<td class="tableItem_hide">' + data.portion_size + '</td>';
-            cr += '<td class="tableItem_hide">' + data.count_prod + '</td>';
-            cr += '<td class="tableItem_hide">' + data.count_buy + '</td>';
-            cr += '<td class="tableItem_hide">' + data.Energy + '</td>';
-            cr += '<td class="tableItem_hide">' + data.Protein + '</td>';
-            cr += '<td class="tableItem_hide">' + data.VITA_RAE + '</td>';
-            cr += '<td class="tableItem_hide">' + data.FE + '</td>';
-            cr += '<td class="tableItem_hide">' + data.share_prod_buy + '</td>';
-            cr += '</tr>';
-            DrawSelected_addRow(data.myid_tbl, cr);
-
+    //////////////////getTblData //// csrf_tokenの取得に使う//////////////
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = jQuery.trim(cookies[i]);
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
           }
         }
-      } //----initComplete finish here---////////////////////////////////////////////
-    })
+      }
+      return cookieValue;
+    }
+
+    function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    function Set_CRSF() {
+      var csrf_token = getCookie("csrftoken");
+      $.ajaxSetup({
+        crossDomain: false, // obviates need for sameOrigin test
+        beforeSend: function (xhr, settings) {
+          if (!csrfSafeMethod(settings.type)) {
+            xhr.setRequestHeader("X-CSRFToken", csrf_token);
+          }
+        }
+      });
+    }
+
+    //////////////////sendJson////
+    function sendJson(myjson, hostUrl) {
+      $.ajax({
+        type: 'post',
+        url: hostUrl,
+        data: JSON.stringify(myjson),
+        contentType: 'application/JSON',
+        dataType: 'JSON',
+        scriptCharset: 'utf-8',
+        success: function (response) {
+          window.location.href = response.url;
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          alert("fail");
+          console.log(jqXHR.responseText);
+          console.log(jqXHR.status); //例：404
+          console.log(textStatus); //例：error
+          console.log(errorThrown); //例：NOT FOUND
+          console.log(JSON.stringify(myjson)); //例：NOT FOUND
+          console.log(myjson); //例：NOT FOUND
+        }
+      });
+    }
+
+    //////////////////btn_snackbar
+    $('#btn_snackbar').click(function () {
+      my_snackbar('baka');
+    }); ////////btn_save_crop///////////
+
+    //---------------------------------------------
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    let myCrop = {};
+    for (let i in myRange) {
+      myCrop[myRange[i]] = new Crop_Selected(myRange[i]);
+    }
+
+    let myCrop_individual = {};
+    for (let i in myRange) {
+      myCrop_individual[myRange[i]] = new Crop_individual(myRange[i]);
+    }
+
+    let myCrop_portion = new Crop_Portion();
+    let myCrop_share = new Crop_Share();
+
+    //  myRating_**を配列に組み込む -----------
+    $('.rating_DRI').each(function (i) {
+      let tmp_myNum = $(this).attr('myNum');
+      i = (i) % 4;
+      switch (i) {
+        case 0:
+          myCrop[tmp_myNum].dom_myRating_en = $(this);
+          break;
+        case 1:
+          myCrop[tmp_myNum].dom_myRating_pr = $(this);
+          break;
+        case 2:
+          myCrop[tmp_myNum].dom_myRating_va = $(this);
+          break;
+        case 3:
+          myCrop[tmp_myNum].dom_myRating_fe = $(this);
+          break;
+      }
+    });
+
+    //  selected_crops_tbl_**を配列に組み込む -----------
+    $('.selected_crops_tbl').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].dom_tbl_Crop = $(this);
+    });
+
+    //  btn_add_crop_**を配列に組み込む -----------
+    $('.btn_add_crop').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].dom_btn_add = $(this);
+    });
+
+    //  lst_monthを配列に組み込む -----------
+    $('.lst_month').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].dom_lst_month = $(this);
+    });
+
+    //  テーブルごとのmonthを配列に組み込む -----------
+    for (let i in myRange) {
+      let num_tbl = myRange[i];
+      let tmp_dat = myCrop[num_tbl];
+      let tmp_mon = 0;
+      if (num_tbl < 200) {
+        tmp_mon = Number(tmp_dat.dom_lst_month.prop("selectedIndex") + 1);
+      } else {
+        tmp_mon = Number(tmp_dat.dom_lst_month.text());
+      }
+      myCrop[num_tbl].month = tmp_mon;
+      myCrop[num_tbl].dom_btn_add.attr('myNum', num_tbl);
+    }
+
+    //  lbl_target_**を配列に組み込む -----------
+    $('.lbl_target_en').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].dom_lbl_target_en = $(this);
+    });
+
+    $('.lbl_target_pr').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].dom_lbl_target_pr = $(this);
+    });
+
+    $('.lbl_target_va').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].dom_lbl_target_va = $(this);
+    });
+
+    $('.lbl_target_fe').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].dom_lbl_target_fe = $(this);
+    });
+    //-------------
+
+    //初期データの読み込み
+    for (var i = 0; i < json_crop_selected.length; i++) {
+      data = json_crop_selected[i];
+      if (data.myLocation === Number(myLocation_id)) {
+        let num_tbl = data.num_tbl;
+        myCrop[data.num_tbl].setData_Crop(data);
+      }
+    }
+
+    for (let i in myRange) {
+      myCrop[myRange[i]].drawTable();
+    }
+
+
+    //    myCrop[201]._getCrop_byID(819);
+    // console.log(myCrop_individual[201].dom_tbl_row.eq(0).html());
+    Crop_available.data().hello("test desu");
+
 
   </script>
-  <!------------------------------------------------------------->
+
 
 {% endblock %}
