@@ -33,9 +33,6 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="card-body py-1 px-0">
-								<h5 class="card-title my-0">
-									{{ Location.name }}
-								</h5>
 								<p class="card-text my-0">
 									{{ Location.myCountry.NAME_0 }}
 								</p>
@@ -47,6 +44,9 @@
 								</p>
 								<p class="card-text my-0">
 									{{ Location.myCountry.NAME_3 }}
+								</p>
+								<p class="card-title my-0">
+									{{ Location.name }}
 								</p>
 								<span>
 									<a class="btn my-0 btn-info btn-sm align-middle badge" href="{% url 'Location_update' pk=Location.pk %}">edit / select</a>

@@ -18,7 +18,7 @@ class LocationForm(forms.ModelForm):
     logger.debug('Metaまで来てるのか？')
     model = Location
     fields = (
-      "name", "country", "region", "province", "community",
+      "country", "region", "province", "community", "name",
       "AEZ_id", "stunting_rate", "wasting_rate", "anemia_rate", "myCountry", "created_by"
     )
     widgets = {
@@ -38,6 +38,7 @@ class LocationForm(forms.ModelForm):
       "province": "Zone",
       "community": "Woreda",
       "Location": "Kebele",
+      "name": "village or other",
     }
 
 
