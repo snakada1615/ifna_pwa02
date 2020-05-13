@@ -46,10 +46,6 @@ import json
 class Trial_View(TemplateView):
   template_name = "myApp/_test.html"
 
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    return context
-
 
 class IndexView(TemplateView):
   template_name = "myApp/index01.html"
@@ -59,10 +55,11 @@ class IndexView(TemplateView):
     context['myuser'] = self.request.user
     context["nav_text1"] = 'step0'
     context["nav_link1"] = reverse_lazy('index01')
-    context["nav_text2"] = 'step1'
+    context["nav_text2"] = 'step1/5'
     context["nav_link2"] = '#'
     context["nav_text3"] = 'step2'
     context["nav_link3"] = reverse_lazy('index02')
+    context["mark_text"] = 'welcome to NFA tool!'
 
     return context
 
@@ -102,6 +99,7 @@ class IndexView02(LoginRequiredMixin, TemplateView):  # todo myCountyNameの設�
     context['nav_text2'] = "main menu"
     context['nav_link3'] = reverse_lazy("Location_list")
     context['nav_text3'] = "step01"
+    context["mark_text"] = 'please select your action'
     context['myParam'] = json_str
     context['myuser'] = self.request.user
 
@@ -124,12 +122,13 @@ class Location_ListView(LoginRequiredMixin, ListView):
     context['nav_link1'] = reverse_lazy("index02")
     context['nav_text1'] = "menu"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step1"
+    context['nav_text2'] = "step1/5"
     context['nav_link3'] = reverse_lazy("crop_select",
                                         kwargs={'myCountryName': Location.objects.filter(
                                           id=self.request.user.profile.myLocation).first().country,
-                                        'myLocation': int(self.request.user.profile.myLocation)})
+                                                'myLocation': int(self.request.user.profile.myLocation)})
     context['nav_text3'] = "step2"
+    context["mark_text"] = 'Here, you need to specify the location of your target area'
     logger.info(context['nav_link3'])
 
     #    context['myParam'] = json_str
@@ -417,10 +416,11 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     context['nav_link1'] = reverse_lazy("Location_list")
     context['nav_text1'] = "step01"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step02"
+    context['nav_text2'] = "step02/5"
     context['nav_link3'] = reverse_lazy("person_list",
                                         kwargs={'myLocation': myUser.profile.myLocation, 'page': 1})
     context['nav_text3'] = "step03"
+    context["mark_text"] = 'Here, you identify food item you ordinary see in target area'
 
     return context
 
@@ -558,10 +558,11 @@ class Person_ListView(LoginRequiredMixin, ListView):
                                                   id=self.request.user.profile.myLocation).first().country})
     context['nav_text1'] = "step02"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step03"
+    context['nav_text2'] = "step03/5"
     context['nav_link3'] = reverse_lazy("diet1",
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
     context['nav_text3'] = "step04"
+    context["mark_text"] = 'Here, you identify your target beneficiary in three level: individual, family, community'
 
     return context
 
@@ -882,10 +883,12 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
                                         kwargs={'myLocation': self.request.user.profile.myLocation, 'page': 1})
     context['nav_text1'] = "step03"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step04"
+    context['nav_text2'] = "step04/5"
     context['nav_link3'] = reverse_lazy("output_list",
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
     context['nav_text3'] = "step05"
+    context[
+      "mark_text"] = 'Here, you discuss about optimal combination of food item to satisfy nutrient needs of your target'
 
     return context
 
@@ -1057,7 +1060,7 @@ class Output1(LoginRequiredMixin, TemplateView):
     context['nav_text2'] = "output1"
     context['nav_link3'] = ""
     context['nav_text3'] = ""
-
+    context["mark_text"] = 'this is nutrient balance for individual target'
 
     return context
 
@@ -1170,6 +1173,7 @@ class Output2(LoginRequiredMixin, TemplateView):
     context['nav_text2'] = "output2"
     context['nav_link3'] = ""
     context['nav_text3'] = ""
+    context["mark_text"] = 'this is nutrient balance for family target'
 
     return context
 
@@ -1265,6 +1269,7 @@ class Output3(LoginRequiredMixin, TemplateView):
     context['nav_text2'] = "output3"
     context['nav_link3'] = ""
     context['nav_text3'] = ""
+    context["mark_text"] = 'this is crop calendar for target family'
 
     return context
 
@@ -1360,6 +1365,7 @@ class Output4(LoginRequiredMixin, TemplateView):
     context['nav_text2'] = "output4"
     context['nav_link3'] = ""
     context['nav_text3'] = ""
+    context["mark_text"] = 'this is nutrient balance for target community'
 
     return context
 
@@ -1376,9 +1382,10 @@ class Output_list(LoginRequiredMixin, TemplateView):
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
     context['nav_text1'] = "step04"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step05"
+    context['nav_text2'] = "step05/5"
     context['nav_link3'] = ""
     context['nav_text3'] = ""
+    context["mark_text"] = 'this is seasonal production target for target community'
 
     return context
 

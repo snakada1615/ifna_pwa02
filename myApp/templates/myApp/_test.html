@@ -1,40 +1,84 @@
-{% load static %}
-<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
-<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
-
-<nav class="navbar navbar-expand navbar-dark bg-primary">
-  <a class="navbar-brand" id="nav_link0" href="{% url 'index01' %}">
-    <span class="fa fa-home ml-1"></span>
-  </a>
-  <div class="navbar-collapse collapse" id="collapsingNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="//codeply.com">Codeply</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#myAlert" data-toggle="collapse">Link</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="" data-target="#myModal" data-toggle="modal">About</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
 <style>
-  @media (min-width: 768px) {
-    .navbar-brand.abs {
-      position: absolute;
-      width: 100%;
-      left: 0;
-      text-align: center;
+
+  .marquee p {
+    margin: 0;
+    padding-left: 600px;
+    display: inline-block;
+    white-space: nowrap;
+    -webkit-animation-name: marquee;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 10s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-name: marquee;
+    -moz-animation-timing-function: linear;
+    -moz-animation-duration: 10s;
+    -moz-animation-iteration-count: infinite;
+    -ms-animation-name: marquee;
+    -ms-animation-timing-function: linear;
+    -ms-animation-duration: 10s;
+    -ms-animation-iteration-count: infinite;
+    -o-animation-name: marquee;
+    -o-animation-timing-function: linear;
+    -o-animation-duration: 10s;
+    -o-animation-iteration-count: infinite;
+    animation-name: marquee;
+    animation-timing-function: linear;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+  }
+
+  @-webkit-keyframes marquee {
+    from {
+      -webkit-transform: translate(0%);
+    }
+    99%, to {
+      -webkit-transform: translate(-100%);
+    }
+  }
+
+  @-moz-keyframes marquee {
+    from {
+      -moz-transform: translate(0%);
+    }
+    99%, to {
+      -moz-transform: translate(-100%);
+    }
+  }
+
+  @-ms-keyframes marquee {
+    from {
+      -ms-transform: translate(0%);
+    }
+    99%, to {
+      -ms-transform: translate(-100%);
+    }
+  }
+
+  @-o-keyframes marquee {
+    from {
+      -o-transform: translate(0%);
+    }
+    99%, to {
+      -o-transform: translate(-100%);
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translate(0%);
+    }
+    99%, to {
+      transform: translate(-100%);
     }
   }
 </style>
+
+<div class="marquee">
+  <p>商品1を入荷しました。ぜひお試しください。</p>
+</div>
+
+<div class="marquee">
+<p>The quick brown fox jumps over the lazy dog.</p>
+</div>
+
+

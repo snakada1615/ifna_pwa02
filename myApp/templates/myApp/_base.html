@@ -153,6 +153,98 @@
     }
 
     /* ----------snackbarの設定終わり----------*/
+    /* ----------ティッカーの設定----------*/
+
+    /** マーキーさせたい部分 */
+
+    .marquee {
+      width: 540px;
+      padding: 0.5em 0;
+      overflow: hidden;
+      background-coor: #f6f6f6;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .marquee p:after {
+      content: "";
+      white-space: nowrap;
+      padding-right: 50px;
+    }
+
+    .marquee p {
+      margin: 0;
+      padding-left: 540px;
+      display: inline-block;
+      white-space: nowrap;
+      -webkit-animation-name: marquee;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-duration: 10s;
+      -webkit-animation-iteration-count: infinite;
+      -moz-animation-name: marquee;
+      -moz-animation-timing-function: linear;
+      -moz-animation-duration: 10s;
+      -moz-animation-iteration-count: infinite;
+      -ms-animation-name: marquee;
+      -ms-animation-timing-function: linear;
+      -ms-animation-duration: 10s;
+      -ms-animation-iteration-count: infinite;
+      -o-animation-name: marquee;
+      -o-animation-timing-function: linear;
+      -o-animation-duration: 10s;
+      -o-animation-iteration-count: infinite;
+      animation-name: marquee;
+      animation-timing-function: linear;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+    }
+
+    @-webkit-keyframes marquee {
+      from {
+        -webkit-transform: translate(0%);
+      }
+      99%, to {
+        -webkit-transform: translate(-100%);
+      }
+    }
+
+    @-moz-keyframes marquee {
+      from {
+        -moz-transform: translate(0%);
+      }
+      99%, to {
+        -moz-transform: translate(-100%);
+      }
+    }
+
+    @-ms-keyframes marquee {
+      from {
+        -ms-transform: translate(0%);
+      }
+      99%, to {
+        -ms-transform: translate(-100%);
+      }
+    }
+
+    @-o-keyframes marquee {
+      from {
+        -o-transform: translate(0%);
+      }
+      99%, to {
+        -o-transform: translate(-100%);
+      }
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translate(0%);
+      }
+      99%, to {
+        transform: translate(-100%);
+      }
+    }
+
+    /* ----------ティッカーの設定終わり----------*/
 
   </style>
 
@@ -185,7 +277,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ nav_link1 }}">
               {{ nav_text1 }}
-              <span class="fa fa-arrow-circle-left ml-1"></span>
+              <span class="fa fa-arrow-circle-left ml-1 text-white"></span>
             </a>
           </li>
         </ul>
@@ -199,7 +291,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="{{ nav_link3 }}">
-              <span class="fa fa-arrow-circle-right mr-1"></span>
+              <span class="fa fa-arrow-circle-right mr-1 text-white"></span>
               {{ nav_text3 }}
             </a>
           </li>
@@ -210,7 +302,7 @@
 
 
   <div id="content" class="container mt-1">
-    <div class="container bg-success mt-0 mb-1 text-white text-right" style="max-width: 540px;">
+    <div class="container bg-success my-0 text-white text-right" style="max-width: 540px;">
       <div class="row">
         <div class="col">
           person in charge:
@@ -230,7 +322,13 @@
         </div>
       </div>
     </div>
-
+    <div class="container my-0 py-0" style="max-width: 540px;">
+      <div class="row mx-0 my-0 py-0">
+        <div class="marquee">
+          <p id="marquee-text" style="color: #6b9dbb">{{ mark_text }}</p>
+        </div>
+      </div>
+    </div>
     <!-------------snackbarの表示--------------------------->
     <div id="snackbar">Some text some message..</div>
     <!------------------------------------------------------------->
