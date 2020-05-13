@@ -175,21 +175,39 @@
 <body>
 <div class="wrapper">
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary static-top container py-0" style="max-width: 540px;">
+  <nav class="navbar navbar-expand navbar-dark bg-secondary static-top container py-0" style="max-width: 540px;">
     <div class="container-fluid">
-      <a class="navbar-brand" id="nav_link1" href="{{ nav_link1 }}">
-        <span id="nav_text1">{{ nav_text1 }}</span>
-        <span class="fa fa-arrow-circle-left ml-1"></span>
+      <a class="navbar-brand" id="nav_link0" href="{% url 'index01' %}">
+        <span class="fa fa-home ml-1"></span>
       </a>
-      <a class="navbar-brand" id="{{ nav_link2 }}">
-        <span id="nav_text2">{{ nav_text2 }}</span>
-      </a>
-      <a class="navbar-brand" id="nav_link3" href="{{ nav_link3 }}">
-        <span class="fa fa-arrow-circle-right mr-1"></span>
-        <span id="nav_text3">{{ nav_text3 }}</span>
-      </a>
+      <div class="navbar-collapse collapse" id="collapsingNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ nav_link1 }}">
+              {{ nav_text1 }}
+              <span class="fa fa-arrow-circle-left ml-1"></span>
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ nav_link2 }}">
+              {{ nav_text2 }}
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ nav_link3 }}">
+              <span class="fa fa-arrow-circle-right mr-1"></span>
+              {{ nav_text3 }}
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
+
 
   <div id="content" class="container mt-1">
     <div class="container bg-success mt-0 mb-1 text-white text-right" style="max-width: 540px;">
