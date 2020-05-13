@@ -2,11 +2,13 @@ DRI average,energy,prot,vitA,fe
 child 0-23 month,1088,11.65,400,5.8
 child 24-59 month,1204,12.9,400,5.8
 child 6-9 yr,1916,26.05,550,8.9
-adolescent girl,2503,47.4,600,31
-adolescent boy,3322,57.9,600,18.8
+adolescent female,2503,47.4,600,31
+adolescent male,3322,57.9,600,18.8
 adult,2602,46,550,21.55
 adolescent pregnant,2999,52.5,800,31
-adult pregnant,3098,51.1,800,21.55
+pregnant,3098,51.1,800,21.55
 adolescent lact,3253,78.4,850,46
-adult lact,3066,61,850,44.4
-adolescent all,2913,52.7,600,24.9
+lactating,3066,61,850,44.4
+adolescent all,2913,52.65,600,24.9
+adult male,2889,50,600,13.7
+adult female,2316,42,500,29.4

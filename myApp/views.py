@@ -207,11 +207,13 @@ class IndexView(TemplateView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
-    messages.error(
-      self.request,
-      "this application is currently under development. user input data may be lost due to update"
-    )
-    #    context['message_dont_close'] = "true"
+    context["nav_text1"] = 'step0'
+    context["nav_link1"] = reverse_lazy('index01')
+    context["nav_text2"] = 'step1'
+    context["nav_link2"] = '#'
+    context["nav_text3"] = 'step2'
+    context["nav_link3"] = reverse_lazy('index02')
+
     return context
 
 
@@ -410,6 +412,9 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
   key.save()
   logger.info("Profileを更新しました")
 
+  nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent male', 'adolescent female',
+                  'adult male', 'adult female', 'pregnant', 'lactating']
+
   # Crop_SubNationalの設定----------------------------------
   if not created:  # Updateの場合
     if update_fields:
@@ -439,9 +444,6 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
           logger.info("全ての該当品目をCrop_SubNationalに書き込みました!")
 
         # --------------------update myTarget-community-------------------------
-        nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent all',
-                        'adolescent pregnant',
-                        'adolescent lact', 'adult', 'adult pregnant', 'adult lact']
         logger.info("これからTarget communityの人口構成、初期値を追加していきます")
         for i in range(9):
           Person.objects.create(
@@ -474,8 +476,6 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
       logger.info("全ての該当品目をCrop_SubNationalに書き込みました!")
 
     # --------------------update myTarget-community-------------------------
-    nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent all', 'adolescent pregnant',
-                    'adolescent lact', 'adult', 'adult pregnant', 'adult lact']
     logger.info("これからTarget communityの人口構成、初期値を追加していきます")
     for i in range(9):
       Person.objects.create(
@@ -487,6 +487,17 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
         myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
       )
     logger.info("Target communityの書込み終了")
+    logger.info("これからTarget Familyの構成、初期値を追加していきます")
+    for i in range(9):
+      Person.objects.create(
+        myLocation=Location.objects.get(id=instance.pk),
+        nut_group=nut_grp_list[i],
+        target_scope=2,
+        target_pop=0,
+        created_by=User.objects.get(id=instance.created_by.id),
+        myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
+      )
+    logger.info("Target familyの書込み終了")
     # ---------------------
 
 
@@ -643,13 +654,26 @@ class Person_ListView(LoginRequiredMixin, ListView):
     dd['class0'] = myPerson.get(nut_group='child 0-23 month').target_pop
     dd['class1'] = myPerson.get(nut_group='child 24-59 month').target_pop
     dd['class2'] = myPerson.get(nut_group='child 6-9 yr').target_pop
-    dd['class3'] = myPerson.get(nut_group='adolescent all').target_pop
-    dd['class4'] = myPerson.get(nut_group='adolescent pregnant').target_pop
-    dd['class5'] = myPerson.get(nut_group='adolescent lact').target_pop
-    dd['class6'] = myPerson.get(nut_group='adult').target_pop
-    dd['class7'] = myPerson.get(nut_group='adult pregnant').target_pop
-    dd['class8'] = myPerson.get(nut_group='adult lact').target_pop
+    dd['class3'] = myPerson.get(nut_group='adolescent male').target_pop
+    dd['class4'] = myPerson.get(nut_group='adolescent female').target_pop
+    dd['class5'] = myPerson.get(nut_group='adult male').target_pop
+    dd['class6'] = myPerson.get(nut_group='adult female').target_pop
+    dd['class7'] = myPerson.get(nut_group='pregnant').target_pop
+    dd['class8'] = myPerson.get(nut_group='lactating').target_pop
     context['myCommunity'] = dd
+
+    myFamily = Person.objects.filter(myLocation=self.kwargs['myLocation']).filter(target_scope=2);
+    dd = {}
+    dd['class0'] = myFamily.get(nut_group='child 0-23 month').target_pop
+    dd['class1'] = myFamily.get(nut_group='child 24-59 month').target_pop
+    dd['class2'] = myFamily.get(nut_group='child 6-9 yr').target_pop
+    dd['class3'] = myFamily.get(nut_group='adolescent male').target_pop
+    dd['class4'] = myFamily.get(nut_group='adolescent female').target_pop
+    dd['class5'] = myFamily.get(nut_group='adult male').target_pop
+    dd['class6'] = myFamily.get(nut_group='adult female').target_pop
+    dd['class7'] = myFamily.get(nut_group='pregnant').target_pop
+    dd['class8'] = myFamily.get(nut_group='lactating').target_pop
+    context['myFamily'] = dd
 
     return context
 
@@ -774,10 +798,11 @@ class Person_DeleteView(LoginRequiredMixin, DeleteView):
 
 
 def registPerson(request):
+  logger.info('registPerson')
   # json_str = request.body.decode("utf-8")
   json_data = json.loads(request.body)
-  nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent all', 'adolescent pregnant',
-                  'adolescent lact', 'adult', 'adult pregnant', 'adult lact']
+  nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent male', 'adolescent female',
+                  'adult male', 'adult female', 'pregnant', 'lactating']
 
   for myrow in json_data['myJson']:
     # 最初に参照するキー（複数可）を指定する
@@ -786,7 +811,7 @@ def registPerson(request):
     Person.objects.update_or_create(
       myLocation=Location.objects.get(id=myrow['myLocation']),
       nut_group=tmp_group,
-      target_scope=3,
+      target_scope=int(myrow['target_scope']),
       defaults={
         'target_pop': int(myrow['target_pop']),
         'created_by': request.user,
@@ -800,7 +825,9 @@ def registPerson(request):
   key.myDiet = 0
   key.save()
 
-  myURL = reverse_lazy('index02')
+  myrow = json_data['myJson'][0]
+  myURL = reverse_lazy('person_list',
+                       kwargs={'myLocation': myrow['myLocation'], 'page': myrow['target_scope']})
   return JsonResponse({
     'success': True,
     'url': myURL,

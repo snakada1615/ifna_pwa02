@@ -23,7 +23,7 @@
         <div class="col-8 my-0 px-1">
           <h5>
             Diet planning for
-            {{ myLocation }}
+            {{ myLocation.name }}
           </h5>
         </div>
         <div class="col-2 my-0 px-3">
@@ -48,24 +48,22 @@
           <div class="row">
             <div class="col-12">
               <div class="card-body py-0 px-0">
-                <p class="card-text text-success my-0">
-                  myLocation:
-                  {{ myLocation }}
-                </p>
                 <p class="card-text my-0">
-                  country:
                   {{ myLocation.myCountry.NAME_0 }}
                 </p>
                 <p class="card-text my-0">
-                  region:
                   {{ myLocation.myCountry.NAME_1 }}
                 </p>
                 <p class="card-text my-0">
-                  province:
                   {{ myLocation.myCountry.NAME_2 }}
                 </p>
                 <p class="card-text my-0">
-                  nutrition target:
+                  {{ myLocation.myCountry.NAME_3 }}
+                </p>
+                <p class="card-text my-0">
+                  {{ myLocation.name }}
+                </p>
+                <p class="card-text my-0">
                   {{ myLocation.nutrition_target }}
                 </p>
                 <button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true"
@@ -335,10 +333,6 @@
       </div>
     </div>
 
-    <!-------------snackbarの表示--------------------------->
-    <div id="snackbar">Some text some message..</div>
-    <!------------------------------------------------------------->
-
   </div>
 
 
@@ -412,75 +406,6 @@
     .tableItem_hide {
       display: none;
     }
-
-    /* ----------snackbarの設定----------*/
-    #snackbar {
-      visibility: hidden;
-      min-width: 250px;
-      margin-left: -125px;
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      border-radius: 2px;
-      padding: 16px;
-      position: fixed;
-      z-index: 1;
-      left: 50%;
-      bottom: 30px;
-      font-size: 17px;
-    }
-
-    #snackbar.show {
-      visibility: visible;
-      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-      animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    }
-
-    @-webkit-keyframes fadein {
-      from {
-        bottom: 0;
-        opacity: 0;
-      }
-      to {
-        bottom: 30px;
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadein {
-      from {
-        bottom: 0;
-        opacity: 0;
-      }
-      to {
-        bottom: 30px;
-        opacity: 1;
-      }
-    }
-
-    @-webkit-keyframes fadeout {
-      from {
-        bottom: 30px;
-        opacity: 1;
-      }
-      to {
-        bottom: 0;
-        opacity: 0;
-      }
-    }
-
-    @keyframes fadeout {
-      from {
-        bottom: 30px;
-        opacity: 1;
-      }
-      to {
-        bottom: 0;
-        opacity: 0;
-      }
-    }
-
-    /* ----------snackbarの設定終わり----------*/
 
   </style>
 
@@ -587,16 +512,6 @@
     $('.lbl_target_pr[myNum^=3]').text(target_pr[3].toFixed(0));
     $('.lbl_target_va[myNum^=3]').text(target_va[3].toFixed(0));
     $('.lbl_target_fe[myNum^=3]').text(target_fe[3].toFixed(0));
-
-    // --------snackbarの設定-------
-    function my_snackbar(mes) {
-      var x = $("#snackbar");
-      x.text(mes);
-      x.toggleClass('show');
-      setTimeout(function () {
-        x.toggleClass('show');
-      }, 3000);
-    }    // ---------------------
 
 
     //    create object setup "Crop_Selected"   -------------------------------
@@ -1472,11 +1387,6 @@
         }
       });
     }
-
-    //////////////////btn_snackbar
-    $('#btn_snackbar').click(function () {
-      my_snackbar('baka');
-    }); ////////btn_save_crop///////////
 
     //---------------------------------------------
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
