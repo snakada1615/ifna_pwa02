@@ -12,7 +12,19 @@
   <div class="container" style="max-width: 540px;">
     <form method="post" id="myform">
       {% csrf_token %}
-      <h5 class="text-center">Add new crop</h5>
+      <div class="row">
+        <div class="col-2 my-0 px-3">
+          <img src="{% static 'img/no6.png' %}" alt="number 6">
+        </div>
+        <div class="col-8 my-0 px-1">
+          <h5 class="text-center">Add new crop</h5>
+        </div>
+        <div class="col-2 my-0 px-1">
+				<span>
+          <button id="btn_save" type="submit" class="btn btn-warning text-dark mt-2 my-0 py-0 btn-sm" >save</button>
+				</span>
+        </div>
+      </div>
       <div class="card border-success col-12 my-2" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
         <div class="row">
           <div class="col-12">
@@ -26,14 +38,6 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="float-right">
-            <a class="btn btn-sm btn-info mb-2" href="{% url 'crop_feas_list' %}">return</a>
-            <button class="btn btn-sm btn-info mb-2" type="submit">save</button>
           </div>
         </div>
       </div>
@@ -54,7 +58,7 @@
         <div class="modal-body text-dark">
           <div class="my-2" id="myFilter">Food group:
           </div>
-          <table id="tbl_crop_all" class="display compact" cellspacing="0" width="100%">
+          <table id="tbl_crop_all" class="table-sm" cellspacing="0" width="100%">
             <thead>
             <tr>
               <th>Group</th>
@@ -81,6 +85,54 @@
   </div>
   <!-- /.modal -->
   <!-------------------------------------->
+  <!-- モーダルの設定 local crop ----------------------------->
+  <div class="modal fade" id="Modal_localCrop1" mynum="0" tabindex="-1" role="dialog"
+       aria-labelledby="Modal_localCropLabel">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add/remove food item</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span class="text-danger" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-dark">
+          <div class="my-2" id="myFilter1">Food group:
+          </div>
+          <table id="localCrop1" class="display compact">
+            <thead>
+            <tr>
+              <th>s</th>
+              <th>Name</th>
+              <th>En</th>
+              <th>Pr</th>
+              <th>VA</th>
+              <th>Fe</th>
+              <th>c</th>
+            </tr>
+            </thead>
+
+            <tfoot>
+            <tr>
+              <th>s</th>
+              <th>Name</th>
+              <th>En</th>
+              <th>Pr</th>
+              <th>VA</th>
+              <th>Fe</th>
+              <th>c</th>
+            </tr>
+            </tfoot>
+          </table>
+          <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" data-dismiss="modal">close</a>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  <!-------------------------------------->
 
   <style media="screen">
     /* 行または列の非表示*/
@@ -98,44 +150,99 @@
 
   <script type="text/javascript">
 
-    var json_crop = {{mylist_crop|safe}};
+    var json_crop_local = {{mylist_available|safe}};
     //    console.log(json_crop);
 
     $(document).ready(function () {
 
       ////////////////  install mytable_all  ////////////
-      var mytable_all = $('#tbl_crop_all').DataTable({
-        data: json_crop,
+      var Crop_available = $('#localCrop1').DataTable({
+        "data": json_crop_local,
         "pageLength": 20,
-        "ordering": false,
         "select": 'single',
-        /////////////////////////
         "columns": [
           {
-            "data": "Food_grp"
+            "data": "selected_status"
           }, {
             "data": "Food_name"
           }, {
+            "data": "Energy"
+          }, {
+            "data": "Protein"
+          }, {
+            "data": "VITA_RAE"
+          }, {
+            "data": "FE"
+          }, {
+            "data": "Food_grp"
+          }, {
+            "data": "Weight"
+          }, {
+            "data": "portion_size"
+          }, {
+            "data": "m1"
+          }, {
+            "data": "m2"
+          }, {
+            "data": "m3"
+          }, {
+            "data": "m4"
+          }, {
+            "data": "m5"
+          }, {
+            "data": "m6"
+          }, {
+            "data": "m7"
+          }, {
+            "data": "m8"
+          }, {
+            "data": "m9"
+          }, {
+            "data": "m10"
+          }, {
+            "data": "m11"
+          }, {
+            "data": "m12"
+          }, {
             "data": "food_item_id"
+          }, {
+            "data": "count_prod"
+          }, {
+            "data": "count_buy"
           }
         ],
+
         "columnDefs": [
           {
             targets: [
-              0, 1
+              1, 2, 3, 4, 5
             ],
             visible: true
           }, {
             targets: '_all',
-            visible: false
+            bVisible: false
+          }, {
+            "orderSequence": ["desc"],
+            "targets": [2]
+          }, {
+            "orderSequence": ["desc"],
+            "targets": [3]
+          }, {
+            "orderSequence": ["desc"],
+            "targets": [4]
+          }, {
+            "orderSequence": ["desc"],
+            "targets": [5]
           }
         ],
+
         "initComplete": function (settings, json) {
           // ////add filtering dropdown list
-          this.api().columns([0]).every(function () {
+          this.api().columns([6]).every(function () {
             var column = this;
-            var select = $('<select style="border: 1px grey double;"><option value=""></option></select>').appendTo($('#myFilter')).on('change', function () {
+            var select = $('<select style="border: 1px grey double;"><option value=""></option></select>').appendTo($('#myFilter1')).on('change', function () {
               var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
               column.search(
                       val
                               ? '^' + val + '$'
@@ -148,29 +255,31 @@
               select.append('<option value="' + d + '">' + d + '</option>');
             });
           });
-          $('#tbl_crop_all tbody').on('click', 'tr', function () {
+          $('#localCrop1 tbody').on('click', 'tr', function () {
             $(this).toggleClass('selected');
             if ($(this).hasClass('selected')) {
-              mydata = mytable_all.row(this).data();
+              mydata = Crop_available.row(this).data();
               $('#id_crop_name').val(mydata['Food_name']);
-              $('#id_crop_name').attr('readonly',true);
+              $('#id_crop_name').attr('readonly', true);
               $('#id_crop_name_id').val(mydata['food_item_id']);
-              $('#id_crop_name_id').attr('readonly',true);
+              $('#id_crop_name_id').attr('readonly', true);
             }
           })
-        }//----------- initComplete -----------
-      })//---------mytable_all----------
+
+        },
+      });
+
 
       //---------crop selection event----------
       $('#btn_add').click(function () {
-        $('#dlg_crop').modal('show');
+        $('#Modal_localCrop1').modal('show');
       })
       //---------if crop update----------
       if ({{ isUpdate }}) {
         $('#id_crop_name').val("{{ crop_name }}");
-        $('#id_crop_name').attr('readonly',true);
+        $('#id_crop_name').attr('readonly', true);
         $('#id_crop_name_id').val("{{ crop_name_id }}");
-        $('#id_crop_name_id').attr('readonly',true);
+        $('#id_crop_name_id').attr('readonly', true);
       }
     })//-----document.ready()-----------
 

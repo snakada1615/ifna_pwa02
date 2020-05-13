@@ -59,7 +59,8 @@ class IndexView(TemplateView):
     context["nav_link2"] = '#'
     context["nav_text3"] = 'step2'
     context["nav_link3"] = reverse_lazy('index02')
-    context["mark_text"] = 'welcome to NFA tool! this tool help you to optimize diet and crop for selected beneficiaries'
+    context[
+      "mark_text"] = 'welcome to NFA tool! this tool help you to optimize diet and crop for selected beneficiaries'
 
     return context
 
@@ -1407,7 +1408,7 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
     context['isUpdate'] = 0
 
     # send non-available crop in the original list ######
-    tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.request.user.profile.myLocation)
+    tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.request.user.profile.myLocation).select_related('myFCT')
     available_list = []
     for tmp02 in tmp01:
       available_list.append(tmp02.myFCT.id)
@@ -1424,13 +1425,49 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
         dd["VITA_RAE"] = tmp02.VITA_RAE
         dd["FE"] = tmp02.FE
         dd["food_item_id"] = tmp02.food_item_id
+
+        dd["selected_status"] = 0
+        dd["Food_grp"] = tmp02.Food_grp
+        dd["Food_name"] = tmp02.Food_name
+        dd["Energy"] = tmp02.Energy
+        dd["Protein"] = tmp02.Protein
+        dd["VITA_RAE"] = tmp02.VITA_RAE
+        dd["FE"] = tmp02.FE
+        dd["Weight"] = 0
+        dd["food_item_id"] = tmp02.food_item_id
+        dd["portion_size"] = tmp02.portion_size_init
+        dd["count_buy"] = 0
+        dd["count_prod"] = 0
+        dd["m1"] = 0
+        dd["m2"] = 0
+        dd["m3"] = 0
+        dd["m4"] = 0
+        dd["m5"] = 0
+        dd["m6"] = 0
+        dd["m7"] = 0
+        dd["m8"] = 0
+        dd["m9"] = 0
+        dd["m10"] = 0
+        dd["m11"] = 0
+        dd["m12"] = 0
+       # dd["myLocation"] = tmp02.myLocation_id
         d.append(dd)
 
-    context["mylist_crop"] = d
+    context["mylist_available"] = d
+
+    context['nav_link1'] = reverse_lazy("output_list",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text1'] = "step05"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "step06/5"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
+    context["mark_text"] = ''
+
     return context
 
   def form_valid(self, form):
-    self.object = form.save()
+#    self.object = form.save()
     form.instance.created_by = self.request.user
     form.instance.myLocation = Location.objects.get(id=self.request.user.profile.myLocation)
     return super(Crop_Feas_CreateView, self).form_valid(form)
