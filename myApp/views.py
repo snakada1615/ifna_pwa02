@@ -59,7 +59,7 @@ class IndexView(TemplateView):
     context["nav_link2"] = '#'
     context["nav_text3"] = 'step2'
     context["nav_link3"] = reverse_lazy('index02')
-    context["mark_text"] = 'welcome to NFA tool!'
+    context["mark_text"] = 'welcome to NFA tool! this tool help you to optimize diet and crop for selected beneficiaries'
 
     return context
 
