@@ -1383,8 +1383,8 @@ class Output_list(LoginRequiredMixin, TemplateView):
     context['nav_text1'] = "step04"
     context['nav_link2'] = ""
     context['nav_text2'] = "step05/5"
-    context['nav_link3'] = ""
-    context['nav_text3'] = ""
+    context['nav_link3'] = reverse_lazy("index04")
+    context['nav_text3'] = "step06"
     context["mark_text"] = 'this is seasonal production target for target community'
 
     return context
@@ -1452,6 +1452,15 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['myuser'] = self.request.user
     context['myLocation'] = self.request.user.profile.myLocation
     context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
+    context['nav_link1'] = reverse_lazy("diet1",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text1'] = "step05"
+    context['nav_link2'] = reverse_lazy("output_list",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text2'] = "step06/5"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
+    context["mark_text"] = 'you can explore to introduce new food crop in target area'
     return context
 
 
@@ -1532,6 +1541,16 @@ class FCT_ListView(LoginRequiredMixin, ListView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
+    context['nav_link1'] = reverse_lazy("diet1",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text1'] = "step05"
+    context['nav_link2'] = reverse_lazy("output_list",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text2'] = "step06/5"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
+    context["mark_text"] = 'you can explore to introduce new food crop in target area'
+
     return context
 
 
@@ -1565,7 +1584,17 @@ class IndexView04(LoginRequiredMixin, TemplateView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
-    context['myCountryName'] = Location.objects.filter(id=self.request.user.profile.myLocation).country
+    context['myCountryName'] = Location.objects.filter(id=self.request.user.profile.myLocation).first().country
+    context['nav_link1'] = reverse_lazy("diet1",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text1'] = "step05"
+    context['nav_link2'] = reverse_lazy("output_list",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text2'] = "step06/5"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
+    context["mark_text"] = 'you can explore to introduce new food crop in target area'
+
     return context
 
 
@@ -1582,6 +1611,16 @@ class Crop_Name_ListView(LoginRequiredMixin, ListView):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
     context['myCountryName'] = self.kwargs['myCountryName']
+    context['nav_link1'] = reverse_lazy("diet1",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text1'] = "step05"
+    context['nav_link2'] = reverse_lazy("output_list",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text2'] = "step06/5"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
+    context["mark_text"] = 'you can explore to introduce new food crop in target area'
+
     return context
 
 
