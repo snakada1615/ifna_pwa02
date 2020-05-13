@@ -29,9 +29,6 @@
         <div class="col-2 my-0 px-3">
           <div class="row">
             <div class="col-12">
-            <span>
-              <a class="btn btn-warning mt-2 my-0 py-0 btn-sm" href="{% url 'index02' %}">back</a>
-            </span>
               <span>
               <a class="btn btn-warning mt-2 my-0 py-0 btn-sm" mynum="100" id="btn_save_crop" href='#'>save</a>
             </span>
@@ -573,7 +570,7 @@
     Crop_Selected.prototype.setData_fromListbox = function (num_tbl, mydata, drawFlag) {
       console.group('Crop_Selected.receive_SelectedRow:');
       if (drawFlag) {       //rowの追加
-        //データセットの作成1:buy_prod_share設定
+                            //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {

@@ -11,16 +11,22 @@
 
   <div class="container mt-0 mb-1 text-dark" style="max-width: 540px;">
     <div class="row">
-      <div class="col-9"></div>
+      <div class="col-2 my-0 px-3">
+        <img src="{% static 'img/no2.png' %}">
+      </div>
+      <div class="col-7">
+        <h5>
+          confirm food availability
+        </h5>
+      </div>
       <div class="col-3>">
         <a id="btn_save" class="btn btn-warning text-dark mt-2 my-0 py-0 btn-sm">save</a>
-        <a class="btn btn-warning text-dark mt-2 my-0 py-0 btn-sm" href="{% url  'index02' %}">back</a>
       </div>
     </div>
 
     <div class="card border-primary col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;background-color: #e9ecef ">
       <div class="card-body mx-1 my-1 px-0 py-0">
-        <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no1.png' %}"> Add food item</div>
+        <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no1_gr.png' %}"> Add food item</div>
         <span class="ml-3">
           Add/remove food item from the list:
           <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
@@ -29,34 +35,34 @@
       </div>
 
       <div class="card-body mx-1 my-1 px-0 py-0">
-        <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no2.png' %}"> Select brush</div>
-        <div class="ml-3">Double click appropriate brush depending on food availability</div>
-        <div class="card bg-transparent border-info">
+        <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no2_gr.png' %}"> Select brush</div>
+        <div class="ml-3">Click appropriate brush depending on food availability</div>
+        <div class="card bg-transparent border-info pt-1">
           <div class="row ml-3 my-0">
             <div class="col-6">
-            <span class="btn_color h4" mycol="red" style="color:red">
-            <i class="fa fa-paint-brush" aria-hidden="true"></i></span>: market and production
+            <span class="btn_color btn btn-outline-dark py-0" mycol="red" style="color:red">
+            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> market and production
             </div>
             <div class="col-6">
-            <span class="btn_color h4" mycol="green" style="color:green">
-            <i class="fa fa-paint-brush" aria-hidden="true"></i></span>: production only
+            <span class="btn_color btn btn-outline-dark py-0" mycol="green" style="color:green">
+            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> production only
             </div>
           </div>
           <div class="row ml-3 my-0">
             <div class="col-6">
-            <span class="btn_color h4" mycol="blue" style="color:blue">
-            <i class="fa fa-paint-brush" aria-hidden="true"></i></span>: market only
+            <span class="btn_color btn btn-outline-dark py-0" mycol="blue" style="color:blue">
+            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> market only
             </div>
             <div class="col-6">
-            <span class="btn_color h4" mycol="white" style="color:white">
-            <i class="fa fa-paint-brush" aria-hidden="true"></i></span>: not available
+            <span class="btn_color btn btn-outline-dark py-0" mycol="white" style="color:white">
+            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> not available
             </div>
           </div>
         </div>
       </div>
 
       <div class="card-body mx-1 my-1 px-0 py-0">
-        <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no3.png' %}"> Paint cell</div>
+        <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no3_gr.png' %}"> Paint cell</div>
         <div class="ml-3">
           Then, click (start-month and end-month) to set available period of each food item.
         </div>
@@ -543,20 +549,26 @@
         });
 
         /// ------------------------------------------------
-        $('.btn_color').dblclick(function () {
+        $('.btn_color').click(function () {
           console.log('btn_color=' + $(this).attr('myCol'));
+          let mes = '';
           let tmp_col_num = 0;
           let tmp_col = $(this).attr('myCol');
           if (tmp_col == 'red') {
             tmp_col_num = 1;
+            mes = "you chose red brush";
           } else if (tmp_col == 'green') {
             tmp_col_num = 2;
+            mes = "you chose green brush";
           } else if (tmp_col == 'blue') {
             tmp_col_num = 3;
+            mes = "you chose blue brush";
           } else if (tmp_col == 'white') {
             tmp_col_num = 0;
+            mes = "you chose white brush";
           }
           mySelectMonth.setBaseColor(tmp_col_num);
+          my_snackbar(mes, 2000);
         });
         /// ------------------------------------------------
 

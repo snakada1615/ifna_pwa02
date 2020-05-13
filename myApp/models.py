@@ -79,7 +79,7 @@ class Location(models.Model):
   name = models.CharField(
     verbose_name='name',
     max_length=200,
-    unique=True,
+    blank=True
   )
   country = models.CharField(
     max_length=200,
