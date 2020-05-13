@@ -36,8 +36,8 @@ class Countries(models.Model):
   AEZ_id = models.CharField(max_length=200, default="none")
 
 
-def __str__(self):
-  return self.GID_0
+  def __str__(self):
+    return self.GID_0
 
 
 class Country_label(models.Model):

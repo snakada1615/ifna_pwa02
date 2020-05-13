@@ -95,6 +95,13 @@ class IndexView02(LoginRequiredMixin, TemplateView):  # todo myCountyNameの設�
       'myCountryName': myCountry
     }
     json_str = json.dumps(data)
+
+    context['nav_link1'] = "index01"
+    context['nav_text1'] = "back"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "main menu"
+    context['nav_link3'] = reverse_lazy("Location_list")
+    context['nav_text3'] = "step01"
     context['myParam'] = json_str
     context['myuser'] = self.request.user
 
@@ -114,6 +121,18 @@ class Location_ListView(LoginRequiredMixin, ListView):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
     context['myLocation'] = self.request.user.profile.myLocation
+    context['nav_link1'] = reverse_lazy("index02")
+    context['nav_text1'] = "menu"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "step1"
+    context['nav_link3'] = reverse_lazy("crop_select",
+                                        kwargs={'myCountryName': Location.objects.filter(
+                                          id=self.request.user.profile.myLocation).first().country,
+                                        'myLocation': int(self.request.user.profile.myLocation)})
+    context['nav_text3'] = "step2"
+    logger.info(context['nav_link3'])
+
+    #    context['myParam'] = json_str
     return context
 
 
@@ -395,6 +414,14 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
       d.append(dd)
     context["mylist_local_name"] = d
 
+    context['nav_link1'] = reverse_lazy("Location_list")
+    context['nav_text1'] = "step01"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "step02"
+    context['nav_link3'] = reverse_lazy("person_list",
+                                        kwargs={'myLocation': myUser.profile.myLocation, 'page': 1})
+    context['nav_text3'] = "step03"
+
     return context
 
 
@@ -524,6 +551,17 @@ class Person_ListView(LoginRequiredMixin, ListView):
     dd['class7'] = myFamily.get(nut_group='pregnant').target_pop
     dd['class8'] = myFamily.get(nut_group='lactating').target_pop
     context['myFamily'] = dd
+
+    context['nav_link1'] = reverse_lazy("crop_select",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation,
+                                                'myCountryName': Location.objects.filter(
+                                                  id=self.request.user.profile.myLocation).first().country})
+    context['nav_text1'] = "step02"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "step03"
+    context['nav_link3'] = reverse_lazy("diet1",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text3'] = "step04"
 
     return context
 
@@ -788,6 +826,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
       dd["Food_name"] = tmp02.Food_name
       dd["food_item_id"] = tmp02.myFCT_id
       d.append(dd)
+
     context["mylist_local_name"] = d
 
     # 現在選択されている作物をDiet_plan_formに送る
@@ -838,6 +877,15 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
+
+    context['nav_link1'] = reverse_lazy("person_list",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation, 'page': 1})
+    context['nav_text1'] = "step03"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "step04"
+    context['nav_link3'] = reverse_lazy("output_list",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text3'] = "step05"
 
     return context
 
@@ -1002,6 +1050,15 @@ class Output1(LoginRequiredMixin, TemplateView):
 
     context['myuser'] = self.request.user
 
+    context['nav_link1'] = reverse_lazy("output_list",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text1'] = "step05"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "output1"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
+
+
     return context
 
 
@@ -1106,6 +1163,14 @@ class Output2(LoginRequiredMixin, TemplateView):
 
     context['myuser'] = self.request.user
 
+    context['nav_link1'] = reverse_lazy("output_list",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text1'] = "step05"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "output2"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
+
     return context
 
 
@@ -1192,6 +1257,14 @@ class Output3(LoginRequiredMixin, TemplateView):
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
+
+    context['nav_link1'] = reverse_lazy("output_list",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text1'] = "step05"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "output3"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
 
     return context
 
@@ -1280,6 +1353,14 @@ class Output4(LoginRequiredMixin, TemplateView):
 
     context['myuser'] = self.request.user
 
+    context['nav_link1'] = reverse_lazy("output_list",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text1'] = "step05"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "output4"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
+
     return context
 
 
@@ -1290,6 +1371,15 @@ class Output_list(LoginRequiredMixin, TemplateView):
     context = super().get_context_data(**kwargs)
     context['myLocation'] = self.kwargs['myLocation']
     context['myuser'] = self.request.user
+
+    context['nav_link1'] = reverse_lazy("diet1",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text1'] = "step04"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "step05"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
+
     return context
 
 
