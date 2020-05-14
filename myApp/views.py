@@ -1604,16 +1604,8 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
     for tmp02 in tmp01:
       if tmp02.id not in available_list:
         dd = {}
-        dd["Food_grp"] = tmp02.Food_grp
-        dd["Food_name"] = tmp02.Food_name
-        dd["Energy"] = tmp02.Energy
-        dd["Protein"] = tmp02.Protein
-        dd["VITA_RAE"] = tmp02.VITA_RAE
-        dd["FE"] = tmp02.FE
-        dd["food_item_id"] = tmp02.food_item_id
-
         dd["selected_status"] = 0
-        dd["Food_grp"] = tmp02.Food_grp
+        dd["Food_grp"] = tmp02.Food_grp_unicef
         dd["Food_name"] = tmp02.Food_name
         dd["Energy"] = tmp02.Energy
         dd["Protein"] = tmp02.Protein

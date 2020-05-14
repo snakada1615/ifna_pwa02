@@ -1,84 +1,53 @@
-<style>
+<div id="car_1" class="carousel slide" data-ride="carousel">
 
-  .marquee p {
-    margin: 0;
-    padding-left: 600px;
-    display: inline-block;
-    white-space: nowrap;
-    -webkit-animation-name: marquee;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-duration: 10s;
-    -webkit-animation-iteration-count: infinite;
-    -moz-animation-name: marquee;
-    -moz-animation-timing-function: linear;
-    -moz-animation-duration: 10s;
-    -moz-animation-iteration-count: infinite;
-    -ms-animation-name: marquee;
-    -ms-animation-timing-function: linear;
-    -ms-animation-duration: 10s;
-    -ms-animation-iteration-count: infinite;
-    -o-animation-name: marquee;
-    -o-animation-timing-function: linear;
-    -o-animation-duration: 10s;
-    -o-animation-iteration-count: infinite;
-    animation-name: marquee;
-    animation-timing-function: linear;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-  }
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#car_1" data-slide-to="0" class="active"></li>
+    <li data-target="#car_1" data-slide-to="1"></li>
+    <li data-target="#car_1" data-slide-to="2"></li>
+    <li data-target="#car_1" data-slide-to="3"></li>
+  </ul>
 
-  @-webkit-keyframes marquee {
-    from {
-      -webkit-transform: translate(0%);
-    }
-    99%, to {
-      -webkit-transform: translate(-100%);
-    }
-  }
+  <div class="carousel-inner">
+    {% for i in i|rjust:4 %}
+      <div class="carousel-item">
+        <div class="text-warning">aaa</div>
+        <div class="text-warning">aaa</div>
+        <div class="text-warning">aaa</div>
+        <div class="text-warning">aaa</div>
+        <div class="text-warning">aaa</div>
+        <div class="text-warning">aaa</div>
+        <div class="text-warning">aaa</div>
+        <div class="text-warning">aaa</div>
+        <div class="text-warning">aaa</div>
+        <div class="text-warning">aaa</div>
+        bbb
+      </div>
+    {% endfor %}
+  </div>
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#car_1" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#car_1" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
 
-  @-moz-keyframes marquee {
-    from {
-      -moz-transform: translate(0%);
-    }
-    99%, to {
-      -moz-transform: translate(-100%);
-    }
-  }
-
-  @-ms-keyframes marquee {
-    from {
-      -ms-transform: translate(0%);
-    }
-    99%, to {
-      -ms-transform: translate(-100%);
-    }
-  }
-
-  @-o-keyframes marquee {
-    from {
-      -o-transform: translate(0%);
-    }
-    99%, to {
-      -o-transform: translate(-100%);
-    }
-  }
-
-  @keyframes marquee {
-    from {
-      transform: translate(0%);
-    }
-    99%, to {
-      transform: translate(-100%);
-    }
-  }
-</style>
-
-<div class="marquee">
-  <p>商品1を入荷しました。ぜひお試しください。</p>
 </div>
 
-<div class="marquee">
-<p>The quick brown fox jumps over the lazy dog.</p>
-</div>
+<script type="text/javascript">
 
+  $(document).ready(function () {
+    $('.carousel').carousel();
+    $('#car_1').on('slide.bs.carousel', function (e) {
+      var from = $('.nav li.active').index();
+      var next = $(e.relatedTarget);
+      var to = next.index();
 
+      // This could interest you
+      $('.nav li').removeClass('active').eq(to).addClass('active');
+
+    });
+  });
+
+</script>

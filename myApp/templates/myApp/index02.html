@@ -10,7 +10,7 @@
             <div class="card-body py-0 px-0">
               <div class="row">
                 <div class="col">
-                  <h5>Welcome to NFA tool!</h5>
+                  <h5>Overall work flow</h5>
                 </div>
               </div>
               <div class="row">
@@ -18,17 +18,45 @@
                   <img src="{% static 'img/no1.png' %}">
                 </div>
                 <div class="col-10 mx-1">
-                  <a class="btn btn-block btn-warning my-1" href="{% url 'Location_list' %}" style="max-width:540px"
-                     id='btn01'>Target location</a>
+                  <button class="btn btn-block btn-warning my-1" data-toggle="collapse" data-target="#more_info1"
+                          aria-expanded="true"
+                          aria-controls="more_info1">
+                    Target location
+                  </button>
+
+                  <div id="more_info1" class="collapse" aria-labelledby="heading-1"
+                       data-parent="#accordion2">
+                    <p class="card-text my-0">
+                      In this step, you will indicate location of your target communimty.
+                      This is important to assess food availability, which is largely depending on natural environment
+                    </p>
+                  </div>
                 </div>
+
+
               </div>
               <div class="row">
                 <div class="col-1 my-2">
                   <img src="{% static 'img/no2.png' %}">
                 </div>
                 <div class="col-10 mx-1">
-                  <a class="btn btn-block btn-warning my-1" href="#" style="max-width:540px" id='btn02'>Food
-                    availability</a>
+                  <button class="btn btn-block btn-warning my-1" data-toggle="collapse" data-target="#more_info2"
+                          aria-expanded="true"
+                          aria-controls="more_info2">
+                    Food availability
+                  </button>
+
+                  <div id="more_info2" class="collapse" aria-labelledby="heading-2"
+                       data-parent="#accordion2">
+                    <p class="card-text my-0">
+                      Based on the information from your previous selection, app will show you a list of food item
+                      potentially available in your target area. You will then, discuss with local people about
+                      seasonal availability of each food item as well as accesibility (self production or market)
+                      This is important step as many of nutritious food have strong seasonality and also, it may be
+                      only available from the market, which will give financial burden to local vulnerable.
+                    </p>
+                  </div>
+
                 </div>
               </div>
               <div class="row">
@@ -36,8 +64,19 @@
                   <img src="{% static 'img/no3.png' %}">
                 </div>
                 <div class="col-10 mx-1">
-                  <a class="btn btn-block btn-warning my-1" href="#" style="max-width:540px" id='btn04'>Target
-                    Benefitiary</a>
+                  <button class="btn btn-block btn-warning my-1" data-toggle="collapse" data-target="#more_info3"
+                          aria-expanded="true"
+                          aria-controls="more_info3">
+                    Target beneficiary
+                  </button>
+
+                  <div id="more_info3" class="collapse" aria-labelledby="heading-1"
+                       data-parent="#accordion2">
+                    <p class="card-text my-0">
+                      In this step, you will identify beneficiaries for your activity under three category.
+                      (1) indivisual target, (2) household target, (3) entire community
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -45,8 +84,21 @@
                   <img src="{% static 'img/no4.png' %}">
                 </div>
                 <div class="col-10 mx-1">
-                  <a class="btn btn-block btn-warning my-1" href="#" style="max-width:540px" id='btn05'>Dietary Planning
-                    1</a>
+                  <button class="btn btn-block btn-warning my-1" data-toggle="collapse" data-target="#more_info4"
+                          aria-expanded="true"
+                          aria-controls="more_info4">
+                    Dietary Planning
+                  </button>
+
+                  <div id="more_info4" class="collapse" aria-labelledby="heading-1"
+                       data-parent="#accordion2">
+                    <p class="card-text my-0">
+                      In this step, you will guide target benefitiaries to optimize combination of foods available
+                      locally,
+                      based on the key nutrition requirement.
+                    </p>
+                  </div>
+
                 </div>
               </div>
               <div class="row">
@@ -54,16 +106,64 @@
                   <img src="{% static 'img/no5.png' %}">
                 </div>
                 <div class="col-10 mx-1">
-                  <a class="btn btn-block btn-warning my-1" href="#" style="max-width:540px" id='btn06'>Result</a>
+                  <button class="btn btn-block btn-warning my-1" data-toggle="collapse" data-target="#more_info5"
+                          aria-expanded="true"
+                          aria-controls="more_info5">
+                    Dietary Planning
+                  </button>
+
+                  <div id="more_info5" class="collapse" aria-labelledby="heading-1"
+                       data-parent="#accordion2">
+                    <p class="card-text my-0">
+                      In case your target benefitiary fail to satisfy all the nutrition requirement, you can discuss
+                      further for introduction of new crops not produced in respective area.
+                      in this section, you can conduct feasibility assessment of new crops potentially introduced in the
+                      area
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-1 my-2">
-                  <img src="{% static 'img/no_other.png' %}">
+                  <img src="{% static 'img/no6.png' %}">
                 </div>
                 <div class="col-10 mx-1">
-                  <a class="btn btn-block btn-warning my-1" href="#" style="max-width:540px" id='btn07'>Crop Editor</a>
+                  <button class="btn btn-block btn-warning my-1" data-toggle="collapse" data-target="#more_info6"
+                          aria-expanded="true"
+                          aria-controls="more_info6">
+                    Dietary Planning
+                  </button>
+
+                  <div id="more_info6" class="collapse" aria-labelledby="heading-1"
+                       data-parent="#accordion2">
+                    <p class="card-text my-0">
+                      In this step, you will review and update food item combination making use of new food introduced
+                      in
+                      the
+                      area.
+                    </p>
+                  </div>
                 </div>
+              </div>
+              <div class="row">
+                <div class="col-1 my-2">
+                  <img src="{% static 'img/no7.png' %}">
+                </div>
+                <div class="col-10 mx-1">
+                  <button class="btn btn-block btn-warning my-1" data-toggle="collapse" data-target="#more_info7"
+                          aria-expanded="true"
+                          aria-controls="more_info7">
+                    Dietary Planning
+                  </button>
+
+                  <div id="more_info7" class="collapse" aria-labelledby="heading-1"
+                       data-parent="#accordion2">
+                    <p class="card-text my-0">
+                      outcome and recommendation generated from all the above informatio is presented here.
+                    </p>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -71,42 +171,43 @@
       </div>
     </div>
   </div>
+  </div>
 
   <script type="text/javascript">
     window.onload = function () {
       var DATA = JSON.parse('{{ myParam|safe }}');
       console.log(DATA);
 
-      document.getElementById('btn02').classList.add("disabled");
-      document.getElementById('btn04').classList.add("disabled");
-      document.getElementById('btn05').classList.add("disabled");
-      document.getElementById('btn06').classList.add("disabled");
-      document.getElementById('btn07').classList.add("disabled");
+      {% comment %}      document.getElementById('btn02').classList.add("disabled");
+            document.getElementById('btn04').classList.add("disabled");
+            document.getElementById('btn05').classList.add("disabled");
+            document.getElementById('btn06').classList.add("disabled");
+            document.getElementById('btn07').classList.add("disabled");
 
-      if (DATA.myLocation > 0) {
-        document.getElementById('btn02').classList.remove("disabled");
-        var myURL = '/crop_select/' + DATA.myCountryName + '/' + DATA.myLocation + '/';
-        document.getElementById('btn02').href = myURL;
-        if (DATA.myCrop != "0") {
-          document.getElementById('btn04').classList.remove("disabled");
-          var myURL = '/person/list/' + DATA.myLocation + '/1/';
-          document.getElementById('btn04').href = myURL;
-          document.getElementById('btn07').classList.remove("disabled");
-          var myURL = '/index04/';
-          document.getElementById('btn07').href = myURL;
-//          console.log(DATA.myTarget);
-          if (DATA.myTarget > 0) {
-            document.getElementById('btn05').classList.remove("disabled");
-            var myURL = '/Diet1/' + DATA.myLocation + '/';
-            document.getElementById('btn05').href = myURL;
-            if (DATA.myDiet > 0) {
-              document.getElementById('btn06').classList.remove("disabled");
-              var myURL = '/Output_list/' + DATA.myLocation + '/';
-              document.getElementById('btn06').href = myURL;
-            }
-          }
-        }
-      }
+            if (DATA.myLocation > 0) {
+              document.getElementById('btn02').classList.remove("disabled");
+              var myURL = '/crop_select/' + DATA.myCountryName + '/' + DATA.myLocation + '/';
+              document.getElementById('btn02').href = myURL;
+              if (DATA.myCrop != "0") {
+                document.getElementById('btn04').classList.remove("disabled");
+                var myURL = '/person/list/' + DATA.myLocation + '/1/';
+                document.getElementById('btn04').href = myURL;
+                document.getElementById('btn07').classList.remove("disabled");
+                var myURL = '/index04/';
+                document.getElementById('btn07').href = myURL;
+      //          console.log(DATA.myTarget);
+                if (DATA.myTarget > 0) {
+                  document.getElementById('btn05').classList.remove("disabled");
+                  var myURL = '/Diet1/' + DATA.myLocation + '/';
+                  document.getElementById('btn05').href = myURL;
+                  if (DATA.myDiet > 0) {
+                    document.getElementById('btn06').classList.remove("disabled");
+                    var myURL = '/Output_list/' + DATA.myLocation + '/';
+                    document.getElementById('btn06').href = myURL;
+                  }
+                }
+              }
+            }{% endcomment %}
     }
 
   </script>
