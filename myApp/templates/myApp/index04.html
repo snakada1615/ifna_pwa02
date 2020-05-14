@@ -17,11 +17,10 @@
                 <img src="{% static 'img/no1.png' %}">
               </div>
               <div class="col-10 mx-1">
-                <a class="btn btn-block btn-warning my-1" href="{% url 'crop_name_list' myCountryName=myCountryName %}"
-                   style="max-width:540px"
-                   id='btn02'>Edit Food name
+                <a class="btn btn-block btn-warning my-1" href="{% url 'crop_feas_list' %}" style="max-width:540px"
+                   id='btn01'>Crop Feasibility Check
                   <span class="fb fb-help" data-toggle="tooltip"
-                        title="change generic food name into more familiar name"></span>
+                        title="feasibility check to introduce new food item in target area"></span>
                 </a>
               </div>
             </div>
@@ -30,10 +29,11 @@
                 <img src="{% static 'img/no2.png' %}">
               </div>
               <div class="col-10 mx-1">
-                <a class="btn btn-block btn-warning my-1" href="{% url 'crop_feas_list' %}" style="max-width:540px"
-                   id='btn01'>Crop Feasibility Check
+                <a class="btn btn-block btn-warning my-1" href="{% url 'crop_name_list' myCountryName=myCountryName %}"
+                   style="max-width:540px"
+                   id='btn02'>Edit Food name
                   <span class="fb fb-help" data-toggle="tooltip"
-                        title="feasibility check to introduce new food item in target area"></span>
+                        title="change generic food name into more familiar name"></span>
                 </a>
               </div>
             </div>

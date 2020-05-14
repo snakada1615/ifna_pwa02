@@ -10,6 +10,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 from django.db.models import Max  # 集計関数の追加
+from django.db.models import Count, Case, When, IntegerField # 集計関数の追加
 
 import re
 from django.shortcuts import render, redirect
@@ -417,7 +418,7 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     context['nav_link1'] = reverse_lazy("Location_list")
     context['nav_text1'] = "step01"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step02/5"
+    context['nav_text2'] = "step02/6"
     context['nav_link3'] = reverse_lazy("person_list",
                                         kwargs={'myLocation': myUser.profile.myLocation, 'page': 1})
     context['nav_text3'] = "step03"
@@ -559,7 +560,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
                                                   id=self.request.user.profile.myLocation).first().country})
     context['nav_text1'] = "step02"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step03/5"
+    context['nav_text2'] = "step03/6"
     context['nav_link3'] = reverse_lazy("diet1",
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
     context['nav_text3'] = "step04"
@@ -836,10 +837,19 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     # if __name__ == '__main__':
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
     myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212]
+
+    # tmp_xx = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT').annotate(
+    #   numviews=Count(Case(
+    #     When(id_table=201, then=1),
+    #     output_field=IntegerField(),
+    #   ))
+    # )
+    # logger.info(tmp_xx.count())
+
     d = []
     for i in myRange:
       tmp02 = tmp01.filter(id_table=i)
-      if tmp02.count() == 0:
+      if tmp02.count() == 0:    #todo この行があると余分なQueryが発生する！？
         dd = {}
         dd["name"] = ''
         dd["Energy"] = ''
@@ -884,9 +894,8 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
                                         kwargs={'myLocation': self.request.user.profile.myLocation, 'page': 1})
     context['nav_text1'] = "step03"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step04/5"
-    context['nav_link3'] = reverse_lazy("output_list",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text2'] = "step04/6"
+    context['nav_link3'] = reverse_lazy("index04")
     context['nav_text3'] = "step05"
     context[
       "mark_text"] = 'Here, you discuss about optimal combination of food item to satisfy nutrient needs of your target'
@@ -1379,13 +1388,12 @@ class Output_list(LoginRequiredMixin, TemplateView):
     context['myLocation'] = self.kwargs['myLocation']
     context['myuser'] = self.request.user
 
-    context['nav_link1'] = reverse_lazy("diet1",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
-    context['nav_text1'] = "step04"
+    context['nav_link1'] = reverse_lazy("index04")
+    context['nav_text1'] = "step05"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step05/5"
-    context['nav_link3'] = reverse_lazy("index04")
-    context['nav_text3'] = "step06"
+    context['nav_text2'] = "step06/6"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
     context["mark_text"] = 'this is seasonal production target for target community'
 
     return context
@@ -1455,11 +1463,10 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
 
     context["mylist_available"] = d
 
-    context['nav_link1'] = reverse_lazy("output_list",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
-    context['nav_text1'] = "step05"
+    context['nav_link1'] = reverse_lazy("index04")
+    context['nav_text1'] = "step06"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step06/5"
+    context['nav_text2'] = "step06/6"
     context['nav_link3'] = ""
     context['nav_text3'] = ""
     context["mark_text"] = ''
@@ -1489,12 +1496,11 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['myuser'] = self.request.user
     context['myLocation'] = self.request.user.profile.myLocation
     context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
-    context['nav_link1'] = reverse_lazy("diet1",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
-    context['nav_text1'] = "step05"
+    context['nav_link1'] = reverse_lazy("index04")
+    context['nav_text1'] = "step06"
     context['nav_link2'] = reverse_lazy("output_list",
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
-    context['nav_text2'] = "step06/5"
+    context['nav_text2'] = "step06/6"
     context['nav_link3'] = ""
     context['nav_text3'] = ""
     context["mark_text"] = 'you can explore to introduce new food crop in target area'
@@ -1583,7 +1589,7 @@ class FCT_ListView(LoginRequiredMixin, ListView):
     context['nav_text1'] = "step05"
     context['nav_link2'] = reverse_lazy("output_list",
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
-    context['nav_text2'] = "step06/5"
+    context['nav_text2'] = "step06/6"
     context['nav_link3'] = ""
     context['nav_text3'] = ""
     context["mark_text"] = 'you can explore to introduce new food crop in target area'
@@ -1624,13 +1630,14 @@ class IndexView04(LoginRequiredMixin, TemplateView):
     context['myCountryName'] = Location.objects.filter(id=self.request.user.profile.myLocation).first().country
     context['nav_link1'] = reverse_lazy("diet1",
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
-    context['nav_text1'] = "step05"
+    context['nav_text1'] = "step04"
     context['nav_link2'] = reverse_lazy("output_list",
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
-    context['nav_text2'] = "step06/5"
-    context['nav_link3'] = ""
-    context['nav_text3'] = ""
-    context["mark_text"] = 'you can explore to introduce new food crop in target area'
+    context['nav_text2'] = "step05/6"
+    context['nav_link3'] = reverse_lazy("output_list",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text3'] = "step6"
+    context["mark_text"] = 'In this page, you can explore to introduce new food crop in target area'
 
     return context
 
@@ -1653,7 +1660,7 @@ class Crop_Name_ListView(LoginRequiredMixin, ListView):
     context['nav_text1'] = "step05"
     context['nav_link2'] = reverse_lazy("output_list",
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
-    context['nav_text2'] = "step06/5"
+    context['nav_text2'] = "step06/6"
     context['nav_link3'] = ""
     context['nav_text3'] = ""
     context["mark_text"] = 'you can explore to introduce new food crop in target area'
