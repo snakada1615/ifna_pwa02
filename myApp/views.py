@@ -418,7 +418,7 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     context['nav_link1'] = reverse_lazy("Location_list")
     context['nav_text1'] = "step01"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step02/6"
+    context['nav_text2'] = "step02/7"
     context['nav_link3'] = reverse_lazy("person_list",
                                         kwargs={'myLocation': myUser.profile.myLocation, 'page': 1})
     context['nav_text3'] = "step03"
@@ -560,7 +560,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
                                                   id=self.request.user.profile.myLocation).first().country})
     context['nav_text1'] = "step02"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step03/6"
+    context['nav_text2'] = "step03/7"
     context['nav_link3'] = reverse_lazy("diet1",
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
     context['nav_text3'] = "step04"
@@ -894,9 +894,186 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
                                         kwargs={'myLocation': self.request.user.profile.myLocation, 'page': 1})
     context['nav_text1'] = "step03"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step04/6"
+    context['nav_text2'] = "step04/7"
     context['nav_link3'] = reverse_lazy("index04")
     context['nav_text3'] = "step05"
+    context[
+      "mark_text"] = 'Here, you discuss about optimal combination of food item to satisfy nutrient needs of your target'
+
+    return context
+
+class Diet_Plan2(LoginRequiredMixin, TemplateView):
+  template_name = "myApp/Diet_Plan_additional.html"
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
+    tmp_nut_group = Person.objects.filter(
+      myLocation=self.kwargs['myLocation']).select_related('myDRI')
+    context['nutrient_target'] = tmp_nut_group[0].nut_group
+
+    tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
+    tmp_e = 0
+    tmp_p = 0
+    tmp_v = 0
+    tmp_f = 0
+    if len(tmp_nut_group1) > 0:
+      for tmp in tmp_nut_group1:
+        tmp_e += tmp.myDRI.energy
+        tmp_p += tmp.myDRI.protein
+        tmp_v += tmp.myDRI.vita
+        tmp_f += tmp.myDRI.fe
+    context['dri_e1'] = tmp_e
+    context['dri_p1'] = tmp_p
+    context['dri_v1'] = tmp_v
+    context['dri_f1'] = tmp_f
+
+    tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
+    tmp_e = 0
+    tmp_p = 0
+    tmp_v = 0
+    tmp_f = 0
+    if len(tmp_nut_group2) > 0:
+      for tmp in tmp_nut_group2:
+        tmp_e += tmp.myDRI.energy * tmp.target_pop
+        tmp_p += tmp.myDRI.protein * tmp.target_pop
+        tmp_v += tmp.myDRI.vita * tmp.target_pop
+        tmp_f += tmp.myDRI.fe * tmp.target_pop
+    context['dri_e2'] = tmp_e
+    context['dri_p2'] = tmp_p
+    context['dri_v2'] = tmp_v
+    context['dri_f2'] = tmp_f
+
+    tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
+    tmp_e = 0
+    tmp_p = 0
+    tmp_v = 0
+    tmp_f = 0
+    if len(tmp_nut_group3) > 0:
+      for tmp in tmp_nut_group3:
+        tmp_e += tmp.myDRI.energy * tmp.target_pop
+        tmp_p += tmp.myDRI.protein * tmp.target_pop
+        tmp_v += tmp.myDRI.vita * tmp.target_pop
+        tmp_f += tmp.myDRI.fe * tmp.target_pop
+    context['dri_e3'] = tmp_e
+    context['dri_p3'] = tmp_p
+    context['dri_v3'] = tmp_v
+    context['dri_f3'] = tmp_f
+
+    # send selected crop by community ######
+    tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
+    d = []
+    for tmp02 in tmp01:
+      dd = {}
+      dd["selected_status"] = tmp02.selected_status
+      dd["Food_grp"] = tmp02.myFCT.Food_grp
+      dd["Food_name"] = tmp02.myFCT.Food_name
+      dd["Energy"] = tmp02.myFCT.Energy
+      dd["Protein"] = tmp02.myFCT.Protein
+      dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
+      dd["FE"] = tmp02.myFCT.FE
+      dd["Weight"] = 0
+      dd["food_item_id"] = tmp02.myFCT.food_item_id
+      dd["portion_size"] = tmp02.myFCT.portion_size_init
+      dd["count_buy"] = 0
+      dd["count_prod"] = 0
+      dd["portion_size"] = tmp02.myFCT.portion_size_init
+      dd["m1"] = tmp02.m1_avail
+      dd["m2"] = tmp02.m2_avail
+      dd["m3"] = tmp02.m3_avail
+      dd["m4"] = tmp02.m4_avail
+      dd["m5"] = tmp02.m5_avail
+      dd["m6"] = tmp02.m6_avail
+      dd["m7"] = tmp02.m7_avail
+      dd["m8"] = tmp02.m8_avail
+      dd["m9"] = tmp02.m9_avail
+      dd["m10"] = tmp02.m10_avail
+      dd["m11"] = tmp02.m11_avail
+      dd["m12"] = tmp02.m12_avail
+      dd["myLocation"] = tmp02.myLocation_id
+      d.append(dd)
+    context["mylist_available"] = d
+
+    # 作物のローカル名を送る
+    tmp = Crop_Name._meta.get_fields()
+    logger.info(tmp[2])
+    tmp01 = Crop_Name.objects.filter(
+      myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
+    d = []
+    for tmp02 in tmp01:
+      dd = {}
+      dd["Food_grp"] = tmp02.Food_grp
+      dd["Food_name"] = tmp02.Food_name
+      dd["food_item_id"] = tmp02.myFCT_id
+      d.append(dd)
+
+    context["mylist_local_name"] = d
+
+    # 現在選択されている作物をDiet_plan_formに送る
+    # --------------------create 16 Crop_individual-------------------------
+    # if __name__ == '__main__':
+    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
+    myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212]
+
+    # tmp_xx = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT').annotate(
+    #   numviews=Count(Case(
+    #     When(id_table=201, then=1),
+    #     output_field=IntegerField(),
+    #   ))
+    # )
+    # logger.info(tmp_xx.count())
+
+    d = []
+    for i in myRange:
+      tmp02 = tmp01.filter(id_table=i)
+      if tmp02.count() == 0:    #todo この行があると余分なQueryが発生する！？
+        dd = {}
+        dd["name"] = ''
+        dd["Energy"] = ''
+        dd["Protein"] = ''
+        dd["VITA_RAE"] = ''
+        dd["FE"] = ''
+        dd["target_scope"] = ''
+        dd["food_item_id"] = ''
+        dd["portion_size"] = ''
+        dd["total_weight"] = ''
+        dd["count_prod"] = ''
+        dd["count_buy"] = ''
+        dd["month"] = ''
+        dd["myLocation"] = ''
+        dd["num_tbl"] = i
+        dd["share_prod_buy"] = 5
+        d.append(dd)
+      else:
+        for tmp03 in tmp02:
+          dd = {}
+          dd["name"] = tmp03.myFCT.Food_name
+          dd["Energy"] = tmp03.myFCT.Energy
+          dd["Protein"] = tmp03.myFCT.Protein
+          dd["VITA_RAE"] = tmp03.myFCT.VITA_RAE
+          dd["FE"] = tmp03.myFCT.FE
+          dd["target_scope"] = tmp03.target_scope
+          dd["food_item_id"] = tmp03.myFCT.food_item_id
+          dd["portion_size"] = tmp03.portion_size
+          dd["total_weight"] = tmp03.total_weight
+          dd["count_prod"] = tmp03.count_prod
+          dd["count_buy"] = tmp03.count_buy
+          dd["month"] = tmp03.month
+          dd["myLocation"] = tmp03.myLocation_id
+          dd["num_tbl"] = tmp03.id_table
+          dd["share_prod_buy"] = tmp03.share_prod_buy
+          d.append(dd)
+    context["mylist_selected"] = d
+
+    context['myuser'] = self.request.user
+
+    context['nav_link1'] = reverse_lazy("index04")
+    context['nav_text1'] = "step05"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "step06/7"
+    context['nav_link3'] = reverse_lazy("output_list",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text3'] = "step07"
     context[
       "mark_text"] = 'Here, you discuss about optimal combination of food item to satisfy nutrient needs of your target'
 
@@ -1388,10 +1565,11 @@ class Output_list(LoginRequiredMixin, TemplateView):
     context['myLocation'] = self.kwargs['myLocation']
     context['myuser'] = self.request.user
 
-    context['nav_link1'] = reverse_lazy("index04")
-    context['nav_text1'] = "step05"
+    context['nav_link1'] = reverse_lazy("diet2",
+                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_text1'] = "step06"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step06/6"
+    context['nav_text2'] = "step07/7"
     context['nav_link3'] = ""
     context['nav_text3'] = ""
     context["mark_text"] = 'this is seasonal production target for target community'
@@ -1466,7 +1644,7 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
     context['nav_link1'] = reverse_lazy("index04")
     context['nav_text1'] = "step06"
     context['nav_link2'] = ""
-    context['nav_text2'] = "step06/6"
+    context['nav_text2'] = "step06/7"
     context['nav_link3'] = ""
     context['nav_text3'] = ""
     context["mark_text"] = ''
@@ -1497,11 +1675,11 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['myLocation'] = self.request.user.profile.myLocation
     context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
     context['nav_link1'] = reverse_lazy("index04")
-    context['nav_text1'] = "step06"
-    context['nav_link2'] = reverse_lazy("output_list",
+    context['nav_text1'] = "step05"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "step05/7"
+    context['nav_link3'] = reverse_lazy("output_list",
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
-    context['nav_text2'] = "step06/6"
-    context['nav_link3'] = ""
     context['nav_text3'] = ""
     context["mark_text"] = 'you can explore to introduce new food crop in target area'
     return context
@@ -1589,7 +1767,7 @@ class FCT_ListView(LoginRequiredMixin, ListView):
     context['nav_text1'] = "step05"
     context['nav_link2'] = reverse_lazy("output_list",
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
-    context['nav_text2'] = "step06/6"
+    context['nav_text2'] = "step06/7"
     context['nav_link3'] = ""
     context['nav_text3'] = ""
     context["mark_text"] = 'you can explore to introduce new food crop in target area'
@@ -1631,10 +1809,9 @@ class IndexView04(LoginRequiredMixin, TemplateView):
     context['nav_link1'] = reverse_lazy("diet1",
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
     context['nav_text1'] = "step04"
-    context['nav_link2'] = reverse_lazy("output_list",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
-    context['nav_text2'] = "step05/6"
-    context['nav_link3'] = reverse_lazy("output_list",
+    context['nav_link2'] = ""
+    context['nav_text2'] = "step05/7"
+    context['nav_link3'] = reverse_lazy("diet2",
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
     context['nav_text3'] = "step6"
     context["mark_text"] = 'In this page, you can explore to introduce new food crop in target area'
@@ -1660,7 +1837,7 @@ class Crop_Name_ListView(LoginRequiredMixin, ListView):
     context['nav_text1'] = "step05"
     context['nav_link2'] = reverse_lazy("output_list",
                                         kwargs={'myLocation': self.request.user.profile.myLocation})
-    context['nav_text2'] = "step06/6"
+    context['nav_text2'] = "step06/7"
     context['nav_link3'] = ""
     context['nav_text3'] = ""
     context["mark_text"] = 'you can explore to introduce new food crop in target area'

@@ -13,7 +13,7 @@ from .views import initTable, delete_TableRec, registDiet, Output1, Output2, Out
 from .views import CropSelect, registCropAvail, Trial_View, Diet_Plan1, update_profile
 from .views import Crop_Feas_CreateView, Crop_Feas_ListView, Crop_Feas_DeleteView, Crop_Feas_UpdateView
 from .views import FCT_ListView, FCT_UpdateView, FCT_CreateView, IndexView04, Crop_Name_ListView, Crop_Name_CreateView
-from .views import Crop_Name_UpdateView
+from .views import Crop_Name_UpdateView, Diet_Plan2
 
 from django.contrib import admin
 from django.urls import include
@@ -46,6 +46,7 @@ urlpatterns = [
   path('person/delete/<int:myLocation>/<int:pk>/<int:mytarget_scope>/', Person_DeleteView.as_view(), name='person_delete'),
   path('registPerson/', views.registPerson, name='regist_person'),
   path('Diet1/<int:myLocation>/', Diet_Plan1.as_view(), name='diet1'),
+  path('Diet2/<int:myLocation>/', Diet_Plan2.as_view(), name='diet2'),
   path('registDiet/', views.registDiet, name='regist_diet'),
   path('delete_TableRec/<str:tblName>/', views.delete_TableRec, name='delete_TableRec'),
   path('initTable/', initTable.as_view(), name='initTable'),

@@ -8,13 +8,16 @@
         <div class="col-12">
           <div class="card-body py-0 px-0">
             <div class="row">
-              <div class="col">
+              <div class="col-2 my-0 px-3">
+                <img src="{% static 'img/no5.png' %}" alt="number 4">
+              </div>
+              <div class="col-10">
                 <h5>Edit Crop Data</h5>
               </div>
             </div>
             <div class="row">
               <div class="col-1 my-2">
-                <img src="{% static 'img/no1.png' %}">
+                <img src="{% static 'img/no1_gr.png' %}">
               </div>
               <div class="col-10 mx-1">
                 <a class="btn btn-block btn-warning my-1" href="{% url 'crop_feas_list' %}" style="max-width:540px"
@@ -26,7 +29,7 @@
             </div>
             <div class="row">
               <div class="col-1 my-2">
-                <img src="{% static 'img/no2.png' %}">
+                <img src="{% static 'img/no2_gr.png' %}">
               </div>
               <div class="col-10 mx-1">
                 <a class="btn btn-block btn-warning my-1" href="{% url 'crop_name_list' myCountryName=myCountryName %}"
@@ -39,7 +42,7 @@
             </div>
             <div class="row">
               <div class="col-1 my-2">
-                <img src="{% static 'img/no3.png' %}">
+                <img src="{% static 'img/no3_gr.png' %}">
               </div>
               <div class="col-10 mx-1">
                 <a class="btn btn-block btn-warning my-1" href="{% url 'fct_list' %}" style="max-width:540px"
