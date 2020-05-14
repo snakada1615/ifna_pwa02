@@ -3,7 +3,7 @@
 {% block content %}
 
   <input type="hidden" value="{{ form.pk }}" id="sel_country">
-  <input type="hidden" value="{{ coutry_selected }}" id="sel_country">
+  <input type="hidden" value="{{ country_selected }}" id="sel_country">
   <input type="hidden" value="{{ region_selected }}" id="sel_region">
   <input type="hidden" value="{{ province_selected }}" id="sel_province">
 
@@ -166,7 +166,7 @@
     }
 
     // initislize country list -------------------
-    let selected1 = "{{coutry_selected}}";
+    let selected1 = "{{country_selected}}";
     let selected2 = "{{region_selected}}";
     let selected3 = "{{province_selected}}";
     let selected4 = "{{community_selected}}";

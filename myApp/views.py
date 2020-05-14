@@ -2,7 +2,7 @@
 from django.apps import apps
 from django.contrib import admin
 
-# immport messaging framework
+# import messaging framework
 from django.contrib import messages
 
 # import receiver
@@ -10,7 +10,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 from django.db.models import Max  # 集計関数の追加
-from django.db.models import Count, Case, When, IntegerField # 集計関数の追加
+from django.db.models import Count, Case, When, IntegerField  # 集計関数の追加
 
 import re
 from django.shortcuts import render, redirect
@@ -53,12 +53,24 @@ class IndexView(TemplateView):
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("step0")
+    except:
+      logger.error('無効な値を参照しています')
+
+    myURL2 = ""
+    try:
+      myURL2 = reverse_lazy("step2")
+    except:
+      logger.error('無効な値を参照しています')
+
     context['myuser'] = self.request.user
     context["nav_text1"] = 'step0'
-    context["nav_link1"] = reverse_lazy('index01')
+    context["nav_link1"] = myURL1
     context["nav_text2"] = 'step1/5'
     context["nav_link2"] = '#'
-    context["nav_text3"] = 'step2'
+    context["nav_text3"] = myURL2
     context["nav_link3"] = reverse_lazy('index02')
     context[
       "mark_text"] = 'welcome to NFA tool! this tool help you to optimize diet and crop for selected beneficiaries'
@@ -95,11 +107,23 @@ class IndexView02(LoginRequiredMixin, TemplateView):  # todo myCountyNameの設�
     }
     json_str = json.dumps(data)
 
-    context['nav_link1'] = "index01"
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("index01")
+    except:
+      logger.error('無効な値を参照しています')
+
+    myURL2 = ""
+    try:
+      myURL2 = reverse_lazy("Location_list")
+    except:
+      logger.error('無効な値を参照しています')
+
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "back"
     context['nav_link2'] = ""
     context['nav_text2'] = "main menu"
-    context['nav_link3'] = reverse_lazy("Location_list")
+    context['nav_link3'] = myURL2
     context['nav_text3'] = "step01"
     context["mark_text"] = 'please select your action'
     context['myParam'] = json_str
@@ -118,17 +142,29 @@ class Location_ListView(LoginRequiredMixin, ListView):
     return queryset
 
   def get_context_data(self, **kwargs):
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("index02")
+    except:
+      logger.error('無効な値を参照しています')
+
+    myURL2 = ""
+    try:
+      myURL2 = reverse_lazy("crop_select",
+                            kwargs={'myCountryName': Location.objects.filter(
+                              id=self.request.user.profile.myLocation).first().country,
+                                    'myLocation': int(self.request.user.profile.myLocation)})
+    except:
+      logger.error('無効な値を参照しています')
+
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
     context['myLocation'] = self.request.user.profile.myLocation
-    context['nav_link1'] = reverse_lazy("index02")
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "menu"
     context['nav_link2'] = ""
     context['nav_text2'] = "step1/5"
-    context['nav_link3'] = reverse_lazy("crop_select",
-                                        kwargs={'myCountryName': Location.objects.filter(
-                                          id=self.request.user.profile.myLocation).first().country,
-                                                'myLocation': int(self.request.user.profile.myLocation)})
+    context['nav_link3'] = myURL2
     context['nav_text3'] = "step2"
     context["mark_text"] = 'Here, you need to specify the location of your target area'
     logger.info(context['nav_link3'])
@@ -220,7 +256,7 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
     data = Countries.objects.all()
     context = super().get_context_data(**kwargs)
     context['countries'] = serializers.serialize('json', data)
-    context['coutry_selected'] = ''
+    context['country_selected'] = ''
     context['region_selected'] = ''
     context['province_selected'] = ''
     context['community_selected'] = ''
@@ -239,7 +275,7 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
     context = super().get_context_data(**kwargs)
     context['countries'] = serializers.serialize('json', data)
     myLocation = Location.objects.get(id=self.kwargs['pk'])
-    context['coutry_selected'] = myLocation.country
+    context['country_selected'] = myLocation.country
     context['region_selected'] = myLocation.region
     context['province_selected'] = myLocation.province
     context['community_selected'] = myLocation.community
@@ -298,12 +334,12 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
         logger.info("該当するPersonを削除しました")
 
         # --------------------update Crop_SubNational-------------------------
-        logger.info("これからCrop＿SubNationaを追加していきます")
+        logger.info("これからCrop＿SubNationalを追加していきます")
         tmp_aez = Countries.objects.filter(GID_2=instance.province).first().AEZ_id
         instance.AEZ_id = tmp_aez
         tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
         if tmp01.count() != 0:
-          logger.info("Crop＿Natinalの中に該当品目が存在しています")
+          logger.info("Crop＿Nationalの中に該当品目が存在しています")
           for tmp02 in tmp01:
             keys = {}
             keys['myLocation'] = Location.objects.get(id=instance.pk)
@@ -333,9 +369,9 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
     instance.AEZ_id = tmp_aez
     logger.info(tmp_aez)
     tmp01 = Crop_National.objects.filter(AEZ_id=tmp_aez)
-    logger.info("これからCrop＿SubNationaを追加していきます")
+    logger.info("これからCrop＿SubNationalを追加していきます")
     if tmp01.count() != 0:
-      logger.info("Crop＿Natinalの中に該当品目が存在しています")
+      logger.info("Crop＿Nationalの中に該当品目が存在しています")
       for tmp02 in tmp01:
         keys = {}
         keys['myLocation'] = Location.objects.get(id=instance.pk)
@@ -415,12 +451,24 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
       d.append(dd)
     context["mylist_local_name"] = d
 
-    context['nav_link1'] = reverse_lazy("Location_list")
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("Location_list")
+    except:
+      logger.error('無効な値を参照しています')
+
+    myURL2 = ""
+    try:
+      myURL2 = reverse_lazy("person_list",
+                            kwargs={'myLocation': myUser.profile.myLocation, 'page': 1})
+    except:
+      logger.error('無効な値を参照しています')
+
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "step01"
     context['nav_link2'] = ""
     context['nav_text2'] = "step02/7"
-    context['nav_link3'] = reverse_lazy("person_list",
-                                        kwargs={'myLocation': myUser.profile.myLocation, 'page': 1})
+    context['nav_link3'] = myURL2
     context['nav_text3'] = "step03"
     context["mark_text"] = 'Here, you identify food item you ordinary see in target area'
 
@@ -554,15 +602,27 @@ class Person_ListView(LoginRequiredMixin, ListView):
     dd['class8'] = myFamily.get(nut_group='lactating').target_pop
     context['myFamily'] = dd
 
-    context['nav_link1'] = reverse_lazy("crop_select",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation,
-                                                'myCountryName': Location.objects.filter(
-                                                  id=self.request.user.profile.myLocation).first().country})
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("crop_select",
+                            kwargs={'myLocation': self.request.user.profile.myLocation,
+                                    'myCountryName': Location.objects.filter(
+                                      id=self.request.user.profile.myLocation).first().country})
+    except:
+      logger.error('無効な値を参照しています')
+
+    myURL2 = ""
+    try:
+      myURL2 = reverse_lazy("diet1",
+                            kwargs={'myLocation': self.request.user.profile.myLocation})
+    except:
+      logger.error('無効な値を参照しています')
+
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "step02"
     context['nav_link2'] = ""
     context['nav_text2'] = "step03/7"
-    context['nav_link3'] = reverse_lazy("diet1",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_link3'] = myURL2
     context['nav_text3'] = "step04"
     context["mark_text"] = 'Here, you identify your target beneficiary in three level: individual, family, community'
 
@@ -849,7 +909,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     d = []
     for i in myRange:
       tmp02 = tmp01.filter(id_table=i)
-      if tmp02.count() == 0:    #todo この行があると余分なQueryが発生する！？
+      if tmp02.count() == 0:  # todo この行があると余分なQueryが発生する！？
         dd = {}
         dd["name"] = ''
         dd["Energy"] = ''
@@ -890,17 +950,29 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
 
     context['myuser'] = self.request.user
 
-    context['nav_link1'] = reverse_lazy("person_list",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation, 'page': 1})
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("person_list",
+                            kwargs={'myLocation': self.request.user.profile.myLocation, 'page': 1})
+    except:
+      logger.error('無効な値を参照しています')
+    myURL2 = ""
+    try:
+      myURL2 = reverse_lazy("index04")
+    except:
+      logger.error('無効な値を参照しています')
+
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "step03"
     context['nav_link2'] = ""
     context['nav_text2'] = "step04/7"
-    context['nav_link3'] = reverse_lazy("index04")
+    context['nav_link3'] = myURL2
     context['nav_text3'] = "step05"
     context[
       "mark_text"] = 'Here, you discuss about optimal combination of food item to satisfy nutrient needs of your target'
 
     return context
+
 
 class Diet_Plan2(LoginRequiredMixin, TemplateView):
   template_name = "myApp/Diet_Plan_additional.html"
@@ -1026,7 +1098,7 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     d = []
     for i in myRange:
       tmp02 = tmp01.filter(id_table=i)
-      if tmp02.count() == 0:    #todo この行があると余分なQueryが発生する！？
+      if tmp02.count() == 0:  # todo この行があると余分なQueryが発生する！？
         dd = {}
         dd["name"] = ''
         dd["Energy"] = ''
@@ -1066,13 +1138,26 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
+    context['myuser'] = self.request.user
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("index04")
+    except:
+      logger.error('無効な値を参照しています')
 
-    context['nav_link1'] = reverse_lazy("index04")
+    context['myuser'] = self.request.user
+    myURL2 = ""
+    try:
+      myURL2 = reverse_lazy("output_list",
+                            kwargs={'myLocation': self.request.user.profile.myLocation})
+    except:
+      logger.error('無効な値を参照しています')
+
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "step05"
     context['nav_link2'] = ""
     context['nav_text2'] = "step06/7"
-    context['nav_link3'] = reverse_lazy("output_list",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_link3'] = myURL2
     context['nav_text3'] = "step07"
     context[
       "mark_text"] = 'Here, you discuss about optimal combination of food item to satisfy nutrient needs of your target'
@@ -1239,9 +1324,14 @@ class Output1(LoginRequiredMixin, TemplateView):
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("output_list",
+                            kwargs={'myLocation': self.request.user.profile.myLocation})
+    except:
+      logger.error('無効な値を参照しています')
 
-    context['nav_link1'] = reverse_lazy("output_list",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "step05"
     context['nav_link2'] = ""
     context['nav_text2'] = "output1"
@@ -1353,8 +1443,14 @@ class Output2(LoginRequiredMixin, TemplateView):
 
     context['myuser'] = self.request.user
 
-    context['nav_link1'] = reverse_lazy("output_list",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("output_list",
+                            kwargs={'myLocation': self.request.user.profile.myLocation})
+    except:
+      logger.error('無効な値を参照しています')
+
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "step05"
     context['nav_link2'] = ""
     context['nav_text2'] = "output2"
@@ -1449,8 +1545,14 @@ class Output3(LoginRequiredMixin, TemplateView):
 
     context['myuser'] = self.request.user
 
-    context['nav_link1'] = reverse_lazy("output_list",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("output_list",
+                            kwargs={'myLocation': self.request.user.profile.myLocation})
+    except:
+      logger.error('無効な値を参照しています')
+
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "step05"
     context['nav_link2'] = ""
     context['nav_text2'] = "output3"
@@ -1544,9 +1646,14 @@ class Output4(LoginRequiredMixin, TemplateView):
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("output_list",
+                            kwargs={'myLocation': self.request.user.profile.myLocation})
+    except:
+      logger.error('無効な値を参照しています')
 
-    context['nav_link1'] = reverse_lazy("output_list",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "step05"
     context['nav_link2'] = ""
     context['nav_text2'] = "output4"
@@ -1565,8 +1672,14 @@ class Output_list(LoginRequiredMixin, TemplateView):
     context['myLocation'] = self.kwargs['myLocation']
     context['myuser'] = self.request.user
 
-    context['nav_link1'] = reverse_lazy("diet2",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("diet2",
+                            kwargs={'myLocation': self.request.user.profile.myLocation})
+    except:
+      logger.error('無効な値を参照しています')
+
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "step06"
     context['nav_link2'] = ""
     context['nav_text2'] = "step07/7"
@@ -1628,12 +1741,18 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
         dd["m10"] = 0
         dd["m11"] = 0
         dd["m12"] = 0
-       # dd["myLocation"] = tmp02.myLocation_id
+        # dd["myLocation"] = tmp02.myLocation_id
         d.append(dd)
 
     context["mylist_available"] = d
 
-    context['nav_link1'] = reverse_lazy("index04")
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("index04")
+    except:
+      logger.error('無効な値を参照しています')
+
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "step06"
     context['nav_link2'] = ""
     context['nav_text2'] = "step06/7"
@@ -1644,7 +1763,7 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
     return context
 
   def form_valid(self, form):
-#    self.object = form.save()
+    #    self.object = form.save()
     form.instance.created_by = self.request.user
     form.instance.myLocation = Location.objects.get(id=self.request.user.profile.myLocation)
     return super(Crop_Feas_CreateView, self).form_valid(form)
@@ -1666,12 +1785,25 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['myuser'] = self.request.user
     context['myLocation'] = self.request.user.profile.myLocation
     context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
-    context['nav_link1'] = reverse_lazy("index04")
+
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("index04")
+    except:
+      logger.error('無効な値を参照しています')
+
+    myURL2 = ""
+    try:
+      myURL2 = reverse_lazy("output_list",
+                            kwargs={'myLocation': self.request.user.profile.myLocation})
+    except:
+      logger.error('無効な値を参照しています')
+
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "step05"
     context['nav_link2'] = ""
     context['nav_text2'] = "step05/7"
-    context['nav_link3'] = reverse_lazy("output_list",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_link3'] = myURL2
     context['nav_text3'] = ""
     context["mark_text"] = 'you can explore to introduce new food crop in target area'
     return context
@@ -1754,14 +1886,27 @@ class FCT_ListView(LoginRequiredMixin, ListView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
-    context['nav_link1'] = reverse_lazy("diet1",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("diet1",
+                            kwargs={'myLocation': self.request.user.profile.myLocation})
+    except:
+      logger.error('無効な値を参照しています')
+
+    myURL2 = ""
+    try:
+      myURL2 = reverse_lazy("output_list",
+                            kwargs={'myLocation': self.request.user.profile.myLocation})
+    except:
+      logger.error('無効な値を参照しています')
+
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "step05"
-    context['nav_link2'] = reverse_lazy("output_list",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_link2'] = ""
     context['nav_text2'] = "step06/7"
-    context['nav_link3'] = ""
-    context['nav_text3'] = ""
+    context['nav_link3'] = myURL2
+    context['nav_text3'] = "output"
     context["mark_text"] = 'you can explore to introduce new food crop in target area'
 
     return context
@@ -1797,14 +1942,27 @@ class IndexView04(LoginRequiredMixin, TemplateView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
+
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("diet1",
+                            kwargs={'myLocation': self.request.user.profile.myLocation})
+    except:
+      logger.error('無効な値を参照しています')
+
+    myURL2 = ""
+    try:
+      myURL2 = reverse_lazy("diet2",
+                            kwargs={'myLocation': self.request.user.profile.myLocation})
+    except:
+      logger.error('無効な値を参照しています')
+
     context['myCountryName'] = Location.objects.filter(id=self.request.user.profile.myLocation).first().country
-    context['nav_link1'] = reverse_lazy("diet1",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "step04"
     context['nav_link2'] = ""
     context['nav_text2'] = "step05/7"
-    context['nav_link3'] = reverse_lazy("diet2",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_link3'] = myURL2
     context['nav_text3'] = "step6"
     context["mark_text"] = 'In this page, you can explore to introduce new food crop in target area'
 
@@ -1822,13 +1980,26 @@ class Crop_Name_ListView(LoginRequiredMixin, ListView):
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
+
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("diet1",
+                            kwargs={'myLocation': self.request.user.profile.myLocation})
+    except:
+      logger.error('無効な値を参照しています')
+
+    myURL2 = ""
+    try:
+      myURL2 = reverse_lazy("output_list",
+                            kwargs={'myLocation': self.request.user.profile.myLocation})
+    except:
+      logger.error('無効な値を参照しています')
+
     context['myuser'] = self.request.user
     context['myCountryName'] = self.kwargs['myCountryName']
-    context['nav_link1'] = reverse_lazy("diet1",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_link1'] = myURL1
     context['nav_text1'] = "step05"
-    context['nav_link2'] = reverse_lazy("output_list",
-                                        kwargs={'myLocation': self.request.user.profile.myLocation})
+    context['nav_link2'] = myURL2
     context['nav_text2'] = "step06/7"
     context['nav_link3'] = ""
     context['nav_text3'] = ""
