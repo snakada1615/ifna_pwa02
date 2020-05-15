@@ -304,27 +304,21 @@
     <div id="container_tab_all" class="container border-secondary py-1 my-1 px-0"
          style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
       <!-- 4個分のタブ -->
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a href="#tab1_link" class="nav-link active" id="tab1" data-toggle="tab">individual</a>
-        </li>
-        <li class="nav-item">
-          <a href="#tab2_link" class="nav-link" id="tab2" data-toggle="tab">family</a>
-        </li>
-        <li class="nav-item">
-          <a href="#tab3_link" class="nav-link" id="tab3" data-toggle="tab">community</a>
-        </li>
-      </ul>
+      <nav class="nav nav-pills" role="tablist" id="myTabs">
+        <a class="flex-sm-fill text-sm-center nav-link active" href="#tab_individual" role="tab">individual</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_family" role="tab">family</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_community" role="tab">community</a>
+      </nav>
 
       <!-- タブの移動先指定 -->
-      <div class="tab-content">
-        <div id="tab1_link" class="tab-pane active">
+      <div class="tab-content mt-2" id="tabContent">
+        <div class="tab-pane active" id="tab_individual" role="tabpanel">
           {% include "./Diet_Sub1.html" %}
         </div>
-        <div id="tab2_link" class="tab-pane">
+        <div class="tab-pane" id="tab_family" role="tabpanel">
           {% include "./Diet_Sub2.html" %}
         </div>
-        <div id="tab3_link" class="tab-pane">
+        <div class="tab-pane" id="tab_community" role="tabpanel">
           {% include "./Diet_Sub3.html" %}
         </div>
       </div>
@@ -1494,6 +1488,43 @@
     //    myCrop[201]._getCrop_byID(819);
     // console.log(myCrop_individual[201].dom_tbl_row.eq(0).html());
     Crop_available.data().hello("test desu");
+
+    //---tabの切替処理-------------
+    let activeTab = $('#myTabs a').filter('.active');
+
+    $('#myTabs a').click(function (e) {
+      e.preventDefault();
+
+      activeTab.removeClass('active');
+      $(activeTab.attr('href')).removeClass('active');
+
+      activeTab = $(this);
+
+      activeTab.addClass("active");
+      $(activeTab.attr('href')).addClass('active');
+    });
+    //---tabの切替処理-------------
+
+    //---carouselの切替処理-------------
+    $('#btn_car_prev1').click(function () {
+      $('#carouselControl1').carousel('prev')
+    });
+    $('#btn_car_next1').click(function () {
+      $('#carouselControl1').carousel('next')
+    });
+    $('#btn_car_prev2').click(function () {
+      $('#carouselControl2').carousel('prev')
+    });
+    $('#btn_car_next2').click(function () {
+      $('#carouselControl2').carousel('next')
+    });
+    $('#btn_car_prev3').click(function () {
+      $('#carouselControl3').carousel('prev')
+    });
+    $('#btn_car_next3').click(function () {
+      $('#carouselControl3').carousel('next')
+    });
+    //---carouselの切替処理-------------
 
 
   </script>

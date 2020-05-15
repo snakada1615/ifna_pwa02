@@ -55,13 +55,13 @@ class IndexView(TemplateView):
     context = super().get_context_data(**kwargs)
     myURL1 = ""
     try:
-      myURL1 = reverse_lazy("step0")
+      myURL1 = reverse_lazy("index01")
     except:
       logger.error('無効な値を参照しています')
 
     myURL2 = ""
     try:
-      myURL2 = reverse_lazy("step2")
+      myURL2 = reverse_lazy("index02")
     except:
       logger.error('無効な値を参照しています')
 
@@ -70,8 +70,8 @@ class IndexView(TemplateView):
     context["nav_link1"] = myURL1
     context["nav_text2"] = 'step1/5'
     context["nav_link2"] = '#'
-    context["nav_text3"] = myURL2
-    context["nav_link3"] = reverse_lazy('index02')
+    context["nav_text3"] = "step1"
+    context["nav_link3"] = myURL2
     context[
       "mark_text"] = 'welcome to NFA tool! this tool help you to optimize diet and crop for selected beneficiaries'
 
@@ -261,6 +261,29 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
     context['province_selected'] = ''
     context['community_selected'] = ''
     context['myuser'] = self.request.user
+
+    myURL1 = ""
+    try:
+      myURL1 = reverse_lazy("Location_list")
+    except:
+      logger.error('無効な値を参照しています')
+
+    myURL2 = ""
+    try:
+      myURL2 = ""
+    except:
+      logger.error('無効な値を参照しています')
+
+    context['myuser'] = self.request.user
+    context["nav_text1"] = 'step1'
+    context["nav_link1"] = myURL1
+    context["nav_text2"] = 'step1/5'
+    context["nav_link2"] = '#'
+    context["nav_text3"] = ""
+    context["nav_link3"] = myURL2
+    context[
+      "mark_text"] = 'Please indicate target area for your activity'
+
     return context
 
 
@@ -521,7 +544,15 @@ def registCropAvail(request):
   key.myDiet = 0
   key.save()
 
-  myURL = reverse_lazy('index02')
+  myURL = reverse_lazy('index02')  # crop_selectに戻れない場合はindex02
+  try:
+    myURL = reverse_lazy("crop_select",
+                         kwargs={'myCountryName': Location.objects.filter(
+                           id=request.user.profile.myLocation).first().country,
+                                 'myLocation': int(request.user.profile.myLocation)})
+  except:
+    logger.error('無効な値を参照しています')
+
   return JsonResponse({
     'success': True,
     'url': myURL,

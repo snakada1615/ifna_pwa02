@@ -12,30 +12,18 @@
     <form method="post" id="myform">
       {% csrf_token %}
       <div class="row">
-        <div class="col-12">
+        <div class="col-10">
           <h2 class="text-center">Information for Target Area</h2>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
+        <div class="col-2">
           <div class="float-right">
-            <a class="btn btn-secondary" href="{% url 'Location_list' %}">return</a>
-            <button class="btn btn-secondary" type="submit">save</button>
+            <button class="btn btn-secondary badge badge-warning" type="submit">save</button>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
           {{ form|crispy }}
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-12">
-          <div class="float-right">
-            <a class="btn btn-secondary my-2" href="{% url 'Location_list' %}">return</a>
-            <button class="btn btn-secondary my-2" type="submit">save</button>
-          </div>
         </div>
       </div>
     </form>
