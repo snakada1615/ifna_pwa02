@@ -55,7 +55,7 @@ class IndexView(TemplateView):
     context = super().get_context_data(**kwargs)
     myURL1 = ""
     try:
-      myURL1 = reverse_lazy("index01")
+      myURL1 = ""
     except:
       logger.error('無効な値を参照しています')
 

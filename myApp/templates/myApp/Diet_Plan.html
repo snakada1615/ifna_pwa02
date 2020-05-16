@@ -564,7 +564,7 @@
     Crop_Selected.prototype.setData_fromListbox = function (num_tbl, mydata, drawFlag) {
       console.group('Crop_Selected.receive_SelectedRow:');
       if (drawFlag) {       //rowの追加
-                            //データセットの作成1:buy_prod_share設定
+        //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {
@@ -1506,25 +1506,45 @@
     //---tabの切替処理-------------
 
     //---carouselの切替処理-------------
+    let c_index = 0;
+    let myMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+      'August', 'September', 'Octoer', 'November', 'December'];
     $('#btn_car_prev1').click(function () {
-      $('#carouselControl1').carousel('prev')
+      $('#carouselControl1').carousel('prev');
+      c_index = $('#carouselControl1 div.active').index() || 4;
+      $('#title_diet1').text("Diet for Season " + c_index);
     });
     $('#btn_car_next1').click(function () {
-      $('#carouselControl1').carousel('next')
+      $('#carouselControl1').carousel('next');
+      c_index = ($('#carouselControl1 div.active').index() + 2) % 4 || 4;
+      $('#title_diet1').text("Diet for Season " + c_index);
     });
     $('#btn_car_prev2').click(function () {
-      $('#carouselControl2').carousel('prev')
+      $('#carouselControl2').carousel('prev');
+      c_index = $('#carouselControl2 div.active').index() || 12;
+      $('#title_diet2').text('Diet for ' + myMonth[c_index - 1]);
     });
     $('#btn_car_next2').click(function () {
-      $('#carouselControl2').carousel('next')
+      $('#carouselControl2').carousel('next');
+      c_index = ($('#carouselControl2 div.active').index() + 2) % 12 || 12;
+      $('#title_diet2').text('Diet for ' + myMonth[c_index - 1]);
     });
     $('#btn_car_prev3').click(function () {
       $('#carouselControl3').carousel('prev')
+      c_index = $('#carouselControl3 div.active').index() || 12;
+      $('#title_diet3').text('Diet for ' + myMonth[c_index - 1]);
     });
     $('#btn_car_next3').click(function () {
       $('#carouselControl3').carousel('next')
+      c_index = ($('#carouselControl3 div.active').index() + 2) % 12 || 12;
+      $('#title_diet3').text('Diet for ' + myMonth[c_index - 1]);
     });
     //---carouselの切替処理-------------
+    //---carouselの初期値-------------
+    $('#title_diet1').text('Diet for Season 1');
+    $('#title_diet2').text('Diet for ' + myMonth[0]);
+    $('#title_diet3').text('Diet for ' + myMonth[0]);
+    //---carouselの初期値-------------
 
 
   </script>
