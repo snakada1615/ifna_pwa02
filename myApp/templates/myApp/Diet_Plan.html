@@ -538,16 +538,8 @@
         this.dom_btn_add = '';
         this.dom_lst_month = '';
         this.dom_tbl_Crop = '';
-        this.dom_PFC_carbo = '';
-        this.dom_PFC_prot = '';
-        this.dom_PFC_fat = '';
-        this.dom_diversity_check1 = '';
-        this.dom_diversity_check2 = '';
-        this.dom_diversity_check3 = '';
-        this.dom_diversity_check4 = '';
-        this.dom_diversity_check5 = '';
-        this.dom_diversity_check6 = '';
-        this.dom_diversity_check7 = '';
+        this.dom_PFC = {};
+        this.dom_diversity_check = {};
 
         console.log('オブジェクトCrop_Selected' + num_tbl + 'を作成しました');
       } else {
@@ -755,6 +747,7 @@
       cr += '<td class="tableItem_hide">' + add_data.VITA_RAE + '</td>';
       cr += '<td class="tableItem_hide">' + add_data.FE + '</td>';
       cr += '<td class="tableItem_hide">' + add_data.share_prod_buy + '</td>';
+      cr += '<td class="tableItem_hide">' + add_data.Food_grp + '</td>';
       cr += '</tr>';
 
       console.groupEnd();
@@ -782,12 +775,12 @@
 
       // PFCの挿入
       try {
-        this.dom_PFC_carbo.text(this.PFC_carbo);
-        this.dom_PFC_prot.text(this.PFC_prot);
-        this.dom_PFC_fat.text(this.PFC_fat);
+        this.dom_PFC[1].text(this.PFC_carbo);
+        this.dom_PFC[2].text(this.PFC_prot);
+        this.dom_PFC[3].text(this.PFC_fat);
       } catch (e) {
         console.log(e);
-        console.log('dom_PFC_carboが見つかりません');
+        console.log('dom_PFCが見つかりません');
       }
 
       console.log('合計を再計算しました');
@@ -858,9 +851,28 @@
       let sum_pfc_fat_tmp = 0;
       let weight = 0;
       let _this = this;
+      let myGrp = [
+        'Grains, roots and tubers ',
+        'Legumes and nuts ',
+        'Dairy products ',
+        'Flesh foods ',
+        'Eggs ',
+        'Vitamin A rich fruits and Vegetable ',
+        'Other fruits and vegetables '
+      ];
+      try {
+        this.dom_diversity_check[1].prop('checked', false);
+        this.dom_diversity_check[2].prop('checked', false);
+        this.dom_diversity_check[3].prop('checked', false);
+        this.dom_diversity_check[4].prop('checked', false);
+        this.dom_diversity_check[5].prop('checked', false);
+        this.dom_diversity_check[6].prop('checked', false);
+        this.dom_diversity_check[7].prop('checked', false);
+      } catch (error) {
+        console.error(error);
+      }
       this.dom_tbl_Crop.find('tr').each(function (jndex, myRow) {
-        if ($(myRow).children('td').eq(0).text() !== 'total' && $(myRow)) {
-          console.log($(myRow).children('td').eq(0).text());
+        if ($(myRow).children('td').eq(0).text() !== 'total' && $(myRow).children('td').eq(0).text()) {
           sum_en_tmp += Number($(myRow).children('td').eq(1).text());
           sum_pr_tmp += Number($(myRow).children('td').eq(2).text());
           sum_va_tmp += Number($(myRow).children('td').eq(3).text());
@@ -871,6 +883,18 @@
           sum_pfc_carbo_tmp += PFC.carbo * weight / 100;
           sum_pfc_prot_tmp += PFC.prot * weight / 100;
           sum_pfc_fat_tmp += PFC.fat * weight / 100;
+          let food_grp_tmp = $(myRow).children('td').eq(16).text();
+          console.log(food_grp_tmp);
+          console.log(myGrp.indexOf(food_grp_tmp));
+
+          try {
+            _this.dom_diversity_check[Number(myGrp.indexOf(food_grp_tmp) + 1)].prop('checked', true);
+          } catch (error) {
+            console.error(error);
+          }
+
+          //  this.dom_diversity_check[String(myGrp.indexOf(food_grp_tmp) + 1)].prop('checed', true);
+          console.log('Food_grp = ' + $(myRow).children('td').eq(16).text() + ':' + myGrp.indexOf($(myRow).children('td').eq(16).text()));
         }
       });
       this.sum_en = sum_en_tmp;
@@ -878,21 +902,58 @@
       this.sum_va = sum_va_tmp;
       this.sum_fe = sum_fe_tmp;
       let sum = sum_pfc_carbo_tmp + sum_pfc_prot_tmp + sum_pfc_fat_tmp;
-      console.log('sum=' + sum);
-      console.log('sum_pfc_carbo_tmp=' + sum_pfc_carbo_tmp);
-      console.log('sum_pfc_prot_tmp=' + sum_pfc_prot_tmp);
-      console.log('sum_pfc_fat_tmp=' + sum_pfc_fat_tmp);
       this.PFC_carbo = Math.round(sum_pfc_carbo_tmp * 100 / sum) || 0;
       this.PFC_prot = Math.round(sum_pfc_prot_tmp * 100 / sum) || 0;
       this.PFC_fat = Math.round(sum_pfc_fat_tmp * 100 / sum) || 0;
 
       console.groupEnd();
     };
-    Crop_Selected.prototype._setDiversity = function () {
+    Crop_Selected.prototype._setDiversity = function (index, setCheck) {
       console.group('Crop_Selected:_setDiversity');
+      if (index < 8 && index > 0) {
+        let myDom = "";
+        switch (index) {
+          case 1:
+            myDom = this.dom_diversity_check1;
+            break;
+          case 1:
+            myDom = this.dom_diversity_check2;
+            break;
+          case 1:
+            myDom = this.dom_diversity_check3;
+            break;
+          case 1:
+            myDom = this.dom_diversity_check4;
+            break;
+          case 1:
+            myDom = this.dom_diversity_check5;
+            break;
+          case 1:
+            myDom = this.dom_diversity_check6;
+            break;
+          case 1:
+            myDom = this.dom_diversity_check7;
+            break;
+        }
+        if (setCheck) {
+          myDom.prop('checked', true);
+
+        } else {
+
+        }
+      } else {
+        console.error('Index out of range')
+      }
+      this.dom_diversity_check1.removeAttr('checked');
+      this.dom_diversity_check2.removeAttr('checked');
+      this.dom_diversity_check3.removeAttr('checked');
+      this.dom_diversity_check4.removeAttr('checked');
+      this.dom_diversity_check5.removeAttr('checked');
+      this.dom_diversity_check6.removeAttr('checked');
+      this.dom_diversity_check7.removeAttr('checked');
 
       console.groupEnd();
-    }
+    };
     Crop_Selected.prototype._getPFC = function (food_item_id) {
       console.group('Crop_Selected:_getPFC');
       const crop = json_crop_local.filter(function (element) {
@@ -905,7 +966,7 @@
 
       try {
         console.log(crop[0].Food_name + 'のPFCバランスをチェックします');
-        console.log(crop[0]);
+        // console.log(crop[0]);
         carbo = crop[0].Carbohydrate || 0;
         prot = crop[0].Protein || 0;
         fat = crop[0].Fat || 0;
@@ -1509,63 +1570,21 @@
     });
 
     //  PFCを配列に組み込む -----------
-    $('.PFC_carbo').each(function () {
+    $('.PFC').each(function () {
+      console.log('PFCを配列に組み込む');
       let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].dom_PFC_carbo = $(this);
-    });
-
-    //  PFCを配列に組み込む -----------
-    $('.PFC_prot').each(function () {
-      let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].dom_PFC_prot = $(this);
-    });
-
-    //  PFCを配列に組み込む -----------
-    $('.PFC_fat').each(function () {
-      let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].dom_PFC_fat = $(this);
+      let id_category = $(this).attr('index_Food_grp');
+      console.log('PFCを配列に組み込む' + num_tbl);
+      myCrop[num_tbl].dom_PFC[id_category] = $(this);
     });
 
     //  Diversityを配列に組み込む -----------
-    $('.diversity_check1').each(function () {
+    $('.diversity_check').each(function () {
+      console.log('PFCを配列に組み込む');
       let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].dom_diversity_check1 = $(this);
-    });
-
-    //  Diversityを配列に組み込む -----------
-    $('.diversity_check2').each(function () {
-      let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].dom_diversity_check2 = $(this);
-    });
-
-    //  Diversityを配列に組み込む -----------
-    $('.diversity_check3').each(function () {
-      let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].dom_diversity_check3 = $(this);
-    });
-
-    //  Diversityを配列に組み込む -----------
-    $('.diversity_check4').each(function () {
-      let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].dom_diversity_check4 = $(this);
-    });
-
-    //  Diversityを配列に組み込む -----------
-    $('.diversity_check5').each(function () {
-      let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].dom_diversity_check5 = $(this);
-    });
-
-    //  Diversityを配列に組み込む -----------
-    $('.diversity_check6').each(function () {
-      let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].dom_diversity_check6 = $(this);
-    });
-
-    //  Diversityを配列に組み込む -----------
-    $('.diversity_check7').each(function () {
-      let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].dom_diversity_check7 = $(this);
+      let id_category = $(this).attr('index_Food_grp');
+      console.log('Diversityを配列に組み込む' + num_tbl);
+      myCrop[num_tbl].dom_diversity_check[id_category] = $(this);
     });
 
     //  テーブルごとのmonthを配列に組み込む -----------

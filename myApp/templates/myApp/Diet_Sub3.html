@@ -188,6 +188,111 @@
                   </div>
 
                 </div>
+
+                <!-- ここから Dietary Diversityの評価 ----------------------------->
+
+                <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
+               border-width: 2px;
+          ">
+                  <div class="card-header bg-info text-white p-1 mb-2">
+                    <span>Dietary diversity</span>
+                    <span class="fb fb-help" data-toggle="tooltip" data-html="true"
+                          title="combination of <b>over three type of food group</b> is recommended"></span>
+                  </div>
+                  <div class="card-body py-0 my-0 px-1">
+                    <div class="row">
+                      <div class="col">
+                        <fieldset disabled>
+                          <div class="form-check">
+                            <input class="form-check-input diversity_check1" type="checkbox" value=""
+                                   myNum={{ forloop.counter|add:300 }}>
+                            <label class="form-check-label" for="diversity_check1">
+                              Grains, roots and tubers
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input diversity_check2" type="checkbox" value=""
+                                   myNum={{ forloop.counter|add:300 }} >
+                            <label class="form-check-label" for="diversity_check2">
+                              Legumes and nuts
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input diversity_check3" type="checkbox" value=""
+                                   myNum={{ forloop.counter|add:300 }} >
+                            <label class="form-check-label" for="diversity_check3">
+                              Dairy products
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input diversity_check4" type="checkbox" value=""
+                                   myNum={{ forloop.counter|add:300 }}>
+                            <label class="form-check-label" for="diversity_check4">
+                              Flesh foods
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input diversity_check5" type="checkbox" value=""
+                                   myNum={{ forloop.counter|add:300 }}>
+                            <label class="form-check-label" for="diversity_check5">
+                              Eggs
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input diversity_check6" type="checkbox" value=""
+                                   myNum={{ forloop.counter|add:300 }}>
+                            <label class="form-check-label" for="diversity_check6">
+                              Vitamin A rich fruits and Vegetable
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input diversity_check7" type="checkbox" value=""
+                                   myNum={{ forloop.counter|add:300 }}>
+                            <label class="form-check-label" for="diversity_check7">
+                              Other fruits and vegetables
+                            </label>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ここから PFCバランスの評価 ----------------------------->
+
+                <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
+               border-width: 2px;">
+                  <div class="card-header bg-info text-white p-1 mb-2">
+                    PFC balance
+                    <span class="fb fb-help" data-toggle="tooltip" data-html="true"
+                          title="<div>recommended PFC balance </div><div>Carbohydrates: 45-65%</div>
+                                  <div>Protein: 10-35%</div><div>Fat: 20-35%</div>"></span>
+                  </div>
+                  <div class="card-body py-0 my-0 px-1">
+                    <div class="row">
+                      <div class="col-4">
+                        Carbohydrate:
+                      </div>
+                      <div class="col-4 PFC" index_Food_grp="1"  myNum={{ forloop.counter|add:300 }}>
+                      </div>
+                    </div>
+                    <div class="row py-0 my-0">
+                      <div class="col-4">
+                        Protain:
+                      </div>
+                      <div class="col-4 PFC" index_Food_grp="2"  myNum={{ forloop.counter|add:300 }}>
+                      </div>
+                    </div>
+                    <div class="row py-0 my-0">
+                      <div class="col-4">
+                        Fat:
+                      </div>
+                      <div class="col-4 PFC" index_Food_grp="3" myNum={{ forloop.counter|add:300 }}>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
