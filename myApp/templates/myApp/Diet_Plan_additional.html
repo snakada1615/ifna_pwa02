@@ -601,7 +601,7 @@
         dd["Food_name"] = mydata['Food_name'];
         //-----
 
-        this.setData_Crop(dd);                           //データの追加
+        this.setData_Crop(dd);                      //データの追加
         this._drawRaw_single(dd["food_item_id"]);   //データの描画
         this._drawRaw_total();                      //合計行の描画
         console.log(mydata['Food_name'] + 'を追加しました');
@@ -1258,7 +1258,7 @@
       console.groupEnd();
     });
 
-    //// set balance prodoce/purchase ---------------------------
+    //// set balance produce/purchase ---------------------------
     myfood_share['save'].on('click', function () {
       console.group('#change_share1.click');
       let myNum_tmp = myfood_volume['modal'].attr('myNum');//テーブル番号の取得

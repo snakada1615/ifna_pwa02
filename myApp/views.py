@@ -1150,6 +1150,8 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
         dd["myLocation"] = ''
         dd["num_tbl"] = i
         dd["share_prod_buy"] = 5
+        dd["Fat"] = ''
+        dd["Carbohydrate"] = ''
         d.append(dd)
       else:
         for tmp03 in tmp02:
@@ -1169,6 +1171,8 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
           dd["myLocation"] = tmp03.myLocation_id
           dd["num_tbl"] = tmp03.id_table
           dd["share_prod_buy"] = tmp03.share_prod_buy
+          dd["Fat"] = tmp03.myFCT.Fat
+          dd["Carbohydrate"] = tmp03.myFCT.Carbohydrate
           d.append(dd)
     context["mylist_selected"] = d
 

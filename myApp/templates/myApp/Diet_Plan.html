@@ -503,6 +503,7 @@
     $('.lbl_target_pr[myNum^=3]').text(target_pr[3].toFixed(0));
     $('.lbl_target_va[myNum^=3]').text(target_va[3].toFixed(0));
     $('.lbl_target_fe[myNum^=3]').text(target_fe[3].toFixed(0));
+    console.log('target_fe[2]=' + target_fe[2].toFixed(0));
 
 
     //    create object setup "Crop_Selected"   -------------------------------
@@ -569,7 +570,7 @@
     Crop_Selected.prototype.setData_fromListbox = function (num_tbl, mydata, drawFlag) {
       console.group('Crop_Selected.receive_SelectedRow:');
       if (drawFlag) {       //rowの追加
-        //データセットの作成1:buy_prod_share設定
+                            //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {
@@ -598,6 +599,8 @@
         dd["target_scope"] = Math.trunc(Number(num_tbl) / 100);
         dd["Food_grp"] = mydata['Food_grp'];
         dd["Food_name"] = mydata['Food_name'];
+        dd["Carbohydrate"] = mydata['Carbohydrate'];
+        dd["Fat"] = mydata['Fat'];
         //-----
 
         this.setData_Crop(dd);                           //データの追加
@@ -871,30 +874,24 @@
       } catch (error) {
         console.error(error);
       }
-      this.dom_tbl_Crop.find('tr').each(function (jndex, myRow) {
-        if ($(myRow).children('td').eq(0).text() !== 'total' && $(myRow).children('td').eq(0).text()) {
-          sum_en_tmp += Number($(myRow).children('td').eq(1).text());
-          sum_pr_tmp += Number($(myRow).children('td').eq(2).text());
-          sum_va_tmp += Number($(myRow).children('td').eq(3).text());
-          sum_fe_tmp += Number($(myRow).children('td').eq(4).text());
-          weight = Number($(myRow).children('td').eq(5).text());
-          const PFC = _this._getPFC(Number($(myRow).children('td').eq(7).text()));
-          console.log(PFC);
-          sum_pfc_carbo_tmp += PFC.carbo * weight / 100;
-          sum_pfc_prot_tmp += PFC.prot * weight / 100;
-          sum_pfc_fat_tmp += PFC.fat * weight / 100;
-          let food_grp_tmp = $(myRow).children('td').eq(16).text();
-          console.log(food_grp_tmp);
-          console.log(myGrp.indexOf(food_grp_tmp));
 
-          try {
-            _this.dom_diversity_check[Number(myGrp.indexOf(food_grp_tmp) + 1)].prop('checked', true);
-          } catch (error) {
-            console.error(error);
-          }
-
-          //  this.dom_diversity_check[String(myGrp.indexOf(food_grp_tmp) + 1)].prop('checed', true);
-          console.log('Food_grp = ' + $(myRow).children('td').eq(16).text() + ':' + myGrp.indexOf($(myRow).children('td').eq(16).text()));
+      this.crops.forEach(function (elem) {
+        weight = elem.total_weight;
+        sum_en_tmp += elem.Energy * weight / 100;
+        sum_pr_tmp += elem.Protein * weight / 100;
+        sum_va_tmp += elem.VITA_RAE * weight / 100;
+        sum_fe_tmp += elem.FE * weight / 100;
+        sum_pfc_carbo_tmp += elem.Carbohydrate * weight / 100;
+        sum_pfc_prot_tmp += elem.Protein * weight / 100;
+        sum_pfc_fat_tmp += elem.Fat * weight / 100;
+        let food_grp_tmp = elem.Food_grp;
+        console.log(elem);
+        console.log(food_grp_tmp);
+        console.log(myGrp.indexOf(food_grp_tmp));
+        try {
+          _this.dom_diversity_check[Number(myGrp.indexOf(food_grp_tmp) + 1)].prop('checked', true);
+        } catch (error) {
+          console.error(error);
         }
       });
       this.sum_en = sum_en_tmp;
@@ -902,6 +899,9 @@
       this.sum_va = sum_va_tmp;
       this.sum_fe = sum_fe_tmp;
       let sum = sum_pfc_carbo_tmp + sum_pfc_prot_tmp + sum_pfc_fat_tmp;
+      console.log('sum_pfc_carbo_tmp=' + sum_pfc_carbo_tmp);
+      console.log('sum_pfc_prot_tmp=' + sum_pfc_prot_tmp);
+      console.log('sum_pfc_fat_tmp=' + sum_pfc_fat_tmp);
       this.PFC_carbo = Math.round(sum_pfc_carbo_tmp * 100 / sum) || 0;
       this.PFC_prot = Math.round(sum_pfc_prot_tmp * 100 / sum) || 0;
       this.PFC_fat = Math.round(sum_pfc_fat_tmp * 100 / sum) || 0;
