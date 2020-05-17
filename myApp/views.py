@@ -905,6 +905,8 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
       dd["m11"] = tmp02.m11_avail
       dd["m12"] = tmp02.m12_avail
       dd["myLocation"] = tmp02.myLocation_id
+      dd["Fat"] = tmp02.myFCT.Fat
+      dd["Carbohydrate"] = tmp02.myFCT.Carbohydrate
       d.append(dd)
     context["mylist_available"] = d
 
@@ -1094,6 +1096,8 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
       dd["m11"] = tmp02.m11_avail
       dd["m12"] = tmp02.m12_avail
       dd["myLocation"] = tmp02.myLocation_id
+      dd["Fat"] = tmp02.myFCT.Fat
+      dd["Carbohydrate"] = tmp02.myFCT.Carbohydrate
       d.append(dd)
     context["mylist_available"] = d
 
