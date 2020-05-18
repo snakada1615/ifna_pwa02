@@ -21,29 +21,78 @@
         </div>
         <div class="col-2 my-0 px-1">
 				<span>
-          <button id="btn_save" type="submit" class="btn btn-warning text-dark mt-2 my-0 py-0 btn-sm" >save</button>
+          <button id="btn_save" type="submit" class="btn btn-warning text-dark mt-2 my-0 py-0 btn-sm">save</button>
 				</span>
         </div>
       </div>
-      <div class="card border-success col-12 my-2" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
-        <div class="row">
-          <div class="col-12">
-            <div class="card-body py-0 px-0">
-              <div class="row">
-                <div class="col-12">
-                  {% ifequal isUpdate 0 %}
-                    <a id="btn_add" class="btn btn-sm btn-info my-2" href="#">add new crop</a>
-                  {% endifequal %}
-                  {{ form|crispy }}
-                </div>
-              </div>
-            </div>
+      <div class="card border-success bg-light col-12 my-2 py-1">
+        <div class="card border-success col-12 my-1 px-0"
+             style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+          <div class="card-header bg-info text-white mx-0 px-1 my-0 py-0">
+            Crop Name
+          </div>
+          <div class="card-body mx-1 px-1 my-0 py-0">
+            {% ifequal isUpdate 0 %}
+              <a id="btn_add" class="btn btn-sm btn-success my-2 btn-block" href="#">add new crop</a>
+            {% endifequal %}
+            {{ form.crop_name|as_crispy_field }}
+            {{ form.crop_name_id|as_crispy_field }}
+          </div>
+        </div>
+        <div class="card border-success col-12  my-1 px-0" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+          <div class="card-header bg-info text-white mx-0 px-1 my-0 py-0">
+            Nutrient balance
+          </div>
+          <div class="card-body mx-1 px-1 my-0 py-0">
+            {{ form.feas_DRI_e|as_crispy_field }}
+            {{ form.feas_DRI_p|as_crispy_field }}
+            {{ form.feas_DRI_a|as_crispy_field }}
+            {{ form.feas_DRI_f|as_crispy_field }}
+          </div>
+        </div>
+        <div class="card border-success col-12 my-1 px-0" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+          <div class="card-header bg-info text-white mx-0 px-1 my-0 py-0">
+            Socioeconomic aspect
+          </div>
+          <div class="card-body mx-1 px-1 my-0 py-0">
+            {{ form.feas_soc_acceptable|as_crispy_field }}
+            {{ form.feas_soc_acceptable_wo|as_crispy_field }}
+            {{ form.feas_soc_acceptable_c5|as_crispy_field }}
+            {{ form.feas_affordability|as_crispy_field }}
+          </div>
+        </div>
+        <div class="card border-success col-12 my-1 px-0" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+          <div class="card-header bg-info text-white mx-0 px-1 my-0 py-0">
+            Production skill
+          </div>
+          <div class="card-body mx-1 px-1 my-0 py-0">
+            {{ form.feas_prod_skill|as_crispy_field }}
+            {{ form.feas_workload|as_crispy_field }}
+            {{ form.feas_tech_service|as_crispy_field }}
+          </div>
+        </div>
+        <div class="card border-success col-12 my-1 px-0" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+          <div class="card-header bg-info text-white mx-0 px-1 my-0 py-0">
+            Required investment
+          </div>
+          <div class="card-body mx-1 px-1 my-0 py-0">
+            {{ form.feas_invest_fixed|as_crispy_field }}
+            {{ form.feas_invest_variable|as_crispy_field }}
+          </div>
+        </div>
+        <div class="card border-success col-12 my-1 px-0" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+          <div class="card-header bg-info text-white mx-0 px-1 my-0 py-0">
+            Year round availability
+          </div>
+          <div class="card-body mx-1 px-1 my-0 py-0">
+            {{ form.feas_availability_prod|as_crispy_field }}
+            {{ form.feas_availability_non|as_crispy_field }}
+            {{ form.feas_storability|as_crispy_field }}
           </div>
         </div>
       </div>
     </form>
   </div>
-
 
   <!-- モーダルの設定 ----------------------------->
   <div class="modal fade" id="dlg_crop" tabindex="-1" role="dialog" aria-labelledby="dlg_crop_Label">
