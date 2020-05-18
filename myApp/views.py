@@ -1267,7 +1267,8 @@ def registDiet(request):
   key.myDiet = 1
   key.save()
 
-  myURL = reverse_lazy('index02')
+  myURL = reverse_lazy('diet1',
+                  kwargs={'myLocation': request.user.profile.myLocation})
   return JsonResponse({
     'success': True,
     'url': myURL,
