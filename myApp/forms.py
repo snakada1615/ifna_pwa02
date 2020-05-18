@@ -160,6 +160,7 @@ class Crop_Feas_Form(forms.ModelForm):
 
     logger.info('form_validation called4352')
     logger.info(self.cleaned_data['crop_score'])
+    logger.info(self.cleaned_data['myFCT'])
     for ele in self.cleaned_data:
       logger.info(ele)
 
