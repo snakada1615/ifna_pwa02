@@ -158,8 +158,13 @@ class Crop_Feas_Form(forms.ModelForm):
       self.cleaned_data['feas_availability_prod']) + int(self.cleaned_data['feas_availability_non']) + int(
       self.cleaned_data['feas_affordability']) + int(self.cleaned_data['feas_storability'])
 
+    logger.info('form_validation called')
+    logger.info(self.cleaned_data['myFCT'])
+    logger.info(self.cleaned_data['crop_score'])
+
     # add to Crop_subnational if score is over 35
     if self.cleaned_data['crop_score'] >= 35:
+      logger.info('high score')
       Crop_SubNational.objects.update_or_create(
         myLocation=Location.objects.get(id=self.user.profile.myLocation),
         myFCT=self.cleaned_data['myFCT'],
@@ -169,6 +174,7 @@ class Crop_Feas_Form(forms.ModelForm):
         }
       )
     else:
+      logger.info('low score')
       Crop_SubNational.objects.filter(
         myLocation=Location.objects.get(id=self.user.profile.myLocation)).filter(
         myFCT=self.cleaned_data['myFCT']
