@@ -18,11 +18,11 @@
     <div class="container" style="max-width: 540px;">
       <div class="row">
         <div class="col-2 my-0 px-3">
-          <img src="{% static 'img/no4.png' %}" alt="number 4">
+          <img src="{% static 'img/no6.png' %}" alt="number 4">
         </div>
         <div class="col-8 my-0 px-1">
           <h5>
-            Diet planning for
+            Revision of Diet plan for
             {{ myLocation.name }}
           </h5>
         </div>
@@ -304,21 +304,27 @@
     <div id="container_tab_all" class="container border-secondary py-1 my-1 px-0"
          style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
       <!-- 4個分のタブ -->
-      <nav class="nav nav-pills" role="tablist" id="myTabs">
-        <a class="flex-sm-fill text-sm-center nav-link active" href="#tab_individual" role="tab">individual</a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_family" role="tab">family</a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_community" role="tab">community</a>
-      </nav>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a href="#tab1_link" class="nav-link active" id="tab1" data-toggle="tab">individual</a>
+        </li>
+        <li class="nav-item">
+          <a href="#tab2_link" class="nav-link" id="tab2" data-toggle="tab">family</a>
+        </li>
+        <li class="nav-item">
+          <a href="#tab3_link" class="nav-link" id="tab3" data-toggle="tab">community</a>
+        </li>
+      </ul>
 
       <!-- タブの移動先指定 -->
-      <div class="tab-content mt-2" id="tabContent">
-        <div class="tab-pane active" id="tab_individual" role="tabpanel">
+      <div class="tab-content">
+        <div id="tab1_link" class="tab-pane active">
           {% include "./Diet_Sub1.html" %}
         </div>
-        <div class="tab-pane" id="tab_family" role="tabpanel">
+        <div id="tab2_link" class="tab-pane">
           {% include "./Diet_Sub2.html" %}
         </div>
-        <div class="tab-pane" id="tab_community" role="tabpanel">
+        <div id="tab3_link" class="tab-pane">
           {% include "./Diet_Sub3.html" %}
         </div>
       </div>
@@ -503,7 +509,6 @@
     $('.lbl_target_pr[myNum^=3]').text(target_pr[3].toFixed(0));
     $('.lbl_target_va[myNum^=3]').text(target_va[3].toFixed(0));
     $('.lbl_target_fe[myNum^=3]').text(target_fe[3].toFixed(0));
-    console.log('target_fe[2]=' + target_fe[2].toFixed(0));
 
 
     //    create object setup "Crop_Selected"   -------------------------------
@@ -517,9 +522,6 @@
         this.sum_va = 0;
         this.sum_fe = 0;
         this.month = 0;
-        this.PFC_carbo = 0;
-        this.PFC_prot = 0;
-        this.PFC_fat = 0;
 
         let target_scope = Math.trunc(num_tbl / 100);
         this.target_en = target_en[target_scope];
@@ -539,8 +541,6 @@
         this.dom_btn_add = '';
         this.dom_lst_month = '';
         this.dom_tbl_Crop = '';
-        this.dom_PFC = {};
-        this.dom_diversity_check = {};
 
         console.log('オブジェクトCrop_Selected' + num_tbl + 'を作成しました');
       } else {
@@ -599,11 +599,9 @@
         dd["target_scope"] = Math.trunc(Number(num_tbl) / 100);
         dd["Food_grp"] = mydata['Food_grp'];
         dd["Food_name"] = mydata['Food_name'];
-        dd["Carbohydrate"] = mydata['Carbohydrate'];
-        dd["Fat"] = mydata['Fat'];
         //-----
 
-        this.setData_Crop(dd);                           //データの追加
+        this.setData_Crop(dd);                      //データの追加
         this._drawRaw_single(dd["food_item_id"]);   //データの描画
         this._drawRaw_total();                      //合計行の描画
         console.log(mydata['Food_name'] + 'を追加しました');
@@ -750,7 +748,6 @@
       cr += '<td class="tableItem_hide">' + add_data.VITA_RAE + '</td>';
       cr += '<td class="tableItem_hide">' + add_data.FE + '</td>';
       cr += '<td class="tableItem_hide">' + add_data.share_prod_buy + '</td>';
-      cr += '<td class="tableItem_hide">' + add_data.Food_grp + '</td>';
       cr += '</tr>';
 
       console.groupEnd();
@@ -775,17 +772,6 @@
       this.dom_tbl_Crop.append(total);
       // Barratingセット
       this._SetBarrating();
-
-      // PFCの挿入
-      try {
-        this.dom_PFC[1].text(this.PFC_carbo);
-        this.dom_PFC[2].text(this.PFC_prot);
-        this.dom_PFC[3].text(this.PFC_fat);
-      } catch (e) {
-        console.log(e);
-        console.log('dom_PFCが見つかりません');
-      }
-
       console.log('合計を再計算しました');
       console.groupEnd();
     };
@@ -844,140 +830,26 @@
       return res;
     };
     Crop_Selected.prototype._Sum_Nutrition = function () {
-      console.group('Crop_Selected:_Sum_Nutrition');
+      console.group('Crop_Selected:Sum_Nutrition');
       let sum_en_tmp = 0;
       let sum_pr_tmp = 0;
       let sum_va_tmp = 0;
       let sum_fe_tmp = 0;
-      let sum_pfc_carbo_tmp = 0;
-      let sum_pfc_prot_tmp = 0;
-      let sum_pfc_fat_tmp = 0;
-      let weight = 0;
-      let _this = this;
-      let myGrp = [
-        'Grains, roots and tubers ',
-        'Legumes and nuts ',
-        'Dairy products ',
-        'Flesh foods ',
-        'Eggs ',
-        'Vitamin A rich fruits and Vegetable ',
-        'Other fruits and vegetables '
-      ];
-      try {
-        this.dom_diversity_check[1].prop('checked', false);
-        this.dom_diversity_check[2].prop('checked', false);
-        this.dom_diversity_check[3].prop('checked', false);
-        this.dom_diversity_check[4].prop('checked', false);
-        this.dom_diversity_check[5].prop('checked', false);
-        this.dom_diversity_check[6].prop('checked', false);
-        this.dom_diversity_check[7].prop('checked', false);
-      } catch (error) {
-        console.error(error);
-      }
-
-      this.crops.forEach(function (elem) {
-        weight = elem.total_weight;
-        sum_en_tmp += elem.Energy * weight / 100;
-        sum_pr_tmp += elem.Protein * weight / 100;
-        sum_va_tmp += elem.VITA_RAE * weight / 100;
-        sum_fe_tmp += elem.FE * weight / 100;
-        sum_pfc_carbo_tmp += elem.Carbohydrate * weight / 100;
-        sum_pfc_prot_tmp += elem.Protein * weight / 100;
-        sum_pfc_fat_tmp += elem.Fat * weight / 100;
-        let food_grp_tmp = elem.Food_grp;
-        console.log(elem);
-        console.log(food_grp_tmp);
-        console.log(myGrp.indexOf(food_grp_tmp));
-        try {
-          _this.dom_diversity_check[Number(myGrp.indexOf(food_grp_tmp) + 1)].prop('checked', true);
-        } catch (error) {
-          console.error(error);
+      this.dom_tbl_Crop.find('tr').each(function (j, myRow) {
+        if ($(myRow).children('td').eq(0).text() !== 'total') {
+          sum_en_tmp += Number($(myRow).children('td').eq(1).text());
+          sum_pr_tmp += Number($(myRow).children('td').eq(2).text());
+          sum_va_tmp += Number($(myRow).children('td').eq(3).text());
+          sum_fe_tmp += Number($(myRow).children('td').eq(4).text());
         }
       });
       this.sum_en = sum_en_tmp;
       this.sum_pr = sum_pr_tmp;
       this.sum_va = sum_va_tmp;
       this.sum_fe = sum_fe_tmp;
-      let sum = sum_pfc_carbo_tmp + sum_pfc_prot_tmp + sum_pfc_fat_tmp;
-      console.log('sum_pfc_carbo_tmp=' + sum_pfc_carbo_tmp);
-      console.log('sum_pfc_prot_tmp=' + sum_pfc_prot_tmp);
-      console.log('sum_pfc_fat_tmp=' + sum_pfc_fat_tmp);
-      this.PFC_carbo = Math.round(sum_pfc_carbo_tmp * 100 / sum) || 0;
-      this.PFC_prot = Math.round(sum_pfc_prot_tmp * 100 / sum) || 0;
-      this.PFC_fat = Math.round(sum_pfc_fat_tmp * 100 / sum) || 0;
 
       console.groupEnd();
     };
-    Crop_Selected.prototype._setDiversity = function (index, setCheck) {
-      console.group('Crop_Selected:_setDiversity');
-      if (index < 8 && index > 0) {
-        let myDom = "";
-        switch (index) {
-          case 1:
-            myDom = this.dom_diversity_check1;
-            break;
-          case 1:
-            myDom = this.dom_diversity_check2;
-            break;
-          case 1:
-            myDom = this.dom_diversity_check3;
-            break;
-          case 1:
-            myDom = this.dom_diversity_check4;
-            break;
-          case 1:
-            myDom = this.dom_diversity_check5;
-            break;
-          case 1:
-            myDom = this.dom_diversity_check6;
-            break;
-          case 1:
-            myDom = this.dom_diversity_check7;
-            break;
-        }
-        if (setCheck) {
-          myDom.prop('checked', true);
-
-        } else {
-
-        }
-      } else {
-        console.error('Index out of range')
-      }
-      this.dom_diversity_check1.removeAttr('checked');
-      this.dom_diversity_check2.removeAttr('checked');
-      this.dom_diversity_check3.removeAttr('checked');
-      this.dom_diversity_check4.removeAttr('checked');
-      this.dom_diversity_check5.removeAttr('checked');
-      this.dom_diversity_check6.removeAttr('checked');
-      this.dom_diversity_check7.removeAttr('checked');
-
-      console.groupEnd();
-    };
-    Crop_Selected.prototype._getPFC = function (food_item_id) {
-      console.group('Crop_Selected:_getPFC');
-      const crop = json_crop_local.filter(function (element) {
-        return element.food_item_id === Number(food_item_id);
-      });
-
-      let carbo = 0;
-      let prot = 0;
-      let fat = 0;
-
-      try {
-        console.log(crop[0].Food_name + 'のPFCバランスをチェックします');
-        // console.log(crop[0]);
-        carbo = crop[0].Carbohydrate || 0;
-        prot = crop[0].Protein || 0;
-        fat = crop[0].Fat || 0;
-      } catch (e) {
-        console.error(e);
-        console.error('該当作物が見つかりません');
-      }
-      console.groupEnd();
-      return {carbo: carbo, prot: prot, fat: fat}
-    };
-
 
     Crop_Selected.prototype.sayhello = function () {
     };
@@ -1569,24 +1441,6 @@
       myCrop[num_tbl].dom_lst_month = $(this);
     });
 
-    //  PFCを配列に組み込む -----------
-    $('.PFC').each(function () {
-      console.log('PFCを配列に組み込む');
-      let num_tbl = $(this).attr('myNum');
-      let id_category = $(this).attr('index_Food_grp');
-      console.log('PFCを配列に組み込む' + num_tbl);
-      myCrop[num_tbl].dom_PFC[id_category] = $(this);
-    });
-
-    //  Diversityを配列に組み込む -----------
-    $('.diversity_check').each(function () {
-      console.log('PFCを配列に組み込む');
-      let num_tbl = $(this).attr('myNum');
-      let id_category = $(this).attr('index_Food_grp');
-      console.log('Diversityを配列に組み込む' + num_tbl);
-      myCrop[num_tbl].dom_diversity_check[id_category] = $(this);
-    });
-
     //  テーブルごとのmonthを配列に組み込む -----------
     for (let i in myRange) {
       let num_tbl = myRange[i];
@@ -1640,63 +1494,6 @@
     //    myCrop[201]._getCrop_byID(819);
     // console.log(myCrop_individual[201].dom_tbl_row.eq(0).html());
     Crop_available.data().hello("test desu");
-
-    //---tabの切替処理-------------
-    let activeTab = $('#myTabs a').filter('.active');
-
-    $('#myTabs a').click(function (e) {
-      e.preventDefault();
-
-      activeTab.removeClass('active');
-      $(activeTab.attr('href')).removeClass('active');
-
-      activeTab = $(this);
-
-      activeTab.addClass("active");
-      $(activeTab.attr('href')).addClass('active');
-    });
-    //---tabの切替処理-------------
-
-    //---carouselの切替処理-------------
-    let c_index = 0;
-    let myMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
-      'August', 'September', 'Octoer', 'November', 'December'];
-    $('#btn_car_prev1').click(function () {
-      $('#carouselControl1').carousel('prev');
-      c_index = $('#carouselControl1 div.active').index() || 4;
-      $('#title_diet1').text("Diet for Season " + c_index);
-    });
-    $('#btn_car_next1').click(function () {
-      $('#carouselControl1').carousel('next');
-      c_index = ($('#carouselControl1 div.active').index() + 2) % 4 || 4;
-      $('#title_diet1').text("Diet for Season " + c_index);
-    });
-    $('#btn_car_prev2').click(function () {
-      $('#carouselControl2').carousel('prev');
-      c_index = $('#carouselControl2 div.active').index() || 12;
-      $('#title_diet2').text('Diet for ' + myMonth[c_index - 1]);
-    });
-    $('#btn_car_next2').click(function () {
-      $('#carouselControl2').carousel('next');
-      c_index = ($('#carouselControl2 div.active').index() + 2) % 12 || 12;
-      $('#title_diet2').text('Diet for ' + myMonth[c_index - 1]);
-    });
-    $('#btn_car_prev3').click(function () {
-      $('#carouselControl3').carousel('prev')
-      c_index = $('#carouselControl3 div.active').index() || 12;
-      $('#title_diet3').text('Diet for ' + myMonth[c_index - 1]);
-    });
-    $('#btn_car_next3').click(function () {
-      $('#carouselControl3').carousel('next')
-      c_index = ($('#carouselControl3 div.active').index() + 2) % 12 || 12;
-      $('#title_diet3').text('Diet for ' + myMonth[c_index - 1]);
-    });
-    //---carouselの切替処理-------------
-    //---carouselの初期値-------------
-    $('#title_diet1').text('Diet for Season 1');
-    $('#title_diet2').text('Diet for ' + myMonth[0]);
-    $('#title_diet3').text('Diet for ' + myMonth[0]);
-    //---carouselの初期値-------------
 
 
   </script>
