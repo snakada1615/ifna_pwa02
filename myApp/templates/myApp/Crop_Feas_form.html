@@ -21,7 +21,7 @@
         </div>
         <div class="col-2 my-0 px-1">
 				<span>
-          <button id="btn_save" type="submit" class="btn btn-warning text-dark mt-2 my-0 py-0 btn-sm" >save</button>
+          <button id="btn_save" type="submit" class="btn btn-warning text-dark mt-2 my-0 py-0 btn-sm">save</button>
 				</span>
         </div>
       </div>
@@ -34,7 +34,24 @@
                   {% ifequal isUpdate 0 %}
                     <a id="btn_add" class="btn btn-sm btn-info my-2" href="#">add new crop</a>
                   {% endifequal %}
-                  {{ form|crispy }}
+                  {{ form.crop_name|as_crispy_field }}
+                  {{ form.crop_name_id|as_crispy_field }}
+                  {{ form.feas_DRI_e|as_crispy_field }}
+                  {{ form.feas_DRI_p|as_crispy_field }}
+                  {{ form.feas_DRI_a|as_crispy_field }}
+                  {{ form.feas_DRI_f|as_crispy_field }}
+                  {{ form.feas_soc_acceptable|as_crispy_field }}
+                  {{ form.feas_soc_acceptable_wo|as_crispy_field }}
+                  {{ form.feas_soc_acceptable_c5|as_crispy_field }}
+                  {{ form.feas_prod_skill|as_crispy_field }}
+                  {{ form.feas_workload|as_crispy_field }}
+                  {{ form.feas_tech_service|as_crispy_field }}
+                  {{ form.feas_invest_fixed|as_crispy_field }}
+                  {{ form.feas_invest_variable|as_crispy_field }}
+                  {{ form.feas_availability_prod|as_crispy_field }}
+                  {{ form.feas_availability_non|as_crispy_field }}
+                  {{ form.feas_affordability|as_crispy_field }}
+                  {{ form.feas_storability|as_crispy_field }}
                 </div>
               </div>
             </div>

@@ -158,9 +158,10 @@ class Crop_Feas_Form(forms.ModelForm):
       self.cleaned_data['feas_availability_prod']) + int(self.cleaned_data['feas_availability_non']) + int(
       self.cleaned_data['feas_affordability']) + int(self.cleaned_data['feas_storability'])
 
-    logger.info('form_validation called')
-    logger.info(self.cleaned_data['myFCT'])
+    logger.info('form_validation called4352')
     logger.info(self.cleaned_data['crop_score'])
+    for ele in self.cleaned_data:
+      logger.info(ele)
 
     # add to Crop_subnational if score is over 35
     if self.cleaned_data['crop_score'] >= 35:

@@ -27,7 +27,7 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum0" type="number" disabled class="form-control-sm input-manual num_family" style="width:90%"
+                <input id="inpNum0" type="number" disabled class="form-control-sm input-manual num_family3" style="width:90%"
                        placeholder="pop size" value="30">
               </div>
             </td>
@@ -41,7 +41,7 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum1" type="number" disabled class="form-control-sm input-manual num_family" style="width:90%"
+                <input id="inpNum1" type="number" disabled class="form-control-sm input-manual num_family3" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
@@ -55,7 +55,7 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum2" type="number" disabled class="form-control-sm input-manual num_family" style="width:90%"
+                <input id="inpNum2" type="number" disabled class="form-control-sm input-manual num_family3" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
@@ -69,13 +69,13 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum3" type="number" disabled class="form-control-sm input-manual num_family" style="width:90%"
+                <input id="inpNum3" type="number" disabled class="form-control-sm input-manual num_family3" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum4" type="number" disabled class="form-control-sm input-manual num_family" style="width:90%"
+                <input id="inpNum4" type="number" disabled class="form-control-sm input-manual num_family3" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
@@ -86,13 +86,13 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum5" type="number" disabled class="form-control-sm input-manual num_family" style="width:90%"
+                <input id="inpNum5" type="number" disabled class="form-control-sm input-manual num_family3" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum6" type="number" disabled class="form-control-sm input-manual num_family" style="width:90%"
+                <input id="inpNum6" type="number" disabled class="form-control-sm input-manual num_family3" style="width:90%"
                        placeholder="portion size" value="30">
               </div>
             </td>
@@ -170,9 +170,9 @@
   });
 
   //////////////////合計
-  $('.num_family').on("input", function () {
+  $('.num_family3').on("input", function () {
     let sum = 0;
-    $('.num_family').each(function () {
+    $('.num_family3').each(function () {
       sum += Number($(this).val());
     });
     console.log('changed:' + sum);

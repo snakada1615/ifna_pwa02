@@ -1819,7 +1819,7 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
 
   def form_valid(self, form):
     #    self.object = form.save()
-    logger.info('form_valid called')
+    logger.info('form_valid called123')
     form.instance.created_by = self.request.user
     form.instance.myLocation = Location.objects.get(id=self.request.user.profile.myLocation)
     return super(Crop_Feas_CreateView, self).form_valid(form)
