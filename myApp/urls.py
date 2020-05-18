@@ -61,4 +61,5 @@ urlpatterns = [
   path('Crop_Name_List/<str:myCountryName>/', Crop_Name_ListView.as_view(), name='crop_name_list'),
   path('Crop_Name_Create/<str:myCountryName>/', Crop_Name_CreateView.as_view(), name='crop_name_create'),
   path('Crop_Name_Update/<str:myCountryName>/<int:pk>/', Crop_Name_UpdateView.as_view(), name='crop_name_update'),
+  path('changeLoc/<int:myUser>/<int:myLocation>/', views.change_location, name='change_location'),
 ]

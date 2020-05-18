@@ -2,60 +2,168 @@
 {% load static %}
 
 {% block content %}
-	<div class="container" style="max-width: 540px;">
-		<div class="row">
-			<div class="col-2 my-0 px-3">
-				<img src="{% static 'img/no1.png' %}">
-			</div>
-			<div class="col-8 my-0 px-1">
-				<h5>
-					target area profile
-				</h5>
-			</div>
-			<div class="col-2 my-0 px-1">
+  <div class="container" style="max-width: 540px;">
+    <div class="row">
+      <div class="col-2 my-0 px-3">
+        <img src="{% static 'img/no1.png' %}">
+      </div>
+      <div class="col-8 my-0 px-1">
+        <h5>
+          target area profile
+        </h5>
+      </div>
+      <div class="col-2 my-0 px-1">
 				<span>
-					<a class="btn btn-info badge text-wrap" href="{% url  'Location_create' %}">+</a>
+					<a class="btn btn-info badge text-wrap" href="{% url  'Location_create' %}">add new</a>
+          <a id="btn_show" class="btn btn-info badge text-white" {% if mylist == None %}disabled{% endif %}>select</a>
 				</span>
-			</div>
-		</div>
-	</div>
+      </div>
+    </div>
+  </div>
 
-	<div class="container" style="max-width: 540px;">
-		{% for Location in mylist %}
-			{% ifequal Location.id myLocation %}
-				<div class="card border-success col-12 my-2 py-0" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC; border-width: 2px;">
-			{% else %}
-				<div class="card border-primary col-12 mt-2 py-0" style="max-width: 540px;">
-			{% endifequal %}
-					<div class="row">
-						<div class="col-12">
-							<div class="card-body py-1 px-0">
-								<p class="card-text my-0">
-									{{ Location.myCountry.NAME_0 }}
-								</p>
-								<p class="card-text my-0">
-									{{ Location.myCountry.NAME_1 }}
-								</p>
-								<p class="card-text my-0">
-									{{ Location.myCountry.NAME_2 }}
-								</p>
-								<p class="card-text my-0">
-									{{ Location.myCountry.NAME_3 }}
-								</p>
-								<p class="card-title my-0">
-									{{ Location.name }}
-								</p>
-								<span>
-									<a class="btn my-0 btn-info btn-sm align-middle badge" href="{% url 'Location_update' pk=Location.pk %}">edit / select</a>
-								</span>
-								<span>
-									<a class="btn my-0 btn-info btn-sm align-middle badge " href="{% url 'Location_delete' pk=Location.pk %}">delete</a>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
+  <div class="container" style="max-width: 540px;">
+    <div class="modal-body text-dark">
+      {% for Location in mylist %}
+        {% ifequal Location.id myLocation %}
+          <div class="card border-success col-12 my-2 py-0"
+               style="max-width: 540px; color:#24535F ;background-color:#D9ECDC; border-width: 2px;">
+            <div class="row">
+              <div class="col-12">
+                <div class="card-body py-1 px-0">
+                  <p class="card-text my-0">
+                    {{ Location.myCountry.NAME_0 }}
+                  </p>
+                  <p class="card-text my-0">
+                    {{ Location.myCountry.NAME_1 }}
+                  </p>
+                  <p class="card-text my-0">
+                    {{ Location.myCountry.NAME_2 }}
+                  </p>
+                  <p class="card-text my-0">
+                    {{ Location.myCountry.NAME_3 }}
+                  </p>
+                  <p class="card-title my-0">
+                    {{ Location.name }}
+                  </p>
+                  <span>
+                <a class="btn my-0 btn-info btn-sm align-middle badge"
+                   href="{% url 'Location_update' pk=Location.pk %}">edit / select</a>
+              </span>
+                  <span>
+                <a class="btn my-0 btn-info btn-sm align-middle badge "
+                   href="{% url 'Location_delete' pk=Location.pk %}">delete</a>
+              </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endifequal %}
+      {% endfor %}
+    </div>
+  </div>
 
-	{% endblock %}
+
+  <!-- モーダルの設定 ----------------------------->
+  <div class="container" style="max-width: 540px;">
+
+    <div class="modal fade" id="myModal01" tabindex="-1" role="dialog" aria-labelledby="myModal01Label">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark" id="myModal01Label">Select target area</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-dark">
+            {% for Location in mylist %}
+
+              <div class="card border-success col-12 my-2 py-0" myNum="{{ forloop.counter }}"
+                      {% ifequal Location.id myLocation %}
+                   style="max-width: 540px; color:#24535F ;background-color:#D9ECDC; border-width: 2px;" {% else %}
+                   style="max-width: 540px;"{% endifequal %} myLocation= {{ Location.id }}>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card-body py-1 px-0">
+                      <div class="form-check">
+                        <p class="card-title my-0">
+                          <input class="form-check-input myradio" type="radio" name="myRadios"
+                                 myNum="{{ forloop.counter }}"
+                                 value="{{ forloop.counter }}"
+                                 {% ifequal Location.id myLocation %}checked{% endifequal %}>
+                          <label class="form-check-label text-danger" for="myRadios">
+                            Location {{ forloop.counter }}
+                          </label>
+                      </div>
+                      </p>
+                      <p class="card-text my-0">
+                        {{ Location.myCountry.NAME_0 }}
+                      </p>
+                      <p class="card-text my-0">
+                        {{ Location.myCountry.NAME_1 }}
+                      </p>
+                      <p class="card-text my-0">
+                        {{ Location.myCountry.NAME_2 }}
+                      </p>
+                      <p class="card-text my-0">
+                        {{ Location.myCountry.NAME_3 }}
+                      </p>
+                      <p class="card-title my-0">
+                        {{ Location.name }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+
+            <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">close</a>
+            <a id="btn_save" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">update</a>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+  </div>
+
+  <!------------------------------------------------------------->
+  <script type="text/javascript">
+    //////////////open dialog////
+    $("#btn_show").click(function () {
+      $('#myModal01').modal('show');
+    }); ///////////////////
+        //////////////////close dialog
+    $('#btn_exit01').click(function () {
+      $('#myModal01').modal('hide');
+    }); ///////////////////
+    // ////////////////save
+    $('#btn_save').click(function () {
+      let num = $('.myradio:checked').val();
+      let myUser = {{ myuser_id }};
+      let myLocation = $('.card[myNum=' + num + ']').attr('myLocation');
+      let url_tmp = window.location.href.split('/');
+      url_tmp.pop();
+      url_tmp.pop();
+      url_tmp.pop();
+      myRoot = url_tmp.join("/") + '/';
+      let myURL = myRoot + 'changeLoc/' + myUser + '/' + myLocation + '/';
+      window.location.href = myURL;
+
+    }); ///////////////////
+
+    $('.myradio').change(function () {
+      console.log('changed');
+      let num = $('.myradio:checked').val();
+      $('.card').css({"color": "", "background-color": "", "border-width": ""});
+      $('.card[myNum=' + num + ']').css({"color": "#24535F", "background-color": "#D9ECDC", "border-width": "2px"});
+
+//    alert($('.myradio:checked').val());
+    }); ///////////////////
+
+
+  </script>
+
+
+{% endblock %}

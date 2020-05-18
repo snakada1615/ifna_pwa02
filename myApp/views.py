@@ -159,6 +159,7 @@ class Location_ListView(LoginRequiredMixin, ListView):
 
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
+    context['myuser_id'] = self.request.user.id
     context['myLocation'] = self.request.user.profile.myLocation
     context['nav_link1'] = myURL1
     context['nav_text1'] = "menu"
@@ -2125,3 +2126,27 @@ class Crop_Name_UpdateView(LoginRequiredMixin, UpdateView):  # todo distinct cou
     kwargs['FCT_list'] = myFCT_list
     kwargs['Food_grp_list'] = Food_grp_list
     return kwargs
+
+
+def change_location(request, myUser, myLocation):
+  # myLocation = request.POST.get('myLocation')
+  # count = request.POST['count']
+  #myLocation = 0
+  #if "row_id" in request.GET:
+  #myLocation = int(request.GET["myLocation"])
+
+  # myProfileの設定----------------------------------
+  myUser = User.objects.get(id = myUser)
+  key = myUser.profile
+  key.myLocation = myLocation
+  key.myTarget = 0
+  key.myCrop = 0
+  key.myDiet = 0
+  key.save()
+  logger.info("Profileを更新しました")
+
+  myURL = reverse_lazy('Location_list')
+  return redirect(myURL)
+
+
+
