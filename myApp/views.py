@@ -327,6 +327,16 @@ def Del_Crop_SubNational(sender, instance, **kwargs):
   if Person.objects.filter(myLocation_id=instance.pk):
     Person.objects.filter(myLocation_id=instance.pk).delete()
   logger.info("該当するPersonを削除しました")
+  if Location.objects.all().count()>0:
+    newLocation = Location.objects.all().first().id
+    myUser = instance.created_by
+    key = myUser.profile
+    key.myLocation = newLocation
+    key.myTarget = 0
+    key.myCrop = 0
+    key.myDiet = 0
+    key.save()
+    logger.info("Profileを更新しました")
 
 
 @receiver(post_save, sender=Location)
