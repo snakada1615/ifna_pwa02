@@ -487,6 +487,7 @@
     $(function () {
       $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
       $('#my_Prod_Buy').barrating({theme: 'bars-1to10', showSelectedRating: true, readonly: false}); // set barrating)
+      $('.share_Prod_Buy').barrating({theme: 'bars-1to10', showSelectedRating: true, readonly: true}); // set barrating)
       $('#BR_food_count').barrating({theme: 'fontawesome-apple'});
     });
 
@@ -541,6 +542,7 @@
         this.dom_tbl_Crop = '';
         this.dom_PFC = {};
         this.dom_diversity_check = {};
+        this.dom_share = '';
 
         console.log('オブジェクトCrop_Selected' + num_tbl + 'を作成しました');
       } else {
@@ -852,6 +854,8 @@
       let sum_pfc_carbo_tmp = 0;
       let sum_pfc_prot_tmp = 0;
       let sum_pfc_fat_tmp = 0;
+      let share_prod = 0;
+      let share_buy = 0;
       let weight = 0;
       let _this = this;
       let myGrp = [
@@ -884,6 +888,8 @@
         sum_pfc_carbo_tmp += elem.Carbohydrate * weight / 100;
         sum_pfc_prot_tmp += elem.Protein * weight / 100;
         sum_pfc_fat_tmp += elem.Fat * weight / 100;
+        share_prod += elem.portion_size * elem.count_prod;
+        share_buy += elem.portion_size * elem.count_buy;
         let food_grp_tmp = elem.Food_grp;
         console.log(elem);
         console.log(food_grp_tmp);
@@ -899,12 +905,14 @@
       this.sum_va = sum_va_tmp;
       this.sum_fe = sum_fe_tmp;
       let sum = sum_pfc_carbo_tmp + sum_pfc_prot_tmp + sum_pfc_fat_tmp;
+      let sum_source = share_buy + share_prod;
       console.log('sum_pfc_carbo_tmp=' + sum_pfc_carbo_tmp);
       console.log('sum_pfc_prot_tmp=' + sum_pfc_prot_tmp);
       console.log('sum_pfc_fat_tmp=' + sum_pfc_fat_tmp);
       this.PFC_carbo = Math.round(sum_pfc_carbo_tmp * 100 / sum) || 0;
       this.PFC_prot = Math.round(sum_pfc_prot_tmp * 100 / sum) || 0;
       this.PFC_fat = Math.round(sum_pfc_fat_tmp * 100 / sum) || 0;
+      this.dom_share.barrating('set', Math.round(share_prod * 10 / sum_source) || 1); // set barrating
 
       console.groupEnd();
     };
@@ -1567,6 +1575,12 @@
     $('.lst_month').each(function () {
       let num_tbl = $(this).attr('myNum');
       myCrop[num_tbl].dom_lst_month = $(this);
+    });
+
+    //  shareを配列に組み込む -----------
+    $('.share_Prod_Buy').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].dom_share = $(this);
     });
 
     //  PFCを配列に組み込む -----------
