@@ -14,6 +14,11 @@
           {{ myLocation.name }}
         </h5>
       </div>
+      <div class="col-2 my-0 px-3">
+        <div class="col-3>">
+          <a id="btn_save" class="btn btn-warning text-dark mt-2 my-0 py-0 btn-sm">save</a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -133,6 +138,47 @@
       $('#tab3').attr("data-toggle", "tab");
     }
     //    $('a[data-toggle="tab"]').on('show.bs. tab', function (e) {      let tmpTab = e.target.id      if (tmpTab == "tab1") {        $('#btn_add1').addClass('disabled');      } else {        $('#btn_add1').removeClass('disabled');      }    })
+
+
+    //////////////////btn_save_person
+    $('#btn_save').click(function () {
+      let hostUrl = myRoot + 'registPerson/';
+      let mydat = getTblData_all();
+
+      console.log(mydat);
+      Set_CRSF();
+      sendJson(mydat, hostUrl);
+    }); ////////btn_save_person///////////
+
+    //////////////////getTblData
+    function getTblData_all() { //
+      let d = [];
+      $('table.tbl_pop tr input ').each(function (i, myRow) {
+        if ($(myRow).attr('nut_group_id') < 10) {
+          let dd = {};
+          dd['target_scope'] = $(myRow).attr('target_scope');
+          dd["myLocation"] = {{myLocation.id}};
+          dd['myuser'] = {{ myuser.id }};
+          dd['nut_group_id'] = $(myRow).attr('nut_group_id');
+          dd['target_pop'] = $(myRow).val();
+          d.push(dd);
+        }
+      });
+
+      let dd = {};
+      dd['target_scope'] = "1";
+      dd["myLocation"] = {{myLocation.id}};
+      dd['myuser'] = {{ myuser.id }};
+      dd['nut_group_id'] = $('#inpNum_ind7').text();
+      dd['target_pop'] = "1";
+      d.push(dd);
+
+      return {"myJson": d};
+    }
+
+    //----------------------------------------------------------------------------
+
+
   </script>
 
 {% endblock %}

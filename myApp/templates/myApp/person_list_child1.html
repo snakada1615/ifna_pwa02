@@ -1,50 +1,93 @@
+{% for person in persons %}
+  {% ifequal person.target_scope 1 %}
+    <div class="card border-success col-12 my-2" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+      <div class="row">
+        <div class="col-12">
+          <div class="card-body py-0 px-0">
+            <p class="card-text my-0">
+              <a>Target group:</a>
+              <a id="inpNum_ind1">{{ person.nut_group }}</a>
+            </p>
+            <p class="card-text my-0">
+              number:
+              <a id="inpNum_ind2">{{ person.target_pop }}</a>
+            </p>
+            <p class="card-text my-0">
+              energy Requirement:
+              <a id="inpNum_ind3">{{ person.myDRI.energy }}</a>
+            </p>
+            <p class="card-text my-0">
+              protein DRI:
+              <a id="inpNum_ind4">{{ person.myDRI.protein }}</a>
+            </p>
+            <p class="card-text my-0">
+              vit-A DRI :
+              <a id="inpNum_ind5">{{ person.myDRI.vita }}</a>
+            </p>
+            <p class="card-text my-0">
+              Fe DRI :
+              <a id="inpNum_ind6"></a>
+            </p>
+            <p class="card-text my-0">
+              <input type="hidden" id="inpNum_ind7">{{ person.nut_group }}</input>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endifequal %}
+{% endfor %}
+
 <div class="row">
-	<div class="col-12">
-		<span>
-			<a id="btn_add1" class="btn btn-block btn-info mt-2 btn-sm" href="{% url 'person_create' myLocation=myLocation.id mytarget_scope=1 %}">add new target</a>
-		</span>
-	</div>
+  <div class="col-12">
+    <div class="dropdown">
+      <!-- 切替ボタンの設定 -->
+      <a class="btn btn-info dropdown-toggle btn-block mt-2 pb-0 mb-1" href="#" role="button" id="dropdownMenuLink"
+         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Change individual target
+      </a>
+      <!-- ドロップメニューの設定 -->
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="menu_items">
+        <a class="dropdown-item" href="#">child 0-23 month</a>
+        <a class="dropdown-item" href="#">child 24-59 month</a>
+        <a class="dropdown-item" href="#">child 6-9 yr</a>
+        <a class="dropdown-item" href="#">adolescent boy</a>
+        <a class="dropdown-item" href="#">adolescent girl</a>
+        <a class="dropdown-item" href="#">adult male</a>
+        <a class="dropdown-item" href="#">adult female</a>
+        <a class="dropdown-item" href="#">pregnant</a>
+        <a class="dropdown-item" href="#">lactaning</a>
+      </div><!-- /.dropdown-menu -->
+    </div><!-- /.dropdown -->
+  </div>
 </div>
 
-{% for person in persons %}
-	{% ifequal person.target_scope 1 %}
-	<div class="card border-success col-12 my-2" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
-		<div class="row">
-			<div class="col-12">
-				<div class="card-body py-0 px-0">
-					<p class="card-text my-0">
-						Target group:
-						{{ person.nut_group }}
-					</p>
-					<p class="card-text my-0">
-						number:
-						{{ person.target_pop }}
-					</p>
-					<p class="card-text my-0">
-						energy Requirement:
-						{{ person.myDRI.energy }}
-					</p>
-					<p class="card-text my-0">
-						protein DRI:
-						{{ person.myDRI.protein }}
-					</p>
-					<p class="card-text my-0">
-						vit-A DRI :
-						{{ person.myDRI.vita }}
-					</p>
-					<p class="card-text my-0">
-						Fe DRI :
-						{{ person.myDRI.fe }}
-					</p>
-					<span>
-						<a class="btn mb-2 btn-info btn-sm align-middle " href="{% url 'person_update' myLocation=myLocation.id pk=person.id mytarget_scope=person.target_scope %}">edit</a>
-					</span>
-					<span>
-						<a class="btn mb-2 btn-info btn-sm align-middle " href="{% url 'person_delete' myLocation=myLocation.id pk=person.id mytarget_scope=person.target_scope %}">del</a>
-					</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	{% endifequal %}
-{% endfor %}
+
+<script type="text/javascript">
+  $("#menu_items a ").click(function () {
+    console.log($(this).text());
+    $('#inpNum_ind1').text($(this).text());
+    $('#inpNum_ind7').text($(this).index() + 1);
+  });
+
+  //initialize
+  tmp = [
+    'child 0-23 month',
+    'child 24-59 month',
+    'child 6-9 yr',
+    'adolescent boy',
+    'adolescent girl',
+    'adult male',
+    'adult female',
+    'pregnant',
+    'lactaning',
+  ];
+  try {
+    let index_nut = tmp.indexOf($('#inpNum_ind7').text()) || 0;
+    $("#menu_items a ").prop('selectedIndex', index_nut);
+    $('#inpNum_ind7').text(index_nut + 1);
+  } catch (e) {
+    console.error(e);
+  }
+
+</script>

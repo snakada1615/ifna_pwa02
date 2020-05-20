@@ -618,7 +618,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
     context['myPop'] = dd
     context['myReturnURL'] = reverse_lazy('index01')
 
-    myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation']).filter(target_scope=3);
+    myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation']).filter(target_scope=3)
     dd = {}
     dd['class0'] = myPerson.get(nut_group='child 0-23 month').target_pop
     dd['class1'] = myPerson.get(nut_group='child 24-59 month').target_pop
@@ -801,16 +801,28 @@ def registPerson(request):
     # 最初に参照するキー（複数可）を指定する
     # defaultsで指定した列・値で更新する
     tmp_group = nut_grp_list[int(myrow['nut_group_id']) - 1]
-    Person.objects.update_or_create(
-      myLocation=Location.objects.get(id=myrow['myLocation']),
-      nut_group=tmp_group,
-      target_scope=int(myrow['target_scope']),
-      defaults={
-        'target_pop': int(myrow['target_pop']),
-        'created_by': request.user,
-        'myDRI': DRI.objects.get(nut_group=tmp_group)
-      }
-    )
+    if myrow['target_scope'] == '1': # 個人ターゲットの場合
+      Person.objects.update_or_create(
+        myLocation=Location.objects.get(id=myrow['myLocation']),
+        target_scope=int(myrow['target_scope']),
+        defaults={
+          'target_pop': int(myrow['target_pop']),
+          'nut_group': tmp_group,
+          'created_by': request.user,
+          'myDRI': DRI.objects.get(nut_group=tmp_group)
+        }
+      )
+    else:  # 家族・コミュニティターゲットの場合
+      Person.objects.update_or_create(
+        myLocation=Location.objects.get(id=myrow['myLocation']),
+        nut_group=tmp_group,
+        target_scope=int(myrow['target_scope']),
+        defaults={
+          'target_pop': int(myrow['target_pop']),
+          'created_by': request.user,
+          'myDRI': DRI.objects.get(nut_group=tmp_group)
+        }
+      )
 
   # update myStatus
   key = request.user.profile

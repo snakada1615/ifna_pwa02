@@ -5,9 +5,40 @@
          style="color:#24535F ;background-color:#D9ECDC;border-width: 2px;">
       Population structure of target area
     </div>
+
+    <div class="card border-success mx-1 my-2" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+      <div class="row">
+        <div class="col-12">
+          <div class="card-body py-0">
+            <p class="card-text my-0">
+              <span>number:</span>
+              <span id="size">{{ person.target_pop }}</span>
+            </p>
+            <p class="card-text my-0">
+              <span>energy Requirement:</span>
+              <span id="DRI_en">{{ person.myDRI.energy }}</span>
+            </p>
+            <p class="card-text my-0">
+              <span>protein DRI:</span>
+              <span id="DRI_pr">{{ person.myDRI.protein }}</span>
+            </p>
+            <p class="card-text my-0">
+              <span>vit-A DRI:</span>
+              <span id="DRI_va">{{ person.myDRI.vita }}</span>
+            </p>
+            <p class="card-text my-0">
+              <span>Fe DRI :</span>
+              <span id="DRI_fe">{{ person.myDRI.fe }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <div class="col">
       <form>
-        <table id="tbl_pop3" class="table table-sm table-info table-striped table-bordered">
+        <table id="tbl_pop3" class="table table-sm table-info table-striped table-bordered tbl_pop">
           <thead>
           <tr class="bg-info text-white">
             <th style="width:40%">
@@ -27,8 +58,9 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum0" type="number" disabled class="form-control-sm input-manual num_family3" style="width:90%"
-                       placeholder="pop size" value="30">
+                <input id="inpNum0" type="number" disabled class="form-control-sm input-manual num_family3"
+                       style="width:90%"
+                       placeholder="pop size" value="30" target_scope=3 nut_group_id=1>
               </div>
             </td>
             <td>
@@ -41,8 +73,9 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum1" type="number" disabled class="form-control-sm input-manual num_family3" style="width:90%"
-                       placeholder="portion size" value="30">
+                <input id="inpNum1" type="number" disabled class="form-control-sm input-manual num_family3"
+                       style="width:90%"
+                       placeholder="pop size" value="30" target_scope=3 nut_group_id=2>
               </div>
             </td>
             <td>
@@ -55,8 +88,9 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum2" type="number" disabled class="form-control-sm input-manual num_family3" style="width:90%"
-                       placeholder="portion size" value="30">
+                <input id="inpNum2" type="number" disabled class="form-control-sm input-manual num_family3"
+                       style="width:90%"
+                       placeholder="pop size" value="30" target_scope=3 nut_group_id=3>
               </div>
             </td>
             <td>
@@ -69,14 +103,16 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum3" type="number" disabled class="form-control-sm input-manual num_family3" style="width:90%"
-                       placeholder="portion size" value="30">
+                <input id="inpNum3" type="number" disabled class="form-control-sm input-manual num_family3"
+                       style="width:90%"
+                       placeholder="pop size" value="30" target_scope=3 nut_group_id=4>
               </div>
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum4" type="number" disabled class="form-control-sm input-manual num_family3" style="width:90%"
-                       placeholder="portion size" value="30">
+                <input id="inpNum4" type="number" disabled class="form-control-sm input-manual num_family3"
+                       style="width:90%"
+                       placeholder="pop size" value="30" target_scope=3 nut_group_id=5>
               </div>
             </td>
           </tr>
@@ -86,14 +122,16 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum5" type="number" disabled class="form-control-sm input-manual num_family3" style="width:90%"
-                       placeholder="portion size" value="30">
+                <input id="inpNum5" type="number" disabled class="form-control-sm input-manual num_family3"
+                       style="width:90%"
+                       placeholder="pop size" value="30" target_scope=3 nut_group_id=6>
               </div>
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum6" type="number" disabled class="form-control-sm input-manual num_family3" style="width:90%"
-                       placeholder="portion size" value="30">
+                <input id="inpNum6" type="number" disabled class="form-control-sm input-manual num_family3"
+                       style="width:90%"
+                       placeholder="pop size" value="30" target_scope=3 nut_group_id=7>
               </div>
             </td>
           </tr>
@@ -108,7 +146,7 @@
             <td>
               <div class="text-center">
                 <input id="inpNum7" type="number" disabled class="form-control-sm input-manual" style="width:90%"
-                       placeholder="portion size" value="30">
+                       placeholder="pop size" value="30" target_scope=3 nut_group_id=8>
               </div>
             </td>
           </tr>
@@ -123,7 +161,7 @@
             <td>
               <div class="text-center">
                 <input id="inpNum8" type="number" disabled class="form-control-sm input-manual" style="width:90%"
-                       placeholder="portion size" value="30">
+                       placeholder="pop size" value="30" target_scope=3 nut_group_id=9>
               </div>
             </td>
           </tr>
@@ -134,7 +172,7 @@
             <td>
               <div class="text-center">
                 <input id="inpNum9" type="number" class="form-control-sm input-auto" style="width:90%"
-                       placeholder="portion size" value="30">
+                       placeholder="pop size" value="30" target_scope=3 nut_group_id=10>
               </div>
             </td>
             <td colspan="2">
@@ -149,10 +187,6 @@
       <span>
         <a class="btn mb-2 btn-info btn-sm align-middle "
            href="#">clear</a>
-      </span>
-      <span>
-        <a id="btn_update3" class="btn mb-2 btn-info btn-sm align-middle "
-           href="#">update</a>
       </span>
     </div>
   </div>
@@ -185,12 +219,12 @@
     $("#inpNum0").val(Math.round($(this).val() * myPop.class0 / 100));
     $("#inpNum1").val(Math.round($(this).val() * myPop.class1 / 100));
     $("#inpNum2").val(Math.round($(this).val() * myPop.class2 / 100));
-    $("#inpNum3").val(Math.round($(this).val() * (myPop.class3 + myPop.class4) / 100));
-    $("#inpNum4").val(Math.round($(this).val() * myPop.class3_p / 100));
-    $("#inpNum5").val(Math.round($(this).val() * myPop.class3_l / 100));
-    $("#inpNum6").val(Math.round($(this).val() * ((myPop.class5 + myPop.class6)) / 100));
-    $("#inpNum7").val(Math.round($(this).val() * myPop.class5_p / 100));
-    $("#inpNum8").val(Math.round($(this).val() * myPop.class5_l / 100));
+    $("#inpNum3").val(Math.round($(this).val() * myPop.class4 / 100));
+    $("#inpNum4").val(Math.round($(this).val() * myPop.class3 / 100));
+    $("#inpNum5").val(Math.round($(this).val() * myPop.class6 / 100));
+    $("#inpNum6").val(Math.round($(this).val() * myPop.class5 / 100));
+    $("#inpNum7").val(Math.round($(this).val() * (myPop.class3_p + myPop.class5_p) / 100));
+    $("#inpNum8").val(Math.round($(this).val() * (myPop.class3_l + myPop.class3_l) / 100));
   });
 
   //////////////////btn_save_crop
@@ -308,7 +342,7 @@
   $("#inpNum7").val(myCommunity.class7);
   $("#inpNum8").val(myCommunity.class8);
   tmp = myCommunity.class0 + myCommunity.class1 + myCommunity.class2 + myCommunity.class3 + myCommunity.class4
-          + myCommunity.class5 + myCommunity.class6 + myCommunity.class7 + myCommunity.class8;
+          + myCommunity.class5 + myCommunity.class6;
   $("#inpNum9").val(tmp);
 
 </script>
