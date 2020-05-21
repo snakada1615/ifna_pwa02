@@ -4,32 +4,56 @@
       <div class="row">
         <div class="col-12">
           <div class="card-body py-0 px-0">
-            <p class="card-text my-0">
-              <a>Target group:</a>
-              <a id="inpNum_ind1">{{ person.nut_group }}</a>
-            </p>
-            <p class="card-text my-0">
-              number:
-              <a id="inpNum_ind2">{{ person.target_pop }}</a>
-            </p>
-            <p class="card-text my-0">
-              energy Requirement:
-              <a id="inpNum_ind3">{{ person.myDRI.energy }}</a>
-            </p>
-            <p class="card-text my-0">
-              protein DRI:
-              <a id="inpNum_ind4">{{ person.myDRI.protein }}</a>
-            </p>
-            <p class="card-text my-0">
-              vit-A DRI :
-              <a id="inpNum_ind5">{{ person.myDRI.vita }}</a>
-            </p>
-            <p class="card-text my-0">
-              Fe DRI :
-              <a id="inpNum_ind6"></a>
-            </p>
-            <p class="card-text my-0">
-              <input type="hidden" id="inpNum_ind7"></input>
+            <p class="card-text py-0 my-0">
+            <div class="row">
+              <div class="col-4">
+                <a>Target</a>
+              </div>
+              <div class="col-8">
+                <a id="inpNum_ind1">{{ person.nut_group }}</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                number
+              </div>
+              <div class="col-8">
+                <a id="inpNum_ind2">{{ person.target_pop }}</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                energy
+              </div>
+              <div class="col-8">
+                <a id="inpNum_ind3">{{ person.myDRI.energy }}</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                protein
+              </div>
+              <div class="col-8">
+                <a id="inpNum_ind4">{{ person.myDRI.protein }}</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                vit-A
+              </div>
+              <div class="col-8">
+                <a id="inpNum_ind5">{{ person.myDRI.vita }}</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                Fe
+              </div>
+              <div class="col-8">
+                <a id="inpNum_ind6"></a>
+              </div>
+            </div>
+            <input type="hidden" id="inpNum_ind7"></input>
             </p>
           </div>
         </div>

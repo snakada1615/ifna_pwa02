@@ -295,10 +295,10 @@
           tmp_sum_va += Number(myDRI_va['class6']) * tmp_number_fem;
           tmp_sum_fe += Number(myDRI_fe['class6']) * tmp_number_fem;
 
-          $('#DRI2_en').text(tmp_sum_en.toFixed(0));
-          $('#DRI2_pr').text(tmp_sum_pr.toFixed(0));
-          $('#DRI2_va').text(tmp_sum_va.toFixed(0));
-          $('#DRI2_fe').text(tmp_sum_fe.toFixed(0));
+          $('#DRI2_en').text(tmp_sum_en.toLocaleString());
+          $('#DRI2_pr').text(tmp_sum_pr.toLocaleString());
+          $('#DRI2_va').text(tmp_sum_va.toLocaleString());
+          $('#DRI2_fe').text(tmp_sum_fe.toLocaleString());
           $('#size2').text(sum);
         });
       } else if (index_DRI === 3) {
@@ -336,10 +336,10 @@
           tmp_sum_va += Number(myDRI_va['class6']) * tmp_number_fem;
           tmp_sum_fe += Number(myDRI_fe['class6']) * tmp_number_fem;
 
-          $('#DRI3_en').text(tmp_sum_en.toFixed(0));
-          $('#DRI3_pr').text(tmp_sum_pr.toFixed(0));
-          $('#DRI3_va').text(tmp_sum_va.toFixed(0));
-          $('#DRI3_fe').text(tmp_sum_fe.toFixed(0));
+          $('#DRI3_en').text(tmp_sum_en.toLocaleString());
+          $('#DRI3_pr').text(tmp_sum_pr.toLocaleString());
+          $('#DRI3_va').text(tmp_sum_va.toLocaleString());
+          $('#DRI3_fe').text(tmp_sum_fe.toLocaleString());
           $('#size3').text(sum);
         });
       }

@@ -11,24 +11,46 @@
         <div class="col-12">
           <div class="card-body py-0">
             <p class="card-text my-0">
-              <span>number:</span>
-              <span id="size2">{{ person.target_pop }}</span>
-            </p>
-            <p class="card-text my-0">
-              <span>energy Requirement:</span>
-              <span id="DRI2_en">{{ person.myDRI.energy }}</span>
-            </p>
-            <p class="card-text my-0">
-              <span>protein DRI:</span>
-              <span id="DRI2_pr">{{ person.myDRI.protein }}</span>
-            </p>
-            <p class="card-text my-0">
-              <span>vit-A DRI:</span>
-              <span id="DRI2_va">{{ person.myDRI.vita }}</span>
-            </p>
-            <p class="card-text my-0">
-              <span>Fe DRI :</span>
-              <span id="DRI2_fe">{{ person.myDRI.fe }}</span>
+            <div class="row">
+              <div class="col-4">
+                number
+              </div>
+              <div class="col-8">
+                <a id="size2">{{ person.target_pop }}</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                energy
+              </div>
+              <div class="col-8">
+                <a id="DRI2_en">{{ person.myDRI.energy }}</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                protein
+              </div>
+              <div class="col-8">
+                <a id="DRI2_pr">{{ person.myDRI.protein }}</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                vit-A
+              </div>
+              <div class="col-8">
+                <a id="DRI2_va">{{ person.myDRI.vita }}</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                Fe
+              </div>
+              <div class="col-8">
+                <a id="DRI2_fe"></a>
+              </div>
+            </div>
             </p>
           </div>
         </div>
