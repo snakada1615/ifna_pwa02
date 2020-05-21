@@ -12,23 +12,23 @@
           <div class="card-body py-0">
             <p class="card-text my-0">
               <span>number:</span>
-              <span id="size">{{ person.target_pop }}</span>
+              <span id="size3">{{ person.target_pop }}</span>
             </p>
             <p class="card-text my-0">
               <span>energy Requirement:</span>
-              <span id="DRI_en">{{ person.myDRI.energy }}</span>
+              <span id="DRI3_en">{{ person.myDRI.energy }}</span>
             </p>
             <p class="card-text my-0">
               <span>protein DRI:</span>
-              <span id="DRI_pr">{{ person.myDRI.protein }}</span>
+              <span id="DRI3_pr">{{ person.myDRI.protein }}</span>
             </p>
             <p class="card-text my-0">
               <span>vit-A DRI:</span>
-              <span id="DRI_va">{{ person.myDRI.vita }}</span>
+              <span id="DRI3_va">{{ person.myDRI.vita }}</span>
             </p>
             <p class="card-text my-0">
               <span>Fe DRI :</span>
-              <span id="DRI_fe">{{ person.myDRI.fe }}</span>
+              <span id="DRI3_fe">{{ person.myDRI.fe }}</span>
             </p>
           </div>
         </div>
@@ -191,158 +191,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  $('#chk-autoCalk').change(function () {
-    if ($('#chk-autoCalk').prop('checked')) {
-      $('.input-manual').prop('disabled', true);
-      $('.input-auto').prop('disabled', false);
-    } else {
-      $('.input-manual').prop('disabled', false);
-      $('.input-auto').prop('disabled', true);
-    }
-  });
-
-  //////////////////合計
-  $('.num_family3').on("input", function () {
-    let sum = 0;
-    $('.num_family3').each(function () {
-      sum += Number($(this).val());
-    });
-    console.log('changed:' + sum);
-    $('#inpNum9').val(sum);
-  });
-
-
-  $("#inpNum9").on("input", function () {
-    // Print entered value in a div box
-    $("#inpNum0").val(Math.round($(this).val() * myPop.class0 / 100));
-    $("#inpNum1").val(Math.round($(this).val() * myPop.class1 / 100));
-    $("#inpNum2").val(Math.round($(this).val() * myPop.class2 / 100));
-    $("#inpNum3").val(Math.round($(this).val() * myPop.class4 / 100));
-    $("#inpNum4").val(Math.round($(this).val() * myPop.class3 / 100));
-    $("#inpNum5").val(Math.round($(this).val() * myPop.class6 / 100));
-    $("#inpNum6").val(Math.round($(this).val() * myPop.class5 / 100));
-    $("#inpNum7").val(Math.round($(this).val() * (myPop.class3_p + myPop.class5_p) / 100));
-    $("#inpNum8").val(Math.round($(this).val() * (myPop.class3_l + myPop.class3_l) / 100));
-  });
-
-  //////////////////btn_save_crop
-  $('#btn_update3').click(function () {
-    let hostUrl = myRoot + 'registPerson/';
-    let mydat = getTblData();
-
-    console.log(mydat);
-    Set_CRSF();
-    sendJson(mydat, hostUrl);
-  }); ////////btn_save_crop///////////
-
-  //////////////////getTblData
-  function getTblData() { //
-    let d = [];
-    $('#tbl_pop2 tr').each(function (i, myRow) {
-      if (i > 0 && i < 8) {
-        let dd = {};
-        dd['target_scope'] = 3;
-        dd["myLocation"] = {{myLocation.id}};
-        dd['myuser'] = {{ myuser.id }};
-        if (i === 4) {
-          for (var j = 1; j < 3; j++) {
-            dd['nut_group_id'] = i - 1 + j;
-            dd['target_pop'] = $(myRow).children('td').eq(j).find('.input-manual').val();
-            d.push(dd);
-          }
-        } else if (i === 5) {
-          for (j = 1; j < 3; j++) {
-            dd['nut_group_id'] = i + j;
-            dd['target_pop'] = $(myRow).children('td').eq(j).find('.input-manual').val();
-            d.push(dd);
-          }
-        } else if (i === 6 || i === 7) {
-          dd['nut_group_id'] = i + 2;
-          dd['target_pop'] = $(myRow).children('td').eq(2).find('.input-manual').val();
-          d.push(dd);
-        } else {
-          dd['nut_group_id'] = i;
-          dd['target_pop'] = $(myRow).children('td').eq(1).find('.input-manual').val();
-          d.push(dd);
-        }
-      }
-    });
-    return {"myJson": d};
-  }
-
-  //////////////////getTblData //// csrf_tokenの取得に使う//////////////
-  function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      var cookies = document.cookie.split(';');
-      for (var i = 0; i < cookies.length; i++) {
-        var cookie = jQuery.trim(cookies[i]);
-        // Does this cookie string begin with the name we want?
-        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  }
-
-  //------------------------------------
-  function csrfSafeMethod(method) {
-    // these HTTP methods do not require CSRF protection
-    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-  }
-
-  //------------------------------------
-  function Set_CRSF() {
-    var csrf_token = getCookie("csrftoken");
-    $.ajaxSetup({
-      crossDomain: false, // obviates need for sameOrigin test
-      beforeSend: function (xhr, settings) {
-        if (!csrfSafeMethod(settings.type)) {
-          xhr.setRequestHeader("X-CSRFToken", csrf_token);
-        }
-      }
-    });
-  }
-
-  //////////////////sendJson////
-  function sendJson(myjson, hostUrl) {
-    $.ajax({
-      type: 'post',
-      url: hostUrl,
-      data: JSON.stringify(myjson),
-      contentType: 'application/JSON',
-      dataType: 'JSON',
-      scriptCharset: 'utf-8',
-      success: function (response) {
-        window.location.href = response.url;
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        alert("fail");
-        console.log(jqXHR.responseText);
-        console.log(jqXHR.status); //例：404
-        console.log(textStatus); //例：error
-        console.log(errorThrown); //例：NOT FOUND
-        console.log(JSON.stringify(myjson)); //例：NOT FOUND
-        console.log(myjson); //例：NOT FOUND
-      }
-    });
-  }//////////////////sendJson//// scfript end///////////////////
-  // Print initial value in a div box
-  $("#inpNum0").val(myCommunity.class0);
-  $("#inpNum1").val(myCommunity.class1);
-  $("#inpNum2").val(myCommunity.class2);
-  $("#inpNum3").val(myCommunity.class3);
-  $("#inpNum4").val(myCommunity.class4);
-  $("#inpNum5").val(myCommunity.class5);
-  $("#inpNum6").val(myCommunity.class6);
-  $("#inpNum7").val(myCommunity.class7);
-  $("#inpNum8").val(myCommunity.class8);
-  tmp = myCommunity.class0 + myCommunity.class1 + myCommunity.class2 + myCommunity.class3 + myCommunity.class4
-          + myCommunity.class5 + myCommunity.class6;
-  $("#inpNum9").val(tmp);
-
-</script>

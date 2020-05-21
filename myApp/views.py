@@ -644,6 +644,53 @@ class Person_ListView(LoginRequiredMixin, ListView):
     dd['class8'] = myFamily.get(nut_group='lactating').target_pop
     context['myFamily'] = dd
 
+    myDRI = DRI.objects.all()
+    dd = {}
+    dd['class0'] = myDRI.get(nut_group='child 0-23 month').energy
+    dd['class1'] = myDRI.get(nut_group='child 24-59 month').energy
+    dd['class2'] = myDRI.get(nut_group='child 6-9 yr').energy
+    dd['class3'] = myDRI.get(nut_group='adolescent male').energy
+    dd['class4'] = myDRI.get(nut_group='adolescent female').energy
+    dd['class5'] = myDRI.get(nut_group='adult male').energy
+    dd['class6'] = myDRI.get(nut_group='adult female').energy
+    dd['class7'] = myDRI.get(nut_group='pregnant').energy
+    dd['class8'] = myDRI.get(nut_group='lactating').energy
+    context['myDRI_en'] = dd
+    dd = {}
+    dd['class0'] = myDRI.get(nut_group='child 0-23 month').protein
+    dd['class1'] = myDRI.get(nut_group='child 24-59 month').protein
+    dd['class2'] = myDRI.get(nut_group='child 6-9 yr').protein
+    dd['class3'] = myDRI.get(nut_group='adolescent male').protein
+    dd['class4'] = myDRI.get(nut_group='adolescent female').protein
+    dd['class5'] = myDRI.get(nut_group='adult male').protein
+    dd['class6'] = myDRI.get(nut_group='adult female').protein
+    dd['class7'] = myDRI.get(nut_group='pregnant').protein
+    dd['class8'] = myDRI.get(nut_group='lactating').protein
+    context['myDRI_pr'] = dd
+    dd = {}
+    dd['class0'] = myDRI.get(nut_group='child 0-23 month').vita
+    dd['class1'] = myDRI.get(nut_group='child 24-59 month').vita
+    dd['class2'] = myDRI.get(nut_group='child 6-9 yr').vita
+    dd['class3'] = myDRI.get(nut_group='adolescent male').vita
+    dd['class4'] = myDRI.get(nut_group='adolescent female').vita
+    dd['class5'] = myDRI.get(nut_group='adult male').vita
+    dd['class6'] = myDRI.get(nut_group='adult female').vita
+    dd['class7'] = myDRI.get(nut_group='pregnant').vita
+    dd['class8'] = myDRI.get(nut_group='lactating').vita
+    context['myDRI_va'] = dd
+    dd = {}
+    dd['class0'] = myDRI.get(nut_group='child 0-23 month').fe
+    dd['class1'] = myDRI.get(nut_group='child 24-59 month').fe
+    dd['class2'] = myDRI.get(nut_group='child 6-9 yr').fe
+    dd['class3'] = myDRI.get(nut_group='adolescent male').fe
+    dd['class4'] = myDRI.get(nut_group='adolescent female').fe
+    dd['class5'] = myDRI.get(nut_group='adult male').fe
+    dd['class6'] = myDRI.get(nut_group='adult female').fe
+    dd['class7'] = myDRI.get(nut_group='pregnant').fe
+    dd['class8'] = myDRI.get(nut_group='lactating').fe
+    context['myDRI_fe'] = dd
+
+
     myURL1 = ""
     try:
       myURL1 = reverse_lazy("crop_select",

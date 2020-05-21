@@ -12,23 +12,23 @@
           <div class="card-body py-0">
             <p class="card-text my-0">
               <span>number:</span>
-              <span id="size">{{ person.target_pop }}</span>
+              <span id="size2">{{ person.target_pop }}</span>
             </p>
             <p class="card-text my-0">
               <span>energy Requirement:</span>
-              <span id="DRI_en">{{ person.myDRI.energy }}</span>
+              <span id="DRI2_en">{{ person.myDRI.energy }}</span>
             </p>
             <p class="card-text my-0">
               <span>protein DRI:</span>
-              <span id="DRI_pr">{{ person.myDRI.protein }}</span>
+              <span id="DRI2_pr">{{ person.myDRI.protein }}</span>
             </p>
             <p class="card-text my-0">
               <span>vit-A DRI:</span>
-              <span id="DRI_va">{{ person.myDRI.vita }}</span>
+              <span id="DRI2_va">{{ person.myDRI.vita }}</span>
             </p>
             <p class="card-text my-0">
               <span>Fe DRI :</span>
-              <span id="DRI_fe">{{ person.myDRI.fe }}</span>
+              <span id="DRI2_fe">{{ person.myDRI.fe }}</span>
             </p>
           </div>
         </div>
@@ -170,88 +170,3 @@
   </div>
 </div>
 
-<script type="text/javascript">
-  var myPop = {{ myPop|safe }};
-  var myCommunity = {{ myCommunity|safe }};
-  var myFamily = {{ myFamily|safe }};
-  let url_tmp = window.location.href.split('/');
-  url_tmp.pop();
-  url_tmp.pop();
-  url_tmp.pop();
-  url_tmp.pop();
-  url_tmp.pop();
-  var myRoot = url_tmp.join("/") + '/';
-
-  //////////////////合計
-  $('.num_family2').on("input", function () {
-    let sum = 0;
-    $('.num_family2').each(function () {
-      sum += Number($(this).val());
-    });
-    $('#inpNum_fam9').val(sum);
-  });
-
-
-  //////////////////btn_save_crop
-  $('#btn_update2').click(function () {
-    let hostUrl = myRoot + 'registPerson/';
-    let mydat = getTblData_family();
-
-    // console.log(mydat);
-    Set_CRSF();
-    sendJson(mydat, hostUrl);
-  }); ////////btn_save_crop///////////
-
-  //////////////////getTblData
-  function getTblData_family() { //
-    let d = [];
-    $('#tbl_pop2 tr').each(function (i, myRow) {
-      if (i > 0 && i < 8) {
-        let dd = {};
-        dd['target_scope'] = 2;
-        dd["myLocation"] = {{myLocation.id}};
-        dd['myuser'] = {{ myuser.id }};
-        if (i === 4) {
-          for (var j = 1; j < 3; j++) {
-            dd['nut_group_id'] = i - 1 + j;
-            dd['target_pop'] = $(myRow).children('td').eq(j).find('.input-manual').val();
-            d.push(dd);
-          }
-        } else if (i === 5) {
-          for (j = 1; j < 3; j++) {
-            dd['nut_group_id'] = i + j;
-            dd['target_pop'] = $(myRow).children('td').eq(j).find('.input-manual').val();
-            d.push(dd);
-          }
-        } else if (i === 6 || i === 7) {
-          dd['nut_group_id'] = i + 2;
-          dd['target_pop'] = $(myRow).children('td').eq(2).find('.input-manual').val();
-          d.push(dd);
-        } else {
-          dd['nut_group_id'] = i;
-          dd['target_pop'] = $(myRow).children('td').eq(1).find('.input-manual').val();
-          d.push(dd);
-        }
-      }
-    });
-    return {"myJson": d};
-  }
-
-  //----------------------------------------------------------------------------
-
-  // Print initial value in a div box
-  $("#inpNum_fam0").val(myFamily.class0);
-  $("#inpNum_fam1").val(myFamily.class1);
-  $("#inpNum_fam2").val(myFamily.class2);
-  $("#inpNum_fam3").val(myFamily.class3);
-  $("#inpNum_fam4").val(myFamily.class4);
-  $("#inpNum_fam5").val(myFamily.class5);
-  $("#inpNum_fam6").val(myFamily.class6);
-  $("#inpNum_fam7").val(myFamily.class7);
-  $("#inpNum_fam8").val(myFamily.class8);
-  let tmp = myFamily.class0 + myFamily.class1 + myFamily.class2 + myFamily.class3 + myFamily.class4
-          + myFamily.class5 + myFamily.class6 + myFamily.class7 + myFamily.class8;
-  $("#inpNum_fam9").val(tmp);
-
-
-</script>

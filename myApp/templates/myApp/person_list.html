@@ -139,6 +139,22 @@
     }
     //    $('a[data-toggle="tab"]').on('show.bs. tab', function (e) {      let tmpTab = e.target.id      if (tmpTab == "tab1") {        $('#btn_add1').addClass('disabled');      } else {        $('#btn_add1').removeClass('disabled');      }    })
 
+    let myDRI_en = {{ myDRI_en|safe }};
+    let myDRI_pr = {{ myDRI_pr|safe }};
+    let myDRI_va = {{ myDRI_va|safe }};
+    let myDRI_fe = {{ myDRI_fe|safe }};
+
+    var myPop = {{ myPop|safe }};
+    var myCommunity = {{ myCommunity|safe }};
+    var myFamily = {{ myFamily|safe }};
+    let url_tmp = window.location.href.split('/');
+    url_tmp.pop();
+    url_tmp.pop();
+    url_tmp.pop();
+    url_tmp.pop();
+    url_tmp.pop();
+    var myRoot = url_tmp.join("/") + '/';
+
 
     //////////////////btn_save_person
     $('#btn_save').click(function () {
@@ -176,8 +192,275 @@
       return {"myJson": d};
     }
 
-    //----------------------------------------------------------------------------
+    //////////////////getTblData //// csrf_tokenの取得に使う//////////////
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = jQuery.trim(cookies[i]);
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
 
+    //------------------------------------
+    function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    //------------------------------------
+    function Set_CRSF() {
+      var csrf_token = getCookie("csrftoken");
+      $.ajaxSetup({
+        crossDomain: false, // obviates need for sameOrigin test
+        beforeSend: function (xhr, settings) {
+          if (!csrfSafeMethod(settings.type)) {
+            xhr.setRequestHeader("X-CSRFToken", csrf_token);
+          }
+        }
+      });
+    }
+
+    //////////////////sendJson////
+    function sendJson(myjson, hostUrl) {
+      $.ajax({
+        type: 'post',
+        url: hostUrl,
+        data: JSON.stringify(myjson),
+        contentType: 'application/JSON',
+        dataType: 'JSON',
+        scriptCharset: 'utf-8',
+        success: function (response) {
+          window.location.href = response.url;
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          alert("fail");
+          console.log(jqXHR.responseText);
+          console.log(jqXHR.status); //例：404
+          console.log(textStatus); //例：error
+          console.log(errorThrown); //例：NOT FOUND
+          console.log(JSON.stringify(myjson)); //例：NOT FOUND
+          console.log(myjson); //例：NOT FOUND
+        }
+      });
+    }//////////////////sendJson//// scfript end/////////////////////
+
+    //////////////////DRI合計
+    function sum_DRI(index_DRI) {
+      console.group('sum_DRI');
+      if (index_DRI === 1) {
+        let tmp_nut_class = $('#inpNum_ind7').text() || 0;
+        console.log('tmp_nut_class=' + tmp_nut_class);
+        $('#inpNum_ind3').text(myDRI_en['class' + tmp_nut_class]);
+        $('#inpNum_ind4').text(myDRI_pr['class' + tmp_nut_class]);
+        $('#inpNum_ind5').text(myDRI_va['class' + tmp_nut_class]);
+        $('#inpNum_ind6').text(myDRI_fe['class' + tmp_nut_class]);
+      } else if (index_DRI === 2) {
+        let sum = 0;
+        let tmp_sum_en = 0;
+        let tmp_sum_pr = 0;
+        let tmp_sum_va = 0;
+        let tmp_sum_fe = 0;
+        $('.num_family2').each(function () {
+          let tmp_nut_class = $(this).attr('nut_group_id');
+          let tmp_number = Number($(this).val());
+          let tmp_number_fem = 0;
+          let tmp_number_preg = 0;
+          let tmp_number_lact = 0;
+          if (tmp_nut_class !== 7) {
+            sum += tmp_number;
+            tmp_sum_en += Number(myDRI_en['class' + tmp_nut_class]) * tmp_number;
+            tmp_sum_pr += Number(myDRI_pr['class' + tmp_nut_class]) * tmp_number;
+            tmp_sum_va += Number(myDRI_va['class' + tmp_nut_class]) * tmp_number;
+            tmp_sum_fe += Number(myDRI_fe['class' + tmp_nut_class]) * tmp_number;
+            if (tmp_nut_class === 8) {
+              tmp_number_preg = tmp_number;
+            }
+            if (tmp_nut_class === 9) {
+              tmp_number_lact = tmp_number;
+            }
+          } else {
+            tmp_number_fem = tmp_number;
+          }
+          tmp_number_fem = tmp_number_fem - (tmp_number_preg + tmp_number_lact);
+          tmp_sum_en += Number(myDRI_en['class6']) * tmp_number_fem;
+          tmp_sum_pr += Number(myDRI_pr['class6']) * tmp_number_fem;
+          tmp_sum_va += Number(myDRI_va['class6']) * tmp_number_fem;
+          tmp_sum_fe += Number(myDRI_fe['class6']) * tmp_number_fem;
+
+          $('#DRI2_en').text(tmp_sum_en.toFixed(0));
+          $('#DRI2_pr').text(tmp_sum_pr.toFixed(0));
+          $('#DRI2_va').text(tmp_sum_va.toFixed(0));
+          $('#DRI2_fe').text(tmp_sum_fe.toFixed(0));
+          $('#size2').text(sum);
+        });
+      } else if (index_DRI === 3) {
+        let sum = 0;
+        let tmp_sum_en = 0;
+        let tmp_sum_pr = 0;
+        let tmp_sum_va = 0;
+        let tmp_sum_fe = 0;
+        $('.num_family3').each(function () {
+          let tmp_nut_class = $(this).attr('nut_group_id');
+          let tmp_number = Number($(this).val());
+          let tmp_number_fem = 0;
+          let tmp_number_preg = 0;
+          let tmp_number_lact = 0;
+          console.log('tmp_nut_class=' + tmp_nut_class);
+          console.log('tmp_number=' + tmp_number);
+          if (tmp_nut_class !== 7) {
+            sum += tmp_number;
+            tmp_sum_en += Number(myDRI_en['class' + tmp_nut_class]) * tmp_number;
+            tmp_sum_pr += Number(myDRI_pr['class' + tmp_nut_class]) * tmp_number;
+            tmp_sum_va += Number(myDRI_va['class' + tmp_nut_class]) * tmp_number;
+            tmp_sum_fe += Number(myDRI_fe['class' + tmp_nut_class]) * tmp_number;
+            if (tmp_nut_class === 8) {
+              tmp_number_preg = tmp_number;
+            }
+            if (tmp_nut_class === 9) {
+              tmp_number_lact = tmp_number;
+            }
+          } else {
+            tmp_number_fem = tmp_number;
+          }
+          tmp_number_fem = tmp_number_fem - (tmp_number_preg + tmp_number_lact);
+          tmp_sum_en += Number(myDRI_en['class6']) * tmp_number_fem;
+          tmp_sum_pr += Number(myDRI_pr['class6']) * tmp_number_fem;
+          tmp_sum_va += Number(myDRI_va['class6']) * tmp_number_fem;
+          tmp_sum_fe += Number(myDRI_fe['class6']) * tmp_number_fem;
+
+          $('#DRI3_en').text(tmp_sum_en.toFixed(0));
+          $('#DRI3_pr').text(tmp_sum_pr.toFixed(0));
+          $('#DRI3_va').text(tmp_sum_va.toFixed(0));
+          $('#DRI3_fe').text(tmp_sum_fe.toFixed(0));
+          $('#size3').text(sum);
+        });
+      }
+      console.groupEnd();
+    }
+
+    //////////////////DRI合計
+
+    //////////////////合計----family
+    $('.num_family2').on("input", function () {
+      let sum = 0;
+      $('.num_family2').each(function () {
+        sum += Number($(this).val())
+      });
+      $('#inpNum_fam9').val(sum);
+//      $('#size2').text(sum);
+      sum_DRI(2);
+    });
+
+
+    //////////////////合計----community
+    $('.num_family3').on("input", function () {
+      let sum = 0;
+      $('.num_family3').each(function () {
+        sum += Number($(this).val());
+      });
+      console.log('changed:' + sum);
+      sum_DRI(3);
+    });
+
+
+    $("#inpNum9").on("input", function () {
+      // Print entered value in a div box
+      $("#inpNum0").val(Math.round($(this).val() * myPop.class0 / 100));
+      $("#inpNum1").val(Math.round($(this).val() * myPop.class1 / 100));
+      $("#inpNum2").val(Math.round($(this).val() * myPop.class2 / 100));
+      $("#inpNum3").val(Math.round($(this).val() * myPop.class4 / 100));
+      $("#inpNum4").val(Math.round($(this).val() * myPop.class3 / 100));
+      $("#inpNum5").val(Math.round($(this).val() * myPop.class6 / 100));
+      $("#inpNum6").val(Math.round($(this).val() * myPop.class5 / 100));
+      $("#inpNum7").val(Math.round($(this).val() * (myPop.class3_p + myPop.class5_p) / 100));
+      $("#inpNum8").val(Math.round($(this).val() * (myPop.class3_l + myPop.class3_l) / 100));
+      sum_DRI(3);
+    });
+
+    //////////////////個人targetの選択-----
+    $("#menu_items a ").click(function () {
+      console.log($(this).text());
+      $('#inpNum_ind1').text($(this).text());
+      $('#inpNum_ind7').text($(this).index() + 1);
+      sum_DRI(1);
+    });
+    //////////////////個人targetの選択-----
+
+    //////////////////Communityの選択方式の決定-----
+    $('#chk-autoCalk').change(function () {
+      if ($('#chk-autoCalk').prop('checked')) {
+        $('.input-manual').prop('disabled', true);
+        $('.input-auto').prop('disabled', false);
+      } else {
+        $('.input-manual').prop('disabled', false);
+        $('.input-auto').prop('disabled', true);
+      }
+    });
+    //////////////////Communityの選択方式の決定-----
+
+
+    //-----------initializationn -------
+
+    let nut_class = [
+      'child 0-23 month',
+      'child 24-59 month',
+      'child 6-9 yr',
+      'adolescent boy',
+      'adolescent girl',
+      'adult male',
+      'adult female',
+      'pregnant',
+      'lactaning',
+    ];
+
+    try {
+      let index_nut = nut_class.indexOf($('#inpNum_ind1').text()) || 0;
+      $("#menu_items a ").prop('selectedIndex', index_nut);
+      $('#inpNum_ind7').text(index_nut + 1);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // Print initial value in a div box
+    $("#inpNum_fam0").val(myFamily.class0);
+    $("#inpNum_fam1").val(myFamily.class1);
+    $("#inpNum_fam2").val(myFamily.class2);
+    $("#inpNum_fam3").val(myFamily.class3);
+    $("#inpNum_fam4").val(myFamily.class4);
+    $("#inpNum_fam5").val(myFamily.class5);
+    $("#inpNum_fam6").val(myFamily.class6);
+    $("#inpNum_fam7").val(myFamily.class7);
+    $("#inpNum_fam8").val(myFamily.class8);
+    let tmp = myFamily.class0 + myFamily.class1 + myFamily.class2 + myFamily.class3 + myFamily.class4
+            + myFamily.class5 + myFamily.class6 + myFamily.class7 + myFamily.class8;
+    $("#inpNum_fam9").val(tmp);
+
+    // Print initial value in a div box
+    $("#inpNum0").val(myCommunity.class0);
+    $("#inpNum1").val(myCommunity.class1);
+    $("#inpNum2").val(myCommunity.class2);
+    $("#inpNum3").val(myCommunity.class3);
+    $("#inpNum4").val(myCommunity.class4);
+    $("#inpNum5").val(myCommunity.class5);
+    $("#inpNum6").val(myCommunity.class6);
+    $("#inpNum7").val(myCommunity.class7);
+    $("#inpNum8").val(myCommunity.class8);
+    tmp = myCommunity.class0 + myCommunity.class1 + myCommunity.class2 + myCommunity.class3 + myCommunity.class4
+            + myCommunity.class5 + myCommunity.class6;
+    $("#inpNum9").val(tmp);
+
+    sum_DRI(2);
+    sum_DRI(3);
+
+    //-----------initializationn -------
 
   </script>
 

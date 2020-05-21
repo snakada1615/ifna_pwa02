@@ -29,7 +29,7 @@
               <a id="inpNum_ind6"></a>
             </p>
             <p class="card-text my-0">
-              <input type="hidden" id="inpNum_ind7">{{ person.nut_group }}</input>
+              <input type="hidden" id="inpNum_ind7"></input>
             </p>
           </div>
         </div>
@@ -62,32 +62,3 @@
   </div>
 </div>
 
-
-<script type="text/javascript">
-  $("#menu_items a ").click(function () {
-    console.log($(this).text());
-    $('#inpNum_ind1').text($(this).text());
-    $('#inpNum_ind7').text($(this).index() + 1);
-  });
-
-  //initialize
-  tmp = [
-    'child 0-23 month',
-    'child 24-59 month',
-    'child 6-9 yr',
-    'adolescent boy',
-    'adolescent girl',
-    'adult male',
-    'adult female',
-    'pregnant',
-    'lactaning',
-  ];
-  try {
-    let index_nut = tmp.indexOf($('#inpNum_ind7').text()) || 0;
-    $("#menu_items a ").prop('selectedIndex', index_nut);
-    $('#inpNum_ind7').text(index_nut + 1);
-  } catch (e) {
-    console.error(e);
-  }
-
-</script>
