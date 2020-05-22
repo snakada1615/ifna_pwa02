@@ -414,8 +414,22 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
         keys['created_by'] = User.objects.get(id=instance.created_by.id)
         p = Crop_SubNational.objects.create(**keys)
       logger.info("全ての該当品目をCrop_SubNationalに書き込みました!")
+    else:
+      logger.error("Crop＿Nationalの中に該当品目が存在していません")
+      logger.info('AEZ_id='+tmp_aez)
+
 
     # --------------------update myTarget-community-------------------------
+    logger.info("これからTarget individualの初期値を追加していきます")
+    Person.objects.create(
+      myLocation=Location.objects.get(id=instance.pk),
+      nut_group=0,
+      target_scope=1,
+      target_pop=100,
+      created_by=User.objects.get(id=instance.created_by.id),
+      myDRI=DRI.objects.get(nut_group=nut_grp_list[0])
+    )
+    logger.info("Target individualの書込み終了")
     logger.info("これからTarget communityの人口構成、初期値を追加していきます")
     for i in range(9):
       Person.objects.create(

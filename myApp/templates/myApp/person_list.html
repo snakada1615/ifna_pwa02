@@ -124,20 +124,6 @@
     $('[data-toggle="tooltip"]').tooltip();
 
     let mytarget_scope_Sum ={{mytarget_scope_Sum}};
-    if (mytarget_scope_Sum < 100) {
-      $('#btn_add1').removeClass('disabled');
-      $('#tab2').addClass('disabled');
-      $('#tab2').removeAttr("data-toggle");
-      $('#tab3').addClass('disabled');
-      $('#tab3').removeAttr("data-toggle");
-    } else {
-      $('#btn_add1').addClass('disabled');
-      $('#tab2').removeClass('disabled');
-      $('#tab2').attr("data-toggle", "tab");
-      $('#tab3').removeClass('disabled');
-      $('#tab3').attr("data-toggle", "tab");
-    }
-    //    $('a[data-toggle="tab"]').on('show.bs. tab', function (e) {      let tmpTab = e.target.id      if (tmpTab == "tab1") {        $('#btn_add1').addClass('disabled');      } else {        $('#btn_add1').removeClass('disabled');      }    })
 
     let myDRI_en = {{ myDRI_en|safe }};
     let myDRI_pr = {{ myDRI_pr|safe }};
