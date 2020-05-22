@@ -423,7 +423,7 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
     logger.info("これからTarget individualの初期値を追加していきます")
     Person.objects.create(
       myLocation=Location.objects.get(id=instance.pk),
-      nut_group=0,
+      nut_group=nut_grp_list[0],
       target_scope=1,
       target_pop=100,
       created_by=User.objects.get(id=instance.created_by.id),
