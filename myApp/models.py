@@ -143,8 +143,8 @@ class Location(models.Model):
       self.save(update_fields=update_fields)
     return True
 
-  def __str__(self):
-    return self.name
+#  def __str__(self):
+#    return self.name
 
 
 class FCT(models.Model):
