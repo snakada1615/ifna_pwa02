@@ -1913,6 +1913,7 @@ class IndexView04(LoginRequiredMixin, TemplateView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
+    context['myCountryName'] = Location.objects.filter(id=self.request.user.profile.myLocation).first().country
 
     tmp_Param = SetURL(5, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
