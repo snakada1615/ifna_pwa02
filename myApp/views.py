@@ -1825,6 +1825,12 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
     kwargs['user'] = self.request.user
     return kwargs
 
+  def get_initial(self):
+    return {
+      'crop_name': Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.Food_name,
+      'crop_name_id': Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.food_item_id
+            }
+
   def get_context_data(self, **kwargs):  # todo 無意味なcrop_listの送信をやめる
     context = super().get_context_data(**kwargs)
     context['isUpdate'] = 1
@@ -1862,7 +1868,6 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
-
 
     context["mylist_crop"] = d
     return context
