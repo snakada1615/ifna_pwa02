@@ -461,8 +461,6 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
 
-
-
     return context
 
 
@@ -1756,7 +1754,6 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
 
-
     return context
 
   def form_valid(self, form):
@@ -2058,7 +2055,8 @@ def change_location(request, myUser, myLocation):
 
 
 def SetURL(stepid, myUser):
-  myLocation = myUser.profile.myLocation
+  if stepid != 0:
+    myLocation = myUser.profile.myLocation
   myResult = {}
   main_URL = ""
   back_Title = ""
@@ -2249,7 +2247,6 @@ def SetURL(stepid, myUser):
       forward_URL = ""
     except:
       logger.error('無効な値を参照しています')
-
 
   myResult['back_URL'] = back_URL
   myResult['back_Title'] = back_Title
