@@ -2238,17 +2238,6 @@ def SetURL(stepid, myUser):
     except:
       logger.error('無効な値を参照しています')
 
-  elif stepid == 501:
-    back_Title = "step5"
-    main_Title = "step5/7"
-    forward_Title = ""
-    guide_text = ''
-    try:
-      back_URL = reverse_lazy("index04")
-      forward_URL = ""
-    except:
-      logger.error('無効な値を参照しています')
-
   myResult['back_URL'] = back_URL
   myResult['back_Title'] = back_Title
   myResult['main_URL'] = main_URL
