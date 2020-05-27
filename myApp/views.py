@@ -1854,6 +1854,16 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
         dd["food_item_id"] = tmp02.food_item_id
         d.append(dd)
 
+    tmp_Param = SetURL(501, self.request.user)
+    context['nav_link1'] = tmp_Param['back_URL']
+    context['nav_text1'] = tmp_Param['back_Title']
+    context['nav_link2'] = tmp_Param['main_URL']
+    context['nav_text2'] = tmp_Param['main_Title']
+    context['nav_link3'] = tmp_Param['forward_URL']
+    context['nav_text3'] = tmp_Param['forward_Title']
+    context["mark_text"] = tmp_Param['guide_text']
+
+
     context["mylist_crop"] = d
     return context
 
