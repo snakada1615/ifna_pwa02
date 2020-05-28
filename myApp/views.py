@@ -1758,7 +1758,6 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
 
   def form_valid(self, form):
     #    self.object = form.save()
-    logger.info('form_valid called123')
     form.instance.created_by = self.request.user
     form.instance.myLocation = Location.objects.get(id=self.request.user.profile.myLocation)
     return super(Crop_Feas_CreateView, self).form_valid(form)
@@ -1772,6 +1771,10 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
   def get_queryset(self):
     queryset = super().get_queryset().filter(created_by=self.request.user).filter(
       myLocation=self.request.user.profile.myLocation)
+
+    logger.info(self.request.user)
+    logger.info(self.request.user.profile.myLocation)
+
     return queryset
 
   def get_context_data(self, **kwargs):
@@ -1789,6 +1792,8 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+
+    context["mylist_available"] = []
 
     return context
 
@@ -1829,7 +1834,7 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
     return {
       'crop_name': Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.Food_name,
       'crop_name_id': Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.food_item_id
-            }
+    }
 
   def get_context_data(self, **kwargs):  # todo 無意味なcrop_listの送信をやめる
     context = super().get_context_data(**kwargs)
@@ -1871,6 +1876,12 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
 
     context["mylist_crop"] = d
     return context
+
+  def form_valid(self, form):
+    #    self.object = form.save()
+    form.instance.created_by = self.request.user
+    form.instance.myLocation = Location.objects.get(id=self.request.user.profile.myLocation)
+    return super(Crop_Feas_UpdateView, self).form_valid(form)
 
 
 class FCT_ListView(LoginRequiredMixin, ListView):

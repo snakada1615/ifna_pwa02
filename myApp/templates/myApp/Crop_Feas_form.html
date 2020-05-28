@@ -8,6 +8,7 @@
   <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
 
+  <input type="hidden" id="isupdate" value="{{ isUpdate }}"/>
   {{ form.certifications.errors }}
   <div class="container" style="max-width: 540px;">
     <form method="post" id="myform">
@@ -205,140 +206,143 @@
 
 
   <script type="text/javascript">
+    let tmp = $('#isupdate').val();
+    if (tmp == 1) {
+      alert('もうええやろ');
+      var json_crop_local = "{{mylist_available|safe}}";
+    } else {
+      alert('果たしてそうかな');
+      var json_crop_local = {{mylist_available|safe}};
+      //    console.log(json_crop);
+    }
+
 
     $(document).ready(function () {
+      ////////////////  install mytable_all  ////////////
+      var Crop_available = $('#localCrop1').DataTable({
+        "data": json_crop_local,
+        "pageLength": 20,
+        "select": 'single',
+        "columns": [
+          {
+            "data": "selected_status"
+          }, {
+            "data": "Food_name"
+          }, {
+            "data": "Energy"
+          }, {
+            "data": "Protein"
+          }, {
+            "data": "VITA_RAE"
+          }, {
+            "data": "FE"
+          }, {
+            "data": "Food_grp"
+          }, {
+            "data": "Weight"
+          }, {
+            "data": "portion_size"
+          }, {
+            "data": "m1"
+          }, {
+            "data": "m2"
+          }, {
+            "data": "m3"
+          }, {
+            "data": "m4"
+          }, {
+            "data": "m5"
+          }, {
+            "data": "m6"
+          }, {
+            "data": "m7"
+          }, {
+            "data": "m8"
+          }, {
+            "data": "m9"
+          }, {
+            "data": "m10"
+          }, {
+            "data": "m11"
+          }, {
+            "data": "m12"
+          }, {
+            "data": "food_item_id"
+          }, {
+            "data": "count_prod"
+          }, {
+            "data": "count_buy"
+          }
+        ],
+
+        "columnDefs": [
+          {
+            targets: [
+              1, 2, 3, 4, 5
+            ],
+            visible: true
+          }, {
+            targets: '_all',
+            bVisible: false
+          }, {
+            "orderSequence": ["desc"],
+            "targets": [2]
+          }, {
+            "orderSequence": ["desc"],
+            "targets": [3]
+          }, {
+            "orderSequence": ["desc"],
+            "targets": [4]
+          }, {
+            "orderSequence": ["desc"],
+            "targets": [5]
+          }
+        ],
+
+        "initComplete": function (settings, json) {
+          // ////add filtering dropdown list
+          this.api().columns([6]).every(function () {
+            var column = this;
+            var select = $('<select style="border: 1px grey double;"><option value=""></option></select>').appendTo($('#myFilter1')).on('change', function () {
+              var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+              column.search(
+                      val
+                              ? '^' + val + '$'
+                              : '',
+                      true,
+                      false
+              ).draw();
+            });
+            column.data().unique().sort().each(function (d, j) {
+              select.append('<option value="' + d + '">' + d + '</option>');
+            });
+          });
+          $('#localCrop1 tbody').on('click', 'tr', function () {
+            $(this).toggleClass('selected');
+            if ($(this).hasClass('selected')) {
+              mydata = Crop_available.row(this).data();
+              $('#id_crop_name').val(mydata['Food_name']);
+              $('#id_crop_name').attr('readonly', true);
+              $('#id_crop_name_id').val(mydata['food_item_id']);
+              $('#id_crop_name_id').attr('readonly', true);
+            }
+          })
+
+        },
+      });
+
+
+      //---------crop selection event----------
+      $('#btn_add').click(function () {
+        $('#Modal_localCrop1').modal('show');
+      });
       //---------if crop update----------
       if ({{ isUpdate }}) {
         $('#id_crop_name').val("{{ crop_name }}");
         $('#id_crop_name').attr('readonly', true);
         $('#id_crop_name_id').val("{{ crop_name_id }}");
         $('#id_crop_name_id').attr('readonly', true);
-      } else {
-
-        ////////////////  install mytable_all  ////////////
-        var json_crop_local = {{mylist_available|safe}};
-        //    console.log(json_crop);
-
-        var Crop_available = $('#localCrop1').DataTable({
-          "data": json_crop_local,
-          "pageLength": 20,
-          "select": 'single',
-          "columns": [
-            {
-              "data": "selected_status"
-            }, {
-              "data": "Food_name"
-            }, {
-              "data": "Energy"
-            }, {
-              "data": "Protein"
-            }, {
-              "data": "VITA_RAE"
-            }, {
-              "data": "FE"
-            }, {
-              "data": "Food_grp"
-            }, {
-              "data": "Weight"
-            }, {
-              "data": "portion_size"
-            }, {
-              "data": "m1"
-            }, {
-              "data": "m2"
-            }, {
-              "data": "m3"
-            }, {
-              "data": "m4"
-            }, {
-              "data": "m5"
-            }, {
-              "data": "m6"
-            }, {
-              "data": "m7"
-            }, {
-              "data": "m8"
-            }, {
-              "data": "m9"
-            }, {
-              "data": "m10"
-            }, {
-              "data": "m11"
-            }, {
-              "data": "m12"
-            }, {
-              "data": "food_item_id"
-            }, {
-              "data": "count_prod"
-            }, {
-              "data": "count_buy"
-            }
-          ],
-
-          "columnDefs": [
-            {
-              targets: [
-                1, 2, 3, 4, 5
-              ],
-              visible: true
-            }, {
-              targets: '_all',
-              bVisible: false
-            }, {
-              "orderSequence": ["desc"],
-              "targets": [2]
-            }, {
-              "orderSequence": ["desc"],
-              "targets": [3]
-            }, {
-              "orderSequence": ["desc"],
-              "targets": [4]
-            }, {
-              "orderSequence": ["desc"],
-              "targets": [5]
-            }
-          ],
-
-          "initComplete": function (settings, json) {
-            // ////add filtering dropdown list
-            this.api().columns([6]).every(function () {
-              var column = this;
-              var select = $('<select style="border: 1px grey double;"><option value=""></option></select>').appendTo($('#myFilter1')).on('change', function () {
-                var val = $.fn.dataTable.util.escapeRegex($(this).val());
-
-                column.search(
-                        val
-                                ? '^' + val + '$'
-                                : '',
-                        true,
-                        false
-                ).draw();
-              });
-              column.data().unique().sort().each(function (d, j) {
-                select.append('<option value="' + d + '">' + d + '</option>');
-              });
-            });
-            $('#localCrop1 tbody').on('click', 'tr', function () {
-              $(this).toggleClass('selected');
-              if ($(this).hasClass('selected')) {
-                mydata = Crop_available.row(this).data();
-                $('#id_crop_name').val(mydata['Food_name']);
-                $('#id_crop_name').attr('readonly', true);
-                $('#id_crop_name_id').val(mydata['food_item_id']);
-                $('#id_crop_name_id').attr('readonly', true);
-              }
-            })
-
-          },
-        });
-
-
-        //---------crop selection event----------
-        $('#btn_add').click(function () {
-          $('#Modal_localCrop1').modal('show');
-        });
-
-
       }
     })//-----document.ready()-----------
 
