@@ -1865,6 +1865,8 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
         dd["food_item_id"] = tmp02.food_item_id
         d.append(dd)
 
+    context["mylist_crop"] = d
+
     tmp_Param = SetURL(501, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
@@ -1874,7 +1876,6 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
 
-    context["mylist_crop"] = d
     return context
 
   def form_valid(self, form):

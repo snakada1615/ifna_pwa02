@@ -197,7 +197,7 @@
       display: none;
     }
 
-    /* fontausomeの書式*/
+    /* fontawsomeの書式*/
     .fb-help {
       color: green;
     }
@@ -206,14 +206,13 @@
 
 
   <script type="text/javascript">
-    let tmp = $('#isupdate').val();
-    if (tmp == 1) {
-      var json_crop_local = "{{mylist_available|safe}}";
-    } else {
-      var json_crop_local = {{mylist_available|safe}};
-      //    console.log(json_crop);
-    }
+    var json_crop_local = "{{mylist_available|safe}}";
 
+    let tmp = $('#isupdate').val();
+    if (tmp != 1) {
+      json_crop_local = json_crop_local.replace(/'/g, '"'); //datatablseは single quote を受け付けないため
+      json_crop_local = JSON.parse(json_crop_local);
+    }
 
     $(document).ready(function () {
       ////////////////  install mytable_all  ////////////
