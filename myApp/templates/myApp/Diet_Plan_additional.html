@@ -18,11 +18,11 @@
     <div class="container" style="max-width: 540px;">
       <div class="row">
         <div class="col-2 my-0 px-3">
-          <img src="{% static 'img/no6.png' %}" alt="number 4">
+          <img src="{% static 'img/no4.png' %}" alt="number 4">
         </div>
         <div class="col-8 my-0 px-1">
           <h5>
-            Revision of Diet plan for
+            Diet planning for
             {{ myLocation.name }}
           </h5>
         </div>
@@ -487,6 +487,7 @@
     $(function () {
       $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
       $('#my_Prod_Buy').barrating({theme: 'bars-1to10', showSelectedRating: true, readonly: false}); // set barrating)
+      $('.share_Prod_Buy').barrating({theme: 'bars-1to10', showSelectedRating: true, readonly: true}); // set barrating)
       $('#BR_food_count').barrating({theme: 'fontawesome-apple'});
     });
 
@@ -541,6 +542,7 @@
         this.dom_tbl_Crop = '';
         this.dom_PFC = {};
         this.dom_diversity_check = {};
+        this.dom_share = '';
 
         console.log('オブジェクトCrop_Selected' + num_tbl + 'を作成しました');
       } else {
@@ -570,7 +572,7 @@
     Crop_Selected.prototype.setData_fromListbox = function (num_tbl, mydata, drawFlag) {
       console.group('Crop_Selected.receive_SelectedRow:');
       if (drawFlag) {       //rowの追加
-                            //データセットの作成1:buy_prod_share設定
+        //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {
@@ -852,6 +854,8 @@
       let sum_pfc_carbo_tmp = 0;
       let sum_pfc_prot_tmp = 0;
       let sum_pfc_fat_tmp = 0;
+      let share_prod = 0;
+      let share_buy = 0;
       let weight = 0;
       let _this = this;
       let myGrp = [
@@ -884,6 +888,8 @@
         sum_pfc_carbo_tmp += elem.Carbohydrate * weight / 100;
         sum_pfc_prot_tmp += elem.Protein * weight / 100;
         sum_pfc_fat_tmp += elem.Fat * weight / 100;
+        share_prod += elem.portion_size * elem.count_prod;
+        share_buy += elem.portion_size * elem.count_buy;
         let food_grp_tmp = elem.Food_grp;
         console.log(elem);
         console.log(food_grp_tmp);
@@ -899,12 +905,60 @@
       this.sum_va = sum_va_tmp;
       this.sum_fe = sum_fe_tmp;
       let sum = sum_pfc_carbo_tmp + sum_pfc_prot_tmp + sum_pfc_fat_tmp;
+      let sum_source = share_buy + share_prod;
       console.log('sum_pfc_carbo_tmp=' + sum_pfc_carbo_tmp);
       console.log('sum_pfc_prot_tmp=' + sum_pfc_prot_tmp);
       console.log('sum_pfc_fat_tmp=' + sum_pfc_fat_tmp);
       this.PFC_carbo = Math.round(sum_pfc_carbo_tmp * 100 / sum) || 0;
       this.PFC_prot = Math.round(sum_pfc_prot_tmp * 100 / sum) || 0;
       this.PFC_fat = Math.round(sum_pfc_fat_tmp * 100 / sum) || 0;
+      this.dom_share.barrating('set', Math.round(share_prod * 10 / sum_source) || 1); // set barrating
+
+      console.groupEnd();
+    };
+    Crop_Selected.prototype._setDiversity = function (index, setCheck) {
+      console.group('Crop_Selected:_setDiversity');
+      if (index < 8 && index > 0) {
+        let myDom = "";
+        switch (index) {
+          case 1:
+            myDom = this.dom_diversity_check1;
+            break;
+          case 2:
+            myDom = this.dom_diversity_check2;
+            break;
+          case 3:
+            myDom = this.dom_diversity_check3;
+            break;
+          case 4:
+            myDom = this.dom_diversity_check4;
+            break;
+          case 5:
+            myDom = this.dom_diversity_check5;
+            break;
+          case 6:
+            myDom = this.dom_diversity_check6;
+            break;
+          case 7:
+            myDom = this.dom_diversity_check7;
+            break;
+        }
+        if (setCheck) {
+          myDom.prop('checked', true);
+
+        } else {
+
+        }
+      } else {
+        console.error('Index out of range')
+      }
+      this.dom_diversity_check1.removeAttr('checked');
+      this.dom_diversity_check2.removeAttr('checked');
+      this.dom_diversity_check3.removeAttr('checked');
+      this.dom_diversity_check4.removeAttr('checked');
+      this.dom_diversity_check5.removeAttr('checked');
+      this.dom_diversity_check6.removeAttr('checked');
+      this.dom_diversity_check7.removeAttr('checked');
 
       console.groupEnd();
     };
@@ -1523,6 +1577,12 @@
       myCrop[num_tbl].dom_lst_month = $(this);
     });
 
+    //  shareを配列に組み込む -----------
+    $('.share_Prod_Buy').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      myCrop[num_tbl].dom_share = $(this);
+    });
+
     //  PFCを配列に組み込む -----------
     $('.PFC').each(function () {
       console.log('PFCを配列に組み込む');
@@ -1586,10 +1646,6 @@
       }
     }
 
-    for (let i in myRange) {
-      myCrop[myRange[i]].drawTable();
-    }
-
 
     //    myCrop[201]._getCrop_byID(819);
     // console.log(myCrop_individual[201].dom_tbl_row.eq(0).html());
@@ -1651,6 +1707,15 @@
     $('#title_diet2').text('Diet for ' + myMonth[0]);
     $('#title_diet3').text('Diet for ' + myMonth[0]);
     //---carouselの初期値-------------
+
+    //全ての変数を読み込んでからBarratingをセット
+    $(window).on("load", function () {
+      // Handler when all assets (including images) are loaded
+      for (let i in myRange) {
+        myCrop[myRange[i]].drawTable();
+      }
+    });
+
 
 
   </script>

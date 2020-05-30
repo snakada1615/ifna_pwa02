@@ -55,7 +55,7 @@ class IndexView(TemplateView):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
 
-    tmp_Param = SetURL(0, self.request.user)
+    tmp_Param = SetURL(-1, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -127,7 +127,7 @@ class Location_ListView(LoginRequiredMixin, ListView):
     context['myuser_id'] = self.request.user.id
     context['myLocation'] = self.request.user.profile.myLocation
 
-    tmp_Param = SetURL(1, self.request.user)
+    tmp_Param = SetURL(100, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -452,7 +452,15 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
       d.append(dd)
     context["mylist_local_name"] = d
 
-    tmp_Param = SetURL(2, self.request.user)
+    stepid = self.request.user.profile.stepid
+    logger.info(stepid)
+    newstep = 0
+    if stepid == 100:
+      newstep = 200
+    elif stepid == 500:
+      newstep = 600
+
+    tmp_Param = SetURL(newstep, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -645,7 +653,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
     dd['class8'] = myDRI.get(nut_group='lactating').fe
     context['myDRI_fe'] = dd
 
-    tmp_Param = SetURL(3, self.request.user)
+    tmp_Param = SetURL(300, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -996,7 +1004,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
 
     context['myuser'] = self.request.user
 
-    tmp_Param = SetURL(4, self.request.user)
+    tmp_Param = SetURL(400, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -1179,7 +1187,7 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
 
     context['myuser'] = self.request.user
 
-    tmp_Param = SetURL(6, self.request.user)
+    tmp_Param = SetURL(700, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -1352,7 +1360,7 @@ class Output1(LoginRequiredMixin, TemplateView):
 
     context['myuser'] = self.request.user
 
-    tmp_Param = SetURL(701, self.request.user)
+    tmp_Param = SetURL(801, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -1465,7 +1473,7 @@ class Output2(LoginRequiredMixin, TemplateView):
 
     context['myuser'] = self.request.user
 
-    tmp_Param = SetURL(702, self.request.user)
+    tmp_Param = SetURL(802, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -1561,7 +1569,7 @@ class Output3(LoginRequiredMixin, TemplateView):
 
     context['myuser'] = self.request.user
 
-    tmp_Param = SetURL(703, self.request.user)
+    tmp_Param = SetURL(803, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -1657,7 +1665,7 @@ class Output4(LoginRequiredMixin, TemplateView):
 
     context['myuser'] = self.request.user
 
-    tmp_Param = SetURL(704, self.request.user)
+    tmp_Param = SetURL(804, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -1677,7 +1685,7 @@ class Output_list(LoginRequiredMixin, TemplateView):
     context['myLocation'] = self.kwargs['myLocation']
     context['myuser'] = self.request.user
 
-    tmp_Param = SetURL(7, self.request.user)
+    tmp_Param = SetURL(800, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -1763,6 +1771,21 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
     return super(Crop_Feas_CreateView, self).form_valid(form)
 
 
+@receiver(post_save, sender=Crop_Feasibility)
+def create_cropFeas(sender, instance, created, **kwargs):
+  if created:
+    # --------------------add Crop_SubNational-------------------------
+    logger.info("これからCrop＿SubNationalを追加していきます")
+    keys = {}
+    keys['selected_status'] = 1
+    keys['created_by'] = User.objects.get(id=instance.created_by.id)
+    keys['myFCT'] = instance.myFCT
+    keys['crop_feas'] = Crop_Feasibility.objects.get(id=instance.pk)
+    keys['myLocation'] = Location.objects.get(id=instance.myLocation.id)
+    p = Crop_SubNational.objects.create(**keys)
+    logger.info("Crop_SubNationalに書き込みました!")
+
+
 class Crop_Feas_ListView(LoginRequiredMixin, ListView):
   model = Crop_Feasibility
   context_object_name = "mylist"
@@ -1784,7 +1807,7 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['myLocation'] = self.request.user.profile.myLocation
     context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
 
-    tmp_Param = SetURL(501, self.request.user)
+    tmp_Param = SetURL(500, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -1942,7 +1965,7 @@ class IndexView04(LoginRequiredMixin, TemplateView):
     context['myuser'] = self.request.user
     context['myCountryName'] = Location.objects.filter(id=self.request.user.profile.myLocation).first().country
 
-    tmp_Param = SetURL(5, self.request.user)
+    tmp_Param = SetURL(500, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -2083,6 +2106,9 @@ def change_location(request, myUser, myLocation):
 
 
 def SetURL(stepid, myUser):
+  key = myUser.profile
+  key.stepid = stepid
+  key.save()
   if stepid != 0:
     myLocation = myUser.profile.myLocation
   myResult = {}
@@ -2104,9 +2130,9 @@ def SetURL(stepid, myUser):
     except:
       logger.error('無効な値を参照しています')
 
-  elif stepid == 1:
+  elif stepid == 100:
     back_Title = "menu"
-    main_Title = "step1/7"
+    main_Title = "step1/8"
     forward_Title = "step2"
     guide_text = 'Here, you need to specify the location of your target area'
     try:
@@ -2117,9 +2143,9 @@ def SetURL(stepid, myUser):
     except:
       logger.error('無効な値を参照しています')
 
-  elif stepid == 2:
+  elif stepid == 200:
     back_Title = "step1"
-    main_Title = "step2/7"
+    main_Title = "step2/8"
     forward_Title = "step3"
     guide_text = 'Here, you identify food item you ordinary see in target area'
     try:
@@ -2128,9 +2154,9 @@ def SetURL(stepid, myUser):
     except:
       logger.error('無効な値を参照しています')
 
-  elif stepid == 3:
+  elif stepid == 300:
     back_Title = "step2"
-    main_Title = "step3/7"
+    main_Title = "step3/8"
     forward_Title = "step4"
     guide_text = 'Here, you identify your target beneficiary in three level: individual, family, community'
     try:
@@ -2141,42 +2167,57 @@ def SetURL(stepid, myUser):
     except:
       logger.error('無効な値を参照しています')
 
-  elif stepid == 4:
+  elif stepid == 400:
     back_Title = "step3"
-    main_Title = "step4/7"
+    main_Title = "step4/8"
     forward_Title = "step5"
     guide_text = 'Here, you discuss about optimal combination of food item to satisfy nutrient needs of your target'
     try:
       back_URL = reverse_lazy("person_list", kwargs={'myLocation': myLocation, 'page': 1})
-      forward_URL = reverse_lazy("index04")
+      forward_URL = reverse_lazy("crop_feas_list")
     except:
       logger.error('無効な値を参照しています')
 
-  elif stepid == 5:
+  elif stepid == 500:
     back_Title = "step4"
-    main_Title = "step5/7"
+    main_Title = "step5/8"
     forward_Title = "step6"
     guide_text = 'you can explore to introduce new food crop in target area'
     try:
       back_URL = reverse_lazy("diet1", kwargs={'myLocation': myLocation})
+      forward_URL = reverse_lazy("crop_select", kwargs={'myLocation': myLocation,
+                                                        'myCountryName': Location.objects.filter(
+                                                          id=myLocation).first().country})
+    except:
+      logger.error('無効な値を参照しています')
+
+  elif stepid == 600:
+    back_Title = "step5"
+    main_Title = "step6/8"
+    forward_Title = "step7"
+    guide_text = 'Here, you set year-round availailibty of selected food item'
+    try:
+      back_URL = reverse_lazy("crop_feas_list")
       forward_URL = reverse_lazy("diet2", kwargs={'myLocation': myLocation})
     except:
       logger.error('無効な値を参照しています')
 
-  elif stepid == 6:
-    back_Title = "step5"
-    main_Title = "step6/7"
-    forward_Title = "step7"
-    guide_text = 'Here, you discuss about optimal combination of food item to satisfy nutrient needs of your target'
+  elif stepid == 700:
+    back_Title = "step6"
+    main_Title = "step7/8"
+    forward_Title = "step8"
+    guide_text = 'Here, you examine optimal combination of food item by making use of newly added food item'
     try:
-      back_URL = reverse_lazy("index04")
+      back_URL = reverse_lazy("crop_select", kwargs={'myLocation': myLocation,
+                                                     'myCountryName': Location.objects.filter(
+                                                       id=myLocation).first().country})
       forward_URL = reverse_lazy("output_list", kwargs={'myLocation': myLocation})
     except:
       logger.error('無効な値を参照しています')
 
-  elif stepid == 7:
-    back_Title = "step6"
-    main_Title = "step7/7"
+  elif stepid == 800:
+    back_Title = "step7"
+    main_Title = "step8/8"
     forward_Title = ""
     guide_text = 'please select output you want to check'
     try:
@@ -2186,7 +2227,7 @@ def SetURL(stepid, myUser):
 
   elif stepid == -1:
     back_Title = ""
-    main_Title = "step0/7"
+    main_Title = "step0/8"
     forward_Title = "menu"
     guide_text = 'welcome to NFA tool! this tool help you to optimize diet and crop for selected beneficiaries'
     try:
@@ -2197,7 +2238,7 @@ def SetURL(stepid, myUser):
 
   elif stepid == 101:
     back_Title = ""
-    main_Title = "step0/7"
+    main_Title = "step0/8"
     forward_Title = "menu"
     guide_text = 'Please indicate target area for your activity'
     try:
@@ -2208,7 +2249,7 @@ def SetURL(stepid, myUser):
 
   elif stepid == 501:
     back_Title = "step5"
-    main_Title = "step5/7"
+    main_Title = "step5/8"
     forward_Title = ""
     guide_text = 'you can explore to introduce new food crop in target area'
     try:
@@ -2217,20 +2258,19 @@ def SetURL(stepid, myUser):
     except:
       logger.error('無効な値を参照しています')
 
-  elif stepid == 701:
-    back_Title = "step6"
+  elif stepid == 801:
+    back_Title = "step8"
     main_Title = "output1"
     forward_Title = ""
     guide_text = 'this is nutrient balance for individual target'
     try:
-      back_URL = reverse_lazy("output_list",
-                              kwargs={'myLocation': myLocation})
+      back_URL = reverse_lazy("output_list", kwargs={'myLocation': myLocation})
       forward_URL = ""
     except:
       logger.error('無効な値を参照しています')
 
-  elif stepid == 702:
-    back_Title = "step6"
+  elif stepid == 802:
+    back_Title = "step8"
     main_Title = "output2"
     forward_Title = ""
     guide_text = 'this is nutrient balance for family target'
@@ -2241,8 +2281,8 @@ def SetURL(stepid, myUser):
     except:
       logger.error('無効な値を参照しています')
 
-  elif stepid == 703:
-    back_Title = "step6"
+  elif stepid == 803:
+    back_Title = "step8"
     main_Title = "output3"
     forward_Title = ""
     guide_text = 'this is crop calendar for target family'
@@ -2253,8 +2293,8 @@ def SetURL(stepid, myUser):
     except:
       logger.error('無効な値を参照しています')
 
-  elif stepid == 704:
-    back_Title = "step6"
+  elif stepid == 804:
+    back_Title = "step8"
     main_Title = "output4"
     forward_Title = ""
     guide_text = 'this is nutrient balance for target community'

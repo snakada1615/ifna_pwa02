@@ -15,6 +15,7 @@ class Profile(models.Model):
   myCrop = models.IntegerField(default=0, blank=True)
   myTarget = models.IntegerField(default=0, blank=True)
   myDiet = models.IntegerField(default=0, blank=True)
+  stepid = models.IntegerField(default=0, blank=True)
 
 
 @receiver(post_save, sender=User)
