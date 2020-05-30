@@ -1278,7 +1278,7 @@ class Output1(LoginRequiredMixin, TemplateView):
       tmp_e += tmp.myDRI.energy
       tmp_p += tmp.myDRI.protein
       tmp_v += tmp.myDRI.vita
-      tmp_p += tmp.myDRI.fe
+      tmp_f += tmp.myDRI.fe
     context['dri_e1'] = tmp_e
     context['dri_p1'] = tmp_p
     context['dri_v1'] = tmp_v
@@ -1293,7 +1293,7 @@ class Output1(LoginRequiredMixin, TemplateView):
       tmp_e += tmp.myDRI.energy
       tmp_p += tmp.myDRI.protein
       tmp_v += tmp.myDRI.vita
-      tmp_p += tmp.myDRI.fe
+      tmp_f += tmp.myDRI.fe
     context['dri_e2'] = tmp_e
     context['dri_p2'] = tmp_p
     context['dri_v2'] = tmp_v
@@ -1308,7 +1308,7 @@ class Output1(LoginRequiredMixin, TemplateView):
       tmp_e += tmp.myDRI.energy
       tmp_p += tmp.myDRI.protein
       tmp_v += tmp.myDRI.vita
-      tmp_p += tmp.myDRI.fe
+      tmp_f += tmp.myDRI.fe
     context['dri_e3'] = tmp_e
     context['dri_p3'] = tmp_p
     context['dri_v3'] = tmp_v
@@ -1391,7 +1391,7 @@ class Output2(LoginRequiredMixin, TemplateView):
       tmp_e += tmp.myDRI.energy
       tmp_p += tmp.myDRI.protein
       tmp_v += tmp.myDRI.vita
-      tmp_p += tmp.myDRI.fe
+      tmp_f += tmp.myDRI.fe
     context['dri_e1'] = tmp_e
     context['dri_p1'] = tmp_p
     context['dri_v1'] = tmp_v
@@ -1406,7 +1406,7 @@ class Output2(LoginRequiredMixin, TemplateView):
       tmp_e += tmp.myDRI.energy
       tmp_p += tmp.myDRI.protein
       tmp_v += tmp.myDRI.vita
-      tmp_p += tmp.myDRI.fe
+      tmp_f += tmp.myDRI.fe
     context['dri_e2'] = tmp_e
     context['dri_p2'] = tmp_p
     context['dri_v2'] = tmp_v
@@ -1421,7 +1421,7 @@ class Output2(LoginRequiredMixin, TemplateView):
       tmp_e += tmp.myDRI.energy
       tmp_p += tmp.myDRI.protein
       tmp_v += tmp.myDRI.vita
-      tmp_p += tmp.myDRI.fe
+      tmp_f += tmp.myDRI.fe
     context['dri_e3'] = tmp_e
     context['dri_p3'] = tmp_p
     context['dri_v3'] = tmp_v
