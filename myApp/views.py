@@ -417,6 +417,8 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     # send filtered crop by AEZ ######
     myUser = self.request.user
     tmp01 = Crop_SubNational.objects.filter(myLocation_id=myUser.profile.myLocation).select_related('myFCT')
+    stepid = myUser.profile.stepid
+    context['stepid'] = stepid
 
     d = []
     for tmp02 in tmp01:
@@ -452,8 +454,6 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
       d.append(dd)
     context["mylist_local_name"] = d
 
-    stepid = self.request.user.profile.stepid
-    logger.info(stepid)
     newstep = 0
     if stepid == 100:
       newstep = 200

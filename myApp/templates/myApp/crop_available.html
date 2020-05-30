@@ -12,7 +12,12 @@
   <div class="container mt-0 mb-1 text-dark" style="max-width: 540px;">
     <div class="row">
       <div class="col-2 my-0 px-3">
-        <img src="{% static 'img/no2.png' %}">
+        {% if stepid == 100 %}
+          <img src="{% static 'img/no2.png' %}">
+        {% endif %}
+        {% if stepid == 500 %}
+          <img src="{% static 'img/no6.png' %}">
+        {% endif %}
       </div>
       <div class="col-7">
         <h5>
