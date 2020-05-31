@@ -2106,11 +2106,11 @@ def change_location(request, myUser, myLocation):
 
 
 def SetURL(stepid, myUser):
-  key = myUser.profile
-  key.stepid = stepid
-  key.save()
-  if stepid != 0:
+  if stepid > 0:
     myLocation = myUser.profile.myLocation
+    key = myUser.profile
+    key.stepid = stepid
+    key.save()
   myResult = {}
   main_URL = ""
   back_Title = ""
@@ -2127,6 +2127,17 @@ def SetURL(stepid, myUser):
     try:
       back_URL = reverse_lazy("index01")
       forward_URL = reverse_lazy("Location_list")
+    except:
+      logger.error('無効な値を参照しています')
+
+  elif stepid == -1:
+    back_Title = ""
+    main_Title = "step0/8"
+    forward_Title = "menu"
+    guide_text = 'welcome to NFA tool! this tool help you to optimize diet and crop for selected beneficiaries'
+    try:
+      back_URL = ""
+      forward_URL = reverse_lazy("index02")
     except:
       logger.error('無効な値を参照しています')
 
@@ -2222,17 +2233,6 @@ def SetURL(stepid, myUser):
     guide_text = 'please select output you want to check'
     try:
       back_URL = reverse_lazy("diet2", kwargs={'myLocation': myLocation})
-    except:
-      logger.error('無効な値を参照しています')
-
-  elif stepid == -1:
-    back_Title = ""
-    main_Title = "step0/8"
-    forward_Title = "menu"
-    guide_text = 'welcome to NFA tool! this tool help you to optimize diet and crop for selected beneficiaries'
-    try:
-      back_URL = ""
-      forward_URL = reverse_lazy("index02")
     except:
       logger.error('無効な値を参照しています')
 
