@@ -455,9 +455,9 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     context["mylist_local_name"] = d
 
     newstep = 0
-    if stepid == 100:
+    if stepid in [100, 200]:
       newstep = 200
-    elif stepid == 500:
+    elif stepid in [500, 600]:
       newstep = 600
 
     tmp_Param = SetURL(newstep, self.request.user)
@@ -946,7 +946,8 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     # --------------------create 16 Crop_individual-------------------------
     # if __name__ == '__main__':
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
-    myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212]
+    myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 301, 302, 303, 304, 305,
+               306, 307, 308, 309, 310, 311, 312]
 
     # tmp_xx = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT').annotate(
     #   numviews=Count(Case(
@@ -1129,7 +1130,8 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     # --------------------create 16 Crop_individual-------------------------
     # if __name__ == '__main__':
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
-    myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212]
+    myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 301, 302, 303, 304, 305,
+               306, 307, 308, 309, 310, 311, 312]
 
     # tmp_xx = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT').annotate(
     #   numviews=Count(Case(
