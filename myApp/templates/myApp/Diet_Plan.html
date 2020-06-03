@@ -17,6 +17,8 @@
 
     <div class="container" style="max-width: 540px;">
       <div class="row">
+        {% include "./_dialog01.html" %}
+        <a class="btn btn-info badge btn-sm" href="#" id="btn_loader">ボタン</a></p>
         <div class="col-2 my-0 px-3">
           <img src="{% static 'img/no4.png' %}" alt="number 4">
         </div>
@@ -572,7 +574,7 @@
     Crop_Selected.prototype.setData_fromListbox = function (num_tbl, mydata, drawFlag) {
       console.group('Crop_Selected.receive_SelectedRow:');
       if (drawFlag) {       //rowの追加
-                            //データセットの作成1:buy_prod_share設定
+        //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {

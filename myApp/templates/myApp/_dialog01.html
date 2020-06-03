@@ -1,0 +1,65 @@
+<!-- モーダルの設定----------------------------->
+<div class="container mx-0 my-0 px-0 py-0 ">
+  <div class="modal fade" id="Modal_loader" tabindex="-1" role="dialog"
+       aria-labelledby="Modal_loader_Label">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+        </div>
+        <div class="modal-body text-dark" id="dlg_main_doc">
+          <div id="loader"><i class="fa fa-refresh fa-spin" aria-hidden="true"> </i> ...data loading</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- モーダルの設定----------------------------->
+
+
+<style>
+  #loader {
+    display: none;
+  }
+</style>
+
+<script type="text/javascript">
+  $(window).on("load", function () {
+    // Handler when all assets (including images) are loaded
+    let dlg_flag = 0;
+    $('#loader')
+            .ajaxStart(function () {
+              if (dlg_flag) {
+                $(this).show()
+              }
+            })
+            .ajaxStop(function () {
+              if (dlg_flag) {
+                $(this).hide();
+                dlg_flag = 0;
+              }
+            });
+
+    function openDialogue(mySite) {
+      $('#Modal_loader').modal('show');
+      dlg_flag = 1;
+      $.ajax({
+        type: 'GET',
+        url: mySite,
+        dataType: 'html',
+        success: function (data) {
+          $('#dlg_main_doc').append(data);
+        },
+        error: function () {
+          alert('data not loaded');
+        }
+      });
+    }
+
+    $('#btn_loader').click(function () {
+      Set_CRSF();
+      openDialogue('https://www.yahoo.co.jp');
+    });
+  });
+
+</script>

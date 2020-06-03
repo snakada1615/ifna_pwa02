@@ -145,7 +145,7 @@
                     <div class="text-dark lbl_target_va" myNum=401></div>
                   </div>
                   <div class="col-7">
-                    <select class="rating_DRI rating_va1" myNum=401>
+                    <select class="rating_DRI rating_va" myNum=401>
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -776,6 +776,9 @@
       } else if (rate_va < 1) {
         rate_va = 1
       }
+      console.log('sum_va='+sum_va);
+      console.log('target_va='+target_va[target_scope]);
+      console.log('rate_va='+rate_va);
       let rate_fe = Math.round(sum_fe * 10 / target_fe[target_scope]);
       if (rate_fe > 10) {
         rate_fe = 10
