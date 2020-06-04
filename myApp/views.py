@@ -455,10 +455,13 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     context["mylist_local_name"] = d
 
     newstep = 0
-    if stepid in [100, 200]:
+    if stepid in [100, 200, 300]:
       newstep = 200
-    elif stepid in [500, 600]:
+    elif stepid in [500, 600, 700]:
       newstep = 600
+
+    logger.info(stepid)
+    logger.info(newstep)
 
     tmp_Param = SetURL(newstep, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
