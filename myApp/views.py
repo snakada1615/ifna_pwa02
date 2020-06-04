@@ -455,7 +455,7 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     context["mylist_local_name"] = d
 
     newstep = 0
-    if stepid in [100, 200, 300]:
+    if stepid in [100, 200]:
       newstep = 200
     elif stepid in [500, 600, 700]:
       newstep = 600
