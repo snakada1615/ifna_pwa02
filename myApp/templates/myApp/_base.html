@@ -10,6 +10,7 @@
   <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
   <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/loading.css' %}">
 
 
   <style type="text/css">
@@ -246,6 +247,7 @@
 
     /* ----------ティッカーの設定終わり----------*/
 
+
     /* 行または列の非表示*/
     .tableItem_hide {
       display: none;
@@ -264,12 +266,31 @@
       }, time);
     }    // ---------------------
 
+    // --------loading画面の消去-------
+    window.onload = function () {
+      let spinner = document.getElementById('my-spinner');
+
+      // .box に .loaded を追加してローディング表示を消す
+      spinner.classList.add('loaded');
+    }
+    // --------loading画面の消去-------
+
   </script>
 
 </head>
 
 <body>
 <div class="wrapper">
+  <!-- ローディング画面の設定 -->
+  <div class="container my-0 py-0" style="max-width: 540px;">
+    <div id="my-spinner" class="box">
+      <!-- type1 〜 type8 はお好みで -->
+      <div class="spinner type1">
+        <span>Loading...</span>
+      </div>
+    </div>
+  </div>
+  <!-- ローディング画面の設定 終-->
 
   <nav class="navbar navbar-expand navbar-dark bg-secondary static-top container py-0" style="max-width: 540px;">
     <div class="container-fluid">
@@ -326,6 +347,7 @@
         </div>
       </div>
     </div>
+
     <div class="container my-0 py-0" style="max-width: 540px;">
       <div class="row mx-0 my-0 py-0">
         <div class="marquee">
@@ -344,6 +366,7 @@
     {% include 'myApp/_messages.html' %}
   </div>
 </div>
+
 
 </body>
 
