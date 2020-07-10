@@ -613,3 +613,72 @@ class Pop(models.Model):
   share_Pop = models.FloatField(default=0)
   share_Preg = models.FloatField(default=0)
   share_BF = models.FloatField(default=0)
+
+class Season(models.Model):
+  created_at = models.DateTimeField(
+    verbose_name='record_date',
+    auto_now_add=True
+  )
+  created_by = models.ForeignKey(
+    User,
+    null=True,
+    blank=True,
+    on_delete=models.CASCADE
+  )
+  myLocation = models.ForeignKey(
+    Location,
+    null=True,
+    blank=True,
+    on_delete=models.CASCADE
+  )
+  m1_season = models.IntegerField(
+    verbose_name='mon01_season',
+    default=0,
+  )
+  m2_season = models.IntegerField(
+    verbose_name='mon02_season',
+    default=0,
+  )
+  m3_season = models.IntegerField(
+    verbose_name='mon03_season',
+    default=0,
+  )
+  m4_season = models.IntegerField(
+    verbose_name='mon04_season',
+    default=0,
+  )
+  m5_season = models.IntegerField(
+    verbose_name='mon05_season',
+    default=0,
+  )
+  m6_season = models.IntegerField(
+    verbose_name='mon06_season',
+    default=0,
+  )
+  m7_season = models.IntegerField(
+    verbose_name='mon07_season',
+    default=0,
+  )
+  m8_season = models.IntegerField(
+    verbose_name='mon08_season',
+    default=0,
+  )
+  m9_season = models.IntegerField(
+    verbose_name='mon09_season',
+    default=0,
+  )
+  m10_season = models.IntegerField(
+    verbose_name='mon10_season',
+    default=0,
+  )
+  m11_season = models.IntegerField(
+    verbose_name='mon11_season',
+    default=0,
+  )
+  m12_season = models.IntegerField(
+    verbose_name='mon12_season',
+    default=0,
+  )
+
+
+

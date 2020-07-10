@@ -75,37 +75,105 @@
           Then, click (start-month and end-month) to set available period of each food item.
         </div>
       </div>
-    </div>
 
-    <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;">
-      <div class="mod-tbl">
-        <table id="tbl_crop_selected" class="mytable">
-          <thead>
-          <tr>
-            <th class="tableItem_hide">selected_status</th>
-            <th class="tableItem_hide">Food_grp</th>
-            <th class="tableItem_hide">Food_name</th>
-            <th>Jan</th>
-            <th>Feb</th>
-            <th>Mar</th>
-            <th>Apr</th>
-            <th>May</th>
-            <th>Jun</th>
-            <th>Jul</th>
-            <th>Aug</th>
-            <th>Sep</th>
-            <th>Oct</th>
-            <th>Nov</th>
-            <th>Dec</th>
-            <th class="tableItem_hide">food_item_id</th>
-          </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+      <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;">
+        <div class="mod-tbl">
+          <table id="tbl_crop_selected" class="mytable">
+            <thead>
+            <tr>
+              <th class="tableItem_hide">selected_status</th>
+              <th class="tableItem_hide">Food_grp</th>
+              <th class="tableItem_hide">Food_name</th>
+              <th>Jan</th>
+              <th>Feb</th>
+              <th>Mar</th>
+              <th>Apr</th>
+              <th>May</th>
+              <th>Jun</th>
+              <th>Jul</th>
+              <th>Aug</th>
+              <th>Sep</th>
+              <th>Oct</th>
+              <th>Nov</th>
+              <th>Dec</th>
+              <th class="tableItem_hide">food_item_id</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
 
+      <div class="card border-primary col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;background-color: #e9ecef ">
+        <div class="card-body mx-1 my-1 px-0 py-0">
+          <div class="ml-1 mr-2 my-1"><p class="font-weight-bold">Define season</p></div>
+          <div class="ml-3">
+            Please define season for target location
+          </div>
+        </div>
+
+        <div class="card-body mx-1 my-1 px-0 py-0">
+          <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no1_gr.png' %}"> Select brush</div>
+          <div class="ml-3">Click for respective season</div>
+          <div class="card bg-transparent border-info pt-1">
+            <div class="row ml-3 my-0">
+              <div class="col-6">
+            <span class="btn_color2 btn btn-outline-dark py-0" mycol="white" style="color:white">
+            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> season1
+              </div>
+              <div class="col-6">
+            <span class="btn_color2 btn btn-outline-dark py-0" mycol="green" style="color:green">
+            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> season2
+              </div>
+            </div>
+            <div class="row ml-3 my-0">
+              <div class="col-6">
+            <span class="btn_color2 btn btn-outline-dark py-0" mycol="blue" style="color:blue">
+            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> season3
+              </div>
+              <div class="col-6">
+            <span class="btn_color2 btn btn-outline-dark py-0" mycol="red" style="color:red">
+            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> season4
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body mx-1 my-1 px-0 py-0">
+          <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no2_gr.png' %}"> Define season</div>
+          <div class="ml-3">
+            Then, click (start-month and end-month) to set each season
+          </div>
+        </div>
+      </div>
+
+      <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;">
+        <div class="mod-tbl">
+          <table id="tbl_season" class="mytable">
+            <thead>
+            <tr>
+              <th>Jan</th>
+              <th>Feb</th>
+              <th>Mar</th>
+              <th>Apr</th>
+              <th>May</th>
+              <th>Jun</th>
+              <th>Jul</th>
+              <th>Aug</th>
+              <th>Sep</th>
+              <th>Oct</th>
+              <th>Nov</th>
+              <th>Dec</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <!-- モーダルの設定 ----------------------------->
@@ -237,6 +305,7 @@
     var selected_rows_id = [];
     var json_crop_name = {{mylist_local_name|safe}};
     var Json_Crop_All = {{dat_mycrop | safe}};
+    var Json_Season = {{dat_season | safe}};
 
     //////////////// set local name/////
     let index = {};
@@ -249,6 +318,7 @@
     });
     console.log(Json_Crop_All);
     var $myTbl = $('#tbl_crop_selected');
+    var $Tbl_season = $('#tbl_season');
 
     //現在選択されている作物一覧
     var Json_Crop_Selected = Json_Crop_All.filter(function (item, index) {
@@ -383,6 +453,109 @@
     };
 
 
+    ////////////////////////////////////////////////////////////////////////
+    //    object setup "Season_MultiSelect"   -------------------------------
+    function Season_MultiSelect(selected_status, start_x, start_y, color) {
+      if (selected_status != 0 && selected_status != 1) {
+        this.selected_status = -1;
+      }
+      this.start_x = start_x || -1;
+      this.start_y = start_y || -1;
+      this.goal_x = -1;
+      this.goal_y = -1;
+      this.color = color || 1;
+      console.log('オブジェクトSeason_MultiSelectを作成しました');
+      console.log(this.getAll());
+    }
+
+    Season_MultiSelect.prototype.setBaseColor = function (color) {
+      if (![0, 1, 2, 3].includes(color)) {
+        color = 0;
+      }
+      this.color = color;
+      this.selected_status = 0;
+    };
+    Season_MultiSelect.prototype.setStart = function (x, y) {
+      this.start_x = x;
+      this.start_y = y;
+      this.goal_x = 0;
+      this.goal_y = 0;
+      this.selected_status = 1;
+      console.log('オブジェクトのsetStartを設定しました');
+      console.log(this.getAll());
+    };
+    Season_MultiSelect.prototype.setGoal = function (x, y) {
+      if (this.selected_status === 1) {
+        if (y != this.start_y) {
+          console.log('yの値が不正です');
+          alert('please select month from season table');
+        } else if (x < 0 || x > 11) {
+          console.log('xの値が不正です');
+        } else {
+          this.goal_x = x;
+          this.goal_y = y;
+          this.selected_status = 0;
+          this.drawCell();
+        }
+      } else {
+        console.log('Season_MultiSelectは選択を開始していませんん');
+      }
+    };
+    Season_MultiSelect.prototype.getAll = function () {
+      start_x = this.start_x;
+      start_y = this.start_y;
+      goal_x = this.goal_x;
+      goal_y = this.goal_y;
+      color = this.color;
+//      myName = $Tbl_season.children('tbody').children('tr').eq(2 * start_y).children('td').eq(1).text();
+      selected_status = this.selected_status;
+      return {start_x, start_y, goal_x, goal_y, selected_status, color}
+    };
+    Season_MultiSelect.prototype.setCellColor = function (x, y, color) {
+      let $tmp_cell = $Tbl_season.children('tbody').children('tr').eq(y).children('td').eq(x);
+
+      switch (Number(color)) { // cellの値に応じて色変化
+        case 0:
+          $tmp_cell.css("background-color", "white");
+          $tmp_cell.css("color", "white");
+          $tmp_cell.text(color);
+          break;
+        case 1:
+          $tmp_cell.css("background-color", "red");
+          $tmp_cell.css("color", "red");
+          $tmp_cell.text(color);
+          break;
+        case 2:
+          $tmp_cell.css("background-color", "green");
+          $tmp_cell.css("color", "green");
+          $tmp_cell.text(color);
+          break;
+        case 3:
+          $tmp_cell.css("background-color", "blue");
+          $tmp_cell.css("color", "blue");
+          $tmp_cell.text(color);
+          break;
+        case 4:
+          $tmp_cell.css("background-color", "grey");
+          $tmp_cell.css("color", "grey");
+          break;
+      }
+    };
+    Season_MultiSelect.prototype.drawCell = function () {
+      console.log('Seasonの色を(' + this.start_x + ', ' + this.start_y
+              + ') から (' + this.goal_x + ', ' + this.goal_y + ')の区間で' + this.color + 'に設定します');
+      let tmp_start = this.start_x;
+      let tmp_goal = this.goal_x;
+      if (this.start_x >= this.goal_x) {
+        tmp_start = this.goal_x;
+        tmp_goal = this.start_x;
+      }
+      for (i = tmp_start; i < tmp_goal + 1; i++) {
+        this.setCellColor(i, this.start_y, this.color);
+      }
+    };
+
+
     ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
     function DrawSelected_addRow(addRow) { /// render selected_crops_tbl
       let cr = '';
@@ -470,6 +643,48 @@
 
       DrawSelected_addRow(dd);
 
+    });
+
+    ////////////////  read initial value for season table ////////////
+    $.each(Json_Season, function (i, addRow) {
+      let cr = '<tr>';
+      cr += '<td>' + addRow.m1_season + '</td>';
+      cr += '<td>' + addRow.m2_season + '</td>';
+      cr += '<td>' + addRow.m3_season + '</td>';
+      cr += '<td>' + addRow.m4_season + '</td>';
+      cr += '<td>' + addRow.m5_season + '</td>';
+      cr += '<td>' + addRow.m6_season + '</td>';
+      cr += '<td>' + addRow.m7_season + '</td>';
+      cr += '<td>' + addRow.m8_season + '</td>';
+      cr += '<td>' + addRow.m9_season + '</td>';
+      cr += '<td>' + addRow.m10_season + '</td>';
+      cr += '<td>' + addRow.m11_season + '</td>';
+      cr += '<td>' + addRow.m12_season + '</td>';
+      cr += '</tr>';
+
+      $Tbl_season.append(cr);
+
+      let tmpRow = $Tbl_season.find('tr').last();
+      tmpRow.children('td').each(function (j, myCell) {
+        switch (Number($(this).text())) { // cellの値に応じて色変化
+          case 0:
+            $(this).css("background-color", "white");
+            $(this).css("color", "white");
+            break;
+          case 1:
+            $(this).css("background-color", "red");
+            $(this).css("color", "red");
+            break;
+          case 2:
+            $(this).css("background-color", "green");
+            $(this).css("color", "green");
+            break;
+          case 3:
+            $(this).css("background-color", "blue");
+            $(this).css("color", "blue");
+            break;
+        }
+      });
     });
 
     ////////////////  install tbl_crop_candidate  ////////////
@@ -580,6 +795,30 @@
         });
         /// ------------------------------------------------
 
+        /// ------------------------------------------------
+        $('.btn_color2').click(function () {
+          console.log('btn_color2=' + $(this).attr('myCol'));
+          let mes = '';
+          let tmp_col_num = 0;
+          let tmp_col = $(this).attr('myCol');
+          if (tmp_col == 'red') {
+            tmp_col_num = 1;
+            mes = "you chose red brush";
+          } else if (tmp_col == 'green') {
+            tmp_col_num = 2;
+            mes = "you chose green brush";
+          } else if (tmp_col == 'blue') {
+            tmp_col_num = 3;
+            mes = "you chose blue brush";
+          } else if (tmp_col == 'white') {
+            tmp_col_num = 0;
+            mes = "you chose white brush";
+          }
+          mySeason.setBaseColor(tmp_col_num);
+          my_snackbar(mes, 2000);
+        });
+        /// ------------------------------------------------
+
         //////////////////on click -> crop list /
         $('#tbl_crop_candidate tbody').on('click', 'tr', function () {
           $(this).toggleClass('selected');
@@ -679,8 +918,56 @@
           }
         });
 
+        //////////////////on click -> chabge season category of selected month /
+        $Tbl_season.on('click', 'td', function () {
+          let myrow = $(this).closest('tr').index();
+          let mycol = this.cellIndex;
+
+          console.log('mySeason.getAll().selected_status=' + mySeason.getAll().selected_status);
+          switch (mySeason.getAll().selected_status) {
+            case -1:
+              let tmp = Number($(this).text());
+              tmp = (tmp + 1) % 4;
+              $(this).text(tmp); // cellの値+1
+              mySeason.setCellColor(mycol, myrow, tmp);
+              break;
+                  {% comment %}
+                                  switch (tmp) { // cellの値に応じて色変化
+                                    case 0:
+                                      $(this).css("background-color", "");
+                                      $(this).css("color", "white");
+                                      break;
+                                    case 1:
+                                      $(this).css("background-color", "red");
+                                      $(this).css("color", "red");
+                                      break;
+                                    case 2:
+                                      $(this).css("background-color", "green");
+                                      $(this).css("color", "green");
+                                      break;
+                                    case 3:
+                                      $(this).css("background-color", "blue");
+                                      $(this).css("color", "blue");
+                                      break;
+                                  }
+                  {% endcomment %}
+            case 0:
+              mySeason.setStart(mycol, myrow);
+              mySeason.setCellColor(mycol, myrow, 4);
+              console.log('selectedd_statusは' + mySeason.getAll().selected_status + 'です');
+              console.log('(' + mycol + ', ' + myrow + '), ' + 'です');
+              break;
+            case 1:
+              mySeason.setGoal(mycol, myrow);
+              console.log('selectedd_statusは' + mySeason.getAll().selected_status + 'です');
+              console.log('(' + mycol + ', ' + myrow + '), ' + 'です');
+              break;
+          }
+        });
+
         //////////////////get data from table
         function getTblData() {
+          let res1 = {};
           let d = [];
           $myTbl.children('tbody').children('tr').each(function (index_r, myRow) {
             if (index_r % 2 == 1) {
@@ -695,83 +982,95 @@
             }
           });
           console.log(d);
-          return {"myJson": d};
-        }
+          res1.myJson = d;
 
-        //////////////send crop list to django////
-        $("#btn_save").click(function () {
-          let hostUrl = myRoot + 'registCropAvail/';
-          let mydat = getTblData();
-          console.log(hostUrl);
-          Set_CRSF();
-          sendJson(mydat, hostUrl);
-        }); ///////////////////
-
-        //////////////
-
-        ////// csrf_tokenの取得に使う//////////////
-        function getCookie(name) {
-          var cookieValue = null;
-          if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-              var cookie = jQuery.trim(cookies[i]);
-              // Does this cookie string begin with the name we want?
-              if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-              }
-            }
+          let season = [];
+          let month = {};
+          let $myrow = $Tbl_season.children('tbody').children('tr');
+          for (var j = 0; j < 12; j++) {
+            month["m" + String(j + 1)] = $myrow.children('td').eq(j).text();
           }
-          return cookieValue;
+          month["myLocation"] = {{myLocation}};
+          season.push(month);
+          res1.season = season;
+
+    return res1;
+    }
+
+    //////////////send crop list to django////
+    $("#btn_save").click(function () {
+      let hostUrl = myRoot + 'registCropAvail/';
+      let mydat = getTblData();
+      console.log(hostUrl);
+      Set_CRSF();
+      sendJson(mydat, hostUrl);
+    }); ///////////////////
+
+    ////// csrf_tokenの取得に使う//////////////
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = jQuery.trim(cookies[i]);
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
         }
+      }
+      return cookieValue;
+    }
 
-        function csrfSafeMethod(method) {
-          // these HTTP methods do not require CSRF protection
-          return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    function Set_CRSF() {
+      var csrf_token = getCookie("csrftoken");
+      $.ajaxSetup({
+        crossDomain: false, // obviates need for sameOrigin test
+        beforeSend: function (xhr, settings) {
+          if (!csrfSafeMethod(settings.type)) {
+            xhr.setRequestHeader("X-CSRFToken", csrf_token);
+          }
         }
+      });
+    }
 
-        function Set_CRSF() {
-          var csrf_token = getCookie("csrftoken");
-          $.ajaxSetup({
-            crossDomain: false, // obviates need for sameOrigin test
-            beforeSend: function (xhr, settings) {
-              if (!csrfSafeMethod(settings.type)) {
-                xhr.setRequestHeader("X-CSRFToken", csrf_token);
-              }
-            }
-          });
+    //////////////////sendJson////
+    function sendJson(myjson, hostUrl) {
+      $.ajax({
+        type: 'post',
+        url: hostUrl,
+        data: JSON.stringify(myjson),
+        contentType: 'application/JSON',
+        dataType: 'JSON',
+        scriptCharset: 'utf-8',
+        success: function (response) {
+          window.location.href = response.url;
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          alert("fail");
+          console.log(jqXHR.responseText);
+          console.log(jqXHR.status); //例：404
+          console.log(textStatus); //例：error
+          console.log(errorThrown); //例：NOT FOUND
+          console.log(JSON.stringify(myjson)); //例：NOT FOUND
+          console.log(myjson); //例：NOT FOUND
         }
+      });
+    }
 
-        //////////////////sendJson////
-        function sendJson(myjson, hostUrl) {
-          $.ajax({
-            type: 'post',
-            url: hostUrl,
-            data: JSON.stringify(myjson),
-            contentType: 'application/JSON',
-            dataType: 'JSON',
-            scriptCharset: 'utf-8',
-            success: function (response) {
-              window.location.href = response.url;
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-              alert("fail");
-              console.log(jqXHR.responseText);
-              console.log(jqXHR.status); //例：404
-              console.log(textStatus); //例：error
-              console.log(errorThrown); //例：NOT FOUND
-              console.log(JSON.stringify(myjson)); //例：NOT FOUND
-              console.log(myjson); //例：NOT FOUND
-            }
-          });
-        }
+    //////////////////sendJson//// scfript end///////////////////
+    const mySelectMonth = new Cell_MultiSelect(-1, 0, 1, 2);
+    const mySeason = new Season_MultiSelect(-1, 0, 1, 2);
 
-        //////////////////sendJson//// scfript end///////////////////
-        const mySelectMonth = new Cell_MultiSelect(-1, 0, 1, 2);
-
-      }// ---------- initComplete finish here --------------
-    });
+    }// ---------- initComplete finish here --------------
+    })
+    ;
 
   </script>
 

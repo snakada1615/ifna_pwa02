@@ -1,14 +1,676 @@
 {% extends 'myApp/_base.html' %}
 {% load static %}
 {% block content %}
-  <div class="container mt-0 mb-1 text-dark" style="max-width: 540px;">
-    <div class="modal-body text-dark" id="dlg_main_doc">
-      <div id="loader"><i class="fa fa-refresh fa-spin" aria-hidden="true"> </i> ...data loading</div>
+
+  <script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}"
+        media="screen">
+  <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}"
+        media="screen">
+  <script type="text/javascript" src="{% static 'js/jquery.barrating.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/fontawesome-apple.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bars-1to10.css' %}">
+
+  <!-------------title--------------------------->
+  <div class="container" aria-live="polite" aria-atomic="true" style="max-width: 540px; position: relative;">
+
+    <div class="container" style="max-width: 540px;">
+      <div class="row">
+        {% include "./_dialog01.html" %}
+        <div class="col-2 my-0 px-3">
+          <img src="{% static 'img/no4.png' %}" alt="number 4">
+        </div>
+        <div class="col-8 my-0 px-1">
+          <h5>
+            Diet planning for
+            {{ myLocation.name }}
+          </h5>
+        </div>
+        <div class="col-2 my-0 px-3">
+          <div class="row">
+            <div class="col-12">
+              <span>
+              <a class="btn btn-warning mt-2 my-0 py-0 btn-sm" mynum="100" id="btn_save_crop" href='#'>save</a>
+            </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-------------location information--------------------------->
+    <div class="container" style="max-width: 540px;">
+      <div id="accordion">
+        <div class="card  border-dark bg-light col-12 mt-2 py-0" style="max-width: 540px;">
+          <div class="row">
+            <div class="col-12">
+              <div class="card-body py-0 px-0">
+                <p class="card-text my-0">
+                  {{ myLocation.myCountry.NAME_0 }}
+                </p>
+                <p class="card-text my-0">
+                  {{ myLocation.myCountry.NAME_1 }}
+                </p>
+                <p class="card-text my-0">
+                  {{ myLocation.myCountry.NAME_2 }}
+                </p>
+                <p class="card-text my-0">
+                  {{ myLocation.myCountry.NAME_3 }}
+                </p>
+                <p class="card-text my-0">
+                  {{ myLocation.name }}
+                </p>
+                <p class="card-text my-0">
+                  {{ myLocation.nutrition_target }}
+                </p>
+                <button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true"
+                        aria-controls="more_info">
+                  more info
+                </button>
+
+                <div id="more_info" class="collapse" aria-labelledby="heading{{ crop.food_item_id }}"
+                     data-parent="#accordion">
+                  <p class="card-text my-0">
+                    stunting rate:
+                    {{ myLocation.stunting_rate }}
+                  </p>
+                  <p class="card-text my-0">
+                    wasting rate:
+                    {{ myLocation.wasting_rate }}
+                  </p>
+                  <p class="card-text my-0">
+                    anemia rate:
+                    {{ myLocation.anemia_rate }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- モーダルの設定 local crop ----------------------------->
+    <div class="modal fade" id="Modal_localCrop1" mynum="0" tabindex="-1" role="dialog"
+         aria-labelledby="Modal_localCropLabel">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add/remove food item</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span class="text-danger" aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-dark">
+            <div class="my-2" id="myFilter1">Food group:
+            </div>
+            <table id="localCrop1" style="width: 100%">
+              <thead>
+              <tr>
+                <th>s</th>
+                <th>Name</th>
+                <th>En</th>
+                <th>Pr</th>
+                <th>VA</th>
+                <th>Fe</th>
+                <th>c</th>
+              </tr>
+              </thead>
+
+              <tfoot>
+              <tr>
+                <th>s</th>
+                <th>Name</th>
+                <th>En</th>
+                <th>Pr</th>
+                <th>VA</th>
+                <th>Fe</th>
+                <th>c</th>
+              </tr>
+              </tfoot>
+            </table>
+            <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm" data-dismiss="modal">close</a>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-------------------------------------->
+
+    <!-- モーダルの設定 change diet volume----------------------------->
+    <div class="container mx-0 my-0 px-0 py-0 ">
+      <div class="modal fade" id="Modal_food_volume" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Determine the volume of food item</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body text-dark">
+              <table border="1" class="table table-striped" id="tbl_food_SetWeight">
+                <tr>
+                  <th>name</th>
+                  <th>En</th>
+                  <th>Pr</th>
+                  <th>Va</th>
+                  <th>Fe</th>
+                  <th>Wt</th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </table>
+
+              <span>*consumption target (1 portion=): <a href="#" id="btn_change_portion"></a>g</span>
+
+              <div class="row pl-4">
+                <div class="column-11">
+                  <select id="BR_food_count">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                  </select>
+                </div>
+                <div class="column-1">
+              <span class="fb fb-help d-inline" data-toggle="tooltip"
+                    title="set volume of food by changing the number of apple icon below"></span>
+                </div>
+              </div>
+
+              <div>*share (
+                <span style="color: #5bc0de">production</span> /
+                <span style="color: #cc1111">buy</span>):
+                <img id="BR_buy_prod_pie_img" src="#" style="width: 30px" alt="">
+                <span class="fb fb-help" data-toggle="tooltip" title="you can set buy or produce"></span>
+              </div>
+
+              <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
+              <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_weight1">change value</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+    </div>
+    <!-------------------------------------->
+
+    <!-- モーダルの設定 change balance ----------------------------->
+    <div class="modal fade" id="Modal_Prod_Buy" tabindex="-1" role="dialog" aria-labelledby="Modal_foodVolLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark" id="Modal_foodVolLabel1">Where do you get food (field or market)?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-dark">
+            <label for="my_Prod_Buy" id="my_Prod_Buy-label1">*share (
+              <span style="color: #cc1111">buy</span> /
+              <span style="color: #5bc0de">production</span>):
+            </label>
+            <span class="fb fb-help" data-toggle="tooltip" title="Tooltip message"></span>
+
+            <select id="my_Prod_Buy">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+
+            <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
+            <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_share1">change share</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-------------------------------------->
+
+    <!-- モーダルの設定 change portion ----------------------------->
+    <div class="modal fade" id="Modal_Portion" tabindex="-1" role="dialog" aria-labelledby="Modal_PortionLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark" id="Modal_PortionLabel1">Please set minimum portion size</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-dark">
+
+            <form>
+              <div class="form-group row">
+                <label for="old_portion" class="col-sm-4 col-form-label">current value (g)</label>
+                <div class="col-sm-8">
+                  <input type="number" readonly class="form-control-plaintext" class="form-control" id="old_portion"
+                         placeholder="portion size" value="30">
+                </div>
+                <label for="new_portion" class="col-sm-4 col-form-label">new value (g)</label>
+                <div class="col-sm-8">
+                  <input type="number" class="form-control" id="new_portion" placeholder="ex.) 50..">
+                </div>
+              </div>
+            </form>
+
+            <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">cancel</button>
+            <button type="button" class="btn btn-primary mt-2" mynum="0" id="btn_set_portion">change portion</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-------------------------------------->
+
+
+    <div id="container_tab_all" class="container border-secondary py-1 my-1 px-0"
+         style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
+      <!-- 4個分のタブ -->
+      <nav class="nav nav-pills" role="tablist" id="myTabs">
+        <a class="flex-sm-fill text-sm-center nav-link active" href="#tab_individual" role="tab">individual</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_family" role="tab">family</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_community" role="tab">community</a>
+      </nav>
+
+      <!-- タブの移動先指定 -->
+      <div class="tab-content mt-2" id="tabContent">
+        <div class="tab-pane active" id="tab_individual" role="tabpanel">
+          {% include "./Diet_Sub1.html" %}
+        </div>
+        <div class="tab-pane" id="tab_family" role="tabpanel">
+          {% include "./Diet_Sub2.html" %}
+        </div>
+        <div class="tab-pane" id="tab_community" role="tabpanel">
+          {% include "./Diet_Sub3.html" %}
+        </div>
+      </div>
+    </div>
+
   </div>
 
+
+  <style media="screen">
+    /* set common variable */
+    :root {
+      --td_wid_normal: 30;
+    }
+
+    /* force rotate when screen width less than 450 */
+    @media screen and (min-width: 320px) and (max-width: 450px) and (orientation: portrait) {
+      html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+    }
+
+    .mod-tbl {
+      max-width: 650px;
+    }
+
+    .mytable {
+      table-layout: fixed;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .mytable tbody th {
+      width: var(--td_wid_normal) px;
+      min-width: var(--td_wid_normal) px;
+      border-collapse: collapse;
+      border: 2px grey solid;
+    }
+
+    .mytable td {
+      width: var(--td_wid_normal) px;
+      min-width: var(--td_wid_normal) px;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .mytable th {
+      color: whitesmoke;
+      background-color: #49A0B5;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .mytable tr:nth-child(odd) td {
+      color: darkblue;
+      text-align: left;
+      background-color: #49A0B5;
+    }
+
+    .mytable tr:nth-child(even) td {
+      color: white;
+      background-color: #F9F9F9;
+    }
+
+    /* 行または列の非表示*/
+    .tableItem_hide {
+      display: none;
+    }
+
+  </style>
+
   <script type="text/javascript">
-    window.location.href = 'http://127.0.0.1:8000/Diet1/71/';
+    //データ読み込み
+
+    var json_crop_local_org = {{mylist_available|safe}};
+    var json_crop_selected_org = {{mylist_selected|safe}};
+    var json_crop_name = {{mylist_local_name|safe}};
+    var json_season_def = {{season|safe}};
+
+    //---tabの切替処理-------------
+    let activeTab = $('#myTabs a').filter('.active');
+
+    $('#myTabs a').click(function (e) {
+      e.preventDefault();
+
+      activeTab.removeClass('active');
+      $(activeTab.attr('href')).removeClass('active');
+
+      activeTab = $(this);
+
+      activeTab.addClass("active");
+      $(activeTab.attr('href')).addClass('active');
+    });
+    //---tabの切替処理-------------
+
+    //---carouselの切替処理-------------
+    let c_index = 0;
+    let myMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+      'August', 'September', 'Octoer', 'November', 'December'];
+    $('#btn_car_prev1').click(function () {
+      $('#carouselControl1').carousel('prev');
+      c_index = $('#carouselControl1 div.active').index() || 4;
+      $('#title_diet1').text("Diet for Season " + c_index);
+    });
+    $('#btn_car_next1').click(function () {
+      $('#carouselControl1').carousel('next');
+      c_index = ($('#carouselControl1 div.active').index() + 2) % 4 || 4;
+      $('#title_diet1').text("Diet for Season " + c_index);
+    });
+    $('#btn_car_prev2').click(function () {
+      $('#carouselControl2').carousel('prev');
+      c_index = $('#carouselControl2 div.active').index() || 12;
+      $('#title_diet2').text('Diet for ' + myMonth[c_index - 1]);
+    });
+    $('#btn_car_next2').click(function () {
+      $('#carouselControl2').carousel('next');
+      c_index = ($('#carouselControl2 div.active').index() + 2) % 12 || 12;
+      $('#title_diet2').text('Diet for ' + myMonth[c_index - 1]);
+    });
+    $('#btn_car_prev3').click(function () {
+      $('#carouselControl3').carousel('prev');
+      c_index = $('#carouselControl3 div.active').index() || 12;
+      $('#title_diet3').text('Diet for ' + myMonth[c_index - 1]);
+    });
+    $('#btn_car_next3').click(function () {
+      $('#carouselControl3').carousel('next');
+      c_index = ($('#carouselControl3 div.active').index() + 2) % 12 || 12;
+      $('#title_diet3').text('Diet for ' + myMonth[c_index - 1]);
+    });
+    //---carouselの切替処理-------------
+    //---carouselの初期値-------------
+    $('#title_diet1').text('Diet for Season 1');
+    $('#title_diet2').text('Diet for ' + myMonth[0]);
+    $('#title_diet3').text('Diet for ' + myMonth[0]);
+    //---carouselの初期値-------------
+
+
+    //    create object setup "Crop_Selected"   -------------------------------
+    class Crop_single {
+      constructor(data_individual, data_local, data_season) {
+        let season_length = {};
+        let season_available = {};
+
+        this._myLocation = myLocation_id;
+        this._target_scope = Math.trunc(Number(num_tbl) / 100);
+        this._food_item_id = data_individual['food_item_id'];
+        this._Food_grp = data_individual['Food_grp'];
+        this._Food_name = data_individual['Food_name'];
+        this._Energy_all = data_individual['Energy'];
+        this._Protein_all = data_individual['Protein'];
+        this._Fat_all = data_individual['Fat'];
+        this._Carbohydrate_all = data_individual['Carbohydrate'];
+        this._VITA_RAE_all = data_individual['VITA_RAE'];
+        this._FE_all = data_individual['FE'];
+        this._portion_size = data_individual['portion_size'];
+
+        this._share_prod_buy = 10;
+        this._total_weight = 0;
+        this._count_prod = 0;
+        this._count_buy = 0;
+
+        this._m = [];
+        this._m.push(data_local.m1);
+        this._m.push(data_local.m2);
+        this._m.push(data_local.m3);
+        this._m.push(data_local.m4);
+        this._m.push(data_local.m5);
+        this._m.push(data_local.m6);
+        this._m.push(data_local.m7);
+        this._m.push(data_local.m8);
+        this._m.push(data_local.m9);
+        this._m.push(data_local.m10);
+        this._m.push(data_local.m11);
+        this._m.push(data_local.m12);
+
+        this._Energy_content = data_local['Energy'];
+        this._Protein_content = data_local['Protein'];
+        this._Fat_content = data_local['Fat'];
+        this._Carbohydrate_content = data_local['Carbohydrate'];
+        this._VITA_RAE_content = data_local['VITA_RAE'];
+        this._FE_content = data_local['FE'];
+
+        this._num_tbl = num_tbl;
+        [0, 1, 2, 3].map(function (value, index, array) {
+          season_length[value] = 0;
+          season_available[value] = 0;
+        });
+
+        data_season.map(function (value, index, array) {
+          season_length[value] += 1;
+          if (this._m[index] > 0) {
+            season_available[value] += 1;
+          }
+        });
+
+        this._season = {};
+        season_length.map(function (value, index, array) {
+          let res = '0';
+          let tmp = season_available[index] / value;
+          if (tmp === 1) {
+            res = 1;
+          } else if (tmp >= 0.6) {
+            res = 2;
+          } else if (tmp >= 0.3) {
+            res = 3;
+          } else {
+            res = 0;
+          }
+          this._season[index] = res;
+        });
+
+        this.test();
+      }
+
+      test() {
+        console.log('this is test')
+      }
+
+      getSeason(i, data) {
+
+      }
+
+      get mylocation() {
+        return this._myLocation;
+      }
+
+      get Carbohydrate_all() {
+        return this._Carbohydrate_all;
+      }
+
+      get Carbohydrate_content() {
+        return this._Carbohydrate_content;
+      }
+
+      get count_buy() {
+        return this._count_buy;
+      }
+
+      get Energy_all() {
+        return this._Energy_all;
+      }
+
+      get Energy_content() {
+        return this._Energy_content;
+      }
+
+      get Fat_all() {
+        return this._Fat_all;
+      }
+
+      get Fat_content() {
+        return this._Fat_content;
+      }
+
+      get FE_content() {
+        return this._FE_content;
+      }
+
+      get FE_all() {
+        return this._FE_all;
+      }
+
+      get Food_grp() {
+        return this._Food_grp;
+      }
+
+      get food_item_id() {
+        return this._food_item_id;
+      }
+
+      get Food_name() {
+        return this._Food_name;
+      }
+
+      get month() {
+        return this._month;
+      }
+
+      get num_tbl() {
+        return this._num_tbl;
+      }
+
+      get myLocation() {
+        return this._myLocation;
+      }
+
+      get portion_size() {
+        return this._portion_size;
+      }
+
+      get Protein_all() {
+        return this._Protein_all;
+      }
+
+      get Protein_content() {
+        return this._Protein_content;
+      }
+
+      get season1() {
+        return this._season1;
+      }
+
+      get season2() {
+        return this._season2;
+      }
+
+      get season3() {
+        return this._season3;
+      }
+
+      get season4() {
+        return this._season4;
+      }
+
+      get share_prod_buy() {
+        return this._share_prod_buy;
+      }
+
+      get target_scope() {
+        return this._target_scope;
+      }
+
+      get total_weight() {
+        return this._total_weight;
+      }
+
+      get VITA_RAE_all() {
+        return this._VITA_RAE_all;
+      }
+
+      get VITA_RAE_content() {
+        return this._VITA_RAE_content;
+      }
+    }
+
+    function Crop_Season() {
+
+    }
+
+
   </script>
+
 
 {% endblock %}

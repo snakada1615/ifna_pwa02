@@ -25,7 +25,7 @@ from .forms import LocationForm, Person_Form, UserForm, ProfileForm, Crop_Feas_F
 from .forms import UserCreateForm, FCTForm, Crop_Name_Form
 
 from .models import Location, Countries, Crop_National, Crop_SubNational
-from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person, Pop, Crop_Name
+from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person, Pop, Crop_Name, Season
 
 # for user registration
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -46,6 +46,195 @@ import json
 
 class Trial_View(TemplateView):
   template_name = "myApp/_test.html"
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
+    tmp_nut_group = Person.objects.filter(
+      myLocation=self.kwargs['myLocation']).select_related('myDRI')
+    context['nutrient_target'] = tmp_nut_group[0].nut_group
+
+    tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
+    tmp_e = 0
+    tmp_p = 0
+    tmp_v = 0
+    tmp_f = 0
+    if len(tmp_nut_group1) > 0:
+      for tmp in tmp_nut_group1:
+        tmp_e += tmp.myDRI.energy
+        tmp_p += tmp.myDRI.protein
+        tmp_v += tmp.myDRI.vita
+        tmp_f += tmp.myDRI.fe
+    context['dri_e1'] = tmp_e
+    context['dri_p1'] = tmp_p
+    context['dri_v1'] = tmp_v
+    context['dri_f1'] = tmp_f
+
+    tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
+    tmp_e = 0
+    tmp_p = 0
+    tmp_v = 0
+    tmp_f = 0
+    if len(tmp_nut_group2) > 0:
+      for tmp in tmp_nut_group2:
+        tmp_e += tmp.myDRI.energy * tmp.target_pop
+        tmp_p += tmp.myDRI.protein * tmp.target_pop
+        tmp_v += tmp.myDRI.vita * tmp.target_pop
+        tmp_f += tmp.myDRI.fe * tmp.target_pop
+    context['dri_e2'] = tmp_e
+    context['dri_p2'] = tmp_p
+    context['dri_v2'] = tmp_v
+    context['dri_f2'] = tmp_f
+
+    tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
+    tmp_e = 0
+    tmp_p = 0
+    tmp_v = 0
+    tmp_f = 0
+    if len(tmp_nut_group3) > 0:
+      for tmp in tmp_nut_group3:
+        tmp_e += tmp.myDRI.energy * tmp.target_pop
+        tmp_p += tmp.myDRI.protein * tmp.target_pop
+        tmp_v += tmp.myDRI.vita * tmp.target_pop
+        tmp_f += tmp.myDRI.fe * tmp.target_pop
+    context['dri_e3'] = tmp_e
+    context['dri_p3'] = tmp_p
+    context['dri_v3'] = tmp_v
+    context['dri_f3'] = tmp_f
+
+    ########### send number of season   ###########
+    tmp = Season.objects.filter(myLocation=self.kwargs['myLocation'])[0]
+    season_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
+                    'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
+    mydat = {}
+    for myfield in season_field:
+      tmpdat = str(getattr(tmp, myfield))
+      mydat[myfield] = tmpdat
+    logger.info(mydat)
+
+    context["season"] = mydat
+
+    #######################################################
+
+    # send selected crop by community ######
+    tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
+    d = []
+    for tmp02 in tmp01:
+      dd = {}
+      dd["selected_status"] = tmp02.selected_status
+      dd["Food_grp"] = tmp02.myFCT.Food_grp
+      dd["Food_name"] = tmp02.myFCT.Food_name
+      dd["Energy"] = tmp02.myFCT.Energy
+      dd["Protein"] = tmp02.myFCT.Protein
+      dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
+      dd["FE"] = tmp02.myFCT.FE
+      dd["Weight"] = 0
+      dd["food_item_id"] = tmp02.myFCT.food_item_id
+      dd["portion_size"] = tmp02.myFCT.portion_size_init
+      dd["count_buy"] = 0
+      dd["count_prod"] = 0
+      dd["portion_size"] = tmp02.myFCT.portion_size_init
+      dd["m1"] = tmp02.m1_avail
+      dd["m2"] = tmp02.m2_avail
+      dd["m3"] = tmp02.m3_avail
+      dd["m4"] = tmp02.m4_avail
+      dd["m5"] = tmp02.m5_avail
+      dd["m6"] = tmp02.m6_avail
+      dd["m7"] = tmp02.m7_avail
+      dd["m8"] = tmp02.m8_avail
+      dd["m9"] = tmp02.m9_avail
+      dd["m10"] = tmp02.m10_avail
+      dd["m11"] = tmp02.m11_avail
+      dd["m12"] = tmp02.m12_avail
+      dd["myLocation"] = tmp02.myLocation_id
+      dd["Fat"] = tmp02.myFCT.Fat
+      dd["Carbohydrate"] = tmp02.myFCT.Carbohydrate
+      d.append(dd)
+    context["mylist_available"] = d
+
+    # 作物のローカル名を送る
+    tmp = Crop_Name._meta.get_fields()
+    logger.info(tmp[2])
+    tmp01 = Crop_Name.objects.filter(
+      myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
+    d = []
+    for tmp02 in tmp01:
+      dd = {}
+      dd["Food_grp"] = tmp02.Food_grp
+      dd["Food_name"] = tmp02.Food_name
+      dd["food_item_id"] = tmp02.myFCT_id
+      d.append(dd)
+
+    context["mylist_local_name"] = d
+
+    # 現在選択されている作物をDiet_plan_formに送る
+    # --------------------create 16 Crop_individual-------------------------
+    # if __name__ == '__main__':
+    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
+    myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 301, 302, 303, 304,
+               305,
+               306, 307, 308, 309, 310, 311, 312]
+
+    d = []
+    for i in myRange:
+      tmp02 = tmp01.filter(id_table=i)
+      tmp02_list = tmp02.values_list('pk', flat=True)
+      tmp02_list = list(tmp02_list)
+      if len(tmp02_list) == 0:
+        dd = {}
+        dd["name"] = ''
+        dd["Energy"] = ''
+        dd["Protein"] = ''
+        dd["VITA_RAE"] = ''
+        dd["FE"] = ''
+        dd["target_scope"] = ''
+        dd["food_item_id"] = ''
+        dd["portion_size"] = ''
+        dd["total_weight"] = ''
+        dd["count_prod"] = ''
+        dd["count_buy"] = ''
+        dd["month"] = ''
+        dd["myLocation"] = ''
+        dd["num_tbl"] = i
+        dd["share_prod_buy"] = 5
+        dd["Fat"] = ''
+        dd["Carbohydrate"] = ''
+        d.append(dd)
+      else:
+        for tmp03 in tmp02:
+          dd = {}
+          dd["name"] = tmp03.myFCT.Food_name
+          dd["Energy"] = tmp03.myFCT.Energy
+          dd["Protein"] = tmp03.myFCT.Protein
+          dd["VITA_RAE"] = tmp03.myFCT.VITA_RAE
+          dd["FE"] = tmp03.myFCT.FE
+          dd["target_scope"] = tmp03.target_scope
+          dd["food_item_id"] = tmp03.myFCT.food_item_id
+          dd["portion_size"] = tmp03.portion_size
+          dd["total_weight"] = tmp03.total_weight
+          dd["count_prod"] = tmp03.count_prod
+          dd["count_buy"] = tmp03.count_buy
+          dd["month"] = tmp03.month
+          dd["myLocation"] = tmp03.myLocation_id
+          dd["num_tbl"] = tmp03.id_table
+          dd["share_prod_buy"] = tmp03.share_prod_buy
+          dd["Fat"] = tmp03.myFCT.Fat
+          dd["Carbohydrate"] = tmp03.myFCT.Carbohydrate
+          d.append(dd)
+    context["mylist_selected"] = d
+
+    context['myuser'] = self.request.user
+
+    tmp_Param = SetURL(400, self.request.user)
+    context['nav_link1'] = tmp_Param['back_URL']
+    context['nav_text1'] = tmp_Param['back_Title']
+    context['nav_link2'] = tmp_Param['main_URL']
+    context['nav_text2'] = tmp_Param['main_Title']
+    context['nav_link3'] = tmp_Param['forward_URL']
+    context['nav_text3'] = tmp_Param['forward_Title']
+    context["mark_text"] = tmp_Param['guide_text']
+
+    return context
 
 
 class IndexView(TemplateView):
@@ -281,6 +470,9 @@ def Del_Crop_SubNational(sender, instance, **kwargs):
   if Person.objects.filter(myLocation_id=instance.pk):
     Person.objects.filter(myLocation_id=instance.pk).delete()
   logger.info("該当するPersonを削除しました")
+  if Season.objects.filter(myLocation_id=instance.pk):
+    Season.objects.filter(myLocation_id=instance.pk).delete()
+  logger.info("該当するSeasonを削除しました")
   if Location.objects.all().count() > 0:
     newLocation = Location.objects.all().first().id
     myUser = instance.created_by
@@ -320,6 +512,8 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
         logger.info("該当するCrop_SubNationalを削除しました")
         Person.objects.filter(myLocation_id=myLocation).delete()
         logger.info("該当するPersonを削除しました")
+        Season.objects.filter(myLocation_id=myLocation).delete()
+        logger.info("該当するSeasonを削除しました")
 
         # --------------------update Crop_SubNational-------------------------
         logger.info("これからCrop＿SubNationalを追加していきます")
@@ -349,6 +543,15 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
             myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
           )
         logger.info("Target communityの書込み終了")
+
+        # --------------------update Season-------------------------
+        logger.info("これからSeasonの構成、初期値を追加していきます")
+        Season.objects.create(
+          myLocation=Location.objects.get(id=instance.pk),
+          created_by=User.objects.get(id=instance.created_by.id),
+        )
+        logger.info("Seasonの書込み終了")
+
         # ---------------------
   else:  # 新規レコードの場合
 
@@ -405,6 +608,12 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
         myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
       )
     logger.info("Target familyの書込み終了")
+    logger.info("これからSeasonの構成、初期値を追加していきます")
+    Season.objects.create(
+      myLocation=Location.objects.get(id=instance.pk),
+      created_by=User.objects.get(id=instance.created_by.id),
+    )
+    logger.info("Seasonの書込み終了")
     # ---------------------
 
 
@@ -453,6 +662,26 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
       dd["food_item_id"] = tmp02.myFCT_id
       d.append(dd)
     context["mylist_local_name"] = d
+
+    # 季節情報を送る
+    tmp01 = Season.objects.filter(myLocation_id=myUser.profile.myLocation)
+    d = []
+    for tmp02 in tmp01:
+      dd = {}
+      dd["m1_season"] = tmp02.m1_season
+      dd["m2_season"] = tmp02.m2_season
+      dd["m3_season"] = tmp02.m3_season
+      dd["m4_season"] = tmp02.m4_season
+      dd["m5_season"] = tmp02.m5_season
+      dd["m6_season"] = tmp02.m6_season
+      dd["m7_season"] = tmp02.m7_season
+      dd["m8_season"] = tmp02.m8_season
+      dd["m9_season"] = tmp02.m9_season
+      dd["m10_season"] = tmp02.m10_season
+      dd["m11_season"] = tmp02.m11_season
+      dd["m12_season"] = tmp02.m12_season
+      d.append(dd)
+    context["dat_season"] = d
 
     newstep = 0
     if stepid in [100, 200]:
@@ -513,6 +742,27 @@ def registCropAvail(request):
     if str(rec.myFCT.food_item_id) not in tmp_newcrop_list:
       rec.selected_status = 0
       rec.save()
+
+  # seasonの登録
+  logger.info('season登録開始')
+  for myrow in json_data['season']:
+    Season.objects.update_or_create(
+      myLocation=Location.objects.get(id=myrow['myLocation']),
+      defaults={
+        'm1_season': myrow['m1'],
+        'm2_season': myrow['m2'],
+        'm3_season': myrow['m3'],
+        'm4_season': myrow['m4'],
+        'm5_season': myrow['m5'],
+        'm6_season': myrow['m6'],
+        'm7_season': myrow['m7'],
+        'm8_season': myrow['m8'],
+        'm9_season': myrow['m9'],
+        'm10_season': myrow['m10'],
+        'm11_season': myrow['m11'],
+        'm12_season': myrow['m12'],
+      }
+    )
 
   # myStatusの設定
   key = request.user.profile
@@ -894,6 +1144,30 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context['dri_v3'] = tmp_v
     context['dri_f3'] = tmp_f
 
+    ########### send number of season   ###########
+    tmp = Season.objects.filter(myLocation=self.kwargs['myLocation'])[0]
+    season_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
+                    'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
+    mydat = {}
+    for myfield in season_field:
+      tmpdat = str(getattr(tmp, myfield))
+      mydat[myfield] = tmpdat
+    logger.info(mydat)
+
+    context["test"] = mydat
+
+    # mydat = []
+    # dd={}
+    # for myfield in season_field:
+    #   tmpdat = str(getattr(tmp, myfield))
+    #   dd[myfield] = tmpdat
+    #   if (tmpdat not in mydat):
+    #     mydat.append(tmpdat)
+    # context['count_season'] = len(mydat)
+    # logger.info(mydat)
+
+    #######################################################
+
     # send selected crop by community ######
     tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
     d = []
@@ -963,7 +1237,12 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     d = []
     for i in myRange:
       tmp02 = tmp01.filter(id_table=i)
-      if tmp02.count() == 0:  # todo この行があると余分なQueryが発生する！？
+      tmp02_list = tmp02.values_list('pk', flat=True)
+      tmp02_list = list(tmp02_list)
+      logger.info('tmp02_list=')
+      logger.info(tmp02_list)
+      #      if tmp02.count() == 0:  # todo この行があると余分なQueryが発生する！？
+      if len(tmp02_list) == 0:
         dd = {}
         dd["name"] = ''
         dd["Energy"] = ''

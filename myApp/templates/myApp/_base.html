@@ -4,6 +4,7 @@
 
 <head>
   <title>NFA tool</title>
+   <link rel="shortcut icon" href="{% static 'img/icon/favicon.ico' %}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
@@ -11,6 +12,8 @@
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
   <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/loading.css' %}">
+  <link rel="stylesheet" href="{% static 'css/snackbar.css' %}">
+  <link rel="stylesheet" href="{% static 'css/ticker.css' %}">
 
 
   <style type="text/css">
@@ -85,167 +88,6 @@
       position: relative;
       min-height: 100%;
     }
-
-    /* ----------snackbarの設定----------*/
-    #snackbar {
-      visibility: hidden;
-      min-width: 250px;
-      margin-left: -125px;
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      border-radius: 2px;
-      padding: 16px;
-      position: fixed;
-      z-index: 1;
-      left: 50%;
-      bottom: 30px;
-      font-size: 17px;
-    }
-
-    #snackbar.show {
-      visibility: visible;
-      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-      animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    }
-
-    @-webkit-keyframes fadein {
-      from {
-        bottom: 0;
-        opacity: 0;
-      }
-      to {
-        bottom: 30px;
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadein {
-      from {
-        bottom: 0;
-        opacity: 0;
-      }
-      to {
-        bottom: 30px;
-        opacity: 1;
-      }
-    }
-
-    @-webkit-keyframes fadeout {
-      from {
-        bottom: 30px;
-        opacity: 1;
-      }
-      to {
-        bottom: 0;
-        opacity: 0;
-      }
-    }
-
-    @keyframes fadeout {
-      from {
-        bottom: 30px;
-        opacity: 1;
-      }
-      to {
-        bottom: 0;
-        opacity: 0;
-      }
-    }
-
-    /* ----------snackbarの設定終わり----------*/
-    /* ----------ティッカーの設定----------*/
-
-    /** マーキーさせたい部分 */
-
-    .marquee {
-      width: 540px;
-      padding: 0.5em 0;
-      overflow: hidden;
-      background-coor: #f6f6f6;
-      margin-bottom: 10px;
-      position: relative;
-    }
-
-    .marquee p:after {
-      content: "";
-      white-space: nowrap;
-      padding-right: 50px;
-    }
-
-    .marquee p {
-      margin: 0;
-      padding-left: 540px;
-      display: inline-block;
-      white-space: nowrap;
-      -webkit-animation-name: marquee;
-      -webkit-animation-timing-function: linear;
-      -webkit-animation-duration: 10s;
-      -webkit-animation-iteration-count: infinite;
-      -moz-animation-name: marquee;
-      -moz-animation-timing-function: linear;
-      -moz-animation-duration: 10s;
-      -moz-animation-iteration-count: infinite;
-      -ms-animation-name: marquee;
-      -ms-animation-timing-function: linear;
-      -ms-animation-duration: 10s;
-      -ms-animation-iteration-count: infinite;
-      -o-animation-name: marquee;
-      -o-animation-timing-function: linear;
-      -o-animation-duration: 10s;
-      -o-animation-iteration-count: infinite;
-      animation-name: marquee;
-      animation-timing-function: linear;
-      animation-duration: 10s;
-      animation-iteration-count: infinite;
-    }
-
-    @-webkit-keyframes marquee {
-      from {
-        -webkit-transform: translate(0%);
-      }
-      99%, to {
-        -webkit-transform: translate(-100%);
-      }
-    }
-
-    @-moz-keyframes marquee {
-      from {
-        -moz-transform: translate(0%);
-      }
-      99%, to {
-        -moz-transform: translate(-100%);
-      }
-    }
-
-    @-ms-keyframes marquee {
-      from {
-        -ms-transform: translate(0%);
-      }
-      99%, to {
-        -ms-transform: translate(-100%);
-      }
-    }
-
-    @-o-keyframes marquee {
-      from {
-        -o-transform: translate(0%);
-      }
-      99%, to {
-        -o-transform: translate(-100%);
-      }
-    }
-
-    @keyframes marquee {
-      from {
-        transform: translate(0%);
-      }
-      99%, to {
-        transform: translate(-100%);
-      }
-    }
-
-    /* ----------ティッカーの設定終わり----------*/
 
 
     /* 行または列の非表示*/
