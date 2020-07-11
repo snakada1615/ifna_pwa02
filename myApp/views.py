@@ -172,8 +172,7 @@ class Trial_View(TemplateView):
     # if __name__ == '__main__':
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
     myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 301, 302, 303, 304,
-               305,
-               306, 307, 308, 309, 310, 311, 312]
+               305,306, 307, 308, 309, 310, 311, 312]
 
     d = []
     for i in myRange:

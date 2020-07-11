@@ -468,92 +468,178 @@
 
 
     //    create object setup "Crop_Selected"   -------------------------------
-    class Crop_single {
-      constructor(data_individual, data_local, data_season) {
-        let season_length = {};
-        let season_available = {};
+    class Crops {
+      constructor() {
+        this._item = {};
+        this._myLocation = 0;
+        this._target_scope = 0;
+        this._num_tbl = 0;
 
-        this._myLocation = myLocation_id;
-        this._target_scope = Math.trunc(Number(num_tbl) / 100);
-        this._food_item_id = data_individual['food_item_id'];
-        this._Food_grp = data_individual['Food_grp'];
-        this._Food_name = data_individual['Food_name'];
-        this._Energy_all = data_individual['Energy'];
-        this._Protein_all = data_individual['Protein'];
-        this._Fat_all = data_individual['Fat'];
-        this._Carbohydrate_all = data_individual['Carbohydrate'];
-        this._VITA_RAE_all = data_individual['VITA_RAE'];
-        this._FE_all = data_individual['FE'];
-        this._portion_size = data_individual['portion_size'];
-
-        this._share_prod_buy = 10;
-        this._total_weight = 0;
         this._count_prod = 0;
         this._count_buy = 0;
+        this._share_prod_buy = 10;
+        this._portion_size = 0;
+        this._total_weight = 0;
 
-        this._m = [];
-        this._m.push(data_local.m1);
-        this._m.push(data_local.m2);
-        this._m.push(data_local.m3);
-        this._m.push(data_local.m4);
-        this._m.push(data_local.m5);
-        this._m.push(data_local.m6);
-        this._m.push(data_local.m7);
-        this._m.push(data_local.m8);
-        this._m.push(data_local.m9);
-        this._m.push(data_local.m10);
-        this._m.push(data_local.m11);
-        this._m.push(data_local.m12);
+        this._Energy_all = 0;
+        this._Protein_all = 0;
+        this._Fat_all = 0;
+        this._Carbohydrate_all = 0;
+        this._VITA_RAE_all = 0;
+        this._FE_all = 0;
 
-        this._Energy_content = data_local['Energy'];
-        this._Protein_content = data_local['Protein'];
-        this._Fat_content = data_local['Fat'];
-        this._Carbohydrate_content = data_local['Carbohydrate'];
-        this._VITA_RAE_content = data_local['VITA_RAE'];
-        this._FE_content = data_local['FE'];
-
-        this._num_tbl = num_tbl;
-        [0, 1, 2, 3].map(function (value, index, array) {
-          season_length[value] = 0;
-          season_available[value] = 0;
-        });
-
-        data_season.map(function (value, index, array) {
-          season_length[value] += 1;
-          if (this._m[index] > 0) {
-            season_available[value] += 1;
-          }
-        });
-
-        this._season = {};
-        season_length.map(function (value, index, array) {
-          let res = '0';
-          let tmp = season_available[index] / value;
-          if (tmp === 1) {
-            res = 1;
-          } else if (tmp >= 0.6) {
-            res = 2;
-          } else if (tmp >= 0.3) {
-            res = 3;
-          } else {
-            res = 0;
-          }
-          this._season[index] = res;
-        });
-
-        this.test();
       }
+      set my_tbl(val) {
+        this._num_tbl = val;
+      }
+
+      set myLocation(val) {
+        this._myLocation = val;
+      }
+
+      set target_scope(val) {
+        this._target_scope = val;
+      }
+
+
+    }
+
+    //    create object setup "Crop_Selected"   -------------------------------
+    class Crop_single {
+      constructor() {
+        this._food_item_id = 0;
+        this._Food_grp = '';
+        this._Food_name = '';
+
+        this._Energy_content = 0;
+        this._Protein_content = 0;
+        this._Fat_content = 0;
+        this._Carbohydrate_content = 0;
+        this._VITA_RAE_content = 0;
+        this._FE_content = 0;
+
+        this._month_avail = new Array(12).fill(0);
+        this._season_avail = {};
+      };
+
+      set food_item_id(val) {
+        this._food_item_id = val;
+      }
+
+      SetIndividual(data_individual) {
+        if (this._food_item_id === data_individual['food_item_id']) {
+          this._Food_grp = data_individual['Food_grp'];
+          this._Food_name = data_individual['Food_name'];
+          this._Energy_all = data_individual['Energy'];
+          this._Protein_all = data_individual['Protein'];
+          this._Fat_all = data_individual['Fat'];
+          this._Carbohydrate_all = data_individual['Carbohydrate'];
+          this._VITA_RAE_all = data_individual['VITA_RAE'];
+          this._FE_all = data_individual['FE'];
+          this._portion_size = data_individual['portion_size'];
+        } else {
+          console.error('Error in SetIndividual()');
+        }
+      }
+
+      SetSubnational(data_local) {
+        if (this._food_item_id === data_individual['food_item_id']) {
+          this._m[0] = data_local['m1'];
+          this._m[1] = data_local['m2'];
+          this._m[2] = data_local['m3'];
+          this._m[3] = data_local['m4'];
+          this._m[4] = data_local['m5'];
+          this._m[5] = data_local['m6'];
+          this._m[6] = data_local['m7'];
+          this._m[7] = data_local['m8'];
+          this._m[8] = data_local['m9'];
+          this._m[9] = data_local['m10'];
+          this._m[10] = data_local['m11'];
+          this._m[11] = data_local['m12'];
+
+          this._Energy_content = data_local['Energy'];
+          this._Protein_content = data_local['Protein'];
+          this._Fat_content = data_local['Fat'];
+          this._Carbohydrate_content = data_local['Carbohydrate'];
+          this._VITA_RAE_content = data_local['VITA_RAE'];
+          this._FE_content = data_local['FE'];
+        } else {
+          console.error('Error in SetSubnational()');
+        }
+      }
+
+      {% comment %}
+              this._myLocation = myLocation_id;
+              this._target_scope = Math.trunc(Number(num_tbl) / 100);
+              this._food_item_id = data_individual['food_item_id'];
+              this._Food_grp = data_individual['Food_grp'];
+              this._Food_name = data_individual['Food_name'];
+              this._Energy_all = data_individual['Energy'];
+              this._Protein_all = data_individual['Protein'];
+              this._Fat_all = data_individual['Fat'];
+              this._Carbohydrate_all = data_individual['Carbohydrate'];
+              this._VITA_RAE_all = data_individual['VITA_RAE'];
+              this._FE_all = data_individual['FE'];
+              this._portion_size = data_individual['portion_size'];
+
+              this._share_prod_buy = 10;
+              this._total_weight = 0;
+              this._count_prod = 0;
+              this._count_buy = 0;
+
+              this._m = [];
+              this._m.push(data_local.m1);
+              this._m.push(data_local.m2);
+              this._m.push(data_local.m3);
+              this._m.push(data_local.m4);
+              this._m.push(data_local.m5);
+              this._m.push(data_local.m6);
+              this._m.push(data_local.m7);
+              this._m.push(data_local.m8);
+              this._m.push(data_local.m9);
+              this._m.push(data_local.m10);
+              this._m.push(data_local.m11);
+              this._m.push(data_local.m12);
+
+              this._Energy_content = data_local['Energy'];
+              this._Protein_content = data_local['Protein'];
+              this._Fat_content = data_local['Fat'];
+              this._Carbohydrate_content = data_local['Carbohydrate'];
+              this._VITA_RAE_content = data_local['VITA_RAE'];
+              this._FE_content = data_local['FE'];
+
+              this._num_tbl = num_tbl;
+              [0, 1, 2, 3].map(function (value, index, array) {
+                season_length[value] = 0;
+                season_available[value] = 0;
+              });
+
+              data_season.map(function (value, index, array) {
+                season_length[value] += 1;
+                if (this._m[index] > 0) {
+                  season_available[value] += 1;
+                }
+              });
+
+              this._season = {};
+              season_length.map(function (value, index, array) {
+                let res = '0';
+                let tmp = season_available[index] / value;
+                if (tmp === 1) {
+                  res = 1;
+                } else if (tmp >= 0.6) {
+                  res = 2;
+                } else if (tmp >= 0.3) {
+                  res = 3;
+                } else {
+                  res = 0;
+                }
+                this._season[index] = res;
+              });
+      {% endcomment %}
 
       test() {
         console.log('this is test')
-      }
-
-      getSeason(i, data) {
-
-      }
-
-      get mylocation() {
-        return this._myLocation;
       }
 
       get Carbohydrate_all() {
@@ -605,15 +691,11 @@
       }
 
       get month() {
-        return this._month;
+        return this._month_avail;
       }
 
-      get num_tbl() {
-        return this._num_tbl;
-      }
-
-      get myLocation() {
-        return this._myLocation;
+      get season() {
+        return this._season_avail;
       }
 
       get portion_size() {
@@ -628,28 +710,8 @@
         return this._Protein_content;
       }
 
-      get season1() {
-        return this._season1;
-      }
-
-      get season2() {
-        return this._season2;
-      }
-
-      get season3() {
-        return this._season3;
-      }
-
-      get season4() {
-        return this._season4;
-      }
-
       get share_prod_buy() {
         return this._share_prod_buy;
-      }
-
-      get target_scope() {
-        return this._target_scope;
       }
 
       get total_weight() {
@@ -663,10 +725,6 @@
       get VITA_RAE_content() {
         return this._VITA_RAE_content;
       }
-    }
-
-    function Crop_Season() {
-
     }
 
 
