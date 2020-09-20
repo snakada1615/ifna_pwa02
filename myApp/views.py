@@ -1488,6 +1488,33 @@ def delete_TableRec(request, tblName):
   result = f"{tblName} data have been deleted"
   return HttpResponse(result)
 
+def export_TableRec(request, tblName):
+  myTable = apps.get_app_config('myApp').get_model(tblName)
+  for myRec in myTable.objects.all():
+    for myField in myRec:
+      logger.info('hi')
+      d = []
+      for i in myRange:
+        tmp02 = tmp01.filter(id_table=i)
+        if tmp02.count() == 0:
+          dd = {}
+          dd["name"] = ''
+          dd["Energy"] = ''
+          dd["Protein"] = ''
+          dd["VITA_RAE"] = ''
+          dd["FE"] = ''
+          dd["target_scope"] = ''
+          dd["food_item_id"] = ''
+          dd["portion_size"] = ''
+          dd["total_weight"] = ''
+          dd["count_prod"] = ''
+          dd["count_buy"] = ''
+          dd["month"] = ''
+          dd["myLocation"] = ''
+          dd["myid_tbl"] = i
+          d.append(dd)
+
+
 
 class initTable(TemplateView):
   template_name = "myApp/_initTable.html"

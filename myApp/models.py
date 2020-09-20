@@ -102,6 +102,10 @@ class Location(models.Model):
     max_length=200,
     blank=True
   )
+  season_count = models.IntegerField(
+    default=1,
+    blank=True
+  )
   stunting_rate = models.IntegerField(
     default=0,
     blank=True
@@ -477,6 +481,26 @@ class Crop_SubNational(models.Model):
     verbose_name='mon12_avail',
     default=0,
   )
+  s01_avail = models.IntegerField(
+    verbose_name='s01_avail',
+    default=0,
+  )
+  s02_avail = models.IntegerField(
+    verbose_name='s02_avail',
+    default=0,
+  )
+  s03_avail = models.IntegerField(
+    verbose_name='s03_avail',
+    default=0,
+  )
+  s04_avail = models.IntegerField(
+    verbose_name='s04_avail',
+    default=0,
+  )
+  s05_avail = models.IntegerField(
+    verbose_name='s05_avail',
+    default=0,
+  )
   crop_feas = models.ForeignKey(
     Crop_Feasibility,
     null=True,
@@ -530,6 +554,10 @@ class Crop_Individual(models.Model):  #
   )
   month = models.IntegerField(
     verbose_name='month',
+    default=0,
+  )
+  season = models.IntegerField(
+    verbose_name='season',
     default=0,
   )
   created_at = models.DateTimeField(
