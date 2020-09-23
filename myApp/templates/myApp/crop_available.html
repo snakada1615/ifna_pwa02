@@ -108,7 +108,7 @@
     <div class="row">
       <div class="mb-0 mt-3">
         <h5>
-          confirm food availability
+          Confirm food availability
         </h5>
       </div>
 
@@ -131,17 +131,17 @@
             <div class="row ml-3 my-0">
               <div class="col-6">
             <span class="btn_color btn btn-outline-dark py-0" mycol="red" style="color:red">
-            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> market and production
+            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> whole season
               </div>
               <div class="col-6">
             <span class="btn_color btn btn-outline-dark py-0" mycol="green" style="color:green">
-            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> production only
+            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> partial season1
               </div>
             </div>
             <div class="row ml-3 my-0">
               <div class="col-6">
             <span class="btn_color btn btn-outline-dark py-0" mycol="blue" style="color:blue">
-            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> market only
+            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> partial season2
               </div>
               <div class="col-6">
             <span class="btn_color btn btn-outline-dark py-0" mycol="white" style="color:white">
@@ -221,6 +221,36 @@
             </tfoot>
           </table>
           <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm">close</a>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <div class="modal fade" id="myModal02" tabindex="-1" role="dialog" aria-labelledby="myModal02Label">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="myModal02Label">Availability of food item</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-dark">
+          <table id="tbl_avail_season" style="width: 100%">
+            <thead>
+            <tr>
+              <th>season</th>
+              <th>start</th>
+              <th>end</th>
+              <th>availability</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
         </div>
       </div>
       <!-- /.modal-content -->
@@ -568,6 +598,37 @@
         this.setCellColor(i, this.start_y, this.color);
       }
     };
+    Season_MultiSelect.prototype.getSeason = function () {
+      // 月毎の季節一覧を次に変換＝>(季節1開始：季節1終了, 季節2開始：季節2終了,季節3開始：季節3終了,季節4開始：季節4終了)
+      let season_count = 0;
+      let season_prev = -1;
+      let season_curr = 0;
+
+      let season = {};
+      let $myrow = $Tbl_season.children('tbody').children('tr');
+      const season_0 = $myrow.children('td').eq(0).text();
+
+      for (var j = 0; j < 12; j++) {
+        season_curr = $myrow.children('td').eq(j).text();
+        console.log('season_curr=' + season_curr + 'season_prev=' + season_prev);
+        if (season_curr !== season_prev) {
+          season_prev = season_curr;
+          if (season_count !== 0) {
+            season["end" + String(season_count)] = String(j)
+          }
+          if (season_count > 2 && season_curr === season_0) {
+            season["start1"] = String(j + 1)
+          } else {
+            season_count++;
+            season["start" + String(season_count)] = String(j + 1);
+          }
+        } else if (j === 11 && season_curr !== season_0) {
+          season["end" + String(season_count)] = "12"
+        }
+      }
+      season["season_count"] = season_count;
+      return season
+    };
 
 
     ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
@@ -909,6 +970,11 @@
                         console.log('(' + mycol + ', ' + tmp_y + '), ' + mySelectMonth.getAll().myName + 'です');
                         break;
                     }
+                  } else {
+                    console.log($(this).text());
+                    const tmp = mySeason.getSeason();
+                    console.log(tmp);
+                    $('#myModal02').modal('show');
                   }
                 });
 
@@ -925,26 +991,6 @@
                       $(this).text(tmp); // cellの値+1
                       mySeason.setCellColor(mycol, myrow, tmp);
                       break;
-                          {% comment %}
-                                          switch (tmp) { // cellの値に応じて色変化
-                                            case 0:
-                                              $(this).css("background-color", "");
-                                              $(this).css("color", "white");
-                                              break;
-                                            case 1:
-                                              $(this).css("background-color", "red");
-                                              $(this).css("color", "red");
-                                              break;
-                                            case 2:
-                                              $(this).css("background-color", "green");
-                                              $(this).css("color", "green");
-                                              break;
-                                            case 3:
-                                              $(this).css("background-color", "blue");
-                                              $(this).css("color", "blue");
-                                              break;
-                                          }
-                          {% endcomment %}
                     case 0:
                       mySeason.setStart(mycol, myrow);
                       mySeason.setCellColor(mycol, myrow, 4);
