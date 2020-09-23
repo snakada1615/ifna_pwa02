@@ -239,18 +239,14 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body text-dark">
-          <div class="table-responsive">
-            <table id="tbl_avail_season" class="table table-responsive table-info thead-dark" style="width: 100%">
-              <thead>
-              <tr>
-                <th>season</th>
-                <th>start</th>
-                <th>end</th>
-                <th>availability</th>
-              </tr>
-              </thead>
-            </table>
+        <div class="modal-body text-dark" id="myModalBody02">
+          <div class="container container_crop_avail">
+            <div class="row bg-info text-white">
+              <div class="col-2">season</div>
+              <div class="col-2">start</div>
+              <div class="col-2">end</div>
+              <div class="col-6">availability</div>
+            </div>
           </div>
         </div>
       </div>
@@ -502,30 +498,31 @@
     //    function "Season_Avail"   -------------------------------
     function Season_Avail(crop_name, season_tmp) {
       let cr = '';
-      let $myTbl = $("#tbl_avail_season");
+      let $myTbl = $(".container_crop_avail");
       //tableに表示するためのデータ作成
-      $myTbl.find("tbody").remove();
+      $myTbl.find(".season-row").remove();
       for (var j = 0; j < season_tmp.season_count; j++) {
-        cr += '<tbody>';
-        cr += '<tr>';
-        cr += '<td>' + 'season' + String(j) + '</td>';
-        cr += '<td>' + season_tmp["start" + String(j + 1)] + '</td>';
-        cr += '<td>' + season_tmp["end" + String(j + 1)] + '</td>';
-        cr += '<td>';
-        cr += '<div class="dropdown">' +
-                '<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
-                'Active' + '</button>' + '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
-                '<a class="dropdown-item" href="#">whole season</a>' +
-                '<a class="dropdown-item" href="#">more than half season</a>' +
-                '<a class="dropdown-item" href="#">less than half season</a>' +
-                '<a class="dropdown-item" href="#">not available</a>' +
-                '</div>' +
-                '</div>';
-        cr += '</td>';
-        cr += '</tr>';
-        cr += '</tbody>';
+        cr += '<div class="row season-row">';
+        cr += '<div class="col-2 col_season">' + 'season' + String(j) + '</div>';
+        cr += '<div class="col-2">' + season_tmp["start" + String(j + 1)] + '</div>';
+        cr += '<div class="col-2">' + season_tmp["end" + String(j + 1)] + '</div>';
+        cr += '<div class="col-6">';
+        cr += '<div class="dropdown">';
+        cr += '<button type="button" class="btn btn-light dropdown-toggle" id="' + 'dropdownMenuButton' + String(j + 1) + '" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+        cr += 'availability</button>';
+        cr += '<div class="dropdown-menu" aria-labelledby="' + 'dropdownMenuButton' + String(j + 1) + '">';
+        cr += '<button class="dropdown-item" type="button">whole season</button>';
+
+        cr += '<button class="dropdown-item" type="button">more than half season</button>';
+        cr += '<button class="dropdown-item" type="button">less than half season</button>';
+        cr += '<button class="dropdown-item" type="button">not available</a>';
+        cr += '</div>';
+        cr += '</div>';
+        cr += '</div>';
+        cr += '</div>';
       }
       $myTbl.append(cr);
+      //console.log(cr);
       $('#myModal02Label').text('Availability of ' + crop_name);
       console.log('オブジェクトSeason_Availを作成しました');
     }
@@ -1144,13 +1141,16 @@
         const mySelectMonth = new Cell_MultiSelect(-1, 0, 1, 2);
         const mySeason = new Season_MultiSelect(-1, 0, 1, 2);
 
-        //////////////////dropdown for crop availability///////////////////
-        $('.dropdown-menu').on('click', 'a', function () {
-          console.log($(this).text());
-          $(this).parents('.dropdown').find('button').text($(this).text());
-        });
-
       }// ---------- initComplete finish here --------------
+    });
+
+    $(window).on('load', function () {
+      console.log("load");
+      $(function () {
+        $(".container_crop_avail").on('click', '.dropdown-item', function (event) {
+          $(this).closest('.dropdown').find('.dropdown-toggle').text($(this).text());
+        });
+      });
     });
 
 
