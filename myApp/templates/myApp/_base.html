@@ -3,210 +3,215 @@
 {% load static %}
 
 <head>
-  <title>NFA tool</title>
-   <link rel="shortcut icon" href="{% static 'img/icon/favicon.ico' %}"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="utf-8">
-  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
-  <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/loading.css' %}">
-  <link rel="stylesheet" href="{% static 'css/snackbar.css' %}">
-  <link rel="stylesheet" href="{% static 'css/ticker.css' %}">
+    <title>NFA tool</title>
+    <link rel="shortcut icon" href="{% static 'img/icon/favicon.ico' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/loading.css' %}">
+    <link rel="stylesheet" href="{% static 'css/snackbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ticker.css' %}">
 
 
-  <style type="text/css">
-    /* //////カードの枠線を太くする/////// */
-    .border-5 {
-      border-width: 5px !important;
-    }
+    <style type="text/css">
+        /* //////カードの枠線を太くする/////// */
+        .border-5 {
+            border-width: 5px !important;
+        }
 
-    /* //////FontAwesome用の設定/////// */
-    .fb:before {
-      font-family: 'FontAwesome';
-      padding-right: 5px;
-    }
+        /* //////FontAwesome用の設定/////// */
+        .fb:before {
+            font-family: 'FontAwesome';
+            padding-right: 5px;
+        }
 
-    .fb-home:before /*個別アイコンのidをここで指定*/
-    {
-      content: '\f015';
-    }
+        .fb-home:before /*個別アイコンのidをここで指定*/
+        {
+            content: '\f015';
+        }
 
-    .fb-help:before /*個別アイコンのidをここで指定*/
-    {
-      content: '\f059';
-    }
+        .fb-help:before /*個別アイコンのidをここで指定*/
+        {
+            content: '\f059';
+        }
 
-    .fa-roller:before /*個別アイコンのidをここで指定*/
-    {
-      content: '\f5aa';
-    }
+        .fa-roller:before /*個別アイコンのidをここで指定*/
+        {
+            content: '\f5aa';
+        }
 
-    /* ////////FontAwesome用の設定終わり//////// */
-    .col-6 {
-      margin-bottom: 10px;
-    }
+        /* ////////FontAwesome用の設定終わり//////// */
+        .col-6 {
+            margin-bottom: 10px;
+        }
 
-    .dropdown-span {
-      text-align: center;
-      color: white;
-      background-color: #5bc0de;
-    }
+        .dropdown-span {
+            text-align: center;
+            color: white;
+            background-color: #5bc0de;
+        }
 
-    .footer {
-      text-align: center;
-      position: absolute;
-      padding: 10px;
-      color: white;
-      width: 100%;
-      bottom: 0;
-    }
+        .footer {
+            text-align: center;
+            position: absolute;
+            padding: 10px;
+            color: white;
+            width: 100%;
+            bottom: 0;
+        }
 
-    .alink {
-      text-decoration: none;
-      color: white;
-    }
+        .alink {
+            text-decoration: none;
+            color: white;
+        }
 
-    .alink:hover {
-      text-decoration: none;
-      color: white;
-    }
+        .alink:hover {
+            text-decoration: none;
+            color: white;
+        }
 
-    #content {
-      padding-bottom: 5%;
-    }
+        #content {
+            padding-bottom: 5%;
+        }
 
-    body,
-    html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
 
-    .wrapper {
-      position: relative;
-      min-height: 100%;
-    }
+        .wrapper {
+            position: relative;
+            min-height: 100%;
+        }
 
 
-    /* 行または列の非表示*/
-    .tableItem_hide {
-      display: none;
+        /* 行または列の非表示*/
+        .tableItem_hide {
+            display: none;
+        }
 
-  </style>
+    </style>
 
-  <script type="text/javascript">
-    // --------snackbarの設定-------
-    // メッセージと持続時間(msec)を設定
-    function my_snackbar(mes, time) {
-      var x = $("#snackbar");
-      x.text(mes);
-      x.toggleClass('show');
-      setTimeout(function () {
-        x.toggleClass('show');
-      }, time);
-    }    // ---------------------
+    <script type="text/javascript">
+        // --------snackbarの設定-------
+        // メッセージと持続時間(msec)を設定
+        function my_snackbar(mes, time) {
+            var x = $("#snackbar");
+            x.text(mes);
+            x.toggleClass('show');
+            setTimeout(function () {
+                x.toggleClass('show');
+            }, time);
+        }    // ---------------------
 
-    // --------loading画面の消去-------
-    window.onload = function () {
-      let spinner = document.getElementById('my-spinner');
+        // --------loading画面の消去-------
+        window.onload = function () {
+            let spinner = document.getElementById('my-spinner');
 
-      // .box に .loaded を追加してローディング表示を消す
-      spinner.classList.add('loaded');
-    }
-    // --------loading画面の消去-------
+            // .box に .loaded を追加してローディング表示を消す
+            spinner.classList.add('loaded');
+        }
+        // --------loading画面の消去-------
 
-  </script>
+    </script>
 
 </head>
 
 <body>
 <div class="wrapper">
-  <!-- ローディング画面の設定 -->
-  <div class="container my-0 py-0" style="max-width: 540px;">
-    <div id="my-spinner" class="box">
-      <!-- type1 〜 type8 はお好みで -->
-      <div class="spinner type1">
-        <span>Loading...</span>
-      </div>
-    </div>
-  </div>
-  <!-- ローディング画面の設定 終-->
-
-  <nav class="navbar navbar-expand navbar-dark bg-secondary static-top container py-0" style="max-width: 540px;">
-    <div class="container-fluid">
-      <a class="navbar-brand" id="nav_link0" href="{% url 'index01' %}">
-        <span class="fa fa-home ml-1"></span>
-      </a>
-      <div class="navbar-collapse collapse" id="collapsingNavbar">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link btn {% if not nav_link1 %}disabled{% endif %}" href="{{ nav_link1 }}">
-              {{ nav_text1 }}
-              <span class="fa fa-arrow-circle-left ml-1 text-white"></span>
-            </a>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ nav_link2 }}">
-              {{ nav_text2 }}
-            </a>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link btn {% if not nav_link3 %}disabled{% endif %}" href="{{ nav_link3 }}">
-              <span class="fa fa-arrow-circle-right mr-1 text-white"></span>
-              {{ nav_text3 }}
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-
-  <div id="content" class="container mt-1">
-    <div class="container bg-success my-0 text-white text-right" style="max-width: 540px;">
-      <div class="row">
-        <div class="col">
-          person in charge:
-        </div>
-        <div class="col">
-          {{ myuser.first_name }},
-          {{ myuser.last_name }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          office / position:
-        </div>
-        <div class="col">
-          {{ myuser.profile.organization }},
-          {{ myuser.profile.title }}
-        </div>
-      </div>
-    </div>
-
+    <!-- ローディング画面の設定 -->
     <div class="container my-0 py-0" style="max-width: 540px;">
-      <div class="row mx-0 my-0 py-0">
-        <div class="marquee">
-          <p id="marquee-text" style="color: #6b9dbb">{{ mark_text }}</p>
+        <div id="my-spinner" class="box">
+            <!-- type1 〜 type8 はお好みで -->
+            <div class="spinner type1">
+                <span>Loading...</span>
+            </div>
         </div>
-      </div>
     </div>
-    <!-------------snackbarの表示--------------------------->
-    <div id="snackbar">Some text some message..</div>
-    <!------------------------------------------------------------->
+    <!-- ローディング画面の設定 終-->
 
-    <!-- 本体 -->
-    {% block content %}{% endblock %}
+    <nav class="navbar navbar-expand navbar-dark bg-secondary static-top container py-0" style="max-width: 540px;">
+        <div class="container-fluid">
+            <a class="navbar-brand" id="nav_link0" href="{% url 'index01' %}">
+                <span class="fa fa-home ml-1"></span>
+            </a>
+            <div class="navbar-collapse collapse" id="collapsingNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn {% if not nav_link1 %}disabled{% endif %}" href="{{ nav_link1 }}">
+                            {{ nav_text1 }}
+                            <span class="fa fa-arrow-circle-left ml-1 text-white"></span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ nav_link2 }}">
+                            {{ nav_text2 }}
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link btn {% if not nav_link3 %}disabled{% endif %}" href="{{ nav_link3 }}">
+                            <span class="fa fa-arrow-circle-right mr-1 text-white"></span>
+                            {{ nav_text3 }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <!-- メッセージフレームワーク -->
-    {% include 'myApp/_messages.html' %}
-  </div>
+
+    <div id="content" class="container mt-1">
+        <div class="container bg-success my-0 text-white text-right" style="max-width: 540px;">
+            <div class="row">
+                <div class="col">
+                    person in charge:
+                </div>
+                <div class="col">
+                    {{ myuser.first_name }},
+                    {{ myuser.last_name }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    office / position:
+                </div>
+                <div class="col">
+                    {{ myuser.profile.organization }},
+                    {{ myuser.profile.title }}
+                </div>
+            </div>
+        </div>
+
+        <div class="container my-0 py-0" style="max-width: 540px;">
+            <div class="row mx-0 my-0 py-0">
+                <div class="marquee">
+                    <p id="marquee-text" style="color: #6b9dbb">{{ mark_text }}</p>
+                </div>
+            </div>
+        </div>
+        <!-------------snackbarの表示--------------------------->
+        <div id="snackbar">Some text some message..</div>
+        <!------------------------------------------------------------->
+
+        <!-- 本体 -->
+        {% block content %}{% endblock %}
+
+        <!-- メッセージフレームワーク -->
+        {% include 'myApp/_messages.html' %}
+    </div>
 </div>
 
 
