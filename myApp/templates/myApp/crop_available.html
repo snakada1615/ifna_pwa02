@@ -48,7 +48,7 @@
                     <div class="card bg-transparent border-info pt-1">
                         <div class="row ml-3 my-0">
                             <div class="col-6">
-            <span class="btn_color2 btn btn-outline-dark py-0" mycol="white" style="color:white">
+            <span class="btn_color2 btn btn-outline-dark py-0" mycol="red" style="color:white">
             <i class="fa fa-paint-brush" aria-hidden="true"></i></span> season1
                             </div>
                             <div class="col-6">
@@ -62,7 +62,7 @@
             <i class="fa fa-paint-brush" aria-hidden="true"></i></span> season3
                             </div>
                             <div class="col-6">
-            <span class="btn_color2 btn btn-outline-dark py-0" mycol="red" style="color:red">
+            <span class="btn_color2 btn btn-outline-dark py-0" mycol="white" style="color:red">
             <i class="fa fa-paint-brush" aria-hidden="true"></i></span> season4
                             </div>
                         </div>
@@ -125,8 +125,10 @@
                 </div>
 
                 <div class="card-body mx-1 my-1 px-0 py-0">
-                    <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no2_gr.png' %}"> Select brush</div>
-                    <div class="ml-3">Click appropriate brush depending on food availability</div>
+                    <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no2_gr.png' %}"> Select crop name</div>
+                    <div class="ml-3">Click name of each crop</div>
+
+{% comment %}
                     <div class="card bg-transparent border-info pt-1">
                         <div class="row ml-3 my-0">
                             <div class="col-6">
@@ -149,12 +151,14 @@
                             </div>
                         </div>
                     </div>
+{% endcomment %}
+
                 </div>
 
                 <div class="card-body mx-1 my-1 px-0 py-0">
-                    <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no3_gr.png' %}"> Paint cell</div>
+                    <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no3_gr.png' %}">Define availability</div>
                     <div class="ml-3">
-                        Then, click (start-month and end-month) to set available period of each food item.
+                        Then, choose availability from four category (whole season----not available)
                     </div>
                 </div>
 
@@ -1000,7 +1004,7 @@
                         'less than half season': 3,
                         'not available': 0
                     }
-                    let rowNum = Number($("#myrow_tmp").text())/2;
+                    let rowNum = Number($("#myrow_tmp").text()) / 2;
                     $('.container_crop_avail').find('.season-row').each(function (index_r, myRow) {
                         const mon_start = $(myRow).find('.col_start').text();
                         const mon_end = $(myRow).find('.col_end').text();
@@ -1012,7 +1016,6 @@
                             mySelectMonth.setCellColor(value - 1, rowNum, avail_val)
                         })
                     });
-                    confirm('モーダルを閉じていいですか？');
                 });
 
 
@@ -1030,31 +1033,34 @@
                     let myrow = $(this).closest('tr').index();
                     let mycol = this.cellIndex;
                     if (myrow % 2 == 1) {
+                        console.log('myTbl clicked'); // 以下は使わないことにした（月ごとの入力→季節ごとの入力へ変更）
 
-                        console.log('mySelectMonth.getAll().selected_status=' + mySelectMonth.getAll().selected_status);
-                        switch (mySelectMonth.getAll().selected_status) {
-                            case -1:
-                                let tmp = Number($(this).text());
-                                tmp = (tmp + 1) % 4;
-                                $(this).text(tmp); // cellの値+1
-                                tmp_y = (myrow - 1) / 2;
-                                mySelectMonth.setCellColor(mycol, tmp_y, tmp);
-                                break;
-                            case 0:
-                                tmp_y = (myrow - 1) / 2;
-                                mySelectMonth.setStart(mycol, tmp_y);
-                                mySelectMonth.setCellColor(mycol, tmp_y, 4);
-                                console.log('selectedd_statusは' + mySelectMonth.getAll().selected_status + 'です');
-                                console.log('(' + mycol + ', ' + tmp_y + '), ' + mySelectMonth.getAll().myName + 'です');
-                                break;
-                            case 1:
-                                tmp_y = (myrow - 1) / 2;
-                                mySelectMonth.setGoal(mycol, tmp_y);
-                                console.log('selectedd_statusは' + mySelectMonth.getAll().selected_status + 'です');
-                                console.log('(' + mycol + ', ' + tmp_y + '), ' + mySelectMonth.getAll().myName + 'です');
-                                break;
-                        }
-                    } else {
+                        {% comment %}
+                                                console.log('mySelectMonth.getAll().selected_status=' + mySelectMonth.getAll().selected_status);
+                                                switch (mySelectMonth.getAll().selected_status) {
+                                                    case -1:
+                                                        let tmp = Number($(this).text());
+                                                        tmp = (tmp + 1) % 4;
+                                                        $(this).text(tmp); // cellの値+1
+                                                        tmp_y = (myrow - 1) / 2;
+                                                        mySelectMonth.setCellColor(mycol, tmp_y, tmp);
+                                                        break;
+                                                    case 0:
+                                                        tmp_y = (myrow - 1) / 2;
+                                                        mySelectMonth.setStart(mycol, tmp_y);
+                                                        mySelectMonth.setCellColor(mycol, tmp_y, 4);
+                                                        console.log('selectedd_statusは' + mySelectMonth.getAll().selected_status + 'です');
+                                                        console.log('(' + mycol + ', ' + tmp_y + '), ' + mySelectMonth.getAll().myName + 'です');
+                                                        break;
+                                                    case 1:
+                                                        tmp_y = (myrow - 1) / 2;
+                                                        mySelectMonth.setGoal(mycol, tmp_y);
+                                                        console.log('selectedd_statusは' + mySelectMonth.getAll().selected_status + 'です');
+                                                        console.log('(' + mycol + ', ' + tmp_y + '), ' + mySelectMonth.getAll().myName + 'です');
+                                                        break;
+                                                }
+                        {% endcomment %}
+                    } else {    //こちらだけ使用（季節ごとの入力）
                         const crop_tmp = $(this).text();
                         const season_tmp = mySeason.getSeason();
                         console.log(crop_tmp);
