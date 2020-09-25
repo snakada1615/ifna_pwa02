@@ -40,8 +40,8 @@ FCT_id,food_grp_id,food_item_id,Food_grp,Food_name,Crop_ref,Edible,Energy,WATER,
 2080,2,80,"Starchy roots, tubers and their products",Cassava flour,,1,339,12.7,1.9,0.5,78.8,3.9,2.2,138,1.5,45,102,587,30,0.74,0.22,,0,,0,0.35,0.07,0.11,1.2,0.17,47,0,4,"Grains, roots and tubers "
 2081,2,81,"Starchy roots, tubers and their products","Cocoyam, tuber ",,0.81,131,64.7,2.4,0.2,27.4,4.1,1.2,11,0.6,13,58,457,7,0.38,0.16,,0,,0,2.4,0.1,0.03,0.8,0.24,22,0,8,"Grains, roots and tubers "
 2083,2,83,"Starchy roots, tubers and their products",Potato,,0.84,81,77.8,1.9,0.1,16.9,1.8,1.5,11,0.9,27,50,551,7,0.35,0.09,1,0,14,0,0.06,0.08,0.12,1.2,0.27,18,0,17.3,"Grains, roots and tubers "
-2085,2,85,"Starchy roots, tubers and their products","Sweet potato, deep yellow",,0.84,114,69.8,1.5,0.3,24.5,3,0.9,26,1.1,16,40,330,19,0.39,0.13,397,0,4770,0,0.23,0.09,0.05,0.7,0.2,52,0,31,Vitamin A rich fruits and Vegetable 
-2087,2,87,"Starchy roots, tubers and their products","Sweet potato, yellow",,0.84,117,68.9,1.5,0.2,25.5,3,0.9,36,1.1,16,38,461,23,0.39,0.13,135,0,1620,0,0.19,0.09,0.04,0.7,0.27,52,0,32.7,Vitamin A rich fruits and Vegetable 
+2085,2,85,"Starchy roots, tubers and their products","Sweet potato, deep yellow",,0.84,114,69.8,1.5,0.3,24.5,3,0.9,26,1.1,16,40,330,19,0.39,0.13,397,0,4770,0,0.23,0.09,0.05,0.7,0.2,52,0,31,Vitamin A rich fruits and Vegetable
+2087,2,87,"Starchy roots, tubers and their products","Sweet potato, yellow",,0.84,117,68.9,1.5,0.2,25.5,3,0.9,36,1.1,16,38,461,23,0.39,0.13,135,0,1620,0,0.19,0.09,0.04,0.7,0.27,52,0,32.7,Vitamin A rich fruits and Vegetable
 2089,2,89,"Starchy roots, tubers and their products","Taro, tuber",,0.86,93,74,1.7,0.1,19,4.1,1.1,33,0.9,22,88,399,12,0.42,0.2,2,0,23,0,1.19,0.1,0.03,0.8,0.24,22,0,8,"Grains, roots and tubers "
 2091,2,91,"Starchy roots, tubers and their products","Water yam, tuber",,0.81,126,65.5,2.4,0.1,26.5,4.1,1.4,15,0.8,21,69,816,6,0.43,0.21,2,0,30,0,0.3,0.05,0.03,0.5,0.33,26,0,15,"Grains, roots and tubers "
 2093,2,93,"Starchy roots, tubers and their products",Yam tuber,,0.81,129,65.2,1.9,0.2,27.5,4.1,1.1,26,0.8,12,53,816,5,0.64,0.11,2,0,30,0,0.46,0.32,0.07,0.4,0.34,26,0,12.8,"Grains, roots and tubers "
@@ -50,205 +50,205 @@ FCT_id,food_grp_id,food_item_id,Food_grp,Food_name,Crop_ref,Edible,Energy,WATER,
 2098,2,98,"Starchy roots, tubers and their products","Tiger nut, tuber",https://en.wikipedia.org/wiki/Cyperus_esculentus,0.9,304,38.7,3.5,15.5,34.3,6.9,1.1,20,2.6,141,179,265,18,0.4,0.1,0,0,0,0,5.3,0.28,0.09,1.3,,,0,17,"Grains, roots and tubers "
 2100,2,100,"Starchy roots, tubers and their products","Tiger nut, tuber dried",https://en.wikipedia.org/wiki/Cyperus_esculentus,1,466,9,4.9,26.3,47.8,10.2,1.8,40,3.9,210,219,415,27,0.59,0.15,0,0,0,0,4.7,0.35,0.13,1.8,,,0,2.1,"Grains, roots and tubers "
 2110,2,110,"Starchy roots, tubers and their products","Yam tuber, flour",,1,315,14,3.4,0.4,67.9,11.6,2.7,64,1.9,31,110,2310,25,1.57,0.28,,0,,0,0.82,0.1,0.08,1.1,0.83,51,0,3.2,"Grains, roots and tubers "
-3111,3,111,Legumes and their products,"Bambara groundnut, dried ",,1,380,8.4,20.1,5.9,58.9,3.7,3.1,65,3.3,199,275,1190,29,3.38,0.89,2,0,20,0,,0.38,0.12,1.9,,,0,,Legumes and nuts 
-3112,3,112,Legumes and their products,"Bambara groundnut, red, dried",,1,380,8.1,18.4,6,60.7,3.7,3.2,35,3.3,178,272,1290,28,2.02,0.64,,0,,0,,0.39,0.12,1.9,,,0,,Legumes and nuts 
-3113,3,113,Legumes and their products,"Bambara groundnuts, white",,1,385,7.9,20,6.5,58.5,3.7,3.1,50,3.3,185,309,1370,28,2.39,0.82,,0,,0,,0.39,0.12,1.9,,,0,,Legumes and nuts 
-3114,3,114,Legumes and their products,"Cowpea, dried",,1,320,11.8,21.2,1.3,47.2,15.3,3.2,82,7.3,187,387,1210,19,4.61,0.68,3,0,32,0,0.42,0.71,0.15,3.1,0.36,417,0,0.8,Legumes and nuts 
-3115,3,115,Legumes and their products,"Cowpea, black, dried",,1,304,12.7,21.1,1.6,40,21,3.6,69,5.5,202,402,1380,19,3.89,0.6,,0,,0,0.39,0.7,0.15,3,0.35,412,0,0.8,Legumes and nuts 
-3116,3,116,Legumes and their products,"Cowpea, white, dried",,1,323,13.3,19.2,1.5,52,10.6,3.5,69,8.5,232,357,1020,25,4.58,0.97,,0,,0,0.39,0.69,0.15,3,0.35,410,0,0.8,Legumes and nuts 
-3118,3,118,Legumes and their products,"Soya bean, dried",,1,411,9.3,32,17,27.6,9.3,4.9,232,7.8,245,468,1740,5,4.73,1.48,1,0,13,0,0.72,0.7,0.28,2,0.82,375,0,,Legumes and nuts 
-3119,3,119,Legumes and their products,"African locust bean, seeds, dried",,0.3,445,7,32.3,19.5,33,4.1,4.1,291,33.2,,384,,,,,,0,,0,,0.3,0.2,3,,,0,6,Legumes and nuts 
-3120,3,120,Legumes and their products,"African yam bean, dried",,,313,13.3,18.9,1.5,47.1,16.7,2.6,40,4.1,,253,1290,2,2,,,0,,0,,0.69,,,,,0,,Legumes and nuts 
-3132,3,132,Legumes and their products,"Beans, white, dried",,1,339,8.9,22.1,1.5,53.2,10.3,3.9,74,5.7,186,429,1550,18,3.77,0.47,15,0,179,0,0.19,0.89,0.11,1.6,0.51,395,0,0,Legumes and nuts 
-3134,3,134,Legumes and their products,"Broad beans, dried",,1,301,11,26.1,1.8,31.7,26.3,3.1,102,6.1,191,506,1080,12,3.1,0.82,3,0,32,0,0.05,0.53,0.3,2.7,0.37,423,0,,Legumes and nuts 
-3137,3,137,Legumes and their products,"Cowpea, brown, dried",,1,320,12.5,21.2,1.6,47.3,14.2,3,76,8.7,202,422,1120,22,4.37,1.12,,0,,0,0.51,0.7,0.15,3,0.35,413,0,0.8,Legumes and nuts 
-3140,3,140,Legumes and their products,"Lentils, dried",,1,296,10.3,25.4,1.8,29.4,30.5,2.5,61,7,103,391,855,9,3.9,0.74,3,0,42,0,0.49,0.59,0.23,2.3,0.68,295,0,,Legumes and nuts 
-3142,3,142,Legumes and their products,"Pigeon pea, dried",,1,301,13.4,18.4,1.5,43.2,20.2,3.3,140,4.7,183,269,1390,17,1.96,1.02,1,0,12,0,,0.62,0.18,2.9,0.27,456,0,,Legumes and nuts 
-4151,4,151,Vegetables and their products,"Baobab, leaves,  raw",,0.82,72,76.7,3.5,0.5,9.2,7.2,2.8,313,3.9,52,85,391,6,0.9,0.18,197,0,2360,0,1.42,0.03,0.04,1.9,0.3,118,0,47,Vitamin A rich fruits and Vegetable 
-4152,4,152,Vegetables and their products,"Baobab leaves, dried",,1,272,7.5,13.7,2.1,35.2,28.6,12.9,1240,15.4,206,355,1550,24,3.6,0.72,130,0,1560,0,5.63,0.1,0.15,6.1,1.1,364,0,19,Vitamin A rich fruits and Vegetable 
-4153,4,153,Vegetables and their products,"Beans, green raw",,0.83,40,87.9,3.1,0.2,5,2.5,1.2,47,1.1,25,56,242,2,0.27,0.08,24,0,286,0,0.28,0.1,0.1,0.7,0.2,62,0,17.5,Other fruits and vegetables 
-4154,4,154,Vegetables and their products,Okra leaves,,0.8,40,86.2,2.7,0.3,4.3,4.9,1.6,297,0.6,38,73,199,4,0.88,0.01,56,0,672,0,0.73,0.16,0.41,0.2,0.3,118,0,36,Vitamin A rich fruits and Vegetable 
-4155,4,155,Vegetables and their products,Cabbage,,0.8,27,91.2,1.6,0.1,3.8,2.6,0.8,41,0.6,12,37,317,12,0.2,0.02,8,0,100,0,0.15,0.05,0.04,0.3,0.1,48,0,54,Other fruits and vegetables 
-4156,4,156,Vegetables and their products,Carrot,,0.89,36,88.8,1,0.3,5.7,3.1,1.1,35,0.7,12,42,266,42,0.26,0.06,713,0,8560,0,0.47,0.06,0.05,0.7,0.23,31,0,7,Vitamin A rich fruits and Vegetable 
-4158,4,158,Vegetables and their products,"Cassava, leaves",,0.85,98,73.2,7.5,0.9,12.9,4,1.8,276,5.5,58,106,605,6,0.69,0.16,286,0,3430,0,2.4,0.25,0.46,1.6,0.3,118,0,39,Vitamin A rich fruits and Vegetable 
-4159,4,159,Vegetables and their products,"Cocoyam, leaves",,0.6,35,90.2,3.2,0.7,3.1,1.6,1.3,63,2.4,64,60,418,3,0.41,0.27,376,0,4510,0,2.02,0.21,0.42,1.2,0.15,126,0,37,Vitamin A rich fruits and Vegetable 
-4160,4,160,Vegetables and their products,"Cowpea, leaves",,0.8,42,86.6,4.6,0.3,3.3,3.6,1.6,265,5.1,60,61,475,6,0.5,0.27,150,0,1800,0,2.36,0.2,0.37,1.6,0.24,129,0,57,Vitamin A rich fruits and Vegetable 
-4161,4,161,Vegetables and their products,Drumstick  leaves,,0.8,87,76.5,8.3,1.2,9.6,2,2.4,434,6.1,70,101,404,7,0.9,0.16,738,0,8850,0,3.07,0.23,0.73,2.7,1.2,205,0,164,Vitamin A rich fruits and Vegetable 
-4162,4,162,Vegetables and their products,Eggplant,,0.81,30,90.9,1.1,0.2,4.6,2.6,0.6,13,0.9,12,24,264,4,0.14,0.09,3,0,30,0,0.03,0.05,0.05,0.6,0.09,26,0,6.3,Other fruits and vegetables 
-4163,4,163,Vegetables and their products,Eggplant leaves,,0.8,45,87.1,4.4,0.7,4.2,1.9,1.7,332,4.3,58,44,437,6,0.73,0.18,296,0,3550,0,1.95,0.15,0.4,1.4,0.3,118,0,79,Vitamin A rich fruits and Vegetable 
-4164,4,164,Vegetables and their products,"False sesame, leaves, dried",,1,304,13.6,17.7,3.4,45.7,8.1,11.5,1310,14.2,285,284,1800,27,4.23,2.2,,0,,0,8.98,0.6,1.72,6,1.24,410,0,13,Other fruits and vegetables 
-4165,4,165,Vegetables and their products,Garlic,,0.87,137,64.3,6.8,0.4,25,2.3,1.3,32,1.6,21,158,533,11,0.79,0.15,0,0,0,0,0.01,0.17,0.06,0.5,0.79,4,0,18,Other fruits and vegetables 
-4166,4,166,Vegetables and their products,Roselle leaves,,0.8,40,86.7,2.8,0.2,4.1,5,1.2,212,4.1,58,65,437,6,0.9,0.18,215,0,2580,0,1.9,0.17,0.45,1.2,0.3,117,0,33,Vitamin A rich fruits and Vegetable 
-4167,4,167,Vegetables and their products,Okra fruit,,0.86,33,89.8,1.7,0.2,4.4,3.2,0.7,84,0.8,13,40,303,8,0.6,0.09,26,0,313,0,0.36,0.04,0.08,0.7,0.22,88,0,28,Other fruits and vegetables 
-4168,4,168,Vegetables and their products,Onion,,0.91,37,89.5,1.1,0.1,6.9,1.8,0.6,25,0.3,10,39,183,4,0.26,0.04,0,0,1,0,0.04,0.05,0.04,0.2,0.1,16,0,10.3,Other fruits and vegetables 
-4169,4,169,Vegetables and their products,"Tamarind, leaves",,0.8,99,74.3,4,2.1,13.9,4.1,1.6,403,5.2,71,81,292,4,0.72,0.07,21,0,250,0,,0.17,0.11,3.5,0.3,117,0,5,Other fruits and vegetables 
-4170,4,170,Vegetables and their products,"Taro, leaves",,0.6,46,85.7,4.7,0.7,3.3,3.7,1.9,105,2.2,45,56,649,3,0.66,0.27,324,0,3890,0,2.02,0.19,0.4,1.2,0.15,126,0,52,Vitamin A rich fruits and Vegetable 
-4171,4,171,Vegetables and their products,"Tomato, red",,0.91,22,93.5,1,0.2,3.3,1.4,0.6,13,0.6,13,32,255,7,0.7,0.15,52,0,624,0,0.9,0.06,0.04,0.6,0.09,21,0,29.6,Other fruits and vegetables 
-4172,4,172,Vegetables and their products,"Vernonia, leaves",,0.8,55,82.8,4.4,0.6,5.5,5.1,1.6,162,2.8,58,67,437,6,1.01,0.18,241,0,2900,0,1.56,0.16,0.41,1.4,0.3,113,0,27,Vitamin A rich fruits and Vegetable 
-4173,4,173,Vegetables and their products,Amaranth leaves,,0.94,39,87.8,3.8,0.3,4.6,1.4,2.1,380,6.2,93,58,602,13,0.72,0.15,241,0,2890,0,0.24,0.04,0.33,0.9,0.19,79,0,45,Vitamin A rich fruits and Vegetable 
-4181,4,181,Vegetables and their products,"Cowpea leaves, dried",,1,282,10.3,24.4,1.9,29.8,24.1,9.5,1060,34,401,364,2850,40,3.35,1.81,201,0,2407,0,15.8,1.15,2.35,10.2,1.49,673,0,38,Vitamin A rich fruits and Vegetable 
-4182,4,182,Vegetables and their products,Cucumber,,0.81,15,95.5,0.7,0.1,2.5,0.7,0.5,13,0.5,12,26,134,10,0.17,0.07,3,0,35,0,0.03,0.02,0.01,0.3,0.04,6,0,14,Other fruits and vegetables 
-4186,4,186,Vegetables and their products,"False sesame, leaves",,0.8,69,80.6,5.3,0.8,9.1,1.8,2.4,442,3.2,58,63,404,6,0.95,0.49,,0,,0,2.02,0.16,0.41,1.4,0.3,118,0,28,Other fruits and vegetables 
-4188,4,188,Vegetables and their products,Jute (bush-okra) leaves,,0.8,59,82.9,3.9,0.3,9.1,2,1.8,360,4.2,58,122,437,6,0.44,0.18,261,0,3130,0,0.79,0.15,0.53,1.2,0.3,118,0,80,Vitamin A rich fruits and Vegetable 
-4190,4,190,Vegetables and their products,Lettuce,,0.7,18,94.5,1,0.2,2.3,1.2,0.8,27,0.8,9,28,204,10,0.29,0.05,93,0,1120,0,0.6,0.06,0.15,0.4,0.2,89,0,5.3,Vitamin A rich fruits and Vegetable 
-4194,4,194,Vegetables and their products,"Onions, dried",,1,359,4.2,9.6,1.1,71.1,10.7,3.4,239,2.1,64,282,1510,21,1.8,0.42,1,0,11,0,0.4,0.37,0.1,0.9,1.6,166,0,54,Other fruits and vegetables 
-4195,4,195,Vegetables and their products,"Parsley, fresh",,0.95,48,84.9,3.5,0.4,5.7,3.3,2.2,217,4.9,27,58,600,28,0.77,0.16,583,0,7000,0,0.75,0.14,0.21,1.3,0.22,170,0,175,Vitamin A rich fruits and Vegetable 
-4196,4,196,Vegetables and their products,"Peppers, chilli",,0.73,46,87.3,1.9,0.3,7.6,2.2,0.7,16,1.1,24,43,331,8,0.29,0.15,53,0,640,0,0.69,0.08,0.09,1.1,0.39,23,0,193.1,Other fruits and vegetables 
-4197,4,197,Vegetables and their products,"Pepper, sweet, red",,0.83,33,90.3,1.3,0.3,5.2,2.1,0.8,12,0.4,12,39,267,6,0.33,0.05,191,0,2300,0,1.73,0.07,0.09,1.2,0.32,45,0,161.2,Vitamin A rich fruits and Vegetable 
-4199,4,199,Vegetables and their products,"Pepper, sweet, green",,0.83,26,92.2,0.9,0.2,4.1,2,0.5,17,0.3,9,31,239,6,0.12,0.07,29,0,353,0,0.7,0.08,0.09,0.5,0.28,26,0,112.9,Other fruits and vegetables 
-4201,4,201,Vegetables and their products,"Pumpkin, squash",,0.7,29,91.9,1,0.1,5.6,0.8,0.7,19,1.2,14,33,280,8,0.32,0.13,100,0,1200,0,1.06,0.05,0.02,0.5,0.1,8,0,8,Vitamin A rich fruits and Vegetable 
-4203,4,203,Vegetables and their products,Pumpkin leaves,,0.41,27,90.4,3.7,0.3,1.3,2.4,1.9,39,2.2,38,125,468,11,0.2,0.13,192,0,2300,0,0.96,0.09,0.08,0.6,0.21,36,0,11,Vitamin A rich fruits and Vegetable 
-4205,4,205,Vegetables and their products,"Pumpkin leaves, dried",,1,253,19,34.5,2.3,14.5,18,11.7,330,18.8,322,1058,3690,93,1.69,1.13,324,0,3890,0,8.12,0.63,0.66,5,1.65,238,0,9.3,Vitamin A rich fruits and Vegetable 
-4207,4,207,Vegetables and their products,Spinach,,0.72,27,90.9,2.8,0.6,1.7,2.2,1.8,133,3.1,53,45,502,87,0.8,0.08,409,0,6040,0,2.31,0.08,0.17,0.9,0.19,176,0,36,Vitamin A rich fruits and Vegetable 
-4209,4,209,Vegetables and their products,"Sweet potato, leaves",,0.8,51,84.7,4.4,0.2,6.7,2.3,1.8,37,3.6,61,87,522,9,0.29,0.04,489,0,5870,0,0.96,0.13,0.31,1,0.19,80,0,11,Vitamin A rich fruits and Vegetable 
-4212,4,212,Vegetables and their products,"Tamarind, leaves, dried",,1,373,3.9,14,8,53.3,15.3,5.5,1500,19.4,265,302,1090,14,2.7,0.26,16,0,187,0,,0.55,0.37,12.3,1.04,341,0,1.7,Other fruits and vegetables 
-4215,4,215,Vegetables and their products,"Tomatoes, canned, packed in juice",,1,20,94.1,1,0.2,3,1,0.7,25,0.8,11,19,209,108,0.2,0.08,22,0,261,0,0.96,0.05,0.04,0.7,0.11,17,0,10.9,Other fruits and vegetables 
-4216,4,216,Vegetables and their products,"Tomato paste, concentrated",,1,90,73.5,4.3,0.5,14.8,4.1,2.8,64,3,60,86,1010,98,0.4,0.3,75,0,901,0,4.6,0.06,0.15,3.1,0.22,10,0,17.8,Other fruits and vegetables 
-4217,4,217,Vegetables and their products,"Tomato, powder",,1,325,3.1,12.9,0.4,58.2,16.5,8.9,166,4.6,178,295,1930,134,1.71,1.24,862,0,10348,0,12.25,0.91,0.76,9.1,0.46,120,0,116.7,Vitamin A rich fruits and Vegetable 
-4218,4,218,Vegetables and their products,Turnip ,,0.81,28,91.3,0.9,0.2,4.4,2.5,0.7,41,0.3,15,35,262,44,0.22,0.1,3,0,36,0,,0.04,0.04,0.8,0.08,24,0,23.7,Other fruits and vegetables 
-5221,5,221,Fruits and their products,African locust bean,,,306,15.9,3.3,0.9,64,12.6,3.2,118,3.6,88,123,1670,5,0.8,0.02,203,0,2430,0,,1.07,0.7,1.3,,,0,234,Vitamin A rich fruits and Vegetable 
-5222,5,222,Fruits and their products,"Avocado, ",,0.74,152,76.5,1.7,14.7,1.4,4.7,1.1,15,0.8,32,46,492,4,0.51,0.23,6,0,68,0,1.6,0.06,0.15,1.8,0.35,35,0,14,Other fruits and vegetables 
-5223,5,223,Fruits and their products,"Banana, white ",,0.64,101,73.6,1.2,0.2,22.1,2,0.8,7,0.3,29,24,369,2,0.17,0.08,4,0,50,0,0.37,0.04,0.04,0.6,0.34,19,0,10.4,Other fruits and vegetables 
-5224,5,224,Fruits and their products,"Baobab, fruit/Monkey bread, ",,0.28,306,17.7,2.4,0.6,68.2,6.8,4.3,276,5.5,91,83,1020,,3.6,0.7,6,0,70,0,,0.37,0.06,2.1,0.02,,0,247,Other fruits and vegetables 
-5225,5,225,Fruits and their products,Breadfruit,,0.8,109,71.7,1.5,0.3,23.9,1.9,0.9,29,2,,34,422,13,,,1,0,15,0,,0.09,0.05,1,,,0,27.7,Other fruits and vegetables 
-5226,5,226,Fruits and their products,"Cashew apple, ",,1,56,85.8,1,0.7,10.7,1.5,0.4,11,1.2,10,35,140,6,,,25,0,296,0,,0.03,0.12,0.3,,,0,241,Other fruits and vegetables 
-5227,5,227,Fruits and their products,"Dattock, ",,0.47,127,66.9,1.9,0.4,27.3,2.3,1.2,27,0.5,20,48,345,2,0.17,0.1,14,0,165,0,0.04,0.13,0.05,0.6,0.1,21,0,1130,Other fruits and vegetables 
-5228,5,228,Fruits and their products,"Dattock, dried ",,1,325,14,3.4,1,71.2,7.1,3.3,110,1.4,53,125,807,5,0.44,0.24,7,0,86,0,0.11,0.27,0.12,1.4,0.25,33,0,294,Other fruits and vegetables 
-5229,5,229,Fruits and their products,"Guava, fruit",,0.78,57,82.9,1,0.4,9.5,5.6,0.6,23,0.7,13,32,270,4,0.32,0.06,35,0,419,0,0.32,0.05,0.04,1.2,0.14,7,0,261,Other fruits and vegetables 
-5230,5,230,Fruits and their products,Gumvine,,0.32,76,80.4,0.7,0.2,17.1,1.3,0.4,53,1.3,116,32,,4,,0.03,,0,,0,,0.13,0.03,0.7,0.02,,0,36,Other fruits and vegetables 
-5231,5,231,Fruits and their products,Jujube,,0.93,92,76.3,1.5,0.3,20,1.5,0.5,32,0.8,10,24,255,3,0.07,0.07,2,0,22,0,,0.02,0.03,1,0.08,,0,62.8,Other fruits and vegetables 
-5232,5,232,Fruits and their products,"Landolphia, ",,0.36,64,83.7,0.8,0.1,14.5,0.3,0.6,14,1.2,45,29,180,,0.52,0.03,,0,,0,,0.04,0.03,0.1,0.06,,0,35.6,Other fruits and vegetables 
-5233,5,233,Fruits and their products,Lemon,,0.64,36,90.2,0.4,0.5,6.3,2.1,0.3,21,0.6,16,20,156,5,0.1,0.04,1,0,9,0,0.15,0.04,0.02,0.3,0.05,11,0,45.5,Other fruits and vegetables 
-5234,5,234,Fruits and their products,"Mango, orange ",,0.71,65,82.7,0.6,0.2,13.9,2.1,0.5,17,0.7,9,18,180,3,0.11,0.06,168,0,2020,0,1.05,0.03,0.05,0.4,0.11,25,0,36.3,Vitamin A rich fruits and Vegetable 
-5235,5,235,Fruits and their products,Orange,,0.73,45,87.8,0.7,0.3,8.9,1.7,0.5,31,0.2,11,19,166,2,0.1,0.05,8,0,90,0,0.28,0.04,0.03,0.2,0.07,33,0,46.8,Other fruits and vegetables 
-5236,5,236,Fruits and their products,"Papaya, fruit, ripe",,0.62,36,89.8,0.5,0.1,7.3,1.9,0.4,20,0.7,19,15,210,3,0.12,0.02,80,0,996,0,0.13,0.03,0.03,0.4,0.02,25,0,58,Vitamin A rich fruits and Vegetable 
-5237,5,237,Fruits and their products,"Pineapple, ",,0.51,54,85.8,0.4,0.2,12,1.3,0.3,20,0.5,12,12,205,2,0.11,0.2,5,0,61,0,0.1,0.07,0.03,0.2,0.09,12,0,29.8,Other fruits and vegetables 
-5238,5,238,Fruits and their products,"Soapberry, fruit",,0.57,111,71.4,1.6,,25.5,0.5,1,23,3,2,90,,,,0.05,30,0,360,0,,0.03,0.04,,,,0,51.5,Other fruits and vegetables 
-5239,5,239,Fruits and their products,"Tamarind, immature fruit",,,60,80.1,2.2,0.2,8.1,8.4,1,60,0.7,19,61,308,3,0.03,0.02,1,0,10,0,0.03,0.24,0.07,0.5,0.02,4,0,9.5,Other fruits and vegetables 
-5240,5,240,Fruits and their products,"Tamarind, fruit, ripe",,0.47,251,26.9,4.2,0.6,47.6,18.3,2.4,151,2.2,68,103,648,11,0.11,0.09,1,0,7,0,0.09,0.26,0.14,1,0.07,15,0,3.5,Other fruits and vegetables 
-5241,5,241,Fruits and their products,"Watermelon, fruit",,0.56,30,92.5,0.5,0.2,6.2,0.3,0.3,7,0.3,10,9,109,3,0.1,0.03,42,0,503,0,0.05,0.03,0.04,0.1,0.07,4,0,7.2,Other fruits and vegetables 
-5242,5,242,Fruits and their products,"African fan palm, fruit, ",,,44,87.6,0.8,0.1,8.9,2,0.6,27,1,,30,54,1,,,,0,,0,,0.04,0.02,0.3,,,0,4,Other fruits and vegetables 
-5243,5,243,Fruits and their products,"African locust bean, flour from fruit, ",,1,337,7.7,4.6,1.3,69,13.3,4.1,162,4,96,135,1650,6,1.1,0.02,44,0,533,0,,0.94,0.74,1.2,,,0,26,Other fruits and vegetables 
-5244,5,244,Fruits and their products,"Akee, ",,,202,69.2,6.8,18.2,2.7,1.6,1.6,26,2.7,97,51,340,,,,46,0,555,0,,0.13,0.14,1.4,,,0,26,Other fruits and vegetables 
-5245,5,245,Fruits and their products,"Apple, with skin",,0.9,54,85.6,0.3,0.2,11.4,2.4,0.2,6,0.1,5,11,107,1,0.04,0.03,3,0,33,0,0,0.02,0.03,0.1,0.04,3,0,4.6,Other fruits and vegetables 
-5246,5,246,Fruits and their products,"Apple, without skin",,0.77,51,86.7,0.3,0.1,11.5,1.3,0.2,5,0.1,4,11,90,0,0.05,0.03,2,0,24,0,0,0.02,0.03,0.1,0.04,0,0,4,Other fruits and vegetables 
-5247,5,247,Fruits and their products,"Banana, yellow ",,0.64,107,72,1.4,0.2,23.6,2,0.8,6,0.3,29,25,376,2,0.2,0.08,119,0,1430,0,0.37,0.03,0.04,0.6,0.34,17,0,13.4,Vitamin A rich fruits and Vegetable 
-5248,5,248,Fruits and their products,Clementine,,0.77,48,87,0.9,0.1,9.9,1.7,0.4,31,0.1,10,20,154,3,0.08,0.03,6,0,75,0,0,0.09,0.04,0.5,0.07,21,0,51.4,Other fruits and vegetables 
-5249,5,249,Fruits and their products,Dates,,0.9,151,60.7,1.5,0.1,34.2,2.7,0.8,24,0.3,24,28,410,2,0.2,0.12,2,0,18,0,0.05,0.06,0.07,0.7,0.12,25,0,14,Other fruits and vegetables 
-5250,5,250,Fruits and their products,"Dates, dried",,1,311,18.7,2.3,0.3,70.1,6.9,1.6,46,1.1,45,56,669,4,0.36,0.28,1,0,7,0,0.1,0.06,0.08,1.6,0.2,36,0,3,Other fruits and vegetables 
-5251,5,251,Fruits and their products,Fig ,,0.99,71,80.9,1.1,0.3,14.5,2.6,0.7,44,0.5,17,17,221,2,0.24,0.07,4,0,50,0,0,0.06,0.06,0.6,0.11,7,0,2,Other fruits and vegetables 
-5252,5,252,Fruits and their products,"Fig, dried ",,0.99,280,25.7,3.4,1.1,58.4,9.6,1.9,202,2.1,80,80,887,10,0.72,0.28,2,0,23,0,0,0.08,0.09,0.7,0.14,10,0,1.2,Other fruits and vegetables 
-5253,5,253,Fruits and their products,"Fruit cocktail, canned in syrup",,1,73,81.1,0.4,0.1,16.4,1.7,0.2,6,0.3,5,11,93,5,0.09,0.05,5,0,54,0,0.6,0.02,0.02,0.4,0.04,3,0,3,Other fruits and vegetables 
-5254,5,254,Fruits and their products,"Grapefruit, ",,0.49,34,90.7,0.7,0.1,6.8,1.2,0.5,20,0.3,9,16,164,2,0.07,0.05,1,0,18,0,0.25,0.05,0.02,0.2,0.04,12,0,36.1,Other fruits and vegetables 
-5255,5,255,Fruits and their products,"Mango, deep orange ",,0.71,77,79.7,0.4,0.2,17.3,2.1,0.3,12,0.7,9,14,157,2,0.1,0.09,393,0,4720,0,1.05,0.09,0.03,0.4,0.13,29,0,65.5,Vitamin A rich fruits and Vegetable 
-5256,5,256,Fruits and their products,"Mango, pale ",,0.71,53,85.5,0.5,0.2,11.1,2.1,0.3,8,0.6,7,14,138,,0.1,0.06,59,0,708,0,1.05,0.04,0.03,0.3,0.09,21,0,7.9,Vitamin A rich fruits and Vegetable 
-5257,5,257,Fruits and their products,"Melon, honeydew",,0.46,29,92,0.6,0.1,6,0.8,0.6,7,0.3,9,16,228,27,0.09,0.03,3,0,31,0,0.08,0.03,0.01,0.5,0.07,12,0,14.2,Other fruits and vegetables 
-5258,5,258,Fruits and their products,"Melon, cantaloup",,0.51,33,90.8,0.7,0.2,6.7,0.9,0.7,13,0.2,12,22,248,13,0.18,0.04,158,0,1900,0,0.07,0.04,0.02,0.7,0.08,16,0,30.2,Vitamin A rich fruits and Vegetable 
-5259,5,259,Fruits and their products,"Palm nuts, ",,0.4,521,28.7,1.8,50.7,14.1,3.8,1,53,4.8,,56,,,,,,0,,,,0.2,0.1,1.4,,,0,12,Other fruits and vegetables 
-5260,5,260,Fruits and their products,Pomegranate,,0.56,79,78.7,1.4,0.6,14.8,4,0.5,12,0.7,9,33,243,3,0.38,0.14,2,0,23,0,0.6,0.07,0.05,0.3,0.13,24,0,15.1,Other fruits and vegetables 
-5261,5,261,Fruits and their products,"Plantain, ripe",,0.65,142,63.3,1.2,0.3,32,2.3,1,7,0.9,37,34,500,4,0.12,0.08,43,0,518,0,0.2,0.07,0.05,0.7,0.3,22,0,18.4,Other fruits and vegetables 
-5263,5,263,Fruits and their products,Shea fruit ,,1,99,73.3,1.5,0.9,19.1,3.7,1.5,37,1.8,6,26,13,3,0.18,0.08,66,0,795,0,,0.01,0.03,1,,,0,19.1,Other fruits and vegetables 
-5264,5,264,Fruits and their products,"Sweet apple, fruit",,0.6,92,75.7,1.4,0.2,20.2,1.7,0.9,24,0.7,21,33,264,9,,,0,0,3,0,,0.11,0.13,0.9,0.2,,0,36,Other fruits and vegetables 
-6265,6,265,"Nuts, seeds and their products",Cashew nut,,1,581,5.3,17.7,44.4,27,3.1,2.5,44,6.4,267,509,641,14,4.59,2.15,0,0,3,0,0.78,0.6,0.18,1.5,0.45,46,0,0.3,Legumes and nuts 
-6266,6,266,"Nuts, seeds and their products","Coconut, mature kernel, fresh",,0.7,382,43.1,3.6,36.9,6.2,9.3,1,17,2.4,38,106,415,22,0.84,0.42,0,0,0,0,0.73,0.04,0.02,0.5,0.05,27,0,2.2,Legumes and nuts 
-6267,6,267,"Nuts, seeds and their products","Coconut, immature kernel, fresh",,0.3,160,74,1.6,13.5,6.7,3.3,0.8,19,2.2,17,111,218,8,0.39,0.19,0,0,0,0,0.27,0.07,0.05,0.6,0.02,12,0,2,Legumes and nuts 
-6268,6,268,"Nuts, seeds and their products","Coconut, kernel, dried",,1,598,8.6,5.9,56.4,10.2,17,1.9,32,3.4,74,177,617,33,1.5,0.8,0,0,0,0,1.2,0.08,0.08,0.9,0.08,26,0,0.3,Legumes and nuts 
-6269,6,269,"Nuts, seeds and their products",Coconut milk ,,1,216,71.1,2.1,22.1,1.7,2.2,0.7,17,2.7,43,97,234,14,0.64,0.23,0,0,0,0,0.7,0.03,0.02,0.7,0.03,15,0,1.6,Legumes and nuts 
-6270,6,270,"Nuts, seeds and their products",Coconut water,,1,20,94.3,0.4,0.3,3.5,1.1,0.4,24,0.2,24,23,270,86,0.1,0.04,0,0,0,0,0,0.03,0.07,0.1,0.03,3,0,2.1,Legumes and nuts 
-6271,6,271,"Nuts, seeds and their products","Dikanut, kernel, dried",,1,693,5.3,7.9,66.9,16.4,2.2,1.3,164,3.4,,202,,2,0.29,0.14,,0,,0,,0.18,0.09,0.7,,,0,,Legumes and nuts 
-6272,6,272,"Nuts, seeds and their products",Groundnut,,1,571,6.3,22.4,45.9,14.6,8.5,2.3,47,3.9,191,359,727,6,2.5,0.86,0,0,0,0,10.9,0.87,0.14,15.5,0.59,110,0,0,Legumes and nuts 
-6273,6,273,"Nuts, seeds and their products","Groundnut, rose",,1,562,6.2,20.4,43.2,20.3,7.7,2.2,34,3.7,195,336,711,6,3.65,1.12,0,0,0,0,10.09,0.87,0.14,15.5,0.59,110,0,0,Legumes and nuts 
-6274,6,274,"Nuts, seeds and their products","Groundnut, red",,1,571,5.1,21.7,45.1,16.5,9.4,2.3,44,2.3,193,335,791,6,2.84,1.04,0,0,0,0,10.09,0.87,0.14,15.5,0.59,110,0,0,Legumes and nuts 
-6275,6,275,"Nuts, seeds and their products",Melon seeds,,0.37,588,6.4,27.5,47.9,11.3,3.2,3.7,112,6.1,510,867,648,99,7.12,1.54,,0,,0,,0.1,0.12,2.8,0.09,58,0,,Legumes and nuts 
-6276,6,276,"Nuts, seeds and their products",Sesame seeds,,1,569,5.1,18.2,48.9,10,11.8,6,983,11.8,351,643,468,11,7.75,4.08,3,0,30,0,0.25,0.68,0.19,3.4,0.79,97,0,,Legumes and nuts 
-6277,6,277,"Nuts, seeds and their products","Shea nut, seed",,0.72,581,6.3,6.8,46.4,32.5,5.5,2.5,100,3.4,,82,,,,,,0,,0,,0.52,,,,,0,,Legumes and nuts 
-6278,6,278,"Nuts, seeds and their products",Colanut,,,163,58.2,2.9,0.4,35.5,1.9,1.1,44,2,71,86,,,,0.15,0,0,0,0,,0.04,0.02,0.7,,,0,,Legumes and nuts 
-6279,6,279,"Nuts, seeds and their products","Colanut, dried",,,347,11.5,5.8,1.5,74.3,4,2.9,108,6,150,176,,,,0.32,1,0,,0,,0.06,0.05,1.3,,,0,,Legumes and nuts 
-6285,6,285,"Nuts, seeds and their products","Groundnut, combined varieties",,1,562,7.2,22.4,44.5,14.8,8.5,2.6,51,6.2,191,394,720,6,2.5,0.85,0,0,0,0,10.09,0.87,0.13,15.3,0.58,109,0,0,Legumes and nuts 
-6286,6,286,"Nuts, seeds and their products",Groundnut paste,,1,588,7.2,25,47.2,16.5,1.5,2.6,61,4,191,349,720,17,2,0.42,0,0,0,0,10.09,0.39,0.14,15.3,0.59,110,0,0,Legumes and nuts 
-6287,6,287,"Nuts, seeds and their products","Groundnut flour, with fat",,1,581,4.3,26.6,46.4,10.6,9.9,2.1,41,4,195,366,743,6,2.6,0.88,0,0,0,0,11.03,0.89,0.14,9.9,0.6,112,0,0,Legumes and nuts 
-6288,6,288,"Nuts, seeds and their products","Groundnut flour, defatted",,1,409,5,42.5,9.9,35.3,3.1,4.2,60,4,194,364,737,6,2.55,0.87,0,0,0,0,2.35,0.89,0.14,15.7,0.6,111,0,0,Legumes and nuts 
-6289,6,289,"Nuts, seeds and their products","Palm nut kernel, shelled",,,602,13.5,6.1,55.3,19.6,4,1.5,91,9,232,239,270,,2.37,1.49,,0,,0,,,,,,,0,,Legumes and nuts 
-6290,6,290,"Nuts, seeds and their products","Roselle, red, seed, dried ",,1,421,7,16.8,17.8,42.5,11,4.9,373,4.2,,462,,,0.6,,,0,,0,,0.11,0.37,1.3,,,0,,Legumes and nuts 
-7291,7,291,Meat and poultry and their products,Beef liver,,1,133,71,19.4,4.4,3.9,0,1.3,7,8.8,18,369,313,69,3.5,9.76,4970,4950,245,1.2,0.38,0.19,1.56,13.2,1.08,290,59.3,1.3,Flesh foods 
-7292,7,292,Meat and poultry and their products,"Beef, meat, 15-20  % fat, boneless",,1,234,64.3,18.4,18,0,0,1,8,2.9,25,182,305,70,3.4,0.12,16,16,0,0.6,0.35,0.06,0.28,5.6,0.32,6,1.1,0,Flesh foods 
-7293,7,293,Meat and poultry and their products,"Chicken, dark meat",,0.44,135,72.9,20.4,5.9,0,0,1,11,1.1,24,194,276,84,1.36,0.05,17,17,0,0.2,0.26,0.09,0.16,7,0.34,16,0.4,0,Flesh foods 
-7294,7,294,Meat and poultry and their products,"Lamb/mutton, meat, moderately fat",,0.82,253,60.6,16.5,21.2,0,0,1,10,2.1,22,149,250,76,3.33,0.11,10,10,0,0.3,0.21,0.13,0.19,3.5,0.4,2,2.9,0,Flesh foods 
-7295,7,295,Meat and poultry and their products,"Pork, meat, approx. 40 % fat, boneless",,1,392,46.6,12.3,38.8,0,0,1.2,11,1.8,16,165,300,60,3.6,0.1,0,0,0,1,0.1,0.6,0.17,3.6,0.38,3,0.7,0,Flesh foods 
-7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless",,1,263,60.1,16.8,22,0,0,1.1,10,1.4,20,170,301,68,3.6,0.1,0,0,0,0.7,0.1,0.72,0.22,3.8,0.32,2,0.8,0,Flesh foods 
-7297,7,297,Meat and poultry and their products,Rabbit meat,,0.76,128,72.7,21.6,4.8,0,0,1,16,1.2,27,212,351,60,1.7,0.15,10,10,0,0,0.8,0.11,0.15,9.5,0.57,5,10,0,Flesh foods 
-7298,7,298,Meat and poultry and their products,Ant flying,, ,595,2.9,38.8,46.9,5.5,,5.9,91,35.2,,609,476,1970,,,,,,,,0.13,4.5,5.7,,,,,Flesh foods 
-7299,7,299,Meat and poultry and their products,"Beef, meat, lean, boneless",,1,126,73.2,21.7,4.3,0,0,1,5,2.1,22,170,360,50,3.6,0.09,0,0,0,0.4,0.23,0.06,0.19,6.2,0.23,7,1.4,0,Flesh foods 
-7304,7,304,Meat and poultry and their products,"Beef, meat, approx. 30 % fat, boneless",,1,318,54.2,16.4,28.4,0,0,0.8,4,1.6,17,170,272,62,3.9,0.06,42,42,0,0.9,0.9,0.03,0.14,5,0.32,7,1.4,0,Flesh foods 
-7307,7,307,Meat and poultry and their products,"Beef, meat, lean, cured",,1,180,53.8,31.1,1.9,9.1,0,4.1,8,2.4,19,181,235,2790,4.93,0.07,0,0,0,0,0.38,0.07,0.16,5.2,0.39,10,1.6,0,Flesh foods 
-7309,7,309,Meat and poultry and their products,"Beef, kidney",,0.84,99,77.9,17.4,3.1,0.3,0,1.3,13,4.6,17,257,262,182,1.92,0.43,419,419,0,1.1,0.22,0.36,2.84,8,0.67,98,27.5,9.4,Flesh foods 
-7311,7,311,Meat and poultry and their products,"Beef, tripe",,1,82,84.2,12.1,3.7,0,0,0.6,69,0.6,13,64,67,97,1.42,0.07,0,0,0,0,0.09,0,0.06,0.9,0.01,5,1.4,0,Flesh foods 
-7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat",,1,170,69.5,20.1,10,0,0,1,12,2.2,20,184,321,66,4.79,0.07,0,0,0,0.1,0.32,0.04,0.16,5.1,0.37,6,2.2,0,Flesh foods 
-7315,7,315,Meat and poultry and their products,"Beef, meat, cured",,1,241,57.7,27.1,14.9,0,0,2.9,12,2.1,14,111,136,1010,3.57,0.06,0,0,0,0.2,0.15,0.02,0.15,2.4,0.13,9,1.6,0,Flesh foods 
-7316,7,316,Meat and poultry and their products,"Bamboo caterpillar, deep fried",,,638,4.5,25.5,55.3,11,,3.7,4,2.7,,356,674,609,,,,,,,,,,,,,,,Flesh foods 
-7317,7,317,Meat and poultry and their products,"Game meat, dried",,1,332,23.4,66.7,7,0,0,3.4,15,9.9,67,586,923,2210,6.06,0.73,0,0,0,,0.58,0.64,1.39,18.5,1.07,12,18.3,0,Flesh foods 
-7320,7,320,Meat and poultry and their products,"Chicken, dark meat, flesh and skin",,0.65,230,65.4,16.7,18.3,0,0,0.8,11,1,19,136,178,73,1.58,0.05,49,49,0,0.2,0.3,0.06,0.15,5.2,0.25,7,0.3,0,Flesh foods 
-7323,7,323,Meat and poultry and their products,"Chicken, light meat, flesh",,0.55,108,74.5,23.6,1.4,0,0,1,9,0.6,28,204,305,64,0.84,0.05,8,8,0,0.2,0.18,0.1,0.12,10.7,0.53,9,,0,Flesh foods 
-7326,7,326,Meat and poultry and their products,"Chicken, light meat, flesh and skin",,0.72,180,69.1,19.5,11.4,0,0,0.9,11,0.7,23,155,243,71,0.92,0.04,19,19,0,0.2,0.24,0.08,0.12,8.5,0.42,14,0.4,0,Flesh foods 
-7329,7,329,Meat and poultry and their products,Chicken giblets,,1,132,73.9,17.5,6.3,1.3,0,1,10,6.3,18,184,239,80,3.06,0.29,4080,4080,0,,0.71,0.1,0.56,6.3,0.36,438,11.4,14.1,Flesh foods 
-7331,7,331,Meat and poultry and their products,"Chicken, liver",,1,118,74.4,19,4,1.3,0,1.4,11,8.7,19,304,241,71,3.04,0.5,7890,7450,37,0.2,0.49,0.39,2.46,9.8,0.82,792,24,22.2,Flesh foods 
-7333,7,333,Meat and poultry and their products,"Mole cricket, blanched",,,130,71.2,15.4,6.3,1.5,2.9,2.7,76,41.7,,254,268,97,,,,,,,,0.2,1.89,4.8,,,,,Flesh foods 
-7334,7,334,Meat and poultry and their products,Crocodile,,,121,71.7,19.4,4.8,0,0,1,,,,,,,,,,,,,,,,,,,,,Flesh foods 
-7336,7,336,Meat and poultry and their products,"Goat, meat",,0.74,165,68,17.5,10.6,0,0,1.1,11,2.4,27,150,385,82,3.45,0.16,0,0,0,,0.18,0.18,0.29,6.1,0.4,5,1.1,0,Flesh foods 
-7341,7,341,Meat and poultry and their products,"Lamb, brain",,0.98,118,79.2,10.4,8.6,0,0,1.3,9,1.8,12,270,296,112,1.17,0.24,0,0,0,,,0.13,0.3,3.9,0.29,3,11.3,16,Flesh foods 
-7343,7,343,Meat and poultry and their products,"Lamb, liver",,1,132,71.4,20.2,4.5,2.5,0,1.4,9,8.7,19,364,313,70,4.66,6.98,4970,4950,244,1.2,0.77,0.32,3.07,13,0.9,230,90.1,4,Flesh foods 
-7345,7,345,Meat and poultry and their products,Locust,,,97,76.7,14,3.3,0.9,4,1.1,28,3,22,150,217,32,3.5,0.87,,,,,,0.2,1.5,3.9,,,,,Flesh foods 
-7346,7,346,Meat and poultry and their products,"Mopanie worm, canned",,,97,77.3,14.1,3.6,0.7,2.6,1.7,39,7,36,123,232,234,3.18,0.21,,,,,,0.13,1.13,2.7,,,,0,Flesh foods 
-7353,7,353,Meat and poultry and their products,"Sausage, wiener (beef, pork, chicken) canned",,1,225,64.9,10.5,19.4,2.6,0,2.6,10,0.9,7,49,101,969,1.6,0.03,0,0,0,0.6,0.22,0.09,0.11,1.6,0.12,4,1,0,Flesh foods 
-8354,8,354,Eggs and their products,"Egg, chicken",,0.88,138,76.2,12.6,9.5,0.7,0,1.1,56,1.8,12,198,138,142,1.29,0.07,160,160,5,2,1.05,0.04,0.46,0.1,0.17,47,0.9,0,Eggs 
-9358,9,358,Fish and their products,"Anchovy, fillet",,1,110,72.8,19.1,3.7,0,0,1.4,109,3.1,32,204,438,104,1.74,0.22,15,15,0,2.9,0.57,0.06,0.26,17,0.14,9,0.6,,Flesh foods 
-9359,9,359,Fish and their products,Barracuda,,0.64,84,78.7,19,0.7,0,0,1.3,26,0.9,31,175,252,89,0.51,0.06,7,7,0,0.6,0.19,0.12,0.09,4.1,0.31,9,2.1,,Flesh foods 
-9361,9,361,Fish and their products,Sardine,,0.52,104,74.9,19.4,2.9,0,0,2.5,71,1.8,35,281,499,77,1.57,0.07,19,18,6,11,0.73,0.02,0.21,9.4,0.96,4,11,,Flesh foods 
-9362,9,362,Fish and their products,Tuna,,0.58,136,70.4,23.3,5.1,0,0,1.5,14,1.1,40,249,349,51,0.45,0.08,26,26,0,6.5,1.1,0.16,0.14,13.5,0.69,15,5.1,,Flesh foods 
-9363,9,363,Fish and their products,White grouper,,0.6,88,77.9,19.4,1,0,0,1.3,31,1.2,33,175,483,53,0.89,0.03,43,43,0,0.8,0.26,0.07,0.03,3.4,0.3,9,1,,Flesh foods 
-9364,9,364,Fish and their products,African carp,,0.54,69,78.9,15.7,0.6,0,0,1.3,13,0.7,33,144,313,57,1.3,0.05,1,1,0,2.6,0.07,0.09,0.06,1.9,0.16,14,1.6,,Flesh foods 
-9369,9,369,Fish and their products,"Anchovy, canned ",,1,203,50.3,28.9,9.7,0,0,11.1,232,4.6,69,252,544,3670,2.44,0.34,12,12,0,1.7,3.33,0.08,0.36,19.9,0.2,13,0.9,,Flesh foods 
-9372,9,372,Fish and their products,Bayad,,0.6,80,79.8,17.1,1.2,0,0,1.2,61,1.2,28,197,est,51,0.64,0.06,2,2,0,0.9,0.3,0.19,0.05,1.2,0.26,8,1.8,,Flesh foods 
-9375,9,375,Fish and their products,Catfish,,0.52,117,76.5,16.3,5.7,0,0,1,38,0.9,30,191,304,48,0.6,0.05,25,25,0,8.6,0.58,0.12,0.06,1.4,0.29,8,2.3,,Flesh foods 
-9378,9,378,Fish and their products,Carp,,0.54,119,76.6,17.2,5.6,0,0,1.3,44,1.1,33,328,347,46,1.24,0.06,9,9,0,24.7,0.63,0.1,0.06,2.1,0.18,15,1.8,,Flesh foods 
-9382,9,382,Fish and their products,"Mackerel, grilled",,0.64,180,60.1,28.5,7.3,0,0,2.1,40,1,43,273,549,73,0.71,0.08,45,45,0,8.5,0.8,0.18,0.18,6.8,0.52,1,3.1,,Flesh foods 
-9383,9,383,Fish and their products,Mormyrids,,0.52,84,79.5,17.8,1.3,0,0,1.1,123,1.1,29,268,321,41,0.6,0.06,12,12,0,1,0.32,0.05,0.09,0.9,0.3,9,2,,Flesh foods 
-9386,9,386,Fish and their products,Mudfish,,0.52,96,78.6,17,3,0,0,1,44,0.7,21,180,242,41,0.65,0.13,7,7,0,2.4,0.34,0.04,0.07,1.3,0.08,9,2.1,,Flesh foods 
-9389,9,389,Fish and their products,"Perch, Nile",,0.61,99,76.1,19.9,2,0,0,1.2,89,0.7,39,176,300,58,1.1,0.09,6,6,0,1.2,1.9,0.07,0.07,2.8,0.12,5,1.9,,Flesh foods 
-9394,9,394,Fish and their products,Sardines in oil,,1,220,57.9,24.7,13.5,0,0,3.5,382,2.9,39,490,397,505,1.31,0.19,32,32,0,12,2.04,0.08,0.23,5.2,0.17,10,8.9,,Flesh foods 
-9395,9,395,Fish and their products,Shiny-nose,,0.6,87,78.3,19.8,0.7,0,0,1.6,177,0.2,31,148,340,74,0.51,0.06,7,7,0,0.5,0.17,0.08,0.1,3.5,0.32,9,2.2,,Flesh foods 
-9398,9,398,Fish and their products,Tilapia,,0.65,100,76.5,18.8,2.7,0,0,1.7,17,1.3,36,275,378,52,0.83,0.06,26,26,0,3.1,0.4,0.04,0.06,3.5,0.24,24,1.6,,Flesh foods 
-10405,10,405,Milk and their products,"Milk, cow, whole, 3.5 % fat",,1,65,87.7,3.4,3.7,4.4,0,0.8,120,0.1,11,92,153,45,0.39,0.01,33,31,18,0.1,0.09,0.04,0.18,0.1,0.05,10,0.6,1.5,Dairy products 
-10406,10,406,Milk and their products,"Milk, cow, powder, whole",,1,495,3.7,25.9,26.6,37.9,0,5.9,968,0.7,91,735,1160,370,3.51,0.06,228,218,129,1.2,0.5,0.3,1.32,0.7,0.25,39,3.3,11.3,Dairy products 
-10407,10,407,Milk and their products,"Milk, goat",,1,76,85.8,3.4,4.5,5.5,0,0.8,142,0.1,14,119,215,48,0.3,0.02,33,33,0,0.1,0.03,0.06,0.17,0.3,0.04,1,0.1,1.5,Dairy products 
-10408,10,408,Milk and their products,"Milk, human, mature",,1,70,86.8,1.2,3.7,8.1,0,0.3,30,0.1,3,16,59,12,0.3,0.04,60,58,24,,0.34,0.02,0.04,0.5,0.01,5,0.1,3.3,Dairy products 
-10409,10,409,Milk and their products,"Yoghurt, whole milk, plain",,1,73,85.3,3.8,3.4,6.8,0,0.8,152,0.1,15,127,209,64,0.58,0.02,30,29,16,0.1,0.09,0.04,0.2,0.1,0.04,12,0.3,0.7,Dairy products 
-10410,10,410,Milk and their products,Cheddar,,1,392,37.4,24.7,32.3,1.7,0,3.9,788,0.8,30,532,82,487,3.78,0.07,265,258,85,0.3,1.15,0.03,0.38,0.1,0.07,18,0.8,,Dairy products 
-10411,10,411,Milk and their products,"Cheese, goat, hard type",,1,445,29,30.5,35.6,1.2,0,3.7,895,1.9,54,729,48,346,1.59,0.63,486,478,91,0.7,0.31,0.14,1.19,2.4,0.08,4,0.1,0,Dairy products 
-10412,10,412,Milk and their products,"Cheese, Gouda",,1,363,41,24.8,29.5,0.7,0,3.9,753,0.5,30,556,96,665,3.82,0.05,165,164,0,0.4,1.23,0.04,0.33,0.1,0.08,21,1.5,,Dairy products 
-10413,10,413,Milk and their products,"Cream, whipping, 38 % fat",,1,354,57.1,2.1,38,2.3,0,0.5,67,0.1,7,57,93,28,0.24,0.01,333,319,168,0.4,0.97,0.03,0.16,0.1,0.02,11,0.4,0.8,Dairy products 
-10414,10,414,Milk and their products,"Cream, 13 % fat",,1,149,78.5,2.9,13.5,4.5,0,0.6,104,0,11,79,136,39,0.37,0.01,120,115,59,0.2,0.34,0.04,0.19,0.1,0.05,12,0.4,1,Dairy products 
-10415,10,415,Milk and their products,"Infant formula, powder, for 3 months",,1,519,2,11.9,27.7,55.6,0,2.8,358,9.3,31,280,482,140,3.9,0.37,467,467,0,7.8,5,0.52,0.78,3.9,0.33,39,1,43,Dairy products 
-10416,10,416,Milk and their products,"Infant formula, powder, for 6 months",,1,473,2,17.6,19.7,56.1,0,4.6,810,8.5,66,458,704,225,3.5,0.41,488,488,0,8.5,5.1,0.57,0.85,4.3,0.34,42,0.9,46,Dairy products 
-10417,10,417,Milk and their products,"Milk, cow, partly skimmed, 1.5 % fat",,1,48,89.3,3.5,1.6,4.8,0,0.8,122,0,12,96,153,43,0.41,0.01,14,13,7,0.1,0.04,0.05,0.18,0.1,0.05,12,0.5,1.3,Dairy products 
-10418,10,418,Milk and their products,"Milk, cow,  skimmed, 0.5 % fat",,1,38,90.6,3.5,0.5,4.7,0,0.7,124,0,12,97,157,44,0.41,0.01,4,4,2,0.1,0.01,0.04,0.17,0.1,0.05,6,0.5,1.3,Dairy products 
-10419,10,419,Milk and their products,"Milk, cow, canned, condensed, sweetened",,1,330,27.2,7.9,8.7,54.4,0,1.8,284,0.2,26,253,371,127,0.94,0.02,74,73,14,0.2,0,0.09,0.42,0.2,0.05,11,0.4,2.6,Dairy products 
-10420,10,420,Milk and their products,"Milk, cow, canned, evaporated",,1,135,74,6.8,7.6,10,0,1.6,261,0.2,24,203,303,106,0.77,0.02,65,64,15,0.1,0,0.05,0.32,0.2,0.05,8,0.2,1.9,Dairy products 
-10421,10,421,Milk and their products,"Milk, cow powder, skimmed",,1,366,3.2,36.2,0.8,52,0,7.9,1260,0.3,110,968,1790,535,4.08,0.04,15,15,7,0,0.04,0.42,1.55,1,0.36,50,4,6.8,Dairy products 
-10422,10,422,Milk and their products,"Milk, camel",,1,58,88.5,3.1,3,4.7,0,0.8,116,0.2,13,86,151,61,0.56,0.15,,,,,,,0.06,,,,,1.9,Dairy products 
-10423,10,423,Milk and their products,"Milk, human, colostrum",,1,58,88.2,2,2.6,6.6,0,0.6,28,,3,14,70,47,0.6,0.05,166,155,135,,1.3,,0.03,0.8,0,2,0.1,7,Dairy products 
-10424,10,424,Milk and their products,Vacherin cheese,,1,315,51.1,17.3,27.8,0,0,2.8,700,0.4,30,430,120,450,8,0.07,166,158,100,0.2,0.6,0,0.3,0.1,0.06,12,1.5,0,Dairy products 
-10425,10,425,Milk and their products,"Yoghurt, whole milk, with fruits",,1,89,80.6,3.3,3.2,11.4,0.5,1,118,0.1,12,88,152,41,0.47,0.01,28,27,14,0.1,0.08,0.04,0.16,0.1,0.04,23,0.2,0.7,Dairy products 
-10426,10,426,Milk and their products,"Butter, from cow-s milk ",,1,707,19.2,0.8,79.6,0.2,0,0.3,17,0,2,21,19,16,0.12,0.01,696,675,262,1.1,2.11,0.01,0.03,0.1,,3,0.1,0,Dairy products 
-10427,10,427,Milk and their products,Coconut oil,,1,884,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.66,0,0,0,0,0,0,0,Dairy products 
-10428,10,428,Milk and their products,Groundnut oil,,1,884,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17.2,0,0,0,0,0,0,0,Dairy products 
-10429,10,429,Milk and their products,"Palm oil, red",,1,884,0,0,100,0,0,0,0,0,0,0,0,0,0,0,5720,0,68680,0,15.94,0,0,0,0,0,0,0,Dairy products 
-10430,10,430,Milk and their products,Cottonseed oil,,1,884,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,35.3,0,0,0,0,0,0,0,Dairy products 
-10431,10,431,Milk and their products,"Margarine, fortified",,1,717,16.5,0.2,80.7,0.7,0,1.9,3,0.1,3,5,18,751,0,0,819,768,610,0,9,0.01,0.04,0.02,0.01,1,0.1,0.2,Dairy products 
-10432,10,432,Milk and their products,"Palm oil, refined",,1,884,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15.94,0,0,0,0,0,0,0,Dairy products 
-10433,10,433,Milk and their products,Shea butter,,1,884,0,0,100,0,0,0,0,0,0,0,0,0,0,,0,0,0,0,0,0,0,0,0,0,0,0,Dairy products 
-10434,10,434,Milk and their products,Soya oil,,1,884,0,0,100,0,0,0,0,0.1,0,0,0,0,0,0,0,0,0,0,8.18,0,0,0,0,0,0,0,Dairy products 
-10435,10,435,Milk and their products,Vegetable oil,,1,884,0,0,100,0,0,0,0,0,0,0,0,0,0,0,,0,,0,39.22,0,0,0,0,0,0,0,Dairy products 
+3111,3,111,Legumes and their products,"Bambara groundnut, dried ",,1,380,8.4,20.1,5.9,58.9,3.7,3.1,65,3.3,199,275,1190,29,3.38,0.89,2,0,20,0,,0.38,0.12,1.9,,,0,,Legumes and nuts
+3112,3,112,Legumes and their products,"Bambara groundnut, red, dried",,1,380,8.1,18.4,6,60.7,3.7,3.2,35,3.3,178,272,1290,28,2.02,0.64,,0,,0,,0.39,0.12,1.9,,,0,,Legumes and nuts
+3113,3,113,Legumes and their products,"Bambara groundnuts, white",,1,385,7.9,20,6.5,58.5,3.7,3.1,50,3.3,185,309,1370,28,2.39,0.82,,0,,0,,0.39,0.12,1.9,,,0,,Legumes and nuts
+3114,3,114,Legumes and their products,"Cowpea, dried",,1,320,11.8,21.2,1.3,47.2,15.3,3.2,82,7.3,187,387,1210,19,4.61,0.68,3,0,32,0,0.42,0.71,0.15,3.1,0.36,417,0,0.8,Legumes and nuts
+3115,3,115,Legumes and their products,"Cowpea, black, dried",,1,304,12.7,21.1,1.6,40,21,3.6,69,5.5,202,402,1380,19,3.89,0.6,,0,,0,0.39,0.7,0.15,3,0.35,412,0,0.8,Legumes and nuts
+3116,3,116,Legumes and their products,"Cowpea, white, dried",,1,323,13.3,19.2,1.5,52,10.6,3.5,69,8.5,232,357,1020,25,4.58,0.97,,0,,0,0.39,0.69,0.15,3,0.35,410,0,0.8,Legumes and nuts
+3118,3,118,Legumes and their products,"Soya bean, dried",,1,411,9.3,32,17,27.6,9.3,4.9,232,7.8,245,468,1740,5,4.73,1.48,1,0,13,0,0.72,0.7,0.28,2,0.82,375,0,,Legumes and nuts
+3119,3,119,Legumes and their products,"African locust bean, seeds, dried",,0.3,445,7,32.3,19.5,33,4.1,4.1,291,33.2,,384,,,,,,0,,0,,0.3,0.2,3,,,0,6,Legumes and nuts
+3120,3,120,Legumes and their products,"African yam bean, dried",,,313,13.3,18.9,1.5,47.1,16.7,2.6,40,4.1,,253,1290,2,2,,,0,,0,,0.69,,,,,0,,Legumes and nuts
+3132,3,132,Legumes and their products,"Beans, white, dried",,1,339,8.9,22.1,1.5,53.2,10.3,3.9,74,5.7,186,429,1550,18,3.77,0.47,15,0,179,0,0.19,0.89,0.11,1.6,0.51,395,0,0,Legumes and nuts
+3134,3,134,Legumes and their products,"Broad beans, dried",,1,301,11,26.1,1.8,31.7,26.3,3.1,102,6.1,191,506,1080,12,3.1,0.82,3,0,32,0,0.05,0.53,0.3,2.7,0.37,423,0,,Legumes and nuts
+3137,3,137,Legumes and their products,"Cowpea, brown, dried",,1,320,12.5,21.2,1.6,47.3,14.2,3,76,8.7,202,422,1120,22,4.37,1.12,,0,,0,0.51,0.7,0.15,3,0.35,413,0,0.8,Legumes and nuts
+3140,3,140,Legumes and their products,"Lentils, dried",,1,296,10.3,25.4,1.8,29.4,30.5,2.5,61,7,103,391,855,9,3.9,0.74,3,0,42,0,0.49,0.59,0.23,2.3,0.68,295,0,,Legumes and nuts
+3142,3,142,Legumes and their products,"Pigeon pea, dried",,1,301,13.4,18.4,1.5,43.2,20.2,3.3,140,4.7,183,269,1390,17,1.96,1.02,1,0,12,0,,0.62,0.18,2.9,0.27,456,0,,Legumes and nuts
+4151,4,151,Vegetables and their products,"Baobab, leaves,  raw",,0.82,72,76.7,3.5,0.5,9.2,7.2,2.8,313,3.9,52,85,391,6,0.9,0.18,197,0,2360,0,1.42,0.03,0.04,1.9,0.3,118,0,47,Vitamin A rich fruits and Vegetable
+4152,4,152,Vegetables and their products,"Baobab leaves, dried",,1,272,7.5,13.7,2.1,35.2,28.6,12.9,1240,15.4,206,355,1550,24,3.6,0.72,130,0,1560,0,5.63,0.1,0.15,6.1,1.1,364,0,19,Vitamin A rich fruits and Vegetable
+4153,4,153,Vegetables and their products,"Beans, green raw",,0.83,40,87.9,3.1,0.2,5,2.5,1.2,47,1.1,25,56,242,2,0.27,0.08,24,0,286,0,0.28,0.1,0.1,0.7,0.2,62,0,17.5,Other fruits and vegetables
+4154,4,154,Vegetables and their products,Okra leaves,,0.8,40,86.2,2.7,0.3,4.3,4.9,1.6,297,0.6,38,73,199,4,0.88,0.01,56,0,672,0,0.73,0.16,0.41,0.2,0.3,118,0,36,Vitamin A rich fruits and Vegetable
+4155,4,155,Vegetables and their products,Cabbage,,0.8,27,91.2,1.6,0.1,3.8,2.6,0.8,41,0.6,12,37,317,12,0.2,0.02,8,0,100,0,0.15,0.05,0.04,0.3,0.1,48,0,54,Other fruits and vegetables
+4156,4,156,Vegetables and their products,Carrot,,0.89,36,88.8,1,0.3,5.7,3.1,1.1,35,0.7,12,42,266,42,0.26,0.06,713,0,8560,0,0.47,0.06,0.05,0.7,0.23,31,0,7,Vitamin A rich fruits and Vegetable
+4158,4,158,Vegetables and their products,"Cassava, leaves",,0.85,98,73.2,7.5,0.9,12.9,4,1.8,276,5.5,58,106,605,6,0.69,0.16,286,0,3430,0,2.4,0.25,0.46,1.6,0.3,118,0,39,Vitamin A rich fruits and Vegetable
+4159,4,159,Vegetables and their products,"Cocoyam, leaves",,0.6,35,90.2,3.2,0.7,3.1,1.6,1.3,63,2.4,64,60,418,3,0.41,0.27,376,0,4510,0,2.02,0.21,0.42,1.2,0.15,126,0,37,Vitamin A rich fruits and Vegetable
+4160,4,160,Vegetables and their products,"Cowpea, leaves",,0.8,42,86.6,4.6,0.3,3.3,3.6,1.6,265,5.1,60,61,475,6,0.5,0.27,150,0,1800,0,2.36,0.2,0.37,1.6,0.24,129,0,57,Vitamin A rich fruits and Vegetable
+4161,4,161,Vegetables and their products,Drumstick  leaves,,0.8,87,76.5,8.3,1.2,9.6,2,2.4,434,6.1,70,101,404,7,0.9,0.16,738,0,8850,0,3.07,0.23,0.73,2.7,1.2,205,0,164,Vitamin A rich fruits and Vegetable
+4162,4,162,Vegetables and their products,Eggplant,,0.81,30,90.9,1.1,0.2,4.6,2.6,0.6,13,0.9,12,24,264,4,0.14,0.09,3,0,30,0,0.03,0.05,0.05,0.6,0.09,26,0,6.3,Other fruits and vegetables
+4163,4,163,Vegetables and their products,Eggplant leaves,,0.8,45,87.1,4.4,0.7,4.2,1.9,1.7,332,4.3,58,44,437,6,0.73,0.18,296,0,3550,0,1.95,0.15,0.4,1.4,0.3,118,0,79,Vitamin A rich fruits and Vegetable
+4164,4,164,Vegetables and their products,"False sesame, leaves, dried",,1,304,13.6,17.7,3.4,45.7,8.1,11.5,1310,14.2,285,284,1800,27,4.23,2.2,,0,,0,8.98,0.6,1.72,6,1.24,410,0,13,Other fruits and vegetables
+4165,4,165,Vegetables and their products,Garlic,,0.87,137,64.3,6.8,0.4,25,2.3,1.3,32,1.6,21,158,533,11,0.79,0.15,0,0,0,0,0.01,0.17,0.06,0.5,0.79,4,0,18,Other fruits and vegetables
+4166,4,166,Vegetables and their products,Roselle leaves,,0.8,40,86.7,2.8,0.2,4.1,5,1.2,212,4.1,58,65,437,6,0.9,0.18,215,0,2580,0,1.9,0.17,0.45,1.2,0.3,117,0,33,Vitamin A rich fruits and Vegetable
+4167,4,167,Vegetables and their products,Okra fruit,,0.86,33,89.8,1.7,0.2,4.4,3.2,0.7,84,0.8,13,40,303,8,0.6,0.09,26,0,313,0,0.36,0.04,0.08,0.7,0.22,88,0,28,Other fruits and vegetables
+4168,4,168,Vegetables and their products,Onion,,0.91,37,89.5,1.1,0.1,6.9,1.8,0.6,25,0.3,10,39,183,4,0.26,0.04,0,0,1,0,0.04,0.05,0.04,0.2,0.1,16,0,10.3,Other fruits and vegetables
+4169,4,169,Vegetables and their products,"Tamarind, leaves",,0.8,99,74.3,4,2.1,13.9,4.1,1.6,403,5.2,71,81,292,4,0.72,0.07,21,0,250,0,,0.17,0.11,3.5,0.3,117,0,5,Other fruits and vegetables
+4170,4,170,Vegetables and their products,"Taro, leaves",,0.6,46,85.7,4.7,0.7,3.3,3.7,1.9,105,2.2,45,56,649,3,0.66,0.27,324,0,3890,0,2.02,0.19,0.4,1.2,0.15,126,0,52,Vitamin A rich fruits and Vegetable
+4171,4,171,Vegetables and their products,"Tomato, red",,0.91,22,93.5,1,0.2,3.3,1.4,0.6,13,0.6,13,32,255,7,0.7,0.15,52,0,624,0,0.9,0.06,0.04,0.6,0.09,21,0,29.6,Other fruits and vegetables
+4172,4,172,Vegetables and their products,"Vernonia, leaves",,0.8,55,82.8,4.4,0.6,5.5,5.1,1.6,162,2.8,58,67,437,6,1.01,0.18,241,0,2900,0,1.56,0.16,0.41,1.4,0.3,113,0,27,Vitamin A rich fruits and Vegetable
+4173,4,173,Vegetables and their products,Amaranth leaves,,0.94,39,87.8,3.8,0.3,4.6,1.4,2.1,380,6.2,93,58,602,13,0.72,0.15,241,0,2890,0,0.24,0.04,0.33,0.9,0.19,79,0,45,Vitamin A rich fruits and Vegetable
+4181,4,181,Vegetables and their products,"Cowpea leaves, dried",,1,282,10.3,24.4,1.9,29.8,24.1,9.5,1060,34,401,364,2850,40,3.35,1.81,201,0,2407,0,15.8,1.15,2.35,10.2,1.49,673,0,38,Vitamin A rich fruits and Vegetable
+4182,4,182,Vegetables and their products,Cucumber,,0.81,15,95.5,0.7,0.1,2.5,0.7,0.5,13,0.5,12,26,134,10,0.17,0.07,3,0,35,0,0.03,0.02,0.01,0.3,0.04,6,0,14,Other fruits and vegetables
+4186,4,186,Vegetables and their products,"False sesame, leaves",,0.8,69,80.6,5.3,0.8,9.1,1.8,2.4,442,3.2,58,63,404,6,0.95,0.49,,0,,0,2.02,0.16,0.41,1.4,0.3,118,0,28,Other fruits and vegetables
+4188,4,188,Vegetables and their products,Jute (bush-okra) leaves,,0.8,59,82.9,3.9,0.3,9.1,2,1.8,360,4.2,58,122,437,6,0.44,0.18,261,0,3130,0,0.79,0.15,0.53,1.2,0.3,118,0,80,Vitamin A rich fruits and Vegetable
+4190,4,190,Vegetables and their products,Lettuce,,0.7,18,94.5,1,0.2,2.3,1.2,0.8,27,0.8,9,28,204,10,0.29,0.05,93,0,1120,0,0.6,0.06,0.15,0.4,0.2,89,0,5.3,Vitamin A rich fruits and Vegetable
+4194,4,194,Vegetables and their products,"Onions, dried",,1,359,4.2,9.6,1.1,71.1,10.7,3.4,239,2.1,64,282,1510,21,1.8,0.42,1,0,11,0,0.4,0.37,0.1,0.9,1.6,166,0,54,Other fruits and vegetables
+4195,4,195,Vegetables and their products,"Parsley, fresh",,0.95,48,84.9,3.5,0.4,5.7,3.3,2.2,217,4.9,27,58,600,28,0.77,0.16,583,0,7000,0,0.75,0.14,0.21,1.3,0.22,170,0,175,Vitamin A rich fruits and Vegetable
+4196,4,196,Vegetables and their products,"Peppers, chilli",,0.73,46,87.3,1.9,0.3,7.6,2.2,0.7,16,1.1,24,43,331,8,0.29,0.15,53,0,640,0,0.69,0.08,0.09,1.1,0.39,23,0,193.1,Other fruits and vegetables
+4197,4,197,Vegetables and their products,"Pepper, sweet, red",,0.83,33,90.3,1.3,0.3,5.2,2.1,0.8,12,0.4,12,39,267,6,0.33,0.05,191,0,2300,0,1.73,0.07,0.09,1.2,0.32,45,0,161.2,Vitamin A rich fruits and Vegetable
+4199,4,199,Vegetables and their products,"Pepper, sweet, green",,0.83,26,92.2,0.9,0.2,4.1,2,0.5,17,0.3,9,31,239,6,0.12,0.07,29,0,353,0,0.7,0.08,0.09,0.5,0.28,26,0,112.9,Other fruits and vegetables
+4201,4,201,Vegetables and their products,"Pumpkin, squash",,0.7,29,91.9,1,0.1,5.6,0.8,0.7,19,1.2,14,33,280,8,0.32,0.13,100,0,1200,0,1.06,0.05,0.02,0.5,0.1,8,0,8,Vitamin A rich fruits and Vegetable
+4203,4,203,Vegetables and their products,Pumpkin leaves,,0.41,27,90.4,3.7,0.3,1.3,2.4,1.9,39,2.2,38,125,468,11,0.2,0.13,192,0,2300,0,0.96,0.09,0.08,0.6,0.21,36,0,11,Vitamin A rich fruits and Vegetable
+4205,4,205,Vegetables and their products,"Pumpkin leaves, dried",,1,253,19,34.5,2.3,14.5,18,11.7,330,18.8,322,1058,3690,93,1.69,1.13,324,0,3890,0,8.12,0.63,0.66,5,1.65,238,0,9.3,Vitamin A rich fruits and Vegetable
+4207,4,207,Vegetables and their products,Spinach,,0.72,27,90.9,2.8,0.6,1.7,2.2,1.8,133,3.1,53,45,502,87,0.8,0.08,409,0,6040,0,2.31,0.08,0.17,0.9,0.19,176,0,36,Vitamin A rich fruits and Vegetable
+4209,4,209,Vegetables and their products,"Sweet potato, leaves",,0.8,51,84.7,4.4,0.2,6.7,2.3,1.8,37,3.6,61,87,522,9,0.29,0.04,489,0,5870,0,0.96,0.13,0.31,1,0.19,80,0,11,Vitamin A rich fruits and Vegetable
+4212,4,212,Vegetables and their products,"Tamarind, leaves, dried",,1,373,3.9,14,8,53.3,15.3,5.5,1500,19.4,265,302,1090,14,2.7,0.26,16,0,187,0,,0.55,0.37,12.3,1.04,341,0,1.7,Other fruits and vegetables
+4215,4,215,Vegetables and their products,"Tomatoes, canned, packed in juice",,1,20,94.1,1,0.2,3,1,0.7,25,0.8,11,19,209,108,0.2,0.08,22,0,261,0,0.96,0.05,0.04,0.7,0.11,17,0,10.9,Other fruits and vegetables
+4216,4,216,Vegetables and their products,"Tomato paste, concentrated",,1,90,73.5,4.3,0.5,14.8,4.1,2.8,64,3,60,86,1010,98,0.4,0.3,75,0,901,0,4.6,0.06,0.15,3.1,0.22,10,0,17.8,Other fruits and vegetables
+4217,4,217,Vegetables and their products,"Tomato, powder",,1,325,3.1,12.9,0.4,58.2,16.5,8.9,166,4.6,178,295,1930,134,1.71,1.24,862,0,10348,0,12.25,0.91,0.76,9.1,0.46,120,0,116.7,Vitamin A rich fruits and Vegetable
+4218,4,218,Vegetables and their products,Turnip ,,0.81,28,91.3,0.9,0.2,4.4,2.5,0.7,41,0.3,15,35,262,44,0.22,0.1,3,0,36,0,,0.04,0.04,0.8,0.08,24,0,23.7,Other fruits and vegetables
+5221,5,221,Fruits and their products,African locust bean,,,306,15.9,3.3,0.9,64,12.6,3.2,118,3.6,88,123,1670,5,0.8,0.02,203,0,2430,0,,1.07,0.7,1.3,,,0,234,Vitamin A rich fruits and Vegetable
+5222,5,222,Fruits and their products,"Avocado, ",,0.74,152,76.5,1.7,14.7,1.4,4.7,1.1,15,0.8,32,46,492,4,0.51,0.23,6,0,68,0,1.6,0.06,0.15,1.8,0.35,35,0,14,Other fruits and vegetables
+5223,5,223,Fruits and their products,"Banana, white ",,0.64,101,73.6,1.2,0.2,22.1,2,0.8,7,0.3,29,24,369,2,0.17,0.08,4,0,50,0,0.37,0.04,0.04,0.6,0.34,19,0,10.4,Other fruits and vegetables
+5224,5,224,Fruits and their products,"Baobab, fruit/Monkey bread, ",,0.28,306,17.7,2.4,0.6,68.2,6.8,4.3,276,5.5,91,83,1020,,3.6,0.7,6,0,70,0,,0.37,0.06,2.1,0.02,,0,247,Other fruits and vegetables
+5225,5,225,Fruits and their products,Breadfruit,,0.8,109,71.7,1.5,0.3,23.9,1.9,0.9,29,2,,34,422,13,,,1,0,15,0,,0.09,0.05,1,,,0,27.7,Other fruits and vegetables
+5226,5,226,Fruits and their products,"Cashew apple, ",,1,56,85.8,1,0.7,10.7,1.5,0.4,11,1.2,10,35,140,6,,,25,0,296,0,,0.03,0.12,0.3,,,0,241,Other fruits and vegetables
+5227,5,227,Fruits and their products,"Dattock, ",,0.47,127,66.9,1.9,0.4,27.3,2.3,1.2,27,0.5,20,48,345,2,0.17,0.1,14,0,165,0,0.04,0.13,0.05,0.6,0.1,21,0,1130,Other fruits and vegetables
+5228,5,228,Fruits and their products,"Dattock, dried ",,1,325,14,3.4,1,71.2,7.1,3.3,110,1.4,53,125,807,5,0.44,0.24,7,0,86,0,0.11,0.27,0.12,1.4,0.25,33,0,294,Other fruits and vegetables
+5229,5,229,Fruits and their products,"Guava, fruit",,0.78,57,82.9,1,0.4,9.5,5.6,0.6,23,0.7,13,32,270,4,0.32,0.06,35,0,419,0,0.32,0.05,0.04,1.2,0.14,7,0,261,Other fruits and vegetables
+5230,5,230,Fruits and their products,Gumvine,,0.32,76,80.4,0.7,0.2,17.1,1.3,0.4,53,1.3,116,32,,4,,0.03,,0,,0,,0.13,0.03,0.7,0.02,,0,36,Other fruits and vegetables
+5231,5,231,Fruits and their products,Jujube,,0.93,92,76.3,1.5,0.3,20,1.5,0.5,32,0.8,10,24,255,3,0.07,0.07,2,0,22,0,,0.02,0.03,1,0.08,,0,62.8,Other fruits and vegetables
+5232,5,232,Fruits and their products,"Landolphia, ",,0.36,64,83.7,0.8,0.1,14.5,0.3,0.6,14,1.2,45,29,180,,0.52,0.03,,0,,0,,0.04,0.03,0.1,0.06,,0,35.6,Other fruits and vegetables
+5233,5,233,Fruits and their products,Lemon,,0.64,36,90.2,0.4,0.5,6.3,2.1,0.3,21,0.6,16,20,156,5,0.1,0.04,1,0,9,0,0.15,0.04,0.02,0.3,0.05,11,0,45.5,Other fruits and vegetables
+5234,5,234,Fruits and their products,"Mango, orange ",,0.71,65,82.7,0.6,0.2,13.9,2.1,0.5,17,0.7,9,18,180,3,0.11,0.06,168,0,2020,0,1.05,0.03,0.05,0.4,0.11,25,0,36.3,Vitamin A rich fruits and Vegetable
+5235,5,235,Fruits and their products,Orange,,0.73,45,87.8,0.7,0.3,8.9,1.7,0.5,31,0.2,11,19,166,2,0.1,0.05,8,0,90,0,0.28,0.04,0.03,0.2,0.07,33,0,46.8,Other fruits and vegetables
+5236,5,236,Fruits and their products,"Papaya, fruit, ripe",,0.62,36,89.8,0.5,0.1,7.3,1.9,0.4,20,0.7,19,15,210,3,0.12,0.02,80,0,996,0,0.13,0.03,0.03,0.4,0.02,25,0,58,Vitamin A rich fruits and Vegetable
+5237,5,237,Fruits and their products,"Pineapple, ",,0.51,54,85.8,0.4,0.2,12,1.3,0.3,20,0.5,12,12,205,2,0.11,0.2,5,0,61,0,0.1,0.07,0.03,0.2,0.09,12,0,29.8,Other fruits and vegetables
+5238,5,238,Fruits and their products,"Soapberry, fruit",,0.57,111,71.4,1.6,,25.5,0.5,1,23,3,2,90,,,,0.05,30,0,360,0,,0.03,0.04,,,,0,51.5,Other fruits and vegetables
+5239,5,239,Fruits and their products,"Tamarind, immature fruit",,,60,80.1,2.2,0.2,8.1,8.4,1,60,0.7,19,61,308,3,0.03,0.02,1,0,10,0,0.03,0.24,0.07,0.5,0.02,4,0,9.5,Other fruits and vegetables
+5240,5,240,Fruits and their products,"Tamarind, fruit, ripe",,0.47,251,26.9,4.2,0.6,47.6,18.3,2.4,151,2.2,68,103,648,11,0.11,0.09,1,0,7,0,0.09,0.26,0.14,1,0.07,15,0,3.5,Other fruits and vegetables
+5241,5,241,Fruits and their products,"Watermelon, fruit",,0.56,30,92.5,0.5,0.2,6.2,0.3,0.3,7,0.3,10,9,109,3,0.1,0.03,42,0,503,0,0.05,0.03,0.04,0.1,0.07,4,0,7.2,Other fruits and vegetables
+5242,5,242,Fruits and their products,"African fan palm, fruit, ",,,44,87.6,0.8,0.1,8.9,2,0.6,27,1,,30,54,1,,,,0,,0,,0.04,0.02,0.3,,,0,4,Other fruits and vegetables
+5243,5,243,Fruits and their products,"African locust bean, flour from fruit, ",,1,337,7.7,4.6,1.3,69,13.3,4.1,162,4,96,135,1650,6,1.1,0.02,44,0,533,0,,0.94,0.74,1.2,,,0,26,Other fruits and vegetables
+5244,5,244,Fruits and their products,"Akee, ",,,202,69.2,6.8,18.2,2.7,1.6,1.6,26,2.7,97,51,340,,,,46,0,555,0,,0.13,0.14,1.4,,,0,26,Other fruits and vegetables
+5245,5,245,Fruits and their products,"Apple, with skin",,0.9,54,85.6,0.3,0.2,11.4,2.4,0.2,6,0.1,5,11,107,1,0.04,0.03,3,0,33,0,0,0.02,0.03,0.1,0.04,3,0,4.6,Other fruits and vegetables
+5246,5,246,Fruits and their products,"Apple, without skin",,0.77,51,86.7,0.3,0.1,11.5,1.3,0.2,5,0.1,4,11,90,0,0.05,0.03,2,0,24,0,0,0.02,0.03,0.1,0.04,0,0,4,Other fruits and vegetables
+5247,5,247,Fruits and their products,"Banana, yellow ",,0.64,107,72,1.4,0.2,23.6,2,0.8,6,0.3,29,25,376,2,0.2,0.08,119,0,1430,0,0.37,0.03,0.04,0.6,0.34,17,0,13.4,Vitamin A rich fruits and Vegetable
+5248,5,248,Fruits and their products,Clementine,,0.77,48,87,0.9,0.1,9.9,1.7,0.4,31,0.1,10,20,154,3,0.08,0.03,6,0,75,0,0,0.09,0.04,0.5,0.07,21,0,51.4,Other fruits and vegetables
+5249,5,249,Fruits and their products,Dates,,0.9,151,60.7,1.5,0.1,34.2,2.7,0.8,24,0.3,24,28,410,2,0.2,0.12,2,0,18,0,0.05,0.06,0.07,0.7,0.12,25,0,14,Other fruits and vegetables
+5250,5,250,Fruits and their products,"Dates, dried",,1,311,18.7,2.3,0.3,70.1,6.9,1.6,46,1.1,45,56,669,4,0.36,0.28,1,0,7,0,0.1,0.06,0.08,1.6,0.2,36,0,3,Other fruits and vegetables
+5251,5,251,Fruits and their products,Fig ,,0.99,71,80.9,1.1,0.3,14.5,2.6,0.7,44,0.5,17,17,221,2,0.24,0.07,4,0,50,0,0,0.06,0.06,0.6,0.11,7,0,2,Other fruits and vegetables
+5252,5,252,Fruits and their products,"Fig, dried ",,0.99,280,25.7,3.4,1.1,58.4,9.6,1.9,202,2.1,80,80,887,10,0.72,0.28,2,0,23,0,0,0.08,0.09,0.7,0.14,10,0,1.2,Other fruits and vegetables
+5253,5,253,Fruits and their products,"Fruit cocktail, canned in syrup",,1,73,81.1,0.4,0.1,16.4,1.7,0.2,6,0.3,5,11,93,5,0.09,0.05,5,0,54,0,0.6,0.02,0.02,0.4,0.04,3,0,3,Other fruits and vegetables
+5254,5,254,Fruits and their products,"Grapefruit, ",,0.49,34,90.7,0.7,0.1,6.8,1.2,0.5,20,0.3,9,16,164,2,0.07,0.05,1,0,18,0,0.25,0.05,0.02,0.2,0.04,12,0,36.1,Other fruits and vegetables
+5255,5,255,Fruits and their products,"Mango, deep orange ",,0.71,77,79.7,0.4,0.2,17.3,2.1,0.3,12,0.7,9,14,157,2,0.1,0.09,393,0,4720,0,1.05,0.09,0.03,0.4,0.13,29,0,65.5,Vitamin A rich fruits and Vegetable
+5256,5,256,Fruits and their products,"Mango, pale ",,0.71,53,85.5,0.5,0.2,11.1,2.1,0.3,8,0.6,7,14,138,,0.1,0.06,59,0,708,0,1.05,0.04,0.03,0.3,0.09,21,0,7.9,Vitamin A rich fruits and Vegetable
+5257,5,257,Fruits and their products,"Melon, honeydew",,0.46,29,92,0.6,0.1,6,0.8,0.6,7,0.3,9,16,228,27,0.09,0.03,3,0,31,0,0.08,0.03,0.01,0.5,0.07,12,0,14.2,Other fruits and vegetables
+5258,5,258,Fruits and their products,"Melon, cantaloup",,0.51,33,90.8,0.7,0.2,6.7,0.9,0.7,13,0.2,12,22,248,13,0.18,0.04,158,0,1900,0,0.07,0.04,0.02,0.7,0.08,16,0,30.2,Vitamin A rich fruits and Vegetable
+5259,5,259,Fruits and their products,"Palm nuts, ",,0.4,521,28.7,1.8,50.7,14.1,3.8,1,53,4.8,,56,,,,,,0,,,,0.2,0.1,1.4,,,0,12,Other fruits and vegetables
+5260,5,260,Fruits and their products,Pomegranate,,0.56,79,78.7,1.4,0.6,14.8,4,0.5,12,0.7,9,33,243,3,0.38,0.14,2,0,23,0,0.6,0.07,0.05,0.3,0.13,24,0,15.1,Other fruits and vegetables
+5261,5,261,Fruits and their products,"Plantain, ripe",,0.65,142,63.3,1.2,0.3,32,2.3,1,7,0.9,37,34,500,4,0.12,0.08,43,0,518,0,0.2,0.07,0.05,0.7,0.3,22,0,18.4,Other fruits and vegetables
+5263,5,263,Fruits and their products,Shea fruit ,,1,99,73.3,1.5,0.9,19.1,3.7,1.5,37,1.8,6,26,13,3,0.18,0.08,66,0,795,0,,0.01,0.03,1,,,0,19.1,Other fruits and vegetables
+5264,5,264,Fruits and their products,"Sweet apple, fruit",,0.6,92,75.7,1.4,0.2,20.2,1.7,0.9,24,0.7,21,33,264,9,,,0,0,3,0,,0.11,0.13,0.9,0.2,,0,36,Other fruits and vegetables
+6265,6,265,"Nuts, seeds and their products",Cashew nut,,1,581,5.3,17.7,44.4,27,3.1,2.5,44,6.4,267,509,641,14,4.59,2.15,0,0,3,0,0.78,0.6,0.18,1.5,0.45,46,0,0.3,Legumes and nuts
+6266,6,266,"Nuts, seeds and their products","Coconut, mature kernel, fresh",,0.7,382,43.1,3.6,36.9,6.2,9.3,1,17,2.4,38,106,415,22,0.84,0.42,0,0,0,0,0.73,0.04,0.02,0.5,0.05,27,0,2.2,Legumes and nuts
+6267,6,267,"Nuts, seeds and their products","Coconut, immature kernel, fresh",,0.3,160,74,1.6,13.5,6.7,3.3,0.8,19,2.2,17,111,218,8,0.39,0.19,0,0,0,0,0.27,0.07,0.05,0.6,0.02,12,0,2,Legumes and nuts
+6268,6,268,"Nuts, seeds and their products","Coconut, kernel, dried",,1,598,8.6,5.9,56.4,10.2,17,1.9,32,3.4,74,177,617,33,1.5,0.8,0,0,0,0,1.2,0.08,0.08,0.9,0.08,26,0,0.3,Legumes and nuts
+6269,6,269,"Nuts, seeds and their products",Coconut milk ,,1,216,71.1,2.1,22.1,1.7,2.2,0.7,17,2.7,43,97,234,14,0.64,0.23,0,0,0,0,0.7,0.03,0.02,0.7,0.03,15,0,1.6,Legumes and nuts
+6270,6,270,"Nuts, seeds and their products",Coconut water,,1,20,94.3,0.4,0.3,3.5,1.1,0.4,24,0.2,24,23,270,86,0.1,0.04,0,0,0,0,0,0.03,0.07,0.1,0.03,3,0,2.1,Legumes and nuts
+6271,6,271,"Nuts, seeds and their products","Dikanut, kernel, dried",,1,693,5.3,7.9,66.9,16.4,2.2,1.3,164,3.4,,202,,2,0.29,0.14,,0,,0,,0.18,0.09,0.7,,,0,,Legumes and nuts
+6272,6,272,"Nuts, seeds and their products",Groundnut,,1,571,6.3,22.4,45.9,14.6,8.5,2.3,47,3.9,191,359,727,6,2.5,0.86,0,0,0,0,10.9,0.87,0.14,15.5,0.59,110,0,0,Legumes and nuts
+6273,6,273,"Nuts, seeds and their products","Groundnut, rose",,1,562,6.2,20.4,43.2,20.3,7.7,2.2,34,3.7,195,336,711,6,3.65,1.12,0,0,0,0,10.09,0.87,0.14,15.5,0.59,110,0,0,Legumes and nuts
+6274,6,274,"Nuts, seeds and their products","Groundnut, red",,1,571,5.1,21.7,45.1,16.5,9.4,2.3,44,2.3,193,335,791,6,2.84,1.04,0,0,0,0,10.09,0.87,0.14,15.5,0.59,110,0,0,Legumes and nuts
+6275,6,275,"Nuts, seeds and their products",Melon seeds,,0.37,588,6.4,27.5,47.9,11.3,3.2,3.7,112,6.1,510,867,648,99,7.12,1.54,,0,,0,,0.1,0.12,2.8,0.09,58,0,,Legumes and nuts
+6276,6,276,"Nuts, seeds and their products",Sesame seeds,,1,569,5.1,18.2,48.9,10,11.8,6,983,11.8,351,643,468,11,7.75,4.08,3,0,30,0,0.25,0.68,0.19,3.4,0.79,97,0,,Legumes and nuts
+6277,6,277,"Nuts, seeds and their products","Shea nut, seed",,0.72,581,6.3,6.8,46.4,32.5,5.5,2.5,100,3.4,,82,,,,,,0,,0,,0.52,,,,,0,,Legumes and nuts
+6278,6,278,"Nuts, seeds and their products",Colanut,,,163,58.2,2.9,0.4,35.5,1.9,1.1,44,2,71,86,,,,0.15,0,0,0,0,,0.04,0.02,0.7,,,0,,Legumes and nuts
+6279,6,279,"Nuts, seeds and their products","Colanut, dried",,,347,11.5,5.8,1.5,74.3,4,2.9,108,6,150,176,,,,0.32,1,0,,0,,0.06,0.05,1.3,,,0,,Legumes and nuts
+6285,6,285,"Nuts, seeds and their products","Groundnut, combined varieties",,1,562,7.2,22.4,44.5,14.8,8.5,2.6,51,6.2,191,394,720,6,2.5,0.85,0,0,0,0,10.09,0.87,0.13,15.3,0.58,109,0,0,Legumes and nuts
+6286,6,286,"Nuts, seeds and their products",Groundnut paste,,1,588,7.2,25,47.2,16.5,1.5,2.6,61,4,191,349,720,17,2,0.42,0,0,0,0,10.09,0.39,0.14,15.3,0.59,110,0,0,Legumes and nuts
+6287,6,287,"Nuts, seeds and their products","Groundnut flour, with fat",,1,581,4.3,26.6,46.4,10.6,9.9,2.1,41,4,195,366,743,6,2.6,0.88,0,0,0,0,11.03,0.89,0.14,9.9,0.6,112,0,0,Legumes and nuts
+6288,6,288,"Nuts, seeds and their products","Groundnut flour, defatted",,1,409,5,42.5,9.9,35.3,3.1,4.2,60,4,194,364,737,6,2.55,0.87,0,0,0,0,2.35,0.89,0.14,15.7,0.6,111,0,0,Legumes and nuts
+6289,6,289,"Nuts, seeds and their products","Palm nut kernel, shelled",,,602,13.5,6.1,55.3,19.6,4,1.5,91,9,232,239,270,,2.37,1.49,,0,,0,,,,,,,0,,Legumes and nuts
+6290,6,290,"Nuts, seeds and their products","Roselle, red, seed, dried ",,1,421,7,16.8,17.8,42.5,11,4.9,373,4.2,,462,,,0.6,,,0,,0,,0.11,0.37,1.3,,,0,,Legumes and nuts
+7291,7,291,Meat and poultry and their products,Beef liver,,1,133,71,19.4,4.4,3.9,0,1.3,7,8.8,18,369,313,69,3.5,9.76,4970,4950,245,1.2,0.38,0.19,1.56,13.2,1.08,290,59.3,1.3,Flesh foods
+7292,7,292,Meat and poultry and their products,"Beef, meat, 15-20  % fat, boneless",,1,234,64.3,18.4,18,0,0,1,8,2.9,25,182,305,70,3.4,0.12,16,16,0,0.6,0.35,0.06,0.28,5.6,0.32,6,1.1,0,Flesh foods
+7293,7,293,Meat and poultry and their products,"Chicken, dark meat",,0.44,135,72.9,20.4,5.9,0,0,1,11,1.1,24,194,276,84,1.36,0.05,17,17,0,0.2,0.26,0.09,0.16,7,0.34,16,0.4,0,Flesh foods
+7294,7,294,Meat and poultry and their products,"Lamb/mutton, meat, moderately fat",,0.82,253,60.6,16.5,21.2,0,0,1,10,2.1,22,149,250,76,3.33,0.11,10,10,0,0.3,0.21,0.13,0.19,3.5,0.4,2,2.9,0,Flesh foods
+7295,7,295,Meat and poultry and their products,"Pork, meat, approx. 40 % fat, boneless",,1,392,46.6,12.3,38.8,0,0,1.2,11,1.8,16,165,300,60,3.6,0.1,0,0,0,1,0.1,0.6,0.17,3.6,0.38,3,0.7,0,Flesh foods
+7296,7,296,Meat and poultry and their products,"Pork, meat, approx. 20 % fat, boneless",,1,263,60.1,16.8,22,0,0,1.1,10,1.4,20,170,301,68,3.6,0.1,0,0,0,0.7,0.1,0.72,0.22,3.8,0.32,2,0.8,0,Flesh foods
+7297,7,297,Meat and poultry and their products,Rabbit meat,,0.76,128,72.7,21.6,4.8,0,0,1,16,1.2,27,212,351,60,1.7,0.15,10,10,0,0,0.8,0.11,0.15,9.5,0.57,5,10,0,Flesh foods
+7298,7,298,Meat and poultry and their products,Ant flying,, ,595,2.9,38.8,46.9,5.5,,5.9,91,35.2,,609,476,1970,,,,,,,,0.13,4.5,5.7,,,,,Flesh foods
+7299,7,299,Meat and poultry and their products,"Beef, meat, lean, boneless",,1,126,73.2,21.7,4.3,0,0,1,5,2.1,22,170,360,50,3.6,0.09,0,0,0,0.4,0.23,0.06,0.19,6.2,0.23,7,1.4,0,Flesh foods
+7304,7,304,Meat and poultry and their products,"Beef, meat, approx. 30 % fat, boneless",,1,318,54.2,16.4,28.4,0,0,0.8,4,1.6,17,170,272,62,3.9,0.06,42,42,0,0.9,0.9,0.03,0.14,5,0.32,7,1.4,0,Flesh foods
+7307,7,307,Meat and poultry and their products,"Beef, meat, lean, cured",,1,180,53.8,31.1,1.9,9.1,0,4.1,8,2.4,19,181,235,2790,4.93,0.07,0,0,0,0,0.38,0.07,0.16,5.2,0.39,10,1.6,0,Flesh foods
+7309,7,309,Meat and poultry and their products,"Beef, kidney",,0.84,99,77.9,17.4,3.1,0.3,0,1.3,13,4.6,17,257,262,182,1.92,0.43,419,419,0,1.1,0.22,0.36,2.84,8,0.67,98,27.5,9.4,Flesh foods
+7311,7,311,Meat and poultry and their products,"Beef, tripe",,1,82,84.2,12.1,3.7,0,0,0.6,69,0.6,13,64,67,97,1.42,0.07,0,0,0,0,0.09,0,0.06,0.9,0.01,5,1.4,0,Flesh foods
+7313,7,313,Meat and poultry and their products,"Beef,  ground, 10 % fat",,1,170,69.5,20.1,10,0,0,1,12,2.2,20,184,321,66,4.79,0.07,0,0,0,0.1,0.32,0.04,0.16,5.1,0.37,6,2.2,0,Flesh foods
+7315,7,315,Meat and poultry and their products,"Beef, meat, cured",,1,241,57.7,27.1,14.9,0,0,2.9,12,2.1,14,111,136,1010,3.57,0.06,0,0,0,0.2,0.15,0.02,0.15,2.4,0.13,9,1.6,0,Flesh foods
+7316,7,316,Meat and poultry and their products,"Bamboo caterpillar, deep fried",,,638,4.5,25.5,55.3,11,,3.7,4,2.7,,356,674,609,,,,,,,,,,,,,,,Flesh foods
+7317,7,317,Meat and poultry and their products,"Game meat, dried",,1,332,23.4,66.7,7,0,0,3.4,15,9.9,67,586,923,2210,6.06,0.73,0,0,0,,0.58,0.64,1.39,18.5,1.07,12,18.3,0,Flesh foods
+7320,7,320,Meat and poultry and their products,"Chicken, dark meat, flesh and skin",,0.65,230,65.4,16.7,18.3,0,0,0.8,11,1,19,136,178,73,1.58,0.05,49,49,0,0.2,0.3,0.06,0.15,5.2,0.25,7,0.3,0,Flesh foods
+7323,7,323,Meat and poultry and their products,"Chicken, light meat, flesh",,0.55,108,74.5,23.6,1.4,0,0,1,9,0.6,28,204,305,64,0.84,0.05,8,8,0,0.2,0.18,0.1,0.12,10.7,0.53,9,,0,Flesh foods
+7326,7,326,Meat and poultry and their products,"Chicken, light meat, flesh and skin",,0.72,180,69.1,19.5,11.4,0,0,0.9,11,0.7,23,155,243,71,0.92,0.04,19,19,0,0.2,0.24,0.08,0.12,8.5,0.42,14,0.4,0,Flesh foods
+7329,7,329,Meat and poultry and their products,Chicken giblets,,1,132,73.9,17.5,6.3,1.3,0,1,10,6.3,18,184,239,80,3.06,0.29,4080,4080,0,,0.71,0.1,0.56,6.3,0.36,438,11.4,14.1,Flesh foods
+7331,7,331,Meat and poultry and their products,"Chicken, liver",,1,118,74.4,19,4,1.3,0,1.4,11,8.7,19,304,241,71,3.04,0.5,7890,7450,37,0.2,0.49,0.39,2.46,9.8,0.82,792,24,22.2,Flesh foods
+7333,7,333,Meat and poultry and their products,"Mole cricket, blanched",,,130,71.2,15.4,6.3,1.5,2.9,2.7,76,41.7,,254,268,97,,,,,,,,0.2,1.89,4.8,,,,,Flesh foods
+7334,7,334,Meat and poultry and their products,Crocodile,,,121,71.7,19.4,4.8,0,0,1,,,,,,,,,,,,,,,,,,,,,Flesh foods
+7336,7,336,Meat and poultry and their products,"Goat, meat",,0.74,165,68,17.5,10.6,0,0,1.1,11,2.4,27,150,385,82,3.45,0.16,0,0,0,,0.18,0.18,0.29,6.1,0.4,5,1.1,0,Flesh foods
+7341,7,341,Meat and poultry and their products,"Lamb, brain",,0.98,118,79.2,10.4,8.6,0,0,1.3,9,1.8,12,270,296,112,1.17,0.24,0,0,0,,,0.13,0.3,3.9,0.29,3,11.3,16,Flesh foods
+7343,7,343,Meat and poultry and their products,"Lamb, liver",,1,132,71.4,20.2,4.5,2.5,0,1.4,9,8.7,19,364,313,70,4.66,6.98,4970,4950,244,1.2,0.77,0.32,3.07,13,0.9,230,90.1,4,Flesh foods
+7345,7,345,Meat and poultry and their products,Locust,,,97,76.7,14,3.3,0.9,4,1.1,28,3,22,150,217,32,3.5,0.87,,,,,,0.2,1.5,3.9,,,,,Flesh foods
+7346,7,346,Meat and poultry and their products,"Mopanie worm, canned",,,97,77.3,14.1,3.6,0.7,2.6,1.7,39,7,36,123,232,234,3.18,0.21,,,,,,0.13,1.13,2.7,,,,0,Flesh foods
+7353,7,353,Meat and poultry and their products,"Sausage, wiener (beef, pork, chicken) canned",,1,225,64.9,10.5,19.4,2.6,0,2.6,10,0.9,7,49,101,969,1.6,0.03,0,0,0,0.6,0.22,0.09,0.11,1.6,0.12,4,1,0,Flesh foods
+8354,8,354,Eggs and their products,"Egg, chicken",,0.88,138,76.2,12.6,9.5,0.7,0,1.1,56,1.8,12,198,138,142,1.29,0.07,160,160,5,2,1.05,0.04,0.46,0.1,0.17,47,0.9,0,Eggs
+9358,9,358,Fish and their products,"Anchovy, fillet",,1,110,72.8,19.1,3.7,0,0,1.4,109,3.1,32,204,438,104,1.74,0.22,15,15,0,2.9,0.57,0.06,0.26,17,0.14,9,0.6,,Flesh foods
+9359,9,359,Fish and their products,Barracuda,,0.64,84,78.7,19,0.7,0,0,1.3,26,0.9,31,175,252,89,0.51,0.06,7,7,0,0.6,0.19,0.12,0.09,4.1,0.31,9,2.1,,Flesh foods
+9361,9,361,Fish and their products,Sardine,,0.52,104,74.9,19.4,2.9,0,0,2.5,71,1.8,35,281,499,77,1.57,0.07,19,18,6,11,0.73,0.02,0.21,9.4,0.96,4,11,,Flesh foods
+9362,9,362,Fish and their products,Tuna,,0.58,136,70.4,23.3,5.1,0,0,1.5,14,1.1,40,249,349,51,0.45,0.08,26,26,0,6.5,1.1,0.16,0.14,13.5,0.69,15,5.1,,Flesh foods
+9363,9,363,Fish and their products,White grouper,,0.6,88,77.9,19.4,1,0,0,1.3,31,1.2,33,175,483,53,0.89,0.03,43,43,0,0.8,0.26,0.07,0.03,3.4,0.3,9,1,,Flesh foods
+9364,9,364,Fish and their products,African carp,,0.54,69,78.9,15.7,0.6,0,0,1.3,13,0.7,33,144,313,57,1.3,0.05,1,1,0,2.6,0.07,0.09,0.06,1.9,0.16,14,1.6,,Flesh foods
+9369,9,369,Fish and their products,"Anchovy, canned ",,1,203,50.3,28.9,9.7,0,0,11.1,232,4.6,69,252,544,3670,2.44,0.34,12,12,0,1.7,3.33,0.08,0.36,19.9,0.2,13,0.9,,Flesh foods
+9372,9,372,Fish and their products,Bayad,,0.6,80,79.8,17.1,1.2,0,0,1.2,61,1.2,28,197,est,51,0.64,0.06,2,2,0,0.9,0.3,0.19,0.05,1.2,0.26,8,1.8,,Flesh foods
+9375,9,375,Fish and their products,Catfish,,0.52,117,76.5,16.3,5.7,0,0,1,38,0.9,30,191,304,48,0.6,0.05,25,25,0,8.6,0.58,0.12,0.06,1.4,0.29,8,2.3,,Flesh foods
+9378,9,378,Fish and their products,Carp,,0.54,119,76.6,17.2,5.6,0,0,1.3,44,1.1,33,328,347,46,1.24,0.06,9,9,0,24.7,0.63,0.1,0.06,2.1,0.18,15,1.8,,Flesh foods
+9382,9,382,Fish and their products,"Mackerel, grilled",,0.64,180,60.1,28.5,7.3,0,0,2.1,40,1,43,273,549,73,0.71,0.08,45,45,0,8.5,0.8,0.18,0.18,6.8,0.52,1,3.1,,Flesh foods
+9383,9,383,Fish and their products,Mormyrids,,0.52,84,79.5,17.8,1.3,0,0,1.1,123,1.1,29,268,321,41,0.6,0.06,12,12,0,1,0.32,0.05,0.09,0.9,0.3,9,2,,Flesh foods
+9386,9,386,Fish and their products,Mudfish,,0.52,96,78.6,17,3,0,0,1,44,0.7,21,180,242,41,0.65,0.13,7,7,0,2.4,0.34,0.04,0.07,1.3,0.08,9,2.1,,Flesh foods
+9389,9,389,Fish and their products,"Perch, Nile",,0.61,99,76.1,19.9,2,0,0,1.2,89,0.7,39,176,300,58,1.1,0.09,6,6,0,1.2,1.9,0.07,0.07,2.8,0.12,5,1.9,,Flesh foods
+9394,9,394,Fish and their products,Sardines in oil,,1,220,57.9,24.7,13.5,0,0,3.5,382,2.9,39,490,397,505,1.31,0.19,32,32,0,12,2.04,0.08,0.23,5.2,0.17,10,8.9,,Flesh foods
+9395,9,395,Fish and their products,Shiny-nose,,0.6,87,78.3,19.8,0.7,0,0,1.6,177,0.2,31,148,340,74,0.51,0.06,7,7,0,0.5,0.17,0.08,0.1,3.5,0.32,9,2.2,,Flesh foods
+9398,9,398,Fish and their products,Tilapia,,0.65,100,76.5,18.8,2.7,0,0,1.7,17,1.3,36,275,378,52,0.83,0.06,26,26,0,3.1,0.4,0.04,0.06,3.5,0.24,24,1.6,,Flesh foods
+10405,10,405,Milk and their products,"Milk, cow, whole, 3.5 % fat",,1,65,87.7,3.4,3.7,4.4,0,0.8,120,0.1,11,92,153,45,0.39,0.01,33,31,18,0.1,0.09,0.04,0.18,0.1,0.05,10,0.6,1.5,Dairy products
+10406,10,406,Milk and their products,"Milk, cow, powder, whole",,1,495,3.7,25.9,26.6,37.9,0,5.9,968,0.7,91,735,1160,370,3.51,0.06,228,218,129,1.2,0.5,0.3,1.32,0.7,0.25,39,3.3,11.3,Dairy products
+10407,10,407,Milk and their products,"Milk, goat",,1,76,85.8,3.4,4.5,5.5,0,0.8,142,0.1,14,119,215,48,0.3,0.02,33,33,0,0.1,0.03,0.06,0.17,0.3,0.04,1,0.1,1.5,Dairy products
+10408,10,408,Milk and their products,"Milk, human, mature",,1,70,86.8,1.2,3.7,8.1,0,0.3,30,0.1,3,16,59,12,0.3,0.04,60,58,24,,0.34,0.02,0.04,0.5,0.01,5,0.1,3.3,Dairy products
+10409,10,409,Milk and their products,"Yoghurt, whole milk, plain",,1,73,85.3,3.8,3.4,6.8,0,0.8,152,0.1,15,127,209,64,0.58,0.02,30,29,16,0.1,0.09,0.04,0.2,0.1,0.04,12,0.3,0.7,Dairy products
+10410,10,410,Milk and their products,Cheddar,,1,392,37.4,24.7,32.3,1.7,0,3.9,788,0.8,30,532,82,487,3.78,0.07,265,258,85,0.3,1.15,0.03,0.38,0.1,0.07,18,0.8,,Dairy products
+10411,10,411,Milk and their products,"Cheese, goat, hard type",,1,445,29,30.5,35.6,1.2,0,3.7,895,1.9,54,729,48,346,1.59,0.63,486,478,91,0.7,0.31,0.14,1.19,2.4,0.08,4,0.1,0,Dairy products
+10412,10,412,Milk and their products,"Cheese, Gouda",,1,363,41,24.8,29.5,0.7,0,3.9,753,0.5,30,556,96,665,3.82,0.05,165,164,0,0.4,1.23,0.04,0.33,0.1,0.08,21,1.5,,Dairy products
+10413,10,413,Milk and their products,"Cream, whipping, 38 % fat",,1,354,57.1,2.1,38,2.3,0,0.5,67,0.1,7,57,93,28,0.24,0.01,333,319,168,0.4,0.97,0.03,0.16,0.1,0.02,11,0.4,0.8,Dairy products
+10414,10,414,Milk and their products,"Cream, 13 % fat",,1,149,78.5,2.9,13.5,4.5,0,0.6,104,0,11,79,136,39,0.37,0.01,120,115,59,0.2,0.34,0.04,0.19,0.1,0.05,12,0.4,1,Dairy products
+10415,10,415,Milk and their products,"Infant formula, powder, for 3 months",,1,519,2,11.9,27.7,55.6,0,2.8,358,9.3,31,280,482,140,3.9,0.37,467,467,0,7.8,5,0.52,0.78,3.9,0.33,39,1,43,Dairy products
+10416,10,416,Milk and their products,"Infant formula, powder, for 6 months",,1,473,2,17.6,19.7,56.1,0,4.6,810,8.5,66,458,704,225,3.5,0.41,488,488,0,8.5,5.1,0.57,0.85,4.3,0.34,42,0.9,46,Dairy products
+10417,10,417,Milk and their products,"Milk, cow, partly skimmed, 1.5 % fat",,1,48,89.3,3.5,1.6,4.8,0,0.8,122,0,12,96,153,43,0.41,0.01,14,13,7,0.1,0.04,0.05,0.18,0.1,0.05,12,0.5,1.3,Dairy products
+10418,10,418,Milk and their products,"Milk, cow,  skimmed, 0.5 % fat",,1,38,90.6,3.5,0.5,4.7,0,0.7,124,0,12,97,157,44,0.41,0.01,4,4,2,0.1,0.01,0.04,0.17,0.1,0.05,6,0.5,1.3,Dairy products
+10419,10,419,Milk and their products,"Milk, cow, canned, condensed, sweetened",,1,330,27.2,7.9,8.7,54.4,0,1.8,284,0.2,26,253,371,127,0.94,0.02,74,73,14,0.2,0,0.09,0.42,0.2,0.05,11,0.4,2.6,Dairy products
+10420,10,420,Milk and their products,"Milk, cow, canned, evaporated",,1,135,74,6.8,7.6,10,0,1.6,261,0.2,24,203,303,106,0.77,0.02,65,64,15,0.1,0,0.05,0.32,0.2,0.05,8,0.2,1.9,Dairy products
+10421,10,421,Milk and their products,"Milk, cow powder, skimmed",,1,366,3.2,36.2,0.8,52,0,7.9,1260,0.3,110,968,1790,535,4.08,0.04,15,15,7,0,0.04,0.42,1.55,1,0.36,50,4,6.8,Dairy products
+10422,10,422,Milk and their products,"Milk, camel",,1,58,88.5,3.1,3,4.7,0,0.8,116,0.2,13,86,151,61,0.56,0.15,,,,,,,0.06,,,,,1.9,Dairy products
+10423,10,423,Milk and their products,"Milk, human, colostrum",,1,58,88.2,2,2.6,6.6,0,0.6,28,,3,14,70,47,0.6,0.05,166,155,135,,1.3,,0.03,0.8,0,2,0.1,7,Dairy products
+10424,10,424,Milk and their products,Vacherin cheese,,1,315,51.1,17.3,27.8,0,0,2.8,700,0.4,30,430,120,450,8,0.07,166,158,100,0.2,0.6,0,0.3,0.1,0.06,12,1.5,0,Dairy products
+10425,10,425,Milk and their products,"Yoghurt, whole milk, with fruits",,1,89,80.6,3.3,3.2,11.4,0.5,1,118,0.1,12,88,152,41,0.47,0.01,28,27,14,0.1,0.08,0.04,0.16,0.1,0.04,23,0.2,0.7,Dairy products
+10426,10,426,Milk and their products,"Butter, from cow-s milk ",,1,707,19.2,0.8,79.6,0.2,0,0.3,17,0,2,21,19,16,0.12,0.01,696,675,262,1.1,2.11,0.01,0.03,0.1,,3,0.1,0,Dairy products
+10427,10,427,Milk and their products,Coconut oil,,1,884,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.66,0,0,0,0,0,0,0,Dairy products
+10428,10,428,Milk and their products,Groundnut oil,,1,884,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17.2,0,0,0,0,0,0,0,Dairy products
+10429,10,429,Milk and their products,"Palm oil, red",,1,884,0,0,100,0,0,0,0,0,0,0,0,0,0,0,5720,0,68680,0,15.94,0,0,0,0,0,0,0,Dairy products
+10430,10,430,Milk and their products,Cottonseed oil,,1,884,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,35.3,0,0,0,0,0,0,0,Dairy products
+10431,10,431,Milk and their products,"Margarine, fortified",,1,717,16.5,0.2,80.7,0.7,0,1.9,3,0.1,3,5,18,751,0,0,819,768,610,0,9,0.01,0.04,0.02,0.01,1,0.1,0.2,Dairy products
+10432,10,432,Milk and their products,"Palm oil, refined",,1,884,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15.94,0,0,0,0,0,0,0,Dairy products
+10433,10,433,Milk and their products,Shea butter,,1,884,0,0,100,0,0,0,0,0,0,0,0,0,0,,0,0,0,0,0,0,0,0,0,0,0,0,Dairy products
+10434,10,434,Milk and their products,Soya oil,,1,884,0,0,100,0,0,0,0,0.1,0,0,0,0,0,0,0,0,0,0,8.18,0,0,0,0,0,0,0,Dairy products
+10435,10,435,Milk and their products,Vegetable oil,,1,884,0,0,100,0,0,0,0,0,0,0,0,0,0,0,,0,,0,39.22,0,0,0,0,0,0,0,Dairy products
 11436,11,436,Beverages,Beer european (4.4 % alcohol),,1,35,93.9,0.3,0,2,0,0.1,8,0.1,7,14,32,6,0.01,0.01,0,0,0,0,0,,0.03,0.7,0.07,5,,0,non-category
 11437,11,437,Beverages,"Beer, maize  (est. 3 % alcohol)",,1,33,93.2,0.6,,3.3,0.1,0.3,4,0.2,14,6,31,2,0.14,0.02,0,0,0,0,0,0.02,0.04,0.3,,,,0,non-category
 11438,11,438,Beverages,"Beer, millet (est. 3 % alcohol)",,1,43,91,0.7,,5.7,0.1,0.3,8,0.2,14,16,31,2,0.14,0.02,0,0,0,0,0,0.02,0.04,0.3,,,,0,non-category
@@ -272,7 +272,7 @@ FCT_id,food_grp_id,food_item_id,Food_grp,Food_name,Crop_ref,Edible,Energy,WATER,
 12456,12,456,Miscellaneous,Sugar,,1,406,0,0,0,99.99,0,0.01,1,0.1,0,0,2,1,0.01,0.01,0,0,0,0,0,0,0.02,0,0,0,0,0,non-category
 12457,12,457,Miscellaneous,Vinegar,,1,5,98.7,0.4,0,0.4,0,0.2,12,0.5,21,29,90,20,0.01,0.01,0,0,0,0,0,0,0,0,0,0,0,0,non-category
 12458,12,458,Miscellaneous,Anis seed,,1,385,9.5,17.6,15.9,35.4,14.6,7,646,37,170,440,1440,16,5.3,0.91,16,0,192,0,,0.34,0.29,3.1,0.65,10,0,21,non-category
-12459,12,459,Miscellaneous,"Bay leaf, dried",,1,354,5.4,7.6,8.4,48.7,26.3,3.6,834,43,120,113,529,23,3.7,0.42,309,0,3710,0,,0.01,0.42,2,1.74,180,0,46.5,Vitamin A rich fruits and Vegetable 
+12459,12,459,Miscellaneous,"Bay leaf, dried",,1,354,5.4,7.6,8.4,48.7,26.3,3.6,834,43,120,113,529,23,3.7,0.42,309,0,3710,0,,0.01,0.42,2,1.74,180,0,46.5,Vitamin A rich fruits and Vegetable
 12460,12,460,Miscellaneous,"Chilli pepper, dried",,1,318,9.4,14.2,12.6,23.1,28.8,11.8,240,17.3,149,278,1950,1640,2.75,1,1480,0,17790,0,38.14,0.25,0.94,11.6,2.09,28,0,0.7,non-category
 12461,12,461,Miscellaneous,"Cinnamon, ground",,1,241,10.6,4,1.2,27.5,53.1,3.6,1000,8.3,60,64,431,10,1.83,0.34,15,0,177,0,2.32,0.02,0.04,1.3,0.16,6,0,3.8,non-category
 12462,12,462,Miscellaneous,"Cube, beef, dry",,1,171,3.3,17.3,4,16.1,0,59.3,60,2.2,50,225,403,24000,0.21,0,0,0,0,0,0,0.2,0.24,3.3,0.2,32,1,0,non-category
@@ -286,41 +286,41 @@ FCT_id,food_grp_id,food_item_id,Food_grp,Food_name,Crop_ref,Edible,Energy,WATER,
 12470,12,470,Miscellaneous,"Spices, mix, ground",,1,349,8.5,6.1,8.7,50.5,21.6,4.7,661,7.1,135,113,1040,77,1.01,0.55,27,0,324,0,,0.1,0.06,2.9,0.21,36,0,39.2,non-category
 12471,12,471,Miscellaneous,"Yeast, dried",,1,318,5,35.6,1.5,29.9,19.7,8.3,80,20,230,1290,2000,50,8,5,0,0,0,0,0,2.33,4,36,2,4000,,0,non-category
 12472,12,472,Miscellaneous,"Yeast extract, Marmite",,1,154,37,27.8,0,8.8,3,23.4,86,3.7,180,104,2600,3600,2.1,0.3,0,0,0,0,0,9.7,14.3,97,1.3,1010,0.5,0,non-category
-20001,12,831,Miscellaneous,"Sheep meat, dried",,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Flesh foods 
+20001,12,831,Miscellaneous,"Sheep meat, dried",,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Flesh foods
 20002,12,835,Miscellaneous,"Teff, red",,0,357,0,11,2.5,73,4.5,2.8,78.8-147,11.6-150,0,0,0,0,3.8-3.9,1.6,0,0,,,,,,,,,,,"Grains, roots and tubers "
 20003,12,800,Miscellaneous,Barley,,0,340,0,5.4,1.1,77.8,9.6,0.7,17,1,25,110,170,2,1.2,0.40,0,0,,,,,,,,,,,"Grains, roots and tubers "
-20004,12,804,Miscellaneous,"Buttermilk, cow",,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Dairy products 
-20005,12,819,Miscellaneous,"Haricot beans, red",,0,337,0,22.53,1.06,61.29,15.2,3.37,83,6.69,138,406,1359,12,2.79,0.699,0,0,,,,,,,,,,,Legumes and nuts 
-20006,12,820,Miscellaneous,"Haricot beans, white",,0,311.0085775,0,21.82633,1.777054545,42.61744166,18.62,3.727409091,141.469,8.01,165.5288571,403.94,1340,16.65714286,2.911508571,1.0272,0,0,,,,,,,,,,,Legumes and nuts 
+20004,12,804,Miscellaneous,"Buttermilk, cow",,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Dairy products
+20005,12,819,Miscellaneous,"Haricot beans, red",,0,337,0,22.53,1.06,61.29,15.2,3.37,83,6.69,138,406,1359,12,2.79,0.699,0,0,,,,,,,,,,,Legumes and nuts
+20006,12,820,Miscellaneous,"Haricot beans, white",,0,311.0085775,0,21.82633,1.777054545,42.61744166,18.62,3.727409091,141.469,8.01,165.5288571,403.94,1340,16.65714286,2.911508571,1.0272,0,0,,,,,,,,,,,Legumes and nuts
 20007,12,834,Miscellaneous,Teff,,0,351,0,13.3,2.4,65.1,8,2.4,180,7.6,184,429,427,12,3.63,0.81,0,0,,,,,,,,,,,"Grains, roots and tubers "
-20008,12,801,Miscellaneous,Beetroot,,0,41,0,1,0.1,9.3,2.7,1.1,12,0.4,18,23,460,30,0.3,0.09,0,0,,,,,,,,,,,Other fruits and vegetables 
+20008,12,801,Miscellaneous,Beetroot,,0,41,0,1,0.1,9.3,2.7,1.1,12,0.4,18,23,460,30,0.3,0.09,0,0,,,,,,,,,,,Other fruits and vegetables
 20009,12,806,Miscellaneous,Chat,,0,115,0,3.68,0.42,1.98,3.11,0.71,18.38,0.29,18.3,87,318,8,0.17,0.09,0,0,,,,,,,,,,,non-category
 20010,12,809,Miscellaneous,Coffee beans,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,non-category
-20011,12,810,Miscellaneous,Ethiopian cabbage,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Other fruits and vegetables 
-20012,12,825,Miscellaneous,Mandarine / Tangerine,,0,53,0,0.8,0.31,13.34,1.8,0.38,37,0.15,12,20,166,2,0.07,0.042,34,0,,,,,,,,,,,Other fruits and vegetables 
-20013,12,830,Miscellaneous,Safflower,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Other fruits and vegetables 
-20014,12,807,Miscellaneous,"Chick peas, red",,0,286,0,18.8,5.11,39.6,25.2,2.78,150,6.78,160,267,935,27,3.37,0.85,3,3,,,,,,,,,,,Legumes and nuts 
-20015,12,812,Miscellaneous,Fenugreek,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Legumes and nuts 
-20016,12,813,Miscellaneous,Field peas,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Legumes and nuts 
-20017,12,822,Miscellaneous,Kale(yabesha gomen),,0,28,0,1.6,0.1,5.6,3.7,1.5,220,0.8,44,45,420,9,0.3,0.05,240,0,,,,,,,,,,,Other fruits and vegetables 
-20018,12,826,Miscellaneous,Mung bean / Masho,,0,324.9105599,0,20.94867896,1.346776259,49.56309609,15.37123667,3.099566864,89.4308,4.422552353,139.4280769,350.39132,1180,9.093453846,1.624303571,1.164915,7.057991667,0,,,,,,,,,,,Legumes and nuts 
-20019,12,827,Miscellaneous,Neug,,0,510,0,18.9,38.61,22.98,10.93,3.21,572,18.19,346,461,716,10.7,4.98,1.2,2.15,0,,,,,,,,,,,Legumes and nuts 
-20020,12,828,Miscellaneous,Oats / 'Aja',,0,377,0,11.9,7.8,59.7,10.2,1.6,54,4.4,153,491,362,12,3.18,0.36,0,0,,,,,,,,,,,"Grains, roots and tubers "
-20021,12,811,Miscellaneous,Faba bean,,0,308.5832522,0,25.34363752,1.364088472,38.3498848,20.76618333,3.285501333,95.64156571,5.1881386,135.4933314,430.5753143,1190,25.034634,3.54913466,0.822,2.377496248,0,,,,,,,,,,,Legumes and nuts 
-20022,12,817,Miscellaneous,"Goat meat, dried",,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Flesh foods 
+20011,12,810,Miscellaneous,Ethiopian cabbage,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Other fruits and vegetables
+20012,12,825,Miscellaneous,Mandarine / Tangerine,,0,53,0,0.8,0.31,13.34,1.8,0.38,37,0.15,12,20,166,2,0.07,0.042,34,0,,,,,,,,,,,Other fruits and vegetables
+20013,12,830,Miscellaneous,Safflower,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Other fruits and vegetables
+20014,12,807,Miscellaneous,"Chick peas, red",,0,286,0,18.8,5.11,39.6,25.2,2.78,150,6.78,160,267,935,27,3.37,0.85,3,3,,,,,,,,,,,Legumes and nuts
+20015,12,812,Miscellaneous,Fenugreek,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Legumes and nuts
+20016,12,813,Miscellaneous,Field peas,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Legumes and nuts
+20017,12,822,Miscellaneous,Kale(yabesha gomen),,0,28,0,1.6,0.1,5.6,3.7,1.5,220,0.8,44,45,420,9,0.3,0.05,240,0,,,,,,,,,,,Other fruits and vegetables
+20018,12,826,Miscellaneous,Mung bean , Masho,,0,324.9105599,0,20.94867896,1.346776259,49.56309609,15.37123667,3.099566864,89.4308,4.422552353,139.4280769,350.39132,1180,9.093453846,1.624303571,1.164915,7.057991667,0,,,,,,,,,,,Legumes and nuts
+20019,12,827,Miscellaneous,Neug,,0,510,0,18.9,38.61,22.98,10.93,3.21,572,18.19,346,461,716,10.7,4.98,1.2,2.15,0,,,,,,,,,,,Legumes and nuts
+20020,12,828,Miscellaneous,Oats , 'Aja',,0,377,0,11.9,7.8,59.7,10.2,1.6,54,4.4,153,491,362,12,3.18,0.36,0,0,,,,,,,,,,,"Grains, roots and tubers "
+20021,12,811,Miscellaneous,Faba bean,,0,308.5832522,0,25.34363752,1.364088472,38.3498848,20.76618333,3.285501333,95.64156571,5.1881386,135.4933314,430.5753143,1190,25.034634,3.54913466,0.822,2.377496248,0,,,,,,,,,,,Legumes and nuts
+20022,12,817,Miscellaneous,"Goat meat, dried",,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Flesh foods
 20023,12,821,Miscellaneous,Hops,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,non-category
-20024,12,829,Miscellaneous,Rape seed,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Legumes and nuts 
+20024,12,829,Miscellaneous,Rape seed,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Legumes and nuts
 20025,12,832,Miscellaneous,Sugarcane,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,non-category
-20026,12,833,Miscellaneous,Swiss chard,,0,19,0,0,0.1,3.7,3.3,1.9,75,3.6,74,33,1200,71,0.3,0.06,310,0,,,,,,,,,,,Other fruits and vegetables 
-20027,12,836,Miscellaneous,Vetch pea,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Legumes and nuts 
+20026,12,833,Miscellaneous,Swiss chard,,0,19,0,0,0.1,3.7,3.3,1.9,75,3.6,74,33,1200,71,0.3,0.06,310,0,,,,,,,,,,,Other fruits and vegetables
+20027,12,836,Miscellaneous,Vetch pea,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Legumes and nuts
 20028,12,814,Miscellaneous,Finger millet,,0,365,0,9.3,5.9,64.2,9,2.1,23,15.2,96,402,332,12,2.58,0.45,0,0,,,,,,,,,,,"Grains, roots and tubers "
-20029,12,818,Miscellaneous,Grass peas,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Legumes and nuts 
-20030,12,824,Miscellaneous,Linseed,,0,482,0,25,31,36.1,18,3,201,14.6,351,547,468,11,7.75,0,0,0,,,,,,,,,,,Legumes and nuts 
-20031,12,816,Miscellaneous,Gibto,,0,371,0,36,9.7,40,19,3.28,176,4.36,198,440,1013,15,4.75,1.022,0,0,,,,,,,,,,,Legumes and nuts 
-20032,12,805,Miscellaneous,"Camel meat, raw",,0,149,0,19.9,7.7,0,0,1.1,10,3.2,19,187,243,70,3.55,0.16,1,0,,,,,,,,,,,Flesh foods 
-20033,12,808,Miscellaneous,"Chick peas, white",,0,337.1932697,0,20.3908788,5.152140955,41.95498222,20.72027852,2.821544542,121.1388258,6.580205905,131.5139323,264.395822,819.0947136,11.77804486,3.117069709,0.44477148,4.528792302,0,,,,,,,,,,,Legumes and nuts 
-20034,12,803,Miscellaneous,"Buttermilk, camel",,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Dairy products 
-20035,12,823,Miscellaneous,Kidniey bean,,0,98,0,16.4,3.6,0,0,1.1,6,4.1,17,210,257,179,2.62,0.47,131,98,,,,,,,,,,,Legumes and nuts 
-20036,12,837,Miscellaneous,"Yoghurt, camel milk",,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Dairy products 
+20029,12,818,Miscellaneous,Grass peas,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Legumes and nuts
+20030,12,824,Miscellaneous,Linseed,,0,482,0,25,31,36.1,18,3,201,14.6,351,547,468,11,7.75,0,0,0,,,,,,,,,,,Legumes and nuts
+20031,12,816,Miscellaneous,Gibto,,0,371,0,36,9.7,40,19,3.28,176,4.36,198,440,1013,15,4.75,1.022,0,0,,,,,,,,,,,Legumes and nuts
+20032,12,805,Miscellaneous,"Camel meat, raw",,0,149,0,19.9,7.7,0,0,1.1,10,3.2,19,187,243,70,3.55,0.16,1,0,,,,,,,,,,,Flesh foods
+20033,12,808,Miscellaneous,"Chick peas, white",,0,337.1932697,0,20.3908788,5.152140955,41.95498222,20.72027852,2.821544542,121.1388258,6.580205905,131.5139323,264.395822,819.0947136,11.77804486,3.117069709,0.44477148,4.528792302,0,,,,,,,,,,,Legumes and nuts
+20034,12,803,Miscellaneous,"Buttermilk, camel",,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Dairy products
+20035,12,823,Miscellaneous,Kidniey bean,,0,98,0,16.4,3.6,0,0,1.1,6,4.1,17,210,257,179,2.62,0.47,131,98,,,,,,,,,,,Legumes and nuts
+20036,12,837,Miscellaneous,"Yoghurt, camel milk",,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Dairy products
 20037,12,802,Miscellaneous,Black wheat,,0,0,0,15.2,1.21,0,11.3,0,420,4.6,140,280,360,38,4.17,0,10.9,0,,,,,,,,,,,"Grains, roots and tubers "
-20038,12,838,Miscellaneous,"Yoghurt, goat milk",,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Dairy products 
+20038,12,838,Miscellaneous,"Yoghurt, goat milk",,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,Dairy products

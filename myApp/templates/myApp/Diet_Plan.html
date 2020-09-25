@@ -409,8 +409,8 @@
     $('[data-toggle="tooltip"]').tooltip();
 
     // グローバル変数の作成
-    const myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212,
-      301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312];
+    const myRange = [101, 102, 103, 104, 201, 202, 203, 204,
+      301, 302, 303, 304];
     var selected_rows_id = [];
     var myLocation = '';
     var myRoot = '';
@@ -1684,29 +1684,29 @@
     });
     $('#btn_car_prev2').click(function () {
       $('#carouselControl2').carousel('prev');
-      c_index = $('#carouselControl2 div.active').index() || 12;
-      $('#title_diet2').text('Diet for ' + myMonth[c_index - 1]);
+      c_index = $('#carouselControl2 div.active').index() || 4;
+      $('#title_diet2').text('Diet for Season ' + c_index);
     });
     $('#btn_car_next2').click(function () {
       $('#carouselControl2').carousel('next');
-      c_index = ($('#carouselControl2 div.active').index() + 2) % 12 || 12;
-      $('#title_diet2').text('Diet for ' + myMonth[c_index - 1]);
+      c_index = ($('#carouselControl2 div.active').index() + 2) % 4 || 4;
+      $('#title_diet2').text('Diet for Season ' + c_index);
     });
     $('#btn_car_prev3').click(function () {
-      $('#carouselControl3').carousel('prev')
-      c_index = $('#carouselControl3 div.active').index() || 12;
-      $('#title_diet3').text('Diet for ' + myMonth[c_index - 1]);
+      $('#carouselControl3').carousel('prev');
+      c_index = $('#carouselControl3 div.active').index() || 4;
+      $('#title_diet3').text('Diet for Season' + c_index);
     });
     $('#btn_car_next3').click(function () {
-      $('#carouselControl3').carousel('next')
-      c_index = ($('#carouselControl3 div.active').index() + 2) % 12 || 12;
-      $('#title_diet3').text('Diet for ' + myMonth[c_index - 1]);
+      $('#carouselControl3').carousel('next');
+      c_index = ($('#carouselControl3 div.active').index() + 2) % 4 || 4;
+      $('#title_diet3').text('Diet for Season ' + c_index);
     });
     //---carouselの切替処理-------------
     //---carouselの初期値-------------
     $('#title_diet1').text('Diet for Season 1');
-    $('#title_diet2').text('Diet for ' + myMonth[0]);
-    $('#title_diet3').text('Diet for ' + myMonth[0]);
+    $('#title_diet2').text('Diet for Season 1');
+    $('#title_diet3').text('Diet for Season 1');
     //---carouselの初期値-------------
 
     //全ての変数を読み込んでからBarratingをセット

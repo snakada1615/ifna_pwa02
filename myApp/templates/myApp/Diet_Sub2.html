@@ -12,7 +12,7 @@
 
 <div id="carouselControl2" class="carousel slide" data-interval="false" data-ride="carousel">
   <div class="carousel-inner">
-    {% for i in i|rjust:12 %}
+    {% for i in i|rjust:4 %}
       <div class="carousel-item {% if forloop.first %}active{% endif %}">
         <div class="card border-success border-5 rounded col-12 mt-2 py-2"
              style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
@@ -23,7 +23,7 @@
                border-width: 2px;
           ">
                   <div class="card-header bg-info text-white p-1">
-                    Diet plan for target beneficiaries in month
+                    Diet plan for target beneficiaries in season
                     <span class="lst_month text-dark mx-1" myNum={{ forloop.counter|add:200 }}
                             style="background-color:#D2DFD2;">{{ forloop.counter }}</span>
                     <span class=" fb fb-help"></span>
