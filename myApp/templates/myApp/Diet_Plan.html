@@ -409,8 +409,20 @@
     $('[data-toggle="tooltip"]').tooltip();
 
     // グローバル変数の作成
-    const myRange = [101, 102, 103, 104, 201, 202, 203, 204,
-      301, 302, 303, 304];
+//    const myRange = [101, 102, 103, 104, 201, 202, 203, 204,
+//      301, 302, 303, 304];
+    var season_count = {{ season_count }};
+    var season_list = {{ season_list|safe }};
+    var myRange = [];
+    $.each(season_list,function(index,val){
+      myRange.push(Number(val) + 100);
+    });
+    $.each(season_list,function(index,val){
+      myRange.push(Number(val) + 200);
+    });
+    $.each(season_list,function(index,val){
+      myRange.push(Number(val) + 300);
+    });
     var selected_rows_id = [];
     var myLocation = '';
     var myRoot = '';
@@ -1606,13 +1618,7 @@
     for (let i in myRange) {
       let num_tbl = myRange[i];
       let tmp_dat = myCrop[num_tbl];
-      let tmp_mon = 0;
-      if (num_tbl < 200) {
-        tmp_mon = Number(tmp_dat.dom_lst_month.prop("selectedIndex") + 1);
-      } else {
-        tmp_mon = Number(tmp_dat.dom_lst_month.text());
-      }
-      myCrop[num_tbl].month = tmp_mon;
+      myCrop[num_tbl].month = Number(tmp_dat.dom_lst_month.text());
       myCrop[num_tbl].dom_btn_add.attr('myNum', num_tbl);
     }
 
@@ -1674,34 +1680,35 @@
       'August', 'September', 'Octoer', 'November', 'December'];
     $('#btn_car_prev1').click(function () {
       $('#carouselControl1').carousel('prev');
-      c_index = $('#carouselControl1 div.active').index() || 4;
+      c_index = $('#carouselControl1 div.active').index() || season_count;
       $('#title_diet1').text("Diet for Season " + c_index);
     });
     $('#btn_car_next1').click(function () {
       $('#carouselControl1').carousel('next');
-      c_index = ($('#carouselControl1 div.active').index() + 2) % 4 || 4;
+      c_index = ($('#carouselControl1 div.active').index() + 2) % season_count|| season_count;
       $('#title_diet1').text("Diet for Season " + c_index);
     });
     $('#btn_car_prev2').click(function () {
       $('#carouselControl2').carousel('prev');
-      c_index = $('#carouselControl2 div.active').index() || 4;
+      c_index = $('#carouselControl2 div.active').index() || season_count;
       $('#title_diet2').text('Diet for Season ' + c_index);
     });
     $('#btn_car_next2').click(function () {
       $('#carouselControl2').carousel('next');
-      c_index = ($('#carouselControl2 div.active').index() + 2) % 4 || 4;
+      c_index = ($('#carouselControl2 div.active').index() + 2) % season_count || season_count;
       $('#title_diet2').text('Diet for Season ' + c_index);
     });
     $('#btn_car_prev3').click(function () {
       $('#carouselControl3').carousel('prev');
-      c_index = $('#carouselControl3 div.active').index() || 4;
+      c_index = $('#carouselControl3 div.active').index() || season_count;
       $('#title_diet3').text('Diet for Season' + c_index);
     });
     $('#btn_car_next3').click(function () {
       $('#carouselControl3').carousel('next');
-      c_index = ($('#carouselControl3 div.active').index() + 2) % 4 || 4;
+      c_index = ($('#carouselControl3 div.active').index() + 2) % season_count || season_count;
       $('#title_diet3').text('Diet for Season ' + c_index);
     });
+
     //---carouselの切替処理-------------
     //---carouselの初期値-------------
     $('#title_diet1').text('Diet for Season 1');

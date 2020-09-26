@@ -78,6 +78,7 @@
 
 
                 <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;">
+                    <div hidden id="season_count"></div>
                     <div class="mod-tbl">
                         <table id="tbl_season" class="mytable">
                             <thead>
@@ -531,6 +532,7 @@
             $myTbl.append(cr);
             //console.log(cr);
             $('#myModal02Label').text('Availability of ' + crop_name);
+            $('#season_count').text(season_tmp['season_count']);
             console.log('オブジェクトSeason_Availを作成しました');
         }
 
@@ -1124,6 +1126,7 @@
                         month["m" + String(j + 1)] = $myrow.children('td').eq(j).text();
                     }
                     month["myLocation"] = {{myLocation}};
+                    month["season_count"] = $('#season_count').text();
                     season.push(month);
                     res1.season = season;
 

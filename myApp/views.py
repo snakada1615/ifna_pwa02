@@ -172,7 +172,7 @@ class Trial_View(TemplateView):
     # if __name__ == '__main__':
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
     myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 301, 302, 303, 304,
-               305,306, 307, 308, 309, 310, 311, 312]
+               305, 306, 307, 308, 309, 310, 311, 312]
 
     d = []
     for i in myRange:
@@ -760,6 +760,7 @@ def registCropAvail(request):
         'm10_season': myrow['m10'],
         'm11_season': myrow['m11'],
         'm12_season': myrow['m12'],
+        'season_count': myrow['season_count'],
       }
     )
 
@@ -1091,6 +1092,8 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
+    myseason = Season.objects.get(myLocation=self.kwargs['myLocation'])
+    context['season_count'] = myseason.season_count
     tmp_nut_group = Person.objects.filter(
       myLocation=self.kwargs['myLocation']).select_related('myDRI')
     context['nutrient_target'] = tmp_nut_group[0].nut_group
@@ -1148,12 +1151,18 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     season_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
                     'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
     mydat = {}
+    myseason = []
     for myfield in season_field:
       tmpdat = str(getattr(tmp, myfield))
       mydat[myfield] = tmpdat
     logger.info(mydat)
+    context["season"] = mydat
 
-    context["test"] = mydat
+    tmpdat = str(getattr(tmp, 'season_count'))
+    logger.info(tmpdat)
+    for i in range(int(tmpdat)):
+      myseason.append(i+1)
+    context['season_list'] = myseason
 
     # mydat = []
     # dd={}
@@ -1222,8 +1231,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     # --------------------create 16 Crop_individual-------------------------
     # if __name__ == '__main__':
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
-    myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 301, 302, 303, 304, 305,
-               306, 307, 308, 309, 310, 311, 312]
+    myRange = [101, 102, 103, 104, 201, 202, 203, 204, 301, 302, 303, 304]
 
     # tmp_xx = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT').annotate(
     #   numviews=Count(Case(
@@ -1243,6 +1251,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
       #      if tmp02.count() == 0:  # todo この行があると余分なQueryが発生する！？
       if len(tmp02_list) == 0:
         dd = {}
+        dd["Food_grp"] = ''
         dd["name"] = ''
         dd["Energy"] = ''
         dd["Protein"] = ''
@@ -1264,6 +1273,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
       else:
         for tmp03 in tmp02:
           dd = {}
+          dd["Food_grp"] = tmp03.myFCT.Food_grp_unicef
           dd["name"] = tmp03.myFCT.Food_name
           dd["Energy"] = tmp03.myFCT.Energy
           dd["Protein"] = tmp03.myFCT.Protein

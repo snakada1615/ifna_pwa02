@@ -679,6 +679,12 @@ class Season(models.Model):
     verbose_name='mon12_season',
     default=0,
   )
+  season_count = models.IntegerField(
+    verbose_name='season_count',
+    default=0,
+    blank=True,
+    null=True,
+  )
 
 
 
