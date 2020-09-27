@@ -91,6 +91,33 @@
       </div>
     </div>
 
+
+    <div id="container_tab_all" class="container border-secondary py-1 my-1 px-0"
+         style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
+      <!-- 4個分のタブ -->
+      <nav class="nav nav-pills" role="tablist" id="myTabs">
+        <a class="flex-sm-fill text-sm-center nav-link active" href="#tab_individual" role="tab">individual</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_family" role="tab">family</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_community" role="tab">community</a>
+      </nav>
+
+      <!-- タブの移動先指定 -->
+      <div class="tab-content mt-2" id="tabContent">
+        <div class="tab-pane active" id="tab_individual" role="tabpanel">
+          {% include "./Diet_Sub1.html" %}
+        </div>
+        <div class="tab-pane" id="tab_family" role="tabpanel">
+          {% include "./Diet_Sub2.html" %}
+        </div>
+        <div class="tab-pane" id="tab_community" role="tabpanel">
+          {% include "./Diet_Sub3.html" %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
     <!-- モーダルの設定 local crop ----------------------------->
     <div class="modal fade" id="Modal_localCrop1" mynum="0" tabindex="-1" role="dialog"
          aria-labelledby="Modal_localCropLabel">
@@ -300,33 +327,6 @@
     </div>
     <!-- /.modal -->
     <!-------------------------------------->
-
-
-    <div id="container_tab_all" class="container border-secondary py-1 my-1 px-0"
-         style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
-      <!-- 4個分のタブ -->
-      <nav class="nav nav-pills" role="tablist" id="myTabs">
-        <a class="flex-sm-fill text-sm-center nav-link active" href="#tab_individual" role="tab">individual</a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_family" role="tab">family</a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_community" role="tab">community</a>
-      </nav>
-
-      <!-- タブの移動先指定 -->
-      <div class="tab-content mt-2" id="tabContent">
-        <div class="tab-pane active" id="tab_individual" role="tabpanel">
-          {% include "./Diet_Sub1.html" %}
-        </div>
-        <div class="tab-pane" id="tab_family" role="tabpanel">
-          {% include "./Diet_Sub2.html" %}
-        </div>
-        <div class="tab-pane" id="tab_community" role="tabpanel">
-          {% include "./Diet_Sub3.html" %}
-        </div>
-      </div>
-    </div>
-
-  </div>
-
 
   <style media="screen">
     /* set common variable */
@@ -1007,6 +1007,7 @@
     // //////////////////////////
     var Crop_available = $('#localCrop1').DataTable({
       "data": json_crop_local,
+      "autoWidth": true,
       "myFeeling": "Happy",
       "pageLength": 50,
       "columns": [

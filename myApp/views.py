@@ -1152,6 +1152,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
                     'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
     mydat = {}
     myseason = []
+    myRange = []
     for myfield in season_field:
       tmpdat = str(getattr(tmp, myfield))
       mydat[myfield] = tmpdat
@@ -1162,6 +1163,12 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     logger.info(tmpdat)
     for i in range(int(tmpdat)):
       myseason.append(i+1)
+      myRange.append(i+100)
+    for i in range(int(tmpdat)):
+      myRange.append(i+200)
+    for i in range(int(tmpdat)):
+      myRange.append(i+300)
+
     context['season_list'] = myseason
 
     # mydat = []
@@ -1231,15 +1238,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     # --------------------create 16 Crop_individual-------------------------
     # if __name__ == '__main__':
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
-    myRange = [101, 102, 103, 104, 201, 202, 203, 204, 301, 302, 303, 304]
-
-    # tmp_xx = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT').annotate(
-    #   numviews=Count(Case(
-    #     When(id_table=201, then=1),
-    #     output_field=IntegerField(),
-    #   ))
-    # )
-    # logger.info(tmp_xx.count())
+    ##myRange = [101, 102, 103, 104, 201, 202, 203, 204, 301, 302, 303, 304]
 
     d = []
     for i in myRange:
