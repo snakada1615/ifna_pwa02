@@ -585,7 +585,7 @@
     Crop_Selected.prototype.setData_fromListbox = function (num_tbl, mydata, drawFlag) {
       console.group('Crop_Selected.receive_SelectedRow:');
       if (drawFlag) {       //rowの追加
-                            //データセットの作成1:buy_prod_share設定
+        //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {
@@ -723,6 +723,7 @@
     };
     Crop_Selected.prototype._drawRaw_single = function (food_item_id) {
       console.group('Crop_Selected._drawRaw_single:');
+
       let total = '';
       let add_data = this._getCrop_byID(food_item_id);
       if (add_data !== 'none') {
@@ -748,9 +749,18 @@
     };
     Crop_Selected.prototype._drawRaw_setHtml = function (add_data) {
       console.group('Crop_Selected._drawRaw_setHtml:');
+      //行の色指定
+      const rowcolor = {
+        '1': 'bg-success text-white',
+        '2': 'bg-info text-white',
+        '3': 'table-info',
+        '0': 'table-secondary',
+      };
+      let tmp = '';
+
       // 追加行の作成
       let cr = '';
-      cr += '<tr>';
+      cr += '<tr class="' + rowcolor[add_data.month_availability] + '">';
       cr += '<td>' + add_data.name + '</td>';
       cr += '<td>' + Math.round(add_data.Energy * add_data.total_weight / 100, 1) + '</td>';
       cr += '<td>' + Math.round(add_data.Protein * add_data.total_weight / 100, 1) + '</td>';

@@ -60,8 +60,8 @@
                     <span style="color:green">■</span>: over 100%
                   </p>
 
-                  <table border="1" class="table table-striped selected_crops_tbl" myNum={{ forloop.counter|add:100 }}>
-                    <tr>
+                  <table border="1" class="table table-success selected_crops_tbl" myNum={{ forloop.counter|add:100 }}>
+                    <thead class="thead-light">
                       <th>
                         name:
                         <span class="fb fb-help" data-toggle="tooltip"
@@ -84,7 +84,7 @@
                       <th class="tableItem_hide">share</th>
                       <th class="tableItem_hide">Food_grp</th>
                       <th class="tableItem_hide">Mon_avail</th>
-                    </tr>
+                    </thead>
                     <tr>
                       <td>total</td>
                       <td></td>
