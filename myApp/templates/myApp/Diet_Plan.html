@@ -563,6 +563,9 @@
       }
     }
 
+    Crop_Selected.prototype.setData_Crop_AllAvailable = function () {
+      console.error('test')
+    };
     Crop_Selected.prototype.setDataDraw_Crop = function (crop_data) {
       this.setData_Crop(crop_data);
       this._drawRaw_single(crop_data.food_item_id);
@@ -1543,6 +1546,7 @@
     let myCrop = {};
     for (let i in myRange) {
       myCrop[myRange[i]] = new Crop_Selected(myRange[i]);
+      myCrop[myRange[i]].setData_Crop_AllAvailable();
     }
 
     let myCrop_individual = {};
@@ -1648,7 +1652,7 @@
     //初期データの読み込み
     for (var i = 0; i < json_crop_selected.length; i++) {
       data = json_crop_selected[i];
-      if (data.myLocation === Number(myLocation_id)) {
+      if (data.myLocation === Number(myLocation_id)) {t
         let num_tbl = data.num_tbl;
         myCrop[data.num_tbl].setData_Crop(data);
       }

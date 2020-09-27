@@ -1150,36 +1150,55 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp = Season.objects.filter(myLocation=self.kwargs['myLocation'])[0]
     season_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
                     'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
+    month_text = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
+                  'Dec']
     mydat = {}
     myseason = []
+    month_season1 = {}
+    month_season2 = {}
+    month_season1_text = {}
+    month_season2_text = {}
+    prev_dat = -1
     myRange = []
-    for myfield in season_field:
+    season_index = 0
+    for myindex, myfield in enumerate(season_field):
       tmpdat = str(getattr(tmp, myfield))
       mydat[myfield] = tmpdat
-    logger.info(mydat)
+      if prev_dat != tmpdat:  # 各シーズンの最初と最後の月を記録
+        season_index += 1
+        month_season1[season_index] = (myindex + 1)
+        if season_index > 0:
+          month_season2[season_index - 1] = myindex
+        prev_dat = tmpdat
+      if myindex == 11: #最終付の処理
+        month_season2[season_index] = 12  # 最後の季節を12月で締める
+        if mydat['m1_season'] == mydat['m12_season']:  # 季節が年をまたいでいる場合の処理
+          month_season1[1] = month_season1[season_index]
+          del month_season1[season_index]
+          del month_season2[season_index]
+
     context["season"] = mydat
+    context["month_season_start"] = month_season1
+    context["month_season_end"] = month_season2
+
+    for myindex, mymonth in month_season1.items():
+      month_season1_text[myindex] = month_text[mymonth-1]
+    for myindex, mymonth in month_season2.items():
+      month_season2_text[myindex] = month_text[mymonth-1]
+    context["month_season_start_text"] = month_season1_text
+    context["month_season_end_text"] = month_season2_text
 
     tmpdat = str(getattr(tmp, 'season_count'))
     logger.info(tmpdat)
     for i in range(int(tmpdat)):
-      myseason.append(i+1)
-      myRange.append(i+100)
+      myseason.append(i + 1)
+      myRange.append(i + 100)
     for i in range(int(tmpdat)):
-      myRange.append(i+200)
+      myRange.append(i + 200)
     for i in range(int(tmpdat)):
-      myRange.append(i+300)
+      myRange.append(i + 300)
 
     context['season_list'] = myseason
-
-    # mydat = []
-    # dd={}
-    # for myfield in season_field:
-    #   tmpdat = str(getattr(tmp, myfield))
-    #   dd[myfield] = tmpdat
-    #   if (tmpdat not in mydat):
-    #     mydat.append(tmpdat)
-    # context['count_season'] = len(mydat)
-    # logger.info(mydat)
 
     #######################################################
 
@@ -1238,7 +1257,6 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     # --------------------create 16 Crop_individual-------------------------
     # if __name__ == '__main__':
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
-    ##myRange = [101, 102, 103, 104, 201, 202, 203, 204, 301, 302, 303, 304]
 
     d = []
     for i in myRange:

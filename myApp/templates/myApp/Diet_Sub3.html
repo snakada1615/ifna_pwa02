@@ -23,12 +23,35 @@
                border-width: 2px;
           ">
                   <div class="card-header bg-info text-white p-1">
-                    Diet plan for target beneficiaries in season
-                    <span class="lst_month text-dark mx-1" myNum={{ forloop.counter|add:300 }}
+                    Diet plan for target beneficiaries:
+                      {% if forloop.counter == 1 %}
+                        {{ month_season_start_text.1 }} to {{ month_season_end_text.1 }}
+                      {% endif %}
+                      {% if forloop.counter == 2 %}
+                        {{ month_season_start_text.2 }} to {{ month_season_end_text.2 }}
+                      {% endif %}
+                      {% if forloop.counter == 3 %}
+                        {{ month_season_start_text.3 }} to {{ month_season_end_text.3 }}
+                      {% endif %}
+                      {% if forloop.counter == 4 %}
+                        {{ month_season_start_text.4 }} to {{ month_season_end_text.4 }}
+                      {% endif %}
+
+                    <span hidden class="lst_month text-dark mx-1" myNum={{ forloop.counter|add:300 }}
                             style="background-color:#D2DFD2;">
-                 {{ forloop.counter }}
-              </span>
-                    <span class=" fb fb-help"></span>
+                      {% if forloop.counter == 1 %}
+                        {{ month_season_start.1 }}
+                      {% endif %}
+                      {% if forloop.counter == 2 %}
+                        {{ month_season_start.2 }}
+                      {% endif %}
+                      {% if forloop.counter == 3 %}
+                        {{ month_season_start.3 }}
+                      {% endif %}
+                      {% if forloop.counter == 4 %}
+                        {{ month_season_start.4 }}
+                      {% endif %}
+                    </span>
                   </div>
 
                   <p class="card-title text-dark my-1 pl-1">
