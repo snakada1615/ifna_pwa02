@@ -1170,7 +1170,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
         if season_index > 0:
           month_season2[season_index - 1] = myindex
         prev_dat = tmpdat
-      if myindex == 11: #最終付の処理
+      if myindex == 11:  # 最終付の処理
         month_season2[season_index] = 12  # 最後の季節を12月で締める
         if mydat['m1_season'] == mydat['m12_season']:  # 季節が年をまたいでいる場合の処理
           month_season1[1] = month_season1[season_index]
@@ -1182,9 +1182,9 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context["month_season_end"] = month_season2
 
     for myindex, mymonth in month_season1.items():
-      month_season1_text[myindex] = month_text[mymonth-1]
+      month_season1_text[myindex] = month_text[mymonth - 1]
     for myindex, mymonth in month_season2.items():
-      month_season2_text[myindex] = month_text[mymonth-1]
+      month_season2_text[myindex] = month_text[mymonth - 1]
     context["month_season_start_text"] = month_season1_text
     context["month_season_end_text"] = month_season2_text
 
@@ -1257,6 +1257,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     # --------------------create 16 Crop_individual-------------------------
     # if __name__ == '__main__':
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
+    tmp_ref = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation'])
 
     d = []
     for i in myRange:
@@ -1281,6 +1282,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
         dd["count_prod"] = ''
         dd["count_buy"] = ''
         dd["month"] = ''
+        dd["month_availability"] = ''
         dd["myLocation"] = ''
         dd["num_tbl"] = i
         dd["share_prod_buy"] = 5
@@ -1290,7 +1292,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
       else:
         for tmp03 in tmp02:
           dd = {}
-          dd["Food_grp"] = tmp03.myFCT.Food_grp_unicef
+          dd["Food_grp"] = tmp03.myFCT.Food_grp
           dd["name"] = tmp03.myFCT.Food_name
           dd["Energy"] = tmp03.myFCT.Energy
           dd["Protein"] = tmp03.myFCT.Protein
@@ -1303,6 +1305,8 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
           dd["count_prod"] = tmp03.count_prod
           dd["count_buy"] = tmp03.count_buy
           dd["month"] = tmp03.month
+          dd["month_availability"] = tmp_ref.filter(myFCT_id=tmp03.myFCT.food_item_id)[0].serializable_value(
+            'm' + str(tmp03.month) + '_avail')
           dd["myLocation"] = tmp03.myLocation_id
           dd["num_tbl"] = tmp03.id_table
           dd["share_prod_buy"] = tmp03.share_prod_buy
@@ -1540,6 +1544,7 @@ def registDiet(request):
   for myrow in json_data['myJson']:
     # 最初に参照するキー（複数可）を指定する
     # defaultsで指定した列・値で更新する
+    logger.error(myrow['month'])
     Crop_Individual.objects.update_or_create(
       id_table=int(myrow['myid_tbl']),
       myFCT=FCT.objects.get(food_item_id=myrow['food_item_id']),

@@ -473,7 +473,7 @@
     myfood_portion['save'] = $('#btn_set_portion');
 
 
-    //////////////// set local name/////
+    //////////////// change common name -> local name/////
     let index = {};
     let json_crop_local = [];
     let json_crop_selected = [];
@@ -608,7 +608,9 @@
         dd["total_weight"] = 0;
         dd["count_prod"] = 0;
         dd["count_buy"] = 0;
-        dd["month"] = myCrop[num_tbl].month;
+        month_tmp = myCrop[num_tbl].month;
+        dd["month"] = month_tmp;
+        dd["month_availability"] = mydata['m' + String(month_tmp)];
         dd["myLocation"] = myLocation_id;
         dd["num_tbl"] = num_tbl;
         dd["target_scope"] = Math.trunc(Number(num_tbl) / 100);
@@ -766,6 +768,7 @@
       cr += '<td class="tableItem_hide">' + add_data.FE + '</td>';
       cr += '<td class="tableItem_hide">' + add_data.share_prod_buy + '</td>';
       cr += '<td class="tableItem_hide">' + add_data.Food_grp + '</td>';
+      cr += '<td class="tableItem_hide">' + add_data.month_availability + '</td>';
       cr += '</tr>';
 
       console.groupEnd();
@@ -786,7 +789,7 @@
               this._setCellColor(Math.round(this.sum_fe), target_fe[target_scope]) +
               '<td></td><td class="tableItem_hide"><' + '/td><td class="tableItem_hide">' +
               '</td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
-              '</td><td class="tableItem_hide"></td></tr>';
+              '</td><td class="tableItem_hide"></td><td class="tableItem_hide"></td></tr>';
       this.dom_tbl_Crop.append(total);
       // Barratingセット
       this._SetBarrating();
@@ -1454,13 +1457,8 @@
 
             let myNum_tmp = $(myTbl).attr('myNum');
             let myMonth = 0;
-            if (myNum_tmp < 200) {
-              myMonth = $('.lst_month[myNum=' + myNum_tmp + ']').prop("selectedIndex") + 1;
-              console.log(myNum_tmp + 'hey hey-- ' + myMonth);
-            } else {
-              myMonth = Number($('.lst_month[myNum=' + myNum_tmp + ']').text());
-              console.log(myNum_tmp + 'hey hey-- ' + myMonth);
-            }
+            myMonth = Number($('.lst_month[myNum=' + myNum_tmp + ']').text());
+            console.log(myNum_tmp + 'hey hey-- ' + myMonth);
             dd["month"] = myMonth;
             dd["myid_tbl"] = myNum_tmp;
             dd["myLocation"] = myLocation_id;
@@ -1646,7 +1644,6 @@
     //-------------
 
     //初期データの読み込み
-    console.error(myRange);
     let num_tbl = 0;
     let month = 0;
     for (let i in myRange) {
@@ -1662,14 +1659,11 @@
     for (var i = 0; i < json_crop_selected.length; i++) {
       data = json_crop_selected[i];
       if (data.myLocation === Number(myLocation_id)) {
-        let num_tbl = data.num_tbl;
+        //let num_tbl = data.num_tbl;
         myCrop[data.num_tbl].setData_Crop(data);
       }
     }
 
-
-    //    myCrop[201]._getCrop_byID(819);
-    // console.log(myCrop_individual[201].dom_tbl_row.eq(0).html());
     Crop_available.data().hello("test desu");
 
     //---tabの切替処理-------------
