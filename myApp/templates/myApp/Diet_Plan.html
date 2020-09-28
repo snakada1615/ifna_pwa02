@@ -8,6 +8,8 @@
         media="screen">
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}"
         media="screen">
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.barrating.min.js' %}"></script>
   <link rel="stylesheet" href="{% static 'css/fontawesome-apple.css' %}">
   <link rel="stylesheet" href="{% static 'css/bars-1to10.css' %}">
@@ -399,6 +401,26 @@
       display: none;
     }
 
+    /* tablesorterのsortアイコン表示 */
+    .tablesorter-headerUnSorted {
+      background-image: url("{% static 'img/sort.png' %}");
+      background-repeat: no-repeat;
+      background-position: center right;
+    }
+
+    .tablesorter-headerAsc {
+      background-image: url("{% static 'img/sort_up.png' %}");
+      background-repeat: no-repeat;
+      background-position: center right;
+      border-bottom: #000 2px solid;
+    }
+
+    .tablesorter-headerDesc {
+      background-image: url("{% static 'img/sort_down.png' %}");
+      background-repeat: no-repeat;
+      background-position: center right;
+      border-bottom: #000 2px solid;
+    }
   </style>
 
 
@@ -1189,7 +1211,6 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
     /////    create object setup "Crop_Selected"   -------------------------------
     function Crop_individual(num_tbl) {
       const found = myRange.find(element => element === num_tbl);
@@ -1786,8 +1807,8 @@
       for (let i in myRange) {
         myCrop[myRange[i]].drawTable();
       }
+      $('.selected_crops_tbl').tablesorter();
     });
-
 
   </script>
 
