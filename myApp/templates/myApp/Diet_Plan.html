@@ -413,6 +413,7 @@
     //      301, 302, 303, 304];
     var season_count = {{ season_count }};
     var season_list = {{ season_list|safe }};
+    var season12 = {{ season|safe }};
     var myRange = [];
     $.each(season_list, function (index, val) {
       myRange.push(Number(val) + 100);
@@ -570,14 +571,14 @@
     Crop_Selected.prototype.setData_Crop = function (crop_data) {
       console.group('Crop_Selected.setCrop:');
       console.log(crop_data);
-      if (crop_data.food_item_id) {
+      if (crop_data.food_item_id && myRange.includes(crop_data.num_tbl)) {
         console.log('table_id(' + crop_data.num_tbl + ')に' + crop_data.Food_name + 'を追加します');
         let overwrite = this._delCrop(crop_data.food_item_id);       //重複業あれば削除
         this.crops.push(crop_data);
         console.groupEnd();
         return overwrite;
       } else {
-        console.error('no crop found');
+        console.error('crop_data did not registered');
         console.groupEnd();
         return false;
       }
@@ -1456,7 +1457,8 @@
       $('.selected_crops_tbl').each(function (i, myTbl) {
         $(myTbl).children('tbody').children('tr').each(function (j, myRow) {
           let dd = {};
-          if ($(myRow).children('td').eq(0).text() !== '' && $(myRow).children('td').eq(0).text() !== 'total') {
+          if ($(myRow).children('td').eq(0).text() !== '' && $(myRow).children('td').eq(0).text() !== 'total'
+                  && $(myRow).children('td').eq(5).text() !== '0') {
             //   dd["myName"] = $(myRow).children('td').eq(0).text();
             dd["total_weight"] = $(myRow).children('td').eq(5).text();
             dd["food_item_id"] = $(myRow).children('td').eq(7).text();
@@ -1475,6 +1477,17 @@
             dd["target_scope"] = Math.trunc(myNum_tmp / 100);
 
             d.push(dd);
+            //------------同一季節内の他の月に複製------------
+            const current_season = season12['m' + String(myMonth) + '_season'];
+            for (let j = 1; j < 13; j++) {
+              if (String(season12['m' + String(j) + '_season']) === String(current_season) && j !== myMonth) {
+                let dd2 = {};
+                Object.assign(dd2, dd);
+                dd2["month"] = j;
+                dd2["myid_tbl"] = -1;
+                d.push(dd2);
+              }
+            }
           }
         })
       });

@@ -1539,7 +1539,7 @@ def registDiet(request):
   # json_str = request.body.decode("utf-8")
   json_data = json.loads(request.body)
   tmp_myLocation_id = 0
-  tmp_newcrop_list = []
+  #tmp_newcrop_list = []
 
   for myrow in json_data['myJson']:
     # 最初に参照するキー（複数可）を指定する
@@ -1547,12 +1547,12 @@ def registDiet(request):
     logger.error(myrow['month'])
     Crop_Individual.objects.update_or_create(
       id_table=int(myrow['myid_tbl']),
-      myFCT=FCT.objects.get(food_item_id=myrow['food_item_id']),
+      myFCT=FCT.objects.get(food_item_id=int(myrow['food_item_id'])),
+      month=int(myrow['month']),
       defaults={
         'myLocation': Location.objects.get(id=myrow['myLocation']),
         'target_scope': int(myrow['target_scope']),
         'created_by': request.user,
-        'month': int(myrow['month']),
         'total_weight': int(myrow['total_weight']),
         'portion_size': int(myrow['portion_size']),
         'count_prod': int(myrow['count_prod']),
