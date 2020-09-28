@@ -19,23 +19,23 @@
           <div class="row">
             <div class="col-12">
               <div class="card-body py-0 px-0">
-                <div class="card border-success rounded col-12 px-1 py-1 mt-1 mb-2" style="color:#24535F ;background-color:#D9ECDC;
+                <div class="card border-success rounded col-12 px-1 py-1 my-1" style="color:#24535F ;background-color:#D9ECDC;
                border-width: 2px;
           ">
                   <div class="card-header bg-info text-white p-1">
                     Diet plan for target beneficiaries:
-                      {% if forloop.counter == 1 %}
-                        {{ month_season_start_text.1 }} to {{ month_season_end_text.1 }}
-                      {% endif %}
-                      {% if forloop.counter == 2 %}
-                        {{ month_season_start_text.2 }} to {{ month_season_end_text.2 }}
-                      {% endif %}
-                      {% if forloop.counter == 3 %}
-                        {{ month_season_start_text.3 }} to {{ month_season_end_text.3 }}
-                      {% endif %}
-                      {% if forloop.counter == 4 %}
-                        {{ month_season_start_text.4 }} to {{ month_season_end_text.4 }}
-                      {% endif %}
+                    {% if forloop.counter == 1 %}
+                      {{ month_season_start_text.1 }} to {{ month_season_end_text.1 }}
+                    {% endif %}
+                    {% if forloop.counter == 2 %}
+                      {{ month_season_start_text.2 }} to {{ month_season_end_text.2 }}
+                    {% endif %}
+                    {% if forloop.counter == 3 %}
+                      {{ month_season_start_text.3 }} to {{ month_season_end_text.3 }}
+                    {% endif %}
+                    {% if forloop.counter == 4 %}
+                      {{ month_season_start_text.4 }} to {{ month_season_end_text.4 }}
+                    {% endif %}
 
                     <span hidden class="lst_month text-dark mx-1" myNum={{ forloop.counter|add:300 }}
                             style="background-color:#D2DFD2;">
@@ -60,31 +60,32 @@
                     <span style="color:green">■</span>: over 100%
                   </p>
 
-                  <table border="1" class="table table-striped selected_crops_tbl" myNum={{ forloop.counter|add:300 }}>
+                  <table border="1" class="table table-success selected_crops_tbl" myNum={{ forloop.counter|add:300 }}>
                     <thead class="thead-light">
-                      <th>
-                        name:
-                        <span class="fb fb-help" data-toggle="tooltip"
-                              title="click each row to set food consumption recommend"></span>
-                      </th>
-                      <th>En</th>
-                      <th>Pr</th>
-                      <th>Va</th>
-                      <th>Fe</th>
-                      <th>Wt</th>
-                      <th class="tableItem_hide">id</th>
-                      <th class="tableItem_hide">food_item_id</th>
-                      <th class="tableItem_hide">portion_size</th>
-                      <th class="tableItem_hide">count_prod</th>
-                      <th class="tableItem_hide">count_buy</th>
-                      <th class="tableItem_hide">En0</th>
-                      <th class="tableItem_hide">Pr0</th>
-                      <th class="tableItem_hide">Va0</th>
-                      <th class="tableItem_hide">Fe0</th>
-                      <th class="tableItem_hide">share</th>
-                      <th class="tableItem_hide">Food_grp</th>
-                      <th class="tableItem_hide">Mon_avail</th>
+                    <th>
+                      name:
+                      <span class="fb fb-help" data-toggle="tooltip"
+                            title="click each row to set food consumption recommend"></span>
+                    </th>
+                    <th>En</th>
+                    <th>Pr</th>
+                    <th>Va</th>
+                    <th>Fe</th>
+                    <th>Wt</th>
+                    <th class="tableItem_hide">id</th>
+                    <th class="tableItem_hide">food_item_id</th>
+                    <th class="tableItem_hide">portion_size</th>
+                    <th class="tableItem_hide">count_prod</th>
+                    <th class="tableItem_hide">count_buy</th>
+                    <th class="tableItem_hide">En0</th>
+                    <th class="tableItem_hide">Pr0</th>
+                    <th class="tableItem_hide">Va0</th>
+                    <th class="tableItem_hide">Fe0</th>
+                    <th class="tableItem_hide">share</th>
+                    <th class="tableItem_hide">Food_grp</th>
+                    <th class="tableItem_hide">Mon_avail</th>
                     </thead>
+                    <tbody>
                     <tr>
                       <td>total</td>
                       <td></td>
@@ -105,6 +106,7 @@
                       <th class="tableItem_hide"></th>
                       <th class="tableItem_hide"></th>
                     </tr>
+                    </tbody>
                   </table>
                   <div hidden class="btn_add_crop btn btn-block btn-secondary text-dark mt-0 my-0 py-0 btn-sm"
                        style="background-color:#ADC757;" myNum={{ forloop.counter|add:300 }}>add food item

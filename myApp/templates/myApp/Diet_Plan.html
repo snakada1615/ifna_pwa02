@@ -590,7 +590,7 @@
       console.group('Crop_Selected.setData_fromAvailable:');
       let res = false;
       if (drawFlag) {       //rowの追加
-                            //データセットの作成1:buy_prod_share設定
+        //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {
@@ -633,17 +633,17 @@
       console.groupEnd();
       return res;
     };
-{% comment %}
-    Crop_Selected.prototype.setData_fromListbox = function (num_tbl, mydata, drawFlag) {
-      console.group('Crop_Selected.setData_fromListbox:');
-      if (this.setData_fromAvailable(num_tbl, mydata, drawFlag)) {
-        this._drawRaw_single(mydata["food_item_id"]);   //データの描画
-        this._drawRaw_total();                      //合計行の描画
-        console.log(mydata['Food_name'] + 'を追加しました');
-      }
-      console.groupEnd();
-    };
-{% endcomment %}
+    {% comment %}
+        Crop_Selected.prototype.setData_fromListbox = function (num_tbl, mydata, drawFlag) {
+          console.group('Crop_Selected.setData_fromListbox:');
+          if (this.setData_fromAvailable(num_tbl, mydata, drawFlag)) {
+            this._drawRaw_single(mydata["food_item_id"]);   //データの描画
+            this._drawRaw_total();                      //合計行の描画
+            console.log(mydata['Food_name'] + 'を追加しました');
+          }
+          console.groupEnd();
+        };
+    {% endcomment %}
     Crop_Selected.prototype._delCrop = function (food_item_id) {
       console.group('Crop_Selected._delCrop:');
       let del_index = -1;
@@ -745,11 +745,14 @@
         this._drawRaw_eraseLast();
         // 重複行があレバ削除
         let rowNum = this._drawRaw_erase(food_item_id);
+        console.error(rowNum);
         // 追加行の作成
         const add_data_html = this._drawRaw_setHtml(add_data);
         // 追加行の挿入
         console.error(rowNum);
-        if (rowNum > -1) {
+        if (rowNum == 0) {
+          this.dom_tbl_Crop.find('tbody tr:first').before(add_data_html);
+        } else if (rowNum > 0) {
           this.dom_tbl_Crop.find('tbody tr').eq(rowNum - 1).after(add_data_html);
         } else {
           this.dom_tbl_Crop.find('tbody').append(add_data_html);
@@ -1656,7 +1659,9 @@
     for (let i in myRange) {
       let num_tbl = myRange[i];
       let tmp_dat = myCrop[num_tbl];
+      console.error(num_tbl);
       myCrop[num_tbl].month = Number(tmp_dat.dom_lst_month.text());
+      console.error(num_tbl);
       myCrop[num_tbl].dom_btn_add.attr('myNum', num_tbl);
     }
 
@@ -1694,9 +1699,6 @@
         }
       })
     }
-    console.error("ここで");
-    console.error(myCrop[num_tbl].crops);
-    console.error("終わり");
 
     for (var i = 0; i < json_crop_selected.length; i++) {
       data = json_crop_selected[i];
