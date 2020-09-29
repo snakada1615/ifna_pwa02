@@ -436,7 +436,9 @@
     var season_count = {{ season_count }};
     var season_list = {{ season_list|safe }};
     var season12 = {{ season|safe }};
+    var myFoodGrp = {{ mylist_Food_grp|safe }};
     var myRange = [];
+    let c_index = 1;  // carouselのインデックス
     $.each(season_list, function (index, val) {
       myRange.push(Number(val) + 100);
     });
@@ -495,6 +497,12 @@
     myfood_portion['modal'] = $('#Modal_Portion');
     myfood_portion['save'] = $('#btn_set_portion');
 
+
+    //////////////// initialize Food_grp_filter /////
+    $('.myfilter-item').append('<a class="dropdown-item" href="#">--show all--</a>');
+    $.each(myFoodGrp, function (index, val) {
+      $('.myfilter-item').append('<a class="dropdown-item" href="#">' + val + '</a>');
+    });
 
     //////////////// change common name -> local name/////
     let index = {};
@@ -1053,6 +1061,20 @@
     };
 
 
+    Crop_Selected.prototype.myfilter = function (key) {
+      console.log('Crop_Selected.myfilterにFilterを適用します');
+
+      this.dom_tbl_Crop.find('tr').each(function (index, val) {
+        let tmpval = $(val).children('td').eq(16).text();
+        if (key === '--show all--' || tmpval === key) {
+          $(val).removeClass('tableItem_hide');
+        } else {
+          $(val).addClass('tableItem_hide');
+        }
+      });
+      console.groupEnd();
+    };
+
     Crop_Selected.prototype.sayhello = function () {
     };
 
@@ -1377,6 +1399,17 @@
     };
 
     //---------
+
+    ////////// Filter Crop_Selected table ////////////
+    $(".myfilter-item a").click(function () {
+      let x = $(this).text();
+      let i_tmp = $(this).parents().find('.myfilter').attr('mypage');
+      i_tmp = Number(i_tmp) + Number(c_index);
+      console.error($(this).parent().parent().html());
+      console.error(i_tmp);
+      myCrop[String(i_tmp)].myfilter(x);
+    });
+
 
     ////////// start crop selection (local -> selected)
     $('.btn_add_crop').on('click', function () {
@@ -1760,7 +1793,6 @@
     //---tabの切替処理-------------
 
     //---carouselの切替処理-------------
-    let c_index = 0;
     let myMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
       'August', 'September', 'Octoer', 'November', 'December'];
     $('#btn_car_prev1').click(function () {

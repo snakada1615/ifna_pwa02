@@ -1244,14 +1244,19 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp01 = Crop_Name.objects.filter(
       myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
     d = []
+    new_Food_grp = []
     for tmp02 in tmp01:
       dd = {}
       dd["Food_grp"] = tmp02.Food_grp
       dd["Food_name"] = tmp02.Food_name
       dd["food_item_id"] = tmp02.myFCT_id
       d.append(dd)
+      tmp03 = tmp02.Food_grp
+      if tmp03 not in new_Food_grp:
+        new_Food_grp.append(tmp03)
 
     context["mylist_local_name"] = d
+    context["mylist_Food_grp"] = new_Food_grp
 
     # 現在選択されている作物をDiet_plan_formに送る
     # --------------------create 16 Crop_individual-------------------------
