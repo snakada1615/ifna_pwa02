@@ -1340,6 +1340,8 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
+    myseason = Season.objects.get(myLocation=self.kwargs['myLocation'])
+    context['season_count'] = myseason.season_count
     tmp_nut_group = Person.objects.filter(
       myLocation=self.kwargs['myLocation']).select_related('myDRI')
     context['nutrient_target'] = tmp_nut_group[0].nut_group
@@ -1392,6 +1394,62 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     context['dri_v3'] = tmp_v
     context['dri_f3'] = tmp_f
 
+    ########### send number of season   ###########
+    tmp = Season.objects.filter(myLocation=self.kwargs['myLocation'])[0]
+    season_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
+                    'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
+    month_text = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
+                  'Dec']
+    mydat = {}
+    myseason = []
+    month_season1 = {}
+    month_season2 = {}
+    month_season1_text = {}
+    month_season2_text = {}
+    prev_dat = -1
+    myRange = []
+    season_index = 0
+    for myindex, myfield in enumerate(season_field):
+      tmpdat = str(getattr(tmp, myfield))
+      mydat[myfield] = tmpdat
+      if prev_dat != tmpdat:  # 各シーズンの最初と最後の月を記録
+        season_index += 1
+        month_season1[season_index] = (myindex + 1)
+        if season_index > 0:
+          month_season2[season_index - 1] = myindex
+        prev_dat = tmpdat
+      if myindex == 11:  # 最終付の処理
+        month_season2[season_index] = 12  # 最後の季節を12月で締める
+        if mydat['m1_season'] == mydat['m12_season']:  # 季節が年をまたいでいる場合の処理
+          month_season1[1] = month_season1[season_index]
+          del month_season1[season_index]
+          del month_season2[season_index]
+
+    context["season"] = mydat
+    context["month_season_start"] = month_season1
+    context["month_season_end"] = month_season2
+
+    for myindex, mymonth in month_season1.items():
+      month_season1_text[myindex] = month_text[mymonth - 1]
+    for myindex, mymonth in month_season2.items():
+      month_season2_text[myindex] = month_text[mymonth - 1]
+    context["month_season_start_text"] = month_season1_text
+    context["month_season_end_text"] = month_season2_text
+
+    tmpdat = str(getattr(tmp, 'season_count'))
+    logger.info(tmpdat)
+    for i in range(int(tmpdat)):
+      myseason.append(i + 1)
+      myRange.append(i + 100)
+    for i in range(int(tmpdat)):
+      myRange.append(i + 200)
+    for i in range(int(tmpdat)):
+      myRange.append(i + 300)
+
+    context['season_list'] = myseason
+
+    #######################################################
+
     # send selected crop by community ######
     tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
     d = []
@@ -1434,35 +1492,37 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     tmp01 = Crop_Name.objects.filter(
       myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
     d = []
+    new_Food_grp = []
     for tmp02 in tmp01:
       dd = {}
       dd["Food_grp"] = tmp02.Food_grp
       dd["Food_name"] = tmp02.Food_name
       dd["food_item_id"] = tmp02.myFCT_id
       d.append(dd)
+      tmp03 = tmp02.Food_grp
+      if tmp03 not in new_Food_grp:
+        new_Food_grp.append(tmp03)
 
     context["mylist_local_name"] = d
+    context["mylist_Food_grp"] = new_Food_grp
 
     # 現在選択されている作物をDiet_plan_formに送る
     # --------------------create 16 Crop_individual-------------------------
     # if __name__ == '__main__':
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
-    myRange = [101, 102, 103, 104, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 301, 302, 303, 304, 305,
-               306, 307, 308, 309, 310, 311, 312]
-
-    # tmp_xx = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT').annotate(
-    #   numviews=Count(Case(
-    #     When(id_table=201, then=1),
-    #     output_field=IntegerField(),
-    #   ))
-    # )
-    # logger.info(tmp_xx.count())
+    tmp_ref = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation'])
 
     d = []
     for i in myRange:
       tmp02 = tmp01.filter(id_table=i)
-      if tmp02.count() == 0:  # todo この行があると余分なQueryが発生する！？
+      tmp02_list = tmp02.values_list('pk', flat=True)
+      tmp02_list = list(tmp02_list)
+      logger.info('tmp02_list=')
+      logger.info(tmp02_list)
+      #      if tmp02.count() == 0:  # todo この行があると余分なQueryが発生する！？
+      if len(tmp02_list) == 0:
         dd = {}
+        dd["Food_grp"] = ''
         dd["name"] = ''
         dd["Energy"] = ''
         dd["Protein"] = ''
@@ -1475,6 +1535,7 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
         dd["count_prod"] = ''
         dd["count_buy"] = ''
         dd["month"] = ''
+        dd["month_availability"] = ''
         dd["myLocation"] = ''
         dd["num_tbl"] = i
         dd["share_prod_buy"] = 5
@@ -1484,6 +1545,7 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
       else:
         for tmp03 in tmp02:
           dd = {}
+          dd["Food_grp"] = tmp03.myFCT.Food_grp
           dd["name"] = tmp03.myFCT.Food_name
           dd["Energy"] = tmp03.myFCT.Energy
           dd["Protein"] = tmp03.myFCT.Protein
@@ -1496,6 +1558,8 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
           dd["count_prod"] = tmp03.count_prod
           dd["count_buy"] = tmp03.count_buy
           dd["month"] = tmp03.month
+          dd["month_availability"] = tmp_ref.filter(myFCT_id=tmp03.myFCT.food_item_id)[0].serializable_value(
+            'm' + str(tmp03.month) + '_avail')
           dd["myLocation"] = tmp03.myLocation_id
           dd["num_tbl"] = tmp03.id_table
           dd["share_prod_buy"] = tmp03.share_prod_buy

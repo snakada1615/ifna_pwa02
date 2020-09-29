@@ -1403,10 +1403,8 @@
     ////////// Filter Crop_Selected table ////////////
     $(".myfilter-item a").click(function () {
       let x = $(this).text();
-      let i_tmp = $(this).parents().find('.myfilter').attr('mypage');
-      i_tmp = Number(i_tmp) + Number(c_index);
-      console.error($(this).parent().parent().html());
-      console.error(i_tmp);
+      let i_tmp = Number($(this).parent().parent().find('.myfilter').attr('mypage'));
+      i_tmp += Number(c_index);
       myCrop[String(i_tmp)].myfilter(x);
     });
 
