@@ -633,51 +633,51 @@ class Season(models.Model):
   )
   m1_season = models.IntegerField(
     verbose_name='mon01_season',
-    default=0,
+    default=1,
   )
   m2_season = models.IntegerField(
     verbose_name='mon02_season',
-    default=0,
+    default=1,
   )
   m3_season = models.IntegerField(
     verbose_name='mon03_season',
-    default=0,
+    default=1,
   )
   m4_season = models.IntegerField(
     verbose_name='mon04_season',
-    default=0,
+    default=1,
   )
   m5_season = models.IntegerField(
     verbose_name='mon05_season',
-    default=0,
+    default=1,
   )
   m6_season = models.IntegerField(
     verbose_name='mon06_season',
-    default=0,
+    default=1,
   )
   m7_season = models.IntegerField(
     verbose_name='mon07_season',
-    default=0,
+    default=1,
   )
   m8_season = models.IntegerField(
     verbose_name='mon08_season',
-    default=0,
+    default=1,
   )
   m9_season = models.IntegerField(
     verbose_name='mon09_season',
-    default=0,
+    default=1,
   )
   m10_season = models.IntegerField(
     verbose_name='mon10_season',
-    default=0,
+    default=1,
   )
   m11_season = models.IntegerField(
     verbose_name='mon11_season',
-    default=0,
+    default=1,
   )
   m12_season = models.IntegerField(
     verbose_name='mon12_season',
-    default=0,
+    default=1,
   )
   season_count = models.IntegerField(
     verbose_name='season_count',
