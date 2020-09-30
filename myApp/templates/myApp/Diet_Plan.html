@@ -460,6 +460,7 @@
     var season_count = {{ season_count }};
     var season_list = {{ season_list|safe }};
     var season12 = {{ season|safe }};
+    var season_name = {{ season_name|safe }};
     var myFoodGrp = {{ mylist_Food_grp|safe }};
     var myRange = [];
     let c_index = 1;  // carouselのインデックス
@@ -1828,39 +1829,39 @@
     $('#btn_car_prev1').click(function () {
       $('#carouselControl1').carousel('prev');
       c_index = $('#carouselControl1 div.active').index() || season_count;
-      $('#title_diet1').text("Diet for Season " + c_index);
+      $('#title_diet1').text("Diet for " + season_name[Number(c_index)-1]);
     });
     $('#btn_car_next1').click(function () {
       $('#carouselControl1').carousel('next');
       c_index = ($('#carouselControl1 div.active').index() + 2) % season_count || season_count;
-      $('#title_diet1').text("Diet for Season " + c_index);
+      $('#title_diet1').text("Diet for " + season_name[Number(c_index)-1]);
     });
     $('#btn_car_prev2').click(function () {
       $('#carouselControl2').carousel('prev');
       c_index = $('#carouselControl2 div.active').index() || season_count;
-      $('#title_diet2').text('Diet for Season ' + c_index);
+      $('#title_diet2').text("Diet for " + season_name[Number(c_index)-1]);
     });
     $('#btn_car_next2').click(function () {
       $('#carouselControl2').carousel('next');
       c_index = ($('#carouselControl2 div.active').index() + 2) % season_count || season_count;
-      $('#title_diet2').text('Diet for Season ' + c_index);
+      $('#title_diet2').text("Diet for " + season_name[Number(c_index)-1]);
     });
     $('#btn_car_prev3').click(function () {
       $('#carouselControl3').carousel('prev');
       c_index = $('#carouselControl3 div.active').index() || season_count;
-      $('#title_diet3').text('Diet for Season' + c_index);
+      $('#title_diet3').text("Diet for " + season_name[Number(c_index)-1]);
     });
     $('#btn_car_next3').click(function () {
       $('#carouselControl3').carousel('next');
       c_index = ($('#carouselControl3 div.active').index() + 2) % season_count || season_count;
-      $('#title_diet3').text('Diet for Season ' + c_index);
+      $('#title_diet3').text("Diet for " + season_name[Number(c_index)-1]);
     });
 
     //---carouselの切替処理-------------
     //---carouselの初期値-------------
-    $('#title_diet1').text('Diet for Season 1');
-    $('#title_diet2').text('Diet for Season 1');
-    $('#title_diet3').text('Diet for Season 1');
+    $('#title_diet1').text("Diet for " + season_name[1]);
+    $('#title_diet2').text("Diet for " + season_name[1]);
+    $('#title_diet3').text("Diet for " + season_name[1]);
     //---carouselの初期値-------------
 
     //全ての変数を読み込んでからBarratingをセット

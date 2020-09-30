@@ -1164,6 +1164,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
                   'Dec']
     mydat = {}
     myseason = []
+    season_name = []
     month_season1 = {}
     month_season2 = {}
     month_season1_text = {}
@@ -1209,6 +1210,12 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
       myRange.append(i + 300)
 
     context['season_list'] = myseason
+
+    season_name.append(str(getattr(tmp, 'season_name1')))
+    season_name.append(str(getattr(tmp, 'season_name2')))
+    season_name.append(str(getattr(tmp, 'season_name3')))
+    season_name.append(str(getattr(tmp, 'season_name4')))
+    context['season_name'] = season_name
 
     #######################################################
 
