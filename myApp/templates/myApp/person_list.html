@@ -242,8 +242,7 @@
     function sum_DRI(index_DRI) {
       console.group('sum_DRI');
       if (index_DRI === 1) {
-        let tmp_nut_class = $('#inpNum_ind7').text() || 0;
-        console.log('tmp_nut_class=' + tmp_nut_class);
+        let tmp_nut_class = $('#inpNum_ind7').text() - 1;
         $('#inpNum_ind3').text(myDRI_en['class' + tmp_nut_class]);
         $('#inpNum_ind4').text(myDRI_pr['class' + tmp_nut_class]);
         $('#inpNum_ind5').text(myDRI_va['class' + tmp_nut_class]);
@@ -255,38 +254,22 @@
         let tmp_sum_va = 0;
         let tmp_sum_fe = 0;
         $('.num_family2').each(function () {
-          let tmp_nut_class = $(this).attr('nut_group_id');
+          let tmp_nut_class = Number($(this).attr('nut_group_id')) - 1;
           let tmp_number = Number($(this).val());
-          let tmp_number_fem = 0;
-          let tmp_number_preg = 0;
-          let tmp_number_lact = 0;
-          if (tmp_nut_class !== 7) {
-            sum += tmp_number;
-            tmp_sum_en += Number(myDRI_en['class' + tmp_nut_class]) * tmp_number;
-            tmp_sum_pr += Number(myDRI_pr['class' + tmp_nut_class]) * tmp_number;
-            tmp_sum_va += Number(myDRI_va['class' + tmp_nut_class]) * tmp_number;
-            tmp_sum_fe += Number(myDRI_fe['class' + tmp_nut_class]) * tmp_number;
-            if (tmp_nut_class === 8) {
-              tmp_number_preg = tmp_number;
-            }
-            if (tmp_nut_class === 9) {
-              tmp_number_lact = tmp_number;
-            }
-          } else {
-            tmp_number_fem = tmp_number;
-          }
-          tmp_number_fem = tmp_number_fem - (tmp_number_preg + tmp_number_lact);
-          tmp_sum_en += Number(myDRI_en['class6']) * tmp_number_fem;
-          tmp_sum_pr += Number(myDRI_pr['class6']) * tmp_number_fem;
-          tmp_sum_va += Number(myDRI_va['class6']) * tmp_number_fem;
-          tmp_sum_fe += Number(myDRI_fe['class6']) * tmp_number_fem;
-
-          $('#DRI2_en').text(tmp_sum_en.toLocaleString());
-          $('#DRI2_pr').text(tmp_sum_pr.toLocaleString());
-          $('#DRI2_va').text(tmp_sum_va.toLocaleString());
-          $('#DRI2_fe').text(tmp_sum_fe.toLocaleString());
-          $('#size2').text(sum);
+          sum += tmp_number;
+          tmp_sum_en += Number(myDRI_en['class' + String(tmp_nut_class)]) * tmp_number;
+          tmp_sum_pr += Number(myDRI_pr['class' + String(tmp_nut_class)]) * tmp_number;
+          tmp_sum_va += Number(myDRI_va['class' + String(tmp_nut_class)]) * tmp_number;
+          tmp_sum_fe += Number(myDRI_fe['class' + String(tmp_nut_class)]) * tmp_number;
+          console.log('tmp_nut_class=' + tmp_nut_class);
+          console.log('tmp_number=' + tmp_number);
+          console.log('tmp_sum_en=' + myDRI_en['class' + tmp_nut_class]);
         });
+        $('#DRI2_en').text(tmp_sum_en.toLocaleString());
+        $('#DRI2_pr').text(tmp_sum_pr.toLocaleString());
+        $('#DRI2_va').text(tmp_sum_va.toLocaleString());
+        $('#DRI2_fe').text(tmp_sum_fe.toLocaleString());
+        $('#size2').text(sum);
       } else if (index_DRI === 3) {
         let sum = 0;
         let tmp_sum_en = 0;
@@ -294,40 +277,19 @@
         let tmp_sum_va = 0;
         let tmp_sum_fe = 0;
         $('.num_family3').each(function () {
-          let tmp_nut_class = $(this).attr('nut_group_id');
+          let tmp_nut_class = Number($(this).attr('nut_group_id')) - 1;
           let tmp_number = Number($(this).val());
-          let tmp_number_fem = 0;
-          let tmp_number_preg = 0;
-          let tmp_number_lact = 0;
-          console.log('tmp_nut_class=' + tmp_nut_class);
-          console.log('tmp_number=' + tmp_number);
-          if (tmp_nut_class !== 7) {
-            sum += tmp_number;
-            tmp_sum_en += Number(myDRI_en['class' + tmp_nut_class]) * tmp_number;
-            tmp_sum_pr += Number(myDRI_pr['class' + tmp_nut_class]) * tmp_number;
-            tmp_sum_va += Number(myDRI_va['class' + tmp_nut_class]) * tmp_number;
-            tmp_sum_fe += Number(myDRI_fe['class' + tmp_nut_class]) * tmp_number;
-            if (tmp_nut_class === 8) {
-              tmp_number_preg = tmp_number;
-            }
-            if (tmp_nut_class === 9) {
-              tmp_number_lact = tmp_number;
-            }
-          } else {
-            tmp_number_fem = tmp_number;
-          }
-          tmp_number_fem = tmp_number_fem - (tmp_number_preg + tmp_number_lact);
-          tmp_sum_en += Number(myDRI_en['class6']) * tmp_number_fem;
-          tmp_sum_pr += Number(myDRI_pr['class6']) * tmp_number_fem;
-          tmp_sum_va += Number(myDRI_va['class6']) * tmp_number_fem;
-          tmp_sum_fe += Number(myDRI_fe['class6']) * tmp_number_fem;
-
-          $('#DRI3_en').text(tmp_sum_en.toLocaleString());
-          $('#DRI3_pr').text(tmp_sum_pr.toLocaleString());
-          $('#DRI3_va').text(tmp_sum_va.toLocaleString());
-          $('#DRI3_fe').text(tmp_sum_fe.toLocaleString());
-          $('#size3').text(sum);
+          sum += tmp_number;
+          tmp_sum_en += Number(myDRI_en['class' + String(tmp_nut_class)]) * tmp_number;
+          tmp_sum_pr += Number(myDRI_pr['class' + String(tmp_nut_class)]) * tmp_number;
+          tmp_sum_va += Number(myDRI_va['class' + String(tmp_nut_class)]) * tmp_number;
+          tmp_sum_fe += Number(myDRI_fe['class' + String(tmp_nut_class)]) * tmp_number;
         });
+        $('#DRI3_en').text(tmp_sum_en.toLocaleString());
+        $('#DRI3_pr').text(tmp_sum_pr.toLocaleString());
+        $('#DRI3_va').text(tmp_sum_va.toLocaleString());
+        $('#DRI3_fe').text(tmp_sum_fe.toLocaleString());
+        $('#size3').text(sum);
       }
       console.groupEnd();
     }
@@ -441,7 +403,7 @@
     $("#inpNum7").val(myCommunity.class7);
     $("#inpNum8").val(myCommunity.class8);
     tmp = myCommunity.class0 + myCommunity.class1 + myCommunity.class2 + myCommunity.class3 + myCommunity.class4
-            + myCommunity.class5 + myCommunity.class6+ myFamily.class7 + myFamily.class8;
+            + myCommunity.class5 + myCommunity.class6 + myFamily.class7 + myFamily.class8;
     $("#inpNum9").val(tmp);
 
     sum_DRI(1);
