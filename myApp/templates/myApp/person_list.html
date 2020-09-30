@@ -261,9 +261,6 @@
           tmp_sum_pr += Number(myDRI_pr['class' + String(tmp_nut_class)]) * tmp_number;
           tmp_sum_va += Number(myDRI_va['class' + String(tmp_nut_class)]) * tmp_number;
           tmp_sum_fe += Number(myDRI_fe['class' + String(tmp_nut_class)]) * tmp_number;
-          console.log('tmp_nut_class=' + tmp_nut_class);
-          console.log('tmp_number=' + tmp_number);
-          console.log('tmp_sum_en=' + myDRI_en['class' + tmp_nut_class]);
         });
         $('#DRI2_en').text(tmp_sum_en.toLocaleString());
         $('#DRI2_pr').text(tmp_sum_pr.toLocaleString());

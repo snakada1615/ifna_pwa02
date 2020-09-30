@@ -128,32 +128,6 @@
                 <div class="card-body mx-1 my-1 px-0 py-0">
                     <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no2_gr.png' %}"> Select crop name</div>
                     <div class="ml-3">Click name of each crop</div>
-
-{% comment %}
-                    <div class="card bg-transparent border-info pt-1">
-                        <div class="row ml-3 my-0">
-                            <div class="col-6">
-            <span class="btn_color btn btn-outline-dark py-0" mycol="red" style="color:red">
-            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> whole season
-                            </div>
-                            <div class="col-6">
-            <span class="btn_color btn btn-outline-dark py-0" mycol="green" style="color:green">
-            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> partial season1
-                            </div>
-                        </div>
-                        <div class="row ml-3 my-0">
-                            <div class="col-6">
-            <span class="btn_color btn btn-outline-dark py-0" mycol="blue" style="color:blue">
-            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> partial season2
-                            </div>
-                            <div class="col-6">
-            <span class="btn_color btn btn-outline-dark py-0" mycol="white" style="color:white">
-            <i class="fa fa-paint-brush" aria-hidden="true"></i></span> not available
-                            </div>
-                        </div>
-                    </div>
-{% endcomment %}
-
                 </div>
 
                 <div class="card-body mx-1 my-1 px-0 py-0">
@@ -466,23 +440,19 @@
                     $tmp_cell.text(color);
                     break;
                 case 1:
-                    $tmp_cell.css("background-color", "red");
-                    $tmp_cell.css("color", "red");
+                    $tmp_cell.css("background-color", "#0080ff");
+                    $tmp_cell.css("color", "#0080ff");
                     $tmp_cell.text(color);
                     break;
                 case 2:
-                    $tmp_cell.css("background-color", "green");
-                    $tmp_cell.css("color", "green");
+                    $tmp_cell.css("background-color", "#66b2ff");
+                    $tmp_cell.css("color", "#66b2ff");
                     $tmp_cell.text(color);
                     break;
                 case 3:
-                    $tmp_cell.css("background-color", "blue");
-                    $tmp_cell.css("color", "blue");
+                    $tmp_cell.css("background-color", "#cce5ff");
+                    $tmp_cell.css("color", "#cce5ff");
                     $tmp_cell.text(color);
-                    break;
-                case 4:
-                    $tmp_cell.css("background-color", "grey");
-                    $tmp_cell.css("color", "grey");
                     break;
             }
         };
@@ -511,7 +481,7 @@
             $myTbl.find(".season-row").remove();
             for (var j = 0; j < season_tmp.season_count; j++) {
                 cr += '<div class="row season-row">';
-                cr += '<div class="col-2 col_season">' + 'season' + String(j) + '</div>';
+                cr += '<div class="col-2 col_season">' + 'season' + String(j+1) + '</div>';
                 cr += '<div class="col-2 col_start">' + season_tmp["start" + String(j + 1)] + '</div>';
                 cr += '<div class="col-2 col_end">' + season_tmp["end" + String(j + 1)] + '</div>';
                 cr += '<div class="col-6">';
@@ -619,8 +589,8 @@
 
             switch (Number(color)) { // cellの値に応じて色変化
                 case 0:
-                    $tmp_cell.css("background-color", "white");
-                    $tmp_cell.css("color", "white");
+                    $tmp_cell.css("background-color", "yellow");
+                    $tmp_cell.css("color", "yellow");
                     $tmp_cell.text(color);
                     break;
                 case 1:
@@ -808,8 +778,8 @@
             tmpRow.children('td').each(function (j, myCell) {
                 switch (Number($(this).text())) { // cellの値に応じて色変化
                     case 0:
-                        $(this).css("background-color", "white");
-                        $(this).css("color", "white");
+                        $(this).css("background-color", "yellow");
+                        $(this).css("color", "yellow");
                         break;
                     case 1:
                         $(this).css("background-color", "red");
@@ -926,9 +896,9 @@
                     } else if (tmp_col == 'blue') {
                         tmp_col_num = 3;
                         mes = "you chose blue brush";
-                    } else if (tmp_col == 'white') {
+                    } else if (tmp_col == 'yellow') {
                         tmp_col_num = 0;
-                        mes = "you chose white brush";
+                        mes = "you chose yellow brush";
                     }
                     mySelectMonth.setBaseColor(tmp_col_num);
                     my_snackbar(mes, 2000);
@@ -950,9 +920,9 @@
                     } else if (tmp_col == 'blue') {
                         tmp_col_num = 3;
                         mes = "you chose blue brush";
-                    } else if (tmp_col == 'white') {
+                    } else if (tmp_col == 'yellow') {
                         tmp_col_num = 0;
-                        mes = "you chose white brush";
+                        mes = "you chose yellow brush";
                     }
                     mySeason.setBaseColor(tmp_col_num);
                     my_snackbar(mes, 2000);

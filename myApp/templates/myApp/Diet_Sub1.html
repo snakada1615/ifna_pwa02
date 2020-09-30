@@ -65,12 +65,10 @@
                     </span>
                   </div>
 
-                  <table border="1" class="table table-success selected_crops_tbl" myNum={{ forloop.counter|add:100 }}>
-                    <thead class="thead-light">
+                  <table border="1" class="table table-success selected_crops_tbl mt-2" myNum={{ forloop.counter|add:100 }}>
+                    <thead style="font-style: italic;background-color: #c0c0c0">
                     <th>
                       name:
-                      <span class="fb fb-help" data-toggle="tooltip"
-                            title="click each row to set food consumption recommend"></span>
                     </th>
                     <th>En</th>
                     <th>Pr</th>
@@ -121,9 +119,9 @@
 
                   <p class="card-title text-dark my-1 pl-1">
                     <span>cell color: seasonal availability</span>
-                    <span data-toggle="tooltip" style={"color:#28a745"}" title="less than 50%">■■ </span>
-                    <span data-toggle="tooltip" style="color:#17a2b8" title="more than 50%"> ■■ </span>
-                    <span data-toggle="tooltip" style="color:#bee5eb" title="100%"> ■■ </span>
+                    <span data-toggle="tooltip" style="color:#cce5ff" title="less than 50%">■■ </span>
+                    <span data-toggle="tooltip" style="color:#66b2ff" title="more than 50%"> ■■ </span>
+                    <span data-toggle="tooltip" style="color:#0080ff" title="100%"> ■■ </span>
                   </p>
                   <p class="card-title text-dark my-1 pl-1">
                     <span>text color: nutrition satisfication</span>
@@ -320,7 +318,8 @@
                   <div class="card-header bg-info text-white p-1 mb-2">
                     Macro nutrient balance
                     <span class="fb fb-help" data-toggle="tooltip" data-html="true"
-                          title="<div>sourcing food from farm/market?</div>"></span>
+                          title="<div>recommended PFC balance </div><div>Carbohydrates: 45-65%</div>
+                                  <div>Protein: 10-35%</div><div>Fat: 20-35%</div>"></span>
                   </div>
                   <div class="card-body py-0 my-0 px-1">
                     <div class="row">
@@ -354,8 +353,7 @@
                   <div class="card-header bg-info text-white p-1 mb-2">
                     Source of Food
                     <span class="fb fb-help" data-toggle="tooltip" data-html="true"
-                          title="<div>recommended PFC balance </div><div>Carbohydrates: 45-65%</div>
-                                  <div>Protein: 10-35%</div><div>Fat: 20-35%</div>"></span>
+                          title="<div>sourcing food from farm/market?</div>"></span>
                   </div>
                   <div class="card-body py-0 my-0 px-1">
                     <div class="row py-0 my-0">
