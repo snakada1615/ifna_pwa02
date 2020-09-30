@@ -782,6 +782,11 @@
 
       $Tbl_season.append(cr);
 
+      $('.season_name[myid="1"]').text(addRow.season_name1);
+      $('.season_name[myid="2"]').text(addRow.season_name2);
+      $('.season_name[myid="3"]').text(addRow.season_name3);
+      $('.season_name[myid="4"]').text(addRow.season_name4);
+
       let tmpRow = $Tbl_season.find('tr').last();
       tmpRow.children('td').each(function (j, myCell) {
         switch (Number($(this).text())) { // cellの値に応じて色変化
@@ -1093,13 +1098,21 @@
           $myTbl.children('tbody').children('tr').each(function (index_r, myRow) {
             if (index_r % 2 == 1) {
               let dd = {};
+              let availability_flag = 0; //年間を通じて利用可能でない品目を判定
+              let myval = 0;
               dd["selected_status"] = 1;
               for (var j = 0; j < 12; j++) {
-                dd["m" + String(j + 1)] = $(this).children('td').eq(j).text();
+                myval = $(this).children('td').eq(j).text();
+                dd["m" + String(j + 1)] = myval;
+                if (myval > 0) {
+                  availability_flag = 1;
+                }
               }
               dd["myFCT_id"] = $(this).children('td').eq(12).text();
               dd["myLocation"] = {{myLocation}};
-              d.push(dd);
+              if (availability_flag) {  //年間を通じて利用できない品目はここで除外
+                d.push(dd);
+              }
             }
           });
           console.log(d);
@@ -1112,7 +1125,11 @@
             month["m" + String(j + 1)] = $myrow.children('td').eq(j).text();
           }
           month["myLocation"] = {{myLocation}};
-          month["season_count"] = $('#season_count').text();
+          month["season_count"] = Number($('#season_count').text());
+          month["season_name1"] = $('.season_name[myid="1"]').text();
+          month["season_name2"] = $('.season_name[myid="2"]').text();
+          month["season_name3"] = $('.season_name[myid="3"]').text();
+          month["season_name4"] = $('.season_name[myid="4"]').text();
           season.push(month);
           res1.season = season;
 

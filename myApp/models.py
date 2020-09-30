@@ -633,51 +633,63 @@ class Season(models.Model):
   )
   m1_season = models.IntegerField(
     verbose_name='mon01_season',
-    default=1,
+    default=0,
   )
   m2_season = models.IntegerField(
     verbose_name='mon02_season',
-    default=1,
+    default=0,
   )
   m3_season = models.IntegerField(
     verbose_name='mon03_season',
-    default=1,
+    default=0,
   )
   m4_season = models.IntegerField(
     verbose_name='mon04_season',
-    default=1,
+    default=0,
   )
   m5_season = models.IntegerField(
     verbose_name='mon05_season',
-    default=1,
+    default=0,
   )
   m6_season = models.IntegerField(
     verbose_name='mon06_season',
-    default=1,
+    default=0,
   )
   m7_season = models.IntegerField(
     verbose_name='mon07_season',
-    default=1,
+    default=0,
   )
   m8_season = models.IntegerField(
     verbose_name='mon08_season',
-    default=1,
+    default=0,
   )
   m9_season = models.IntegerField(
     verbose_name='mon09_season',
-    default=1,
+    default=0,
   )
   m10_season = models.IntegerField(
     verbose_name='mon10_season',
-    default=1,
+    default=0,
   )
   m11_season = models.IntegerField(
     verbose_name='mon11_season',
-    default=1,
+    default=0,
   )
   m12_season = models.IntegerField(
     verbose_name='mon12_season',
-    default=1,
+    default=0,
+  )
+  season_name1 =models.CharField(
+    max_length=50, blank=True, default="season1"
+  )
+  season_name2 =models.CharField(
+    max_length=50, blank=True, default="season2"
+  )
+  season_name3 =models.CharField(
+    max_length=50, blank=True, default="season3"
+  )
+  season_name4 =models.CharField(
+    max_length=50, blank=True, default="season4"
   )
   season_count = models.IntegerField(
     verbose_name='season_count',
