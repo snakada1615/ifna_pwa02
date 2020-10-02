@@ -88,7 +88,7 @@
         <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;">
           <div hidden id="season_count"></div>
           <div class="mod-tbl">
-            <table id="tbl_season" class="mytable">
+            <table id="tbl_season" class="mytable-season">
               <thead>
               <tr>
                 <th>Jan</th>
@@ -270,6 +270,7 @@
       max-width: 650px;
     }
 
+    /* table-cropの設定 */
     .mytable {
       table-layout: fixed;
       border: 2px grey solid;
@@ -313,11 +314,79 @@
       background-color: #F9F9F9;
     }
 
+    /* table-seasonの設定 */
+    .mytable-season {
+      table-layout: fixed;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .mytable-season th {
+      color: whitesmoke;
+      background-color: #49A0B5;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .mytable-season td {
+      width: var(--td_wid_normal) px;
+      min-width: var(--td_wid_normal) px;
+      border: 2px grey solid;
+      border-collapse: collapse;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+
     /* 行または列の非表示*/
     .tableItem_hide {
       display: none;
     }
 
+    /* Table row/cellの色設定：青色グラデーション */
+    .rowcolor_100 {
+      background-color: #0080f;
+      color: whitesmoke;
+    }
+
+    .rowcolor_75 {
+      background-color: #66b2ff;
+      color: whitesmoke;
+    }
+
+    .rowcolor_50 {
+      background-color: #cce5ff;
+      color: black;
+    }
+
+    .rowcolor_0 {
+      background-color: white;
+      color: black;
+    }
+
+    /* Table-season row/cellの色設定 */
+    .rowcolor_season_100 {
+      background-color: red;
+      color: red;
+    }
+
+    .rowcolor_season_75 {
+      background-color: green;
+      color: green;
+    }
+
+    .rowcolor_season_50 {
+      background-color: blue;
+      color: blue;
+    }
+
+    .rowcolor_season_0 {
+      background-color: yellow;
+      color: yellow;
+    }
 
   </style>
 
@@ -335,6 +404,20 @@
     var json_crop_name = {{mylist_local_name|safe}};
     var Json_Crop_All = {{dat_mycrop | safe}};
     var Json_Season = {{dat_season | safe}};
+    //行の色指定
+    const rowcolor = {
+      '1': 'rowcolor_100',
+      '2': 'rowcolor_75',
+      '3': 'rowcolor_50',
+      '0': 'rowcolor_0',
+    };
+    const rowcolor_season = {
+      '1': 'rowcolor_season_100',
+      '2': 'rowcolor_season_75',
+      '3': 'rowcolor_season_50',
+      '0': 'rowcolor_season_0',
+    };
+
 
     //////////////// set local name/////
     let index = {};
@@ -441,28 +524,36 @@
       let tmp_y = 2 * y + 1;
       let $tmp_cell = $myTbl.children('tbody').children('tr').eq(tmp_y).children('td').eq(x);
 
-      switch (Number(color)) { // cellの値に応じて色変化
-        case 0:
-          $tmp_cell.css("background-color", "");
-          $tmp_cell.css("color", "white");
-          $tmp_cell.text(color);
-          break;
-        case 1:
-          $tmp_cell.css("background-color", "#0080ff");
-          $tmp_cell.css("color", "#0080ff");
-          $tmp_cell.text(color);
-          break;
-        case 2:
-          $tmp_cell.css("background-color", "#66b2ff");
-          $tmp_cell.css("color", "#66b2ff");
-          $tmp_cell.text(color);
-          break;
-        case 3:
-          $tmp_cell.css("background-color", "#cce5ff");
-          $tmp_cell.css("color", "#cce5ff");
-          $tmp_cell.text(color);
-          break;
-      }
+      $tmp_cell.removeClass('rowcolor_100');
+      $tmp_cell.removeClass('rowcolor_75');
+      $tmp_cell.removeClass('rowcolor_50');
+      $tmp_cell.removeClass('rowcolor_0');
+      $tmp_cell.addClass(rowcolor[color]);
+
+      {% comment %}
+            switch (Number(color)) { // cellの値に応じて色変化
+              case 0:
+                $tmp_cell.css("background-color", "");
+                $tmp_cell.css("color", "white");
+                $tmp_cell.text(color);
+                break;
+              case 1:
+                $tmp_cell.css("background-color", "#0080ff");
+                $tmp_cell.css("color", "#0080ff");
+                $tmp_cell.text(color);
+                break;
+              case 2:
+                $tmp_cell.css("background-color", "#66b2ff");
+                $tmp_cell.css("color", "#66b2ff");
+                $tmp_cell.text(color);
+                break;
+              case 3:
+                $tmp_cell.css("background-color", "#cce5ff");
+                $tmp_cell.css("color", "#cce5ff");
+                $tmp_cell.text(color);
+                break;
+            }
+      {% endcomment %}
     };
     Cell_MultiSelect.prototype.drawCell = function () {
       console.log(this.getAll().myName + 'の色を(' + this.start_x + ', ' + this.start_y
@@ -594,33 +685,12 @@
     };
     Season_MultiSelect.prototype.setCellColor = function (x, y, color) {
       let $tmp_cell = $Tbl_season.children('tbody').children('tr').eq(y).children('td').eq(x);
-
-      switch (Number(color)) { // cellの値に応じて色変化
-        case 0:
-          $tmp_cell.css("background-color", "yellow");
-          $tmp_cell.css("color", "yellow");
-          $tmp_cell.text(color);
-          break;
-        case 1:
-          $tmp_cell.css("background-color", "red");
-          $tmp_cell.css("color", "red");
-          $tmp_cell.text(color);
-          break;
-        case 2:
-          $tmp_cell.css("background-color", "green");
-          $tmp_cell.css("color", "green");
-          $tmp_cell.text(color);
-          break;
-        case 3:
-          $tmp_cell.css("background-color", "blue");
-          $tmp_cell.css("color", "blue");
-          $tmp_cell.text(color);
-          break;
-        case 4:
-          $tmp_cell.css("background-color", "grey");
-          $tmp_cell.css("color", "grey");
-          break;
-      }
+      $tmp_cell.removeClass('rowcolor_season_100');
+      $tmp_cell.removeClass('rowcolor_season_75');
+      $tmp_cell.removeClass('rowcolor_season_50');
+      $tmp_cell.removeClass('rowcolor_season_0');
+      $tmp_cell.addClass(rowcolor_season[color]);
+      $tmp_cell.text(color);
     };
     Season_MultiSelect.prototype.drawCell = function () {
       console.log('Seasonの色を(' + this.start_x + ', ' + this.start_y
@@ -789,24 +859,7 @@
 
       let tmpRow = $Tbl_season.find('tr').last();
       tmpRow.children('td').each(function (j, myCell) {
-        switch (Number($(this).text())) { // cellの値に応じて色変化
-          case 0:
-            $(this).css("background-color", "yellow");
-            $(this).css("color", "yellow");
-            break;
-          case 1:
-            $(this).css("background-color", "red");
-            $(this).css("color", "red");
-            break;
-          case 2:
-            $(this).css("background-color", "green");
-            $(this).css("color", "green");
-            break;
-          case 3:
-            $(this).css("background-color", "blue");
-            $(this).css("color", "blue");
-            break;
-        }
+        $(this).addClass(rowcolor_season[$(this).text()]);
       });
     });
 

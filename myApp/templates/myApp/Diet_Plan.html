@@ -431,18 +431,22 @@
     }
 
     /* Table row/cellの色設定：青色グラデーション */
-    .rowcolor-100 {
+    .rowcolor_100 {
       background-color: #0080ff;
       color: whitesmoke;
     }
 
-    .rowcolor-75 {
+    .rowcolor_75 {
       background-color: #66b2ff;
       color: whitesmoke;
     }
 
-    .rowcolor-50 {
+    .rowcolor_50 {
       background-color: #cce5ff;
+      color: black;
+    }
+    .rowcolor_0 {
+      background-color: white;
       color: black;
     }
   </style>
@@ -824,10 +828,10 @@
       console.group('Crop_Selected._drawRaw_setHtml:');
       //行の色指定
       const rowcolor = {
-        '1': 'rowcolor-100',
-        '2': 'rowcolor-75',
-        '3': 'rowcolor-50',
-        '0': 'table-secondary',
+        '1': 'rowcolor_100',
+        '2': 'rowcolor_75',
+        '3': 'rowcolor_50',
+        '0': 'rowcolor_0',
       };
       let tmp = '';
 

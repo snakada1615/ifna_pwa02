@@ -10,15 +10,15 @@ food_item_id,country_code,local_food_grp,local_food_name
 806,ETH,non-category,Chat
 809,ETH,non-category,Coffee beans
 810,ETH,Other fruits and vegetables ,Ethiopian cabbage
-825,ETH,Other fruits and vegetables ,Mandarine, Tangerine
+825,ETH,Other fruits and vegetables ,"Mandarine, Tangerine"
 830,ETH,Other fruits and vegetables ,Safflower
 807,ETH,Legumes and nuts ,"Chick peas, red"
 812,ETH,Legumes and nuts ,Fenugreek
 813,ETH,Legumes and nuts ,Field peas
 822,ETH,Other fruits and vegetables ,Kale(yabesha gomen)
-826,ETH,Legumes and nuts ,Mung bean, Masho
+826,ETH,Legumes and nuts ,"Mung bean, Masho"
 827,ETH,Legumes and nuts ,Neug
-828,ETH,"Grains, roots and tubers ",Oats, Aja
+828,ETH,"Grains, roots and tubers ","Oats, Aja"
 811,ETH,Legumes and nuts ,Faba bean
 817,ETH,Flesh foods ,"Goat meat, dried"
 821,ETH,non-category,Hops
