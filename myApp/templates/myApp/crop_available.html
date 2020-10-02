@@ -309,11 +309,6 @@
       background-color: #49A0B5;
     }
 
-    .mytable tr:nth-child(even) td {
-      color: white;
-      background-color: #F9F9F9;
-    }
-
     /* table-seasonの設定 */
     .mytable-season {
       table-layout: fixed;
@@ -348,23 +343,20 @@
 
     /* Table row/cellの色設定：青色グラデーション */
     .rowcolor_100 {
-      background-color: #0080f;
-      color: whitesmoke;
+      background-color: #0080ff;
+      color: #0080ff;
     }
-
     .rowcolor_75 {
       background-color: #66b2ff;
-      color: whitesmoke;
+      color: #66b2ff;
     }
-
     .rowcolor_50 {
       background-color: #cce5ff;
-      color: black;
+      color: #cce5ff;
     }
-
     .rowcolor_0 {
       background-color: white;
-      color: black;
+      color: white;
     }
 
     /* Table-season row/cellの色設定 */
@@ -775,24 +767,33 @@
 
       let tmpRow = $myTbl.find('tr').last();
       tmpRow.children('td').each(function (i, myCell) {
-        switch (Number($(this).text())) { // cellの値に応じて色変化
-          case 0:
-            $(this).css("background-color", "");
-            $(this).css("color", "white");
-            break;
-          case 1:
-            $(this).css("background-color", "red");
-            $(this).css("color", "red");
-            break;
-          case 2:
-            $(this).css("background-color", "green");
-            $(this).css("color", "green");
-            break;
-          case 3:
-            $(this).css("background-color", "blue");
-            $(this).css("color", "blue");
-            break;
-        }
+        $(this).removeClass('rowcolor_100');
+        $(this).removeClass('rowcolor_75');
+        $(this).removeClass('rowcolor_50');
+        $(this).removeClass('rowcolor_0');
+        $(this).addClass(rowcolor[$(this).text()]);
+
+
+        {% comment %}
+                switch (Number($(this).text())) { // cellの値に応じて色変化
+                  case 0:
+                    $(this).css("background-color", "");
+                    $(this).css("color", "white");
+                    break;
+                  case 1:
+                    $(this).css("background-color", "red");
+                    $(this).css("color", "red");
+                    break;
+                  case 2:
+                    $(this).css("background-color", "green");
+                    $(this).css("color", "green");
+                    break;
+                  case 3:
+                    $(this).css("background-color", "blue");
+                    $(this).css("color", "blue");
+                    break;
+                }
+        {% endcomment %}
       });
     }
 
