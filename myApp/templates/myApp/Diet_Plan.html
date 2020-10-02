@@ -99,9 +99,21 @@
          style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
       <!-- 4個分のタブ -->
       <nav class="nav nav-pills" role="tablist" id="myTabs">
-        <a class="flex-sm-fill text-sm-center nav-link active" href="#tab_individual" role="tab">individual</a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_family" role="tab">family</a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_community" role="tab">community</a>
+        <a class="flex-sm-fill text-sm-center nav-link active" href="#tab_individual" role="tab">
+          individual
+          <span class="fb fb-help d-inline" data-toggle="tooltip"
+                title="individual tab is used to provide concrete dietary guidance to an individual "></span>
+        </a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_family" role="tab">
+          family
+          <span class="fb fb-help d-inline" data-toggle="tooltip"
+                title="family tab is used to provide concrete dietary guidance to a whole family "></span>
+        </a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_community" role="tab">
+          community
+          <span class="fb fb-help d-inline" data-toggle="tooltip"
+                title="community tab is used to set supply target for a group of people"></span>
+        </a>
       </nav>
 
       <!-- タブの移動先指定 -->
@@ -445,6 +457,7 @@
       background-color: #cce5ff;
       color: black;
     }
+
     .rowcolor_0 {
       background-color: white;
       color: black;
@@ -649,7 +662,7 @@
       console.group('Crop_Selected.setData_fromAvailable:');
       let res = false;
       if (drawFlag) {       //rowの追加
-                            //データセットの作成1:buy_prod_share設定
+        //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {
@@ -1829,32 +1842,32 @@
     $('#btn_car_prev1').click(function () {
       $('#carouselControl1').carousel('prev');
       c_index = $('#carouselControl1 div.active').index() || season_count;
-      $('#title_diet1').text("Diet for " + season_name[Number(c_index)-1]);
+      $('#title_diet1').text("Diet for " + season_name[Number(c_index) - 1]);
     });
     $('#btn_car_next1').click(function () {
       $('#carouselControl1').carousel('next');
       c_index = ($('#carouselControl1 div.active').index() + 2) % season_count || season_count;
-      $('#title_diet1').text("Diet for " + season_name[Number(c_index)-1]);
+      $('#title_diet1').text("Diet for " + season_name[Number(c_index) - 1]);
     });
     $('#btn_car_prev2').click(function () {
       $('#carouselControl2').carousel('prev');
       c_index = $('#carouselControl2 div.active').index() || season_count;
-      $('#title_diet2').text("Diet for " + season_name[Number(c_index)-1]);
+      $('#title_diet2').text("Diet for " + season_name[Number(c_index) - 1]);
     });
     $('#btn_car_next2').click(function () {
       $('#carouselControl2').carousel('next');
       c_index = ($('#carouselControl2 div.active').index() + 2) % season_count || season_count;
-      $('#title_diet2').text("Diet for " + season_name[Number(c_index)-1]);
+      $('#title_diet2').text("Diet for " + season_name[Number(c_index) - 1]);
     });
     $('#btn_car_prev3').click(function () {
       $('#carouselControl3').carousel('prev');
       c_index = $('#carouselControl3 div.active').index() || season_count;
-      $('#title_diet3').text("Diet for " + season_name[Number(c_index)-1]);
+      $('#title_diet3').text("Diet for " + season_name[Number(c_index) - 1]);
     });
     $('#btn_car_next3').click(function () {
       $('#carouselControl3').carousel('next');
       c_index = ($('#carouselControl3 div.active').index() + 2) % season_count || season_count;
-      $('#title_diet3').text("Diet for " + season_name[Number(c_index)-1]);
+      $('#title_diet3').text("Diet for " + season_name[Number(c_index) - 1]);
     });
 
     //---carouselの切替処理-------------
