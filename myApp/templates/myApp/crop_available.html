@@ -545,31 +545,6 @@
       $tmp_cell.removeClass('rowcolor_0');
       $tmp_cell.addClass(rowcolor[color]);
       $tmp_cell.text(color);
-
-      {% comment %}
-            switch (Number(color)) { // cellの値に応じて色変化
-              case 0:
-                $tmp_cell.css("background-color", "");
-                $tmp_cell.css("color", "white");
-                $tmp_cell.text(color);
-                break;
-              case 1:
-                $tmp_cell.css("background-color", "#0080ff");
-                $tmp_cell.css("color", "#0080ff");
-                $tmp_cell.text(color);
-                break;
-              case 2:
-                $tmp_cell.css("background-color", "#66b2ff");
-                $tmp_cell.css("color", "#66b2ff");
-                $tmp_cell.text(color);
-                break;
-              case 3:
-                $tmp_cell.css("background-color", "#cce5ff");
-                $tmp_cell.css("color", "#cce5ff");
-                $tmp_cell.text(color);
-                break;
-            }
-      {% endcomment %}
     };
     ////////////////////////////////////////////////////////////////////////
     //    function "drawCell" for Cell_MultiSelect  -------------------------------
@@ -779,7 +754,7 @@
           if (season_curr !== season_0) {
             season["end" + String(season_count)] = "12"
           } else {
-            season["start1"] = season["start" + String(season_count)]
+            season["start1"] = season["start" + String(season_count)];
             delete season["start" + String(season_count)]
           }
         }
@@ -1106,11 +1081,11 @@
           $('.container_crop_avail').find('.season-row').each(function (index_r, myRow) {
             const mon_start = $(myRow).find('.col_start').text();
             const mon_end = $(myRow).find('.col_end').text();
-            const avail_val = crop_avail_num[$(myRow).find('.dropdown-toggle').text()];
+            const avail_val = crop_avail_num[$(myRow).find('.dropdown-toggle').text()] || 0;
             const monthes = month_conv(Number(mon_start), Number(mon_end));
 
             $.each(monthes, function (index_c, value) {
-              console.log('x:' + value + ', y:' + rowNum + ', avail_val:' + avail_val)
+              console.log('x:' + value + ', y:' + rowNum + ', avail_val:' + avail_val);
               mySelectMonth.setCellColor(value - 1, rowNum, avail_val)
             })
           });
