@@ -529,6 +529,7 @@
       $tmp_cell.removeClass('rowcolor_50');
       $tmp_cell.removeClass('rowcolor_0');
       $tmp_cell.addClass(rowcolor[color]);
+      $tmp_cell.text(color);
 
       {% comment %}
             switch (Number(color)) { // cellの値に応じて色変化
@@ -1185,6 +1186,7 @@
           month["season_name4"] = $('.season_name[myid="4"]').text();
           season.push(month);
           res1.season = season;
+          console.error(res1);
 
           return res1;
         }
