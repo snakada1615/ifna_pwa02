@@ -767,18 +767,21 @@
         season_curr = $myrow.children('td').eq(j).text();
         console.log('season_curr=' + season_curr + 'season_prev=' + season_prev);
         if (season_curr !== season_prev) {
+          season_count++;
           season_prev = season_curr;
-          if (season_count !== 0) {
-            season["end" + String(season_count)] = String(j)
+          season["start" + String(season_count)] = String(j + 1);
+          if (j>0){
+            season["end" + String(season_count-1)] = String(j);
           }
-          if (season_count > 2 && season_curr === season_0) {
-            season["start1"] = String(j + 1)
+
+        }
+        if (j===11) {
+          if (season_curr !== season_0) {
+            season["end" + String(season_count)] = "12"
           } else {
-            season_count++;
-            season["start" + String(season_count)] = String(j + 1);
+            season["start1"] = season["start" + String(season_count)]
+            delete season["start" + String(season_count)]
           }
-        } else if (j === 11 && season_curr !== season_0) {
-          season["end" + String(season_count)] = "12"
         }
       }
       season["season_count"] = season_count;
@@ -1128,33 +1131,7 @@
           let myrow = $(this).closest('tr').index();
           let mycol = this.cellIndex;
           if (myrow % 2 == 1) {
-            console.log('myTbl clicked'); // 以下は使わないことにした（月ごとの入力→季節ごとの入力へ変更）
-
-            {% comment %}
-                                    console.log('mySelectMonth.getAll().selected_status=' + mySelectMonth.getAll().selected_status);
-                                    switch (mySelectMonth.getAll().selected_status) {
-                                        case -1:
-                                            let tmp = Number($(this).text());
-                                            tmp = (tmp + 1) % 4;
-                                            $(this).text(tmp); // cellの値+1
-                                            tmp_y = (myrow - 1) / 2;
-                                            mySelectMonth.setCellColor(mycol, tmp_y, tmp);
-                                            break;
-                                        case 0:
-                                            tmp_y = (myrow - 1) / 2;
-                                            mySelectMonth.setStart(mycol, tmp_y);
-                                            mySelectMonth.setCellColor(mycol, tmp_y, 4);
-                                            console.log('selectedd_statusは' + mySelectMonth.getAll().selected_status + 'です');
-                                            console.log('(' + mycol + ', ' + tmp_y + '), ' + mySelectMonth.getAll().myName + 'です');
-                                            break;
-                                        case 1:
-                                            tmp_y = (myrow - 1) / 2;
-                                            mySelectMonth.setGoal(mycol, tmp_y);
-                                            console.log('selectedd_statusは' + mySelectMonth.getAll().selected_status + 'です');
-                                            console.log('(' + mycol + ', ' + tmp_y + '), ' + mySelectMonth.getAll().myName + 'です');
-                                            break;
-                                    }
-            {% endcomment %}
+            console.log('myTbl clicked'); // ここは使わないことにした（月ごとの入力→季節ごとの入力へ変更）
           } else {    //こちらだけ使用（季節ごとの入力）
             const crop_tmp = $(this).text();
             const season_tmp = mySeason.getSeason();
