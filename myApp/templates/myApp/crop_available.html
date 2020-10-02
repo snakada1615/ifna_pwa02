@@ -633,6 +633,8 @@
         for (var i = start1; i < end1 + 1; i++) {
           tmp.push(i);
         }
+      } else if (start1 === end1) {
+        tmp.push(start1);
       } else {
         for (var j = start1; j < 13; j++) {
           tmp.push(j);
@@ -748,17 +750,18 @@
           season_count++;
           season_prev = season_curr;
           season["start" + String(season_count)] = String(j + 1);
-          if (j>0){
-            season["end" + String(season_count-1)] = String(j);
+          if (j > 0) {
+            season["end" + String(season_count - 1)] = String(j);
           }
 
         }
-        if (j===11) {
+        if (j === 11) {
           if (season_curr !== season_0) {
             season["end" + String(season_count)] = "12"
           } else {
             season["start1"] = season["start" + String(season_count)];
-            delete season["start" + String(season_count)]
+            delete season["start" + String(season_count)];
+            season_count--;
           }
         }
       }
@@ -803,27 +806,6 @@
         $(this).removeClass('rowcolor_0');
         $(this).addClass(rowcolor[$(this).text()]);
 
-
-        {% comment %}
-                switch (Number($(this).text())) { // cellの値に応じて色変化
-                  case 0:
-                    $(this).css("background-color", "");
-                    $(this).css("color", "white");
-                    break;
-                  case 1:
-                    $(this).css("background-color", "red");
-                    $(this).css("color", "red");
-                    break;
-                  case 2:
-                    $(this).css("background-color", "green");
-                    $(this).css("color", "green");
-                    break;
-                  case 3:
-                    $(this).css("background-color", "blue");
-                    $(this).css("color", "blue");
-                    break;
-                }
-        {% endcomment %}
       });
     }
 
@@ -1086,6 +1068,7 @@
             const mon_end = $(myRow).find('.col_end').text();
             const avail_val = crop_avail_num[$(myRow).find('.dropdown-toggle').text()] || 0;
             const monthes = month_conv(Number(mon_start), Number(mon_end));
+            console.error(monthes);
 
             $.each(monthes, function (index_c, value) {
               console.log('x:' + value + ', y:' + rowNum + ', avail_val:' + avail_val);
@@ -1197,7 +1180,7 @@
           month["season_name4"] = $('.season_name[myid="4"]').text();
           season.push(month);
           res1.season = season;
-          console.error(res1);
+          alert(month["season_count"]);
 
           return res1;
         }
