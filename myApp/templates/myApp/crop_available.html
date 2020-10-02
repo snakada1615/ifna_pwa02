@@ -125,17 +125,17 @@
            style="max-width: 560px;background-color: #e9ecef ">
 
         <div class="card-body mx-1 my-1 px-0 py-0">
-          <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no1_gr.png' %}"> Add food item</div>
+          <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no1_gr.png' %}"> Check food list for availability</div>
           <span class="ml-3">
-          Add/remove food item from the list:
-          <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-          <a id="btn_add" class="btn btn-info text-white ml-1 my-0 py-0 btn-sm">add food item</a>
+          Confirm each food item in the list to see if its available or not:
+          <i hidden class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+          <a hidden id="btn_add" class="btn btn-info text-white ml-1 my-0 py-0 btn-sm">add food item</a>
         </span>
         </div>
 
         <div class="card-body mx-1 my-1 px-0 py-0">
           <div class="ml-1 mr-2 my-1"><img src="{% static 'img/no2_gr.png' %}"> Select crop name</div>
-          <div class="ml-3">Click name of each crop</div>
+          <div class="ml-3">Click name of each crop if it is available in target area</div>
         </div>
 
         <div class="card-body mx-1 my-1 px-0 py-0">
@@ -811,7 +811,7 @@
     }
 
     ////////////////  read initial value for crop selected  table ////////////
-    $.each(Json_Crop_Selected, function (i, row_tmp) {
+    $.each(Json_Crop_All, function (i, row_tmp) {
       dd = {};
       //データセットの作成
       dd["selected_status"] = row_tmp.selected_status;
