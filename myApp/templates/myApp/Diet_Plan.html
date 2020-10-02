@@ -479,6 +479,8 @@
     var season12 = {{ season|safe }};
     var season_name = {{ season_name|safe }};
     var myFoodGrp = {{ mylist_Food_grp|safe }};
+    console.error('season_list');
+    console.error(season_list);
     var myRange = [];
     let c_index = 1;  // carouselのインデックス
     $.each(season_list, function (index, val) {
@@ -490,6 +492,8 @@
     $.each(season_list, function (index, val) {
       myRange.push(Number(val) + 300);
     });
+    console.error('myRange');
+    console.error(myRange);
     var selected_rows_id = [];
     var myLocation = '';
     var myRoot = '';
@@ -649,7 +653,6 @@
         console.log('table_id(' + crop_data.num_tbl + ')に' + crop_data.Food_name + 'を追加します');
         let overwrite = this._delCrop(crop_data.food_item_id);       //重複業あれば削除
         this.crops.push(crop_data);
-        console.error(this.crops);
         console.groupEnd();
         return overwrite;
       } else {
@@ -725,10 +728,8 @@
         }
       });
       if (del_index > -1) {
-        console.error(this.crops);
         this.crops.splice(del_index, 1);
         console.log('food_item_id(' + food_item_id + ')の作物選択を解除しました');
-        console.error(this.crops);
       }
       console.groupEnd();
       return del_index;
@@ -817,11 +818,9 @@
         this._drawRaw_eraseLast();
         // 重複行があレバ削除
         let rowNum = this._drawRaw_erase(food_item_id);
-        console.error(rowNum);
         // 追加行の作成
         const add_data_html = this._drawRaw_setHtml(add_data);
         // 追加行の挿入
-        console.error(rowNum);
         if (rowNum == 0) {
           this.dom_tbl_Crop.find('tbody tr:first').before(add_data_html);
         } else if (rowNum > 0) {
@@ -1766,9 +1765,7 @@
     for (let i in myRange) {
       let num_tbl = myRange[i];
       let tmp_dat = myCrop[num_tbl];
-      console.error(num_tbl);
       myCrop[num_tbl].month = Number(tmp_dat.dom_lst_month.text());
-      console.error(num_tbl);
       myCrop[num_tbl].dom_btn_add.attr('myNum', num_tbl);
     }
 

@@ -753,6 +753,7 @@ def registCropAvail(request):
   logger.info('受信していない作物を選択リストから外します')
   for rec in tmp:
     if str(rec.myFCT.food_item_id) not in tmp_newcrop_list:
+      logger.info(rec.myFCT.food_item_id)
       rec.selected_status = 0
       rec.save()
 

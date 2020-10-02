@@ -1068,7 +1068,6 @@
             const mon_end = $(myRow).find('.col_end').text();
             const avail_val = crop_avail_num[$(myRow).find('.dropdown-toggle').text()] || 0;
             const monthes = month_conv(Number(mon_start), Number(mon_end));
-            console.error(monthes);
 
             $.each(monthes, function (index_c, value) {
               console.log('x:' + value + ', y:' + rowNum + ', avail_val:' + avail_val);
@@ -1173,14 +1172,13 @@
             month["m" + String(j + 1)] = $myrow.children('td').eq(j).text();
           }
           month["myLocation"] = {{myLocation}};
-          month["season_count"] = Number($('#season_count').text());
+          month["season_count"] = mySeason.getSeason().season_count;
           month["season_name1"] = $('.season_name[myid="1"]').text();
           month["season_name2"] = $('.season_name[myid="2"]').text();
           month["season_name3"] = $('.season_name[myid="3"]').text();
           month["season_name4"] = $('.season_name[myid="4"]').text();
           season.push(month);
           res1.season = season;
-          alert(month["season_count"]);
 
           return res1;
         }
