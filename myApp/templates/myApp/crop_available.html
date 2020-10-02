@@ -143,6 +143,19 @@
           <div class="ml-3">
             Then, choose availability from four category (whole season----not available)
           </div>
+
+          <div class="dropdown my-1 ">
+            <button type="button" id="dropdown1"
+                    class="btn btn-sm btn-secondary dropdown-toggle myfilter" myPage="100"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+              filter
+            </button>
+            <div class="dropdown-menu" id="myfilter-item" aria-labelledby="dropdown1">
+            </div>
+          </div>
+
         </div>
 
         <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;">
@@ -304,7 +317,7 @@
     }
 
     .mytable tr:nth-child(odd) td {
-      color: darkblue;
+      color: white;
       text-align: left;
       background-color: #49A0B5;
     }
@@ -346,14 +359,17 @@
       background-color: #0080ff;
       color: #0080ff;
     }
+
     .rowcolor_75 {
       background-color: #66b2ff;
       color: #66b2ff;
     }
+
     .rowcolor_50 {
       background-color: #cce5ff;
       color: #cce5ff;
     }
+
     .rowcolor_0 {
       background-color: white;
       color: white;
@@ -396,6 +412,7 @@
     var json_crop_name = {{mylist_local_name|safe}};
     var Json_Crop_All = {{dat_mycrop | safe}};
     var Json_Season = {{dat_season | safe}};
+    var myFoodGrp = {{ mylist_Food_grp|safe }};
     //行の色指定
     const rowcolor = {
       '1': 'rowcolor_100',
@@ -410,6 +427,12 @@
       '0': 'rowcolor_season_0',
     };
 
+
+    //////////////// initialize Food_grp_filter /////
+    $('#myfilter-item').append('<a class="dropdown-item">--show all--</a>');
+    $.each(myFoodGrp, function (index, val) {
+      $('#myfilter-item').append('<a class="dropdown-item">' + val + '</a>');
+    });
 
     //////////////// set local name/////
     let index = {};
@@ -548,6 +571,9 @@
             }
       {% endcomment %}
     };
+    ////////////////////////////////////////////////////////////////////////
+    //    function "drawCell" for Cell_MultiSelect  -------------------------------
+    ////////////////////////////////////////////////////////////////////////
     Cell_MultiSelect.prototype.drawCell = function () {
       console.log(this.getAll().myName + 'の色を(' + this.start_x + ', ' + this.start_y
               + ') から (' + this.goal_x + ', ' + this.goal_y + ')の区間で' + this.color + 'に設定します');
@@ -562,9 +588,32 @@
       }
     };
 
+    ////////////////////////////////////////////////////////////////////////
+    //    function "myfilter" for tbl_crop_selected  -------------------------------
+    ////////////////////////////////////////////////////////////////////////
+    function CropList_myfilter(key) {
+      console.log('#tbl_crop_selectedにFilterを適用します');
+
+      $myTbl.find('tr').each(function (index, val) {
+        if (index % 2) {
+          let tmpval = $(val).children('td').eq(0).text();
+          if (key === '--show all--' || tmpval === key) {
+            $(val).removeClass('tableItem_hide');
+            $(val).next().removeClass('tableItem_hide');
+          } else {
+            $(val).addClass('tableItem_hide');
+            $(val).next().addClass('tableItem_hide');
+          }
+        }
+        $('#dropdown1').text(key);
+      });
+      console.groupEnd();
+      return true;
+    }
 
     ////////////////////////////////////////////////////////////////////////
     //    function "Season_Avail" for #mymodal02  -------------------------------
+    ////////////////////////////////////////////////////////////////////////
     function Season_Avail(crop_name, season_tmp, myrow) {
       let cr = '';
       let $myTbl = $(".container_crop_avail");
@@ -996,6 +1045,12 @@
           my_snackbar(mes, 2000);
         });
         /// ------------------------------------------------
+
+        ////////// Filter Crop_Selected table ////////////
+        $("#myfilter-item a").click(function () {
+          let x = $(this).text();
+          CropList_myfilter(x);
+        });
 
         //////////////////on click -> crop list /
         $('#tbl_crop_candidate tbody').on('click', 'tr', function () {

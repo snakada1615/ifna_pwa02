@@ -652,15 +652,25 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     context['myuser'] = myUser
 
     # 作物のローカル名を送る
-    tmp01 = Crop_Name.objects.filter(myCountryName=self.kwargs['myCountryName'])
+    tmp = Crop_Name._meta.get_fields()
+    logger.info(tmp[2])
+    tmp01 = Crop_Name.objects.filter(
+      myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
     d = []
+    new_Food_grp = []
     for tmp02 in tmp01:
       dd = {}
       dd["Food_grp"] = tmp02.Food_grp
       dd["Food_name"] = tmp02.Food_name
       dd["food_item_id"] = tmp02.myFCT_id
       d.append(dd)
+      tmp03 = tmp02.Food_grp
+      if tmp03 not in new_Food_grp:
+        new_Food_grp.append(tmp03)
+
     context["mylist_local_name"] = d
+    context["mylist_Food_grp"] = new_Food_grp
+
 
     # 季節情報を送る
     tmp01 = Season.objects.filter(myLocation_id=myUser.profile.myLocation)
