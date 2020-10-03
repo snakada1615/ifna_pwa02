@@ -491,9 +491,9 @@
     var season12 = {{ season|safe }};
     var season_name = {{ season_name|safe }};
     var myFoodGrp = {{ mylist_Food_grp|safe }};
-    console.error('season_list');
-    console.error(season_list);
     var myRange = [];
+    var season_length = {};
+    var season_length2 = {};
     let c_index = 1;  // carouselのインデックス
     $.each(season_list, function (index, val) {
       myRange.push(Number(val) + 100);
@@ -504,8 +504,26 @@
     $.each(season_list, function (index, val) {
       myRange.push(Number(val) + 300);
     });
+    console.error('season_list');
+    console.error(season_list);
+    console.error('season_name');
+    console.error(season_name);
     console.error('myRange');
     console.error(myRange);
+    console.error('season12');
+    console.error(season12);
+
+    //season12：月毎の季節の値から各季節の長さを記録
+    $.each(season12, function (key, value) {
+      if (season_length[value] !== undefined) {
+        season_length[value] += 1;
+      } else {
+        season_length[value] = 1;
+      }
+    });
+    console.error('season_length');
+    console.error(season_length);
+
     var selected_rows_id = [];
     var myLocation = '';
     var myRoot = '';
@@ -595,21 +613,6 @@
       $('#BR_food_count').barrating({theme: 'fontawesome-apple'});
     });
 
-    ///////////set nutrition target for each table  /////////////////////
-    $('.lbl_target_en[myNum^=1]').text(target_en[1].toFixed(0));
-    $('.lbl_target_pr[myNum^=1]').text(target_pr[1].toFixed(0));
-    $('.lbl_target_va[myNum^=1]').text(target_va[1].toFixed(0));
-    $('.lbl_target_fe[myNum^=1]').text(target_fe[1].toFixed(0));
-    $('.lbl_target_en[myNum^=2]').text(target_en[2].toFixed(0));
-    $('.lbl_target_pr[myNum^=2]').text(target_pr[2].toFixed(0));
-    $('.lbl_target_va[myNum^=2]').text(target_va[2].toFixed(0));
-    $('.lbl_target_fe[myNum^=2]').text(target_fe[2].toFixed(0));
-    $('.lbl_target_en[myNum^=3]').text(target_en[3].toFixed(0));
-    $('.lbl_target_pr[myNum^=3]').text(target_pr[3].toFixed(0));
-    $('.lbl_target_va[myNum^=3]').text(target_va[3].toFixed(0));
-    $('.lbl_target_fe[myNum^=3]').text(target_fe[3].toFixed(0));
-    console.log('target_fe[2]=' + target_fe[2].toFixed(0));
-
 
     //    create object setup "Crop_Selected"   -------------------------------
     function Crop_Selected(num_tbl) {
@@ -622,6 +625,8 @@
         this.sum_va = 0;
         this.sum_fe = 0;
         this.month = 0;
+        this.season = 0;
+        this.season_length = 1;
         this.PFC_carbo = 0;
         this.PFC_prot = 0;
         this.PFC_fat = 0;
@@ -1797,29 +1802,59 @@
     for (let i in myRange) {
       let num_tbl = myRange[i];
       let tmp_dat = myCrop[num_tbl];
-      myCrop[num_tbl].month = Number(tmp_dat.dom_lst_month.text());
+      myCrop[num_tbl].month = Number(myCrop[num_tbl].dom_lst_month.text());
+      myCrop[num_tbl].season = season12['m' + myCrop[num_tbl].month + '_season'];
+      myCrop[num_tbl].season_length = season_length[myCrop[num_tbl].season];
       myCrop[num_tbl].dom_btn_add.attr('myNum', num_tbl);
     }
 
     //  lbl_target_**を配列に組み込む -----------
     $('.lbl_target_en').each(function () {
       let num_tbl = $(this).attr('myNum');
+      let scope = Math.trunc(num_tbl / 100);
+      let days = 1;
+      if (num_tbl >= 300) {
+        days = myCrop[num_tbl].season_length * 30
+      }
+
       myCrop[num_tbl].dom_lbl_target_en = $(this);
+      $(this).text((target_en[scope] * days).toFixed(0));
     });
 
     $('.lbl_target_pr').each(function () {
       let num_tbl = $(this).attr('myNum');
+      let scope = Math.trunc(num_tbl / 100);
+      let days = 1;
+      if (num_tbl >= 300) {
+        days = myCrop[num_tbl].season_length * 30
+      }
+
       myCrop[num_tbl].dom_lbl_target_pr = $(this);
+      $(this).text((target_pr[scope] * days).toFixed(0));
     });
 
     $('.lbl_target_va').each(function () {
       let num_tbl = $(this).attr('myNum');
+      let scope = Math.trunc(num_tbl / 100);
+      let days = 1;
+      if (num_tbl >= 300) {
+        days = myCrop[num_tbl].season_length * 30
+      }
+
       myCrop[num_tbl].dom_lbl_target_va = $(this);
+      $(this).text((target_va[scope] * days).toFixed(0));
     });
 
     $('.lbl_target_fe').each(function () {
       let num_tbl = $(this).attr('myNum');
+      let scope = Math.trunc(num_tbl / 100);
+      let days = 1;
+      if (num_tbl >= 300) {
+        days = myCrop[num_tbl].season_length * 30
+      }
+
       myCrop[num_tbl].dom_lbl_target_fe = $(this);
+      $(this).text((target_fe[scope] * days).toFixed(0));
     });
     //-------------
 

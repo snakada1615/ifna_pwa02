@@ -671,7 +671,6 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     context["mylist_local_name"] = d
     context["mylist_Food_grp"] = new_Food_grp
 
-
     # 季節情報を送る
     tmp01 = Season.objects.filter(myLocation_id=myUser.profile.myLocation)
     d = []
@@ -1192,7 +1191,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
         if season_index > 0:
           month_season2[season_index - 1] = myindex
         prev_dat = tmpdat
-      if myindex == 11:  # 最終付の処理
+      if myindex == 11:  # 最終月の処理
         month_season2[season_index] = 12  # 最後の季節を12月で締める
         if mydat['m1_season'] == mydat['m12_season']:  # 季節が年をまたいでいる場合の処理
           month_season1[1] = month_season1[season_index]
