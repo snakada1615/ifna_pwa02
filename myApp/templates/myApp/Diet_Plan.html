@@ -215,44 +215,56 @@
               </tr>
             </table>
 
-            <span>*consumption target (1 portion=): <a href="#" id="btn_change_portion"></a>g</span>
+            <!-- モーダルの設定 change diet volume (Individual/Family用)----------------------------->
+            <div id="toggle_visible_individual">
+              <span>*consumption target (1 portion=): <a href="#" id="btn_change_portion"></a>g</span>
 
-            <div class="row pl-4">
-              <div class="column-11">
-                <select id="BR_food_count">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                  <option value="13">13</option>
-                  <option value="14">14</option>
-                  <option value="15">15</option>
-                  <option value="16">16</option>
-                  <option value="17">17</option>
-                  <option value="18">18</option>
-                  <option value="19">19</option>
-                  <option value="20">20</option>
-                </select>
-              </div>
-              <div class="column-1">
+              <div class="row pl-4">
+                <div class="column-11">
+                  <select id="BR_food_count">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                  </select>
+                </div>
+                <div class="column-1">
               <span class="fb fb-help d-inline" data-toggle="tooltip"
                     title="set volume of food by changing the number of apple icon below"></span>
+                </div>
               </div>
+
+              <div>*share (
+                <span style="color: #5bc0de">production</span> /
+                <span style="color: #cc1111">buy</span>):
+                <img id="BR_buy_prod_pie_img" src="#" style="width: 30px" alt="">
+                <span class="fb fb-help" data-toggle="tooltip" title="you can set buy or produce"></span>
+              </div>
+
             </div>
 
-            <div>*share (
-              <span style="color: #5bc0de">production</span> /
-              <span style="color: #cc1111">buy</span>):
-              <img id="BR_buy_prod_pie_img" src="#" style="width: 30px" alt="">
-              <span class="fb fb-help" data-toggle="tooltip" title="you can set buy or produce"></span>
+            <!-- モーダルの設定 change diet volume (Communituy専用)----------------------------->
+            <div id="toggle_visible_comm">
+              <div class="form-group">
+                <label for="food_weight_community">Weight in kg:</label>
+                <input type="number" class="form-control" id="food_weight_community">
+              </div>
             </div>
 
             <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
@@ -1301,6 +1313,7 @@
     Crop_individual.prototype.setData = function (data) {
       console.group('Crop_individual:init');
       this.data = data;
+
       this.dom_tbl.children('tbody').children('tr').remove(); //tbl_food_SetWeightのテーブル初期化
 
       let cr = '<tr><th>name</th><th>En</th><th>Pr</th><th>Va</th><th>Fe</th><th class="tableItem_hide">por</th>'
@@ -1325,6 +1338,14 @@
       let count_all = Number(data.count_prod + data.count_buy) || 1;
       this.dom_br_count.barrating('set', count_all); //摂取量の設定
       this.setPie_img(data.share_prod_buy); //Buy＿Prod _shaeの設定
+
+      if (data.num_tbl < 300) { // individual/familyとcommunityで表示を切り替える
+        $('#toggle_visible_individual').show();
+        $('#toggle_visible_comm').hide();
+      } else {
+        $('#toggle_visible_individual').hide();
+        $('#toggle_visible_comm').show();
+      }
 
       console.groupEnd();
     };
@@ -1353,20 +1374,31 @@
     };
     Crop_individual.prototype.getData_FoodWt = function () {
       console.group('Crop_individual:getData_FoodWt');
-      let count_all = Number(this.dom_br_count.children("option:selected").val());
-      let share_prod_buy_tmp = Number(this.data.share_prod_buy);
-      if (share_prod_buy_tmp === 100) {
-        share_prod_buy_tmp = 10;
+      if (this.num_tbl < 300) { // individual/familyとcommunityで計算方法を切り替える
+        let count_all = Number(this.dom_br_count.children("option:selected").val());
+        let share_prod_buy_tmp = Number(this.data.share_prod_buy);
+        if (share_prod_buy_tmp === 100) {
+          share_prod_buy_tmp = 10;
+        }
+        if (share_prod_buy_tmp === 99) {
+          share_prod_buy_tmp = 0;
+        }
+        let count_prod = Math.trunc(count_all * share_prod_buy_tmp / 10);
+        let count_buy = count_all - count_prod;
+        let portion_size = this.data.portion_size;
+        this.data.count_prod = count_prod;
+        this.data.count_buy = count_buy;
+        this.data.total_weight = portion_size * count_all;
+
+      } else {                        // individual/familyとcommunityで計算方法を切り替える
+        let weight = Number($('#food_weight_community').val()) * 1000;  //g --> kg への変換
+        console.error(weight);
+        let share_prod_buy_tmp = 10;
+        let portion_size = this.data.portion_size;
+        this.data.total_weight = weight;
+        this.data.count_prod = Math.trunc(weight / portion_size);
+        this.data.count_buy = 0;
       }
-      if (share_prod_buy_tmp === 99) {
-        share_prod_buy_tmp = 0;
-      }
-      let count_prod = Math.trunc(count_all * share_prod_buy_tmp / 10);
-      let count_buy = count_all - count_prod;
-      let portion_size = this.data.portion_size;
-      this.data.count_prod = count_prod;
-      this.data.count_buy = count_buy;
-      this.data.total_weight = portion_size * count_all;
       console.log(this.data.name + 'を更新します');
       console.log(this.data);
       console.groupEnd();
@@ -1479,7 +1511,6 @@
       let myrow = $(this).closest('tbody tr')[0].rowIndex;
       if (myrow < $(this).parents().children('tbody tr').length) {
         let dat = myCrop[myNum_tmp]._getCrop_byRow(myrow);
-//      myCrop[myNum_tmp].sendData_cropInd(myrow);
         myCrop_individual[myNum_tmp].setData(dat);
         myfood_volume['modal'].attr('myNum', myNum_tmp); //table番号の記録
         myfood_volume['modal'].modal('show');
@@ -1493,6 +1524,7 @@
       let myNum_tmp = myfood_volume.modal.attr('myNum');//テーブル番号の取得
       console.log('table(' + myNum_tmp + ')を変更します');
       let data = myCrop_individual[myNum_tmp].getData_FoodWt();
+      console.error(data);
       myCrop[myNum_tmp].setDataDraw_Crop(data);
 
       myfood_volume['modal'].modal('hide');
