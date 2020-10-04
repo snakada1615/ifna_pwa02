@@ -36,16 +36,16 @@
                   <div class="card-header bg-info text-white p-1">
                     Diet plan for target beneficiaries:
                     {% if forloop.counter == 1 %}
-                      {{ month_season_start_text.1 }} to {{ month_season_end_text.1 }}
+                      {{ season_name.0 }}
                     {% endif %}
                     {% if forloop.counter == 2 %}
-                      {{ month_season_start_text.2 }} to {{ month_season_end_text.2 }}
+                      {{ season_name.1 }}
                     {% endif %}
                     {% if forloop.counter == 3 %}
-                      {{ month_season_start_text.3 }} to {{ month_season_end_text.3 }}
+                      {{ season_name.2 }}
                     {% endif %}
                     {% if forloop.counter == 4 %}
-                      {{ month_season_start_text.4 }} to {{ month_season_end_text.4 }}
+                      {{ season_name.3 }}
                     {% endif %}
 
                     <span hidden class="lst_month text-dark mx-1" myNum={{ forloop.counter|add:200 }}

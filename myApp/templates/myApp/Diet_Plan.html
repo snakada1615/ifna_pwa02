@@ -501,6 +501,7 @@
     var season_list = {{ season_list|safe }};
     var season12 = {{ season|safe }};
     var season_name = {{ season_name|safe }};
+    var season_name_by_index = {{ month_season_start_text|safe }};
     var myFoodGrp = {{ mylist_Food_grp|safe }};
     var myRange = [];
     var season_length = {};
@@ -521,6 +522,8 @@
     console.error(season_name);
     console.error('myRange');
     console.error(myRange);
+    console.error('season12');
+    console.error(season12);
     console.error('season12');
     console.error(season12);
 
@@ -1955,9 +1958,11 @@
 
     //---carouselの切替処理-------------
     //---carouselの初期値-------------
-    $('#title_diet1').text("Diet for " + season_name[1]);
-    $('#title_diet2').text("Diet for " + season_name[1]);
-    $('#title_diet3').text("Diet for " + season_name[1]);
+    console.error('c_index');
+    console.error(c_index);
+    $('#title_diet1').text("Diet for " + season_name[Number(c_index) - 1]);
+    $('#title_diet2').text("Diet for " + season_name[Number(c_index) - 1]);
+    $('#title_diet3').text("Diet for " + season_name[Number(c_index) - 1]);
     //---carouselの初期値-------------
 
     //全ての変数を読み込んでからBarratingをセット
