@@ -433,6 +433,16 @@
       display: none;
     }
 
+    /* 横幅固定、100% */
+    .table-fixed-100 {
+      table-layout: fixed;
+      width: 100%;
+    }
+    /* 1列目の横幅固定% */
+    .table-fixed-100 tr th:nth-child(1){
+       width: 30%;
+     }
+
     /* tablesorterのsortアイコン表示 */
     .tablesorter-headerUnSorted {
       background-image: url("{% static 'img/sort.png' %}");
