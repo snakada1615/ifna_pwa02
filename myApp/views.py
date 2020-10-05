@@ -2163,6 +2163,14 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['myLocation'] = self.request.user.profile.myLocation
     context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
 
+    # tmp = Crop_Feasibility.objects.get(myLocation_id=self.request.user.profile.myLocation)
+    # context['score_nut'] = round(tmp.feas_DRI_e * 10 / 3)
+    # context['score_soc'] = round((tmp.feas_soc_acceptable + tmp.feas_soc_acceptable_wo + tmp.feas_soc_acceptable_c5 +
+    #                               tmp.feas_affordability) * 10 / 12)
+    # context['score_tec'] = round((tmp.feas_prod_skill + tmp.feas_workload + tmp.feas_tech_service) * 10 / 12)
+    # context['score_inv'] = round((tmp.feas_invest_fixed + tmp.feas_invest_variable) * 10 / 8)
+    # context['score_sus'] = round((tmp.feas_availability_prod + tmp.feas_storability) * 10 / 6)
+
     tmp_Param = SetURL(500, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
@@ -2251,7 +2259,6 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
     context['dri_v1'] = tmp_v
     context['dri_f1'] = tmp_f
     context['dri_vol1'] = tmp_vol
-
 
     # send non-available crop in the original list 無意味なのですが######
     tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.request.user.profile.myLocation)

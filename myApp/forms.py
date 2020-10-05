@@ -144,14 +144,18 @@ class Crop_Feas_Form(forms.ModelForm):
   def clean(self):
     cleaned_data = super(Crop_Feas_Form, self).clean()
     self.cleaned_data['myFCT'] = FCT.objects.get(food_item_id=self.cleaned_data['crop_name_id'])
-    self.cleaned_data['crop_score'] = int(self.cleaned_data['feas_DRI_e']) + int(
-      self.cleaned_data['feas_soc_acceptable']) + int(
+    tmp_nut = round(int(self.cleaned_data['feas_DRI_e']) * 10 / 3)
+    tmp_soc = round((int(self.cleaned_data['feas_soc_acceptable']) + int(
       self.cleaned_data['feas_soc_acceptable_c5']) + int(self.cleaned_data['feas_soc_acceptable_wo']) + int(
+      self.cleaned_data['feas_affordability'])) * 10 / 12)
+    tmp_tec = round((int(
       self.cleaned_data['feas_prod_skill']) + int(self.cleaned_data['feas_workload']) + int(
-      self.cleaned_data['feas_tech_service']) + int(
-      self.cleaned_data['feas_invest_fixed']) + int(self.cleaned_data['feas_invest_variable']) + int(
-      self.cleaned_data['feas_availability_prod']) + int(
-      self.cleaned_data['feas_affordability']) + int(self.cleaned_data['feas_storability'])
+      self.cleaned_data['feas_tech_service'])) * 10 / 12)
+    tmp_inv = round(
+      (int(self.cleaned_data['feas_invest_fixed']) + int(self.cleaned_data['feas_invest_variable'])) * 10 / 8)
+    tmp_sus = round(
+      (int(self.cleaned_data['feas_availability_prod']) + int(self.cleaned_data['feas_storability'])) * 10 / 6)
+    self.cleaned_data['crop_score'] = tmp_nut + tmp_soc + tmp_tec + tmp_inv + tmp_sus
 
     logger.info(self.cleaned_data['crop_score'])
     logger.info(self.cleaned_data['myFCT'])

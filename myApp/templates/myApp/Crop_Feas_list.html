@@ -22,8 +22,9 @@
       <div class="col px-3">
         <div class="card border-0 my-2" style="background-color: #ECECEC">
           <div class="card-body py-2">
-            <span class="text-danger">red colored text </span>indicates that feasibility is not good enough to be adopted
-            for the target area <span class="text-info">{{ myLocation_name }}</span>. (lower than 35)
+            <span class="text-danger">red colored text </span>indicates that feasibility is not good enough to be
+            adopted
+            for the target area <span class="text-info">{{ myLocation_name }}</span>.
           </div>
         </div>
       </div>
@@ -32,7 +33,7 @@
 
   <div class="container" style="max-width: 540px;">
   {% for crop in mylist %}
-    {% if crop.crop_score >= 35 %}
+    {% if crop.crop_score >= 22 %}
       <div class="card border-success col-12 my-2 py-0"
            style="max-width: 540px; color:#24535F ;background-color:#D9ECDC; border-width: 2px;">
     {% else %}
@@ -78,21 +79,61 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-3">
-            <p class="card-text my-0">Score:</p>
+          <div class="col-5">
+            <p class="card-text my-0">Total score:</p>
           </div>
-          <div class="col-9">
+          <div class="col-7">
             <p class="card-text my-0">{{ crop.crop_score }}</p>
           </div>
         </div>
+        <div class="row">
+          <div class="col-5">
+            <p class="card-text my-0">Nutrition value:</p>
+          </div>
+          <div class="col-7">
+            <p class="card-text my-0">{{ crop.feas_DRI_e }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <p class="card-text my-0">Social acceptability:</p>
+          </div>
+          <div class="col-7">
+            <p class="card-text my-0">{{ crop.feas_soc_acceptable }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <p class="card-text my-0">Technical feasibility:</p>
+          </div>
+          <div class="col-7">
+            <p class="card-text my-0">{{ crop.feas_prod_skill }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <p class="card-text my-0">Investment:</p>
+          </div>
+          <div class="col-7">
+            <p class="card-text my-0">{{ crop.feas_invest_fixed }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <p class="card-text my-0">Stability:</p>
+          </div>
+          <div class="col-7">
+            <p class="card-text my-0">{{ crop.feas_storability }}</p>
+          </div>
+        </div>
         <span>
-									<a class="btn my-0 btn-info btn-sm align-middle badge"
-                     href="{% url 'crop_feas_update'  pk=crop.pk %}">edit</a>
-								</span>
+          <a class="btn my-0 btn-info btn-sm align-middle badge"
+             href="{% url 'crop_feas_update'  pk=crop.pk %}">edit</a>
+        </span>
         <span>
-									<a class="btn my-0 btn-info btn-sm align-middle badge "
-                     href="{% url 'crop_feas_delete' pk=crop.pk %}">delete</a>
-								</span>
+          <a class="btn my-0 btn-info btn-sm align-middle badge "
+             href="{% url 'crop_feas_delete' pk=crop.pk %}">delete</a>
+        </span>
       </div>
     </div>
   </div>
