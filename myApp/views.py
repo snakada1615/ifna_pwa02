@@ -1906,50 +1906,6 @@ class Output3(LoginRequiredMixin, TemplateView):
       myLocation=self.kwargs['myLocation'])
     context['nutrient_target'] = tmp_nut_group[0].nut_group
 
-    tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    for tmp in tmp_nut_group1:
-      tmp_e += tmp.myDRI.energy
-      tmp_p += tmp.myDRI.protein
-      tmp_v += tmp.myDRI.vita
-      tmp_p += tmp.myDRI.fe
-    context['dri_e1'] = tmp_e
-    context['dri_p1'] = tmp_p
-    context['dri_v1'] = tmp_v
-    context['dri_f1'] = tmp_f
-
-    tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    for tmp in tmp_nut_group2:
-      tmp_e += tmp.myDRI.energy
-      tmp_p += tmp.myDRI.protein
-      tmp_v += tmp.myDRI.vita
-      tmp_p += tmp.myDRI.fe
-    context['dri_e2'] = tmp_e
-    context['dri_p2'] = tmp_p
-    context['dri_v2'] = tmp_v
-    context['dri_f2'] = tmp_f
-
-    tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    for tmp in tmp_nut_group3:
-      tmp_e += tmp.myDRI.energy
-      tmp_p += tmp.myDRI.protein
-      tmp_v += tmp.myDRI.vita
-      tmp_p += tmp.myDRI.fe
-    context['dri_e3'] = tmp_e
-    context['dri_p3'] = tmp_p
-    context['dri_v3'] = tmp_v
-    context['dri_f3'] = tmp_f
 
     # send selected crop by community ######
     # --------------------create 16 Crop_individual-------------------------
@@ -2001,51 +1957,6 @@ class Output4(LoginRequiredMixin, TemplateView):
     tmp_nut_group = Person.objects.filter(
       myLocation=self.kwargs['myLocation'])
     context['nutrient_target'] = tmp_nut_group[0].nut_group
-
-    tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    for tmp in tmp_nut_group1:
-      tmp_e += tmp.myDRI.energy
-      tmp_p += tmp.myDRI.protein
-      tmp_v += tmp.myDRI.vita
-      tmp_p += tmp.myDRI.fe
-    context['dri_e1'] = tmp_e
-    context['dri_p1'] = tmp_p
-    context['dri_v1'] = tmp_v
-    context['dri_f1'] = tmp_f
-
-    tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    for tmp in tmp_nut_group2:
-      tmp_e += tmp.myDRI.energy
-      tmp_p += tmp.myDRI.protein
-      tmp_v += tmp.myDRI.vita
-      tmp_p += tmp.myDRI.fe
-    context['dri_e2'] = tmp_e
-    context['dri_p2'] = tmp_p
-    context['dri_v2'] = tmp_v
-    context['dri_f2'] = tmp_f
-
-    tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    for tmp in tmp_nut_group3:
-      tmp_e += tmp.myDRI.energy
-      tmp_p += tmp.myDRI.protein
-      tmp_v += tmp.myDRI.vita
-      tmp_p += tmp.myDRI.fe
-    context['dri_e3'] = tmp_e
-    context['dri_p3'] = tmp_p
-    context['dri_v3'] = tmp_v
-    context['dri_f3'] = tmp_f
 
     # send selected crop by community ######
     # --------------------create 16 Crop_individual-------------------------

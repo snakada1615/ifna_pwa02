@@ -696,7 +696,7 @@
       console.group('Crop_Selected.setData_fromAvailable:');
       let res = false;
       if (drawFlag) {       //rowの追加
-        //データセットの作成1:buy_prod_share設定
+                            //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {
@@ -939,30 +939,25 @@
     };
     Crop_Selected.prototype._SetBarrating = function () {
       console.group('Crop_Selected._SetBarrating:');
-      let days = 1;
-      if (this.num_tbl >= 300) {
-        days = this.season_length * 30
-      }
-
-      let rate_en = Math.round(this.sum_en * 10 / (this.target_en * days));
+      let rate_en = Math.round(this.sum_en * 10 / this.target_en);
       if (rate_en > 10) {
         rate_en = 10;
       } else if (rate_en < 1) {
         rate_en = 1;
       }
-      let rate_pr = Math.round(this.sum_pr * 10 / (this.target_pr * days));
+      let rate_pr = Math.round(this.sum_pr * 10 / this.target_pr );
       if (rate_pr > 10) {
         rate_pr = 10;
       } else if (rate_pr < 1) {
         rate_pr = 1;
       }
-      let rate_va = Math.round(this.sum_va * 10 / (this.target_va * days));
+      let rate_va = Math.round(this.sum_va * 10 / this.target_va );
       if (rate_va > 10) {
         rate_va = 10;
       } else if (rate_va < 1) {
         rate_va = 1;
       }
-      let rate_fe = Math.round(this.sum_fe * 10 / (this.target_fe * days));
+      let rate_fe = Math.round(this.sum_fe * 10 / this.target_fe );
       if (rate_fe > 10) {
         rate_fe = 10;
       } else if (rate_fe < 1) {
@@ -976,12 +971,7 @@
     };
     Crop_Selected.prototype._setCellColor = function (i_cell, i_target) {
       let res = '';
-      let days = 1;
-      if (this.num_tbl >= 300) {
-        days = this.season_length * 30
-      }
-
-      cNum = parseInt(i_cell * 100 / (i_target * days), 10);
+      cNum = parseInt(i_cell * 100 / i_target , 10);
       switch (true) {
         case 0 <= cNum && cNum < 50:
           res = '<td style="color:red;">' + i_cell + '</td>';
@@ -1836,49 +1826,30 @@
     $('.lbl_target_en').each(function () {
       let num_tbl = $(this).attr('myNum');
       let scope = Math.trunc(num_tbl / 100);
-      let days = 1;
-      if (num_tbl >= 300) {
-        days = myCrop[num_tbl].season_length * 30
-      }
 
       myCrop[num_tbl].dom_lbl_target_en = $(this);
-      $(this).text((target_en[scope] * days).toFixed(0));
+      $(this).text(target_en[scope].toFixed(0));
     });
 
     $('.lbl_target_pr').each(function () {
       let num_tbl = $(this).attr('myNum');
       let scope = Math.trunc(num_tbl / 100);
-      let days = 1;
-      if (num_tbl >= 300) {
-        days = myCrop[num_tbl].season_length * 30
-      }
-
       myCrop[num_tbl].dom_lbl_target_pr = $(this);
-      $(this).text((target_pr[scope] * days).toFixed(0));
+      $(this).text(target_pr[scope].toFixed(0));
     });
 
     $('.lbl_target_va').each(function () {
       let num_tbl = $(this).attr('myNum');
       let scope = Math.trunc(num_tbl / 100);
-      let days = 1;
-      if (num_tbl >= 300) {
-        days = myCrop[num_tbl].season_length * 30
-      }
-
       myCrop[num_tbl].dom_lbl_target_va = $(this);
-      $(this).text((target_va[scope] * days).toFixed(0));
+      $(this).text(target_va[scope].toFixed(0));
     });
 
     $('.lbl_target_fe').each(function () {
       let num_tbl = $(this).attr('myNum');
       let scope = Math.trunc(num_tbl / 100);
-      let days = 1;
-      if (num_tbl >= 300) {
-        days = myCrop[num_tbl].season_length * 30
-      }
-
       myCrop[num_tbl].dom_lbl_target_fe = $(this);
-      $(this).text((target_fe[scope] * days).toFixed(0));
+      $(this).text(target_fe[scope].toFixed(0));
     });
     //-------------
 
