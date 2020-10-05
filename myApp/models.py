@@ -224,6 +224,10 @@ class DRI(models.Model):
     verbose_name='iron',
     default=0
   )
+  max_vol = models.IntegerField(
+    verbose_name='maxVol',
+    default=200,
+  )
 
 #this is a test
 
