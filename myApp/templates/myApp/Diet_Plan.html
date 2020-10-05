@@ -702,7 +702,7 @@
       console.group('Crop_Selected.setData_fromAvailable:');
       let res = false;
       if (drawFlag) {       //rowの追加
-                            //データセットの作成1:buy_prod_share設定
+        //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {
@@ -1414,7 +1414,7 @@
 
         if (current_sum + new_weight - current_vol > max_vol) {
           alert('total volume offood exceeded daily consumption limit.\n' +
-                  'please re-adjust volume of each food item so that total volume fit within ' + max_vol);
+                  'please re-adjust volume of each food item so that total volume fit within ' + max_vol + 'g');
           return false;
         }
 
@@ -1435,7 +1435,8 @@
         let new_weight = Number($('#food_weight_community').val()) * 1000;  //g --> kg への変換
         if (current_sum + new_weight - current_vol > max_vol) {
           alert('total volume offood exceeded daily consumption limit.\n' +
-                  'please re-adjust volume of each food item so that total volume fit within ' + String(max_vol / 1000));
+                  'please re-adjust volume of each food item so that total volume fit within ' +
+                  String(max_vol / 1000) + 'kg');
           return false;
         }
         let share_prod_buy_tmp = 10;
