@@ -549,19 +549,23 @@
     var target_pr = [];
     var target_va = [];
     var target_fe = [];
+    var target_vol = [];
 
     target_en[1] = {{dri_e1}};
     target_pr[1] = {{dri_p1}};
     target_va[1] = {{dri_v1}};
     target_fe[1] = {{dri_f1}};
+    target_vol[1] = {{dri_vol1}};
     target_en[2] = {{dri_e2}};
     target_pr[2] = {{dri_p2}};
     target_va[2] = {{dri_v2}};
     target_fe[2] = {{dri_f2}};
+    target_vol[2] = {{dri_vol2}};
     target_en[3] = {{dri_e3}};
     target_pr[3] = {{dri_p3}};
     target_va[3] = {{dri_v3}};
     target_fe[3] = {{dri_f3}};
+    target_vol[3] = {{dri_vol3}};
 
 
     let url_tmp = window.location.href.split('/');
@@ -638,6 +642,7 @@
         this.sum_pr = 0;
         this.sum_va = 0;
         this.sum_fe = 0;
+        this.sum_vol = 0;
         this.month = 0;
         this.season = 0;
         this.season_length = 1;
@@ -650,6 +655,7 @@
         this.target_pr = target_pr[target_scope];
         this.target_va = target_va[target_scope];
         this.target_fe = target_fe[target_scope];
+        this.target_vol = target_vol[target_scope];
 
         //関連DOM要素の指定 lbl_target_en
         this.dom_lbl_target_en = '';
@@ -945,19 +951,19 @@
       } else if (rate_en < 1) {
         rate_en = 1;
       }
-      let rate_pr = Math.round(this.sum_pr * 10 / this.target_pr );
+      let rate_pr = Math.round(this.sum_pr * 10 / this.target_pr);
       if (rate_pr > 10) {
         rate_pr = 10;
       } else if (rate_pr < 1) {
         rate_pr = 1;
       }
-      let rate_va = Math.round(this.sum_va * 10 / this.target_va );
+      let rate_va = Math.round(this.sum_va * 10 / this.target_va);
       if (rate_va > 10) {
         rate_va = 10;
       } else if (rate_va < 1) {
         rate_va = 1;
       }
-      let rate_fe = Math.round(this.sum_fe * 10 / this.target_fe );
+      let rate_fe = Math.round(this.sum_fe * 10 / this.target_fe);
       if (rate_fe > 10) {
         rate_fe = 10;
       } else if (rate_fe < 1) {
@@ -971,7 +977,7 @@
     };
     Crop_Selected.prototype._setCellColor = function (i_cell, i_target) {
       let res = '';
-      cNum = parseInt(i_cell * 100 / i_target , 10);
+      cNum = parseInt(i_cell * 100 / i_target, 10);
       switch (true) {
         case 0 <= cNum && cNum < 50:
           res = '<td style="color:red;">' + i_cell + '</td>';
@@ -997,6 +1003,7 @@
       let sum_pr_tmp = 0;
       let sum_va_tmp = 0;
       let sum_fe_tmp = 0;
+      let sum_vol_tmp = 0;
       let sum_pfc_carbo_tmp = 0;
       let sum_pfc_prot_tmp = 0;
       let sum_pfc_fat_tmp = 0;
@@ -1031,6 +1038,7 @@
         sum_pr_tmp += elem.Protein * weight / 100;
         sum_va_tmp += elem.VITA_RAE * weight / 100;
         sum_fe_tmp += elem.FE * weight / 100;
+        sum_vol_tmp += weight;
         sum_pfc_carbo_tmp += elem.Carbohydrate * weight / 100;
         sum_pfc_prot_tmp += elem.Protein * weight / 100;
         sum_pfc_fat_tmp += elem.Fat * weight / 100;
@@ -1053,11 +1061,13 @@
       this.sum_pr = sum_pr_tmp;
       this.sum_va = sum_va_tmp;
       this.sum_fe = sum_fe_tmp;
+      this.sum_vol = sum_vol_tmp;
       let sum = sum_pfc_carbo_tmp + sum_pfc_prot_tmp + sum_pfc_fat_tmp;
       let sum_source = share_buy + share_prod;
       console.log('sum_pfc_carbo_tmp=' + sum_pfc_carbo_tmp);
       console.log('sum_pfc_prot_tmp=' + sum_pfc_prot_tmp);
       console.log('sum_pfc_fat_tmp=' + sum_pfc_fat_tmp);
+      console.log('sum_vol_tmp=' + sum_vol_tmp);
       this.PFC_carbo = Math.round(sum_pfc_carbo_tmp * 100 / sum) || 0;
       this.PFC_prot = Math.round(sum_pfc_prot_tmp * 100 / sum) || 0;
       this.PFC_fat = Math.round(sum_pfc_fat_tmp * 100 / sum) || 0;
@@ -1393,8 +1403,21 @@
     };
     Crop_individual.prototype.getData_FoodWt = function () {
       console.group('Crop_individual:getData_FoodWt');
+      let current_sum = Number(this.dom_modal.attr('sum_vol'));
+      let current_vol = Number(this.data.total_weight);
+      let max_vol = Number(target_vol[this.data.target_scope]);
+      let portion_size = this.data.portion_size;
+
       if (this.num_tbl < 300) { // individual/familyとcommunityで計算方法を切り替える
         let count_all = Number(this.dom_br_count.children("option:selected").val());
+        let new_weight = portion_size * count_all;
+
+        if (current_sum + new_weight - current_vol > max_vol) {
+          alert('total volume offood exceeded daily consumption limit.\n' +
+                  'please re-adjust volume of each food item so that total volume fit within ' + max_vol);
+          return false;
+        }
+
         let share_prod_buy_tmp = Number(this.data.share_prod_buy);
         if (share_prod_buy_tmp === 100) {
           share_prod_buy_tmp = 10;
@@ -1404,18 +1427,20 @@
         }
         let count_prod = Math.trunc(count_all * share_prod_buy_tmp / 10);
         let count_buy = count_all - count_prod;
-        let portion_size = this.data.portion_size;
         this.data.count_prod = count_prod;
         this.data.count_buy = count_buy;
-        this.data.total_weight = portion_size * count_all;
+        this.data.total_weight = new_weight;
 
       } else {                        // individual/familyとcommunityで計算方法を切り替える
-        let weight = Number($('#food_weight_community').val()) * 1000;  //g --> kg への変換
-        console.error(weight);
+        let new_weight = Number($('#food_weight_community').val()) * 1000;  //g --> kg への変換
+        if (current_sum + new_weight - current_vol > max_vol) {
+          alert('total volume offood exceeded daily consumption limit.\n' +
+                  'please re-adjust volume of each food item so that total volume fit within ' + String(max_vol / 1000));
+          return false;
+        }
         let share_prod_buy_tmp = 10;
-        let portion_size = this.data.portion_size;
-        this.data.total_weight = weight;
-        this.data.count_prod = Math.trunc(weight / portion_size);
+        this.data.total_weight = new_weight;
+        this.data.count_prod = Math.trunc(new_weight / portion_size);
         this.data.count_buy = 0;
       }
       console.log(this.data.name + 'を更新します');
@@ -1529,9 +1554,11 @@
       let myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');//テーブル番号の取得
       let myrow = $(this).closest('tbody tr')[0].rowIndex;
       if (myrow < $(this).parents().children('tbody tr').length) {
+        myCrop[myNum_tmp]._Sum_Nutrition();
         let dat = myCrop[myNum_tmp]._getCrop_byRow(myrow);
         myCrop_individual[myNum_tmp].setData(dat);
         myfood_volume['modal'].attr('myNum', myNum_tmp); //table番号の記録
+        myfood_volume['modal'].attr('sum_vol', myCrop[myNum_tmp].sum_vol); //摂取量上限の記録
         myfood_volume['modal'].modal('show');
       }
       console.groupEnd();
@@ -1543,6 +1570,9 @@
       let myNum_tmp = myfood_volume.modal.attr('myNum');//テーブル番号の取得
       console.log('table(' + myNum_tmp + ')を変更します');
       let data = myCrop_individual[myNum_tmp].getData_FoodWt();
+      if (data == false) {
+        return false;
+      }
       console.error(data);
       myCrop[myNum_tmp].setDataDraw_Crop(data);
 
