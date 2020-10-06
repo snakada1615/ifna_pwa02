@@ -1915,7 +1915,6 @@ class Output3(LoginRequiredMixin, TemplateView):
       myLocation=self.kwargs['myLocation'])
     context['nutrient_target'] = tmp_nut_group[0].nut_group
 
-
     # send selected crop by community ######
     # --------------------create 16 Crop_individual-------------------------
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation'])
@@ -2044,9 +2043,33 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
     context = super().get_context_data(**kwargs)
     context['myuser'] = self.request.user
     context['isUpdate'] = 0
+    myLoc = Location.objects.get(id=self.request.user.profile.myLocation)
+    context['myLocation'] = myLoc
+    tmp_nut_group = Person.objects.filter(
+      myLocation=myLoc).select_related('myDRI')
+    context['nutrient_target'] = tmp_nut_group[0].nut_group
+
+    tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
+    tmp_e = 0
+    tmp_p = 0
+    tmp_v = 0
+    tmp_f = 0
+    tmp_vol = 0
+    if len(tmp_nut_group1) > 0:
+      for tmp in tmp_nut_group1:
+        tmp_e += tmp.myDRI.energy
+        tmp_p += tmp.myDRI.protein
+        tmp_v += tmp.myDRI.vita
+        tmp_f += tmp.myDRI.fe
+        tmp_vol += tmp.myDRI.max_vol
+    context['dri_e1'] = tmp_e
+    context['dri_p1'] = tmp_p
+    context['dri_v1'] = tmp_v
+    context['dri_f1'] = tmp_f
+    context['dri_vol1'] = tmp_vol
 
     # send non-available crop in the original list ######
-    tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.request.user.profile.myLocation).select_related(
+    tmp01 = Crop_SubNational.objects.filter(myLocation_id=myLoc).select_related(
       'myFCT')
     available_list = []
     for tmp02 in tmp01:
@@ -2140,6 +2163,14 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['myLocation'] = self.request.user.profile.myLocation
     context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
 
+    # tmp = Crop_Feasibility.objects.get(myLocation_id=self.request.user.profile.myLocation)
+    # context['score_nut'] = round(tmp.feas_DRI_e * 10 / 3)
+    # context['score_soc'] = round((tmp.feas_soc_acceptable + tmp.feas_soc_acceptable_wo + tmp.feas_soc_acceptable_c5 +
+    #                               tmp.feas_affordability) * 10 / 12)
+    # context['score_tec'] = round((tmp.feas_prod_skill + tmp.feas_workload + tmp.feas_tech_service) * 10 / 12)
+    # context['score_inv'] = round((tmp.feas_invest_fixed + tmp.feas_invest_variable) * 10 / 8)
+    # context['score_sus'] = round((tmp.feas_availability_prod + tmp.feas_storability) * 10 / 6)
+
     tmp_Param = SetURL(500, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
@@ -2196,10 +2227,38 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
     context = super().get_context_data(**kwargs)
     context['isUpdate'] = 1
     context['myuser'] = self.request.user
-    context['myLocation'] = self.request.user.profile.myLocation
+    myLoc = self.request.user.profile.myLocation
+    context['myLocation'] = myLoc
     context['crop_name'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.Food_name
     context['crop_name_id'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.food_item_id
+    context['crop_en'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.Energy
+    context['crop_pr'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.Protein
+    context['crop_va'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.VITA_RAE
+    context['crop_fe'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.FE
     context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
+
+    tmp_nut_group = Person.objects.filter(
+      myLocation=myLoc).select_related('myDRI')
+    context['nutrient_target'] = tmp_nut_group[0].nut_group
+
+    tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
+    tmp_e = 0
+    tmp_p = 0
+    tmp_v = 0
+    tmp_f = 0
+    tmp_vol = 0
+    if len(tmp_nut_group1) > 0:
+      for tmp in tmp_nut_group1:
+        tmp_e += tmp.myDRI.energy
+        tmp_p += tmp.myDRI.protein
+        tmp_v += tmp.myDRI.vita
+        tmp_f += tmp.myDRI.fe
+        tmp_vol += tmp.myDRI.max_vol
+    context['dri_e1'] = tmp_e
+    context['dri_p1'] = tmp_p
+    context['dri_v1'] = tmp_v
+    context['dri_f1'] = tmp_f
+    context['dri_vol1'] = tmp_vol
 
     # send non-available crop in the original list 無意味なのですが######
     tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.request.user.profile.myLocation)

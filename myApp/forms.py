@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.admin import widgets
 from django.contrib.auth.models import User
-from django.db.models import Q, Sum # 集計関数の追加
+from django.db.models import Q, Sum  # 集計関数の追加
 from django.db.models import Max  # 集計関数の追加
 from .models import Location, Person, Profile, Crop_Feasibility, FCT, Crop_SubNational, Countries, Crop_Name
 from django.contrib.auth.models import User
@@ -114,10 +114,10 @@ class Crop_Feas_Form(forms.ModelForm):
   class Meta:
     model = Crop_Feasibility
     fields = (
-      'crop_name', 'crop_name_id', 'feas_DRI_e', 'feas_DRI_p', 'feas_DRI_a', 'feas_DRI_f', 'feas_soc_acceptable',
+      'crop_name', 'crop_name_id', 'feas_DRI_e', 'feas_soc_acceptable',
       'feas_soc_acceptable_wo',
       'feas_soc_acceptable_c5', 'feas_prod_skill', 'feas_workload', 'feas_tech_service', 'feas_invest_fixed',
-      'feas_invest_variable', 'feas_availability_prod', 'feas_availability_non', 'feas_affordability',
+      'feas_invest_variable', 'feas_availability_prod', 'feas_affordability',
       'feas_storability', 'crop_score', 'myFCT', 'created_by')
     widgets = {
       'crop_score': forms.HiddenInput(),
@@ -127,10 +127,7 @@ class Crop_Feas_Form(forms.ModelForm):
       'crop_name_id': forms.HiddenInput(),
     }
     labels = {
-      "feas_DRI_e": "Is required amount for energy target feasible?",
-      "feas_DRI_p": "Is required amount for protein target feasible?",
-      "feas_DRI_a": "Is required amount for vit-A target feasible?",
-      "feas_DRI_f": "Is required amount for Iron target feasible?",
+      "feas_DRI_e": "Is required amount for nutrtion target feasible?",
       "feas_soc_acceptable": "Is there any social bariier to consume this commodity in general?",
       "feas_soc_acceptable_wo": "Is there any social barrier to consume this commodity for women?",
       "feas_soc_acceptable_c5": "Is there any social barrier to consume this commodity for child?",
@@ -139,7 +136,6 @@ class Crop_Feas_Form(forms.ModelForm):
       "feas_tech_service": "Is technical service available for this commodity?",
       "feas_invest_fixed": "Is there need for specific infrastructure (irrigation / postharvest, etc.)?",
       "feas_invest_variable": "Is production input (fertilizer, seed, feed) become financial burden for small farmer?",
-      "feas_availability_non": "How many month is this commodity NOT available in a year?",
       "feas_availability_prod": "How many month can you harvest this commodity in a year?",
       "feas_affordability": "Is this commodity affordable in the market for ordinary population?",
       "feas_storability": "Are there any feasible storage medhod available for this commodity?",
@@ -148,15 +144,18 @@ class Crop_Feas_Form(forms.ModelForm):
   def clean(self):
     cleaned_data = super(Crop_Feas_Form, self).clean()
     self.cleaned_data['myFCT'] = FCT.objects.get(food_item_id=self.cleaned_data['crop_name_id'])
-    self.cleaned_data['crop_score'] = int(self.cleaned_data['feas_DRI_e']) + int(
-      self.cleaned_data['feas_DRI_p']) + int(self.cleaned_data['feas_DRI_a']) + int(
-      self.cleaned_data['feas_DRI_f']) + int(self.cleaned_data['feas_soc_acceptable']) + int(
+    tmp_nut = round(int(self.cleaned_data['feas_DRI_e']) * 10 / 3)
+    tmp_soc = round((int(self.cleaned_data['feas_soc_acceptable']) + int(
       self.cleaned_data['feas_soc_acceptable_c5']) + int(self.cleaned_data['feas_soc_acceptable_wo']) + int(
+      self.cleaned_data['feas_affordability'])) * 10 / 12)
+    tmp_tec = round((int(
       self.cleaned_data['feas_prod_skill']) + int(self.cleaned_data['feas_workload']) + int(
-      self.cleaned_data['feas_tech_service']) + int(
-      self.cleaned_data['feas_invest_fixed']) + int(self.cleaned_data['feas_invest_variable']) + int(
-      self.cleaned_data['feas_availability_prod']) + int(self.cleaned_data['feas_availability_non']) + int(
-      self.cleaned_data['feas_affordability']) + int(self.cleaned_data['feas_storability'])
+      self.cleaned_data['feas_tech_service'])) * 10 / 12)
+    tmp_inv = round(
+      (int(self.cleaned_data['feas_invest_fixed']) + int(self.cleaned_data['feas_invest_variable'])) * 10 / 8)
+    tmp_sus = round(
+      (int(self.cleaned_data['feas_availability_prod']) + int(self.cleaned_data['feas_storability'])) * 10 / 6)
+    self.cleaned_data['crop_score'] = tmp_nut + tmp_soc + tmp_tec + tmp_inv + tmp_sus
 
     logger.info(self.cleaned_data['crop_score'])
     logger.info(self.cleaned_data['myFCT'])
@@ -164,7 +163,7 @@ class Crop_Feas_Form(forms.ModelForm):
       logger.info(ele)
 
     # add to Crop_subnational if score is over 35
-    if self.cleaned_data['crop_score'] >= 35:
+    if self.cleaned_data['crop_score'] >= 22:
       logger.info('high score')
       Crop_SubNational.objects.update_or_create(
         myLocation=Location.objects.get(id=self.user.profile.myLocation),
@@ -210,7 +209,7 @@ class FCTForm(forms.ModelForm):
 
 
 class Crop_Name_Form(forms.ModelForm):
-  #set queryset
+  # set queryset
   # Food_grp = forms.ModelChoiceField(label='local food group',
   #                           queryset=FCT.objects.values_list('Food_grp_unicef', flat=True).distinct())
   Food_grp = forms.ChoiceField(label='local food group')
@@ -234,7 +233,6 @@ class Crop_Name_Form(forms.ModelForm):
       "Food_name": "local food name",
     }
 
-
   def clean(self):
     cleaned_data = super(Crop_Name_Form, self).clean()
     logger.info(self.cleaned_data['Food_grp'])
@@ -242,7 +240,3 @@ class Crop_Name_Form(forms.ModelForm):
     self.cleaned_data['myCountry'] = Countries.objects.get(id=self.cleaned_data['myCountry'])
 
     return cleaned_data
-
-
-
-
