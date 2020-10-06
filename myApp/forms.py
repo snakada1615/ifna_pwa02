@@ -162,8 +162,8 @@ class Crop_Feas_Form(forms.ModelForm):
     for ele in self.cleaned_data:
       logger.info(ele)
 
-    # add to Crop_subnational if score is over 35
-    if self.cleaned_data['crop_score'] >= 22:
+    # add to Crop_subnational if score is over 30
+    if self.cleaned_data['crop_score'] >= 30:
       logger.info('high score')
       Crop_SubNational.objects.update_or_create(
         myLocation=Location.objects.get(id=self.user.profile.myLocation),

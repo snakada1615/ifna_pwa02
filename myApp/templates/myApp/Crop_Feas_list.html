@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+  <script type="text/javascript" src="{% static 'js/jquery.barrating.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/bars-1to10.css' %}">
   <div class="container" style="max-width: 540px;">
     <div class="row">
       <div class="col-2 my-0 px-3">
@@ -32,7 +34,7 @@
   </div>
 
   <div class="container" style="max-width: 540px;">
-  {% for crop in mylist %}
+  {% for crop, score_nut, score_inv, score_soc, score_sus, score_tec in mylist %}
     {% if crop.crop_score >= 22 %}
       <div class="card border-success col-12 my-2 py-0"
            style="max-width: 540px; color:#24535F ;background-color:#D9ECDC; border-width: 2px;">
@@ -78,6 +80,9 @@
             <p class="card-text my-0">{{ crop.myFCT.FE }}</p>
           </div>
         </div>
+
+        <hr>
+
         <div class="row">
           <div class="col-5">
             <p class="card-text my-0">Total score:</p>
@@ -90,40 +95,110 @@
           <div class="col-5">
             <p class="card-text my-0">Nutrition value:</p>
           </div>
-          <div class="col-7">
-            <p class="card-text my-0">{{ crop.feas_DRI_e }}</p>
+          <div class="col-7 bar">
+            <p hidden class="card-text score_val">{{ score_nut }}</p>
+            <div class="form-row no-gutters my-0" style="height:30px;">
+              <select class="rating rating_nut" myNum={{ crop.myFCT_id }}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row my-0">
           <div class="col-5">
             <p class="card-text my-0">Social acceptability:</p>
           </div>
-          <div class="col-7">
-            <p class="card-text my-0">{{ crop.feas_soc_acceptable }}</p>
+          <div class="col-7 bar">
+            <p hidden class="card-text score_val">{{ score_soc }}</p>
+            <div class="form-row no-gutters my-0" style="height:30px;">
+              <select class="rating rating_soc" myNum={{ crop.myFCT_id }}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="col-5">
             <p class="card-text my-0">Technical feasibility:</p>
           </div>
-          <div class="col-7">
-            <p class="card-text my-0">{{ crop.feas_prod_skill }}</p>
+          <div class="col-7 bar">
+            <p hidden class="card-text score_val">{{ score_tec }}</p>
+            <div class="form-row no-gutters my-0" style="height:30px;">
+              <select class="rating rating_tec" myNum={{ crop.myFCT_id }}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="col-5">
             <p class="card-text my-0">Investment:</p>
           </div>
-          <div class="col-7">
-            <p class="card-text my-0">{{ crop.feas_invest_fixed }}</p>
+          <div class="col-7 bar">
+            <p hidden class="card-text score_val">{{ score_inv }}</p>
+            <div class="form-row no-gutters my-0" style="height:30px;">
+              <select class="rating rating_inv" myNum={{ crop.myFCT_id }}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="col-5">
             <p class="card-text my-0">Stability:</p>
           </div>
-          <div class="col-7">
-            <p class="card-text my-0">{{ crop.feas_storability }}</p>
+          <div class="col-7 bar">
+            <p hidden class="card-text score_val">{{ score_sus }}</p>
+            <div class="form-row no-gutters my-0" style="height:30px;">
+              <select class="rating rating_sus" myNum={{ crop.myFCT_id }}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
           </div>
         </div>
         <span>
@@ -140,5 +215,20 @@
   </div>
   {% endfor %}
 </div>
+
+  <script type="text/javascript">
+    let mybar = $('.rating');
+    mybar.barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
+    mybar.barrating('set', 0); // set barrating
+    mybar.each(function () {
+      let rating = Number($(this).closest('.bar').find('.score_val').text());
+      $(this).barrating('set', rating);
+      console.log($(this).closest('.bar').find('.score_val').text())
+    })
+
+
+  </script>
+
+
 
 {% endblock %}

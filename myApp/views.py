@@ -2143,13 +2143,27 @@ def create_cropFeas(sender, instance, created, **kwargs):
 
 
 class Crop_Feas_ListView(LoginRequiredMixin, ListView):
-  model = Crop_Feasibility
   context_object_name = "mylist"
   template_name = 'myApp/Crop_Feas_list.html'
 
   def get_queryset(self):
-    queryset = super().get_queryset().filter(created_by=self.request.user).filter(
+    tmp0 = Crop_Feasibility.objects.filter(created_by=self.request.user).filter(
       myLocation=self.request.user.profile.myLocation)
+    score_nut = []
+    score_soc = []
+    score_tec = []
+    score_inv = []
+    score_sus = []
+    for tmp1 in tmp0:
+      score_nut.append(round(tmp1.feas_DRI_e * 10 / 3))
+      score_soc.append(round((tmp1.feas_soc_acceptable + tmp1.feas_soc_acceptable_wo + tmp1.feas_soc_acceptable_c5 +
+                                    tmp1.feas_affordability) * 10 / 12))
+      score_tec.append(round((tmp1.feas_prod_skill + tmp1.feas_workload + tmp1.feas_tech_service) * 10 / 12))
+      score_inv.append(round((tmp1.feas_invest_fixed + tmp1.feas_invest_variable) * 10 / 8))
+      score_sus.append(round((tmp1.feas_availability_prod + tmp1.feas_storability) * 10 / 6))
+    tmp1 = zip(tmp0, score_nut, score_inv, score_soc, score_sus, score_tec)
+
+    return tmp1
 
     logger.info(self.request.user)
     logger.info(self.request.user.profile.myLocation)
@@ -2162,14 +2176,6 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['myuser'] = self.request.user
     context['myLocation'] = self.request.user.profile.myLocation
     context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
-
-    # tmp = Crop_Feasibility.objects.get(myLocation_id=self.request.user.profile.myLocation)
-    # context['score_nut'] = round(tmp.feas_DRI_e * 10 / 3)
-    # context['score_soc'] = round((tmp.feas_soc_acceptable + tmp.feas_soc_acceptable_wo + tmp.feas_soc_acceptable_c5 +
-    #                               tmp.feas_affordability) * 10 / 12)
-    # context['score_tec'] = round((tmp.feas_prod_skill + tmp.feas_workload + tmp.feas_tech_service) * 10 / 12)
-    # context['score_inv'] = round((tmp.feas_invest_fixed + tmp.feas_invest_variable) * 10 / 8)
-    # context['score_sus'] = round((tmp.feas_availability_prod + tmp.feas_storability) * 10 / 6)
 
     tmp_Param = SetURL(500, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
