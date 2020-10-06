@@ -1357,6 +1357,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
+    context['myStep'] = 400
 
     tmp_Param = SetURL(400, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
@@ -1371,7 +1372,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
 
 
 class Diet_Plan2(LoginRequiredMixin, TemplateView):
-  template_name = "myApp/Diet_Plan_additional.html"
+  template_name = "myApp/Diet_Plan.html"
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
@@ -1387,48 +1388,57 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     tmp_p = 0
     tmp_v = 0
     tmp_f = 0
+    tmp_vol = 0
     if len(tmp_nut_group1) > 0:
       for tmp in tmp_nut_group1:
         tmp_e += tmp.myDRI.energy
         tmp_p += tmp.myDRI.protein
         tmp_v += tmp.myDRI.vita
         tmp_f += tmp.myDRI.fe
+        tmp_vol += tmp.myDRI.max_vol
     context['dri_e1'] = tmp_e
     context['dri_p1'] = tmp_p
     context['dri_v1'] = tmp_v
     context['dri_f1'] = tmp_f
+    context['dri_vol1'] = tmp_vol
 
     tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
     tmp_e = 0
     tmp_p = 0
     tmp_v = 0
     tmp_f = 0
+    tmp_vol = 0
     if len(tmp_nut_group2) > 0:
       for tmp in tmp_nut_group2:
         tmp_e += tmp.myDRI.energy * tmp.target_pop
         tmp_p += tmp.myDRI.protein * tmp.target_pop
         tmp_v += tmp.myDRI.vita * tmp.target_pop
         tmp_f += tmp.myDRI.fe * tmp.target_pop
+        tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
     context['dri_e2'] = tmp_e
     context['dri_p2'] = tmp_p
     context['dri_v2'] = tmp_v
     context['dri_f2'] = tmp_f
+    context['dri_vol2'] = tmp_vol
 
     tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
     tmp_e = 0
     tmp_p = 0
     tmp_v = 0
     tmp_f = 0
+    tmp_vol = 0
     if len(tmp_nut_group3) > 0:
       for tmp in tmp_nut_group3:
         tmp_e += tmp.myDRI.energy * tmp.target_pop
         tmp_p += tmp.myDRI.protein * tmp.target_pop
         tmp_v += tmp.myDRI.vita * tmp.target_pop
         tmp_f += tmp.myDRI.fe * tmp.target_pop
+        tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
     context['dri_e3'] = tmp_e
     context['dri_p3'] = tmp_p
     context['dri_v3'] = tmp_v
     context['dri_f3'] = tmp_f
+    context['dri_vol3'] = tmp_vol
 
     ########### send number of season   ###########
     tmp = Season.objects.filter(myLocation=self.kwargs['myLocation'])[0]
@@ -1438,6 +1448,7 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
                   'Dec']
     mydat = {}
     myseason = []
+    season_name = []
     month_season1 = {}
     month_season2 = {}
     month_season1_text = {}
@@ -1454,7 +1465,7 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
         if season_index > 0:
           month_season2[season_index - 1] = myindex
         prev_dat = tmpdat
-      if myindex == 11:  # 最終付の処理
+      if myindex == 11:  # 最終月の処理
         month_season2[season_index] = 12  # 最後の季節を12月で締める
         if mydat['m1_season'] == mydat['m12_season']:  # 季節が年をまたいでいる場合の処理
           month_season1[1] = month_season1[season_index]
@@ -1483,6 +1494,12 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
       myRange.append(i + 300)
 
     context['season_list'] = myseason
+
+    season_name.append(str(getattr(tmp, 'season_name1')))
+    season_name.append(str(getattr(tmp, 'season_name2')))
+    season_name.append(str(getattr(tmp, 'season_name3')))
+    season_name.append(str(getattr(tmp, 'season_name4')))
+    context['season_name'] = season_name
 
     #######################################################
 
@@ -1605,6 +1622,7 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
+    context['myStep'] = 700
 
     tmp_Param = SetURL(700, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
