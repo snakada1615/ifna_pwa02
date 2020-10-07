@@ -2184,6 +2184,9 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     logger.info(self.request.user.profile.myLocation)
 
     return tmp1
+    logger.info(self.request.user)
+    logger.info(self.request.user.profile.myLocation)
+
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
