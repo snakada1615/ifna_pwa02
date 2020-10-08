@@ -21,7 +21,11 @@
       <div class="row">
         {% include "./_dialog01.html" %}
         <div class="col-2 my-0 px-3">
+            {% if myStep == 400 %}
           <img src="{% static 'img/no4.png' %}" alt="number 4">
+            {% elif myStep == 700 %}
+          <img src="{% static 'img/no7.png' %}" alt="number 4">
+            {% endif %}
         </div>
         <div class="col-8 my-0 px-1">
           <h5>
@@ -467,20 +471,19 @@
 
     /* Table row/cellの色設定：青色グラデーション */
     .rowcolor_100 {
-      background-color: #0080ff;
-      color: whitesmoke;
+      background-color: #971066;
+      color: white;
     }
 
     .rowcolor_75 {
-      background-color: #66b2ff;
-      color: whitesmoke;
+      background-color: #E93EAA;
+      color: white;
     }
 
     .rowcolor_50 {
-      background-color: #cce5ff;
-      color: black;
+      background-color: #F6B0DC;
+      color: white;
     }
-
     .rowcolor_0 {
       background-color: white;
       color: black;

@@ -1357,6 +1357,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
+    context['myStep'] = 400
 
     tmp_Param = SetURL(400, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
@@ -1371,7 +1372,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
 
 
 class Diet_Plan2(LoginRequiredMixin, TemplateView):
-  template_name = "myApp/Diet_Plan_additional.html"
+  template_name = "myApp/Diet_Plan.html"
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
@@ -1387,48 +1388,57 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     tmp_p = 0
     tmp_v = 0
     tmp_f = 0
+    tmp_vol = 0
     if len(tmp_nut_group1) > 0:
       for tmp in tmp_nut_group1:
         tmp_e += tmp.myDRI.energy
         tmp_p += tmp.myDRI.protein
         tmp_v += tmp.myDRI.vita
         tmp_f += tmp.myDRI.fe
+        tmp_vol += tmp.myDRI.max_vol
     context['dri_e1'] = tmp_e
     context['dri_p1'] = tmp_p
     context['dri_v1'] = tmp_v
     context['dri_f1'] = tmp_f
+    context['dri_vol1'] = tmp_vol
 
     tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
     tmp_e = 0
     tmp_p = 0
     tmp_v = 0
     tmp_f = 0
+    tmp_vol = 0
     if len(tmp_nut_group2) > 0:
       for tmp in tmp_nut_group2:
         tmp_e += tmp.myDRI.energy * tmp.target_pop
         tmp_p += tmp.myDRI.protein * tmp.target_pop
         tmp_v += tmp.myDRI.vita * tmp.target_pop
         tmp_f += tmp.myDRI.fe * tmp.target_pop
+        tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
     context['dri_e2'] = tmp_e
     context['dri_p2'] = tmp_p
     context['dri_v2'] = tmp_v
     context['dri_f2'] = tmp_f
+    context['dri_vol2'] = tmp_vol
 
     tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
     tmp_e = 0
     tmp_p = 0
     tmp_v = 0
     tmp_f = 0
+    tmp_vol = 0
     if len(tmp_nut_group3) > 0:
       for tmp in tmp_nut_group3:
         tmp_e += tmp.myDRI.energy * tmp.target_pop
         tmp_p += tmp.myDRI.protein * tmp.target_pop
         tmp_v += tmp.myDRI.vita * tmp.target_pop
         tmp_f += tmp.myDRI.fe * tmp.target_pop
+        tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
     context['dri_e3'] = tmp_e
     context['dri_p3'] = tmp_p
     context['dri_v3'] = tmp_v
     context['dri_f3'] = tmp_f
+    context['dri_vol3'] = tmp_vol
 
     ########### send number of season   ###########
     tmp = Season.objects.filter(myLocation=self.kwargs['myLocation'])[0]
@@ -1438,6 +1448,7 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
                   'Dec']
     mydat = {}
     myseason = []
+    season_name = []
     month_season1 = {}
     month_season2 = {}
     month_season1_text = {}
@@ -1454,7 +1465,7 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
         if season_index > 0:
           month_season2[season_index - 1] = myindex
         prev_dat = tmpdat
-      if myindex == 11:  # 最終付の処理
+      if myindex == 11:  # 最終月の処理
         month_season2[season_index] = 12  # 最後の季節を12月で締める
         if mydat['m1_season'] == mydat['m12_season']:  # 季節が年をまたいでいる場合の処理
           month_season1[1] = month_season1[season_index]
@@ -1483,6 +1494,12 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
       myRange.append(i + 300)
 
     context['season_list'] = myseason
+
+    season_name.append(str(getattr(tmp, 'season_name1')))
+    season_name.append(str(getattr(tmp, 'season_name2')))
+    season_name.append(str(getattr(tmp, 'season_name3')))
+    season_name.append(str(getattr(tmp, 'season_name4')))
+    context['season_name'] = season_name
 
     #######################################################
 
@@ -1605,6 +1622,7 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
+    context['myStep'] = 700
 
     tmp_Param = SetURL(700, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
@@ -1689,6 +1707,20 @@ class Output1(LoginRequiredMixin, TemplateView):
       myLocation=self.kwargs['myLocation'])
     context['nutrient_target'] = tmp_nut_group[0].nut_group
 
+    month_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
+                    'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
+    tmp_seasons = Season.objects.get(myLocation_id=self.kwargs['myLocation'])
+    month = []
+    season_name = []
+    season_field = ['season_name4', 'season_name1', 'season_name2', 'season_name3']
+    for tmp in month_field:
+      s_val = getattr(tmp_seasons, tmp)
+      if s_val not in month:
+        month.append(s_val)
+    for tmp2 in month:
+      season_name.append(getattr(tmp_seasons, season_field[tmp2]))
+    context["season_name"] = season_name
+
     tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
     tmp_e = 0
     tmp_p = 0
@@ -1736,46 +1768,26 @@ class Output1(LoginRequiredMixin, TemplateView):
 
     # send selected crop by community ######
     # --------------------create 16 Crop_individual-------------------------
-    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation'])
-    myRange = [101, 102, 103, 104]
+    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).filter(target_scope=1)
     d = []
-    for i in myRange:
-      tmp02 = tmp01.filter(id_table=i)
-      if tmp02.count() == 0:
+    if tmp01.count() > 0:
+      for tmp02 in tmp01:
         dd = {}
-        dd["name"] = ''
-        dd["Energy"] = ''
-        dd["Protein"] = ''
-        dd["VITA_RAE"] = ''
-        dd["FE"] = ''
-        dd["target_scope"] = ''
-        dd["food_item_id"] = ''
-        dd["portion_size"] = ''
-        dd["total_weight"] = ''
-        dd["count_prod"] = ''
-        dd["count_buy"] = ''
-        dd["month"] = ''
-        dd["myLocation"] = ''
-        dd["myid_tbl"] = i
+        dd["name"] = tmp02.myFCT.Food_name
+        dd["Energy"] = tmp02.myFCT.Energy
+        dd["Protein"] = tmp02.myFCT.Protein
+        dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
+        dd["FE"] = tmp02.myFCT.FE
+        dd["target_scope"] = tmp02.target_scope
+        dd["food_item_id"] = tmp02.myFCT.food_item_id
+        dd["portion_size"] = tmp02.portion_size
+        dd["total_weight"] = tmp02.total_weight
+        dd["count_prod"] = tmp02.count_prod
+        dd["count_buy"] = tmp02.count_buy
+        dd["month"] = tmp02.month
+        dd["myLocation"] = tmp02.myLocation_id
+        dd["myid_tbl"] = tmp02.id_table
         d.append(dd)
-      else:
-        for tmp03 in tmp02:
-          dd = {}
-          dd["name"] = tmp03.myFCT.Food_name
-          dd["Energy"] = tmp03.myFCT.Energy
-          dd["Protein"] = tmp03.myFCT.Protein
-          dd["VITA_RAE"] = tmp03.myFCT.VITA_RAE
-          dd["FE"] = tmp03.myFCT.FE
-          dd["target_scope"] = tmp03.target_scope
-          dd["food_item_id"] = tmp03.myFCT.food_item_id
-          dd["portion_size"] = tmp03.portion_size
-          dd["total_weight"] = tmp03.total_weight
-          dd["count_prod"] = tmp03.count_prod
-          dd["count_buy"] = tmp03.count_buy
-          dd["month"] = tmp03.month
-          dd["myLocation"] = tmp03.myLocation_id
-          dd["myid_tbl"] = tmp03.id_table
-          d.append(dd)
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
@@ -1802,6 +1814,21 @@ class Output2(LoginRequiredMixin, TemplateView):
       myLocation=self.kwargs['myLocation'])
     context['nutrient_target'] = tmp_nut_group[0].nut_group
 
+    month_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
+                    'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
+    tmp_seasons = Season.objects.get(myLocation_id=self.kwargs['myLocation'])
+    month = []
+    season_name = []
+    season_field = ['season_name4', 'season_name1', 'season_name2', 'season_name3']
+    for tmp in month_field:
+      s_val = getattr(tmp_seasons, tmp)
+      if s_val not in month:
+        month.append(s_val)
+    for tmp2 in month:
+      season_name.append(getattr(tmp_seasons, season_field[tmp2]))
+    context["season_name"] = season_name
+
+
     tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
     tmp_e = 0
     tmp_p = 0
@@ -1849,46 +1876,27 @@ class Output2(LoginRequiredMixin, TemplateView):
 
     # send selected crop by community ######
     # --------------------create 16 Crop_individual-------------------------
-    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation'])
-    myRange = [201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212]
+    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).filter(target_scope=2)
+    #myRange = [201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212]
     d = []
-    for i in myRange:
-      tmp02 = tmp01.filter(id_table=i)
-      if tmp02.count() == 0:
+    if tmp01.count() > 0:
+      for tmp02 in tmp01:
         dd = {}
-        dd["name"] = ''
-        dd["Energy"] = ''
-        dd["Protein"] = ''
-        dd["VITA_RAE"] = ''
-        dd["FE"] = ''
-        dd["target_scope"] = ''
-        dd["food_item_id"] = ''
-        dd["portion_size"] = ''
-        dd["total_weight"] = ''
-        dd["count_prod"] = ''
-        dd["count_buy"] = ''
-        dd["month"] = ''
-        dd["myLocation"] = ''
-        dd["myid_tbl"] = i
+        dd["name"] = tmp02.myFCT.Food_name
+        dd["Energy"] = tmp02.myFCT.Energy
+        dd["Protein"] = tmp02.myFCT.Protein
+        dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
+        dd["FE"] = tmp02.myFCT.FE
+        dd["target_scope"] = tmp02.target_scope
+        dd["food_item_id"] = tmp02.myFCT.food_item_id
+        dd["portion_size"] = tmp02.portion_size
+        dd["total_weight"] = tmp02.total_weight
+        dd["count_prod"] = tmp02.count_prod
+        dd["count_buy"] = tmp02.count_buy
+        dd["month"] = tmp02.month
+        dd["myLocation"] = tmp02.myLocation_id
+        dd["myid_tbl"] = tmp02.id_table
         d.append(dd)
-      else:
-        for tmp03 in tmp02:
-          dd = {}
-          dd["name"] = tmp03.myFCT.Food_name
-          dd["Energy"] = tmp03.myFCT.Energy
-          dd["Protein"] = tmp03.myFCT.Protein
-          dd["VITA_RAE"] = tmp03.myFCT.VITA_RAE
-          dd["FE"] = tmp03.myFCT.FE
-          dd["target_scope"] = tmp03.target_scope
-          dd["food_item_id"] = tmp03.myFCT.food_item_id
-          dd["portion_size"] = tmp03.portion_size
-          dd["total_weight"] = tmp03.total_weight
-          dd["count_prod"] = tmp03.count_prod
-          dd["count_buy"] = tmp03.count_buy
-          dd["month"] = tmp03.month
-          dd["myLocation"] = tmp03.myLocation_id
-          dd["myid_tbl"] = tmp03.id_table
-          d.append(dd)
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
@@ -2162,13 +2170,13 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
       score_inv.append(round((tmp1.feas_invest_fixed + tmp1.feas_invest_variable) * 10 / 8))
       score_sus.append(round((tmp1.feas_availability_prod + tmp1.feas_storability) * 10 / 6))
     tmp1 = zip(tmp0, score_nut, score_inv, score_soc, score_sus, score_tec)
-
-    return tmp1
-
     logger.info(self.request.user)
     logger.info(self.request.user.profile.myLocation)
 
-    return queryset
+    return tmp1
+    logger.info(self.request.user)
+    logger.info(self.request.user.profile.myLocation)
+
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
@@ -2176,6 +2184,14 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['myuser'] = self.request.user
     context['myLocation'] = self.request.user.profile.myLocation
     context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
+
+    # tmp = Crop_Feasibility.objects.get(myLocation_id=self.request.user.profile.myLocation)
+    # context['score_nut'] = round(tmp.feas_DRI_e * 10 / 3)
+    # context['score_soc'] = round((tmp.feas_soc_acceptable + tmp.feas_soc_acceptable_wo + tmp.feas_soc_acceptable_c5 +
+    #                               tmp.feas_affordability) * 10 / 12)
+    # context['score_tec'] = round((tmp.feas_prod_skill + tmp.feas_workload + tmp.feas_tech_service) * 10 / 12)
+    # context['score_inv'] = round((tmp.feas_invest_fixed + tmp.feas_invest_variable) * 10 / 8)
+    # context['score_sus'] = round((tmp.feas_availability_prod + tmp.feas_storability) * 10 / 6)
 
     tmp_Param = SetURL(500, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
