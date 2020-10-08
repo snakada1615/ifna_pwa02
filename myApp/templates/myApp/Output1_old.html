@@ -1,0 +1,829 @@
+{% extends 'myApp/_base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+  <script type="text/javascript" src="{% static 'js/jquery.barrating.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/fontawesome-apple.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bars-1to10.css' %}">
+
+  <div class="container" style="max-width: 580px;">
+    <div id="accordion">
+      <div class="card  border-dark bg-light col-12 mt-2 py-0" style="max-width: 540px;">
+        <div class="row">
+          <div class="col-12">
+            <div class="card-body py-0 px-0">
+              <p class="card-text my-0">
+                country:
+                {{ myLocation.myCountry.NAME_0 }}
+              </p>
+              <p class="card-text my-0">
+                region:
+                {{ myLocation.myCountry.NAME_1 }}
+              </p>
+              <p class="card-text my-0">
+                province:
+                {{ myLocation.myCountry.NAME_2 }}
+              </p>
+              <p class="card-text my-0">
+                nutrition target:
+                {{ myLocation.nutrition_target }}
+              </p>
+              <button class="btn btn-link" data-toggle="collapse" data-target="#more_info" aria-expanded="true"
+                      aria-controls="more_info">
+                more info
+              </button>
+
+              <div id="more_info" class="collapse" aria-labelledby="heading{{ crop.food_item_id }}"
+                   data-parent="#accordion">
+                <p class="card-text my-0">
+                  stunting rate:
+                  {{ myLocation.stunting_rate }}
+                </p>
+                <p class="card-text my-0">
+                  wasting rate:
+                  {{ myLocation.wasting_rate }}
+                </p>
+                <p class="card-text my-0">
+                  anemia rate:
+                  {{ myLocation.anemia_rate }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container-fluid" style="max-width: 580px;">
+    <div class="row">
+      <div class="col-12 my-0 px-3">
+        <div class="card border-success border-5 rounded col-12 mt-2 py-1"
+             style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+          <div class="row">
+            <div class="col-12">
+              <div class="card-body py-0 px-0">
+                <p class="card-title text-dark my-1">
+                  <span style="color:red">■</span>: less than 50%,
+                  <span style="color:orange">■</span>: 50-100%,
+                  <span style="color:green">■</span>: over 100%
+                </p>
+
+                <table border="1" class="table table-striped selected_crops_tbl" myNum=401>
+                  <tr>
+                    <th>name</th>
+                    <th>En</th>
+                    <th>Pr</th>
+                    <th>Va</th>
+                    <th>Fe</th>
+                    <th>Wt</th>
+                  </tr>
+                  <tr>
+                    <td>total</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+
+                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_en">Energy</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_en" myNum=401></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_en" myNum=401>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_pr">Protein</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_pr" myNum=401></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_pr" myNum=401>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_va">VitA</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_va" myNum=401></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_va" myNum=401>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark " for="rating_fe">Iron</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_fe" myNum=401></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_fe" myNum=401>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3 text-dark">Target group</div>
+                  <div class="col-5 text-dark">{{ nutrient_target }}</div>
+                </div>
+
+                <div class="row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3 text-dark">Month</div>
+                  <div class="col-3 text-dark">
+                    <div class="lst_month" myNum=401 style="border: 1px #386B46
+                         double;background-color:#A5C93F
+                    "></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-12 my-0 px-3">
+        <div class="card border-success border-5 rounded col-12 mt-2 py-1"
+             style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+          <div class="row">
+            <div class="col-12">
+              <div class="card-body py-0 px-0">
+                <p class="card-title text-dark my-0">
+                  selected commodities
+                </p>
+                <p class="card-title text-dark my-1">
+                  <span style="color:red">■</span>: less than 50%,
+                  <span style="color:orange">■</span>: 50-100%,
+                  <span style="color:green">■</span>: over 100%
+                </p>
+
+                <table border="1" class="table table-striped selected_crops_tbl" myNum=402>
+                  <tr>
+                    <th>name</th>
+                    <th>En</th>
+                    <th>Pr</th>
+                    <th>Va</th>
+                    <th>Fe</th>
+                    <th>Wt</th>
+                  </tr>
+                  <tr>
+                    <td>total</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+
+                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_en">Energy</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_en" myNum=402></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_en" myNum=402>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_pr">Protein</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_pr" myNum=402></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_pr" myNum=402>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_va">VitA</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_va" myNum=402></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_va1" myNum=402>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark " for="rating_fe">Iron</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_fe" myNum=402></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_fe" myNum=402>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3 text-dark">Target group</div>
+                  <div class="col-5 text-dark">{{ nutrient_target }}</div>
+                </div>
+
+                <div class="row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3 text-dark">Month</div>
+                  <div class="col-3 text-dark">
+                    <div class="lst_month" myNum=402 style="border: 1px #386B46
+                         double;background-color:#A5C93F
+                    "></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-12 my-0 px-3">
+        <div class="card border-success border-5 rounded col-12 mt-2 py-1"
+             style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+          <div class="row">
+            <div class="col-12">
+              <div class="card-body py-0 px-0">
+                <p class="card-title text-dark my-0">
+                  selected commodities
+                </p>
+                <p class="card-title text-dark my-1">
+                  <span style="color:red">■</span>: less than 50%,
+                  <span style="color:orange">■</span>: 50-100%,
+                  <span style="color:green">■</span>: over 100%
+                </p>
+
+                <table border="1" class="table table-striped selected_crops_tbl" myNum=403>
+                  <tr>
+                    <th>name</th>
+                    <th>En</th>
+                    <th>Pr</th>
+                    <th>Va</th>
+                    <th>Fe</th>
+                    <th>Wt</th>
+                  </tr>
+                  <tr>
+                    <td>total</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+
+                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_en">Energy</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_en" myNum=403></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_en" myNum=403>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_pr">Protein</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_pr" myNum=403></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_pr" myNum=403>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_va">VitA</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_va" myNum=403></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_va1" myNum=403>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark " for="rating_fe">Iron</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_fe" myNum=403></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_fe" myNum=403>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3 text-dark">Target group</div>
+                  <div class="col-5 text-dark">{{ nutrient_target }}</div>
+                </div>
+
+                <div class="row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3 text-dark">Month</div>
+                  <div class="col-3 text-dark">
+                    <div class="lst_month" myNum=403 style="border: 1px #386B46
+                         double;background-color:#A5C93F
+                    "></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-12 my-0 px-3">
+        <div class="card border-success border-5 rounded col-12 mt-2 py-1"
+             style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+          <div class="row">
+            <div class="col-12">
+              <div class="card-body py-0 px-0">
+                <p class="card-title text-dark my-0">
+                  selected commodities
+                </p>
+                <p class="card-title text-dark my-1">
+                  <span style="color:red">■</span>: less than 50%,
+                  <span style="color:orange">■</span>: 50-100%,
+                  <span style="color:green">■</span>: over 100%
+                </p>
+
+                <table border="1" class="table table-striped selected_crops_tbl" myNum=404>
+                  <tr>
+                    <th>name</th>
+                    <th>En</th>
+                    <th>Pr</th>
+                    <th>Va</th>
+                    <th>Fe</th>
+                    <th>Wt</th>
+                  </tr>
+                  <tr>
+                    <td>total</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+
+                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_en">Energy</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_en" myNum=404></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_en" myNum=404>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_pr">Protein</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_pr" myNum=404></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_pr" myNum=404>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_va">VitA</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_va" myNum=404></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_va1" myNum=404>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark " for="rating_fe">Iron</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_fe" myNum=404></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_fe" myNum=404>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3 text-dark">Target group</div>
+                  <div class="col-5 text-dark">{{ nutrient_target }}</div>
+                </div>
+
+                <div class="row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3 text-dark">Month</div>
+                  <div class="col-3 text-dark">
+                    <div class="lst_month" myNum=404 style="border: 1px #386B46
+                         double;background-color:#A5C93F
+                    "></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!------------------------------------------------------------->
+  <style media="screen">
+
+    /* 行または列の非表示*/
+    .tableItem_hide {
+      display: none;
+    }
+  </style>
+
+  <script>
+    // グローバル変数の作成
+    var selected_rows_id = [];
+    var myLocation = '';
+    var myRoot = '';
+    var json_crop_selected = {{mylist_selected|safe}};
+    var target_en = [];
+    var target_pr = [];
+    var target_va = [];
+    var target_fe = [];
+
+    target_en[1] = {{dri_e1}};
+    target_pr[1] = {{dri_p1}};
+    target_va[1] = {{dri_v1}};
+    target_fe[1] = {{dri_f1}};
+    target_en[2] = {{dri_e2}};
+    target_pr[2] = {{dri_p2}};
+    target_va[2] = {{dri_v2}};
+    target_fe[2] = {{dri_f2}};
+    target_en[3] = {{dri_e3}};
+    target_pr[3] = {{dri_p3}};
+    target_va[3] = {{dri_v3}};
+    target_fe[3] = {{dri_f3}};
+
+    let url_tmp = window.location.href.split('/');
+    let tmp1 = url_tmp[url_tmp.length - 2];
+    url_tmp.pop();
+    url_tmp.pop();
+    url_tmp.pop();
+    myRoot = url_tmp.join("/") + '/';
+    var myLocation_id = tmp1;
+    //////////////// star rating/////
+    $(function () {
+      $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
+    });
+    ////////////////////////////////
+    $('.lbl_target_en[myNum^=4]').text(target_en[1].toFixed(0));
+    $('.lbl_target_pr[myNum^=4]').text(target_pr[1].toFixed(0));
+    $('.lbl_target_va[myNum^=4]').text(target_va[1].toFixed(0));
+    $('.lbl_target_fe[myNum^=4]').text(target_fe[1].toFixed(0));
+    $('.lbl_target_en[myNum^=2]').text(target_en[2].toFixed(0));
+    $('.lbl_target_pr[myNum^=2]').text(target_pr[2].toFixed(0));
+    $('.lbl_target_va[myNum^=2]').text(target_va[2].toFixed(0));
+    $('.lbl_target_fe[myNum^=2]').text(target_fe[2].toFixed(0));
+    $('.lbl_target_en[myNum^=3]').text(target_en[3].toFixed(0));
+    $('.lbl_target_pr[myNum^=3]').text(target_pr[3].toFixed(0));
+    $('.lbl_target_va[myNum^=3]').text(target_va[3].toFixed(0));
+    $('.lbl_target_fe[myNum^=3]').text(target_fe[3].toFixed(0));
+    /////////////////////////////
+    //////////////////////////////////// ////////set cell color////////////////
+    function SetCellColor(i_cell, i_target) {
+      let res = '';
+      cNum = parseInt(i_cell * 100 / i_target, 10);
+      switch (true) {
+        case 0 <= cNum && cNum < 50:
+          res = '<td style="color:red;">' + i_cell + '</td>';
+          break;
+
+        case 50 <= cNum && cNum < 100:
+          res = '<td style="color:orange;">' + i_cell + '</td>';
+          break;
+
+        case 100 <= cNum:
+          res = '<td style="color:green;">' + i_cell + '</td>';
+          break;
+
+        default:
+          res = '<td>' + i_cell + '</td>';
+          break;
+      }
+      return res;
+    }
+
+    ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
+    /////////////// set barrating /
+    function SetBarrating(id_table) {
+      $myTable = $('.selected_crops_tbl[myNum=' + id_table + ']');
+      let sum_en = 0;
+      let sum_pr = 0;
+      let sum_va = 0;
+      let sum_fe = 0;
+      let cr = '';
+
+      //ここからBarratingの記入
+      $myTable.children('tbody').children('tr').each(function (j, myRow) {
+        sum_en += Number($(myRow).children('td').eq(1).text());
+        sum_pr += Number($(myRow).children('td').eq(2).text());
+        sum_va += Number($(myRow).children('td').eq(3).text());
+        sum_fe += Number($(myRow).children('td').eq(4).text());
+      });
+      target_scope = Math.trunc((id_table - 300) / 100);
+
+      cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[target_scope]) +
+              SetCellColor(Math.round(sum_pr), target_pr[target_scope]) +
+              SetCellColor(Math.round(sum_va), target_va[target_scope]) +
+              SetCellColor(Math.round(sum_fe), target_fe[target_scope]) + '<td></td><td class="tableItem_hide"><' +
+              '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
+              '</td><td class="tableItem_hide"></td></tr>';
+      $myTable.append(cr);
+
+      let rate_en = Math.round(sum_en * 10 / target_en[target_scope]);
+      if (rate_en > 10) {
+        rate_en = 10
+      } else if (rate_en < 1) {
+        rate_en = 1
+      }
+      let rate_pr = Math.round(sum_pr * 10 / target_pr[target_scope]);
+      if (rate_pr > 10) {
+        rate_pr = 10
+      } else if (rate_pr < 1) {
+        rate_pr = 1
+      }
+      let rate_va = Math.round(sum_va * 10 / target_va[target_scope]);
+      if (rate_va > 10) {
+        rate_va = 10
+      } else if (rate_va < 1) {
+        rate_va = 1
+      }
+      let rate_fe = Math.round(sum_fe * 10 / target_fe[target_scope]);
+      if (rate_fe > 10) {
+        rate_fe = 10
+      } else if (rate_fe < 1) {
+        rate_fe = 1
+      }
+
+      $('.rating_en[myNum=' + id_table + ']').val(rate_en); // set barrating
+      $('.rating_pr[myNum=' + id_table + ']').val(rate_pr); // set barrating
+      $('.rating_va[myNum=' + id_table + ']').val(rate_va); // set barrating
+      $('.rating_fe[myNum=' + id_table + ']').val(rate_fe); // set barrating
+    }
+
+    ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
+    function DrawSelected_addRow(id_table, add_data) { /// render selected_crops_tbl
+      let sum_en = 0;
+      let sum_pr = 0;
+      let sum_va = 0;
+      let sum_fe = 0;
+      let cr = '';
+      $myTbl = $('.selected_crops_tbl[myNum=' + id_table + ']');
+      $myTbl.children('tbody').children('tr').last().remove();
+      //  $("tr:eq(" + ($("tr").length - 2) + ")").remove();
+      $myTbl.append(add_data);
+
+      SetBarrating(id_table);
+    }
+
+    ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
+    // initialize all table (selected_table)
+    for (var i = 0; i < json_crop_selected.length; i++) {
+      data = json_crop_selected[i];
+      if (data.myLocation === Number(myLocation_id)) {
+        let cr = '';
+        cr += '<tr>';
+        cr += '<td>' + data.name + '</td>';
+        cr += '<td>' + Math.round(data.Energy * data.total_weight / 100, 1) + '</td>';
+        cr += '<td>' + Math.round(data.Protein * data.total_weight / 100, 1) + '</td>';
+        cr += '<td>' + Math.round(data.VITA_RAE * data.total_weight / 100, 1) + '</td>';
+        cr += '<td>' + Math.round(data.FE * data.total_weight / 100, 1) + '</td>';
+        cr += '<td>' + data.total_weight + '</td>';
+        cr += '</tr>';
+        DrawSelected_addRow(Number(data.myid_tbl) + 300, cr);
+        $('.lst_month[myNum=' + (Number(data.myid_tbl) + 300) + ']').html(data.month);
+      }
+    }
+
+
+  </script>
+
+{% endblock %}

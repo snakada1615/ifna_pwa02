@@ -1707,6 +1707,20 @@ class Output1(LoginRequiredMixin, TemplateView):
       myLocation=self.kwargs['myLocation'])
     context['nutrient_target'] = tmp_nut_group[0].nut_group
 
+    month_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
+                    'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
+    tmp_seasons = Season.objects.get(myLocation_id=self.kwargs['myLocation'])
+    month = []
+    season_name = []
+    season_field = ['season_name4', 'season_name1', 'season_name2', 'season_name3']
+    for tmp in month_field:
+      s_val = getattr(tmp_seasons, tmp)
+      if s_val not in month:
+        month.append(s_val)
+    for tmp2 in month:
+      season_name.append(getattr(tmp_seasons, season_field[tmp2]))
+    context["season_name"] = season_name
+
     tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
     tmp_e = 0
     tmp_p = 0
@@ -1754,46 +1768,26 @@ class Output1(LoginRequiredMixin, TemplateView):
 
     # send selected crop by community ######
     # --------------------create 16 Crop_individual-------------------------
-    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation'])
-    myRange = [101, 102, 103, 104]
+    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).filter(target_scope=1)
     d = []
-    for i in myRange:
-      tmp02 = tmp01.filter(id_table=i)
-      if tmp02.count() == 0:
+    if tmp01.count() > 0:
+      for tmp02 in tmp01:
         dd = {}
-        dd["name"] = ''
-        dd["Energy"] = ''
-        dd["Protein"] = ''
-        dd["VITA_RAE"] = ''
-        dd["FE"] = ''
-        dd["target_scope"] = ''
-        dd["food_item_id"] = ''
-        dd["portion_size"] = ''
-        dd["total_weight"] = ''
-        dd["count_prod"] = ''
-        dd["count_buy"] = ''
-        dd["month"] = ''
-        dd["myLocation"] = ''
-        dd["myid_tbl"] = i
+        dd["name"] = tmp02.myFCT.Food_name
+        dd["Energy"] = tmp02.myFCT.Energy
+        dd["Protein"] = tmp02.myFCT.Protein
+        dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
+        dd["FE"] = tmp02.myFCT.FE
+        dd["target_scope"] = tmp02.target_scope
+        dd["food_item_id"] = tmp02.myFCT.food_item_id
+        dd["portion_size"] = tmp02.portion_size
+        dd["total_weight"] = tmp02.total_weight
+        dd["count_prod"] = tmp02.count_prod
+        dd["count_buy"] = tmp02.count_buy
+        dd["month"] = tmp02.month
+        dd["myLocation"] = tmp02.myLocation_id
+        dd["myid_tbl"] = tmp02.id_table
         d.append(dd)
-      else:
-        for tmp03 in tmp02:
-          dd = {}
-          dd["name"] = tmp03.myFCT.Food_name
-          dd["Energy"] = tmp03.myFCT.Energy
-          dd["Protein"] = tmp03.myFCT.Protein
-          dd["VITA_RAE"] = tmp03.myFCT.VITA_RAE
-          dd["FE"] = tmp03.myFCT.FE
-          dd["target_scope"] = tmp03.target_scope
-          dd["food_item_id"] = tmp03.myFCT.food_item_id
-          dd["portion_size"] = tmp03.portion_size
-          dd["total_weight"] = tmp03.total_weight
-          dd["count_prod"] = tmp03.count_prod
-          dd["count_buy"] = tmp03.count_buy
-          dd["month"] = tmp03.month
-          dd["myLocation"] = tmp03.myLocation_id
-          dd["myid_tbl"] = tmp03.id_table
-          d.append(dd)
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
@@ -1827,14 +1821,12 @@ class Output2(LoginRequiredMixin, TemplateView):
     season_name = []
     season_field = ['season_name4', 'season_name1', 'season_name2', 'season_name3']
     for tmp in month_field:
-      s_val = tmp_seasons[tmp]
+      s_val = getattr(tmp_seasons, tmp)
       if s_val not in month:
         month.append(s_val)
     for tmp2 in month:
-      season_name.append(tmp_seasons[season_field[tmp2]])
+      season_name.append(getattr(tmp_seasons, season_field[tmp2]))
     context["season_name"] = season_name
-
-
 
 
     tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
@@ -1884,46 +1876,27 @@ class Output2(LoginRequiredMixin, TemplateView):
 
     # send selected crop by community ######
     # --------------------create 16 Crop_individual-------------------------
-    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation'])
+    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).filter(target_scope=2)
     #myRange = [201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212]
     d = []
-    if tmp01.count() == 0:
-      dd = {}
-      dd["name"] = ''
-      dd["Energy"] = ''
-      dd["Protein"] = ''
-      dd["VITA_RAE"] = ''
-      dd["FE"] = ''
-      dd["target_scope"] = ''
-      dd["food_item_id"] = ''
-      dd["portion_size"] = ''
-      dd["total_weight"] = ''
-      dd["count_prod"] = ''
-      dd["count_buy"] = ''
-      dd["month"] = ''
-      dd["myLocation"] = ''
-      dd["myid_tbl"] = i
-      d.append(dd)
-    else:
+    if tmp01.count() > 0:
       for tmp02 in tmp01:
-      #tmp02 = tmp01.filter(id_table=i)
-        #for tmp03 in tmp02:
-          dd = {}
-          dd["name"] = tmp02.myFCT.Food_name
-          dd["Energy"] = tmp02.myFCT.Energy
-          dd["Protein"] = tmp02.myFCT.Protein
-          dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
-          dd["FE"] = tmp02.myFCT.FE
-          dd["target_scope"] = tmp02.target_scope
-          dd["food_item_id"] = tmp02.myFCT.food_item_id
-          dd["portion_size"] = tmp02.portion_size
-          dd["total_weight"] = tmp02.total_weight
-          dd["count_prod"] = tmp02.count_prod
-          dd["count_buy"] = tmp02.count_buy
-          dd["month"] = tmp02.month
-          dd["myLocation"] = tmp02.myLocation_id
-          dd["myid_tbl"] = tmp02.id_table
-          d.append(dd)
+        dd = {}
+        dd["name"] = tmp02.myFCT.Food_name
+        dd["Energy"] = tmp02.myFCT.Energy
+        dd["Protein"] = tmp02.myFCT.Protein
+        dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
+        dd["FE"] = tmp02.myFCT.FE
+        dd["target_scope"] = tmp02.target_scope
+        dd["food_item_id"] = tmp02.myFCT.food_item_id
+        dd["portion_size"] = tmp02.portion_size
+        dd["total_weight"] = tmp02.total_weight
+        dd["count_prod"] = tmp02.count_prod
+        dd["count_buy"] = tmp02.count_buy
+        dd["month"] = tmp02.month
+        dd["myLocation"] = tmp02.myLocation_id
+        dd["myid_tbl"] = tmp02.id_table
+        d.append(dd)
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user

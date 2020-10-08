@@ -57,7 +57,7 @@
 
 
   <div class="container-fluid" style="max-width: 580px;">
-    {% for i in i|rjust:12 %}
+    {% for myName in season_name %}
       <div class="card border-success border-5 rounded col-12 mt-2 py-1"
            style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
         <div class="card-body py-0 px-0">
@@ -184,10 +184,9 @@
           </div>
 
           <div class="row no-gutters my-0 py-0" style="height:30px;">
-            <div class="col-3 text-dark">Month</div>
+            <div class="col-3 text-dark">season</div>
             <div class="col-3 text-dark">
-              <div class="lst_month" style="border: 1px #386B46 double;
-                   background-color:#A5C93F" myNum={{ forloop.counter|add:500 }}></div>
+              <div class="lst_month" myNum={{ forloop.counter|add:500 }}>{{ myName }}</div>
             </div>
           </div>
 
@@ -369,7 +368,7 @@
         cr += '<td>' + data.total_weight + '</td>';
         cr += '</tr>';
         DrawSelected_addRow(Number(data.myid_tbl) + 300, cr);
-        $('.lst_month[myNum=' + (Number(data.myid_tbl) + 300) + ']').html(data.month);
+//        $('.lst_month[myNum=' + (Number(data.myid_tbl) + 300) + ']').html(data.month);
       }
     }
 
