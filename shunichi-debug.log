@@ -2147,3 +2147,111 @@ INFO [views.py-get_context_data-695] 100
 INFO [views.py-get_context_data-696] 200
 INFO [views.py-get_context_data-695] 200
 INFO [views.py-get_context_data-696] 200
+INFO [views.py-get_context_data-1476] 3
+INFO [views.py-get_context_data-1527] myApp.Crop_Name.myCountryName
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] []
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] [64, 149, 154]
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] [221, 225, 229]
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] []
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] [66, 69, 157]
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] [248, 249, 250]
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] []
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] []
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] []
+INFO [views.py-get_context_data-1476] 3
+INFO [views.py-get_context_data-1527] myApp.Crop_Name.myCountryName
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] []
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] [64, 149, 154]
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] [221, 225, 229]
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] []
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] [66, 69, 157]
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] [248, 249, 250]
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] []
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] []
+INFO [views.py-get_context_data-1556] tmp02_list=
+INFO [views.py-get_context_data-1557] []
+INFO [views.py-get_context_data-656] myApp.Crop_Name.myCountryName
+INFO [views.py-get_context_data-704] 700
+INFO [views.py-get_context_data-705] 600
+INFO [forms.py-clean-160] 10
+INFO [forms.py-clean-161] Beef liver
+INFO [forms.py-clean-163] crop_name
+INFO [forms.py-clean-163] crop_name_id
+INFO [forms.py-clean-163] feas_DRI_e
+INFO [forms.py-clean-163] feas_soc_acceptable
+INFO [forms.py-clean-163] feas_soc_acceptable_wo
+INFO [forms.py-clean-163] feas_soc_acceptable_c5
+INFO [forms.py-clean-163] feas_prod_skill
+INFO [forms.py-clean-163] feas_workload
+INFO [forms.py-clean-163] feas_tech_service
+INFO [forms.py-clean-163] feas_invest_fixed
+INFO [forms.py-clean-163] feas_invest_variable
+INFO [forms.py-clean-163] feas_availability_prod
+INFO [forms.py-clean-163] feas_affordability
+INFO [forms.py-clean-163] feas_storability
+INFO [forms.py-clean-163] crop_score
+INFO [forms.py-clean-163] myFCT
+INFO [forms.py-clean-163] created_by
+INFO [forms.py-clean-177] low score
+INFO [views.py-create_cropFeas-2134] これからCrop＿SubNationalを追加していきます
+INFO [views.py-create_cropFeas-2142] Crop_SubNationalに書き込みました!
+INFO [views.py-get_context_data-656] myApp.Crop_Name.myCountryName
+INFO [views.py-get_context_data-704] 100
+INFO [views.py-get_context_data-705] 200
+INFO [views.py-get_context_data-1222] 3
+INFO [views.py-get_context_data-1279] myApp.Crop_Name.myCountryName
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] []
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] [64, 149, 154]
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] [221, 225, 229]
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] []
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] [66, 69, 157]
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] [248, 249, 250]
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] []
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] []
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] []
+INFO [views.py-get_context_data-1222] 3
+INFO [views.py-get_context_data-1279] myApp.Crop_Name.myCountryName
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] []
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] [64, 149, 154]
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] [221, 225, 229]
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] []
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] [66, 69, 157]
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] [248, 249, 250]
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] []
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] []
+INFO [views.py-get_context_data-1308] tmp02_list=
+INFO [views.py-get_context_data-1309] []
