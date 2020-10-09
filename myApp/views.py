@@ -2151,14 +2151,25 @@ def create_cropFeas(sender, instance, created, **kwargs):
   if created:
     # --------------------add Crop_SubNational-------------------------
     logger.info("これからCrop＿SubNationalを追加していきます")
-    keys = {}
-    keys['selected_status'] = 1
-    keys['created_by'] = User.objects.get(id=instance.created_by.id)
-    keys['myFCT'] = instance.myFCT
-    keys['crop_feas'] = Crop_Feasibility.objects.get(id=instance.pk)
-    keys['myLocation'] = Location.objects.get(id=instance.myLocation.id)
-    p = Crop_SubNational.objects.create(**keys)
+    # keys = {}
+    # keys['selected_status'] = 1
+    # keys['created_by'] = User.objects.get(id=instance.created_by.id)
+    # keys['myFCT'] = instance.myFCT
+    # keys['crop_feas'] = Crop_Feasibility.objects.get(id=instance.pk)
+    # keys['myLocation'] = Location.objects.get(id=instance.myLocation.id)
+    # p = Crop_SubNational.objects.create(**keys)
+
+    Crop_SubNational.objects.update_or_create(
+      myLocation=Location.objects.get(id=instance.myLocation.id),
+      myFCT=instance.myFCT,
+      defaults={
+        'crop_feas':Crop_Feasibility.objects.get(id=instance.pk),
+        'selected_status': 1,
+        'created_by': User.objects.get(id=instance.created_by.id),
+      }
+    )
     logger.info("Crop_SubNationalに書き込みました!")
+
 
 
 class Crop_Feas_ListView(LoginRequiredMixin, ListView):
