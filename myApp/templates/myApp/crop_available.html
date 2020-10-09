@@ -199,6 +199,10 @@
               <th>Group</th>
               <th>Group</th>
               <th>Name</th>
+              <th>En</th>
+              <th>Pr</th>
+              <th>Va</th>
+              <th>Fe</th>
             </tr>
             </thead>
 
@@ -207,6 +211,10 @@
               <th>Group</th>
               <th>Group</th>
               <th>Name</th>
+              <th>En</th>
+              <th>Pr</th>
+              <th>Va</th>
+              <th>Fe</th>
             </tr>
             </tfoot>
           </table>
@@ -417,7 +425,6 @@
       '3': 'rowcolor_season_50',
       '0': 'rowcolor_season_0',
     };
-
 
     //////////////// initialize Food_grp_filter /////
     $('#myfilter-item').append('<a class="dropdown-item">--show all--</a>');
@@ -876,7 +883,6 @@
     var mytable_all = $('#tbl_crop_candidate').DataTable({
       data: Json_Crop_All,
       "pageLength": 20,
-      "ordering": false,
       ///initialize selection///
       "createdRow": function (row, data, dataIndex) {
         if (data.selected_status === 1) {
@@ -891,6 +897,14 @@
           "data": "Food_grp"
         }, {
           "data": "Food_name"
+        }, {
+          "data": "En"
+        }, {
+          "data": "Pr"
+        }, {
+          "data": "Va"
+        }, {
+          "data": "Fe"
         }, {
           "data": "m1"
         }, {
@@ -922,7 +936,7 @@
       "columnDefs": [
         {
           targets: [
-            1, 2
+            2, 3, 4, 5, 6
           ],
           visible: true
         }, {

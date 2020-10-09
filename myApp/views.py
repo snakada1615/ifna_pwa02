@@ -641,6 +641,10 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
       dd["Food_grp"] = tmp02.myFCT.Food_grp_unicef
       dd["Food_name"] = tmp02.myFCT.Food_name
       dd["food_item_id"] = tmp02.myFCT.food_item_id
+      dd["En"] = tmp02.myFCT.Energy
+      dd["Pr"] = tmp02.myFCT.Protein
+      dd["Va"] = tmp02.myFCT.VITA_RAE
+      dd["Fe"] = tmp02.myFCT.FE
       dd["m1"] = tmp02.m1_avail
       dd["m2"] = tmp02.m2_avail
       dd["m3"] = tmp02.m3_avail
