@@ -547,6 +547,8 @@
     var json_crop_local_org = {{mylist_available|safe}};
     var json_crop_selected_org = {{mylist_selected|safe}};
     var json_crop_name = {{mylist_local_name|safe}};
+    console.error('json_crop_selected_org');
+    console.error(json_crop_selected_org);
 
     var target_en = [];
     var target_pr = [];
@@ -1655,6 +1657,7 @@
       let hostUrl = myRoot + 'registDiet/';
       let mydat = getTblData();
       console.log('データを保存する準備ができました');
+      console.log(mydat);
       Set_CRSF();
       sendJson(mydat, hostUrl);
       console.groupEnd();

@@ -1169,10 +1169,9 @@
           }
           month["myLocation"] = {{myLocation}};
           month["season_count"] = mySeason.getSeason().season_count;
-          month["season_name1"] = $mySeason[1].text();
-          month["season_name2"] = $mySeason[2].text();
-          month["season_name3"] = $mySeason[3].text();
-          month["season_name4"] = $mySeason[4].text();
+          $.each($mySeason, function (index, value) {
+            month["season_name" + String(index+1)] = value.text();
+          });
           season.push(month);
           res1.season = season;
 

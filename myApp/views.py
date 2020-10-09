@@ -1228,14 +1228,15 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context["month_season_end_text"] = month_season2_text
 
     tmpdat = str(getattr(tmp, 'season_count'))
-    logger.info(tmpdat)
     for i in range(int(tmpdat)):
       myseason.append(i + 1)
-      myRange.append(i + 100)
+      myRange.append(i + 100 + 1)
     for i in range(int(tmpdat)):
-      myRange.append(i + 200)
+      myRange.append(i + 200+ 1)
     for i in range(int(tmpdat)):
-      myRange.append(i + 300)
+      myRange.append(i + 300+ 1)
+    logger.info('myRange=')
+    logger.info(myRange)
 
     context['season_list'] = myseason
 
@@ -1253,7 +1254,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     for tmp02 in tmp01:
       dd = {}
       dd["selected_status"] = tmp02.selected_status
-      dd["Food_grp"] = tmp02.myFCT.Food_grp
+      dd["Food_grp"] = tmp02.myFCT.Food_grp_unicef
       dd["Food_name"] = tmp02.myFCT.Food_name
       dd["Energy"] = tmp02.myFCT.Energy
       dd["Protein"] = tmp02.myFCT.Protein
@@ -1287,7 +1288,8 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp = Crop_Name._meta.get_fields()
     logger.info(tmp[2])
     tmp01 = Crop_Name.objects.filter(
-      myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
+      #myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
+      myCountryName="ETH") #暫定措置
     d = []
     new_Food_grp = []
     for tmp02 in tmp01:
@@ -1317,7 +1319,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
       logger.info('tmp02_list=')
       logger.info(tmp02_list)
       #      if tmp02.count() == 0:  # todo この行があると余分なQueryが発生する！？
-      if len(tmp02_list) == 0:
+      if tmp02.count == 0:
         dd = {}
         dd["Food_grp"] = ''
         dd["name"] = ''
@@ -1342,7 +1344,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
       else:
         for tmp03 in tmp02:
           dd = {}
-          dd["Food_grp"] = tmp03.myFCT.Food_grp
+          dd["Food_grp"] = tmp03.myFCT.Food_grp_unicef
           dd["name"] = tmp03.myFCT.Food_name
           dd["Energy"] = tmp03.myFCT.Energy
           dd["Protein"] = tmp03.myFCT.Protein
