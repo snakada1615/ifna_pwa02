@@ -2088,11 +2088,12 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
     context['dri_vol1'] = tmp_vol
 
     # send non-available crop in the original list ######
-    tmp01 = Crop_SubNational.objects.filter(myLocation_id=myLoc).select_related(
-      'myFCT')
     available_list = []
-    for tmp02 in tmp01:
-      available_list.append(tmp02.myFCT.id)
+    if myLoc.country == 'ETH': # エチオピア限定の暫定措置
+      tmp01 = Crop_SubNational.objects.filter(myLocation_id=myLoc).select_related(
+        'myFCT')
+      for tmp02 in tmp01:
+        available_list.append(tmp02.myFCT.id)
 
     tmp01 = FCT.objects.all()
     d = []
@@ -2128,7 +2129,12 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
 
     context["mylist_available"] = d
 
-    tmp_Param = SetURL(501, self.request.user)
+
+    if myLoc.country == 'ETH': # エチオピア限定の暫定措置
+      tmp_Param = SetURL(501, self.request.user)
+    else:
+      tmp_Param = SetURL(701, self.request.user)
+
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -2207,7 +2213,11 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['myLocation'] = self.request.user.profile.myLocation
     context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
 
-    tmp_Param = SetURL(500, self.request.user)
+    if Location.objects.get(id=self.request.user.profile.myLocation).country == 'ETH': # エチオピア限定の暫定措置
+      tmp_Param = SetURL(501, self.request.user)
+    else:
+      tmp_Param = SetURL(701, self.request.user)
+
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -2297,10 +2307,11 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
     context['dri_vol1'] = tmp_vol
 
     # send non-available crop in the original list 無意味なのですが######
-    tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.request.user.profile.myLocation)
     available_list = []
-    for tmp02 in tmp01:
-      available_list.append(tmp02.myFCT.id)
+    if myLoc.country == 'ETH': # エチオピア限定の暫定措置
+      tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.request.user.profile.myLocation)
+      for tmp02 in tmp01:
+        available_list.append(tmp02.myFCT.id)
 
     tmp01 = FCT.objects.all()
     d = []
@@ -2318,7 +2329,11 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
 
     context["mylist_crop"] = d
 
-    tmp_Param = SetURL(501, self.request.user)
+    if myLoc.country == 'ETH': # エチオピア限定の暫定措置
+      tmp_Param = SetURL(501, self.request.user)
+    else:
+      tmp_Param = SetURL(701, self.request.user)
+
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -2650,6 +2665,17 @@ def SetURL(stepid, myUser):
       back_URL = reverse_lazy("crop_select", kwargs={'myLocation': myLocation,
                                                      'myCountryName': Location.objects.filter(
                                                        id=myLocation).first().country})
+      forward_URL = reverse_lazy("output_list", kwargs={'myLocation': myLocation})
+    except:
+      logger.error('無効な値を参照しています')
+
+  elif stepid == 701:
+    back_Title = "step4"
+    main_Title = "step5/8"
+    forward_Title = "step8"
+    guide_text = 'Here, you examine feasibility of NDF you are going to introduce'
+    try:
+      back_URL = reverse_lazy("diet1", kwargs={'myLocation': myLocation})
       forward_URL = reverse_lazy("output_list", kwargs={'myLocation': myLocation})
     except:
       logger.error('無効な値を参照しています')
