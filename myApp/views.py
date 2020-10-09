@@ -571,8 +571,16 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
         p = Crop_SubNational.objects.create(**keys)
       logger.info("全ての該当品目をCrop_SubNationalに書き込みました!")
     else:
-      logger.error("Crop＿Nationalの中に該当品目が存在していません")
-      logger.info('AEZ_id=' + tmp_aez)
+      logger.info("Crop＿Nationalの中に該当品目が存在しません")
+      tmp03 = FCT.objects.all()
+      for tmp02 in tmp03:
+        keys = {}
+        keys['myLocation'] = Location.objects.get(id=instance.pk)
+        keys['myFCT'] = tmp02
+        keys['selected_status'] = 0
+        keys['created_by'] = User.objects.get(id=instance.created_by.id)
+        p = Crop_SubNational.objects.create(**keys)
+      logger.info("全てのFCTをCrop_SubNationalに書き込みました!")
 
     # --------------------update myTarget-community-------------------------
     logger.info("これからTarget individualの初期値を追加していきます")
@@ -625,14 +633,12 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     # send filtered crop by AEZ ######
     myUser = self.request.user
     tmp01 = Crop_SubNational.objects.filter(myLocation_id=myUser.profile.myLocation).select_related('myFCT')
-    stepid = myUser.profile.stepid
-    context['stepid'] = stepid
 
     d = []
     for tmp02 in tmp01:
       dd = {}
       dd["selected_status"] = tmp02.selected_status
-      dd["Food_grp"] = tmp02.myFCT.Food_grp
+      dd["Food_grp"] = tmp02.myFCT.Food_grp_unicef
       dd["Food_name"] = tmp02.myFCT.Food_name
       dd["food_item_id"] = tmp02.myFCT.food_item_id
       dd["m1"] = tmp02.m1_avail
@@ -655,7 +661,8 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     tmp = Crop_Name._meta.get_fields()
     logger.info(tmp[2])
     tmp01 = Crop_Name.objects.filter(
-      myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
+      #myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
+      myCountryName="ETH")  #暫定的にエチオピアの物を利用
     d = []
     new_Food_grp = []
     for tmp02 in tmp01:
@@ -695,9 +702,10 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
       d.append(dd)
     context["dat_season"] = d
 
+    stepid = myUser.profile.stepid
     newstep = 0
-    if stepid in [100, 200]:
-      newstep = 200
+    if stepid in [100, 200, 300]:
+      newstep = 300
     elif stepid in [500, 600, 700]:
       newstep = 600
 
@@ -712,6 +720,7 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context['stepid'] = newstep
 
     return context
 
@@ -926,7 +935,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
     dd['class8'] = myDRI.get(nut_group='lactating').fe
     context['myDRI_fe'] = dd
 
-    tmp_Param = SetURL(300, self.request.user)
+    tmp_Param = SetURL(200, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -2185,14 +2194,6 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['myLocation'] = self.request.user.profile.myLocation
     context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
 
-    # tmp = Crop_Feasibility.objects.get(myLocation_id=self.request.user.profile.myLocation)
-    # context['score_nut'] = round(tmp.feas_DRI_e * 10 / 3)
-    # context['score_soc'] = round((tmp.feas_soc_acceptable + tmp.feas_soc_acceptable_wo + tmp.feas_soc_acceptable_c5 +
-    #                               tmp.feas_affordability) * 10 / 12)
-    # context['score_tec'] = round((tmp.feas_prod_skill + tmp.feas_workload + tmp.feas_tech_service) * 10 / 12)
-    # context['score_inv'] = round((tmp.feas_invest_fixed + tmp.feas_invest_variable) * 10 / 8)
-    # context['score_sus'] = round((tmp.feas_availability_prod + tmp.feas_storability) * 10 / 6)
-
     tmp_Param = SetURL(500, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
@@ -2562,9 +2563,7 @@ def SetURL(stepid, myUser):
     guide_text = 'Here, you need to specify the location of your target area'
     try:
       back_URL = reverse_lazy("index02")
-      forward_URL = reverse_lazy("crop_select", kwargs={'myLocation': myLocation,
-                                                        'myCountryName': Location.objects.filter(
-                                                          id=myLocation).first().country})
+      forward_URL = reverse_lazy("person_list", kwargs={'myLocation': myLocation, 'page': 1})
     except:
       logger.error('無効な値を参照しています')
 
@@ -2572,10 +2571,12 @@ def SetURL(stepid, myUser):
     back_Title = "step1"
     main_Title = "step2/8"
     forward_Title = "step3"
-    guide_text = 'Here, you identify food item you ordinary see in target area'
+    guide_text = 'Here, you identify your target beneficiary in three level: individual, family, community'
     try:
       back_URL = reverse_lazy("Location_list")
-      forward_URL = reverse_lazy("person_list", kwargs={'myLocation': myLocation, 'page': 1})
+      forward_URL = reverse_lazy("crop_select", kwargs={'myLocation': myLocation,
+                                                        'myCountryName': Location.objects.filter(
+                                                          id=myLocation).first().country})
     except:
       logger.error('無効な値を参照しています')
 
@@ -2583,11 +2584,9 @@ def SetURL(stepid, myUser):
     back_Title = "step2"
     main_Title = "step3/8"
     forward_Title = "step4"
-    guide_text = 'Here, you identify your target beneficiary in three level: individual, family, community'
+    guide_text = 'Here, you identify food item you ordinary see in target area'
     try:
-      back_URL = reverse_lazy("crop_select", kwargs={'myLocation': myLocation,
-                                                     'myCountryName': Location.objects.filter(
-                                                       id=myLocation).first().country})
+      back_URL = reverse_lazy("person_list", kwargs={'myLocation': myLocation, 'page': 1})
       forward_URL = reverse_lazy("diet1", kwargs={'myLocation': myLocation})
     except:
       logger.error('無効な値を参照しています')
@@ -2598,7 +2597,9 @@ def SetURL(stepid, myUser):
     forward_Title = "step5"
     guide_text = 'Here, you discuss about optimal combination of food item to satisfy nutrient needs of your target'
     try:
-      back_URL = reverse_lazy("person_list", kwargs={'myLocation': myLocation, 'page': 1})
+      back_URL = reverse_lazy("crop_select", kwargs={'myLocation': myLocation,
+                                                     'myCountryName': Location.objects.filter(
+                                                       id=myLocation).first().country})
       forward_URL = reverse_lazy("crop_feas_list")
     except:
       logger.error('無効な値を参照しています')
@@ -2726,5 +2727,6 @@ def SetURL(stepid, myUser):
   myResult['forward_URL'] = forward_URL
   myResult['forward_Title'] = forward_Title
   myResult["guide_text"] = guide_text
+  myResult["stepid"] = stepid
 
   return myResult

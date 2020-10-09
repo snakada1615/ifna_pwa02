@@ -12,8 +12,8 @@
   <div class="container mt-0 mb-1 text-dark" style="max-width: 540px;">
     <div class="row">
       <div class="col-2 my-0 px-3">
-        {% if stepid == 100 %}
-          <img src="{% static 'img/no2.png' %}">
+        {% if stepid == 300 %}
+          <img src="{% static 'img/no3.png' %}">
         {% endif %}
         {% if stepid == 500 %}
           <img src="{% static 'img/no6.png' %}">
@@ -403,7 +403,7 @@
     var Json_Crop_All = {{dat_mycrop | safe}};
     var Json_Season = {{dat_season | safe}};
     var myFoodGrp = {{ mylist_Food_grp|safe }};
-    var month_name = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    var month_name = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     //行の色指定
     const rowcolor = {
       '1': 'rowcolor_100',
@@ -1058,10 +1058,12 @@
           };
           let rowNum = Number($("#myrow_tmp").text()) / 2;
           $('.container_crop_avail').find('.season-row').each(function (index_r, myRow) {
-            const mon_start = $(myRow).find('.col_start').text();
-            const mon_end = $(myRow).find('.col_end').text();
+            const mon_start = month_name.indexOf($(myRow).find('.col_start').text()) + 1;
+            const mon_end = month_name.indexOf($(myRow).find('.col_end').text()) + 1;
             const avail_val = crop_avail_num[$(myRow).find('.dropdown-toggle').text()] || 0;
             const monthes = month_conv(Number(mon_start), Number(mon_end));
+            console.error('mon_start');
+            console.error(mon_start);
 
             $.each(monthes, function (index_c, value) {
               console.log('x:' + value + ', y:' + rowNum + ', avail_val:' + avail_val);
@@ -1257,7 +1259,7 @@
         $(".container_crop_avail").on('click', '.dropdown-item', function (event) {
           $(this).closest('.dropdown').find('.dropdown-toggle').text($(this).text());
         });
-        $("#newSearchPlace select").val("Cereals and their products").change();
+        $("#newSearchPlace select").val("Grains, roots and tubers ").change();
       });
     });
 
