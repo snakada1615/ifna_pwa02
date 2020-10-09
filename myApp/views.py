@@ -2042,7 +2042,11 @@ class Output_list(LoginRequiredMixin, TemplateView):
     context['myLocation'] = self.kwargs['myLocation']
     context['myuser'] = self.request.user
 
-    tmp_Param = SetURL(800, self.request.user)
+    if Location.objects.get(id=self.kwargs['myLocation']).country == 'ETH': # エチオピア限定の暫定措置
+      tmp_Param = SetURL(800, self.request.user)
+    else:
+      tmp_Param = SetURL(805, self.request.user)
+
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -2765,6 +2769,17 @@ def SetURL(stepid, myUser):
       forward_URL = ""
     except:
       logger.error('無効な値を参照しています')
+
+  elif stepid == 805:
+    back_Title = "step5"
+    main_Title = "step8/8"
+    forward_Title = ""
+    guide_text = 'please select output you want to check'
+    try:
+      back_URL = reverse_lazy("crop_feas_list")
+    except:
+      logger.error('無効な値を参照しています')
+
 
   myResult['back_URL'] = back_URL
   myResult['back_Title'] = back_Title
