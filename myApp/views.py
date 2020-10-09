@@ -2010,8 +2010,15 @@ class Output4(LoginRequiredMixin, TemplateView):
         dd["myLocation"] = tmp03.myLocation_id
         dd["myid_tbl"] = tmp03.id_table
         d.append(dd)
-
     context["mylist_selected"] = d
+
+    # --------------------create populationl-------------------------
+    tmp01 = Person.objects.filter(myLocation_id=self.kwargs['myLocation']).filter(target_scope=3)
+    if tmp01.count() >0:
+      dd = {}
+      for tmp02 in tmp01:
+        dd[tmp02.nut_group] = tmp02.target_pop
+      context["mylist_target"] = dd
 
     context['myuser'] = self.request.user
 

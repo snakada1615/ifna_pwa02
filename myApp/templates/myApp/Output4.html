@@ -5,6 +5,26 @@
 {% block content %}
 
   <div class="container" style="max-width: 650px;">
+    <div class="card border-primary bg-info mt-2 mb-2 py-0">
+      <div class="row">
+        <div class="col">
+          <div class="card-body text-white py-0 px-0">
+            <div class="row">
+              <div class="col">
+                target population
+              </div>
+            </div>
+            {% for key, value in mylist_target.items %}
+              <div class="row my-0">
+                <div class="col-6">{{ key }}</div>
+                <div class="col-6">{{ value }}</div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="btn-group btn-group-toggle" data-toggle="buttons" id="sw_unit">
       <label class="btn btn-info active">
         <input type="radio" name="options" id="option1" autocomplete="off" value="kg" checked> kg
@@ -111,7 +131,9 @@
   <script>
     // グローバル変数の作成
     var json_crop_selected = {{mylist_selected|safe}};
+    var json_target = {{mylist_target|safe}};
     console.log(json_crop_selected);
+    console.log(json_target);
 
     ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
     // initialize data
