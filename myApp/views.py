@@ -836,8 +836,9 @@ class Person_ListView(LoginRequiredMixin, ListView):
     tmpClass2 = 0
     tmpClass3 = 0
     tmpClass_sum = 0
-    tmpPersons = Person.objects.filter(myLocation=self.kwargs['myLocation'])
-    for tmpPerson in tmpPersons:
+
+    myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation'])
+    for tmpPerson in myPerson:
       if tmpPerson.target_scope == 1:
         tmpClass1 = 1
       if tmpPerson.target_scope == 2:
@@ -853,91 +854,223 @@ class Person_ListView(LoginRequiredMixin, ListView):
 
     myPop = Pop.objects.filter(GID_0=Location.objects.get(id=self.kwargs['myLocation']).country)
     dd = {}
-    dd['class0'] = myPop.get(Age_class_id=0).share_Pop
-    dd['class1'] = myPop.get(Age_class_id=1).share_Pop
-    dd['class2'] = myPop.get(Age_class_id=2).share_Pop
-    dd['class3'] = myPop.get(Age_class_id=3).share_Pop
-    dd['class3_p'] = myPop.get(Age_class_id=3).share_Preg
-    dd['class3_l'] = myPop.get(Age_class_id=3).share_BF
-    dd['class4'] = myPop.get(Age_class_id=4).share_Pop
-    dd['class5'] = myPop.get(Age_class_id=5).share_Pop
-    dd['class5_p'] = myPop.get(Age_class_id=5).share_Preg
-    dd['class5_l'] = myPop.get(Age_class_id=5).share_BF
-    dd['class6'] = myPop.get(Age_class_id=6).share_Pop
+    for myPop2 in myPop:
+      myClass = myPop2.Age_class_id
+      myShare = myPop2.share_Pop
+      if myClass == 0:
+        dd['class0'] = myShare
+      elif myClass == 1:
+        dd['class1'] =myShare
+      elif myClass == 2:
+        dd['class2'] =myShare
+      elif myClass == 3:
+        dd['class3'] =myShare
+        dd['class3_p'] = myPop2.share_Preg
+        dd['class3_l'] = myPop2.share_BF
+      elif myClass == 4:
+        dd['class4'] =myShare
+      elif myClass == 5:
+        dd['class5'] =myShare
+        dd['class5_p'] = myPop2.share_Preg
+        dd['class5_l'] = myPop2.share_BF
+      elif myClass == 6:
+        dd['class6'] =myShare
+
+    # dd['class0'] = myPop.get(Age_class_id=0).share_Pop
+    # dd['class1'] = myPop.get(Age_class_id=1).share_Pop
+    # dd['class2'] = myPop.get(Age_class_id=2).share_Pop
+    # dd['class3'] = myPop.get(Age_class_id=3).share_Pop
+    # dd['class3_p'] = myPop.get(Age_class_id=3).share_Preg
+    # dd['class3_l'] = myPop.get(Age_class_id=3).share_BF
+    # dd['class4'] = myPop.get(Age_class_id=4).share_Pop
+    # dd['class5'] = myPop.get(Age_class_id=5).share_Pop
+    # dd['class5_p'] = myPop.get(Age_class_id=5).share_Preg
+    # dd['class5_l'] = myPop.get(Age_class_id=5).share_BF
+    # dd['class6'] = myPop.get(Age_class_id=6).share_Pop
+
     context['myPop'] = dd
     context['myReturnURL'] = reverse_lazy('index01')
 
-    myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation']).filter(target_scope=3)
-    dd = {}
-    dd['class0'] = myPerson.get(nut_group='child 0-23 month').target_pop
-    dd['class1'] = myPerson.get(nut_group='child 24-59 month').target_pop
-    dd['class2'] = myPerson.get(nut_group='child 6-9 yr').target_pop
-    dd['class3'] = myPerson.get(nut_group='adolescent male').target_pop
-    dd['class4'] = myPerson.get(nut_group='adolescent female').target_pop
-    dd['class5'] = myPerson.get(nut_group='adult male').target_pop
-    dd['class6'] = myPerson.get(nut_group='adult female').target_pop
-    dd['class7'] = myPerson.get(nut_group='pregnant').target_pop
-    dd['class8'] = myPerson.get(nut_group='lactating').target_pop
-    context['myCommunity'] = dd
+    #myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation'])
+    dd1 = {}
+    dd2 = {}
+    for myPerson02 in myPerson:
+      nut_group = myPerson02.nut_group
+      pop = myPerson02.target_pop
+      if nut_group == 'child 0-23 month':
+        if myPerson02.target_scope == 2:
+          dd1['class0'] = pop
+        if myPerson02.target_scope == 3:
+          dd2['class0'] = pop
+      elif nut_group == 'child 24-59 month':
+        if myPerson02.target_scope == 2:
+          dd1['class1'] = pop
+        if myPerson02.target_scope == 3:
+          dd2['class1'] = pop
+      elif nut_group == 'child 6-9 yr':
+        if myPerson02.target_scope == 2:
+          dd1['class2'] = pop
+        if myPerson02.target_scope == 3:
+          dd2['class2'] = pop
+      elif nut_group == 'adolescent male':
+        if myPerson02.target_scope == 2:
+          dd1['class3'] = pop
+        if myPerson02.target_scope == 3:
+          dd2['class3'] = pop
+      elif nut_group == 'adolescent female':
+        if myPerson02.target_scope == 2:
+          dd1['class4'] = pop
+        if myPerson02.target_scope == 3:
+          dd2['class4'] = pop
+      elif nut_group == 'adult male':
+        if myPerson02.target_scope == 2:
+          dd1['class5'] = pop
+        if myPerson02.target_scope == 3:
+          dd2['class5'] = pop
+      elif nut_group == 'adult female':
+        if myPerson02.target_scope == 2:
+          dd1['class6'] = pop
+        if myPerson02.target_scope == 3:
+          dd2['class6'] = pop
+      elif nut_group == 'pregnant':
+        if myPerson02.target_scope == 2:
+          dd1['class7'] = pop
+        if myPerson02.target_scope == 3:
+          dd2['class7'] = pop
+      elif nut_group == 'lactating':
+        if myPerson02.target_scope == 2:
+          dd1['class8'] = pop
+        if myPerson02.target_scope == 3:
+          dd2['class8'] = pop
+    context['myFamily'] = dd1
+    context['myCommunity'] = dd2
 
-    myFamily = Person.objects.filter(myLocation=self.kwargs['myLocation']).filter(target_scope=2)
-    dd = {}
-    dd['class0'] = myFamily.get(nut_group='child 0-23 month').target_pop
-    dd['class1'] = myFamily.get(nut_group='child 24-59 month').target_pop
-    dd['class2'] = myFamily.get(nut_group='child 6-9 yr').target_pop
-    dd['class3'] = myFamily.get(nut_group='adolescent male').target_pop
-    dd['class4'] = myFamily.get(nut_group='adolescent female').target_pop
-    dd['class5'] = myFamily.get(nut_group='adult male').target_pop
-    dd['class6'] = myFamily.get(nut_group='adult female').target_pop
-    dd['class7'] = myFamily.get(nut_group='pregnant').target_pop
-    dd['class8'] = myFamily.get(nut_group='lactating').target_pop
-    context['myFamily'] = dd
+    # myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation']).filter(target_scope=3)
+    # dd = {}
+    # dd['class0'] = myPerson.get(nut_group='child 0-23 month').target_pop
+    # dd['class1'] = myPerson.get(nut_group='child 24-59 month').target_pop
+    # dd['class2'] = myPerson.get(nut_group='child 6-9 yr').target_pop
+    # dd['class3'] = myPerson.get(nut_group='adolescent male').target_pop
+    # dd['class4'] = myPerson.get(nut_group='adolescent female').target_pop
+    # dd['class5'] = myPerson.get(nut_group='adult male').target_pop
+    # dd['class6'] = myPerson.get(nut_group='adult female').target_pop
+    # dd['class7'] = myPerson.get(nut_group='pregnant').target_pop
+    # dd['class8'] = myPerson.get(nut_group='lactating').target_pop
+    # context['myCommunity'] = dd
+    #
+    # myFamily = Person.objects.filter(myLocation=self.kwargs['myLocation']).filter(target_scope=2)
+    # dd = {}
+    # dd['class0'] = myFamily.get(nut_group='child 0-23 month').target_pop
+    # dd['class1'] = myFamily.get(nut_group='child 24-59 month').target_pop
+    # dd['class2'] = myFamily.get(nut_group='child 6-9 yr').target_pop
+    # dd['class3'] = myFamily.get(nut_group='adolescent male').target_pop
+    # dd['class4'] = myFamily.get(nut_group='adolescent female').target_pop
+    # dd['class5'] = myFamily.get(nut_group='adult male').target_pop
+    # dd['class6'] = myFamily.get(nut_group='adult female').target_pop
+    # dd['class7'] = myFamily.get(nut_group='pregnant').target_pop
+    # dd['class8'] = myFamily.get(nut_group='lactating').target_pop
+    # context['myFamily'] = dd
 
     myDRI = DRI.objects.all()
-    dd = {}
-    dd['class0'] = myDRI.get(nut_group='child 0-23 month').energy
-    dd['class1'] = myDRI.get(nut_group='child 24-59 month').energy
-    dd['class2'] = myDRI.get(nut_group='child 6-9 yr').energy
-    dd['class3'] = myDRI.get(nut_group='adolescent male').energy
-    dd['class4'] = myDRI.get(nut_group='adolescent female').energy
-    dd['class5'] = myDRI.get(nut_group='adult male').energy
-    dd['class6'] = myDRI.get(nut_group='adult female').energy
-    dd['class7'] = myDRI.get(nut_group='pregnant').energy
-    dd['class8'] = myDRI.get(nut_group='lactating').energy
-    context['myDRI_en'] = dd
-    dd = {}
-    dd['class0'] = myDRI.get(nut_group='child 0-23 month').protein
-    dd['class1'] = myDRI.get(nut_group='child 24-59 month').protein
-    dd['class2'] = myDRI.get(nut_group='child 6-9 yr').protein
-    dd['class3'] = myDRI.get(nut_group='adolescent male').protein
-    dd['class4'] = myDRI.get(nut_group='adolescent female').protein
-    dd['class5'] = myDRI.get(nut_group='adult male').protein
-    dd['class6'] = myDRI.get(nut_group='adult female').protein
-    dd['class7'] = myDRI.get(nut_group='pregnant').protein
-    dd['class8'] = myDRI.get(nut_group='lactating').protein
-    context['myDRI_pr'] = dd
-    dd = {}
-    dd['class0'] = myDRI.get(nut_group='child 0-23 month').vita
-    dd['class1'] = myDRI.get(nut_group='child 24-59 month').vita
-    dd['class2'] = myDRI.get(nut_group='child 6-9 yr').vita
-    dd['class3'] = myDRI.get(nut_group='adolescent male').vita
-    dd['class4'] = myDRI.get(nut_group='adolescent female').vita
-    dd['class5'] = myDRI.get(nut_group='adult male').vita
-    dd['class6'] = myDRI.get(nut_group='adult female').vita
-    dd['class7'] = myDRI.get(nut_group='pregnant').vita
-    dd['class8'] = myDRI.get(nut_group='lactating').vita
-    context['myDRI_va'] = dd
-    dd = {}
-    dd['class0'] = myDRI.get(nut_group='child 0-23 month').fe
-    dd['class1'] = myDRI.get(nut_group='child 24-59 month').fe
-    dd['class2'] = myDRI.get(nut_group='child 6-9 yr').fe
-    dd['class3'] = myDRI.get(nut_group='adolescent male').fe
-    dd['class4'] = myDRI.get(nut_group='adolescent female').fe
-    dd['class5'] = myDRI.get(nut_group='adult male').fe
-    dd['class6'] = myDRI.get(nut_group='adult female').fe
-    dd['class7'] = myDRI.get(nut_group='pregnant').fe
-    dd['class8'] = myDRI.get(nut_group='lactating').fe
-    context['myDRI_fe'] = dd
+    dd1 = {}
+    dd2 = {}
+    dd3 = {}
+    dd4 = {}
+    for myDRI02 in myDRI:
+      if myDRI02.nut_group == 'child 0-23 month':
+        dd1['class0'] = myDRI02.energy
+        dd2['class0'] = myDRI02.protein
+        dd3['class0'] = myDRI02.vita
+        dd4['class0'] = myDRI02.fe
+      elif myDRI02.nut_group == 'child 24-59 month':
+        dd1['class1'] = myDRI02.energy
+        dd2['class1'] = myDRI02.protein
+        dd3['class1'] = myDRI02.vita
+        dd4['class1'] = myDRI02.fe
+      elif myDRI02.nut_group == 'child 6-9 yr':
+        dd1['class2'] = myDRI02.energy
+        dd2['class2'] = myDRI02.protein
+        dd3['class2'] = myDRI02.vita
+        dd4['class2'] = myDRI02.fe
+      elif myDRI02.nut_group == 'adolescent male':
+        dd1['class3'] = myDRI02.energy
+        dd2['class3'] = myDRI02.protein
+        dd3['class3'] = myDRI02.vita
+        dd4['class3'] = myDRI02.fe
+      elif myDRI02.nut_group == 'adolescent female':
+        dd1['class4'] = myDRI02.energy
+        dd2['class4'] = myDRI02.protein
+        dd3['class4'] = myDRI02.vita
+        dd4['class4'] = myDRI02.fe
+      elif myDRI02.nut_group == 'adult male':
+        dd1['class5'] = myDRI02.energy
+        dd2['class5'] = myDRI02.protein
+        dd3['class5'] = myDRI02.vita
+        dd4['class5'] = myDRI02.fe
+      elif myDRI02.nut_group == 'adult female':
+        dd1['class6'] = myDRI02.energy
+        dd2['class6'] = myDRI02.protein
+        dd3['class6'] = myDRI02.vita
+        dd4['class6'] = myDRI02.fe
+      elif myDRI02.nut_group == 'pregnant':
+        dd1['class7'] = myDRI02.energy
+        dd2['class7'] = myDRI02.protein
+        dd3['class7'] = myDRI02.vita
+        dd4['class7'] = myDRI02.fe
+      elif myDRI02.nut_group == 'lactating':
+        dd1['class8'] = myDRI02.energy
+        dd2['class8'] = myDRI02.protein
+        dd3['class8'] = myDRI02.vita
+        dd4['class8'] = myDRI02.fe
+    context['myDRI_en'] = dd1
+    context['myDRI_pr'] = dd2
+    context['myDRI_va'] = dd3
+    context['myDRI_fe'] = dd4
+
+    # dd = {}
+    # dd['class0'] = myDRI.get(nut_group='child 0-23 month').energy
+    # dd['class1'] = myDRI.get(nut_group='child 24-59 month').energy
+    # dd['class2'] = myDRI.get(nut_group='child 6-9 yr').energy
+    # dd['class3'] = myDRI.get(nut_group='adolescent male').energy
+    # dd['class4'] = myDRI.get(nut_group='adolescent female').energy
+    # dd['class5'] = myDRI.get(nut_group='adult male').energy
+    # dd['class6'] = myDRI.get(nut_group='adult female').energy
+    # dd['class7'] = myDRI.get(nut_group='pregnant').energy
+    # dd['class8'] = myDRI.get(nut_group='lactating').energy
+    # context['myDRI_en'] = dd
+    # dd = {}
+    # dd['class0'] = myDRI.get(nut_group='child 0-23 month').protein
+    # dd['class1'] = myDRI.get(nut_group='child 24-59 month').protein
+    # dd['class2'] = myDRI.get(nut_group='child 6-9 yr').protein
+    # dd['class3'] = myDRI.get(nut_group='adolescent male').protein
+    # dd['class4'] = myDRI.get(nut_group='adolescent female').protein
+    # dd['class5'] = myDRI.get(nut_group='adult male').protein
+    # dd['class6'] = myDRI.get(nut_group='adult female').protein
+    # dd['class7'] = myDRI.get(nut_group='pregnant').protein
+    # dd['class8'] = myDRI.get(nut_group='lactating').protein
+    # context['myDRI_pr'] = dd
+    # dd = {}
+    # dd['class0'] = myDRI.get(nut_group='child 0-23 month').vita
+    # dd['class1'] = myDRI.get(nut_group='child 24-59 month').vita
+    # dd['class2'] = myDRI.get(nut_group='child 6-9 yr').vita
+    # dd['class3'] = myDRI.get(nut_group='adolescent male').vita
+    # dd['class4'] = myDRI.get(nut_group='adolescent female').vita
+    # dd['class5'] = myDRI.get(nut_group='adult male').vita
+    # dd['class6'] = myDRI.get(nut_group='adult female').vita
+    # dd['class7'] = myDRI.get(nut_group='pregnant').vita
+    # dd['class8'] = myDRI.get(nut_group='lactating').vita
+    # context['myDRI_va'] = dd
+    # dd = {}
+    # dd['class0'] = myDRI.get(nut_group='child 0-23 month').fe
+    # dd['class1'] = myDRI.get(nut_group='child 24-59 month').fe
+    # dd['class2'] = myDRI.get(nut_group='child 6-9 yr').fe
+    # dd['class3'] = myDRI.get(nut_group='adolescent male').fe
+    # dd['class4'] = myDRI.get(nut_group='adolescent female').fe
+    # dd['class5'] = myDRI.get(nut_group='adult male').fe
+    # dd['class6'] = myDRI.get(nut_group='adult female').fe
+    # dd['class7'] = myDRI.get(nut_group='pregnant').fe
+    # dd['class8'] = myDRI.get(nut_group='lactating').fe
+    # context['myDRI_fe'] = dd
 
     tmp_Param = SetURL(200, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
