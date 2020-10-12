@@ -1154,7 +1154,7 @@
     Crop_Selected.prototype.myfilter = function (key) {
       console.log('Crop_Selected.myfilterにFilterを適用します');
 
-      this.dom_tbl_Crop.find('tr').each(function (index, val) {
+      this.dom_tbl_Crop.find('tbody tr').each(function (index, val) {
         let tmpval = $(val).children('td').eq(16).text();
         if (key === '--show all--' || tmpval === key) {
           $(val).removeClass('tableItem_hide');

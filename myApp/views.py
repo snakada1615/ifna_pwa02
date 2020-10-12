@@ -708,7 +708,7 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
 
     stepid = myUser.profile.stepid
     newstep = 0
-    if stepid in [100, 200, 300]:
+    if stepid in [100, 200, 300, 400]:
       newstep = 300
     elif stepid in [500, 600, 700]:
       newstep = 600
