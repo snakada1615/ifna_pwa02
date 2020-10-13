@@ -6,6 +6,8 @@ from django.db.models import Max  # 集計関数の追加
 from .models import Location, Person, Profile, Crop_Feasibility, FCT, Crop_SubNational, Countries, Crop_Name
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
 
 # logging用の設定
 from logging import getLogger
@@ -22,9 +24,9 @@ class LocationForm(forms.ModelForm):
       "AEZ_id", "stunting_rate", "wasting_rate", "anemia_rate", "myCountry", "created_by"
     )
     widgets = {
-      'country': forms.Select(attrs={'onchange': "selCnt();"}),
-      'region': forms.Select(attrs={'onchange': "selSub1();"}),
-      'province': forms.Select(attrs={'onchange': "selSub2();"}),
+      'country': forms.Select(attrs={'onchange': "selCnt();", 'required': 'required'}),
+      'region': forms.Select(attrs={'onchange': "selSub1();", 'required': 'required'}),
+      'province': forms.Select(attrs={'onchange': "selSub2();", 'required': 'required'}),
       'community': forms.Select(),
       'AEZ_id': forms.HiddenInput(),
       'stunting_rate': forms.HiddenInput(),
@@ -40,6 +42,39 @@ class LocationForm(forms.ModelForm):
       "Location": "Kebele",
       "name": "village or other",
     }
+
+  def clean(self):
+    cleaned_data = super(LocationForm, self).clean()
+    has_country = False
+    if 'country' in cleaned_data and cleaned_data['country'] != '':
+      country = Countries.objects.filter(GID_0=cleaned_data['country'])
+      if len(country) == 0:
+        raise ValidationError({'country': [_('value not exist')]})
+      has_country = True
+
+    has_region = False
+    if ('region' in cleaned_data and cleaned_data['region'] != '') and has_country:
+      region = Countries.objects.filter(GID_0=cleaned_data['country'], GID_1=cleaned_data['region'])
+      if len(region) == 0:
+        raise ValidationError({'region': [_('value not exist')]})
+      has_region = True
+
+    has_province = False
+    if ('province' in cleaned_data and cleaned_data['province'] != '') and has_country and has_region:
+      province = Countries.objects.filter(GID_0=cleaned_data['country'], GID_1=cleaned_data['region'],
+                                          GID_2=cleaned_data['province'])
+      if len(province) == 0:
+        raise ValidationError({'province': [_('value not exist')]})
+      has_province = True
+    if ('community' in cleaned_data and cleaned_data[
+      'community'] != '') and has_country and has_region and has_province:
+      community = Countries.objects.filter(GID_0=cleaned_data['country'], GID_1=cleaned_data['region'],
+                                          GID_2=cleaned_data['province'], GID_3=cleaned_data['community'])
+      if len(community) == 0:
+        raise ValidationError({'community': [_('value not exist')]})
+
+    return cleaned_data
+
 
 
 class Person_Form(forms.ModelForm):

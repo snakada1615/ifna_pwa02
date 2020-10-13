@@ -84,19 +84,19 @@ class Location(models.Model):
   )
   country = models.CharField(
     max_length=200,
-    blank=True
+    blank=False
   )
   region = models.CharField(
     max_length=200,
-    blank=True
+    blank=False
   )
   province = models.CharField(
     max_length=200,
-    blank=True
+    blank=False
   )
   community = models.CharField(
     max_length=200,
-    blank=True
+    blank=False
   )
   AEZ_id = models.CharField(
     max_length=200,

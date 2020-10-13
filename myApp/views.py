@@ -314,7 +314,6 @@ class Location_ListView(LoginRequiredMixin, ListView):
         context['myuser'] = self.request.user
         context['myuser_id'] = self.request.user.id
         context['myLocation'] = self.request.user.profile.myLocation
-
         tmp_Param = SetURL(100, self.request.user)
         context['nav_link1'] = tmp_Param['back_URL']
         context['nav_text1'] = tmp_Param['back_Title']
@@ -401,8 +400,12 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
         return res
 
     def form_valid(self, form):
-        form.instance.myCountry = Countries.objects.filter(
-            GID_2=form.instance.province).first()
+        if form.instance.community:
+            form.instance.myCountry = Countries.objects.filter(
+                GID_3=form.instance.community).first()
+        else:
+            form.instance.myCountry = Countries.objects.filter(
+                GID_2=form.instance.province).first()
         form.instance.AEZ_id = form.instance.myCountry.AEZ_id
         form.instance.created_by = User.objects.get(id=self.request.user.id)
         return super(Location_CreateView, self).form_valid(form)
@@ -410,11 +413,18 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         data = Countries.objects.all()
         context = super().get_context_data(**kwargs)
+        if self.request.method == 'POST':
+            param_request = self.request.POST.dict()
+            context['country_selected'] = param_request['country'] if 'country' in param_request else ''
+            context['region_selected'] = param_request['region'] if 'region' in param_request else ''
+            context['province_selected'] = param_request['province'] if 'province' in param_request else ''
+            context['community_selected'] = param_request['community'] if 'community' in param_request else ''
+        else:
+            context['country_selected'] = ''
+            context['region_selected'] = ''
+            context['province_selected'] = ''
+            context['community_selected'] = ''
         context['countries'] = serializers.serialize('json', data)
-        context['country_selected'] = ''
-        context['region_selected'] = ''
-        context['province_selected'] = ''
-        context['community_selected'] = ''
         context['myuser'] = self.request.user
 
         tmp_Param = SetURL(101, self.request.user)
@@ -454,8 +464,12 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
         return res
 
     def form_valid(self, form):
-        form.instance.myCountry = Countries.objects.filter(
-            GID_2=form.instance.province).first()
+        if form.instance.community:
+            form.instance.myCountry = Countries.objects.filter(
+                GID_3=form.instance.community).first()
+        else:
+            form.instance.myCountry = Countries.objects.filter(
+                GID_2=form.instance.province).first()
         form.instance.AEZ_id = form.instance.myCountry.AEZ_id
         form.instance.created_by = User.objects.get(id=self.request.user.id)
         return super(Location_UpdateView, self).form_valid(form)
@@ -472,9 +486,10 @@ def Del_Crop_SubNational(sender, instance, **kwargs):
     if Season.objects.filter(myLocation_id=instance.pk):
         Season.objects.filter(myLocation_id=instance.pk).delete()
     logger.info("該当するSeasonを削除しました")
-    if Location.objects.all().count() > 0:
-        newLocation = Location.objects.all().first().id
-        myUser = instance.created_by
+    myUser = instance.created_by
+    list_location = Location.objects.filter(created_by=myUser).all()
+    if len(list_location) > 0:
+        newLocation = list_location[0].id
         key = myUser.profile
         key.myLocation = newLocation
         key.myTarget = 0

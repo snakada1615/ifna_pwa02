@@ -37,6 +37,8 @@
     var subDiv_list2 = [];
     var subDiv_key1 = [];
     var subDiv_key2 = [];
+    var subDiv_list3 = [];
+    var subDiv_key3 = [];
 
     function getCountry() {
       cnt_list = [];
@@ -53,6 +55,9 @@
     function getSubDiv1(parentAdm) {
       subDiv_list1 = [];
       subDiv_key1 = [];
+      if (parentAdm.trim() === '') {
+        return true;
+      }
       subDiv_list1.push("--select subdivision1--");
       subDiv_key1.push("");
       cnt_arr.forEach(function (val) {
@@ -68,6 +73,9 @@
     function getSubDiv2(parentAdm) {
       subDiv_list2 = [];
       subDiv_key2 = [];
+      if (parentAdm.trim() === '') {
+        return true;
+      }
       subDiv_list2.push("--select subdivision2--");
       subDiv_key2.push("");
       cnt_arr.forEach(function (val) {
@@ -83,6 +91,9 @@
     function getSubDiv3(parentAdm) {
       subDiv_list3 = [];
       subDiv_key3 = [];
+      if (parentAdm.trim() === '') {
+        return true;
+      }
       subDiv_list3.push("--select subdivision2--");
       subDiv_key3.push("");
       cnt_arr.forEach(function (val) {
@@ -145,7 +156,7 @@
       while (selObj.lastChild) {
         selObj.removeChild(selObj.lastChild);
       }
-      for (var i = 0; i < subDiv_list2.length; i++) {
+      for (var i = 0; i < subDiv_list3.length; i++) {
         let op = document.createElement("option");
         op.value = subDiv_key3[i];
         op.text = subDiv_list3[i];

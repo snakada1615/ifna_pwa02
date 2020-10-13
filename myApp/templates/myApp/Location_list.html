@@ -15,7 +15,9 @@
       <div class="col-2 my-0 px-1">
 				<span>
 					<a class="btn btn-info badge text-wrap" href="{% url  'Location_create' %}">add new</a>
-          <a id="btn_show" class="btn btn-info badge text-white" {% if mylist == None %}disabled{% endif %}>select</a>
+          {% if mylist.count > 0 %}
+          <a id="btn_show" class="btn btn-info badge text-white">select</a>
+          {% endif %}
 				</span>
       </div>
     </div>
@@ -132,7 +134,9 @@
   <script type="text/javascript">
     //////////////open dialog////
     $("#btn_show").click(function () {
-      $('#myModal01').modal('show');
+      if(!$(this).is('[disabled=disabled]')) {
+        $('#myModal01').modal('show');
+      }
     }); ///////////////////
         //////////////////close dialog
     $('#btn_exit01').click(function () {
