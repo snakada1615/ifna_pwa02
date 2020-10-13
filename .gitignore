@@ -5,3 +5,7 @@ myenv
 db.sqlite3
 /static
 .DS_Store
+
+shunichi-debug.log
+
+myApp/migrations/
