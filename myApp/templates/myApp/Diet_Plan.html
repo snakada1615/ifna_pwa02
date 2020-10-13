@@ -21,11 +21,11 @@
       <div class="row">
         {% include "./_dialog01.html" %}
         <div class="col-2 my-0 px-3">
-            {% if myStep == 400 %}
-          <img src="{% static 'img/no4.png' %}" alt="number 4">
-            {% elif myStep == 700 %}
-          <img src="{% static 'img/no7.png' %}" alt="number 4">
-            {% endif %}
+          {% if myStep == 400 %}
+            <img src="{% static 'img/no4.png' %}" alt="number 4">
+          {% elif myStep == 700 %}
+            <img src="{% static 'img/no7.png' %}" alt="number 4">
+          {% endif %}
         </div>
         <div class="col-8 my-0 px-1">
           <h5>
@@ -484,6 +484,7 @@
       background-color: #F6B0DC;
       color: white;
     }
+
     .rowcolor_0 {
       background-color: white;
       color: black;
@@ -928,10 +929,14 @@
               this._setCellColor(Math.round(this.sum_pr), target_pr[target_scope]) +
               this._setCellColor(Math.round(this.sum_va), target_va[target_scope]) +
               this._setCellColor(Math.round(this.sum_fe), target_fe[target_scope]) +
-              '<td></td><td class="tableItem_hide"><' + '/td><td class="tableItem_hide">' +
+              '<td>' + this.sum_vol + '</td><td class="tableItem_hide"><' + '/td><td class="tableItem_hide">' +
               '</td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
-              '</td><td class="tableItem_hide"></td><td class="tableItem_hide"></td></tr>';
-      this.dom_tbl_Crop.append(total);
+              '</td><td class="tableItem_hide"></td><td class="tableItem_hide"></td>' +
+              '<td class="tableItem_hide"></td><td class="tableItem_hide"></td>' +
+              '<td class="tableItem_hide"></td><td class="tableItem_hide"></td>' +
+              '<td class="tableItem_hide"></td><td class="tableItem_hide"></td></tr>';
+      this.dom_tbl_Crop.children('tfoot').children('tr').remove();
+      this.dom_tbl_Crop.children('tfoot').append(total);
       // Barratingセット
       this._SetBarrating();
 
@@ -1559,14 +1564,14 @@
       console.group('selected_crops_tbl:click');
       let myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');//テーブル番号の取得
       let myrow = $(this).closest('tbody tr')[0].rowIndex;
-      if (myrow < $(this).parents().children('tbody tr').length) {
-        myCrop[myNum_tmp]._Sum_Nutrition();
-        let dat = myCrop[myNum_tmp]._getCrop_byRow(myrow);
-        myCrop_individual[myNum_tmp].setData(dat);
-        myfood_volume['modal'].attr('myNum', myNum_tmp); //table番号の記録
-        myfood_volume['modal'].attr('sum_vol', myCrop[myNum_tmp].sum_vol); //摂取量上限の記録
-        myfood_volume['modal'].modal('show');
-      }
+//      if (myrow < $(this).parents().children('tbody tr').length) {
+      myCrop[myNum_tmp]._Sum_Nutrition();
+      let dat = myCrop[myNum_tmp]._getCrop_byRow(myrow);
+      myCrop_individual[myNum_tmp].setData(dat);
+      myfood_volume['modal'].attr('myNum', myNum_tmp); //table番号の記録
+      myfood_volume['modal'].attr('sum_vol', myCrop[myNum_tmp].sum_vol); //摂取量上限の記録
+      myfood_volume['modal'].modal('show');
+//      }
       console.groupEnd();
     });
 
