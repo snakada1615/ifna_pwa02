@@ -708,7 +708,7 @@
       console.group('Crop_Selected.setData_fromAvailable:');
       let res = false;
       if (drawFlag) {       //rowの追加
-        //データセットの作成1:buy_prod_share設定
+                            //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {
@@ -765,21 +765,34 @@
     Crop_Selected.prototype._delCrop = function (food_item_id) {
       console.group('Crop_Selected._delCrop:');
       let del_index = -1;
-      const found = this.crops.find(function (ele, i) {
+      myArray = this.crops;
+      myArray.forEach((ele, index) => {
         if (ele.food_item_id === Number(food_item_id)) {
-          del_index = i;
+          console.log('food_item_id(' + ele.food_item_id + ')を削除します');
+          del_index = 1;
+          myArray.splice(index, 1);
         }
       });
-      if (del_index > -1) {
-        this.crops.splice(del_index, 1);
-        console.log('food_item_id(' + food_item_id + ')の作物選択を解除しました');
-      }
+      {% comment %}
+            let del_index = -1;
+            const found = this.crops.find(function (ele, i) {
+              if (ele.food_item_id === Number(food_item_id)) {
+                del_index = i;
+                console.log('food_item_id(' + ele.food_item_id + ')を削除します');
+              }
+            });
+            if (del_index > -1) {
+              this.crops.splice(del_index, 1);
+              console.log(del_index + '番目の要素を削除しました');
+              console.log('food_item_id(' + food_item_id + ')の作物選択を解除しました');
+            }
+      {% endcomment %}
       console.groupEnd();
       return del_index;
     };
     Crop_Selected.prototype._delAll = function () {
       this.crops = [];
-      this.dom_tbl_Crop.children('tbody').find('tr:not(:eq(0))').remove(); //先頭行以外を削除
+      this.dom_tbl_Crop.children('tbody').find('tr').remove();
       console.log('削除しました');
       this._drawRaw_total();
     };
@@ -824,6 +837,10 @@
         let mycrop_html = this._drawRaw_setHtml(this.crops[mycrop]);
         this.dom_tbl_Crop.find('tbody').append(mycrop_html);
       }
+      // tablesorterの初期化
+      $('.selected_crops_tbl').trigger("update");
+      console.error('tablesorterの初期化');
+
       // 合計行の再計算の挿入
       this._drawRaw_total();
       console.groupEnd();
@@ -831,18 +848,30 @@
     Crop_Selected.prototype._drawRaw_erase = function (food_item_id) {
       console.group('Crop_Selected._drawRaw_erase:');
       let del_flag = -1;
-      this.dom_tbl_Crop.find('tbody tr').each(function (j, myRow) {
-        if ($(myRow).children('td').eq(7).text() === String(food_item_id)) { // 指定行が存在した場合
-          del_flag = j;
+      let delRow = this.dom_tbl_Crop.find('tbody tr').filter(function () {
+        if ($(this).children('td').eq(7).text() === String(food_item_id)) {
+          console.log(food_item_id + 'を削除します');
+          return true;
         }
       });
-      if (del_flag > -1) {
-        this.dom_tbl_Crop.find('tbody tr').eq(del_flag).remove()
-      }
-      console.groupEnd();
+      delRow.remove();
+      console.error(this.dom_tbl_Crop.find('tbody tr'));
+
+      {% comment %}
+            this.dom_tbl_Crop.find('tbody tr').each(function (j, myRow) {
+              if ($(myRow).children('td').eq(7).text() === String(food_item_id)) { // 指定行が存在した場合
+                del_flag = j;
+              }
+            });
+
+            if (del_flag > -1) {
+              this.dom_tbl_Crop.find('tbody tr').eq(del_flag).remove()
+            }
+            console.groupEnd();
+      {% endcomment %}
       return del_flag;
     };
-    Crop_Selected.prototype._drawRaw_eraseLast = function () {
+    Crop_Selected.prototype._drawRaw_eraseLast = function () { //今後使わないので廃止
       console.group('Crop_Selected._drawRaw_eraseLast:');
       // 合計行を削除
       let lastrow = this.dom_tbl_Crop.find('tbody tr').last();
@@ -858,14 +887,14 @@
       let add_data = this._getCrop_byID(food_item_id);
       if (add_data !== 'none') {
         // 最終行を削除
-        this._drawRaw_eraseLast();
+        //this._drawRaw_eraseLast();
         // 重複行があレバ削除
         let rowNum = this._drawRaw_erase(food_item_id);
         // 追加行の作成
         const add_data_html = this._drawRaw_setHtml(add_data);
         // 追加行の挿入
         if (rowNum == 0) {
-          this.dom_tbl_Crop.find('tbody tr:first').before(add_data_html);
+          this.dom_tbl_Crop.find('tbody').before(add_data_html);
         } else if (rowNum > 0) {
           this.dom_tbl_Crop.find('tbody tr').eq(rowNum - 1).after(add_data_html);
         } else {
@@ -873,6 +902,11 @@
         }
         // 合計行の作成と挿入
         this._drawRaw_total();
+
+        // tablesorterの初期化
+        $('.selected_crops_tbl').trigger("update");
+        console.error('tablesorterの初期化');
+
         console.log('行の追加と合計行の再計算を終えました');
       } else {
         console.error('指定されたfood_item_id(' + food_item_id + ')は存在しません');
@@ -919,7 +953,7 @@
     Crop_Selected.prototype._drawRaw_total = function () {
       console.group('Crop_Selected._drawRaw_total:');
       // 合計行を削除
-      this._drawRaw_eraseLast();
+      //this._drawRaw_eraseLast();
       // 合計行の再計算
       this._Sum_Nutrition();
       // 合計行の挿入
@@ -1560,10 +1594,10 @@
     {% endcomment %}
 
     //////////////////set food volume////#
-    $(".selected_crops_tbl").on("click", "td", function () {
+    $(".selected_crops_tbl tbody").on("click", "td", function () {
       console.group('selected_crops_tbl:click');
       let myNum_tmp = $(this).parents('.selected_crops_tbl').attr('myNum');//テーブル番号の取得
-      let myrow = $(this).closest('tbody tr')[0].rowIndex;
+      let myrow = $(this).closest('tr')[0].rowIndex;
 //      if (myrow < $(this).parents().children('tbody tr').length) {
       myCrop[myNum_tmp]._Sum_Nutrition();
       let dat = myCrop[myNum_tmp]._getCrop_byRow(myrow);
@@ -1584,7 +1618,7 @@
       if (data == false) {
         return false;
       }
-      console.error(data);
+      console.log(data);
       myCrop[myNum_tmp].setDataDraw_Crop(data);
 
       myfood_volume['modal'].modal('hide');
