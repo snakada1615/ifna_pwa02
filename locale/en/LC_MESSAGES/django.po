@@ -18,5 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: myApp/forms.py:52 myApp/forms.py:59 myApp/forms.py:67 myApp/forms.py:74
-msgid "value not exist"
-msgstr "Value not exist"
+msgid "Your input for %(field_name)s is invalid."
+msgstr "Your input for %(field_name)s is invalid."
+
+msgid "Woreda"
+msgstr "Woreda"
+
+msgid "Zone"
+msgstr "Zone"
+
+msgid "Region"
+msgstr "Region"
+
+msgid "Country"
+msgstr "Country"

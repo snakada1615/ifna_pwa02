@@ -27,7 +27,7 @@ class LocationForm(forms.ModelForm):
       'country': forms.Select(attrs={'onchange': "selCnt();", 'required': 'required'}),
       'region': forms.Select(attrs={'onchange': "selSub1();", 'required': 'required'}),
       'province': forms.Select(attrs={'onchange': "selSub2();", 'required': 'required'}),
-      'community': forms.Select(),
+      'community': forms.Select(attrs={'required': 'required'}),
       'AEZ_id': forms.HiddenInput(),
       'stunting_rate': forms.HiddenInput(),
       'wasting_rate': forms.HiddenInput(),
@@ -49,14 +49,14 @@ class LocationForm(forms.ModelForm):
     if 'country' in cleaned_data and cleaned_data['country'] != '':
       country = Countries.objects.filter(GID_0=cleaned_data['country'])
       if len(country) == 0:
-        raise ValidationError({'country': [_('value not exist')]})
+        raise ValidationError({'country': [_('Your input for %(field_name)s is invalid.') % {'field_name': _('Country')}]})
       has_country = True
 
     has_region = False
     if ('region' in cleaned_data and cleaned_data['region'] != '') and has_country:
       region = Countries.objects.filter(GID_0=cleaned_data['country'], GID_1=cleaned_data['region'])
       if len(region) == 0:
-        raise ValidationError({'region': [_('value not exist')]})
+        raise ValidationError({'region': [_('Your input for %(field_name)s is invalid.') % {'field_name': _('Region')}]})
       has_region = True
 
     has_province = False
@@ -64,14 +64,14 @@ class LocationForm(forms.ModelForm):
       province = Countries.objects.filter(GID_0=cleaned_data['country'], GID_1=cleaned_data['region'],
                                           GID_2=cleaned_data['province'])
       if len(province) == 0:
-        raise ValidationError({'province': [_('value not exist')]})
+        raise ValidationError({'province': [_('Your input for %(field_name)s is invalid.') % {'field_name': _('Zone')}]})
       has_province = True
     if ('community' in cleaned_data and cleaned_data[
       'community'] != '') and has_country and has_region and has_province:
       community = Countries.objects.filter(GID_0=cleaned_data['country'], GID_1=cleaned_data['region'],
                                           GID_2=cleaned_data['province'], GID_3=cleaned_data['community'])
       if len(community) == 0:
-        raise ValidationError({'community': [_('value not exist')]})
+        raise ValidationError({'community': [_('Your input for %(field_name)s is invalid.') % {'field_name': _('Woreda')}]})
 
     return cleaned_data
 
