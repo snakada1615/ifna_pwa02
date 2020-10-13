@@ -336,6 +336,10 @@
             display: none;
         }
 
+        #tbl_season tr td, #tbl_crop_selected tr td {
+            font-size: 0;
+            height: 28px;
+        }
 
     </style>
 
@@ -458,7 +462,6 @@
         Cell_MultiSelect.prototype.setCellColor = function (x, y, color) {
             let tmp_y = 2 * y + 1;
             let $tmp_cell = $myTbl.children('tbody').children('tr').eq(tmp_y).children('td').eq(x);
-
             switch (Number(color)) { // cellの値に応じて色変化
                 case 0:
                     $tmp_cell.css("background-color", "");
@@ -540,7 +543,9 @@
         //    convert month range into month list   -------------------------------
         function month_conv(start1, end1) {
             let tmp = [];
-            if (start1 < end1) {
+            start1 = parseInt(start1);
+            end1 = parseInt(end1);
+            if (start1 <= end1) {
                 for (var i = start1; i < end1 + 1; i++) {
                     tmp.push(i);
                 }
@@ -681,17 +686,17 @@
                     if (season_count !== 0) {
                         season["end" + String(season_count)] = String(j)
                     }
-                    if (season_count > 2 && season_curr === season_0) {
-                        season["start1"] = String(j + 1)
-                    } else {
-                        season_count++;
-                        season["start" + String(season_count)] = String(j + 1);
+                    season_count++;
+                    season["start" + String(season_count)] = String(j + 1);
+                    if( j === 11 ) {
+                       season["end" + String(season_count)] =  String(j + 1);
                     }
-                } else if (j === 11 && season_curr !== season_0) {
+                } else if (j === 11) {
                     season["end" + String(season_count)] = "12"
                 }
             }
             season["season_count"] = season_count;
+            $('#season_count').text(season_count);
             return season
         };
 
@@ -1038,29 +1043,29 @@
                         console.log('myTbl clicked'); // 以下は使わないことにした（月ごとの入力→季節ごとの入力へ変更）
 
                         {% comment %}
-                                                console.log('mySelectMonth.getAll().selected_status=' + mySelectMonth.getAll().selected_status);
-                                                switch (mySelectMonth.getAll().selected_status) {
-                                                    case -1:
-                                                        let tmp = Number($(this).text());
-                                                        tmp = (tmp + 1) % 4;
-                                                        $(this).text(tmp); // cellの値+1
-                                                        tmp_y = (myrow - 1) / 2;
-                                                        mySelectMonth.setCellColor(mycol, tmp_y, tmp);
-                                                        break;
-                                                    case 0:
-                                                        tmp_y = (myrow - 1) / 2;
-                                                        mySelectMonth.setStart(mycol, tmp_y);
-                                                        mySelectMonth.setCellColor(mycol, tmp_y, 4);
-                                                        console.log('selectedd_statusは' + mySelectMonth.getAll().selected_status + 'です');
-                                                        console.log('(' + mycol + ', ' + tmp_y + '), ' + mySelectMonth.getAll().myName + 'です');
-                                                        break;
-                                                    case 1:
-                                                        tmp_y = (myrow - 1) / 2;
-                                                        mySelectMonth.setGoal(mycol, tmp_y);
-                                                        console.log('selectedd_statusは' + mySelectMonth.getAll().selected_status + 'です');
-                                                        console.log('(' + mycol + ', ' + tmp_y + '), ' + mySelectMonth.getAll().myName + 'です');
-                                                        break;
-                                                }
+                            console.log('mySelectMonth.getAll().selected_status=' + mySelectMonth.getAll().selected_status);
+                            switch (mySelectMonth.getAll().selected_status) {
+                                case -1:
+                                    let tmp = Number($(this).text());
+                                    tmp = (tmp + 1) % 4;
+                                    $(this).text(tmp); // cellの値+1
+                                    tmp_y = (myrow - 1) / 2;
+                                    mySelectMonth.setCellColor(mycol, tmp_y, tmp);
+                                    break;
+                                case 0:
+                                    tmp_y = (myrow - 1) / 2;
+                                    mySelectMonth.setStart(mycol, tmp_y);
+                                    mySelectMonth.setCellColor(mycol, tmp_y, 4);
+                                    console.log('selectedd_statusは' + mySelectMonth.getAll().selected_status + 'です');
+                                    console.log('(' + mycol + ', ' + tmp_y + '), ' + mySelectMonth.getAll().myName + 'です');
+                                    break;
+                                case 1:
+                                    tmp_y = (myrow - 1) / 2;
+                                    mySelectMonth.setGoal(mycol, tmp_y);
+                                    console.log('selectedd_statusは' + mySelectMonth.getAll().selected_status + 'です');
+                                    console.log('(' + mycol + ', ' + tmp_y + '), ' + mySelectMonth.getAll().myName + 'です');
+                                    break;
+                            }
                         {% endcomment %}
                     } else {    //こちらだけ使用（季節ごとの入力）
                         const crop_tmp = $(this).text();
@@ -1098,6 +1103,7 @@
                             console.log('(' + mycol + ', ' + myrow + '), ' + 'です');
                             break;
                     }
+                    mySeason.getSeason();
                 });
 
                 //////////////////get data from table
@@ -1116,7 +1122,6 @@
                             d.push(dd);
                         }
                     });
-                    console.log(d);
                     res1.myJson = d;
 
                     let season = [];
@@ -1139,8 +1144,40 @@
                     let mydat = getTblData();
                     console.log(hostUrl);
                     Set_CRSF();
+                    // check corresponding season
+                    if (!checkSeasonMatch()) {
+                      return alert('Please check this season at food');
+                    }
                     sendJson(mydat, hostUrl);
                 }); ///////////////////
+
+                function checkSeasonMatch() {
+                    let season = mySeason.getSeason();
+                    let season_count = season['season_count'];
+                    for(let i = 1; i<= season_count; i++) {
+                        let start = parseInt(season['start'+i]);
+                        let end = parseInt(season['end'+i]);
+                        let hasError = false;
+                        $myTbl.children('tbody').children('tr').each(function (index_r, myRow) {
+                            if (index_r % 2 == 1) {
+                                let lastVal = null;
+                                for (let j = start; j <= end; j++) {
+                                    let currentVal = $(this).children('td').eq(j-1).text();
+                                    if (lastVal == null) {
+                                      last_val = currentVal;
+                                    } else if (currentVal != lastVal) {
+                                       hasError = true;
+                                       break;
+                                    }
+                                }
+                            }
+                        });
+                        if (hasError) {
+                           return false;
+                        }
+                    }
+                    return true ;
+                }
 
                 ////// csrf_tokenの取得に使う//////////////
                 function getCookie(name) {
@@ -1189,7 +1226,7 @@
                             window.location.href = response.url;
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
-                            alert("fail");
+                            alert("Please try again");
                             console.log(jqXHR.responseText);
                             console.log(jqXHR.status); //例：404
                             console.log(textStatus); //例：error
@@ -1203,6 +1240,7 @@
                 //////////////////sendJson//// scfript end///////////////////
                 const mySelectMonth = new Cell_MultiSelect(-1, 0, 1, 2);
                 const mySeason = new Season_MultiSelect(-1, 0, 1, 2);
+                mySeason.getSeason();
 
             }// ---------- initComplete finish here --------------
         });
