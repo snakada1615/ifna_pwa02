@@ -2421,7 +2421,7 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
     context = super().get_context_data(**kwargs)
     context['isUpdate'] = 1
     context['myuser'] = self.request.user
-    myLoc = self.request.user.profile.myLocation
+    myLoc = Location.objects.get(id=self.request.user.profile.myLocation)
     context['myLocation'] = myLoc
     context['crop_name'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.Food_name
     context['crop_name_id'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.food_item_id
@@ -2429,7 +2429,7 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
     context['crop_pr'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.Protein
     context['crop_va'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.VITA_RAE
     context['crop_fe'] = Crop_Feasibility.objects.get(id=self.kwargs['pk']).myFCT.FE
-    context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
+    context['myLocation_name'] = myLoc.name
 
     tmp_nut_group = Person.objects.filter(
       myLocation=myLoc).select_related('myDRI')
