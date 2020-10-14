@@ -1270,8 +1270,9 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp_v = 0
     tmp_f = 0
     tmp_vol = 0
-    if len(tmp_nut_group1) > 0:
+    if tmp_nut_group1.exists():
       for tmp in tmp_nut_group1:
+        logger.error(tmp.myDRI.nut_group)
         tmp_e += tmp.myDRI.energy
         tmp_p += tmp.myDRI.protein
         tmp_v += tmp.myDRI.vita
