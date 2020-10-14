@@ -1,4 +1,6 @@
+import re
 from django import forms
+from django.forms import ValidationError
 from django.contrib.admin import widgets
 from django.contrib.auth.models import User
 from django.db.models import Q, Sum # 集計関数の追加
@@ -104,6 +106,8 @@ class UserEditForm(UserChangeForm):
 
 
 class UserCreateForm(UserCreationForm):
+  first_name = forms.CharField(max_length=150, required=True)
+  last_name = forms.CharField(max_length=150, required=True)
   class Meta:
     model = User
     fields = ('first_name', 'last_name',
@@ -111,6 +115,13 @@ class UserCreateForm(UserCreationForm):
     widgets = {
       'is_staff': forms.HiddenInput(),
     }
+
+  def clean_username(self):
+    pattern = "[a-zA-Z0-9\-._@+]"
+    username = self.cleaned_data['username']
+    if not re.match(pattern, username):
+      raise ValidationError('Username contain letter, number only and special characters included @/./+/-/_')
+    return username
 
   def clean(self):
     cleaned_data = super(UserCreateForm, self).clean()

@@ -349,6 +349,7 @@ def create_user_profile(request):
         profile_form = ProfileForm()
         logger.info('ユーザー情報を作成します')
     return render(request, 'myApp/profile.html', {
+        'is_register': True,
         'user_form': user_form,
         'profile_form': profile_form
     })
@@ -372,6 +373,7 @@ def update_profile(request):
         profile_form = ProfileForm(instance=request.user.profile)
         logger.info('ユーザー情報(' + request.user.username + ')を更新します')
     return render(request, 'myApp/profile.html', {
+        'is_register': False,
         'user_form': user_form,
         'profile_form': profile_form
     })
