@@ -62,8 +62,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-4 px-1"></div>
+      </div>
+      {% if not user.is_authenticated %}
 			<div class="col-6 col-md-4 px-1">
 				<div class="card bg-info h-100">
 					<div class="card img-thumbnail bg-info">
@@ -73,7 +73,9 @@
 						</div>
 					</div>
 				</div>
-			</div>
+      </div>
+      {% endif %}
+      {% if user.is_authenticated %}
 			<div class="col-6 col-md-4 px-1">
 				<div class="card bg-info h-100">
 					<div class="card img-thumbnail bg-info">
@@ -83,18 +85,21 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-4 px-1"></div>
+      </div>
+      {% endif %}
+      {% if not user.is_authenticated %}
 			<div class="col-6 col-md-4 px-1">
 				<div class="card bg-info h-100">
 					<div class="card img-thumbnail bg-info">
 						<div class="card-body py-2 px-2">
 							<p class="card-text">If you are new user, please register from here</p>
-							<a class="btn btn-warning m-auto btn-block" href="{% url 'create_user_profile' %}">New user</a>
+							<a class="btn btn-warning m-auto btn-block" href="{% url 'create_user_profile' %}">Register</a>
 						</div>
 					</div>
 				</div>
-			</div>
+      </div>
+      {% endif %}
+      {% if user.is_authenticated %}
 			<div class="col-6 col-md-4 px-1">
 				<div class="card bg-info h-100">
 					<div class="card img-thumbnail bg-info">
@@ -104,7 +109,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
+      </div>
+      {% endif %}
 		</div>
 	</div>
 
