@@ -174,6 +174,7 @@
 
 
     <div id="content" class="container mt-1">
+      {% if user.is_authenticated %}
         <div class="container bg-success my-0 text-white text-right" style="max-width: 540px;">
             <div class="row">
                 <div class="col">
@@ -194,6 +195,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
 
         <div class="container my-0 py-0" style="max-width: 540px;">
             <div class="row mx-0 my-0 py-0">
