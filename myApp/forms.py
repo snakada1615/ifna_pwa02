@@ -76,7 +76,6 @@ class LocationForm(forms.ModelForm):
     return cleaned_data
 
 
-
 class Person_Form(forms.ModelForm):
   class Meta:
     model = Person
@@ -94,6 +93,41 @@ class Person_Form(forms.ModelForm):
     cleaned_data = super(Person_Form, self).clean()
     self.cleaned_data['myLocation'] = Location.objects.get(id=self.myLocation)
 
+    return cleaned_data
+
+
+class PersonListForm(forms.Form):
+
+  SCOPE_FAMILY = 2
+  SCOPE_COMMUNITY = 3
+
+  def __init__(self, *args, **kwargs):
+    super(PersonListForm, self).__init__(*args, **kwargs)
+
+  def clean(self):
+    cleaned_data = super(PersonListForm, self).clean()
+    my_json = self.data['myJson']
+    for index, row in enumerate(my_json):
+      nut_group = int(row['nut_group_id']) - 1
+      key = '#inpNum_fam%d' % (nut_group) if int(row['target_scope']) == self.SCOPE_FAMILY else '#inpNum%d' % (nut_group)
+      field = forms.IntegerField(required=True, min_value=0)
+      self.fields.update({key: field})
+      try:
+        field.clean(row['target_pop'])
+      except ValidationError as ex:
+        self.add_error(key, ex.messages)
+
+    # validate total pop
+    my_data_pop = self.data['dataPop']
+    for value, index in enumerate(my_data_pop):
+      field = forms.IntegerField(required=True, min_value=1)
+      self.fields.update({
+        index: field
+      })
+      try:
+        field.clean(my_data_pop[index])
+      except ValidationError as ex:
+        self.add_error(index, ex.messages)
     return cleaned_data
 
 

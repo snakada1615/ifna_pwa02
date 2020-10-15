@@ -336,7 +336,7 @@
             display: none;
         }
 
-        #tbl_season tr td, #tbl_crop_selected tr td {
+        #tbl_season tr td, #tbl_crop_selected tr:nth-child(even) {
             font-size: 0;
             height: 28px;
         }
@@ -1134,6 +1134,7 @@
                     month["season_count"] = $('#season_count').text();
                     season.push(month);
                     res1.season = season;
+                    res1.myLocation = {{myLocation}};
 
                     return res1;
                 }
@@ -1164,7 +1165,7 @@
                                 for (let j = start; j <= end; j++) {
                                     let currentVal = $(this).children('td').eq(j-1).text();
                                     if (lastVal == null) {
-                                      last_val = currentVal;
+                                      lastVal = currentVal;
                                     } else if (currentVal != lastVal) {
                                        hasError = true;
                                        break;

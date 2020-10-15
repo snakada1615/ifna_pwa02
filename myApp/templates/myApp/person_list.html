@@ -118,11 +118,20 @@
     input[type="number"]:disabled {
       background: #dddddd;
     }
+    .error {
+      border: 1px solid #de1b1b;
+    }
+    #inpNum_fam9 {
+      pointer-events: auto;
+      background: #dddddd;
+      outline: none;
+      box-shadow: none;
+    }
   </style>
 
   <script type="text/javascript">
     $('[data-toggle="tooltip"]').tooltip();
-
+    $('#inpNum_fam9').prop('disabled', false).attr('readonly', 'readonly');
     let mytarget_scope_Sum ={{mytarget_scope_Sum}};
 
     let myDRI_en = {{ myDRI_en|safe }};
@@ -145,16 +154,17 @@
     //////////////////btn_save_person
     $('#btn_save').click(function () {
       let hostUrl = myRoot + 'registPerson/';
+      // check validate input valid
       let mydat = getTblData_all();
-
-      console.log(mydat);
       Set_CRSF();
       sendJson(mydat, hostUrl);
     }); ////////btn_save_person///////////
 
+
     //////////////////getTblData
     function getTblData_all() { //
       let d = [];
+      let dataPop = {};
       $('table.tbl_pop tr input ').each(function (i, myRow) {
         if ($(myRow).attr('nut_group_id') < 10) {
           let dd = {};
@@ -163,10 +173,14 @@
           dd['myuser'] = {{ myuser.id }};
           dd['nut_group_id'] = $(myRow).attr('nut_group_id');
           dd['target_pop'] = $(myRow).val();
+          $(myRow).removeClass('error').removeAttr('title').removeAttr('data-original-title');
           d.push(dd);
         }
       });
-
+      dataPop['#inpNum_fam9'] = $('#inpNum_fam9').val();
+      $('#inpNum_fam9').removeClass('error').removeAttr('title').removeAttr('data-original-title');
+      dataPop['#inpNum9'] = $('#inpNum9').val();
+      $('#inpNum9').removeClass('error').removeAttr('title').removeAttr('data-original-title');
       let dd = {};
       dd['target_scope'] = "1";
       dd["myLocation"] = {{myLocation.id}};
@@ -174,8 +188,7 @@
       dd['nut_group_id'] = $('#inpNum_ind7').text();
       dd['target_pop'] = "1";
       d.push(dd);
-
-      return {"myJson": d};
+      return {"myJson": d, "dataPop": dataPop};
     }
 
     //////////////////getTblData //// csrf_tokenの取得に使う//////////////
@@ -223,8 +236,21 @@
         contentType: 'application/JSON',
         dataType: 'JSON',
         scriptCharset: 'utf-8',
-        success: function (response) {
-          window.location.href = response.url;
+        success: function (res) {
+          if (!res.success) {
+            let message = res.messages;
+            for (const prop in message) {
+              $(prop).addClass('error');
+              $(prop).attr({
+                'title': message[prop],
+                'data-toggle':'tooltip',
+                'data-placement': 'right',
+              }).tooltip();
+            }
+            alert('Please check again your input data');
+          } else {
+            window.location.href = res.url;
+          }
         },
         error: function (jqXHR, textStatus, errorThrown) {
           alert("fail");
@@ -359,17 +385,45 @@
 
 
     $("#inpNum9").on("input", function () {
-      // Print entered value in a div box
-      $("#inpNum0").val(Math.round($(this).val() * myPop.class0 / 100));
-      $("#inpNum1").val(Math.round($(this).val() * myPop.class1 / 100));
-      $("#inpNum2").val(Math.round($(this).val() * myPop.class2 / 100));
-      $("#inpNum3").val(Math.round($(this).val() * myPop.class4 / 100));
-      $("#inpNum4").val(Math.round($(this).val() * myPop.class3 / 100));
-      $("#inpNum5").val(Math.round($(this).val() * myPop.class6 / 100));
-      $("#inpNum6").val(Math.round($(this).val() * myPop.class5 / 100));
-      $("#inpNum7").val(Math.round($(this).val() * (myPop.class3_p + myPop.class5_p) / 100));
-      $("#inpNum8").val(Math.round($(this).val() * (myPop.class3_l + myPop.class3_l) / 100));
+      let myPopChange = Object.assign({}, myPop);
+      let popFloatVal = {};
+      let inputValNum = {};
+      myPopChange.class3 = myPop.class4;
+      myPopChange.class4 = myPop.class3;
+      myPopChange.class5 = myPop.class6;
+      myPopChange.class6 =  myPop.class5;
+      let currentNum = 0;
+      for(let i = 0; i<=6; i++) {
+        let valNum = parseInt($(this).val()) * myPopChange['class'+i] / 100;
+        if (Math.floor(valNum) < 1) {
+          if (Math.round(valNum) == 1) {
+            popFloatVal['class'+i] = (valNum - Math.floor(valNum));
+          } else {
+            popFloatVal['class'+i] = (valNum - Math.floor(valNum)) * myPopChange['class'+i]/100;
+          }
+        } else {
+          popFloatVal['class'+i] = (valNum - Math.floor(valNum)) * myPopChange['class'+i]/100;
+        }
+        inputValNum['class'+i] = Math.floor(valNum);
+        currentNum += Math.floor(valNum);
+      }
+      let keyClassFloatSorted = Object.keys(popFloatVal).sort(function(a,b){return popFloatVal[b]-popFloatVal[a]});
+      for (let index in keyClassFloatSorted) {
+        if (currentNum < parseInt($(this).val())) {
+          currentNum++;
+          inputValNum[keyClassFloatSorted[index]] += 1;
+        }
+        $("#inpNum"+keyClassFloatSorted[index].replace('class', '')).val(inputValNum[keyClassFloatSorted[index]]);
+      }
+      $("#inpNum7").val(Math.round($(this).val() * (myPopChange.class3_p + myPopChange.class5_p) / 100));
+      $("#inpNum8").val(Math.round($(this).val() * (myPopChange.class3_l + myPopChange.class3_l) / 100));
       sum_DRI(3);
+    });
+
+    // button clear click
+    $('.btn-clear').click(function(e) {
+        e.preventDefault();
+        $($(this).attr('tab_clear')).find('input').val(0);
     });
 
     //////////////////個人targetの選択-----
@@ -384,11 +438,11 @@
     //////////////////Communityの選択方式の決定-----
     $('#chk-autoCalk').change(function () {
       if ($('#chk-autoCalk').prop('checked')) {
-        $('.input-manual').prop('disabled', true);
-        $('.input-auto').prop('disabled', false);
+        $('#tbl_pop3 .input-manual').prop('disabled', true);
+        $('#tbl_pop3 .input-auto').prop('disabled', false);
       } else {
-        $('.input-manual').prop('disabled', false);
-        $('.input-auto').prop('disabled', true);
+        $('#tbl_pop3 .input-manual').prop('disabled', false);
+        $('#tbl_pop3 .input-auto').prop('disabled', true);
       }
     });
     //////////////////Communityの選択方式の決定-----
@@ -427,7 +481,7 @@
     $("#inpNum_fam7").val(myFamily.class7);
     $("#inpNum_fam8").val(myFamily.class8);
     let tmp = myFamily.class0 + myFamily.class1 + myFamily.class2 + myFamily.class3 + myFamily.class4
-            + myFamily.class5 + myFamily.class6 + myFamily.class7 + myFamily.class8;
+            + myFamily.class5 + myFamily.class6;
     $("#inpNum_fam9").val(tmp);
 
     // Print initial value in a div box

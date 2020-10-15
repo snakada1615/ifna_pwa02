@@ -21,7 +21,7 @@ from django.http import HttpResponse
 from django.core import serializers
 from django.http.response import JsonResponse
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
-from .forms import LocationForm, Person_Form, UserForm, ProfileForm, Crop_Feas_Form
+from .forms import LocationForm, Person_Form, UserForm, ProfileForm, Crop_Feas_Form, PersonListForm
 from .forms import UserCreateForm, FCTForm, Crop_Name_Form
 
 from .models import Location, Countries, Crop_National, Crop_SubNational
@@ -725,18 +725,23 @@ def registCropAvail(request):
     tmp_newcrop_list = []
 
     logger.info('registCropAvail開始')
+
+    dict_date_avaiable = {'selected_status': 0}
+    for j in range(1, 13):
+        dict_date_avaiable['m%d_avail' % (j)] = 0
+    Crop_SubNational.objects.filter(myLocation_id=json_data['myLocation']).update(**dict_date_avaiable)
+
     for myrow in json_data['myJson']:
         newcrop = {}
         newcrop['myFCT'] = FCT.objects.get(food_item_id=myrow['myFCT_id'])
         newcrop['myLocation'] = Location.objects.get(id=myrow['myLocation'])
         newcrop['selected_status'] = myrow['selected_status']
-        newcrop['created_by'] = request.user
+        newcrop['created_by_id'] = request.user
         for j in range(1, 13):
             tmpM = myrow['m' + str(j)]
             if tmpM == '':
                 tmpM = '0'
             newcrop['m' + str(j) + '_avail'] = tmpM
-
         logger.info('データ受信完了')
         logger.info(newcrop['selected_status'])
 
@@ -1056,6 +1061,13 @@ def registPerson(request):
     logger.info('registPerson')
     # json_str = request.body.decode("utf-8")
     json_data = json.loads(request.body)
+    form = PersonListForm(json_data)
+    if (not form.is_valid()):
+        return JsonResponse({
+            'success': False,
+            'messages': form.errors
+        })
+
     nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent male', 'adolescent female',
                     'adult male', 'adult female', 'pregnant', 'lactating']
 
