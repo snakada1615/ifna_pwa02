@@ -116,10 +116,6 @@ class UserCreateForm(UserCreationForm):
       'is_staff': forms.HiddenInput(),
     }
 
-  # def clean_username(self):
-  #   cleaned_data = super(UserCreateForm, self).clean()
-    
-
   def clean(self):
     cleaned_data = super(UserCreateForm, self).clean()
     if 'username' in cleaned_data and cleaned_data['username'] != '':
