@@ -1155,29 +1155,29 @@
                 function checkSeasonMatch() {
                     let season = mySeason.getSeason();
                     let season_count = season['season_count'];
-                    for(let i = 1; i<= season_count; i++) {
-                        let start = parseInt(season['start'+i]);
-                        let end = parseInt(season['end'+i]);
+                    for (let i = 1; i <= season_count; i++) {
+                        let start = parseInt(season['start' + i]);
+                        let end = parseInt(season['end' + i]);
                         let hasError = false;
-                        $myTbl.children('tbody').children('tr').each(function (index_r, myRow) {
-                            if (index_r % 2 == 1) {
+                        $myTbl.children('tbody').children('tr').each(function (index, myRow) {
+                            if (index % 2 == 1) {
                                 let lastVal = null;
                                 for (let j = start; j <= end; j++) {
-                                    let currentVal = $(this).children('td').eq(j-1).text();
+                                    let currentVal = $(this).children('td').eq(j - 1).text();
                                     if (lastVal == null) {
-                                      lastVal = currentVal;
+                                        lastVal = currentVal;
                                     } else if (currentVal != lastVal) {
-                                       hasError = true;
-                                       break;
+                                        hasError = true;
+                                        break;
                                     }
                                 }
                             }
                         });
                         if (hasError) {
-                           return false;
+                            return false;
                         }
                     }
-                    return true ;
+                    return true;
                 }
 
                 ////// csrf_tokenの取得に使う//////////////
