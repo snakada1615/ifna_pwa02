@@ -116,15 +116,17 @@ class UserCreateForm(UserCreationForm):
       'is_staff': forms.HiddenInput(),
     }
 
-  def clean_username(self):
-    pattern = "[a-zA-Z0-9\-._@+]"
-    username = self.cleaned_data['username']
-    if not re.match(pattern, username):
-      raise ValidationError('Username contain letter, number only and special characters included @/./+/-/_')
-    return username
+  # def clean_username(self):
+  #   cleaned_data = super(UserCreateForm, self).clean()
+    
 
   def clean(self):
     cleaned_data = super(UserCreateForm, self).clean()
+    if 'username' in cleaned_data and cleaned_data['username'] != '':
+      pattern = "[a-zA-Z0-9\-._@+]"
+      username = self.cleaned_data['username']
+      if not re.match(pattern, username):
+        raise ValidationError({'username': [_('Your input for %(field_name)s is invalid.') % {'field_name': _('username')}]})
     self.cleaned_data['is_staff'] = 1  # staffステータスの設定
     return cleaned_data
 
