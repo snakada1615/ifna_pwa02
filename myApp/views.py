@@ -367,9 +367,7 @@ def update_profile(request):
             logger.info('ユーザー(' + myuser.username + ')が更新されました')
             return redirect('index01')
         else:
-            print(user_form)
-            print(profile_form)
-            # logger.error('新ユーザー登録に失敗しました')
+            logger.error('新ユーザー登録に失敗しました')
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
