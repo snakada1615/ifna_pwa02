@@ -21,6 +21,12 @@ msgstr ""
 msgid "Your input for %(field_name)s is invalid."
 msgstr "Your input for %(field_name)s is invalid."
 
+msgid "%(field_name)s contain letter, number only and special characters included @/./+/-/_"
+msgstr "%(field_name)s contain letter, number only and special characters included @/./+/-/_"
+
+msgid "%(field_name)s must contain letters, digits and special characters only."
+msgstr "%(field_name)s must contain letters, digits and special characters only."
+
 msgid "Woreda"
 msgstr "Woreda"
 
@@ -32,3 +38,4 @@ msgstr "Region"
 
 msgid "Country"
 msgstr "Country"
+
