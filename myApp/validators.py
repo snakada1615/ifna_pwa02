@@ -6,7 +6,7 @@ class CustomPasswordValidator():
   def validate(self, password, user=None): 
     pattern = "[a-zA-Z-0-9~\!@#\$%\^&\*\(\)_\+{}\":;'\[\]]"
     if not re.match(pattern, password):
-      raise ValidationError("Password must contain letters, digits and special characters only")
+      raise ValidationError({'password': [('Your input for %(field_name)s is invalid.') % {'field_name': ('password')}]})
 
   def get_help_text(self):
-    return ("Password must contain letters, digits and special characters only.")
+    return "" ;
