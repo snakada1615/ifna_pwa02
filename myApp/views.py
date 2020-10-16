@@ -329,10 +329,10 @@ class Location_ListView(LoginRequiredMixin, ListView):
 
 @transaction.atomic
 def create_user_profile(request):
-    global profile_form
+    # global profile_form
     if request.method == 'POST':
         user_form = UserCreateForm(request.POST)
-        # profile_form = ProfileForm(request.POST)
+        profile_form = ProfileForm(request.POST)
         if user_form.is_valid():  # and profile_form.is_valid():
             myuser = user_form.save()
             profile_form = ProfileForm(request.POST, instance=myuser.profile)
@@ -367,7 +367,9 @@ def update_profile(request):
             logger.info('ユーザー(' + myuser.username + ')が更新されました')
             return redirect('index01')
         else:
-            logger.error('新ユーザー登録に失敗しました')
+            print(user_form)
+            print(profile_form)
+            # logger.error('新ユーザー登録に失敗しました')
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
