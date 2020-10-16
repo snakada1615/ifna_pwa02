@@ -1151,7 +1151,7 @@
                     Set_CRSF();
                     // check corresponding season
                     if (!checkSeasonMatch()) {
-                      return alert('Please check this season at food');
+                      return alert('Season definition is invalid. Please check');
                     }
                     sendJson(mydat, hostUrl);
                 }); ///////////////////

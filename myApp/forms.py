@@ -51,14 +51,14 @@ class LocationForm(forms.ModelForm):
     if 'country' in cleaned_data and cleaned_data['country'] != '':
       country = Countries.objects.filter(GID_0=cleaned_data['country'])
       if len(country) == 0:
-        raise ValidationError({'country': [_('Your input for %(field_name)s is invalid.') % {'field_name': _('Country')}]})
+        raise ValidationError({'country': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Country')}]})
       has_country = True
 
     has_region = False
     if ('region' in cleaned_data and cleaned_data['region'] != '') and has_country:
       region = Countries.objects.filter(GID_0=cleaned_data['country'], GID_1=cleaned_data['region'])
       if len(region) == 0:
-        raise ValidationError({'region': [_('Your input for %(field_name)s is invalid.') % {'field_name': _('Region')}]})
+        raise ValidationError({'region': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Region')}]})
       has_region = True
 
     has_province = False
@@ -66,14 +66,14 @@ class LocationForm(forms.ModelForm):
       province = Countries.objects.filter(GID_0=cleaned_data['country'], GID_1=cleaned_data['region'],
                                           GID_2=cleaned_data['province'])
       if len(province) == 0:
-        raise ValidationError({'province': [_('Your input for %(field_name)s is invalid.') % {'field_name': _('Zone')}]})
+        raise ValidationError({'province': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Zone')}]})
       has_province = True
     if ('community' in cleaned_data and cleaned_data[
       'community'] != '') and has_country and has_region and has_province:
       community = Countries.objects.filter(GID_0=cleaned_data['country'], GID_1=cleaned_data['region'],
                                           GID_2=cleaned_data['province'], GID_3=cleaned_data['community'])
       if len(community) == 0:
-        raise ValidationError({'community': [_('Your input for %(field_name)s is invalid.') % {'field_name': _('Woreda')}]})
+        raise ValidationError({'community': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Woreda')}]})
 
     return cleaned_data
 
@@ -102,6 +102,7 @@ class PersonListForm(forms.Form):
 
   SCOPE_FAMILY = 2
   SCOPE_COMMUNITY = 3
+  MAX_VALUE_NUMBER = 1000000
 
   def __init__(self, *args, **kwargs):
     super(PersonListForm, self).__init__(*args, **kwargs)
@@ -112,7 +113,7 @@ class PersonListForm(forms.Form):
     for index, row in enumerate(my_json):
       nut_group = int(row['nut_group_id']) - 1
       key = '#inpNum_fam%d' % (nut_group) if int(row['target_scope']) == self.SCOPE_FAMILY else '#inpNum%d' % (nut_group)
-      field = forms.IntegerField(required=True, min_value=0)
+      field = forms.IntegerField(required=True, min_value=0, max_value=self.MAX_VALUE_NUMBER)
       self.fields.update({key: field})
       try:
         field.clean(row['target_pop'])
@@ -122,7 +123,7 @@ class PersonListForm(forms.Form):
     # validate total pop
     my_data_pop = self.data['dataPop']
     for value, index in enumerate(my_data_pop):
-      field = forms.IntegerField(required=True, min_value=1)
+      field = forms.IntegerField(required=True, min_value=1, max_value=self.MAX_VALUE_NUMBER)
       self.fields.update({
         index: field
       })

@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: myApp/forms.py:52 myApp/forms.py:59 myApp/forms.py:67 myApp/forms.py:74
-msgid "Your input for %(field_name)s is invalid."
-msgstr "Your input for %(field_name)s is invalid."
+msgid "Your input for [%(field_name)s] is invalid! Please confirm and try again."
+msgstr "Your input for [%(field_name)s] is invalid! Please confirm and try again."
 
 msgid "%(field_name)s contain letter, number only and special characters included @/./+/-/_"
 msgstr "%(field_name)s contain letter, number only and special characters included @/./+/-/_"
