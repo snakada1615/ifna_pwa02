@@ -9,4 +9,4 @@ class CustomPasswordValidator():
       raise ValidationError("Password must contain letters, digits and special characters only")
 
   def get_help_text(self):
-    return ("Password must contain letters, digits and special characters only. HIHI")
+    return ("Password must contain letters, digits and special characters only.")
