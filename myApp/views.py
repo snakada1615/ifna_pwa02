@@ -262,6 +262,12 @@ class Under_Construction_View(TemplateView):
 class aboutNFA(TemplateView):
     template_name = "myApp/whatisNFA.html"
 
+    def get_context_data(self, **kwargs):
+      context = super().get_context_data(**kwargs)
+      context['myuser'] = self.request.user
+
+      return context
+
 
 class IndexView02(LoginRequiredMixin, TemplateView):  # todo myCountyNameの設定がうまくいかない
     template_name = "myApp/index02.html"
@@ -374,6 +380,7 @@ def update_profile(request):
         logger.info('ユーザー情報(' + request.user.username + ')を更新します')
     return render(request, 'myApp/profile.html', {
         'is_register': False,
+        'myuser': request.user,
         'user_form': user_form,
         'profile_form': profile_form
     })
