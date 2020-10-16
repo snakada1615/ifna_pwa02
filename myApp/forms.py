@@ -1,4 +1,6 @@
+import re
 from django import forms
+from django.forms import ValidationError
 from django.contrib.admin import widgets
 from django.contrib.auth.models import User
 from django.db.models import Q, Sum # 集計関数の追加
@@ -138,6 +140,8 @@ class UserEditForm(UserChangeForm):
 
 
 class UserCreateForm(UserCreationForm):
+  first_name = forms.CharField(max_length=150, required=True)
+  last_name = forms.CharField(max_length=150, required=True)
   class Meta:
     model = User
     fields = ('first_name', 'last_name',
@@ -148,6 +152,11 @@ class UserCreateForm(UserCreationForm):
 
   def clean(self):
     cleaned_data = super(UserCreateForm, self).clean()
+    if 'username' in cleaned_data and cleaned_data['username'] != '':
+      pattern = "[a-zA-Z0-9\-._@+]"
+      username = self.cleaned_data['username']
+      if not re.match(pattern, username):
+        raise ValidationError({'username': [_('Your input for %(field_name)s is invalid.') % {'field_name': _('username')}]})
     self.cleaned_data['is_staff'] = 1  # staffステータスの設定
     return cleaned_data
 

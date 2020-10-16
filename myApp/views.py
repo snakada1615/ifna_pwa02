@@ -262,6 +262,12 @@ class Under_Construction_View(TemplateView):
 class aboutNFA(TemplateView):
     template_name = "myApp/whatisNFA.html"
 
+    def get_context_data(self, **kwargs):
+      context = super().get_context_data(**kwargs)
+      context['myuser'] = self.request.user
+
+      return context
+
 
 class IndexView02(LoginRequiredMixin, TemplateView):  # todo myCountyNameの設定がうまくいかない
     template_name = "myApp/index02.html"
@@ -329,10 +335,10 @@ class Location_ListView(LoginRequiredMixin, ListView):
 
 @transaction.atomic
 def create_user_profile(request):
-    global profile_form
+    # global profile_form
     if request.method == 'POST':
         user_form = UserCreateForm(request.POST)
-        # profile_form = ProfileForm(request.POST)
+        profile_form = ProfileForm(request.POST)
         if user_form.is_valid():  # and profile_form.is_valid():
             myuser = user_form.save()
             profile_form = ProfileForm(request.POST, instance=myuser.profile)
@@ -349,6 +355,7 @@ def create_user_profile(request):
         profile_form = ProfileForm()
         logger.info('ユーザー情報を作成します')
     return render(request, 'myApp/profile.html', {
+        'is_register': True,
         'user_form': user_form,
         'profile_form': profile_form
     })
@@ -372,6 +379,8 @@ def update_profile(request):
         profile_form = ProfileForm(instance=request.user.profile)
         logger.info('ユーザー情報(' + request.user.username + ')を更新します')
     return render(request, 'myApp/profile.html', {
+        'is_register': False,
+        'myuser': request.user,
         'user_form': user_form,
         'profile_form': profile_form
     })
