@@ -141,8 +141,6 @@ class UserEditForm(UserChangeForm):
 
 
 class UserCreateForm(UserCreationForm):
-  first_name = forms.CharField(max_length=150, required=True)
-  last_name = forms.CharField(max_length=150, required=True)
   class Meta:
     model = User
     fields = ('first_name', 'last_name',
@@ -151,13 +149,23 @@ class UserCreateForm(UserCreationForm):
       'is_staff': forms.HiddenInput(),
     }
 
+  def clean_first_name(self):
+    first_name = self.cleaned_data.get('first_name')
+    if first_name == '':
+      raise ValidationError("Your input for [First name] is invalid! Please confirm and try again.")
+
+  def clean_last_name(self):
+    last_name = self.cleaned_data.get('last_name')
+    if last_name == '': 
+      raise ValidationError("Your input for [Last name] is invalid! Please confirm and try again.")
+
   def clean(self):
     cleaned_data = super(UserCreateForm, self).clean()
     if 'username' in cleaned_data and cleaned_data['username'] != '':
       pattern = "[a-zA-Z0-9\-._@+]"
       username = self.cleaned_data['username']
       if not re.match(pattern, username):
-        raise ValidationError({'username': [_('Your input for %(field_name)s is invalid.') % {'field_name': _('username')}]})
+        raise ValidationError({'username': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Username')}]})
     self.cleaned_data['is_staff'] = 1  # staffステータスの設定
     return cleaned_data
 
