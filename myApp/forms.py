@@ -141,6 +141,8 @@ class UserEditForm(UserChangeForm):
 
 
 class UserCreateForm(UserCreationForm):
+  first_name = forms.CharField(max_length=150, required=True)
+  last_name = forms.CharField(max_length=150, required=True)
   class Meta:
     model = User
     fields = ('first_name', 'last_name',
@@ -148,16 +150,6 @@ class UserCreateForm(UserCreationForm):
     widgets = {
       'is_staff': forms.HiddenInput(),
     }
-
-  def clean_first_name(self):
-    first_name = self.cleaned_data.get('first_name')
-    if first_name == '':
-      raise ValidationError("Your input for [First name] is invalid! Please confirm and try again.")
-
-  def clean_last_name(self):
-    last_name = self.cleaned_data.get('last_name')
-    if last_name == '': 
-      raise ValidationError("Your input for [Last name] is invalid! Please confirm and try again.")
 
   def clean(self):
     cleaned_data = super(UserCreateForm, self).clean()
@@ -171,23 +163,14 @@ class UserCreateForm(UserCreationForm):
 
 
 class UserForm(forms.ModelForm):
+  first_name = forms.CharField(max_length=150, required=True)
+  last_name = forms.CharField(max_length=150, required=True)
   class Meta:
     model = User
     fields = ('first_name', 'last_name', 'username', 'is_staff')
     widgets = {
       'is_staff': forms.HiddenInput(),
     }
-
-  def clean_first_name(self):
-    first_name = self.cleaned_data.get('first_name')
-    if first_name == '':
-      raise ValidationError("Your input for [First name] is invalid! Please confirm and try again.")
-
-  def clean_last_name(self):
-    last_name = self.cleaned_data.get('last_name')
-    if last_name == '': 
-      raise ValidationError("Your input for [Last name] is invalid! Please confirm and try again.")
-  
 
   def clean(self):
     cleaned_data = super(UserForm, self).clean()
