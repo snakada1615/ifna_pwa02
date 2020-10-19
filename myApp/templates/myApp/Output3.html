@@ -5,6 +5,14 @@
 {% block content %}
 
   <div class="container" style="max-width: 650px;">
+    <div class="btn-group btn-group-toggle" data-toggle="buttons" id="sw_unit">
+      <label class="btn btn-info active">
+        <input type="radio" name="options" id="option1" autocomplete="off" value="kg" checked> kg
+      </label>
+      <label class="btn btn-info">
+        <input type="radio" name="options" id="option2" autocomplete="off" value="ton"> ton
+      </label>
+    </div>
     <div class="mod-tbl">
       <table id="tbl_cropping" class="my-3">
         <thead>
@@ -106,9 +114,8 @@
     console.log(json_crop_selected);
 
     ///////////////////////////////////////////// //////////////////////////////////////// ////////////////////////////////////////// ////DrawSelected //////////////////////////
-    // initialize all table (selected_table)
+    // initialize data
     mytable = $('#tbl_cropping').children('tbody');
-    mytable.children('tr').remove();
     let dd = {};
     for (var j = 0; j < json_crop_selected.length; j++) {
       data = json_crop_selected[j];
@@ -123,27 +130,38 @@
     }
     console.log('output3書込み用データを更新しました');
     console.log(dd);
+    setVal(dd, 1000);
 
-    for (var tmp in dd) {
-      let cr = '<tr><td>' + tmp + '</td>';
-      let total_w = 0;
-      for (var i = 0; i < 13; i++) {
-        if (dd[tmp][i]) {
-          console.log('count=' + i + ':' + dd[tmp][i]);
-          dd[tmp][i][0] = Math.round(Number(dd[tmp][i][0]) * 365 / 1000);//1年分に変換
-          total_w += dd[tmp][i][0];
-          cr += SetDiv(dd[tmp][i]);
+    //////////////////////////////////////////////////
+    // draw table
+    //////////////////////////////////////////////////
+    function setVal(dd, unit) {
+      mytable.children('tr').remove();
+      for (var tmp in dd) {
+        let cr = '<tr><td>' + tmp + '</td>';
+        let total_w = 0;
+        for (var i = 0; i < 13; i++) {
+          if (dd[tmp][i]) {
+            let dd2 = dd[tmp][i].slice();
+            console.log('count=' + i + ':' + dd2);
+            dd2[0] = Math.round(Number(dd2[0]) * 30 / unit);//1月分に変換
+            total_w += dd2[0];
+            cr += SetDiv(dd2);
 //          console.log(SetDiv(dd[tmp][i]));
-        } else if (i == 12) {
-          cr += '<td>' + total_w + '</td>';
-        } else {
-          cr += '<td></td>';
+          } else if (i == 12) {
+            cr += '<td>' + total_w + '</td>';
+          } else {
+            cr += '<td></td>';
+          }
         }
+        cr += '</tr>';
+        mytable.append(cr);
       }
-      cr += '</tr>';
-      mytable.append(cr);
     }
 
+    //////////////////////////////////////////////////
+    // set source of procurement
+    //////////////////////////////////////////////////
     function SetDiv(myKey) {
       let newKey = '';
       let picNum = 0;
@@ -155,6 +173,18 @@
 
       return newKey;
     }
+
+    $('#sw_unit').change(function () {
+      console.error($('input[name=options]:checked').val())
+      if ($('input[name=options]:checked').val() === "kg") {
+        myunit = 1000;
+      } else {
+        myunit = 1000000;
+      }
+      setVal(dd, myunit);
+    })
+
+
   </script>
 
 {% endblock %}

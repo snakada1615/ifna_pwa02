@@ -7,6 +7,8 @@
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}" media="screen">
   <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}" media="screen">
+  <script type="text/javascript" src="{% static 'js/jquery.barrating.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/bars-1to10.css' %}">
 
   <input type="hidden" id="isupdate" value="{{ isUpdate }}"/>
   {{ form.certifications.errors }}
@@ -42,16 +44,116 @@
             {{ form.myFCT|as_crispy_field }}
           </div>
         </div>
+
         <div class="card border-success col-12  my-1 px-0"
              style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
           <div class="card-header bg-info text-white mx-0 px-1 my-0 py-0">
             Nutrient balance
           </div>
+
           <div class="card-body mx-1 px-1 my-0 py-0">
+            <div class="row">
+              <div class="col">Nutrient satisfaction per 100g serving</div>
+            </div>
+            <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+              <div class="col-3">
+                <label class="text-dark" for="rating_en">Energy</label>
+              </div>
+              <div class="col-2">
+                <div class="text-dark lbl_target_en" myNum="1"></div>
+              </div>
+              <div class="col-7">
+                <select class="rating_DRI rating_en" myNum="1">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+              <div class="col-3">
+                <label class="text-dark" for="rating_pr">Protein</label>
+              </div>
+              <div class="col-2">
+                <div class="text-dark lbl_target_pr" myNum="1"></div>
+              </div>
+              <div class="col-7">
+                <select class="rating_DRI rating_pr" myNum="1">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row no-gutters my-0" style="height:30px;">
+              <div class="col-3">
+                <label class="text-dark" for="rating_va">VitA</label>
+              </div>
+              <div class="col-2">
+                <div class="text-dark lbl_target_va" myNum="1"></div>
+              </div>
+              <div class="col-7">
+                <select class="rating_DRI rating_va" myNum="1" }>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row no-gutters my-0" style="height:30px;">
+              <div class="col-3">
+                <label class="text-dark " for="rating_fe">Iron</label>
+              </div>
+              <div class="col-2">
+                <div class="text-dark lbl_target_fe" myNum="1"></div>
+              </div>
+              <div class="col-7">
+                <select class="rating_DRI rating_fe" myNum="1">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+            <div class="row no-gutters my-0 py-0" style="height:30px;">
+              <div class="col-3 text-dark">Target group</div>
+              <div class="col-5 text-dark">{{ nutrient_target }}</div>
+            </div>
+
+            <hr>
+
             {{ form.feas_DRI_e|as_crispy_field }}
-            {{ form.feas_DRI_p|as_crispy_field }}
-            {{ form.feas_DRI_a|as_crispy_field }}
-            {{ form.feas_DRI_f|as_crispy_field }}
           </div>
         </div>
         <div class="card border-success col-12 my-1 px-0"
@@ -94,7 +196,6 @@
           </div>
           <div class="card-body mx-1 px-1 my-0 py-0">
             {{ form.feas_availability_prod|as_crispy_field }}
-            {{ form.feas_availability_non|as_crispy_field }}
             {{ form.feas_storability|as_crispy_field }}
           </div>
         </div>
@@ -213,6 +314,25 @@
       json_crop_local = json_crop_local.replace(/'/g, '"'); //datatablseは single quote を受け付けないため
       json_crop_local = JSON.parse(json_crop_local);
     }
+    var target_en = [];
+    var target_pr = [];
+    var target_va = [];
+    var target_fe = [];
+    var target_vol = [];
+
+    target_en[1] = {{dri_e1}};
+    target_pr[1] = {{dri_p1}};
+    target_va[1] = {{dri_v1}};
+    target_fe[1] = {{dri_f1}};
+    target_vol[1] = {{dri_vol1}};
+
+    $('.lbl_target_en').text(target_en[1].toFixed(0));
+    $('.lbl_target_pr').text(target_pr[1].toFixed(0));
+    $('.lbl_target_va').text(target_va[1].toFixed(0));
+    $('.lbl_target_fe').text(target_fe[1].toFixed(0));
+
+    $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
+    $('.rating_DRI').barrating('set', 0); // set barrating
 
     $(document).ready(function () {
       ////////////////  install mytable_all  ////////////
@@ -323,11 +443,47 @@
               $('#id_crop_name').attr('readonly', true);
               $('#id_crop_name_id').val(mydata['food_item_id']);
               $('#id_crop_name_id').attr('readonly', true);
+              SetBarrating(mydata['Energy'], mydata['Protein'], mydata['VITA_RAE'], mydata['FE']);
             }
           })
 
         },
       });
+
+
+      //---------SetBarrating----------
+      function SetBarrating(en, pr, va, fe) {
+        console.group('SetBarrating:');
+        let rate_en = Math.round(en * 10 / target_en[1]);
+        if (rate_en > 10) {
+          rate_en = 10;
+        } else if (rate_en < 1) {
+          rate_en = 1;
+        }
+        let rate_pr = Math.round(pr * 10 / target_pr[1]);
+        if (rate_pr > 10) {
+          rate_pr = 10;
+        } else if (rate_pr < 1) {
+          rate_pr = 1;
+        }
+        let rate_va = Math.round(va * 10 / target_va[1]);
+        if (rate_va > 10) {
+          rate_va = 10;
+        } else if (rate_va < 1) {
+          rate_va = 1;
+        }
+        let rate_fe = Math.round(fe * 10 / target_fe[1]);
+        if (rate_fe > 10) {
+          rate_fe = 10;
+        } else if (rate_fe < 1) {
+          rate_fe = 1;
+        }
+        $('.rating_en').barrating('set', rate_en); // set barrating
+        $('.rating_pr').barrating('set', rate_pr); // set barrating
+        $('.rating_va').barrating('set', rate_va); // set barrating
+        $('.rating_fe').barrating('set', rate_fe); // set barrating
+        console.groupEnd();
+      }
 
 
       //---------crop selection event----------
@@ -340,6 +496,7 @@
         $('#id_crop_name').attr('readonly', true);
         $('#id_crop_name_id').val("{{ crop_name_id }}");
         $('#id_crop_name_id').attr('readonly', true);
+        SetBarrating("{{ crop_en }}", "{{ crop_pr }}", "{{ crop_va }}", "{{ crop_fe }}");
       }
     })//-----document.ready()-----------
 

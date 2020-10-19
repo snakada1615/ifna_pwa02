@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-2">
-    <a class="btn mt-2 my-0 py-0 btn-sm" id="btn_car_prev3" href='#' style="background-color:#ADC757;">prev</a>
+    <a class="btn mt-2 my-0 py-0 btn-sm" id="btn_car_prev3" style="background-color:#ADC757;">prev</a>
     <div class="dropdown my-1 ">
-      <button type="button"  id="dropdown3"
+      <button type="button" id="dropdown3"
               class="btn btn-sm btn-secondary dropdown-toggle myfilter" myPage="300"
               data-toggle="dropdown"
               aria-haspopup="true"
@@ -17,7 +17,7 @@
     <div id="title_diet3" class="font-weight-bold row justify-content-center align-self-center"></div>
   </div>
   <div class="col-2">
-    <a class="btn mt-2 my-0 py-0 btn-sm" id="btn_car_next3" href='#' style="background-color:#ADC757;">next</a>
+    <a class="btn mt-2 my-0 py-0 btn-sm" id="btn_car_next3" style="background-color:#ADC757;">next</a>
   </div>
 </div>
 
@@ -34,18 +34,18 @@
                border-width: 2px;
           ">
                   <div class="card-header bg-info text-white p-1">
-                    Diet plan for target beneficiaries:
+                    Diet plan:
                     {% if forloop.counter == 1 %}
-                      {{ month_season_start_text.1 }} to {{ month_season_end_text.1 }}
+                      {{ season_name.0 }}
                     {% endif %}
                     {% if forloop.counter == 2 %}
-                      {{ month_season_start_text.2 }} to {{ month_season_end_text.2 }}
+                      {{ season_name.1 }}
                     {% endif %}
                     {% if forloop.counter == 3 %}
-                      {{ month_season_start_text.3 }} to {{ month_season_end_text.3 }}
+                      {{ season_name.2 }}
                     {% endif %}
                     {% if forloop.counter == 4 %}
-                      {{ month_season_start_text.4 }} to {{ month_season_end_text.4 }}
+                      {{ season_name.3 }}
                     {% endif %}
 
                     <span hidden class="lst_month text-dark mx-1" myNum={{ forloop.counter|add:300 }}
@@ -65,7 +65,7 @@
                     </span>
                   </div>
 
-                  <table border="1" class="table table-success selected_crops_tbl" myNum={{ forloop.counter|add:300 }}>
+                  <table border="1" class="table table-success table-fixed-100 selected_crops_tbl" myNum={{ forloop.counter|add:300 }}>
                     <thead class="thead-light">
                     <th>
                       name:
@@ -91,6 +91,8 @@
                     <th class="tableItem_hide">Mon_avail</th>
                     </thead>
                     <tbody>
+                    </tbody>
+                    <tfoot>
                     <tr>
                       <td>total</td>
                       <td></td>
@@ -111,8 +113,9 @@
                       <th class="tableItem_hide"></th>
                       <th class="tableItem_hide"></th>
                     </tr>
-                    </tbody>
+                    </tfoot>
                   </table>
+
                   <div hidden class="btn_add_crop btn btn-block btn-secondary text-dark mt-0 my-0 py-0 btn-sm"
                        style="background-color:#ADC757;" myNum={{ forloop.counter|add:300 }}>add food item
                     <span class="fb fb-help" data-toggle="tooltip"
@@ -121,9 +124,9 @@
 
                   <p class="card-title text-dark my-1 pl-1">
                     <span>cell color: seasonal availability</span>
-                    <span data-toggle="tooltip" style={"color:#28a745"}"  title="less than 50%">■■ </span>
-                    <span data-toggle="tooltip" style="color:#17a2b8"  title="more than 50%"> ■■ </span>
-                    <span data-toggle="tooltip" style="color:#bee5eb"  title="100%"> ■■ </span>
+                    <span data-toggle="tooltip" style="color:#cce5ff" title="less than 50%">■■ </span>
+                    <span data-toggle="tooltip" style="color:#F6B0DC" title="more than 50%"> ■■ </span>
+                    <span data-toggle="tooltip" style="color:#E93EAA" title="100%"> ■■ </span>
                   </p>
                   <p class="card-title text-dark my-1 pl-1">
                     <span>text color: nutrition satisfication</span>
@@ -140,7 +143,7 @@
                border-width: 2px;
           ">
                   <div class="card-header bg-info text-white p-1 mb-2">
-                    nutrient balance
+                    nutrient balance (seasonal total)
                     <span class="fb fb-help" data-toggle="tooltip"
                           title="nutrient balance of selected diet combination"></span>
                   </div>
@@ -149,10 +152,10 @@
                     <div class="col-3">
                       <label class="text-dark" for="rating_en">Energy</label>
                     </div>
-                    <div class="col-2">
+                    <div class="col-4">
                       <div class="text-dark lbl_target_en" myNum={{ forloop.counter|add:300 }}></div>
                     </div>
-                    <div class="col-7">
+                    <div class="col-5">
                       <select class="rating_DRI rating_en" myNum={{ forloop.counter|add:300 }}>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -172,10 +175,10 @@
                     <div class="col-3">
                       <label class="text-dark" for="rating_pr">Protein</label>
                     </div>
-                    <div class="col-2">
+                    <div class="col-4">
                       <div class="text-dark lbl_target_pr" myNum={{ forloop.counter|add:300 }}></div>
                     </div>
-                    <div class="col-7">
+                    <div class="col-5">
                       <select class="rating_DRI rating_pr" myNum={{ forloop.counter|add:300 }}>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -195,10 +198,10 @@
                     <div class="col-3">
                       <label class="text-dark" for="rating_va">VitA</label>
                     </div>
-                    <div class="col-2">
+                    <div class="col-4">
                       <div class="text-dark lbl_target_va" myNum={{ forloop.counter|add:300 }}></div>
                     </div>
-                    <div class="col-7">
+                    <div class="col-5">
                       <select class="rating_DRI rating_va" myNum={{ forloop.counter|add:300 }}>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -218,10 +221,10 @@
                     <div class="col-3">
                       <label class="text-dark " for="rating_fe">Iron</label>
                     </div>
-                    <div class="col-2">
+                    <div class="col-4">
                       <div class="text-dark lbl_target_fe" myNum={{ forloop.counter|add:300 }}></div>
                     </div>
-                    <div class="col-7">
+                    <div class="col-5">
                       <select class="rating_DRI rating_fe" myNum={{ forloop.counter|add:300 }}>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -241,7 +244,7 @@
 
                 <!-- ここから Dietary Diversityの評価 ----------------------------->
 
-                <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
+                <div hidden class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
                border-width: 2px;
           ">
                   <div class="card-header bg-info text-white p-1 mb-2">
@@ -254,49 +257,49 @@
                       <div class="col">
                         <fieldset disabled>
                           <div class="form-check">
-                            <input class="form-check-input diversity_check"  index_Food_grp="1" type="checkbox" value=""
+                            <input class="form-check-input diversity_check" index_Food_grp="1" type="checkbox" value=""
                                    myNum={{ forloop.counter|add:300 }}>
                             <label class="form-check-label" for="diversity_check1">
                               Grains, roots and tubers
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input diversity_check"  index_Food_grp="2" type="checkbox" value=""
-                                   myNum={{ forloop.counter|add:300 }} >
+                            <input class="form-check-input diversity_check" index_Food_grp="2" type="checkbox" value=""
+                                   myNum={{ forloop.counter|add:300 }}>
                             <label class="form-check-label" for="diversity_check2">
                               Legumes and nuts
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input diversity_check"  index_Food_grp="3" type="checkbox" value=""
-                                   myNum={{ forloop.counter|add:300 }} >
+                            <input class="form-check-input diversity_check" index_Food_grp="3" type="checkbox" value=""
+                                   myNum={{ forloop.counter|add:300 }}>
                             <label class="form-check-label" for="diversity_check3">
                               Dairy products
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input diversity_check"  index_Food_grp="4" type="checkbox" value=""
+                            <input class="form-check-input diversity_check" index_Food_grp="4" type="checkbox" value=""
                                    myNum={{ forloop.counter|add:300 }}>
                             <label class="form-check-label" for="diversity_check4">
                               Flesh foods
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input diversity_check"  index_Food_grp="5" type="checkbox" value=""
+                            <input class="form-check-input diversity_check" index_Food_grp="5" type="checkbox" value=""
                                    myNum={{ forloop.counter|add:300 }}>
                             <label class="form-check-label" for="diversity_check5">
                               Eggs
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input diversity_check"  index_Food_grp="6" type="checkbox" value=""
+                            <input class="form-check-input diversity_check" index_Food_grp="6" type="checkbox" value=""
                                    myNum={{ forloop.counter|add:300 }}>
                             <label class="form-check-label" for="diversity_check6">
                               Vitamin A rich fruits and Vegetable
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input diversity_check"  index_Food_grp="7" type="checkbox" value=""
+                            <input class="form-check-input diversity_check" index_Food_grp="7" type="checkbox" value=""
                                    myNum={{ forloop.counter|add:300 }}>
                             <label class="form-check-label" for="diversity_check7">
                               Other fruits and vegetables
@@ -310,10 +313,10 @@
 
                 <!-- ここから PFCバランスの評価 ----------------------------->
 
-                <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
+                <div hidden class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
                border-width: 2px;">
                   <div class="card-header bg-info text-white p-1 mb-2">
-                     Macro nutrient balance
+                    Macro nutrient balance
                     <span class="fb fb-help" data-toggle="tooltip" data-html="true"
                           title="<div>recommended PFC balance </div><div>Carbohydrates: 45-65%</div>
                                   <div>Protein: 10-35%</div><div>Fat: 20-35%</div>"></span>
@@ -323,14 +326,14 @@
                       <div class="col-4">
                         Carbohydrate:
                       </div>
-                      <div class="col-4 PFC" index_Food_grp="1"  myNum={{ forloop.counter|add:300 }}>
+                      <div class="col-4 PFC" index_Food_grp="1" myNum={{ forloop.counter|add:300 }}>
                       </div>
                     </div>
                     <div class="row py-0 my-0">
                       <div class="col-4">
                         Protain:
                       </div>
-                      <div class="col-4 PFC" index_Food_grp="2"  myNum={{ forloop.counter|add:300 }}>
+                      <div class="col-4 PFC" index_Food_grp="2" myNum={{ forloop.counter|add:300 }}>
                       </div>
                     </div>
                     <div class="row py-0 my-0">
@@ -345,7 +348,7 @@
 
                 <!-- ここから 入手先の評価 ----------------------------->
 
-                <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
+                <div hidden class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
                border-width: 2px;">
                   <div class="card-header bg-info text-white p-1 mb-2">
                     Source of Food

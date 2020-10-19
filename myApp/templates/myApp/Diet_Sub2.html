@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-2">
-    <a class="btn mt-2 my-0 py-0 btn-sm" id="btn_car_prev2" href='#' style="background-color:#ADC757;">prev</a>
+    <a class="btn mt-2 my-0 py-0 btn-sm" id="btn_car_prev2" style="background-color:#ADC757;">prev</a>
     <div class="dropdown my-1 ">
-      <button type="button"  id="dropdown2"
+      <button type="button" id="dropdown2"
               class="btn btn-sm btn-secondary dropdown-toggle myfilter" myPage="200"
               data-toggle="dropdown"
               aria-haspopup="true"
@@ -17,7 +17,7 @@
     <div id="title_diet2" class="font-weight-bold row justify-content-center align-self-center"></div>
   </div>
   <div class="col-2">
-    <a class="btn mt-2 my-0 py-0 btn-sm" id="btn_car_next2" href='#' style="background-color:#ADC757;">next</a>
+    <a class="btn mt-2 my-0 py-0 btn-sm" id="btn_car_next2" style="background-color:#ADC757;">next</a>
   </div>
 </div>
 
@@ -34,18 +34,18 @@
                border-width: 2px;
           ">
                   <div class="card-header bg-info text-white p-1">
-                    Diet plan for target beneficiaries:
+                    Diet plan:
                     {% if forloop.counter == 1 %}
-                      {{ month_season_start_text.1 }} to {{ month_season_end_text.1 }}
+                      {{ season_name.0 }}
                     {% endif %}
                     {% if forloop.counter == 2 %}
-                      {{ month_season_start_text.2 }} to {{ month_season_end_text.2 }}
+                      {{ season_name.1 }}
                     {% endif %}
                     {% if forloop.counter == 3 %}
-                      {{ month_season_start_text.3 }} to {{ month_season_end_text.3 }}
+                      {{ season_name.2 }}
                     {% endif %}
                     {% if forloop.counter == 4 %}
-                      {{ month_season_start_text.4 }} to {{ month_season_end_text.4 }}
+                      {{ season_name.3 }}
                     {% endif %}
 
                     <span hidden class="lst_month text-dark mx-1" myNum={{ forloop.counter|add:200 }}
@@ -65,7 +65,7 @@
                     </span>
                   </div>
 
-                  <table border="1" class="table table-success selected_crops_tbl" myNum={{ forloop.counter|add:200 }}>
+                  <table border="1" class="table table-fixed-100 table-success selected_crops_tbl" myNum={{ forloop.counter|add:200 }}>
                     <thead class="thead-light">
                     <th>
                       name:
@@ -91,6 +91,8 @@
                     <th class="tableItem_hide">Mon_avail</th>
                     </thead>
                     <tbody>
+                    </tbody>
+                    <tfoot>
                     <tr>
                       <td>total</td>
                       <td></td>
@@ -111,7 +113,7 @@
                       <th class="tableItem_hide"></th>
                       <th class="tableItem_hide"></th>
                     </tr>
-                    </tbody>
+                    </tfoot>
                   </table>
                   <div hidden class="btn_add_crop btn btn-block btn-secondary text-dark mt-0 my-0 py-0 btn-sm"
                        style="background-color:#ADC757;" myNum={{ forloop.counter|add:200 }}>add food item
@@ -121,9 +123,9 @@
 
                   <p class="card-title text-dark my-1 pl-1">
                     <span>cell color: seasonal availability</span>
-                    <span data-toggle="tooltip" style={"color:#28a745"}"  title="less than 50%">■■ </span>
-                    <span data-toggle="tooltip" style="color:#17a2b8"  title="more than 50%"> ■■ </span>
-                    <span data-toggle="tooltip" style="color:#bee5eb"  title="100%"> ■■ </span>
+                    <span data-toggle="tooltip" style="color:#cce5ff" title="less than 50%">■■ </span>
+                    <span data-toggle="tooltip" style="color:#F6B0DC" title="more than 50%"> ■■ </span>
+                    <span data-toggle="tooltip" style="color:#E93EAA" title="100%"> ■■ </span>
                   </p>
                   <p class="card-title text-dark my-1 pl-1">
                     <span>text color: nutrition satisfication</span>
@@ -140,7 +142,7 @@
                border-width: 2px;
           ">
                   <div class="card-header bg-info text-white p-1 mb-2">
-                    nutrient balance
+                    nutrient balance (daily total)
                     <span class="fb fb-help" data-toggle="tooltip"
                           title="nutrient balance of selected diet combination"></span>
                   </div>
@@ -313,9 +315,10 @@
                 <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
                border-width: 2px;">
                   <div class="card-header bg-info text-white p-1 mb-2">
-                     Macro nutrient balance
+                    Macro nutrient balance
                     <span class="fb fb-help" data-toggle="tooltip" data-html="true"
-                          title="<div>sourcing food from farm/market?</div>"></span>
+                          title="<div>recommended PFC balance </div><div>Carbohydrates: 45-65%</div>
+                                  <div>Protein: 10-35%</div><div>Fat: 20-35%</div>"></span>
                   </div>
                   <div class="card-body py-0 my-0 px-1">
                     <div class="row">
@@ -349,8 +352,8 @@
                   <div class="card-header bg-info text-white p-1 mb-2">
                     Source of Food
                     <span class="fb fb-help" data-toggle="tooltip" data-html="true"
-                          title="<div>recommended PFC balance </div><div>Carbohydrates: 45-65%</div>
-                                  <div>Protein: 10-35%</div><div>Fat: 20-35%</div>"></span>
+                    <span class="fb fb-help" data-toggle="tooltip" data-html="true"
+                          title="<div>sourcing food from farm/market?</div>"></span>
                   </div>
                   <div class="card-body py-0 my-0 px-1">
                     <div class="row py-0 my-0">

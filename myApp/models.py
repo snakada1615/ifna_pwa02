@@ -224,6 +224,10 @@ class DRI(models.Model):
     verbose_name='iron',
     default=0
   )
+  max_vol = models.IntegerField(
+    verbose_name='maxVol',
+    default=200,
+  )
 
 #this is a test
 
@@ -307,37 +311,37 @@ class Crop_Feasibility(models.Model):
   )
   feas_DRI_e = models.IntegerField(
     verbose_name='feas_DRI',
-    choices=choices_DRI_realistic,
+    choices=choices_ascending,
     default=0,
   )
   feas_DRI_p = models.IntegerField(
     verbose_name='feas_DRI_p',
-    choices=choices_DRI_realistic,
+    choices=choices_ascending,
     default=0,
   )
   feas_DRI_a = models.IntegerField(
     verbose_name='feas_DRI_a',
-    choices=choices_DRI_realistic,
+    choices=choices_ascending,
     default=0,
   )
   feas_DRI_f = models.IntegerField(
     verbose_name='feas_DRI_f',
-    choices=choices_DRI_realistic,
+    choices=choices_ascending,
     default=0,
   )
   feas_soc_acceptable = models.IntegerField(
     verbose_name='feas_social_wo',
-    choices=choices_social_barrier,
+    choices=choices_descending,
     default=0,
   )
   feas_soc_acceptable_wo = models.IntegerField(
     verbose_name='feas_social_wo',
-    choices=choices_social_barrier,
+    choices=choices_descending,
     default=0,
   )
   feas_soc_acceptable_c5 = models.IntegerField(
     verbose_name='feas_social_c5',
-    choices=choices_social_barrier,
+    choices=choices_descending,
     default=0,
   )
   feas_prod_skill = models.IntegerField(
@@ -678,6 +682,18 @@ class Season(models.Model):
   m12_season = models.IntegerField(
     verbose_name='mon12_season',
     default=0,
+  )
+  season_name1 =models.CharField(
+    max_length=50, blank=True, default="season1"
+  )
+  season_name2 =models.CharField(
+    max_length=50, blank=True, default="season2"
+  )
+  season_name3 =models.CharField(
+    max_length=50, blank=True, default="season3"
+  )
+  season_name4 =models.CharField(
+    max_length=50, blank=True, default="season4"
   )
   season_count = models.IntegerField(
     verbose_name='season_count',
