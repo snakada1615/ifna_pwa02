@@ -1369,17 +1369,15 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
       tmpdat = str(getattr(tmp, myfield))
       mydat[myfield] = tmpdat
       if prev_dat != tmpdat:  # 各シーズンの最初と最後の月を記録
+        prev_dat = tmpdat
+        if (season_index != 0):
+          month_season2[season_index] = myindex
         season_index += 1
         month_season1[season_index] = (myindex + 1)
-        if season_index > 0:
-          month_season2[season_index - 1] = myindex
-        prev_dat = tmpdat
-      if myindex == 11:  # 最終月の処理
-        month_season2[season_index] = 12  # 最後の季節を12月で締める
-        if mydat['m1_season'] == mydat['m12_season']:  # 季節が年をまたいでいる場合の処理
-          month_season1[1] = month_season1[season_index]
-          del month_season1[season_index]
-          del month_season2[season_index]
+        if myindex == 11:
+          month_season2[season_index] = myindex + 1
+      elif myindex == 11:  # 最終月の処理
+        month_season2[season_index] =  myindex + 1
 
     context["season"] = mydat
     context["month_season_start"] = month_season1

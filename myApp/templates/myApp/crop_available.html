@@ -608,10 +608,13 @@
       //tableに表示するためのデータ作成
       $myTbl.find(".season-row").remove();
       for (var j = 0; j < season_tmp.season_count; j++) {
+        let start_mon = season_tmp["start" + String(j + 1)];
+        let end_mon = season_tmp["end" + String(j + 1)];
         cr += '<div class="row season-row">';
-        cr += '<div class="col-2 col_season text-center">' + 'season' + String(j) + '</div>';
-        cr += '<div class="col-2 col_start text-center">' + season_tmp["start" + String(j + 1)] + '</div>';
-        cr += '<div class="col-2 col_end text-center">' + season_tmp["end" + String(j + 1)] + '</div>';
+				cr += '<div class="col-2 col_season text-center">' + 'season' + String(j +1) + '</div>';
+        cr += '<div class="col-2 text-center col_start" month="'+start_mon+'">' + month_name[start_mon - 1] + '</div>';
+        cr += '<div class="col-2 text-center col_end" month="'+end_mon+'">' + month_name[end_mon - 1] + '</div>';
+
         cr += '<div class="col-6">';
         cr += '<div class="dropdown">';
         cr += '<button type="button" class="btn btn-light dropdown-toggle" id="' + 'dropdownMenuButton' + String(j + 1) + '" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
@@ -752,28 +755,23 @@
 
       let season = {};
       let $myrow = $Tbl_season.children('tbody').children('tr');
-      const season_0 = $myrow.children('td').eq(0).text();
+      //const season_0 = $myrow.children('td').eq(0).text();
 
       for (var j = 0; j < 12; j++) {
         season_curr = $myrow.children('td').eq(j).text();
         console.log('season_curr=' + season_curr + 'season_prev=' + season_prev);
         if (season_curr !== season_prev) {
-          season_count++;
           season_prev = season_curr;
+          if (season_count !== 0) {
+            season["end" + String(season_count)] = String(j)
+          }
+          season_count++;
           season["start" + String(season_count)] = String(j + 1);
-          if (j > 0) {
-            season["end" + String(season_count - 1)] = String(j);
+          if (j === 11) {
+            season["end" + String(season_count)] = String(j + 1);
           }
-
-        }
-        if (j === 11) {
-          if (season_curr !== season_0) {
-            season["end" + String(season_count)] = "12"
-          } else {
-            season["start1"] = season["start" + String(season_count)];
-            delete season["start" + String(season_count)];
-            season_count--;
-          }
+        } else if (j === 11) {
+          season["end" + String(season_count)] = "12"
         }
       }
       season["season_count"] = season_count;
@@ -1082,13 +1080,13 @@
           };
           let rowNum = Number($("#myrow_tmp").text()) / 2;
           $('.container_crop_avail').find('.season-row').each(function (index_r, myRow) {
-            const mon_start = month_name.indexOf($(myRow).find('.col_start').text()) + 1;
-            const mon_end = month_name.indexOf($(myRow).find('.col_end').text()) + 1;
-            const avail_val = crop_avail_num[$(myRow).find('.dropdown-toggle').text()] || 0;
+            const mon_start = $(myRow).find('.col_start').attr('month');
+            const mon_end = $(myRow).find('.col_end').attr('month');
+            const avail_val = crop_avail_num[$(myRow).find('.dropdown-toggle').text()];
             const monthes = month_conv(Number(mon_start), Number(mon_end));
-            //console.error('mon_start');
-            //console.error(mon_start);
-
+            if (avail_val === undefined) {
+              return;
+            }
             $.each(monthes, function (index_c, value) {
               console.log('x:' + value + ', y:' + rowNum + ', avail_val:' + avail_val);
               mySelectMonth.setCellColor(value - 1, rowNum, avail_val)
