@@ -1263,6 +1263,43 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp_nut_group = Person.objects.filter(
       myLocation=self.kwargs['myLocation']).select_related('myDRI')
     context['nutrient_target'] = tmp_nut_group[0].nut_group
+    nut_group_list = [
+      'child 0-23 month',
+      'child 24-59 month',
+      'child 6-9 yr',
+      'adolescent male',
+      'adolescent female',
+      'adult male',
+      'adult female'
+      'pregnant',
+      'lactating',
+      'adult',
+      'adolescent pregnant',
+      'adolescent lact',
+      'adolescent all',
+    ]
+
+    tmp_dri = DRI.objects.all()
+    tmp_en_by_class = [-1] * 30
+    tmp_pr_by_class = [-1] * 30
+    tmp_va_by_class = [-1] * 30
+    tmp_fe_by_class = [-1] * 30
+    tmp_vo_by_class = [-1] * 30
+    tmp_group_list = list(tmp_dri.values_list('nut_group', flat=True))
+    for mydri in tmp_dri:
+      logger.info(mydri.nut_group)
+      index = tmp_group_list.index(mydri.nut_group)
+      logger.info(index)
+      tmp_en_by_class[index] = mydri.energy
+      tmp_pr_by_class[index] = mydri.protein
+      tmp_va_by_class[index] = mydri.vita
+      tmp_fe_by_class[index] = mydri.fe
+      tmp_vo_by_class[index] = mydri.max_vol
+    context['dri_list_en'] = tmp_en_by_class
+    context['dri_list_pr'] = tmp_pr_by_class
+    context['dri_list_va'] = tmp_va_by_class
+    context['dri_list_fe'] = tmp_fe_by_class
+    context['dri_list_vo'] = tmp_vo_by_class
 
     tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
     tmp_e = 0
