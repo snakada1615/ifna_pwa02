@@ -54,7 +54,7 @@
 				</div>
 			</div>
 			<div class="col-6 col-md-4 px-1">
-				<div class="card bg-info h-100">
+				<div class="card bg-info h-100" style="flex-direction: row;">
 					<div class="card img-thumbnail bg-info">
 						<div class="card-body py-2 px-2">
 							<p class="card-text">Start from here!</p>
@@ -103,7 +103,7 @@
       {% if user.is_authenticated %}
 			<div class="col-6 col-md-4 px-1">
 				<div class="card bg-info h-100">
-					<div class="card img-thumbnail bg-info">
+					<div class="card img-thumbnail bg-info" style="border: none;">
 						<div class="card-body py-2 px-2">
 							<p class="card-text">Edit user info</p>
 							<a class="btn btn-warning m-auto btn-block" href="{% url 'update_profile' %}">Edit User</a>

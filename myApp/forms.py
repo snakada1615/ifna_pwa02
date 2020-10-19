@@ -157,12 +157,14 @@ class UserCreateForm(UserCreationForm):
       pattern = "[a-zA-Z0-9\-._@+]"
       username = self.cleaned_data['username']
       if not re.match(pattern, username):
-        raise ValidationError({'username': [_('Your input for %(field_name)s is invalid.') % {'field_name': _('username')}]})
+        raise ValidationError({'username': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Username')}]})
     self.cleaned_data['is_staff'] = 1  # staffステータスの設定
     return cleaned_data
 
 
 class UserForm(forms.ModelForm):
+  first_name = forms.CharField(max_length=150, required=True)
+  last_name = forms.CharField(max_length=150, required=True)
   class Meta:
     model = User
     fields = ('first_name', 'last_name', 'username', 'is_staff')
@@ -172,6 +174,11 @@ class UserForm(forms.ModelForm):
 
   def clean(self):
     cleaned_data = super(UserForm, self).clean()
+    if 'username' in cleaned_data and cleaned_data['username'] != '':
+      pattern = "[a-zA-Z0-9\-._@+]"
+      username = self.cleaned_data['username']
+      if not re.match(pattern, username):
+        raise ValidationError({'username': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Username')}]})
     self.cleaned_data['is_staff'] = 1  # staffステータスの設定
     return cleaned_data
 
