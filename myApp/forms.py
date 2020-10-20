@@ -135,13 +135,15 @@ class PersonListForm(forms.Form):
 
 
 class UserEditForm(UserChangeForm):
+  first_name = forms.CharField(max_length=30, required=True)
+  last_name = forms.CharField(max_length=150, required=True)
   class Meta:
     model = User
     fields = ('first_name', 'last_name', 'username')
 
 
 class UserCreateForm(UserCreationForm):
-  first_name = forms.CharField(max_length=150, required=True)
+  first_name = forms.CharField(max_length=30, required=True)
   last_name = forms.CharField(max_length=150, required=True)
   class Meta:
     model = User
@@ -163,7 +165,7 @@ class UserCreateForm(UserCreationForm):
 
 
 class UserForm(forms.ModelForm):
-  first_name = forms.CharField(max_length=150, required=True)
+  first_name = forms.CharField(max_length=30, required=True)
   last_name = forms.CharField(max_length=150, required=True)
   class Meta:
     model = User
