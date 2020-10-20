@@ -891,13 +891,13 @@ class Person_ListView(LoginRequiredMixin, ListView):
       elif myClass == 2:
         dd['class2'] =myShare
       elif myClass == 3:
-        dd['class3'] =myShare
+        dd['class3'] = myShare - (myPop2.share_Preg + myPop2.share_BF)
         dd['class3_p'] = myPop2.share_Preg
         dd['class3_l'] = myPop2.share_BF
       elif myClass == 4:
         dd['class4'] =myShare
       elif myClass == 5:
-        dd['class5'] =myShare
+        dd['class5'] = myShare - (myPop2.share_Preg + myPop2.share_BF)
         dd['class5_p'] = myPop2.share_Preg
         dd['class5_l'] = myPop2.share_BF
       elif myClass == 6:

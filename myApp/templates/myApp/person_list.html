@@ -357,15 +357,21 @@
 
     $("#inpNum9").on("input", function () {
       let myPopChange = Object.assign({}, myPop);
+      let currentVal = $(this).val();
+      if (Number($(this).val()) < 0) {
+        currentVal = 0;
+      }
       let popFloatVal = {};
       let inputValNum = {};
       myPopChange.class3 = myPop.class4;
       myPopChange.class4 = myPop.class3;
       myPopChange.class5 = myPop.class6;
       myPopChange.class6 = myPop.class5;
+      myPopChange.class7 = myPop.class3_p + myPop.class5_p;
+      myPopChange.class8 = myPop.class3_l + myPop.class5_l;
       let currentNum = 0;
-      for (let i = 0; i <= 6; i++) {
-        let valNum = parseInt($(this).val()) * myPopChange['class' + i] / 100;
+      for (let i = 0; i <= 8; i++) {
+        let valNum = parseInt(currentVal) * myPopChange['class' + i] / 100;
         if (Math.floor(valNum) < 1) {
           if (Math.round(valNum) === 1) {
             popFloatVal['class' + i] = (valNum - Math.floor(valNum));
@@ -382,14 +388,12 @@
         return popFloatVal[b] - popFloatVal[a]
       });
       for (let index in keyClassFloatSorted) {
-        if (currentNum < parseInt($(this).val())) {
+        if (currentNum < parseInt(currentVal)) {
           currentNum++;
           inputValNum[keyClassFloatSorted[index]] += 1;
         }
         $("#inpNum" + keyClassFloatSorted[index].replace('class', '')).val(inputValNum[keyClassFloatSorted[index]]);
       }
-      $("#inpNum7").val(Math.round($(this).val() * (myPopChange.class3_p + myPopChange.class5_p) / 100));
-      $("#inpNum8").val(Math.round($(this).val() * (myPopChange.class3_l + myPopChange.class3_l) / 100));
       sum_DRI(3);
     });
 
