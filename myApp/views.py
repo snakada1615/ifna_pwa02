@@ -1405,6 +1405,8 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp_scope = list(
       Person.objects.filter(myLocation=self.kwargs['myLocation']).values_list('target_scope', flat=True).order_by(
         'target_scope').distinct())
+    context['myTarget'] = tmp_scope
+
     tmpdat = str(getattr(tmp, 'season_count'))
     for i in range(int(tmpdat)):
       myseason.append(i + 1)
