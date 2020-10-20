@@ -614,7 +614,6 @@
         cr += '<div class="col-2 text-center col_season">' + $mySeason[j].text() + '</div>';
         cr += '<div class="col-2 text-center col_start" month="'+start_mon+'">' + month_name[start_mon - 1] + '</div>';
         cr += '<div class="col-2 text-center col_end" month="'+end_mon+'">' + month_name[end_mon - 1] + '</div>';
-
         cr += '<div class="col-6">';
         cr += '<div class="dropdown">';
         cr += '<button type="button" class="btn btn-light dropdown-toggle" id="' + 'dropdownMenuButton' + String(j + 1) + '" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
@@ -1294,7 +1293,7 @@
               window.location.href = response.url;
             },
             error: function (jqXHR, textStatus, errorThrown) {
-              alert("Please try again");
+              alert("Application encountered unknown error in target population setting");
               console.log(jqXHR.responseText);
               console.log(jqXHR.status); //例：404
               console.log(textStatus); //例：error

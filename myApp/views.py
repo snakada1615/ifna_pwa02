@@ -489,22 +489,16 @@ def Del_Crop_SubNational(sender, instance, **kwargs):
   logger.info("該当するSeasonを削除しました")
   myUser = instance.created_by
   list_location = Location.objects.filter(created_by=myUser).all()
+  key = myUser.profile
+  key.myTarget = 0
+  key.myCrop = 0
+  key.myDiet = 0
   if len(list_location) > 0:
-    newLocation = list_location[0].id
-    key = myUser.profile
-    key.myLocation = newLocation
-    key.myTarget = 0
-    key.myCrop = 0
-    key.myDiet = 0
-    key.save()
-    logger.info("Profileを更新しました")
+    key.myLocation = list_location[0].id
   else:
-    key = myUser.profile
     key.myLocation = 0
-    key.myTarget = 0
-    key.myCrop = 0
-    key.myDiet = 0
-    key.save()
+  key.save()
+  logger.info("Profileを更新しました")
 
 
 @receiver(post_save, sender=Location)
@@ -775,6 +769,7 @@ def registCropAvail(request):
       if tmpM == '':
         tmpM = '0'
       newcrop['m' + str(j) + '_avail'] = tmpM
+
     logger.info('データ受信完了')
     logger.info(newcrop['selected_status'])
 
@@ -1384,7 +1379,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
         if myindex == 11:
           month_season2[season_index] = myindex + 1
       elif myindex == 11:  # 最終月の処理
-        month_season2[season_index] =  myindex + 1
+        month_season2[season_index] = myindex + 1
 
     context["season"] = mydat
     context["month_season_start"] = month_season1
@@ -1414,7 +1409,6 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     season_name.append(str(getattr(tmp, 'season_name2')))
     season_name.append(str(getattr(tmp, 'season_name3')))
     season_name.append(str(getattr(tmp, 'season_name4')))
-
     context['season_name'] = season_name
 
     #######################################################
