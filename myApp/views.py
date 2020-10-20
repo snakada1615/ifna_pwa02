@@ -665,8 +665,8 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     tmp = Crop_Name._meta.get_fields()
     logger.info(tmp[2])
     tmp01 = Crop_Name.objects.filter(
-      #myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
-      myCountryName="ETH")  #暫定的にエチオピアの物を利用
+      # myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
+      myCountryName="ETH")  # 暫定的にエチオピアの物を利用
     d = []
     new_Food_grp = []
     for tmp02 in tmp01:
@@ -860,21 +860,21 @@ class Person_ListView(LoginRequiredMixin, ListView):
       if myClass == 0:
         dd['class0'] = myShare
       elif myClass == 1:
-        dd['class1'] =myShare
+        dd['class1'] = myShare
       elif myClass == 2:
-        dd['class2'] =myShare
+        dd['class2'] = myShare
       elif myClass == 3:
-        dd['class3'] =myShare
+        dd['class3'] = myShare - (myPop2.share_Preg + myPop2.share_BF)
         dd['class3_p'] = myPop2.share_Preg
         dd['class3_l'] = myPop2.share_BF
       elif myClass == 4:
-        dd['class4'] =myShare
+        dd['class4'] = myShare
       elif myClass == 5:
-        dd['class5'] =myShare
+        dd['class5'] = myShare - (myPop2.share_Preg + myPop2.share_BF)
         dd['class5_p'] = myPop2.share_Preg
         dd['class5_l'] = myPop2.share_BF
       elif myClass == 6:
-        dd['class6'] =myShare
+        dd['class6'] = myShare
 
     # dd['class0'] = myPop.get(Age_class_id=0).share_Pop
     # dd['class1'] = myPop.get(Age_class_id=1).share_Pop
@@ -891,7 +891,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
     context['myPop'] = dd
     context['myReturnURL'] = reverse_lazy('index01')
 
-    #myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation'])
+    # myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation'])
     dd1 = {}
     dd2 = {}
     for myPerson02 in myPerson:
@@ -1401,14 +1401,15 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context["month_season_start_text"] = month_season1_text
     context["month_season_end_text"] = month_season2_text
 
+    # queryの簡素化検討
+    tmp_scope = list(
+      Person.objects.filter(myLocation=self.kwargs['myLocation']).values_list('target_scope', flat=True).order_by(
+        'target_scope').distinct())
     tmpdat = str(getattr(tmp, 'season_count'))
     for i in range(int(tmpdat)):
       myseason.append(i + 1)
-      myRange.append(i + 100 + 1)
-    for i in range(int(tmpdat)):
-      myRange.append(i + 200+ 1)
-    for i in range(int(tmpdat)):
-      myRange.append(i + 300+ 1)
+      for scope in tmp_scope:
+        myRange.append(i + 1 + (int(scope) + 1) * 100)
     logger.info('myRange=')
     logger.info(myRange)
 
@@ -1462,8 +1463,8 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     tmp = Crop_Name._meta.get_fields()
     logger.info(tmp[2])
     tmp01 = Crop_Name.objects.filter(
-      #myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
-      myCountryName="ETH") #暫定措置
+      # myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
+      myCountryName="ETH")  # 暫定措置
     d = []
     new_Food_grp = []
     for tmp02 in tmp01:
@@ -1893,7 +1894,7 @@ class Output1(LoginRequiredMixin, TemplateView):
     context['nutrient_target'] = tmp_nut_group[0].nut_group
 
     month_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
-                    'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
+                   'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
     tmp_seasons = Season.objects.get(myLocation_id=self.kwargs['myLocation'])
     month = []
     season_name = []
@@ -2000,7 +2001,7 @@ class Output2(LoginRequiredMixin, TemplateView):
     context['nutrient_target'] = tmp_nut_group[0].nut_group
 
     month_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
-                    'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
+                   'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
     tmp_seasons = Season.objects.get(myLocation_id=self.kwargs['myLocation'])
     month = []
     season_name = []
@@ -2012,7 +2013,6 @@ class Output2(LoginRequiredMixin, TemplateView):
     for tmp2 in month:
       season_name.append(getattr(tmp_seasons, season_field[tmp2]))
     context["season_name"] = season_name
-
 
     tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
     tmp_e = 0
@@ -2062,7 +2062,7 @@ class Output2(LoginRequiredMixin, TemplateView):
     # send selected crop by community ######
     # --------------------create 16 Crop_individual-------------------------
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).filter(target_scope=2)
-    #myRange = [201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212]
+    # myRange = [201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212]
     d = []
     if tmp01.count() > 0:
       for tmp02 in tmp01:
@@ -2188,7 +2188,7 @@ class Output4(LoginRequiredMixin, TemplateView):
 
     # --------------------create populationl-------------------------
     tmp01 = Person.objects.filter(myLocation_id=self.kwargs['myLocation']).filter(target_scope=3)
-    if tmp01.count() >0:
+    if tmp01.count() > 0:
       dd = {}
       for tmp02 in tmp01:
         dd[tmp02.nut_group] = tmp02.target_pop
@@ -2216,7 +2216,7 @@ class Output_list(LoginRequiredMixin, TemplateView):
     context['myLocation'] = self.kwargs['myLocation']
     context['myuser'] = self.request.user
 
-    if Location.objects.get(id=self.kwargs['myLocation']).country == 'ETH': # エチオピア限定の暫定措置
+    if Location.objects.get(id=self.kwargs['myLocation']).country == 'ETH':  # エチオピア限定の暫定措置
       tmp_Param = SetURL(800, self.request.user)
     else:
       tmp_Param = SetURL(805, self.request.user)
@@ -2274,7 +2274,7 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
 
     # send non-available crop in the original list ######
     available_list = []
-    if myLoc.country == 'ETH': # エチオピア限定の暫定措置
+    if myLoc.country == 'ETH':  # エチオピア限定の暫定措置
       tmp01 = Crop_SubNational.objects.filter(myLocation_id=myLoc).select_related(
         'myFCT')
       for tmp02 in tmp01:
@@ -2314,8 +2314,7 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
 
     context["mylist_available"] = d
 
-
-    if myLoc.country == 'ETH': # エチオピア限定の暫定措置
+    if myLoc.country == 'ETH':  # エチオピア限定の暫定措置
       tmp_Param = SetURL(501, self.request.user)
     else:
       tmp_Param = SetURL(701, self.request.user)
@@ -2354,13 +2353,12 @@ def create_cropFeas(sender, instance, created, **kwargs):
       myLocation=Location.objects.get(id=instance.myLocation.id),
       myFCT=instance.myFCT,
       defaults={
-        'crop_feas':Crop_Feasibility.objects.get(id=instance.pk),
+        'crop_feas': Crop_Feasibility.objects.get(id=instance.pk),
         'selected_status': 1,
         'created_by': User.objects.get(id=instance.created_by.id),
       }
     )
     logger.info("Crop_SubNationalに書き込みました!")
-
 
 
 class Crop_Feas_ListView(LoginRequiredMixin, ListView):
@@ -2378,7 +2376,7 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     for tmp1 in tmp0:
       score_nut.append(round(tmp1.feas_DRI_e * 10 / 3))
       score_soc.append(round((tmp1.feas_soc_acceptable + tmp1.feas_soc_acceptable_wo + tmp1.feas_soc_acceptable_c5 +
-                                    tmp1.feas_affordability) * 10 / 12))
+                              tmp1.feas_affordability) * 10 / 12))
       score_tec.append(round((tmp1.feas_prod_skill + tmp1.feas_workload + tmp1.feas_tech_service) * 10 / 12))
       score_inv.append(round((tmp1.feas_invest_fixed + tmp1.feas_invest_variable) * 10 / 8))
       score_sus.append(round((tmp1.feas_availability_prod + tmp1.feas_storability) * 10 / 6))
@@ -2390,7 +2388,6 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     logger.info(self.request.user)
     logger.info(self.request.user.profile.myLocation)
 
-
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['isUpdate'] = 0
@@ -2398,7 +2395,7 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['myLocation'] = self.request.user.profile.myLocation
     context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
 
-    if Location.objects.get(id=self.request.user.profile.myLocation).country == 'ETH': # エチオピア限定の暫定措置
+    if Location.objects.get(id=self.request.user.profile.myLocation).country == 'ETH':  # エチオピア限定の暫定措置
       tmp_Param = SetURL(501, self.request.user)
     else:
       tmp_Param = SetURL(701, self.request.user)
@@ -2493,7 +2490,7 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
 
     # send non-available crop in the original list 無意味なのですが######
     available_list = []
-    if myLoc.country == 'ETH': # エチオピア限定の暫定措置
+    if myLoc.country == 'ETH':  # エチオピア限定の暫定措置
       tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.request.user.profile.myLocation)
       for tmp02 in tmp01:
         available_list.append(tmp02.myFCT.id)
@@ -2514,7 +2511,7 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
 
     context["mylist_crop"] = d
 
-    if myLoc.country == 'ETH': # エチオピア限定の暫定措置
+    if myLoc.country == 'ETH':  # エチオピア限定の暫定措置
       tmp_Param = SetURL(501, self.request.user)
     else:
       tmp_Param = SetURL(701, self.request.user)
@@ -2953,7 +2950,6 @@ def SetURL(stepid, myUser):
       back_URL = reverse_lazy("crop_feas_list")
     except:
       logger.error('無効な値を参照しています')
-
 
   myResult['back_URL'] = back_URL
   myResult['back_Title'] = back_Title

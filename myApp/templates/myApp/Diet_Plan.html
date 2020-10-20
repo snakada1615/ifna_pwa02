@@ -101,36 +101,13 @@
 
     <div id="container_tab_all" class="container border-secondary py-1 my-1 px-0"
          style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
+      <div class="text-center text-white bg-info">target group</div>
       <!-- ここにタブが入る -->
       <nav class="nav nav-pills" role="tablist" id="myTabs">
-        <a class="flex-sm-fill text-sm-center nav-link active" href="#tab_individual" role="tab">
-          individual
-          <span class="fb fb-help d-inline" data-toggle="tooltip"
-                title="individual tab is used to provide concrete dietary guidance to an individual "></span>
-        </a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_family" role="tab">
-          family
-          <span class="fb fb-help d-inline" data-toggle="tooltip"
-                title="family tab is used to provide concrete dietary guidance to a whole family "></span>
-        </a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="#tab_community" role="tab">
-          community
-          <span class="fb fb-help d-inline" data-toggle="tooltip"
-                title="community tab is used to set supply target for a group of people"></span>
-        </a>
       </nav>
 
       <!-- タブの移動先指定 -->
       <div class="tab-content mt-2" id="tabContent">
-        <div class="tab-pane active" id="tab_individual" role="tabpanel">
-          {% include "./Diet_Sub1.html" %}
-        </div>
-        <div class="tab-pane" id="tab_family" role="tabpanel">
-          {% include "./Diet_Sub2.html" %}
-        </div>
-        <div class="tab-pane" id="tab_community" role="tabpanel">
-          {% include "./Diet_Sub3.html" %}
-        </div>
       </div>
     </div>
 
@@ -392,7 +369,7 @@
       </div>
     </div>
 
-    <div class="carousel slide" data-interval="false" data-ride="carousel">
+    <div class="carousel slide class-myNum" data-interval="false" data-ride="carousel">
       <div class="carousel-inner">
       </div>
     </div>
@@ -411,7 +388,7 @@
                border-width: 2px;">
                 <div class="card-header bg-info text-white p-1">
                   <div class="card-header bg-info text-white p-1">
-                    Diet plan :<span class="season_name"></span>
+                    Diet plan during: <span class="season_name font-weight-bolder"></span>
                     <span hidden class="lst_month text-dark mx-1 class-myNum season_first_month"></span>
                   </div>
                 </div>
@@ -608,61 +585,60 @@
                   <div class="row">
                     <div class="col">
                       <fieldset disabled>
-                        <div class="form-check">
-                          <input class="form-check-input diversity_check class-myNum"
+                        <div class="form-check custom-control custom-checkbox">
+                          <input class="form-check-input diversity_check class-myNum custom-control-input"
                                  index_Food_grp="1" type="checkbox"
-                                 value=""
-                          >
-                          <label class="form-check-label" for="diversity_check1">
+                                 value="">
+                          <label class="form-check-label custom-control-label" for="diversity_check1">
                             Grains, roots and tubers
                           </label>
                         </div>
-                        <div class="form-check">
-                          <input class="form-check-input diversity_check class-myNum"
+                        <div class="form-check custom-control custom-checkbox">
+                          <input class="form-check-input diversity_check class-myNum custom-control-input"
                                  index_Food_grp="2"
                                  type="checkbox" value="">
-                          <label class="form-check-label" for="diversity_check2">
+                          <label class="form-check-label custom-control-label" for="diversity_check2">
                             Legumes and nuts
                           </label>
                         </div>
-                        <div class="form-check">
-                          <input class="form-check-input diversity_check class-myNum"
+                        <div class="form-check custom-control custom-checkbox">
+                          <input class="form-check-input diversity_check class-myNum custom-control-input"
                                  index_Food_grp="3" type="checkbox"
                                  value="">
-                          <label class="form-check-label" for="diversity_check3">
+                          <label class="form-check-label custom-control-label" for="diversity_check3">
                             Dairy products
                           </label>
                         </div>
-                        <div class="form-check">
-                          <input class="form-check-input diversity_check class-myNum"
+                        <div class="form-check custom-control custom-checkbox">
+                          <input class="form-check-input diversity_check class-myNum custom-control-input"
                                  index_Food_grp="4" type="checkbox"
                                  value="">
-                          <label class="form-check-label" for="diversity_check4">
+                          <label class="form-check-label custom-control-label" for="diversity_check4">
                             Flesh foods
                           </label>
                         </div>
-                        <div class="form-check">
-                          <input class="form-check-input diversity_check class-myNum"
+                        <div class="form-check custom-control custom-checkbox">
+                          <input class="form-check-input diversity_check class-myNum custom-control-input"
                                  index_Food_grp="5" type="checkbox"
                                  value=""
                           >
-                          <label class="form-check-label" for="diversity_check5">
+                          <label class="form-check-label custom-control-label" for="diversity_check5">
                             Eggs
                           </label>
                         </div>
-                        <div class="form-check">
-                          <input class="form-check-input diversity_check class-myNum"
+                        <div class="form-check custom-control custom-checkbox">
+                          <input class="form-check-input diversity_check class-myNum custom-control-input"
                                  index_Food_grp="6" type="checkbox"
                                  value="">
-                          <label class="form-check-label" for="diversity_check6">
+                          <label class="form-check-label custom-control-label" for="diversity_check6">
                             Vitamin A rich fruits and Vegetable
                           </label>
                         </div>
-                        <div class="form-check">
-                          <input class="form-check-input diversity_check class-myNum"
+                        <div class="form-check custom-control custom-checkbox">
+                          <input class="form-check-input diversity_check class-myNum custom-control-input"
                                  index_Food_grp="7" type="checkbox"
                                  value="">
-                          <label class="form-check-label" for="diversity_check7">
+                          <label class="form-check-label custom-control-label" for="diversity_check7">
                             Other fruits and vegetables
                           </label>
                         </div>
@@ -880,6 +856,11 @@
       background-color: white;
       color: black;
     }
+
+    /* checkboxの選択時の色 */
+    .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+      background-color: red;
+    }
   </style>
 
 
@@ -892,6 +873,21 @@
     // グローバル変数の作成
     //    const myRange = [101, 102, 103, 104, 201, 202, 203, 204,
     //      301, 302, 303, 304];
+    const target_name = [
+      'child 6-23 month',
+      'child 24-59 month',
+      'child 6-9 yr',
+      'adolescent male',
+      'adolescent female',
+      'adult male',
+      'adult female',
+      'pregnant',
+      'lactating',
+      'adult',
+      'adolescent pregnant',
+      'adolescent lact',
+      'adolescent all'
+    ];
     var season_count = {{ season_count }};
     var season_list = {{ season_list|safe }};
     var season12 = {{ season|safe }};
@@ -915,8 +911,9 @@
     $.each(myTarget, function (index1, val1) {
       let cr = '';
       // タブを追加する
+
       cr += '<a class="flex-sm-fill text-sm-center nav-link" href="#tab_' + val1 + '" role="tab">';
-      cr += val1;
+      cr += target_name[Number(val1)];
       cr += '</a>';
       $('#myTabs').append(cr);
 
@@ -926,6 +923,20 @@
       cr += '</div>';
       $('#tabContent').append(cr);
       let tmp_tab = $('#tab_' + String(val1)).append(template_Tab);
+
+      //タブにtbl_numを設定
+      $.each(tmp_tab.find('.btn_car_prev, .btn_car_next'), function (index4, val4) {
+        if (!(val4.hasAttribute('myNum'))) {
+          $(val4).attr('myNum', (Number(val1) + 1) * 100);
+        }
+      });
+
+      //carouselにtbl_numを設定
+      $.each(tmp_tab.find('.carousel'), function (index4, val4) {
+        if (!(val4.hasAttribute('myNum'))) {
+          $(val4).attr('myNum', (Number(val1) + 1) * 100);
+        }
+      });
 
       $.each(season_list, function (index2, val2) {
         // 季節毎のカルーセル(template)を追加する
@@ -939,6 +950,9 @@
         $.each(tmp_tab2.find('.carousel-item'), function (index3, val3) {
           if (!(val3.hasAttribute('myNum'))) {
             $(val3).attr('myNum', tbl_num);
+            if (index3 == 0) { // 最初の季節をActivate
+              $(val3).addClass('active');
+            }
 
             $(val3).find('.class-myNum').attr('myNum', tbl_num);
             $(val3).find('.season_name').text(season_name[index2]);
@@ -1137,7 +1151,7 @@
       console.group('Crop_Selected.setData_fromAvailable:');
       let res = false;
       if (drawFlag) {       //rowの追加
-                            //データセットの作成1:buy_prod_share設定
+        //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {
@@ -2324,7 +2338,7 @@
       let num_tbl = $(this).attr('myNum');
       let scope = Math.trunc(num_tbl / 100);
       myCrop[num_tbl].dom_lbl_target_en = $(this);
-      $(this).text(dri_target_en[scope-1].toFixed(0));
+      $(this).text(dri_target_en[scope - 1].toFixed(0));
     });
 
     $('.lbl_target_pr').each(function () {
@@ -2392,35 +2406,15 @@
     //---carouselの切替処理-------------
     let myMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
       'August', 'September', 'Octoer', 'November', 'December'];
-    $('#btn_car_prev1').click(function () {
-      $('#carouselControl1').carousel('prev');
-      c_index = $('#carouselControl1 div.active').index() || season_count;
-      $('#title_diet1').text("Diet for " + season_name[Number(c_index) - 1]);
+    $('.btn_car_prev').click(function () {
+      let num_table = $(this).attr('myNum');
+      num_table = (Math.trunc(num_table / 100)) * 100;
+      $('.carousel[myNum=' + num_table + ']').carousel('prev');
     });
-    $('#btn_car_next1').click(function () {
-      $('#carouselControl1').carousel('next');
-      c_index = ($('#carouselControl1 div.active').index() + 2) % season_count || season_count;
-      $('#title_diet1').text("Diet for " + season_name[Number(c_index) - 1]);
-    });
-    $('#btn_car_prev2').click(function () {
-      $('#carouselControl2').carousel('prev');
-      c_index = $('#carouselControl2 div.active').index() || season_count;
-      $('#title_diet2').text("Diet for " + season_name[Number(c_index) - 1]);
-    });
-    $('#btn_car_next2').click(function () {
-      $('#carouselControl2').carousel('next');
-      c_index = ($('#carouselControl2 div.active').index() + 2) % season_count || season_count;
-      $('#title_diet2').text("Diet for " + season_name[Number(c_index) - 1]);
-    });
-    $('#btn_car_prev3').click(function () {
-      $('#carouselControl3').carousel('prev');
-      c_index = $('#carouselControl3 div.active').index() || season_count;
-      $('#title_diet3').text("Diet for " + season_name[Number(c_index) - 1]);
-    });
-    $('#btn_car_next3').click(function () {
-      $('#carouselControl3').carousel('next');
-      c_index = ($('#carouselControl3 div.active').index() + 2) % season_count || season_count;
-      $('#title_diet3').text("Diet for " + season_name[Number(c_index) - 1]);
+    $('.btn_car_next').click(function () {
+      let num_table = $(this).attr('myNum');
+      num_table = (Math.trunc(num_table / 100)) * 100;
+      $('.carousel[myNum=' + num_table + ']').carousel('next');
     });
 
     //---carouselの切替処理-------------
@@ -2432,13 +2426,19 @@
     $('#title_diet3').text("Diet for " + season_name[Number(c_index) - 1]);
     //---carouselの初期値-------------
 
-    //全ての変数を読み込んでからBarratingをセット
+
     $(window).on("load", function () {
       // Handler when all assets (including images) are loaded
+      //全ての変数を読み込んでからBarratingをセット
       for (let i in myRange) {
         myCrop[myRange[i]].drawTable();
       }
+
+      //tablesorterの初期化
       $('.selected_crops_tbl').tablesorter();
+
+      //最初のタブをactivate？
+      $('#myTabs').find('.nav-link a:first').tab('show');
     });
 
   </script>
