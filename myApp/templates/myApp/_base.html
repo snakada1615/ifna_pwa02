@@ -175,34 +175,40 @@
 
     <div id="content" class="container mt-1">
       {% if user.is_authenticated %}
-        <div class="container bg-success my-0 text-white text-right" style="max-width: 540px;">
+        <div class="container bg-success my-0 text-white" style="max-width: 540px;">
           {% if myuser.last_name|length > 30 or myuser.first_name|length > 30 %}
-          <div class="marquee">
-              <p id="marquee-text">person in charge: {{ myuser.first_name }}, {{ myuser.last_name }}</p>
+          <div class="row">
+            <div class="col-4 text-right" style="line-height: 40px;">person in charge: </div>
+            <div class="marquee col-8" style="margin-bottom: 0px !important;">
+              <p id="marquee-text">{{ myuser.first_name }}, {{ myuser.last_name }}</p>
+          </div>
           </div>
           {% else %}
-           <div class="row">
-              <div class="col">
+           <div class="row text-right">
+              <div class="col-4">
                 person in charge:
               </div>
-              <div class="col">
+              <div class="col-8">
                 {{ myuser.first_name }},
                 {{ myuser.last_name }}
               </div>
             </div>
           {% endif %}
         </div>
-         <div class="container bg-success text-white text-right" style="max-width: 540px; margin-top: -20px;">
+         <div class="container bg-success text-white" style="max-width: 540px;">
           {% if myuser.profile.organization|length > 30 or myuser.profile.title|length > 30 %}
-          <div class="marquee">
-              <p id="marquee-text">office / position: {{ myuser.profile.organization }}, {{ myuser.profile.title }}</p>
-          </div>
-          {% else %}
           <div class="row">
-            <div class="col">
+            <div class="col-4 text-right" style="line-height: 40px;">office / position: </div>
+            <div class="marquee col-8" style="margin-bottom: 0px !important;">
+              <p id="marquee-text">{{ myuser.profile.organization }}, {{ myuser.profile.title }}</p>
+          </div>
+          </div>      
+          {% else %}
+          <div class="row text-right">
+            <div class="col-4">
                 office / position:
             </div>
-            <div class="col">
+            <div class="col-8">
                 {{ myuser.profile.organization }},
                 {{ myuser.profile.title }}
             </div>
