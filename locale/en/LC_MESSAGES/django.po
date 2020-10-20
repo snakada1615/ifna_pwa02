@@ -39,3 +39,5 @@ msgstr "Region"
 msgid "Country"
 msgstr "Country"
 
+msgid "Your input for population is invalid. Please confirm each input is lower than %(limit_value)s"
+msgstr "Your input for population is invalid. Please confirm each input is lower than %(limit_value)s"

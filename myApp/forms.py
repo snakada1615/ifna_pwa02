@@ -1,6 +1,7 @@
 import re
 from django import forms
 from django.forms import ValidationError
+from django.core.validators import MaxValueValidator
 from django.contrib.admin import widgets
 from django.contrib.auth.models import User
 from django.db.models import Q, Sum  # 集計関数の追加
@@ -102,18 +103,29 @@ class PersonListForm(forms.Form):
 
   SCOPE_FAMILY = 2
   SCOPE_COMMUNITY = 3
-  MAX_VALUE_NUMBER = 1000000
+  MAX_VALUE_NUMBER = 100000
+  MAX_VALUE_NUMBER_TOTAL = 1000000
 
   def __init__(self, *args, **kwargs):
     super(PersonListForm, self).__init__(*args, **kwargs)
 
   def clean(self):
+    message_validate_max = _('Your input for population is invalid. Please confirm each input is lower than %(limit_value)s')
     cleaned_data = super(PersonListForm, self).clean()
     my_json = self.data['myJson']
     for index, row in enumerate(my_json):
       nut_group = int(row['nut_group_id']) - 1
       key = '#inpNum_fam%d' % (nut_group) if int(row['target_scope']) == self.SCOPE_FAMILY else '#inpNum%d' % (nut_group)
-      field = forms.IntegerField(required=True, min_value=0, max_value=self.MAX_VALUE_NUMBER)
+      field = forms.IntegerField(
+        required=True,
+        min_value=0,
+        validators=[
+          MaxValueValidator(
+            self.MAX_VALUE_NUMBER,
+            message=message_validate_max % {'limit_value': f"{self.MAX_VALUE_NUMBER:,}"}
+          )
+        ]
+      )
       self.fields.update({key: field})
       try:
         field.clean(row['target_pop'])
@@ -123,7 +135,16 @@ class PersonListForm(forms.Form):
     # validate total pop
     my_data_pop = self.data['dataPop']
     for value, index in enumerate(my_data_pop):
-      field = forms.IntegerField(required=True, min_value=1, max_value=self.MAX_VALUE_NUMBER)
+      field = forms.IntegerField(
+        required=True,
+        min_value=1,
+        validators=[
+          MaxValueValidator(
+            self.MAX_VALUE_NUMBER_TOTAL,
+            message=message_validate_max % {'limit_value': f"{self.MAX_VALUE_NUMBER_TOTAL:,}"}
+          )
+        ]
+      )
       self.fields.update({
         index: field
       })

@@ -611,7 +611,7 @@
         let start_mon = season_tmp["start" + String(j + 1)];
         let end_mon = season_tmp["end" + String(j + 1)];
         cr += '<div class="row season-row">';
-				cr += '<div class="col-2 col_season text-center">' + 'season' + String(j +1) + '</div>';
+        cr += '<div class="col-2 text-center col_season">' + $mySeason[j].text() + '</div>';
         cr += '<div class="col-2 text-center col_start" month="'+start_mon+'">' + month_name[start_mon - 1] + '</div>';
         cr += '<div class="col-2 text-center col_end" month="'+end_mon+'">' + month_name[end_mon - 1] + '</div>';
 
@@ -1115,6 +1115,9 @@
             const season_tmp = mySeason.getSeason();
             console.log(crop_tmp);
             console.log(season_tmp);
+            if (season_tmp.season_count > 4) {
+              return alert('Number of season is limited up to four');
+            }
             Season_Avail(crop_tmp, season_tmp, myrow);
 
             $('#myModal02').modal('show');
@@ -1204,6 +1207,9 @@
 
         //////////////send crop list to django////
         $("#btn_save").click(function () {
+          if (mySeason.getSeason().season_count > 4) {
+            return alert('Number of season is limited up to four');
+          }
           let hostUrl = myRoot + 'registCropAvail/';
           let mydat = getTblData();
           if (!checkSeasonMatch()) {

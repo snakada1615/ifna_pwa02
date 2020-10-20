@@ -107,7 +107,7 @@
     </div>
   </div>
 
-  <style media="screen">
+	<style media="screen">
     /* nav-item activeの文字色 */
     .nav-tabs .nav-link.active, .nav-pills .show > .nav-link {
       color: red;
@@ -118,18 +118,20 @@
     input[type="number"]:disabled {
       background: #dddddd;
     }
+
     .error {
       border: 1px solid #de1b1b;
     }
+
     #inpNum_fam9 {
       pointer-events: auto;
       background: #dddddd;
       outline: none;
       box-shadow: none;
     }
-  </style>
+	</style>
 
-  <script type="text/javascript">
+	<script type="text/javascript">
     $('[data-toggle="tooltip"]').tooltip();
     $('#inpNum_fam9').prop('disabled', false).attr('readonly', 'readonly');
     let mytarget_scope_Sum ={{mytarget_scope_Sum}};
@@ -156,10 +158,11 @@
       let hostUrl = myRoot + 'registPerson/';
       // check validate input valid
       let mydat = getTblData_all();
+
+      console.log(mydat);
       Set_CRSF();
       sendJson(mydat, hostUrl);
     }); ////////btn_save_person///////////
-
 
     //////////////////getTblData
     function getTblData_all() { //
@@ -188,6 +191,7 @@
       dd['nut_group_id'] = $('#inpNum_ind7').text();
       dd['target_pop'] = "1";
       d.push(dd);
+
       return {"myJson": d, "dataPop": dataPop};
     }
 
@@ -239,15 +243,23 @@
         success: function (res) {
           if (!res.success) {
             let message = res.messages;
+            let forcusTab = false;
             for (const prop in message) {
-              $(prop).addClass('error');
-              $(prop).attr({
+              $(prop).addClass('error').attr({
                 'title': message[prop],
-                'data-toggle':'tooltip',
+                'data-toggle': 'tooltip',
                 'data-placement': 'right',
               }).tooltip();
+              if (!forcusTab) {
+                if ($('#tab2_link ' + prop).length > 0) {
+                  forcusTab = true;
+                  $('#tab2').click();
+                } else if ($('#tab3_link ' + prop).length > 0) {
+                  forcusTab = true;
+                  $('#tab3').click();
+                }
+              }
             }
-            alert('Please check again your input data');
           } else {
             window.location.href = res.url;
           }
@@ -350,29 +362,31 @@
       myPopChange.class3 = myPop.class4;
       myPopChange.class4 = myPop.class3;
       myPopChange.class5 = myPop.class6;
-      myPopChange.class6 =  myPop.class5;
+      myPopChange.class6 = myPop.class5;
       let currentNum = 0;
-      for(let i = 0; i<=6; i++) {
-        let valNum = parseInt($(this).val()) * myPopChange['class'+i] / 100;
+      for (let i = 0; i <= 6; i++) {
+        let valNum = parseInt($(this).val()) * myPopChange['class' + i] / 100;
         if (Math.floor(valNum) < 1) {
-          if (Math.round(valNum) == 1) {
-            popFloatVal['class'+i] = (valNum - Math.floor(valNum));
+          if (Math.round(valNum) === 1) {
+            popFloatVal['class' + i] = (valNum - Math.floor(valNum));
           } else {
-            popFloatVal['class'+i] = (valNum - Math.floor(valNum)) * myPopChange['class'+i]/100;
+            popFloatVal['class' + i] = (valNum - Math.floor(valNum)) * myPopChange['class' + i] / 100;
           }
         } else {
-          popFloatVal['class'+i] = (valNum - Math.floor(valNum)) * myPopChange['class'+i]/100;
+          popFloatVal['class' + i] = (valNum - Math.floor(valNum)) * myPopChange['class' + i] / 100;
         }
-        inputValNum['class'+i] = Math.floor(valNum);
+        inputValNum['class' + i] = Math.floor(valNum);
         currentNum += Math.floor(valNum);
       }
-      let keyClassFloatSorted = Object.keys(popFloatVal).sort(function(a,b){return popFloatVal[b]-popFloatVal[a]});
+      let keyClassFloatSorted = Object.keys(popFloatVal).sort(function (a, b) {
+        return popFloatVal[b] - popFloatVal[a]
+      });
       for (let index in keyClassFloatSorted) {
         if (currentNum < parseInt($(this).val())) {
           currentNum++;
           inputValNum[keyClassFloatSorted[index]] += 1;
         }
-        $("#inpNum"+keyClassFloatSorted[index].replace('class', '')).val(inputValNum[keyClassFloatSorted[index]]);
+        $("#inpNum" + keyClassFloatSorted[index].replace('class', '')).val(inputValNum[keyClassFloatSorted[index]]);
       }
       $("#inpNum7").val(Math.round($(this).val() * (myPopChange.class3_p + myPopChange.class5_p) / 100));
       $("#inpNum8").val(Math.round($(this).val() * (myPopChange.class3_l + myPopChange.class3_l) / 100));
@@ -380,9 +394,9 @@
     });
 
     // button clear click
-    $('.btn-clear').click(function(e) {
-        e.preventDefault();
-        $($(this).attr('tab_clear')).find('input').val(0);
+    $('.btn-clear').click(function (e) {
+      e.preventDefault();
+      $($(this).attr('tab_clear')).find('input').val(0);
     });
 
     //////////////////個人targetの選択-----
@@ -397,11 +411,11 @@
     //////////////////Communityの選択方式の決定-----
     $('#chk-autoCalk').change(function () {
       if ($('#chk-autoCalk').prop('checked')) {
-        $('#tbl_pop3 .input-manual').prop('disabled', true);
-        $('#tbl_pop3 .input-auto').prop('disabled', false);
+        $('.input-manual').prop('disabled', true);
+        $('.input-auto').prop('disabled', false);
       } else {
-        $('#tbl_pop3 .input-manual').prop('disabled', false);
-        $('#tbl_pop3 .input-auto').prop('disabled', true);
+        $('.input-manual').prop('disabled', false);
+        $('.input-auto').prop('disabled', true);
       }
     });
     //////////////////Communityの選択方式の決定-----
@@ -440,7 +454,7 @@
     $("#inpNum_fam7").val(myFamily.class7);
     $("#inpNum_fam8").val(myFamily.class8);
     let tmp = myFamily.class0 + myFamily.class1 + myFamily.class2 + myFamily.class3 + myFamily.class4
-            + myFamily.class5 + myFamily.class6;
+      + myFamily.class5 + myFamily.class6 + myFamily.class7 + myFamily.class8;
     $("#inpNum_fam9").val(tmp);
 
     // Print initial value in a div box
@@ -454,7 +468,7 @@
     $("#inpNum7").val(myCommunity.class7);
     $("#inpNum8").val(myCommunity.class8);
     tmp = myCommunity.class0 + myCommunity.class1 + myCommunity.class2 + myCommunity.class3 + myCommunity.class4
-            + myCommunity.class5 + myCommunity.class6 + myFamily.class7 + myFamily.class8;
+      + myCommunity.class5 + myCommunity.class6 + myCommunity.class7 + myCommunity.class8;
     $("#inpNum9").val(tmp);
 
     sum_DRI(1);
@@ -463,6 +477,6 @@
 
     //-----------initializationn -------
 
-  </script>
+	</script>
 
 {% endblock %}

@@ -498,6 +498,13 @@ def Del_Crop_SubNational(sender, instance, **kwargs):
     key.myDiet = 0
     key.save()
     logger.info("Profileを更新しました")
+  else:
+    key = myUser.profile
+    key.myLocation = 0
+    key.myTarget = 0
+    key.myCrop = 0
+    key.myDiet = 0
+    key.save()
 
 
 @receiver(post_save, sender=Location)
@@ -1407,6 +1414,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     season_name.append(str(getattr(tmp, 'season_name2')))
     season_name.append(str(getattr(tmp, 'season_name3')))
     season_name.append(str(getattr(tmp, 'season_name4')))
+
     context['season_name'] = season_name
 
     #######################################################
@@ -2765,7 +2773,7 @@ def SetURL(stepid, myUser):
     guide_text = 'Here, you need to specify the location of your target area'
     try:
       back_URL = reverse_lazy("index02")
-      forward_URL = reverse_lazy("person_list", kwargs={'myLocation': myLocation, 'page': 1})
+      forward_URL = '' if myLocation == 0 else reverse_lazy("person_list", kwargs={'myLocation': myLocation, 'page': 1})
     except:
       logger.error('無効な値を参照しています')
 
