@@ -183,7 +183,6 @@
     //////////////////btn_save_person
     $('#btn_save').click(function () {
       let hostUrl = myRoot + 'registPerson/';
-      // check validate input valid
       let mydat = getTblData_all();
 
       console.log(mydat);
@@ -197,6 +196,8 @@
       let dataPop = {};
       $('input[type="number"]').prop('title', '');
       $('table.tbl_pop tr input ').each(function (i, myRow) {
+        $(myRow).removeClass('error');
+        $(myRow).next().remove();
         if ($(myRow).attr('nut_group_id') < 10) {
           let dd = {};
           dd['target_scope'] = $(myRow).attr('target_scope');
@@ -204,17 +205,11 @@
           dd['myuser'] = {{ myuser.id }};
           dd['nut_group_id'] = $(myRow).attr('nut_group_id');
           dd['target_pop'] = $(myRow).val();
-          $(myRow).removeClass('error');
-          $(myRow).next().remove();
           d.push(dd);
+        } else {
+          dataPop['#' + $(myRow).attr('id')] = $(myRow).val();
         }
       });
-      dataPop['#inpNum_fam9'] = $('#inpNum_fam9').val();
-      $('#inpNum_fam9').removeClass('error').after();
-			$('#inpNum_fam9').next().remove();
-      dataPop['#inpNum9'] = $('#inpNum9').val();
-      $('#inpNum9').removeClass('error');
-      $('#inpNum9').next().remove();
       let dd = {};
       dd['target_scope'] = "1";
       dd["myLocation"] = {{myLocation.id}};
@@ -272,24 +267,22 @@
         dataType: 'JSON',
         scriptCharset: 'utf-8',
         success: function (res) {
-          if (!res.success) {
-            let message = res.messages;
-            let forcusTab = false;
-            for (const prop in message) {
-              {#$(prop).addClass('error').prop('title', message[prop]);#}
-              $(prop).addClass('error').after('<span class="tooltip-error">'+message[prop]+'</span>');
-              if (!forcusTab) {
-                if ($('#tab2_link ' + prop).length > 0) {
-                  forcusTab = true;
-                  $('#tab2').click();
-                } else if ($('#tab3_link ' + prop).length > 0) {
-                  forcusTab = true;
-                  $('#tab3').click();
-                }
+          if (res.success) {
+            return window.location.href = res.url;
+          }
+          let message = res.messages;
+          let forcusTab = false;
+          for (const prop in message) {
+            $(prop).addClass('error').after('<span class="tooltip-error">' + message[prop] + '</span>');
+            if (!forcusTab) {
+              if ($('#tab2_link ' + prop).length > 0) {
+                forcusTab = true;
+                $('#tab2').click();
+              } else if ($('#tab3_link ' + prop).length > 0) {
+                forcusTab = true;
+                $('#tab3').click();
               }
             }
-          } else {
-            window.location.href = res.url;
           }
         },
         error: function (jqXHR, textStatus, errorThrown) {
