@@ -41,3 +41,15 @@ msgstr "Country"
 
 msgid "Your input for population is invalid. Please confirm each input is lower than %(limit_value)s"
 msgstr "Your input for population is invalid. Please confirm each input is lower than %(limit_value)s"
+
+msgid "Your input for population is invalid. Please confirm each input is greater than %(min_value)s"
+msgstr "Your input for population is invalid. Please confirm each input is greater than %(min_value)s"
+
+msgid "Your input for population is invalid. Please confirm and try again."
+msgstr "Your input for population is invalid. Please confirm and try again."
+
+msgid "Your input for population is invalid. Please adjust your input so total total number become lower than %(limit_value)s"
+msgstr "Your input for population is invalid. Please adjust your input so total total number become lower than %(limit_value)s"
+
+msgid "Your input for population is invalid. Please adjust your input so total total number become greater than %(min_value)s"
+msgstr "Your input for population is invalid. Please adjust your input so total total number become greater than %(min_value)s"

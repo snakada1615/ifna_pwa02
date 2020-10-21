@@ -1,7 +1,7 @@
 import re
 from django import forms
 from django.forms import ValidationError
-from django.core.validators import MaxValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.admin import widgets
 from django.contrib.auth.models import User
 from django.db.models import Q, Sum  # 集計関数の追加
@@ -111,6 +111,14 @@ class PersonListForm(forms.Form):
 
   def clean(self):
     message_validate_max = _('Your input for population is invalid. Please confirm each input is lower than %(limit_value)s')
+    message_validate_min = _('Your input for population is invalid. Please confirm each input is greater than %(min_value)s')
+
+    message_validate_total_max = _(
+      'Your input for population is invalid. Please adjust your input so total total number become lower than %(limit_value)s')
+    message_validate_total_min = _(
+      'Your input for population is invalid. Please adjust your input so total total number become greater than %(min_value)s')
+
+    message_validate_numeric = _('Your input for population is invalid. Please confirm and try again.')
     cleaned_data = super(PersonListForm, self).clean()
     my_json = self.data['myJson']
     for index, row in enumerate(my_json):
@@ -118,31 +126,39 @@ class PersonListForm(forms.Form):
       key = '#inpNum_fam%d' % (nut_group) if int(row['target_scope']) == self.SCOPE_FAMILY else '#inpNum%d' % (nut_group)
       field = forms.IntegerField(
         required=True,
-        min_value=0,
         validators=[
           MaxValueValidator(
             self.MAX_VALUE_NUMBER,
             message=message_validate_max % {'limit_value': f"{self.MAX_VALUE_NUMBER:,}"}
-          )
+          ),
+          MinValueValidator(
+            0,
+            message=message_validate_min % {'min_value': "0"}
+          ),
         ]
       )
       self.fields.update({key: field})
       try:
         field.clean(row['target_pop'])
       except ValidationError as ex:
-        self.add_error(key, ex.messages)
-
+        if hasattr(ex, 'code') and ex.code == 'invalid':
+          self.add_error(key, message_validate_numeric)
+        else:
+          self.add_error(key, ex.messages)
     # validate total pop
     my_data_pop = self.data['dataPop']
     for value, index in enumerate(my_data_pop):
       field = forms.IntegerField(
         required=True,
-        min_value=1,
         validators=[
           MaxValueValidator(
             self.MAX_VALUE_NUMBER_TOTAL,
-            message=message_validate_max % {'limit_value': f"{self.MAX_VALUE_NUMBER_TOTAL:,}"}
-          )
+            message=message_validate_total_max % {'limit_value': f"{self.MAX_VALUE_NUMBER_TOTAL:,}"}
+          ),
+          MinValueValidator(
+            1,
+            message=message_validate_total_min % {'min_value': "1"}
+          ),
         ]
       )
       self.fields.update({
@@ -151,7 +167,10 @@ class PersonListForm(forms.Form):
       try:
         field.clean(my_data_pop[index])
       except ValidationError as ex:
-        self.add_error(index, ex.messages)
+        if hasattr(ex, 'code') and ex.code == 'invalid':
+          self.add_error(index, message_validate_numeric)
+        else:
+          self.add_error(index, ex.messages)
     return cleaned_data
 
 
@@ -177,9 +196,9 @@ class UserCreateForm(UserCreationForm):
   def clean(self):
     cleaned_data = super(UserCreateForm, self).clean()
     if 'username' in cleaned_data and cleaned_data['username'] != '':
-      pattern = r"[^a-zA-Z0-9\-._@+]"
+      pattern = r"^[a-zA-Z0-9\-._@+]*$"
       username = self.cleaned_data['username']
-      if re.search(pattern, username):
+      if not re.search(pattern, username):
         raise ValidationError({'username': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Username')}]})
     self.cleaned_data['is_staff'] = 1  # staffステータスの設定
     return cleaned_data
@@ -198,7 +217,7 @@ class UserForm(forms.ModelForm):
   def clean(self):
     cleaned_data = super(UserForm, self).clean()
     if 'username' in cleaned_data and cleaned_data['username'] != '':
-      pattern = r"[a-zA-Z0-9\-._@+]"
+      pattern = r"^[a-zA-Z0-9\-._@+]*$"
       username = self.cleaned_data['username']
       if not re.match(pattern, username):
         raise ValidationError({'username': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Username')}]})

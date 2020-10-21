@@ -123,17 +123,44 @@
       border: 1px solid #de1b1b;
     }
 
-    #inpNum_fam9 {
-      pointer-events: auto;
-      background: #dddddd;
-      outline: none;
-      box-shadow: none;
+    tr td div.text-center {
+      position: relative;
+    }
+
+    .tooltip-error {
+      display: none;
+      max-width: 200px;
+      background: black;
+      color: white;
+      padding: 2px 5px;
+      font-size: 13px;
+      z-index: 9999;
+      position: absolute;
+      top: 42%;
+      width: max-content;
+      margin-left: 4px;
+    }
+
+    .tooltip-error:before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      position: absolute;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-right: 8px solid black;
+      left: -6px;
+      top: 6px;
+    }
+
+    input.error:hover + span.tooltip-error {
+      display: inline;
     }
 	</style>
 
 	<script type="text/javascript">
     $('[data-toggle="tooltip"]').tooltip();
-    $('#inpNum_fam9').prop('disabled', false).attr('readonly', 'readonly');
     let mytarget_scope_Sum ={{mytarget_scope_Sum}};
 
     let myDRI_en = {{ myDRI_en|safe }};
@@ -168,6 +195,7 @@
     function getTblData_all() { //
       let d = [];
       let dataPop = {};
+      $('input[type="number"]').prop('title', '');
       $('table.tbl_pop tr input ').each(function (i, myRow) {
         if ($(myRow).attr('nut_group_id') < 10) {
           let dd = {};
@@ -176,14 +204,17 @@
           dd['myuser'] = {{ myuser.id }};
           dd['nut_group_id'] = $(myRow).attr('nut_group_id');
           dd['target_pop'] = $(myRow).val();
-          $(myRow).removeClass('error').removeAttr('title').removeAttr('data-original-title');
+          $(myRow).removeClass('error');
+          $(myRow).next().remove();
           d.push(dd);
         }
       });
       dataPop['#inpNum_fam9'] = $('#inpNum_fam9').val();
-      $('#inpNum_fam9').removeClass('error').removeAttr('title').removeAttr('data-original-title');
+      $('#inpNum_fam9').removeClass('error').after();
+			$('#inpNum_fam9').next().remove();
       dataPop['#inpNum9'] = $('#inpNum9').val();
-      $('#inpNum9').removeClass('error').removeAttr('title').removeAttr('data-original-title');
+      $('#inpNum9').removeClass('error');
+      $('#inpNum9').next().remove();
       let dd = {};
       dd['target_scope'] = "1";
       dd["myLocation"] = {{myLocation.id}};
@@ -245,11 +276,8 @@
             let message = res.messages;
             let forcusTab = false;
             for (const prop in message) {
-              $(prop).addClass('error').attr({
-                'title': message[prop],
-                'data-toggle': 'tooltip',
-                'data-placement': 'right',
-              }).tooltip();
+              {#$(prop).addClass('error').prop('title', message[prop]);#}
+              $(prop).addClass('error').after('<span class="tooltip-error">'+message[prop]+'</span>');
               if (!forcusTab) {
                 if ($('#tab2_link ' + prop).length > 0) {
                   forcusTab = true;
@@ -415,11 +443,11 @@
     //////////////////Communityの選択方式の決定-----
     $('#chk-autoCalk').change(function () {
       if ($('#chk-autoCalk').prop('checked')) {
-        $('.input-manual').prop('disabled', true);
-        $('.input-auto').prop('disabled', false);
+        $('#tbl_pop3 .input-manual').prop('disabled', true);
+        $('#tbl_pop3 .input-auto').prop('disabled', false);
       } else {
-        $('.input-manual').prop('disabled', false);
-        $('.input-auto').prop('disabled', true);
+        $('#tbl_pop3 .input-manual').prop('disabled', false);
+        $('#tbl_pop3 .input-auto').prop('disabled', true);
       }
     });
     //////////////////Communityの選択方式の決定-----
@@ -431,8 +459,8 @@
       'child 0-23 month',
       'child 24-59 month',
       'child 6-9 yr',
-      'adolescent boy',
-      'adolescent girl',
+      'adolescent male',
+      'adolescent female',
       'adult male',
       'adult female',
       'pregnant',
