@@ -207,7 +207,9 @@
           dd['target_pop'] = $(myRow).val();
           d.push(dd);
         } else {
-          dataPop['#' + $(myRow).attr('id')] = $(myRow).val();
+          if ($(myRow).attr('nut_group_id')) {
+            dataPop['#' + $(myRow).attr('id')] = $(myRow).val();
+          }
         }
       });
       let dd = {};
