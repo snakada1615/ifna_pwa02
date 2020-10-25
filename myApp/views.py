@@ -1260,9 +1260,9 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
     myseason = Season.objects.get(myLocation=self.kwargs['myLocation'])
     context['season_count'] = myseason.season_count
-    tmp_nut_group = list(Person.objects.filter(
-      myLocation=self.kwargs['myLocation']).select_related('myDRI').values())
-    context['nutrient_target'] = tmp_nut_group[0]['nut_group']
+    tmp_nut_group = Person.objects.filter(
+      myLocation=self.kwargs['myLocation']).select_related('myDRI')
+    context['nutrient_target'] = tmp_nut_group[0].nut_group
     nut_group_list = [
       'child 0-23 month',
       'child 24-59 month',
@@ -1493,6 +1493,12 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     d = []
     for i in myRange:
       tmp02_list = [d for d in tmp01_list if d['id_table'] == i]
+      #tmp02 = tmp01_list
+      #tmp02_list = tmp02.values_list('pk', flat=True)
+      #tmp02_list = list(tmp02_list)
+#      tmp02_key_list = []
+#      for tmp01_item in tmp01_list:
+#        tmp02_key_list.append(tmp01_item['id'])
       tmp02_key_list = [d['id'] for d in tmp02_list]
       logger.info('tmp02_list=')
       logger.info(tmp02_key_list)

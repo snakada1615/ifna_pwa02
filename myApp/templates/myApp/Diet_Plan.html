@@ -1144,7 +1144,7 @@
       console.group('Crop_Selected.setData_fromAvailable:');
       let res = false;
       if (drawFlag) {       //rowの追加
-                            //データセットの作成1:buy_prod_share設定
+        //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {
@@ -1616,7 +1616,7 @@
 
 
     Crop_Selected.prototype.myfilter = function (key) {
-      console.log('Crop_Selected.myfilterにFilterを適用します');
+      console.log('Crop_Selected.myfilterにFilter(' + key + ')を適用します');
 
       this.dom_tbl_Crop.find('tbody tr').each(function (index, val) {
         let tmpval = $(val).children('td').eq(16).text();
@@ -1993,8 +1993,9 @@
     ////////// Filter Crop_Selected table ////////////
     $(".myfilter-item a").click(function () {
       let x = $(this).text();
-      let tblNum = $('#current_page').text();
-      let tmp_mon = Number(tblNum) % 100;
+      let tblNum = Number($('#current_page').text());
+      let tmp_mon = Number(tblNum % 100);
+      tblNum = 100 * Math.trunc(tblNum / 100) + (tblNum % 4) + 1;
       console.log('tblNum:' + tblNum);
       console.log('season:' + season_name[tmp_mon]);
       myCrop[String(tblNum)].myfilter(x);
@@ -2419,39 +2420,45 @@
       activeTab.addClass("active");
       $(activeTab.attr('href')).addClass('active');
 
-      let num_table = $(this).attr('href').replace('#tab_', '');
-      $('#current_tab').text(Number(num_table) + 1);
-    });
+      let num_tab = Number($(this).attr('href').replace('#tab_', ''));
+      $('#current_tab').text(num_tab + 1);
+
+      $('.btn_car_next[myNum = ' + ((num_tab + 1) * 100) + ']').click();
+  });
     //---tabの切替処理-------------
 
     //---carouselの切替処理-------------
-    let myMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
-      'August', 'September', 'Octoer', 'November', 'December'];
+    {% comment %}
+        let myMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+          'August', 'September', 'Octoer', 'November', 'December'];
+    {% endcomment %}
     $('.btn_car_prev').click(function () {
       let num_table1 = Number($(this).attr('myNum'));
       $('.carousel[myNum=' + num_table1 + ']').carousel('prev');
-      num_table1 += $('.carousel[myNum=' + num_table1 + '] .carousel-item').siblings('.active').index() + 1;
+      let car_index = $('.carousel[myNum=' + num_table1 + '] .carousel-item').siblings('.active').index();
+      num_table1 += car_index + 1;
       console.log('num_table1');
       console.log(num_table1);
-      console.log(season_name[num_table1]);
+      console.log(season_name[car_index]);
       $('#current_page').text(num_table1);
     });
     $('.btn_car_next').click(function () {
       let num_table1 = Number($(this).attr('myNum'));
       $('.carousel[myNum=' + num_table1 + ']').carousel('next');
-      num_table1 += $('.carousel[myNum=' + num_table1 + '] .carousel-item').siblings('.active').index() + 1;
+      let car_index = $('.carousel[myNum=' + num_table1 + '] .carousel-item').siblings('.active').index();
+      num_table1 += car_index + 1;
       console.log('num_table1');
       console.log(num_table1);
+      console.log(season_name[car_index]);
       $('#current_page').text(num_table1);
     });
 
     //---carouselの切替処理-------------
     //---carouselの初期値-------------
-    console.error('c_index');
-    console.error(c_index);
-    $('#title_diet1').text("Diet for " + season_name[Number(c_index) - 1]);
-    $('#title_diet2').text("Diet for " + season_name[Number(c_index) - 1]);
-    $('#title_diet3').text("Diet for " + season_name[Number(c_index) - 1]);
+    $('#title_diet1').text("Diet for " + season_name[0]);
+    $('#title_diet2').text("Diet for " + season_name[0]);
+    $('#title_diet3').text("Diet for " + season_name[0]);
+    //    $('#current_page').text((Number(myTarget[0]) + 1) * 100);
     //---carouselの初期値-------------
 
 
