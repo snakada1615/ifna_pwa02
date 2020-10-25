@@ -1300,63 +1300,63 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context['dri_list_va'] = tmp_va_by_class
     context['dri_list_fe'] = tmp_fe_by_class
     context['dri_list_vo'] = tmp_vo_by_class
-
-    tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    tmp_vol = 0
-    if len(tmp_nut_group1) > 0:
-      for tmp in tmp_nut_group1:
-        tmp_e += tmp.myDRI.energy
-        tmp_p += tmp.myDRI.protein
-        tmp_v += tmp.myDRI.vita
-        tmp_f += tmp.myDRI.fe
-        tmp_vol += tmp.myDRI.max_vol
-    context['dri_e1'] = tmp_e
-    context['dri_p1'] = tmp_p
-    context['dri_v1'] = tmp_v
-    context['dri_f1'] = tmp_f
-    context['dri_vol1'] = tmp_vol
-
-    tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    tmp_vol = 0
-    if len(tmp_nut_group2) > 0:
-      for tmp in tmp_nut_group2:
-        tmp_e += tmp.myDRI.energy * tmp.target_pop
-        tmp_p += tmp.myDRI.protein * tmp.target_pop
-        tmp_v += tmp.myDRI.vita * tmp.target_pop
-        tmp_f += tmp.myDRI.fe * tmp.target_pop
-        tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
-    context['dri_e2'] = tmp_e
-    context['dri_p2'] = tmp_p
-    context['dri_v2'] = tmp_v
-    context['dri_f2'] = tmp_f
-    context['dri_vol2'] = tmp_vol
-
-    tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    tmp_vol = 0
-    if len(tmp_nut_group3) > 0:
-      for tmp in tmp_nut_group3:
-        tmp_e += tmp.myDRI.energy * tmp.target_pop
-        tmp_p += tmp.myDRI.protein * tmp.target_pop
-        tmp_v += tmp.myDRI.vita * tmp.target_pop
-        tmp_f += tmp.myDRI.fe * tmp.target_pop
-        tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
-    context['dri_e3'] = tmp_e
-    context['dri_p3'] = tmp_p
-    context['dri_v3'] = tmp_v
-    context['dri_f3'] = tmp_f
-    context['dri_vol3'] = tmp_vol
+    #
+    # tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
+    # tmp_e = 0
+    # tmp_p = 0
+    # tmp_v = 0
+    # tmp_f = 0
+    # tmp_vol = 0
+    # if len(tmp_nut_group1) > 0:
+    #   for tmp in tmp_nut_group1:
+    #     tmp_e += tmp.myDRI.energy
+    #     tmp_p += tmp.myDRI.protein
+    #     tmp_v += tmp.myDRI.vita
+    #     tmp_f += tmp.myDRI.fe
+    #     tmp_vol += tmp.myDRI.max_vol
+    # context['dri_e1'] = tmp_e
+    # context['dri_p1'] = tmp_p
+    # context['dri_v1'] = tmp_v
+    # context['dri_f1'] = tmp_f
+    # context['dri_vol1'] = tmp_vol
+    #
+    # tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
+    # tmp_e = 0
+    # tmp_p = 0
+    # tmp_v = 0
+    # tmp_f = 0
+    # tmp_vol = 0
+    # if len(tmp_nut_group2) > 0:
+    #   for tmp in tmp_nut_group2:
+    #     tmp_e += tmp.myDRI.energy * tmp.target_pop
+    #     tmp_p += tmp.myDRI.protein * tmp.target_pop
+    #     tmp_v += tmp.myDRI.vita * tmp.target_pop
+    #     tmp_f += tmp.myDRI.fe * tmp.target_pop
+    #     tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
+    # context['dri_e2'] = tmp_e
+    # context['dri_p2'] = tmp_p
+    # context['dri_v2'] = tmp_v
+    # context['dri_f2'] = tmp_f
+    # context['dri_vol2'] = tmp_vol
+    #
+    # tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
+    # tmp_e = 0
+    # tmp_p = 0
+    # tmp_v = 0
+    # tmp_f = 0
+    # tmp_vol = 0
+    # if len(tmp_nut_group3) > 0:
+    #   for tmp in tmp_nut_group3:
+    #     tmp_e += tmp.myDRI.energy * tmp.target_pop
+    #     tmp_p += tmp.myDRI.protein * tmp.target_pop
+    #     tmp_v += tmp.myDRI.vita * tmp.target_pop
+    #     tmp_f += tmp.myDRI.fe * tmp.target_pop
+    #     tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
+    # context['dri_e3'] = tmp_e
+    # context['dri_p3'] = tmp_p
+    # context['dri_v3'] = tmp_v
+    # context['dri_f3'] = tmp_f
+    # context['dri_vol3'] = tmp_vol
 
     ########### send number of season   ###########
     tmp = Season.objects.filter(myLocation=self.kwargs['myLocation'])[0]
@@ -1403,7 +1403,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
 
     # queryの簡素化検討
     tmp_scope = list(
-      Person.objects.filter(myLocation=self.kwargs['myLocation']).values_list('target_scope', flat=True).order_by(
+      tmp_nut_group.values_list('target_scope', flat=True).order_by(
         'target_scope').distinct())
     context['myTarget'] = tmp_scope
 
