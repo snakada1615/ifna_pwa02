@@ -24,6 +24,16 @@
       <div class="col px-3">
         <div class="card border-0 my-2" style="background-color: #ECECEC">
           <div class="card-body py-2">
+            <div>In this step, you can conduct feasibility assessment for newly introduced commodities.
+              if you think you don't need to go through this step, you can direcrtory go to final output.
+            </div>
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            <a class="btn btn-info badge text-wrap" id="jump_output"
+               href="{% url 'output_list' myLocation=myLocation %}">output</a>
+          </div>
+        </div>
+        <div class="card border-0 my-2" style="background-color: #ECECEC">
+          <div class="card-body py-2">
             <span class="text-danger">red colored text </span>indicates that feasibility is not good enough to be
             adopted
             for the target area <span class="text-info">{{ myLocation_name }}</span>.
@@ -224,8 +234,7 @@
       let rating = Number($(this).closest('.bar').find('.score_val').text());
       $(this).barrating('set', rating);
       console.log($(this).closest('.bar').find('.score_val').text())
-    })
-
+    });
 
   </script>
 
