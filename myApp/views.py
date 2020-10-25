@@ -1601,63 +1601,100 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     tmp_nut_group = Person.objects.filter(
       myLocation=self.kwargs['myLocation']).select_related('myDRI')
     context['nutrient_target'] = tmp_nut_group[0].nut_group
+    nut_group_list = [
+      'child 0-23 month',
+      'child 24-59 month',
+      'child 6-9 yr',
+      'adolescent male',
+      'adolescent female',
+      'adult male',
+      'adult female'
+      'pregnant',
+      'lactating',
+      'adult',
+      'adolescent pregnant',
+      'adolescent lact',
+      'adolescent all',
+    ]
 
-    tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    tmp_vol = 0
-    if len(tmp_nut_group1) > 0:
-      for tmp in tmp_nut_group1:
-        tmp_e += tmp.myDRI.energy
-        tmp_p += tmp.myDRI.protein
-        tmp_v += tmp.myDRI.vita
-        tmp_f += tmp.myDRI.fe
-        tmp_vol += tmp.myDRI.max_vol
-    context['dri_e1'] = tmp_e
-    context['dri_p1'] = tmp_p
-    context['dri_v1'] = tmp_v
-    context['dri_f1'] = tmp_f
-    context['dri_vol1'] = tmp_vol
-
-    tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    tmp_vol = 0
-    if len(tmp_nut_group2) > 0:
-      for tmp in tmp_nut_group2:
-        tmp_e += tmp.myDRI.energy * tmp.target_pop
-        tmp_p += tmp.myDRI.protein * tmp.target_pop
-        tmp_v += tmp.myDRI.vita * tmp.target_pop
-        tmp_f += tmp.myDRI.fe * tmp.target_pop
-        tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
-    context['dri_e2'] = tmp_e
-    context['dri_p2'] = tmp_p
-    context['dri_v2'] = tmp_v
-    context['dri_f2'] = tmp_f
-    context['dri_vol2'] = tmp_vol
-
-    tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    tmp_vol = 0
-    if len(tmp_nut_group3) > 0:
-      for tmp in tmp_nut_group3:
-        tmp_e += tmp.myDRI.energy * tmp.target_pop
-        tmp_p += tmp.myDRI.protein * tmp.target_pop
-        tmp_v += tmp.myDRI.vita * tmp.target_pop
-        tmp_f += tmp.myDRI.fe * tmp.target_pop
-        tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
-    context['dri_e3'] = tmp_e
-    context['dri_p3'] = tmp_p
-    context['dri_v3'] = tmp_v
-    context['dri_f3'] = tmp_f
-    context['dri_vol3'] = tmp_vol
+    tmp_dri = DRI.objects.all()
+    tmp_en_by_class = [-1] * 30
+    tmp_pr_by_class = [-1] * 30
+    tmp_va_by_class = [-1] * 30
+    tmp_fe_by_class = [-1] * 30
+    tmp_vo_by_class = [-1] * 30
+    tmp_group_list = list(tmp_dri.values_list('nut_group', flat=True))
+    for mydri in tmp_dri:
+      logger.info(mydri.nut_group)
+      index = tmp_group_list.index(mydri.nut_group)
+      logger.info(index)
+      tmp_en_by_class[index] = mydri.energy
+      tmp_pr_by_class[index] = mydri.protein
+      tmp_va_by_class[index] = mydri.vita
+      tmp_fe_by_class[index] = mydri.fe
+      tmp_vo_by_class[index] = mydri.max_vol
+    context['dri_list_en'] = tmp_en_by_class
+    context['dri_list_pr'] = tmp_pr_by_class
+    context['dri_list_va'] = tmp_va_by_class
+    context['dri_list_fe'] = tmp_fe_by_class
+    context['dri_list_vo'] = tmp_vo_by_class
+    #
+    # tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
+    # tmp_e = 0
+    # tmp_p = 0
+    # tmp_v = 0
+    # tmp_f = 0
+    # tmp_vol = 0
+    # if len(tmp_nut_group1) > 0:
+    #   for tmp in tmp_nut_group1:
+    #     tmp_e += tmp.myDRI.energy
+    #     tmp_p += tmp.myDRI.protein
+    #     tmp_v += tmp.myDRI.vita
+    #     tmp_f += tmp.myDRI.fe
+    #     tmp_vol += tmp.myDRI.max_vol
+    # context['dri_e1'] = tmp_e
+    # context['dri_p1'] = tmp_p
+    # context['dri_v1'] = tmp_v
+    # context['dri_f1'] = tmp_f
+    # context['dri_vol1'] = tmp_vol
+    #
+    # tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
+    # tmp_e = 0
+    # tmp_p = 0
+    # tmp_v = 0
+    # tmp_f = 0
+    # tmp_vol = 0
+    # if len(tmp_nut_group2) > 0:
+    #   for tmp in tmp_nut_group2:
+    #     tmp_e += tmp.myDRI.energy * tmp.target_pop
+    #     tmp_p += tmp.myDRI.protein * tmp.target_pop
+    #     tmp_v += tmp.myDRI.vita * tmp.target_pop
+    #     tmp_f += tmp.myDRI.fe * tmp.target_pop
+    #     tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
+    # context['dri_e2'] = tmp_e
+    # context['dri_p2'] = tmp_p
+    # context['dri_v2'] = tmp_v
+    # context['dri_f2'] = tmp_f
+    # context['dri_vol2'] = tmp_vol
+    #
+    # tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
+    # tmp_e = 0
+    # tmp_p = 0
+    # tmp_v = 0
+    # tmp_f = 0
+    # tmp_vol = 0
+    # if len(tmp_nut_group3) > 0:
+    #   for tmp in tmp_nut_group3:
+    #     tmp_e += tmp.myDRI.energy * tmp.target_pop
+    #     tmp_p += tmp.myDRI.protein * tmp.target_pop
+    #     tmp_v += tmp.myDRI.vita * tmp.target_pop
+    #     tmp_f += tmp.myDRI.fe * tmp.target_pop
+    #     tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
+    # context['dri_e3'] = tmp_e
+    # context['dri_p3'] = tmp_p
+    # context['dri_v3'] = tmp_v
+    # context['dri_f3'] = tmp_f
+    # context['dri_vol3'] = tmp_vol
 
     ########### send number of season   ###########
     tmp = Season.objects.filter(myLocation=self.kwargs['myLocation'])[0]
@@ -1702,15 +1739,19 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     context["month_season_start_text"] = month_season1_text
     context["month_season_end_text"] = month_season2_text
 
+    # queryの簡素化検討
+    tmp_scope = list(
+      tmp_nut_group.values_list('target_scope', flat=True).order_by(
+        'target_scope').distinct())
+    context['myTarget'] = tmp_scope
+
     tmpdat = str(getattr(tmp, 'season_count'))
-    logger.info(tmpdat)
     for i in range(int(tmpdat)):
       myseason.append(i + 1)
-      myRange.append(i + 100)
-    for i in range(int(tmpdat)):
-      myRange.append(i + 200)
-    for i in range(int(tmpdat)):
-      myRange.append(i + 300)
+      for scope in tmp_scope:
+        myRange.append(i + 1 + (int(scope) + 1) * 100)
+    logger.info('myRange=')
+    logger.info(myRange)
 
     context['season_list'] = myseason
 
@@ -1728,7 +1769,7 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     for tmp02 in tmp01:
       dd = {}
       dd["selected_status"] = tmp02.selected_status
-      dd["Food_grp"] = tmp02.myFCT.Food_grp
+      dd["Food_grp"] = tmp02.myFCT.Food_grp_unicef
       dd["Food_name"] = tmp02.myFCT.Food_name
       dd["Energy"] = tmp02.myFCT.Energy
       dd["Protein"] = tmp02.myFCT.Protein
@@ -1762,7 +1803,8 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     tmp = Crop_Name._meta.get_fields()
     logger.info(tmp[2])
     tmp01 = Crop_Name.objects.filter(
-      myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
+      # myCountryName=Location.objects.filter(id=self.kwargs['myLocation']).first().country)
+      myCountryName="ETH")  # 暫定措置
     d = []
     new_Food_grp = []
     for tmp02 in tmp01:
@@ -1782,17 +1824,23 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     # --------------------create 16 Crop_individual-------------------------
     # if __name__ == '__main__':
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
-    tmp_ref = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation'])
+    tmp01_list = list(tmp01.values())
+    myFCT_list = list(FCT.objects.values())
+    tmp_ref01 = list(Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).values())
 
     d = []
     for i in myRange:
-      tmp02 = tmp01.filter(id_table=i)
-      tmp02_list = tmp02.values_list('pk', flat=True)
-      tmp02_list = list(tmp02_list)
+      tmp02_list = [d for d in tmp01_list if d['id_table'] == i]
+      # tmp02 = tmp01_list
+      # tmp02_list = tmp02.values_list('pk', flat=True)
+      # tmp02_list = list(tmp02_list)
+      #      tmp02_key_list = []
+      #      for tmp01_item in tmp01_list:
+      #        tmp02_key_list.append(tmp01_item['id'])
+      tmp02_key_list = [d['id'] for d in tmp02_list]
       logger.info('tmp02_list=')
-      logger.info(tmp02_list)
-      #      if tmp02.count() == 0:  # todo この行があると余分なQueryが発生する！？
-      if len(tmp02_list) == 0:
+      logger.info(tmp02_key_list)
+      if not tmp02_key_list:
         dd = {}
         dd["Food_grp"] = ''
         dd["name"] = ''
@@ -1815,28 +1863,41 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
         dd["Carbohydrate"] = ''
         d.append(dd)
       else:
-        for tmp03 in tmp02:
+        for tmp03 in tmp02_list:
           dd = {}
-          dd["Food_grp"] = tmp03.myFCT.Food_grp
-          dd["name"] = tmp03.myFCT.Food_name
-          dd["Energy"] = tmp03.myFCT.Energy
-          dd["Protein"] = tmp03.myFCT.Protein
-          dd["VITA_RAE"] = tmp03.myFCT.VITA_RAE
-          dd["FE"] = tmp03.myFCT.FE
-          dd["target_scope"] = tmp03.target_scope
-          dd["food_item_id"] = tmp03.myFCT.food_item_id
-          dd["portion_size"] = tmp03.portion_size
-          dd["total_weight"] = tmp03.total_weight
-          dd["count_prod"] = tmp03.count_prod
-          dd["count_buy"] = tmp03.count_buy
-          dd["month"] = tmp03.month
-          dd["month_availability"] = tmp_ref.filter(myFCT_id=tmp03.myFCT.food_item_id)[0].serializable_value(
-            'm' + str(tmp03.month) + '_avail')
-          dd["myLocation"] = tmp03.myLocation_id
-          dd["num_tbl"] = tmp03.id_table
-          dd["share_prod_buy"] = tmp03.share_prod_buy
-          dd["Fat"] = tmp03.myFCT.Fat
-          dd["Carbohydrate"] = tmp03.myFCT.Carbohydrate
+          tmp_FCT = {}
+          for myFCT_item in myFCT_list:
+            if myFCT_item['food_item_id'] == tmp03['myFCT_id']:
+              tmp_FCT.update(myFCT_item)
+          dd["Food_grp"] = tmp_FCT['Food_grp_unicef']
+          dd["name"] = tmp_FCT['Food_name']
+          dd["Energy"] = tmp_FCT['Energy']
+          dd["Protein"] = tmp_FCT['Protein']
+          dd["VITA_RAE"] = tmp_FCT['VITA_RAE']
+          dd["FE"] = tmp_FCT['FE']
+          dd["target_scope"] = tmp03['target_scope']
+          dd["food_item_id"] = tmp_FCT['food_item_id']
+          dd["portion_size"] = tmp03['portion_size']
+          dd["total_weight"] = tmp03['total_weight']
+          dd["count_prod"] = tmp03['count_prod']
+          dd["count_buy"] = tmp03['count_buy']
+          dd["month"] = tmp03['month']
+          #          dd["month_availability"] = tmp03.serializable_value('m' + str(tmp03.month) + '_avail')
+          tmp_avail = 0
+          for tmp_ref02 in tmp_ref01:
+            if tmp_ref02['myFCT_id'] == tmp_FCT['food_item_id']:
+              tmp_avail = tmp_ref02['m' + str(tmp03['month']) + '_avail']
+              break
+          dd["month_availability"] = tmp_avail
+          #          dd["month_availability"] = tmp_ref.filter(myFCT_id=tmp03.myFCT.food_item_id)[0].serializable_value(
+          #            'm' + str(tmp03.month) + '_avail')
+          logger.info('dd["month_availability"]')
+          logger.info(dd["month_availability"])
+          dd["myLocation"] = tmp03['myLocation_id']
+          dd["num_tbl"] = tmp03['id_table']
+          dd["share_prod_buy"] = tmp03['share_prod_buy']
+          dd["Fat"] = tmp_FCT['Fat']
+          dd["Carbohydrate"] = tmp_FCT['Carbohydrate']
           d.append(dd)
     context["mylist_selected"] = d
 
@@ -2282,28 +2343,29 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
     context['isUpdate'] = 0
     myLoc = Location.objects.get(id=self.request.user.profile.myLocation)
     context['myLocation'] = myLoc
-    tmp_nut_group = Person.objects.filter(
-      myLocation=myLoc).select_related('myDRI')
-    context['nutrient_target'] = tmp_nut_group[0].nut_group
+    tmp_nut_group = Person.objects.filter(myLocation=myLoc).select_related('myDRI')
 
-    tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
     tmp_e = 0
     tmp_p = 0
     tmp_v = 0
     tmp_f = 0
     tmp_vol = 0
-    if len(tmp_nut_group1) > 0:
-      for tmp in tmp_nut_group1:
-        tmp_e += tmp.myDRI.energy
-        tmp_p += tmp.myDRI.protein
-        tmp_v += tmp.myDRI.vita
-        tmp_f += tmp.myDRI.fe
-        tmp_vol += tmp.myDRI.max_vol
+    tmp_target = ''
+    if len(tmp_nut_group) > 0:
+      tmp_nut_group1 = tmp_nut_group[0]
+      tmp_e = tmp_nut_group1.myDRI.energy
+      tmp_p = tmp_nut_group1.myDRI.protein
+      tmp_v = tmp_nut_group1.myDRI.vita
+      tmp_f = tmp_nut_group1.myDRI.fe
+      tmp_vol = tmp_nut_group1.myDRI.max_vol
+      tmp_target = tmp_nut_group1.nut_group
+
     context['dri_e1'] = tmp_e
     context['dri_p1'] = tmp_p
     context['dri_v1'] = tmp_v
     context['dri_f1'] = tmp_f
     context['dri_vol1'] = tmp_vol
+    context['nutrient_target'] = tmp_target
 
     # send non-available crop in the original list ######
     available_list = []
