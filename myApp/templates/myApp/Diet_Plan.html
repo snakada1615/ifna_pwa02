@@ -403,8 +403,8 @@
                                           class="replicator class-myNum" data-off="unique dish" data-width="100"
                                           data-size="xs">
                   </div>
-                  <div class="p-2"><input type="checkbox" data-toggle="toggle" data-on="unhide"
-                                          class="hide_zero class-myNum" data-off="hide" data-width="100"
+                  <div class="p-2"><input type="checkbox" data-toggle="toggle" data-on="unhide 0"
+                                          class="hide_zero class-myNum" data-off="hide 0" data-width="100"
                                           data-size="xs"></div>
                 </div>
 
@@ -817,6 +817,9 @@
 
     /* 行または列の非表示*/
     .tableItem_hide {
+      display: none;
+    }
+    .zerovalue_hide {
       display: none;
     }
 
@@ -2018,11 +2021,11 @@
         $(myRows).each(function (index, val) {
           let tmpval = $(val).children('td').eq(5).text();
           if (tmpval === '0') {
-            $(val).toggleClass('tableItem_hide');
+            $(val).toggleClass('zerovalue_hide');
           }
         });
       } else {
-        $('.selected_crops_tbl[myNum = "' + tbl_num + '"] tr').removeClass('tableItem_hide');
+        $('.selected_crops_tbl[myNum = "' + tbl_num + '"] tr').removeClass('zerovalue_hide');
       }
     });
 
