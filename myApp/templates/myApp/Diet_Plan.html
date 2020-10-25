@@ -983,53 +983,6 @@
     // タブ、テーブルのhtml追加ここまで
     ////////////////////////////////////////////////////
 
-    ////////////////////////////////////////////////////
-    // ログ出力用
-    ////////////////////////////////////////////////////
-    /**
-     * output message to console
-     * @param {number} i
-     * @param {string} mes
-     */
-    function myConsole(i, mes) {
-      var hostName = document.location.hostname;
-      if (hostName !== "localhost" && hostName !== "127.0.0.1") {
-        i = 0;
-      }
-      switch (i) {
-        case 0:
-          break;
-
-        case 1:
-          console.info(mes);
-          break;
-
-        case 2:
-          console.error(mes);
-          break;
-
-        case 3:
-          console.log(mes);
-          break;
-
-        case 4:
-          console.group(4, mes);
-          break;
-
-        case 5:
-          console.groupEnd(5, mes);
-          break;
-
-        default:
-          console.info(mes);
-          break;
-      }
-      return;
-    }
-    ////////////////////////////////////////////////////
-    // ログ出力用ここまで
-    ////////////////////////////////////////////////////
-
     myConsole(2, 'season_list');
     myConsole(2, season_list);
     myConsole(2, 'season_start_month');
@@ -1888,7 +1841,7 @@
       this.dom_br_count.barrating('set', count_all); //摂取量の設定
       this.setPie_img(data.share_prod_buy); //Buy＿Prod _shaeの設定
 
-      if (data.num_tbl < 300) { // individual/familyとcommunityで表示を切り替える
+      if (data.num_tbl < 10000) { // individual/familyとcommunityで表示を切り替える #todo 後できちんと修正
         $('#toggle_visible_individual').show();
         $('#toggle_visible_comm').hide();
       } else {
@@ -1928,7 +1881,7 @@
       let max_vol = Number(dri_target_vol[this.data.target_scope]);
       let portion_size = this.data.portion_size;
 
-      if (this.num_tbl < 300) { // individual/familyとcommunityで計算方法を切り替える
+      if (this.num_tbl < 10000) { // individual/familyとcommunityで計算方法を切り替える #todo 後できちんと修正
         let count_all = Number(this.dom_br_count.children("option:selected").val());
         let new_weight = portion_size * count_all;
 

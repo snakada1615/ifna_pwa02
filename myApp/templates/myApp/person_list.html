@@ -3,6 +3,10 @@
 {% load humanize %}
 {% block content %}
 
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+        rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
   <div class="container" style="max-width: 540px;">
     <div class="row">
       <div class="col-2 my-0 px-3">
@@ -78,7 +82,10 @@
 
   <div class="container border-secondary py-1 my-1"
        style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
-    <!-- 4個分のタブ -->
+    {% include "./person_list_child3.html" %}
+
+    {% comment %}
+    <!-- 3個分のタブ -->
     <ul class="nav nav-tabs">
       <li class="nav-item">
         <a href="#tab1_link" class="nav-link {% ifequal page 1 %}active{% endifequal %}" id="tab1"
@@ -105,6 +112,8 @@
         {% include "./person_list_child3.html" %}
       </div>
     </div>
+{% endcomment %}
+
   </div>
 
   <style media="screen">
@@ -123,16 +132,18 @@
   <script type="text/javascript">
     $('[data-toggle="tooltip"]').tooltip();
 
-    let mytarget_scope_Sum ={{mytarget_scope_Sum}};
+    //    let mytarget_scope_Sum ={{mytarget_scope_Sum}};
 
-    let myDRI_en = {{ myDRI_en|safe }};
-    let myDRI_pr = {{ myDRI_pr|safe }};
-    let myDRI_va = {{ myDRI_va|safe }};
-    let myDRI_fe = {{ myDRI_fe|safe }};
+    {% comment %}
+        let myDRI_en = {{ myDRI_en|safe }};
+        let myDRI_pr = {{ myDRI_pr|safe }};
+        let myDRI_va = {{ myDRI_va|safe }};
+        let myDRI_fe = {{ myDRI_fe|safe }};
+    {% endcomment %}
 
     var myPop = {{ myPop|safe }};
     var myCommunity = {{ myCommunity|safe }};
-    var myFamily = {{ myFamily|safe }};
+    //    var myFamily = {{ myFamily|safe }};
     let url_tmp = window.location.href.split('/');
     url_tmp.pop();
     url_tmp.pop();
@@ -146,11 +157,11 @@
     $('#btn_save').click(function () {
       let hostUrl = myRoot + 'registPerson/';
       let mydat = getTblData_all();
-
       console.log(mydat);
       Set_CRSF();
       sendJson(mydat, hostUrl);
-    }); ////////btn_save_person///////////
+    });
+    ////////btn_save_person///////////
 
     //////////////////getTblData
     function getTblData_all() { //
@@ -158,22 +169,26 @@
       $('table.tbl_pop tr input ').each(function (i, myRow) {
         if ($(myRow).attr('nut_group_id') < 10) {
           let dd = {};
-          dd['target_scope'] = $(myRow).attr('target_scope');
-          dd["myLocation"] = {{myLocation.id}};
-          dd['myuser'] = {{ myuser.id }};
-          dd['nut_group_id'] = $(myRow).attr('nut_group_id');
-          dd['target_pop'] = $(myRow).val();
-          d.push(dd);
+          if (Number($(myRow).val()) > 0) {
+            dd['target_scope'] = Number($(myRow).attr('target_scope'));
+            dd["myLocation"] = {{myLocation.id}};
+            dd['myuser'] = {{ myuser.id }};
+            dd['nut_group_id'] = $(myRow).attr('nut_group_id');
+            dd['target_pop'] = $(myRow).val();
+            d.push(dd);
+          }
         }
       });
 
-      let dd = {};
-      dd['target_scope'] = "1";
-      dd["myLocation"] = {{myLocation.id}};
-      dd['myuser'] = {{ myuser.id }};
-      dd['nut_group_id'] = $('#inpNum_ind7').text();
-      dd['target_pop'] = "1";
-      d.push(dd);
+      {% comment %}
+            let dd = {};
+            dd['target_scope'] = "1";
+            dd["myLocation"] = {{myLocation.id}};
+            dd['myuser'] = {{ myuser.id }};
+            dd['nut_group_id'] = $('#inpNum_ind7').text();
+            dd['target_pop'] = "1";
+            d.push(dd);
+      {% endcomment %}
 
       return {"myJson": d};
     }
@@ -238,71 +253,75 @@
       });
     }//////////////////sendJson//// scfript end/////////////////////
 
-    //////////////////DRI合計
-    function sum_DRI(index_DRI) {
-      console.group('sum_DRI');
-      if (index_DRI === 1) {
-        let tmp_nut_class = $('#inpNum_ind7').text() - 1;
-        $('#inpNum_ind3').text(myDRI_en['class' + tmp_nut_class]);
-        $('#inpNum_ind4').text(myDRI_pr['class' + tmp_nut_class]);
-        $('#inpNum_ind5').text(myDRI_va['class' + tmp_nut_class]);
-        $('#inpNum_ind6').text(myDRI_fe['class' + tmp_nut_class]);
-      } else if (index_DRI === 2) {
-        let sum = 0;
-        let tmp_sum_en = 0;
-        let tmp_sum_pr = 0;
-        let tmp_sum_va = 0;
-        let tmp_sum_fe = 0;
-        $('.num_family2').each(function () {
-          let tmp_nut_class = Number($(this).attr('nut_group_id')) - 1;
-          let tmp_number = Number($(this).val());
-          sum += tmp_number;
-          tmp_sum_en += Number(myDRI_en['class' + String(tmp_nut_class)]) * tmp_number;
-          tmp_sum_pr += Number(myDRI_pr['class' + String(tmp_nut_class)]) * tmp_number;
-          tmp_sum_va += Number(myDRI_va['class' + String(tmp_nut_class)]) * tmp_number;
-          tmp_sum_fe += Number(myDRI_fe['class' + String(tmp_nut_class)]) * tmp_number;
-        });
-        $('#DRI2_en').text(tmp_sum_en.toLocaleString());
-        $('#DRI2_pr').text(tmp_sum_pr.toLocaleString());
-        $('#DRI2_va').text(tmp_sum_va.toLocaleString());
-        $('#DRI2_fe').text(tmp_sum_fe.toLocaleString());
-        $('#size2').text(sum);
-      } else if (index_DRI === 3) {
-        let sum = 0;
-        let tmp_sum_en = 0;
-        let tmp_sum_pr = 0;
-        let tmp_sum_va = 0;
-        let tmp_sum_fe = 0;
-        $('.num_family3').each(function () {
-          let tmp_nut_class = Number($(this).attr('nut_group_id')) - 1;
-          let tmp_number = Number($(this).val());
-          sum += tmp_number;
-          tmp_sum_en += Number(myDRI_en['class' + String(tmp_nut_class)]) * tmp_number;
-          tmp_sum_pr += Number(myDRI_pr['class' + String(tmp_nut_class)]) * tmp_number;
-          tmp_sum_va += Number(myDRI_va['class' + String(tmp_nut_class)]) * tmp_number;
-          tmp_sum_fe += Number(myDRI_fe['class' + String(tmp_nut_class)]) * tmp_number;
-        });
-        $('#DRI3_en').text(tmp_sum_en.toLocaleString());
-        $('#DRI3_pr').text(tmp_sum_pr.toLocaleString());
-        $('#DRI3_va').text(tmp_sum_va.toLocaleString());
-        $('#DRI3_fe').text(tmp_sum_fe.toLocaleString());
-        $('#size3').text(sum);
-      }
-      console.groupEnd();
-    }
+    {% comment %}
+        //////////////////DRI合計
+        function sum_DRI(index_DRI) {
+          console.group('sum_DRI');
+          if (index_DRI === 1) {
+            let tmp_nut_class = $('#inpNum_ind7').text() - 1;
+            $('#inpNum_ind3').text(myDRI_en['class' + tmp_nut_class]);
+            $('#inpNum_ind4').text(myDRI_pr['class' + tmp_nut_class]);
+            $('#inpNum_ind5').text(myDRI_va['class' + tmp_nut_class]);
+            $('#inpNum_ind6').text(myDRI_fe['class' + tmp_nut_class]);
+          } else if (index_DRI === 2) {
+            let sum = 0;
+            let tmp_sum_en = 0;
+            let tmp_sum_pr = 0;
+            let tmp_sum_va = 0;
+            let tmp_sum_fe = 0;
+            $('.num_family2').each(function () {
+              let tmp_nut_class = Number($(this).attr('nut_group_id')) - 1;
+              let tmp_number = Number($(this).val());
+              sum += tmp_number;
+              tmp_sum_en += Number(myDRI_en['class' + String(tmp_nut_class)]) * tmp_number;
+              tmp_sum_pr += Number(myDRI_pr['class' + String(tmp_nut_class)]) * tmp_number;
+              tmp_sum_va += Number(myDRI_va['class' + String(tmp_nut_class)]) * tmp_number;
+              tmp_sum_fe += Number(myDRI_fe['class' + String(tmp_nut_class)]) * tmp_number;
+            });
+            $('#DRI2_en').text(tmp_sum_en.toLocaleString());
+            $('#DRI2_pr').text(tmp_sum_pr.toLocaleString());
+            $('#DRI2_va').text(tmp_sum_va.toLocaleString());
+            $('#DRI2_fe').text(tmp_sum_fe.toLocaleString());
+            $('#size2').text(sum);
+          } else if (index_DRI === 3) {
+            let sum = 0;
+            let tmp_sum_en = 0;
+            let tmp_sum_pr = 0;
+            let tmp_sum_va = 0;
+            let tmp_sum_fe = 0;
+            $('.num_family3').each(function () {
+              let tmp_nut_class = Number($(this).attr('nut_group_id')) - 1;
+              let tmp_number = Number($(this).val());
+              sum += tmp_number;
+              tmp_sum_en += Number(myDRI_en['class' + String(tmp_nut_class)]) * tmp_number;
+              tmp_sum_pr += Number(myDRI_pr['class' + String(tmp_nut_class)]) * tmp_number;
+              tmp_sum_va += Number(myDRI_va['class' + String(tmp_nut_class)]) * tmp_number;
+              tmp_sum_fe += Number(myDRI_fe['class' + String(tmp_nut_class)]) * tmp_number;
+            });
+            $('#DRI3_en').text(tmp_sum_en.toLocaleString());
+            $('#DRI3_pr').text(tmp_sum_pr.toLocaleString());
+            $('#DRI3_va').text(tmp_sum_va.toLocaleString());
+            $('#DRI3_fe').text(tmp_sum_fe.toLocaleString());
+            $('#size3').text(sum);
+          }
+          console.groupEnd();
+        }
+    {% endcomment %}
 
     //////////////////DRI合計
 
     //////////////////合計----family
-    $('.num_family2').on("input", function () {
-      let sum = 0;
-      $('.num_family2').each(function () {
-        sum += Number($(this).val())
-      });
-      $('#inpNum_fam9').val(sum);
-//      $('#size2').text(sum);
-      sum_DRI(2);
-    });
+    {% comment %}
+        $('.num_family2').on("input", function () {
+          let sum = 0;
+          $('.num_family2').each(function () {
+            sum += Number($(this).val())
+          });
+          $('#inpNum_fam9').val(sum);
+    //      $('#size2').text(sum);
+    //      sum_DRI(2);
+        });
+    {% endcomment %}
 
 
     //////////////////合計----community
@@ -312,7 +331,7 @@
         sum += Number($(this).val());
       });
       console.log('changed:' + sum);
-      sum_DRI(3);
+//      sum_DRI(3);
       $("#inpNum9").val(sum);
     });
 
@@ -331,14 +350,16 @@
       sum_DRI(3);
     });
 
-    //////////////////個人targetの選択-----
-    $("#menu_items a ").click(function () {
-      console.log($(this).text());
-      $('#inpNum_ind1').text($(this).text());
-      $('#inpNum_ind7').text($(this).index() + 1);
-      sum_DRI(1);
-    });
-    //////////////////個人targetの選択-----
+    {% comment %}
+        //////////////////個人targetの選択-----
+        $("#menu_items a ").click(function () {
+          console.log($(this).text());
+          $('#inpNum_ind1').text($(this).text());
+          $('#inpNum_ind7').text($(this).index() + 1);
+    //      sum_DRI(1);
+        });
+        //////////////////個人targetの選択-----
+    {% endcomment %}
 
     //////////////////Communityの選択方式の決定-----
     $('#chk-autoCalk').change(function () {
@@ -354,40 +375,42 @@
 
 
     //-----------initializationn -------
+    {% comment %}
 
-    let nut_class = [
-      'child 0-23 month',
-      'child 24-59 month',
-      'child 6-9 yr',
-      'adolescent boy',
-      'adolescent girl',
-      'adult male',
-      'adult female',
-      'pregnant',
-      'lactaning',
-    ];
+        let nut_class = [
+          'child 0-23 month',
+          'child 24-59 month',
+          'child 6-9 yr',
+          'adolescent boy',
+          'adolescent girl',
+          'adult male',
+          'adult female',
+          'pregnant',
+          'lactaning',
+        ];
 
-    try {
-      let index_nut = nut_class.indexOf($('#inpNum_ind1').text()) || 0;
-      $("#menu_items a ").prop('selectedIndex', index_nut);
-      $('#inpNum_ind7').text(index_nut + 1);
-    } catch (e) {
-      console.error(e);
-    }
+        try {
+          let index_nut = nut_class.indexOf($('#inpNum_ind1').text()) || 0;
+          $("#menu_items a ").prop('selectedIndex', index_nut);
+          $('#inpNum_ind7').text(index_nut + 1);
+        } catch (e) {
+          console.error(e);
+        }
 
-    // Print initial value in a div box
-    $("#inpNum_fam0").val(myFamily.class0);
-    $("#inpNum_fam1").val(myFamily.class1);
-    $("#inpNum_fam2").val(myFamily.class2);
-    $("#inpNum_fam3").val(myFamily.class3);
-    $("#inpNum_fam4").val(myFamily.class4);
-    $("#inpNum_fam5").val(myFamily.class5);
-    $("#inpNum_fam6").val(myFamily.class6);
-    $("#inpNum_fam7").val(myFamily.class7);
-    $("#inpNum_fam8").val(myFamily.class8);
-    let tmp = myFamily.class0 + myFamily.class1 + myFamily.class2 + myFamily.class3 + myFamily.class4
-            + myFamily.class5 + myFamily.class6 + myFamily.class7 + myFamily.class8;
-    $("#inpNum_fam9").val(tmp);
+        // Print initial value in a div box
+        $("#inpNum_fam0").val(myFamily.class0);
+        $("#inpNum_fam1").val(myFamily.class1);
+        $("#inpNum_fam2").val(myFamily.class2);
+        $("#inpNum_fam3").val(myFamily.class3);
+        $("#inpNum_fam4").val(myFamily.class4);
+        $("#inpNum_fam5").val(myFamily.class5);
+        $("#inpNum_fam6").val(myFamily.class6);
+        $("#inpNum_fam7").val(myFamily.class7);
+        $("#inpNum_fam8").val(myFamily.class8);
+        let tmp = myFamily.class0 + myFamily.class1 + myFamily.class2 + myFamily.class3 + myFamily.class4
+                + myFamily.class5 + myFamily.class6 + myFamily.class7 + myFamily.class8;
+        $("#inpNum_fam9").val(tmp);
+    {% endcomment %}
 
     // Print initial value in a div box
     $("#inpNum0").val(myCommunity.class0);
@@ -400,12 +423,12 @@
     $("#inpNum7").val(myCommunity.class7);
     $("#inpNum8").val(myCommunity.class8);
     tmp = myCommunity.class0 + myCommunity.class1 + myCommunity.class2 + myCommunity.class3 + myCommunity.class4
-            + myCommunity.class5 + myCommunity.class6 + myFamily.class7 + myFamily.class8;
+            + myCommunity.class5 + myCommunity.class6 + myCommunity.class7 + myCommunity.class8;
     $("#inpNum9").val(tmp);
 
-    sum_DRI(1);
-    sum_DRI(2);
-    sum_DRI(3);
+    //    sum_DRI(1);
+    //    sum_DRI(2);
+    //    sum_DRI(3);
 
     //-----------initializationn -------
 

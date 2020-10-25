@@ -531,17 +531,17 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
           logger.info("全ての該当品目をCrop_SubNationalに書き込みました!")
 
         # --------------------update myTarget-community-------------------------
-        logger.info("これからTarget communityの人口構成、初期値を追加していきます")
-        for i in range(9):
-          Person.objects.create(
-            myLocation=Location.objects.get(id=instance.pk),
-            nut_group=nut_grp_list[i],
-            target_scope=3,
-            target_pop=100,
-            created_by=instance.created_by,
-            myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
-          )
-        logger.info("Target communityの書込み終了")
+        # logger.info("これからTarget communityの人口構成、初期値を追加していきます")
+        # for i in range(9):
+        #   Person.objects.create(
+        #     myLocation=Location.objects.get(id=instance.pk),
+        #     nut_group=nut_grp_list[i],
+        #     target_scope=3,
+        #     target_pop=100,
+        #     created_by=instance.created_by,
+        #     myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
+        #   )
+        # logger.info("Target communityの書込み終了")
 
         # --------------------update Season-------------------------
         logger.info("これからSeasonの構成、初期値を追加していきます")
@@ -583,38 +583,38 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
       logger.info("全てのFCTをCrop_SubNationalに書き込みました!")
 
     # --------------------update myTarget-community-------------------------
-    logger.info("これからTarget individualの初期値を追加していきます")
-    Person.objects.create(
-      myLocation=Location.objects.get(id=instance.pk),
-      nut_group=nut_grp_list[0],
-      target_scope=1,
-      target_pop=100,
-      created_by=User.objects.get(id=instance.created_by.id),
-      myDRI=DRI.objects.get(nut_group=nut_grp_list[0])
-    )
-    logger.info("Target individualの書込み終了")
-    logger.info("これからTarget communityの人口構成、初期値を追加していきます")
-    for i in range(9):
-      Person.objects.create(
-        myLocation=Location.objects.get(id=instance.pk),
-        nut_group=nut_grp_list[i],
-        target_scope=3,
-        target_pop=100,
-        created_by=User.objects.get(id=instance.created_by.id),
-        myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
-      )
-    logger.info("Target communityの書込み終了")
-    logger.info("これからTarget Familyの構成、初期値を追加していきます")
-    for i in range(9):
-      Person.objects.create(
-        myLocation=Location.objects.get(id=instance.pk),
-        nut_group=nut_grp_list[i],
-        target_scope=2,
-        target_pop=0,
-        created_by=User.objects.get(id=instance.created_by.id),
-        myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
-      )
-    logger.info("Target familyの書込み終了")
+    # logger.info("これからTarget individualの初期値を追加していきます")
+    # Person.objects.create(
+    #   myLocation=Location.objects.get(id=instance.pk),
+    #   nut_group=nut_grp_list[0],
+    #   target_scope=1,
+    #   target_pop=100,
+    #   created_by=User.objects.get(id=instance.created_by.id),
+    #   myDRI=DRI.objects.get(nut_group=nut_grp_list[0])
+    # )
+    # logger.info("Target individualの書込み終了")
+    # logger.info("これからTarget communityの人口構成、初期値を追加していきます")
+    # for i in range(9):
+    #   Person.objects.create(
+    #     myLocation=Location.objects.get(id=instance.pk),
+    #     nut_group=nut_grp_list[i],
+    #     target_scope=3,
+    #     target_pop=100,
+    #     created_by=User.objects.get(id=instance.created_by.id),
+    #     myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
+    #   )
+    # logger.info("Target communityの書込み終了")
+    # logger.info("これからTarget Familyの構成、初期値を追加していきます")
+    # for i in range(9):
+    #   Person.objects.create(
+    #     myLocation=Location.objects.get(id=instance.pk),
+    #     nut_group=nut_grp_list[i],
+    #     target_scope=2,
+    #     target_pop=0,
+    #     created_by=User.objects.get(id=instance.created_by.id),
+    #     myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
+    #   )
+    # logger.info("Target familyの書込み終了")
     logger.info("これからSeasonの構成、初期値を追加していきます")
     Season.objects.create(
       myLocation=Location.objects.get(id=instance.pk),
@@ -832,22 +832,23 @@ class Person_ListView(LoginRequiredMixin, ListView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
 
-    tmpClass1 = 0
-    tmpClass2 = 0
-    tmpClass3 = 0
-    tmpClass_sum = 0
+    # tmpClass1 = 0
+    # tmpClass2 = 0
+    # tmpClass3 = 0
+    # tmpClass_sum = 0
+    #
+    # myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation'])
+    # for tmpPerson in myPerson:
+    #   if tmpPerson.target_scope == 1:
+    #     tmpClass1 = 1
+    #   if tmpPerson.target_scope == 2:
+    #     tmpClass2 = 1
+    #   if tmpPerson.target_scope == 3:
+    #     tmpClass3 = 1
+    # tmpClass_sum = 100 * tmpClass1 + 10 * tmpClass2 + tmpClass3
+    #
+    # context['mytarget_scope_Sum'] = tmpClass_sum
 
-    myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation'])
-    for tmpPerson in myPerson:
-      if tmpPerson.target_scope == 1:
-        tmpClass1 = 1
-      if tmpPerson.target_scope == 2:
-        tmpClass2 = 1
-      if tmpPerson.target_scope == 3:
-        tmpClass3 = 1
-    tmpClass_sum = 100 * tmpClass1 + 10 * tmpClass2 + tmpClass3
-
-    context['mytarget_scope_Sum'] = tmpClass_sum
     context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
     context['myuser'] = self.request.user
     context['page'] = self.kwargs['page']
@@ -876,74 +877,85 @@ class Person_ListView(LoginRequiredMixin, ListView):
       elif myClass == 6:
         dd['class6'] = myShare
 
-    # dd['class0'] = myPop.get(Age_class_id=0).share_Pop
-    # dd['class1'] = myPop.get(Age_class_id=1).share_Pop
-    # dd['class2'] = myPop.get(Age_class_id=2).share_Pop
-    # dd['class3'] = myPop.get(Age_class_id=3).share_Pop
-    # dd['class3_p'] = myPop.get(Age_class_id=3).share_Preg
-    # dd['class3_l'] = myPop.get(Age_class_id=3).share_BF
-    # dd['class4'] = myPop.get(Age_class_id=4).share_Pop
-    # dd['class5'] = myPop.get(Age_class_id=5).share_Pop
-    # dd['class5_p'] = myPop.get(Age_class_id=5).share_Preg
-    # dd['class5_l'] = myPop.get(Age_class_id=5).share_BF
-    # dd['class6'] = myPop.get(Age_class_id=6).share_Pop
-
     context['myPop'] = dd
     context['myReturnURL'] = reverse_lazy('index01')
 
-    # myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation'])
+    myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation'])
     dd1 = {}
-    dd2 = {}
+    # dd2 = {}
+    # for myPerson02 in myPerson:
+    #   nut_group = myPerson02.nut_group
+    #   pop = myPerson02.target_pop
+    #   if nut_group == 'child 0-23 month':
+    #     if myPerson02.target_scope == 2:
+    #       dd1['class0'] = pop
+    #     if myPerson02.target_scope == 3:
+    #       dd2['class0'] = pop
+    #   elif nut_group == 'child 24-59 month':
+    #     if myPerson02.target_scope == 2:
+    #       dd1['class1'] = pop
+    #     if myPerson02.target_scope == 3:
+    #       dd2['class1'] = pop
+    #   elif nut_group == 'child 6-9 yr':
+    #     if myPerson02.target_scope == 2:
+    #       dd1['class2'] = pop
+    #     if myPerson02.target_scope == 3:
+    #       dd2['class2'] = pop
+    #   elif nut_group == 'adolescent male':
+    #     if myPerson02.target_scope == 2:
+    #       dd1['class3'] = pop
+    #     if myPerson02.target_scope == 3:
+    #       dd2['class3'] = pop
+    #   elif nut_group == 'adolescent female':
+    #     if myPerson02.target_scope == 2:
+    #       dd1['class4'] = pop
+    #     if myPerson02.target_scope == 3:
+    #       dd2['class4'] = pop
+    #   elif nut_group == 'adult male':
+    #     if myPerson02.target_scope == 2:
+    #       dd1['class5'] = pop
+    #     if myPerson02.target_scope == 3:
+    #       dd2['class5'] = pop
+    #   elif nut_group == 'adult female':
+    #     if myPerson02.target_scope == 2:
+    #       dd1['class6'] = pop
+    #     if myPerson02.target_scope == 3:
+    #       dd2['class6'] = pop
+    #   elif nut_group == 'pregnant':
+    #     if myPerson02.target_scope == 2:
+    #       dd1['class7'] = pop
+    #     if myPerson02.target_scope == 3:
+    #       dd2['class7'] = pop
+    #   elif nut_group == 'lactating':
+    #     if myPerson02.target_scope == 2:
+    #       dd1['class8'] = pop
+    #     if myPerson02.target_scope == 3:
+    #       dd2['class8'] = pop
+    # context['myFamily'] = dd1
+
     for myPerson02 in myPerson:
       nut_group = myPerson02.nut_group
       pop = myPerson02.target_pop
       if nut_group == 'child 0-23 month':
-        if myPerson02.target_scope == 2:
-          dd1['class0'] = pop
-        if myPerson02.target_scope == 3:
-          dd2['class0'] = pop
+        dd1['class0'] = pop
       elif nut_group == 'child 24-59 month':
-        if myPerson02.target_scope == 2:
-          dd1['class1'] = pop
-        if myPerson02.target_scope == 3:
-          dd2['class1'] = pop
+        dd1['class1'] = pop
       elif nut_group == 'child 6-9 yr':
-        if myPerson02.target_scope == 2:
-          dd1['class2'] = pop
-        if myPerson02.target_scope == 3:
-          dd2['class2'] = pop
+        dd1['class2'] = pop
       elif nut_group == 'adolescent male':
-        if myPerson02.target_scope == 2:
-          dd1['class3'] = pop
-        if myPerson02.target_scope == 3:
-          dd2['class3'] = pop
+        dd1['class3'] = pop
       elif nut_group == 'adolescent female':
-        if myPerson02.target_scope == 2:
-          dd1['class4'] = pop
-        if myPerson02.target_scope == 3:
-          dd2['class4'] = pop
+        dd1['class4'] = pop
       elif nut_group == 'adult male':
-        if myPerson02.target_scope == 2:
-          dd1['class5'] = pop
-        if myPerson02.target_scope == 3:
-          dd2['class5'] = pop
+        dd1['class5'] = pop
       elif nut_group == 'adult female':
-        if myPerson02.target_scope == 2:
-          dd1['class6'] = pop
-        if myPerson02.target_scope == 3:
-          dd2['class6'] = pop
+        dd1['class6'] = pop
       elif nut_group == 'pregnant':
-        if myPerson02.target_scope == 2:
-          dd1['class7'] = pop
-        if myPerson02.target_scope == 3:
-          dd2['class7'] = pop
+        dd1['class7'] = pop
       elif nut_group == 'lactating':
-        if myPerson02.target_scope == 2:
-          dd1['class8'] = pop
-        if myPerson02.target_scope == 3:
-          dd2['class8'] = pop
-    context['myFamily'] = dd1
-    context['myCommunity'] = dd2
+        dd1['class8'] = pop
+
+    context['myCommunity'] = dd1
 
     # myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation']).filter(target_scope=3)
     # dd = {}
@@ -971,62 +983,62 @@ class Person_ListView(LoginRequiredMixin, ListView):
     # dd['class8'] = myFamily.get(nut_group='lactating').target_pop
     # context['myFamily'] = dd
 
-    myDRI = DRI.objects.all()
-    dd1 = {}
-    dd2 = {}
-    dd3 = {}
-    dd4 = {}
-    for myDRI02 in myDRI:
-      if myDRI02.nut_group == 'child 0-23 month':
-        dd1['class0'] = myDRI02.energy
-        dd2['class0'] = myDRI02.protein
-        dd3['class0'] = myDRI02.vita
-        dd4['class0'] = myDRI02.fe
-      elif myDRI02.nut_group == 'child 24-59 month':
-        dd1['class1'] = myDRI02.energy
-        dd2['class1'] = myDRI02.protein
-        dd3['class1'] = myDRI02.vita
-        dd4['class1'] = myDRI02.fe
-      elif myDRI02.nut_group == 'child 6-9 yr':
-        dd1['class2'] = myDRI02.energy
-        dd2['class2'] = myDRI02.protein
-        dd3['class2'] = myDRI02.vita
-        dd4['class2'] = myDRI02.fe
-      elif myDRI02.nut_group == 'adolescent male':
-        dd1['class3'] = myDRI02.energy
-        dd2['class3'] = myDRI02.protein
-        dd3['class3'] = myDRI02.vita
-        dd4['class3'] = myDRI02.fe
-      elif myDRI02.nut_group == 'adolescent female':
-        dd1['class4'] = myDRI02.energy
-        dd2['class4'] = myDRI02.protein
-        dd3['class4'] = myDRI02.vita
-        dd4['class4'] = myDRI02.fe
-      elif myDRI02.nut_group == 'adult male':
-        dd1['class5'] = myDRI02.energy
-        dd2['class5'] = myDRI02.protein
-        dd3['class5'] = myDRI02.vita
-        dd4['class5'] = myDRI02.fe
-      elif myDRI02.nut_group == 'adult female':
-        dd1['class6'] = myDRI02.energy
-        dd2['class6'] = myDRI02.protein
-        dd3['class6'] = myDRI02.vita
-        dd4['class6'] = myDRI02.fe
-      elif myDRI02.nut_group == 'pregnant':
-        dd1['class7'] = myDRI02.energy
-        dd2['class7'] = myDRI02.protein
-        dd3['class7'] = myDRI02.vita
-        dd4['class7'] = myDRI02.fe
-      elif myDRI02.nut_group == 'lactating':
-        dd1['class8'] = myDRI02.energy
-        dd2['class8'] = myDRI02.protein
-        dd3['class8'] = myDRI02.vita
-        dd4['class8'] = myDRI02.fe
-    context['myDRI_en'] = dd1
-    context['myDRI_pr'] = dd2
-    context['myDRI_va'] = dd3
-    context['myDRI_fe'] = dd4
-
+    # myDRI = DRI.objects.all()
+    # dd1 = {}
+    # dd2 = {}
+    # dd3 = {}
+    # dd4 = {}
+    # for myDRI02 in myDRI:
+    #   if myDRI02.nut_group == 'child 0-23 month':
+    #     dd1['class0'] = myDRI02.energy
+    #     dd2['class0'] = myDRI02.protein
+    #     dd3['class0'] = myDRI02.vita
+    #     dd4['class0'] = myDRI02.fe
+    #   elif myDRI02.nut_group == 'child 24-59 month':
+    #     dd1['class1'] = myDRI02.energy
+    #     dd2['class1'] = myDRI02.protein
+    #     dd3['class1'] = myDRI02.vita
+    #     dd4['class1'] = myDRI02.fe
+    #   elif myDRI02.nut_group == 'child 6-9 yr':
+    #     dd1['class2'] = myDRI02.energy
+    #     dd2['class2'] = myDRI02.protein
+    #     dd3['class2'] = myDRI02.vita
+    #     dd4['class2'] = myDRI02.fe
+    #   elif myDRI02.nut_group == 'adolescent male':
+    #     dd1['class3'] = myDRI02.energy
+    #     dd2['class3'] = myDRI02.protein
+    #     dd3['class3'] = myDRI02.vita
+    #     dd4['class3'] = myDRI02.fe
+    #   elif myDRI02.nut_group == 'adolescent female':
+    #     dd1['class4'] = myDRI02.energy
+    #     dd2['class4'] = myDRI02.protein
+    #     dd3['class4'] = myDRI02.vita
+    #     dd4['class4'] = myDRI02.fe
+    #   elif myDRI02.nut_group == 'adult male':
+    #     dd1['class5'] = myDRI02.energy
+    #     dd2['class5'] = myDRI02.protein
+    #     dd3['class5'] = myDRI02.vita
+    #     dd4['class5'] = myDRI02.fe
+    #   elif myDRI02.nut_group == 'adult female':
+    #     dd1['class6'] = myDRI02.energy
+    #     dd2['class6'] = myDRI02.protein
+    #     dd3['class6'] = myDRI02.vita
+    #     dd4['class6'] = myDRI02.fe
+    #   elif myDRI02.nut_group == 'pregnant':
+    #     dd1['class7'] = myDRI02.energy
+    #     dd2['class7'] = myDRI02.protein
+    #     dd3['class7'] = myDRI02.vita
+    #     dd4['class7'] = myDRI02.fe
+    #   elif myDRI02.nut_group == 'lactating':
+    #     dd1['class8'] = myDRI02.energy
+    #     dd2['class8'] = myDRI02.protein
+    #     dd3['class8'] = myDRI02.vita
+    #     dd4['class8'] = myDRI02.fe
+    # context['myDRI_en'] = dd1
+    # context['myDRI_pr'] = dd2
+    # context['myDRI_va'] = dd3
+    # context['myDRI_fe'] = dd4
+    #
     # dd = {}
     # dd['class0'] = myDRI.get(nut_group='child 0-23 month').energy
     # dd['class1'] = myDRI.get(nut_group='child 24-59 month').energy
@@ -1493,12 +1505,12 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     d = []
     for i in myRange:
       tmp02_list = [d for d in tmp01_list if d['id_table'] == i]
-      #tmp02 = tmp01_list
-      #tmp02_list = tmp02.values_list('pk', flat=True)
-      #tmp02_list = list(tmp02_list)
-#      tmp02_key_list = []
-#      for tmp01_item in tmp01_list:
-#        tmp02_key_list.append(tmp01_item['id'])
+      # tmp02 = tmp01_list
+      # tmp02_list = tmp02.values_list('pk', flat=True)
+      # tmp02_list = list(tmp02_list)
+      #      tmp02_key_list = []
+      #      for tmp01_item in tmp01_list:
+      #        tmp02_key_list.append(tmp01_item['id'])
       tmp02_key_list = [d['id'] for d in tmp02_list]
       logger.info('tmp02_list=')
       logger.info(tmp02_key_list)
@@ -1544,7 +1556,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
           dd["count_prod"] = tmp03['count_prod']
           dd["count_buy"] = tmp03['count_buy']
           dd["month"] = tmp03['month']
-#          dd["month_availability"] = tmp03.serializable_value('m' + str(tmp03.month) + '_avail')
+          #          dd["month_availability"] = tmp03.serializable_value('m' + str(tmp03.month) + '_avail')
           tmp_avail = 0
           for tmp_ref02 in tmp_ref01:
             if tmp_ref02['myFCT_id'] == tmp_FCT['food_item_id']:
@@ -1552,7 +1564,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
               break
           dd["month_availability"] = tmp_avail
           #          dd["month_availability"] = tmp_ref.filter(myFCT_id=tmp03.myFCT.food_item_id)[0].serializable_value(
-#            'm' + str(tmp03.month) + '_avail')
+          #            'm' + str(tmp03.month) + '_avail')
           logger.info('dd["month_availability"]')
           logger.info(dd["month_availability"])
           dd["myLocation"] = tmp03['myLocation_id']

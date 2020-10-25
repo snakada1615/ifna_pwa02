@@ -3,7 +3,7 @@
        style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
     <div class="card border-success rounded px-1 mx-1 mt-1 mb-2"
          style="color:#24535F ;background-color:#D9ECDC;border-width: 2px;">
-      Population structure of target area
+      Target population structure
     </div>
 
     <div class="card border-success mx-1 my-2" style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
@@ -12,6 +12,7 @@
           <div class="card-body py-0">
             <p class="card-text my-0">
 
+              {% comment %}
             <div class="row">
               <div class="col-4">
                 number
@@ -52,6 +53,7 @@
                 <a id="DRI3_fe"></a>
               </div>
             </div>
+{% endcomment %}
 
             </p>
           </div>
@@ -78,13 +80,13 @@
           </thead>
           <tr>
             <td>
-              <div class="text-center">age 0-23mon</div>
+              <div class="text-center">age 6-23mon</div>
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum0" type="number" disabled class="form-control-sm input-manual num_family3"
+                <input id="inpNum0" type="number" class="form-control-sm input-manual num_family3"
                        style="width:90%"
-                       placeholder="pop size" value="30" target_scope=3 nut_group_id=1>
+                       placeholder="pop size" value="30" target_scope=0 nut_group_id=1>
               </div>
             </td>
             <td>
@@ -97,9 +99,9 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum1" type="number" disabled class="form-control-sm input-manual num_family3"
+                <input id="inpNum1" type="number" class="form-control-sm input-manual num_family3"
                        style="width:90%"
-                       placeholder="pop size" value="30" target_scope=3 nut_group_id=2>
+                       placeholder="pop size" value="30" target_scope=1 nut_group_id=2>
               </div>
             </td>
             <td>
@@ -112,9 +114,9 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum2" type="number" disabled class="form-control-sm input-manual num_family3"
+                <input id="inpNum2" type="number" class="form-control-sm input-manual num_family3"
                        style="width:90%"
-                       placeholder="pop size" value="30" target_scope=3 nut_group_id=3>
+                       placeholder="pop size" value="30" target_scope=2 nut_group_id=3>
               </div>
             </td>
             <td>
@@ -127,16 +129,16 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum3" type="number" disabled class="form-control-sm input-manual num_family3"
+                <input id="inpNum3" type="number" class="form-control-sm input-manual num_family3"
                        style="width:90%"
                        placeholder="pop size" value="30" target_scope=3 nut_group_id=4>
               </div>
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum4" type="number" disabled class="form-control-sm input-manual num_family3"
+                <input id="inpNum4" type="number" class="form-control-sm input-manual num_family3"
                        style="width:90%"
-                       placeholder="pop size" value="30" target_scope=3 nut_group_id=5>
+                       placeholder="pop size" value="30" target_scope=4 nut_group_id=5>
               </div>
             </td>
           </tr>
@@ -146,16 +148,16 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum5" type="number" disabled class="form-control-sm input-manual num_family3"
+                <input id="inpNum5" type="number" class="form-control-sm input-manual num_family3"
                        style="width:90%"
-                       placeholder="pop size" value="30" target_scope=3 nut_group_id=6>
+                       placeholder="pop size" value="30" target_scope=5 nut_group_id=6>
               </div>
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum6" type="number" disabled class="form-control-sm input-manual num_family3"
+                <input id="inpNum6" type="number" class="form-control-sm input-manual num_family3"
                        style="width:90%"
-                       placeholder="pop size" value="30" target_scope=3 nut_group_id=7>
+                       placeholder="pop size" value="30" target_scope=6 nut_group_id=7>
               </div>
             </td>
           </tr>
@@ -169,9 +171,9 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum7" type="number" disabled class="form-control-sm input-manual num_family3"
+                <input id="inpNum7" type="number" class="form-control-sm input-manual num_family3"
                        style="width:90%"
-                       placeholder="pop size" value="30" target_scope=3 nut_group_id=8>
+                       placeholder="pop size" value="30" target_scope=7 nut_group_id=8>
               </div>
             </td>
           </tr>
@@ -185,9 +187,9 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum8" type="number" disabled class="form-control-sm input-manual num_family3"
+                <input id="inpNum8" type="number" class="form-control-sm input-manual num_family3"
                        style="width:90%"
-                       placeholder="pop size" value="30" target_scope=3 nut_group_id=9>
+                       placeholder="pop size" value="30" target_scope=8 nut_group_id=9>
               </div>
             </td>
           </tr>
@@ -197,15 +199,24 @@
             </td>
             <td>
               <div class="text-center">
-                <input id="inpNum9" type="number" class="form-control-sm input-auto" style="width:90%"
-                       placeholder="pop size" value="30" target_scope=3 nut_group_id=10>
+                <input id="inpNum9" type="number" disabled class="form-control-sm input-auto" style="width:90%"
+                       placeholder="pop size" value="30" target_scope=9 nut_group_id=10>
               </div>
             </td>
-            <td colspan="2">
+            <td>
+              {% comment %}
               <div class="text-center">
                 <input type="checkbox" id="chk-autoCalk" checked>
                 <label for="auto-calk" class="ml-1"> auto calculate</label>
               </div>
+{% endcomment %}
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">input method:
+              <input type="checkbox" id="chk-autoCalk" data-toggle="toggle" data-on="individual"
+                     class="replicator class-myNum" data-off="auto-calc" data-width="100"
+                     data-size="xs">
             </td>
           </tr>
         </table>
