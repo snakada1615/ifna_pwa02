@@ -1949,12 +1949,12 @@ def registDiet(request):
     # defaultsで指定した列・値で更新する
     logger.error(myrow['month'])
     Crop_Individual.objects.update_or_create(
-      id_table=int(myrow['myid_tbl']),
       myFCT=FCT.objects.get(food_item_id=int(myrow['food_item_id'])),
       month=int(myrow['month']),
+      target_scope=int(myrow['target_scope']),
       defaults={
+        'id_table': int(myrow['myid_tbl']),
         'myLocation': Location.objects.get(id=myrow['myLocation']),
-        'target_scope': int(myrow['target_scope']),
         'created_by': request.user,
         'total_weight': int(myrow['total_weight']),
         'portion_size': int(myrow['portion_size']),
