@@ -49,6 +49,10 @@
       </div>
     </div>
 
+    <!-------------current tab--------------------------->
+    <div hidden id="current_tab"></div>
+    <!-------------current page--------------------------->
+    <div hidden id="current_page"></div>
     <!-------------location information--------------------------->
     <div class="container" style="max-width: 540px;">
       <div id="accordion">
@@ -361,7 +365,7 @@
                   aria-expanded="false">
             filter
           </button>
-          <div class="dropdown-menu myfilter-item">
+          <div class="dropdown-menu myfilter-item class-myNum">
           </div>
         </div>
       </div>
@@ -941,7 +945,7 @@
 
       //タブ,carouselにtbl_num1を設定
       const tbl_num1 = (Number(val1) + 1) * 100;
-      $.each(tmp_tab.find('.btn_car_prev, .btn_car_next, .carousel'), function (index4, val4) {
+      $.each(tmp_tab.find('.btn_car_prev, .btn_car_next, .carousel, .myfilter-item'), function (index4, val4) {
         if (!(val4.hasAttribute('myNum'))) {
           $(val4).attr('myNum', tbl_num1);
         }
@@ -1140,7 +1144,7 @@
       console.group('Crop_Selected.setData_fromAvailable:');
       let res = false;
       if (drawFlag) {       //rowの追加
-        //データセットの作成1:buy_prod_share設定
+                            //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {
@@ -1989,9 +1993,11 @@
     ////////// Filter Crop_Selected table ////////////
     $(".myfilter-item a").click(function () {
       let x = $(this).text();
-      let i_tmp = Number($(this).parent().parent().find('.myfilter').attr('mypage'));
-      i_tmp += Number(c_index);
-      myCrop[String(i_tmp)].myfilter(x);
+      let tblNum = $('#current_page').text();
+      let tmp_mon = Number(tblNum) % 100;
+      console.log('tblNum:' + tblNum);
+      console.log('season:' + season_name[tmp_mon]);
+      myCrop[String(tblNum)].myfilter(x);
     });
 
     ////////// replicator ////////////
@@ -2412,6 +2418,9 @@
 
       activeTab.addClass("active");
       $(activeTab.attr('href')).addClass('active');
+
+      let num_table = $(this).attr('href').replace('#tab_', '');
+      $('#current_tab').text(Number(num_table) + 1);
     });
     //---tabの切替処理-------------
 
@@ -2419,14 +2428,21 @@
     let myMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
       'August', 'September', 'Octoer', 'November', 'December'];
     $('.btn_car_prev').click(function () {
-      let num_table = $(this).attr('myNum');
-      num_table = (Math.trunc(num_table / 100)) * 100;
-      $('.carousel[myNum=' + num_table + ']').carousel('prev');
+      let num_table1 = Number($(this).attr('myNum'));
+      $('.carousel[myNum=' + num_table1 + ']').carousel('prev');
+      num_table1 += $('.carousel[myNum=' + num_table1 + '] .carousel-item').siblings('.active').index() + 1;
+      console.log('num_table1');
+      console.log(num_table1);
+      console.log(season_name[num_table1]);
+      $('#current_page').text(num_table1);
     });
     $('.btn_car_next').click(function () {
-      let num_table = $(this).attr('myNum');
-      num_table = (Math.trunc(num_table / 100)) * 100;
-      $('.carousel[myNum=' + num_table + ']').carousel('next');
+      let num_table1 = Number($(this).attr('myNum'));
+      $('.carousel[myNum=' + num_table1 + ']').carousel('next');
+      num_table1 += $('.carousel[myNum=' + num_table1 + '] .carousel-item').siblings('.active').index() + 1;
+      console.log('num_table1');
+      console.log(num_table1);
+      $('#current_page').text(num_table1);
     });
 
     //---carouselの切替処理-------------

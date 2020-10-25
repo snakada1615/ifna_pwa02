@@ -1260,9 +1260,9 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
     myseason = Season.objects.get(myLocation=self.kwargs['myLocation'])
     context['season_count'] = myseason.season_count
-    tmp_nut_group = Person.objects.filter(
-      myLocation=self.kwargs['myLocation']).select_related('myDRI')
-    context['nutrient_target'] = tmp_nut_group[0].nut_group
+    tmp_nut_group = list(Person.objects.filter(
+      myLocation=self.kwargs['myLocation']).select_related('myDRI').values())
+    context['nutrient_target'] = tmp_nut_group[0]['nut_group']
     nut_group_list = [
       'child 0-23 month',
       'child 24-59 month',
@@ -1486,17 +1486,17 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     # --------------------create 16 Crop_individual-------------------------
     # if __name__ == '__main__':
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
-    tmp_ref = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation'])
+    tmp01_list = list(tmp01.values())
+    myFCT_list = list(FCT.objects.values())
+    tmp_ref01 = list(Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).values())
 
     d = []
     for i in myRange:
-      tmp02 = tmp01.filter(id_table=i)
-      tmp02_list = tmp02.values_list('pk', flat=True)
-      tmp02_list = list(tmp02_list)
+      tmp02_list = [d for d in tmp01_list if d['id_table'] == i]
+      tmp02_key_list = [d['id'] for d in tmp02_list]
       logger.info('tmp02_list=')
-      logger.info(tmp02_list)
-      #      if tmp02.count() == 0:  # todo この行があると余分なQueryが発生する！？
-      if tmp02.count == 0:
+      logger.info(tmp02_key_list)
+      if not tmp02_key_list:
         dd = {}
         dd["Food_grp"] = ''
         dd["name"] = ''
@@ -1519,28 +1519,41 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
         dd["Carbohydrate"] = ''
         d.append(dd)
       else:
-        for tmp03 in tmp02:
+        for tmp03 in tmp02_list:
           dd = {}
-          dd["Food_grp"] = tmp03.myFCT.Food_grp_unicef
-          dd["name"] = tmp03.myFCT.Food_name
-          dd["Energy"] = tmp03.myFCT.Energy
-          dd["Protein"] = tmp03.myFCT.Protein
-          dd["VITA_RAE"] = tmp03.myFCT.VITA_RAE
-          dd["FE"] = tmp03.myFCT.FE
-          dd["target_scope"] = tmp03.target_scope
-          dd["food_item_id"] = tmp03.myFCT.food_item_id
-          dd["portion_size"] = tmp03.portion_size
-          dd["total_weight"] = tmp03.total_weight
-          dd["count_prod"] = tmp03.count_prod
-          dd["count_buy"] = tmp03.count_buy
-          dd["month"] = tmp03.month
-          dd["month_availability"] = tmp_ref.filter(myFCT_id=tmp03.myFCT.food_item_id)[0].serializable_value(
-            'm' + str(tmp03.month) + '_avail')
-          dd["myLocation"] = tmp03.myLocation_id
-          dd["num_tbl"] = tmp03.id_table
-          dd["share_prod_buy"] = tmp03.share_prod_buy
-          dd["Fat"] = tmp03.myFCT.Fat
-          dd["Carbohydrate"] = tmp03.myFCT.Carbohydrate
+          tmp_FCT = {}
+          for myFCT_item in myFCT_list:
+            if myFCT_item['food_item_id'] == tmp03['myFCT_id']:
+              tmp_FCT.update(myFCT_item)
+          dd["Food_grp"] = tmp_FCT['Food_grp_unicef']
+          dd["name"] = tmp_FCT['Food_name']
+          dd["Energy"] = tmp_FCT['Energy']
+          dd["Protein"] = tmp_FCT['Protein']
+          dd["VITA_RAE"] = tmp_FCT['VITA_RAE']
+          dd["FE"] = tmp_FCT['FE']
+          dd["target_scope"] = tmp03['target_scope']
+          dd["food_item_id"] = tmp_FCT['food_item_id']
+          dd["portion_size"] = tmp03['portion_size']
+          dd["total_weight"] = tmp03['total_weight']
+          dd["count_prod"] = tmp03['count_prod']
+          dd["count_buy"] = tmp03['count_buy']
+          dd["month"] = tmp03['month']
+#          dd["month_availability"] = tmp03.serializable_value('m' + str(tmp03.month) + '_avail')
+          tmp_avail = 0
+          for tmp_ref02 in tmp_ref01:
+            if tmp_ref02['myFCT_id'] == tmp_FCT['food_item_id']:
+              tmp_avail = tmp_ref02['m' + str(tmp03['month']) + '_avail']
+              break
+          dd["month_availability"] = tmp_avail
+          #          dd["month_availability"] = tmp_ref.filter(myFCT_id=tmp03.myFCT.food_item_id)[0].serializable_value(
+#            'm' + str(tmp03.month) + '_avail')
+          logger.info('dd["month_availability"]')
+          logger.info(dd["month_availability"])
+          dd["myLocation"] = tmp03['myLocation_id']
+          dd["num_tbl"] = tmp03['id_table']
+          dd["share_prod_buy"] = tmp03['share_prod_buy']
+          dd["Fat"] = tmp_FCT['Fat']
+          dd["Carbohydrate"] = tmp_FCT['Carbohydrate']
           d.append(dd)
     context["mylist_selected"] = d
 
