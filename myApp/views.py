@@ -1282,7 +1282,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
       'adolescent male',
       'adolescent female',
       'adult male',
-      'adult female'
+      'adult female',
       'pregnant',
       'lactating',
       'adult',
@@ -1292,15 +1292,16 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     ]
 
     tmp_dri = DRI.objects.all()
-    tmp_en_by_class = [-1] * 30
-    tmp_pr_by_class = [-1] * 30
-    tmp_va_by_class = [-1] * 30
-    tmp_fe_by_class = [-1] * 30
-    tmp_vo_by_class = [-1] * 30
-    tmp_group_list = list(tmp_dri.values_list('nut_group', flat=True))
+    #tmp_group_list = list(tmp_dri.values_list('nut_group', flat=True))
+    tmp_dri_count = len(nut_group_list)
+    tmp_en_by_class = [-1] * tmp_dri_count
+    tmp_pr_by_class = [-1] * tmp_dri_count
+    tmp_va_by_class = [-1] * tmp_dri_count
+    tmp_fe_by_class = [-1] * tmp_dri_count
+    tmp_vo_by_class = [-1] * tmp_dri_count
     for mydri in tmp_dri:
       logger.info(mydri.nut_group)
-      index = tmp_group_list.index(mydri.nut_group)
+      index = nut_group_list.index(mydri.nut_group)
       logger.info(index)
       tmp_en_by_class[index] = mydri.energy
       tmp_pr_by_class[index] = mydri.protein
@@ -1312,63 +1313,6 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context['dri_list_va'] = tmp_va_by_class
     context['dri_list_fe'] = tmp_fe_by_class
     context['dri_list_vo'] = tmp_vo_by_class
-    #
-    # tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
-    # tmp_e = 0
-    # tmp_p = 0
-    # tmp_v = 0
-    # tmp_f = 0
-    # tmp_vol = 0
-    # if len(tmp_nut_group1) > 0:
-    #   for tmp in tmp_nut_group1:
-    #     tmp_e += tmp.myDRI.energy
-    #     tmp_p += tmp.myDRI.protein
-    #     tmp_v += tmp.myDRI.vita
-    #     tmp_f += tmp.myDRI.fe
-    #     tmp_vol += tmp.myDRI.max_vol
-    # context['dri_e1'] = tmp_e
-    # context['dri_p1'] = tmp_p
-    # context['dri_v1'] = tmp_v
-    # context['dri_f1'] = tmp_f
-    # context['dri_vol1'] = tmp_vol
-    #
-    # tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
-    # tmp_e = 0
-    # tmp_p = 0
-    # tmp_v = 0
-    # tmp_f = 0
-    # tmp_vol = 0
-    # if len(tmp_nut_group2) > 0:
-    #   for tmp in tmp_nut_group2:
-    #     tmp_e += tmp.myDRI.energy * tmp.target_pop
-    #     tmp_p += tmp.myDRI.protein * tmp.target_pop
-    #     tmp_v += tmp.myDRI.vita * tmp.target_pop
-    #     tmp_f += tmp.myDRI.fe * tmp.target_pop
-    #     tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
-    # context['dri_e2'] = tmp_e
-    # context['dri_p2'] = tmp_p
-    # context['dri_v2'] = tmp_v
-    # context['dri_f2'] = tmp_f
-    # context['dri_vol2'] = tmp_vol
-    #
-    # tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
-    # tmp_e = 0
-    # tmp_p = 0
-    # tmp_v = 0
-    # tmp_f = 0
-    # tmp_vol = 0
-    # if len(tmp_nut_group3) > 0:
-    #   for tmp in tmp_nut_group3:
-    #     tmp_e += tmp.myDRI.energy * tmp.target_pop
-    #     tmp_p += tmp.myDRI.protein * tmp.target_pop
-    #     tmp_v += tmp.myDRI.vita * tmp.target_pop
-    #     tmp_f += tmp.myDRI.fe * tmp.target_pop
-    #     tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
-    # context['dri_e3'] = tmp_e
-    # context['dri_p3'] = tmp_p
-    # context['dri_v3'] = tmp_v
-    # context['dri_f3'] = tmp_f
-    # context['dri_vol3'] = tmp_vol
 
     ########### send number of season   ###########
     tmp = Season.objects.filter(myLocation=self.kwargs['myLocation'])[0]
