@@ -1140,7 +1140,6 @@
         };
         Crop_Selected.prototype.setData_Crop = function (crop_data) {
             console.group('Crop_Selected.setData_Crop:');
-            console.log(crop_data);
             if (crop_data.food_item_id && myRange.includes(crop_data.num_tbl)) {
                 console.log('table_id(' + crop_data.num_tbl + ')に' + crop_data.Food_name + 'を追加します');
                 let overwrite = this._delCrop(crop_data.food_item_id);       //重複業あれば削除
@@ -2021,7 +2020,6 @@
             const tmp_target = target_name[Math.trunc(tbl_num / 100) - 1];
             const tmp_season_id = (tbl_num % 100) - 1;
             const tmpCrop = myCrop[tbl_num];
-            const tmp_status = $(this).prop('checked');
             let ret = confirm("You are about to copy crop values for " + "\n" + "[" +
                 season_name[Number(tmp_season_id)] + "]-[" + tmp_target + "] to other target beneficiaries." +
                 "\n" + " Are you sure?");
@@ -2031,7 +2029,9 @@
                 $.each(myRange, function (i, val) {
                     if ((val % 100) == tmp_season_id + 1) {
                         console.error(val);
-                        myCrop[val].setDataDraw_Crop(crops);
+                        $.each(crops, function (j, crop) {
+                          myCrop[val].setDataDraw_Crop(crop);
+                        });
                     }
                 })
             } else {
