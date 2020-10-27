@@ -1292,7 +1292,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     ]
 
     tmp_dri = DRI.objects.all()
-    #tmp_group_list = list(tmp_dri.values_list('nut_group', flat=True))
+    # tmp_group_list = list(tmp_dri.values_list('nut_group', flat=True))
     tmp_dri_count = len(nut_group_list)
     tmp_en_by_class = [-1] * tmp_dri_count
     tmp_pr_by_class = [-1] * tmp_dri_count
@@ -2197,31 +2197,49 @@ class Output4(LoginRequiredMixin, TemplateView):
       myLocation=self.kwargs['myLocation'])
     context['nutrient_target'] = tmp_nut_group[0].nut_group
 
+    # ------------------------------------------
+    # return object from dict found by value
+    # ------------------------------------------
+    def get_key_from_value(d, val):
+      keys = [k for k, v in d.items() if v == val]
+      if keys:
+        return int(keys[0])
+      return None
+
+    # ------------------------------------------
+
     # send selected crop by community ######
     # --------------------create 16 Crop_individual-------------------------
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation'])
     # myRange = [301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312]
     d = []
+    food_list = {}
 
     tmp02 = tmp01.filter(target_scope=3)
-    if tmp02.count() != 0:
-      for tmp03 in tmp02:
-        dd = {}
-        dd["name"] = tmp03.myFCT.Food_name
-        dd["Energy"] = tmp03.myFCT.Energy
-        dd["Protein"] = tmp03.myFCT.Protein
-        dd["VITA_RAE"] = tmp03.myFCT.VITA_RAE
-        dd["FE"] = tmp03.myFCT.FE
-        dd["target_scope"] = tmp03.target_scope
-        dd["food_item_id"] = tmp03.myFCT.food_item_id
-        dd["portion_size"] = tmp03.portion_size
-        dd["total_weight"] = tmp03.total_weight
-        dd["count_prod"] = tmp03.count_prod
-        dd["count_buy"] = tmp03.count_buy
-        dd["month"] = tmp03.month
-        dd["myLocation"] = tmp03.myLocation_id
-        dd["myid_tbl"] = tmp03.id_table
-        d.append(dd)
+    if tmp01.count() != 0:
+      for tmp03 in tmp01:
+        found = get_key_from_value(food_list, str(tmp03.myFCT.food_item_id) + "_" + str(tmp03.month))
+        if found != None:
+          d[found]["total_weight"] += tmp03.total_weight
+
+        else:
+          dd = {}
+          dd["name"] = tmp03.myFCT.Food_name
+          dd["Energy"] = tmp03.myFCT.Energy
+          dd["Protein"] = tmp03.myFCT.Protein
+          dd["VITA_RAE"] = tmp03.myFCT.VITA_RAE
+          dd["FE"] = tmp03.myFCT.FE
+          dd["target_scope"] = tmp03.target_scope
+          dd["food_item_id"] = tmp03.myFCT.food_item_id
+          dd["portion_size"] = tmp03.portion_size
+          dd["total_weight"] = tmp03.total_weight
+          dd["count_prod"] = tmp03.count_prod
+          dd["count_buy"] = tmp03.count_buy
+          dd["month"] = tmp03.month
+          dd["myLocation"] = tmp03.myLocation_id
+          dd["myid_tbl"] = tmp03.id_table
+          d.append(dd)
+          food_list[len(d) - 1] = str(tmp03.myFCT.food_item_id) + "_" + str(tmp03.month)
     context["mylist_selected"] = d
 
     # --------------------create populationl-------------------------
