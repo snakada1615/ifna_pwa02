@@ -2252,7 +2252,11 @@ class Output4(LoginRequiredMixin, TemplateView):
 
     context['myuser'] = self.request.user
 
-    tmp_Param = SetURL(804, self.request.user)
+    if Location.objects.get(id=self.kwargs['myLocation']).country == 'ETH':  # エチオピア限定の暫定措置
+      tmp_Param = SetURL(804, self.request.user)
+    else:
+      tmp_Param = SetURL(804, self.request.user)
+
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -2990,7 +2994,7 @@ def SetURL(stepid, myUser):
     back_Title = "step8"
     main_Title = "output4"
     forward_Title = ""
-    guide_text = 'this is nutrient balance for target community'
+    guide_text = 'this is nutrient balance for target group'
     try:
       back_URL = reverse_lazy("output_list",
                               kwargs={'myLocation': myLocation})
@@ -3005,6 +3009,18 @@ def SetURL(stepid, myUser):
     guide_text = 'please select output you want to check'
     try:
       back_URL = reverse_lazy("crop_feas_list")
+    except:
+      logger.error('無効な値を参照しています')
+
+  elif stepid == 814:
+    back_Title = "step8"
+    main_Title = "output4"
+    forward_Title = ""
+    guide_text = 'this is nutrient balance for target group'
+    try:
+      back_URL = reverse_lazy("output_list",
+                              kwargs={'myLocation': myLocation})
+      forward_URL = ""
     except:
       logger.error('無効な値を参照しています')
 
