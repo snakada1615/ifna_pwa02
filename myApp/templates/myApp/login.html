@@ -6,7 +6,6 @@
   <div class="container bg-info text-white" style="max-width: 540px;">
 
     <form class="form-signin" method="post">{% csrf_token %}
-      {{ form.errors }}
       <h1>sign in</h1>
       {{form|crispy}}
       <button>Sign in</button>

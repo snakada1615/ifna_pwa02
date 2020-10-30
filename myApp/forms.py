@@ -1,4 +1,7 @@
+import re
 from django import forms
+from django.forms import ValidationError
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.admin import widgets
 from django.contrib.auth.models import User
 from django.db.models import Q, Sum  # 集計関数の追加
@@ -6,6 +9,8 @@ from django.db.models import Max  # 集計関数の追加
 from .models import Location, Person, Profile, Crop_Feasibility, FCT, Crop_SubNational, Countries, Crop_Name
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
 
 # logging用の設定
 from logging import getLogger
@@ -22,10 +27,10 @@ class LocationForm(forms.ModelForm):
       "AEZ_id", "stunting_rate", "wasting_rate", "anemia_rate", "myCountry", "created_by"
     )
     widgets = {
-      'country': forms.Select(attrs={'onchange': "selCnt();"}),
-      'region': forms.Select(attrs={'onchange': "selSub1();"}),
-      'province': forms.Select(attrs={'onchange': "selSub2();"}),
-      'community': forms.Select(),
+      'country': forms.Select(attrs={'onchange': "selCnt();", 'required': 'required'}),
+      'region': forms.Select(attrs={'onchange': "selSub1();", 'required': 'required'}),
+      'province': forms.Select(attrs={'onchange': "selSub2();", 'required': 'required'}),
+      'community': forms.Select(attrs={'required': 'required'}),
       'AEZ_id': forms.HiddenInput(),
       'stunting_rate': forms.HiddenInput(),
       'wasting_rate': forms.HiddenInput(),
@@ -40,6 +45,38 @@ class LocationForm(forms.ModelForm):
       "Location": "Kebele",
       "name": "village or other",
     }
+
+  def clean(self):
+    cleaned_data = super(LocationForm, self).clean()
+    has_country = False
+    if 'country' in cleaned_data and cleaned_data['country'] != '':
+      country = Countries.objects.filter(GID_0=cleaned_data['country'])
+      if len(country) == 0:
+        raise ValidationError({'country': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Country')}]})
+      has_country = True
+
+    has_region = False
+    if ('region' in cleaned_data and cleaned_data['region'] != '') and has_country:
+      region = Countries.objects.filter(GID_0=cleaned_data['country'], GID_1=cleaned_data['region'])
+      if len(region) == 0:
+        raise ValidationError({'region': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Region')}]})
+      has_region = True
+
+    has_province = False
+    if ('province' in cleaned_data and cleaned_data['province'] != '') and has_country and has_region:
+      province = Countries.objects.filter(GID_0=cleaned_data['country'], GID_1=cleaned_data['region'],
+                                          GID_2=cleaned_data['province'])
+      if len(province) == 0:
+        raise ValidationError({'province': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Zone')}]})
+      has_province = True
+    if ('community' in cleaned_data and cleaned_data[
+      'community'] != '') and has_country and has_region and has_province:
+      community = Countries.objects.filter(GID_0=cleaned_data['country'], GID_1=cleaned_data['region'],
+                                          GID_2=cleaned_data['province'], GID_3=cleaned_data['community'])
+      if len(community) == 0:
+        raise ValidationError({'community': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Woreda')}]})
+
+    return cleaned_data
 
 
 class Person_Form(forms.ModelForm):
@@ -62,13 +99,92 @@ class Person_Form(forms.ModelForm):
     return cleaned_data
 
 
+class PersonListForm(forms.Form):
+
+  SCOPE_FAMILY = 2
+  SCOPE_COMMUNITY = 3
+  MAX_VALUE_NUMBER = 100000
+  MAX_VALUE_NUMBER_TOTAL = 1000000
+
+  def __init__(self, *args, **kwargs):
+    super(PersonListForm, self).__init__(*args, **kwargs)
+
+  def clean(self):
+    message_validate_max = _('Your input for population is invalid. Please confirm each input is lower than %(limit_value)s')
+    message_validate_min = _('Your input for population is invalid. Please confirm each input is greater than %(min_value)s')
+
+    message_validate_total_max = _(
+      'Your input for population is invalid. Please adjust your input so total total number become lower than %(limit_value)s')
+    message_validate_total_min = _(
+      'Your input for population is invalid. Please adjust your input so total total number become greater than %(min_value)s')
+
+    message_validate_numeric = _('Your input for population is invalid. Please confirm and try again.')
+    cleaned_data = super(PersonListForm, self).clean()
+    my_json = self.data['myJson']
+    for index, row in enumerate(my_json):
+      nut_group = int(row['nut_group_id']) - 1
+      key = '#inpNum_fam%d' % (nut_group) if int(row['target_scope']) == self.SCOPE_FAMILY else '#inpNum%d' % (nut_group)
+      field = forms.IntegerField(
+        required=False,
+        validators=[
+          MaxValueValidator(
+            self.MAX_VALUE_NUMBER,
+            message=message_validate_max % {'limit_value': f"{self.MAX_VALUE_NUMBER:,}"}
+          ),
+          MinValueValidator(
+            0,
+            message=message_validate_min % {'min_value': "0"}
+          ),
+        ]
+      )
+      self.fields.update({key: field})
+      try:
+        field.clean(row['target_pop'])
+      except ValidationError as ex:
+        if hasattr(ex, 'code') and ex.code == 'invalid':
+          self.add_error(key, message_validate_numeric)
+        else:
+          self.add_error(key, ex.messages)
+    # validate total pop
+    my_data_pop = self.data['dataPop']
+    for value, index in enumerate(my_data_pop):
+      field = forms.IntegerField(
+        required=True,
+        validators=[
+          MaxValueValidator(
+            self.MAX_VALUE_NUMBER_TOTAL,
+            message=message_validate_total_max % {'limit_value': f"{self.MAX_VALUE_NUMBER_TOTAL:,}"}
+          ),
+          MinValueValidator(
+            1,
+            message=message_validate_total_min % {'min_value': "1"}
+          ),
+        ]
+      )
+      self.fields.update({
+        index: field
+      })
+      try:
+        field.clean(my_data_pop[index])
+      except ValidationError as ex:
+        if hasattr(ex, 'code') and ex.code == 'invalid':
+          self.add_error(index, message_validate_numeric)
+        else:
+          self.add_error(index, ex.messages)
+    return cleaned_data
+
+
 class UserEditForm(UserChangeForm):
+  first_name = forms.CharField(max_length=30, required=True)
+  last_name = forms.CharField(max_length=150, required=True)
   class Meta:
     model = User
     fields = ('first_name', 'last_name', 'username')
 
 
 class UserCreateForm(UserCreationForm):
+  first_name = forms.CharField(max_length=30, required=True)
+  last_name = forms.CharField(max_length=150, required=True)
   class Meta:
     model = User
     fields = ('first_name', 'last_name',
@@ -79,11 +195,18 @@ class UserCreateForm(UserCreationForm):
 
   def clean(self):
     cleaned_data = super(UserCreateForm, self).clean()
+    if 'username' in cleaned_data and cleaned_data['username'] != '':
+      pattern = r"^[a-zA-Z0-9\-._@+]*$"
+      username = self.cleaned_data['username']
+      if not re.search(pattern, username):
+        raise ValidationError({'username': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Username')}]})
     self.cleaned_data['is_staff'] = 1  # staffステータスの設定
     return cleaned_data
 
 
 class UserForm(forms.ModelForm):
+  first_name = forms.CharField(max_length=30, required=True)
+  last_name = forms.CharField(max_length=150, required=True)
   class Meta:
     model = User
     fields = ('first_name', 'last_name', 'username', 'is_staff')
@@ -93,6 +216,11 @@ class UserForm(forms.ModelForm):
 
   def clean(self):
     cleaned_data = super(UserForm, self).clean()
+    if 'username' in cleaned_data and cleaned_data['username'] != '':
+      pattern = r"^[a-zA-Z0-9\-._@+]*$"
+      username = self.cleaned_data['username']
+      if not re.match(pattern, username):
+        raise ValidationError({'username': [_('Your input for [%(field_name)s] is invalid! Please confirm and try again.') % {'field_name': _('Username')}]})
     self.cleaned_data['is_staff'] = 1  # staffステータスの設定
     return cleaned_data
 

@@ -21,7 +21,7 @@ from django.http import HttpResponse
 from django.core import serializers
 from django.http.response import JsonResponse
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
-from .forms import LocationForm, Person_Form, UserForm, ProfileForm, Crop_Feas_Form
+from .forms import LocationForm, Person_Form, UserForm, ProfileForm, Crop_Feas_Form, PersonListForm
 from .forms import UserCreateForm, FCTForm, Crop_Name_Form
 
 from .models import Location, Countries, Crop_National, Crop_SubNational
@@ -330,10 +330,10 @@ class Location_ListView(LoginRequiredMixin, ListView):
 
 @transaction.atomic
 def create_user_profile(request):
-  global profile_form
+  # global profile_form
   if request.method == 'POST':
     user_form = UserCreateForm(request.POST)
-    # profile_form = ProfileForm(request.POST)
+    profile_form = ProfileForm(request.POST)
     if user_form.is_valid():  # and profile_form.is_valid():
       myuser = user_form.save()
       profile_form = ProfileForm(request.POST, instance=myuser.profile)
@@ -350,6 +350,7 @@ def create_user_profile(request):
     profile_form = ProfileForm()
     logger.info('ユーザー情報を作成します')
   return render(request, 'myApp/profile.html', {
+    'is_register': True,
     'user_form': user_form,
     'profile_form': profile_form
   })
@@ -373,6 +374,8 @@ def update_profile(request):
     profile_form = ProfileForm(instance=request.user.profile)
     logger.info('ユーザー情報(' + request.user.username + ')を更新します')
   return render(request, 'myApp/profile.html', {
+    'is_register': False,
+    'myuser': request.user,
     'user_form': user_form,
     'profile_form': profile_form
   })
@@ -402,7 +405,7 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
 
   def form_valid(self, form):
     form.instance.myCountry = Countries.objects.filter(
-      GID_2=form.instance.province).first()
+      GID_3=form.instance.community).first()
     form.instance.AEZ_id = form.instance.myCountry.AEZ_id
     form.instance.created_by = User.objects.get(id=self.request.user.id)
     return super(Location_CreateView, self).form_valid(form)
@@ -411,10 +414,17 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
     data = Countries.objects.all()
     context = super().get_context_data(**kwargs)
     context['countries'] = serializers.serialize('json', data)
-    context['country_selected'] = ''
-    context['region_selected'] = ''
-    context['province_selected'] = ''
-    context['community_selected'] = ''
+    if self.request.method == 'POST':
+      param_request = self.request.POST.dict()
+      context['country_selected'] = param_request['country'] if 'country' in param_request else ''
+      context['region_selected'] = param_request['region'] if 'region' in param_request else ''
+      context['province_selected'] = param_request['province'] if 'province' in param_request else ''
+      context['community_selected'] = param_request['community'] if 'community' in param_request else ''
+    else:
+      context['country_selected'] = ''
+      context['region_selected'] = ''
+      context['province_selected'] = ''
+      context['community_selected'] = ''
     context['myuser'] = self.request.user
 
     tmp_Param = SetURL(101, self.request.user)
@@ -455,7 +465,7 @@ class Location_UpdateView(LoginRequiredMixin, UpdateView):
 
   def form_valid(self, form):
     form.instance.myCountry = Countries.objects.filter(
-      GID_2=form.instance.province).first()
+      GID_3=form.instance.community).first()
     form.instance.AEZ_id = form.instance.myCountry.AEZ_id
     form.instance.created_by = User.objects.get(id=self.request.user.id)
     return super(Location_UpdateView, self).form_valid(form)
@@ -472,16 +482,18 @@ def Del_Crop_SubNational(sender, instance, **kwargs):
   if Season.objects.filter(myLocation_id=instance.pk):
     Season.objects.filter(myLocation_id=instance.pk).delete()
   logger.info("該当するSeasonを削除しました")
-  if Location.objects.all().count() > 0:
-    newLocation = Location.objects.all().first().id
-    myUser = instance.created_by
-    key = myUser.profile
-    key.myLocation = newLocation
-    key.myTarget = 0
-    key.myCrop = 0
-    key.myDiet = 0
-    key.save()
-    logger.info("Profileを更新しました")
+  myUser = instance.created_by
+  list_location = Location.objects.filter(created_by=myUser).all()
+  key = myUser.profile
+  key.myTarget = 0
+  key.myCrop = 0
+  key.myDiet = 0
+  if len(list_location) > 0:
+    key.myLocation = list_location[0].id
+  else:
+    key.myLocation = 0
+  key.save()
+  logger.info("Profileを更新しました")
 
 
 @receiver(post_save, sender=Location)
@@ -530,19 +542,6 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
             p = Crop_SubNational.objects.create(**keys)
           logger.info("全ての該当品目をCrop_SubNationalに書き込みました!")
 
-        # --------------------update myTarget-community-------------------------
-        # logger.info("これからTarget communityの人口構成、初期値を追加していきます")
-        # for i in range(9):
-        #   Person.objects.create(
-        #     myLocation=Location.objects.get(id=instance.pk),
-        #     nut_group=nut_grp_list[i],
-        #     target_scope=3,
-        #     target_pop=100,
-        #     created_by=instance.created_by,
-        #     myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
-        #   )
-        # logger.info("Target communityの書込み終了")
-
         # --------------------update Season-------------------------
         logger.info("これからSeasonの構成、初期値を追加していきます")
         Season.objects.create(
@@ -582,39 +581,6 @@ def Init_Crop_SubNational(sender, instance, created, update_fields=None, **kwarg
         p = Crop_SubNational.objects.create(**keys)
       logger.info("全てのFCTをCrop_SubNationalに書き込みました!")
 
-    # --------------------update myTarget-community-------------------------
-    # logger.info("これからTarget individualの初期値を追加していきます")
-    # Person.objects.create(
-    #   myLocation=Location.objects.get(id=instance.pk),
-    #   nut_group=nut_grp_list[0],
-    #   target_scope=1,
-    #   target_pop=100,
-    #   created_by=User.objects.get(id=instance.created_by.id),
-    #   myDRI=DRI.objects.get(nut_group=nut_grp_list[0])
-    # )
-    # logger.info("Target individualの書込み終了")
-    # logger.info("これからTarget communityの人口構成、初期値を追加していきます")
-    # for i in range(9):
-    #   Person.objects.create(
-    #     myLocation=Location.objects.get(id=instance.pk),
-    #     nut_group=nut_grp_list[i],
-    #     target_scope=3,
-    #     target_pop=100,
-    #     created_by=User.objects.get(id=instance.created_by.id),
-    #     myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
-    #   )
-    # logger.info("Target communityの書込み終了")
-    # logger.info("これからTarget Familyの構成、初期値を追加していきます")
-    # for i in range(9):
-    #   Person.objects.create(
-    #     myLocation=Location.objects.get(id=instance.pk),
-    #     nut_group=nut_grp_list[i],
-    #     target_scope=2,
-    #     target_pop=0,
-    #     created_by=User.objects.get(id=instance.created_by.id),
-    #     myDRI=DRI.objects.get(nut_group=nut_grp_list[i])
-    #   )
-    # logger.info("Target familyの書込み終了")
     logger.info("これからSeasonの構成、初期値を追加していきます")
     Season.objects.create(
       myLocation=Location.objects.get(id=instance.pk),
@@ -832,23 +798,6 @@ class Person_ListView(LoginRequiredMixin, ListView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
 
-    # tmpClass1 = 0
-    # tmpClass2 = 0
-    # tmpClass3 = 0
-    # tmpClass_sum = 0
-    #
-    # myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation'])
-    # for tmpPerson in myPerson:
-    #   if tmpPerson.target_scope == 1:
-    #     tmpClass1 = 1
-    #   if tmpPerson.target_scope == 2:
-    #     tmpClass2 = 1
-    #   if tmpPerson.target_scope == 3:
-    #     tmpClass3 = 1
-    # tmpClass_sum = 100 * tmpClass1 + 10 * tmpClass2 + tmpClass3
-    #
-    # context['mytarget_scope_Sum'] = tmpClass_sum
-
     context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
     context['myuser'] = self.request.user
     context['page'] = self.kwargs['page']
@@ -882,57 +831,6 @@ class Person_ListView(LoginRequiredMixin, ListView):
 
     myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation'])
     dd1 = {}
-    # dd2 = {}
-    # for myPerson02 in myPerson:
-    #   nut_group = myPerson02.nut_group
-    #   pop = myPerson02.target_pop
-    #   if nut_group == 'child 0-23 month':
-    #     if myPerson02.target_scope == 2:
-    #       dd1['class0'] = pop
-    #     if myPerson02.target_scope == 3:
-    #       dd2['class0'] = pop
-    #   elif nut_group == 'child 24-59 month':
-    #     if myPerson02.target_scope == 2:
-    #       dd1['class1'] = pop
-    #     if myPerson02.target_scope == 3:
-    #       dd2['class1'] = pop
-    #   elif nut_group == 'child 6-9 yr':
-    #     if myPerson02.target_scope == 2:
-    #       dd1['class2'] = pop
-    #     if myPerson02.target_scope == 3:
-    #       dd2['class2'] = pop
-    #   elif nut_group == 'adolescent male':
-    #     if myPerson02.target_scope == 2:
-    #       dd1['class3'] = pop
-    #     if myPerson02.target_scope == 3:
-    #       dd2['class3'] = pop
-    #   elif nut_group == 'adolescent female':
-    #     if myPerson02.target_scope == 2:
-    #       dd1['class4'] = pop
-    #     if myPerson02.target_scope == 3:
-    #       dd2['class4'] = pop
-    #   elif nut_group == 'adult male':
-    #     if myPerson02.target_scope == 2:
-    #       dd1['class5'] = pop
-    #     if myPerson02.target_scope == 3:
-    #       dd2['class5'] = pop
-    #   elif nut_group == 'adult female':
-    #     if myPerson02.target_scope == 2:
-    #       dd1['class6'] = pop
-    #     if myPerson02.target_scope == 3:
-    #       dd2['class6'] = pop
-    #   elif nut_group == 'pregnant':
-    #     if myPerson02.target_scope == 2:
-    #       dd1['class7'] = pop
-    #     if myPerson02.target_scope == 3:
-    #       dd2['class7'] = pop
-    #   elif nut_group == 'lactating':
-    #     if myPerson02.target_scope == 2:
-    #       dd1['class8'] = pop
-    #     if myPerson02.target_scope == 3:
-    #       dd2['class8'] = pop
-    # context['myFamily'] = dd1
-
     for myPerson02 in myPerson:
       nut_group = myPerson02.nut_group
       pop = myPerson02.target_pop
@@ -957,132 +855,6 @@ class Person_ListView(LoginRequiredMixin, ListView):
 
     context['myCommunity'] = dd1
 
-    # myPerson = Person.objects.filter(myLocation=self.kwargs['myLocation']).filter(target_scope=3)
-    # dd = {}
-    # dd['class0'] = myPerson.get(nut_group='child 0-23 month').target_pop
-    # dd['class1'] = myPerson.get(nut_group='child 24-59 month').target_pop
-    # dd['class2'] = myPerson.get(nut_group='child 6-9 yr').target_pop
-    # dd['class3'] = myPerson.get(nut_group='adolescent male').target_pop
-    # dd['class4'] = myPerson.get(nut_group='adolescent female').target_pop
-    # dd['class5'] = myPerson.get(nut_group='adult male').target_pop
-    # dd['class6'] = myPerson.get(nut_group='adult female').target_pop
-    # dd['class7'] = myPerson.get(nut_group='pregnant').target_pop
-    # dd['class8'] = myPerson.get(nut_group='lactating').target_pop
-    # context['myCommunity'] = dd
-    #
-    # myFamily = Person.objects.filter(myLocation=self.kwargs['myLocation']).filter(target_scope=2)
-    # dd = {}
-    # dd['class0'] = myFamily.get(nut_group='child 0-23 month').target_pop
-    # dd['class1'] = myFamily.get(nut_group='child 24-59 month').target_pop
-    # dd['class2'] = myFamily.get(nut_group='child 6-9 yr').target_pop
-    # dd['class3'] = myFamily.get(nut_group='adolescent male').target_pop
-    # dd['class4'] = myFamily.get(nut_group='adolescent female').target_pop
-    # dd['class5'] = myFamily.get(nut_group='adult male').target_pop
-    # dd['class6'] = myFamily.get(nut_group='adult female').target_pop
-    # dd['class7'] = myFamily.get(nut_group='pregnant').target_pop
-    # dd['class8'] = myFamily.get(nut_group='lactating').target_pop
-    # context['myFamily'] = dd
-
-    # myDRI = DRI.objects.all()
-    # dd1 = {}
-    # dd2 = {}
-    # dd3 = {}
-    # dd4 = {}
-    # for myDRI02 in myDRI:
-    #   if myDRI02.nut_group == 'child 0-23 month':
-    #     dd1['class0'] = myDRI02.energy
-    #     dd2['class0'] = myDRI02.protein
-    #     dd3['class0'] = myDRI02.vita
-    #     dd4['class0'] = myDRI02.fe
-    #   elif myDRI02.nut_group == 'child 24-59 month':
-    #     dd1['class1'] = myDRI02.energy
-    #     dd2['class1'] = myDRI02.protein
-    #     dd3['class1'] = myDRI02.vita
-    #     dd4['class1'] = myDRI02.fe
-    #   elif myDRI02.nut_group == 'child 6-9 yr':
-    #     dd1['class2'] = myDRI02.energy
-    #     dd2['class2'] = myDRI02.protein
-    #     dd3['class2'] = myDRI02.vita
-    #     dd4['class2'] = myDRI02.fe
-    #   elif myDRI02.nut_group == 'adolescent male':
-    #     dd1['class3'] = myDRI02.energy
-    #     dd2['class3'] = myDRI02.protein
-    #     dd3['class3'] = myDRI02.vita
-    #     dd4['class3'] = myDRI02.fe
-    #   elif myDRI02.nut_group == 'adolescent female':
-    #     dd1['class4'] = myDRI02.energy
-    #     dd2['class4'] = myDRI02.protein
-    #     dd3['class4'] = myDRI02.vita
-    #     dd4['class4'] = myDRI02.fe
-    #   elif myDRI02.nut_group == 'adult male':
-    #     dd1['class5'] = myDRI02.energy
-    #     dd2['class5'] = myDRI02.protein
-    #     dd3['class5'] = myDRI02.vita
-    #     dd4['class5'] = myDRI02.fe
-    #   elif myDRI02.nut_group == 'adult female':
-    #     dd1['class6'] = myDRI02.energy
-    #     dd2['class6'] = myDRI02.protein
-    #     dd3['class6'] = myDRI02.vita
-    #     dd4['class6'] = myDRI02.fe
-    #   elif myDRI02.nut_group == 'pregnant':
-    #     dd1['class7'] = myDRI02.energy
-    #     dd2['class7'] = myDRI02.protein
-    #     dd3['class7'] = myDRI02.vita
-    #     dd4['class7'] = myDRI02.fe
-    #   elif myDRI02.nut_group == 'lactating':
-    #     dd1['class8'] = myDRI02.energy
-    #     dd2['class8'] = myDRI02.protein
-    #     dd3['class8'] = myDRI02.vita
-    #     dd4['class8'] = myDRI02.fe
-    # context['myDRI_en'] = dd1
-    # context['myDRI_pr'] = dd2
-    # context['myDRI_va'] = dd3
-    # context['myDRI_fe'] = dd4
-    #
-    # dd = {}
-    # dd['class0'] = myDRI.get(nut_group='child 0-23 month').energy
-    # dd['class1'] = myDRI.get(nut_group='child 24-59 month').energy
-    # dd['class2'] = myDRI.get(nut_group='child 6-9 yr').energy
-    # dd['class3'] = myDRI.get(nut_group='adolescent male').energy
-    # dd['class4'] = myDRI.get(nut_group='adolescent female').energy
-    # dd['class5'] = myDRI.get(nut_group='adult male').energy
-    # dd['class6'] = myDRI.get(nut_group='adult female').energy
-    # dd['class7'] = myDRI.get(nut_group='pregnant').energy
-    # dd['class8'] = myDRI.get(nut_group='lactating').energy
-    # context['myDRI_en'] = dd
-    # dd = {}
-    # dd['class0'] = myDRI.get(nut_group='child 0-23 month').protein
-    # dd['class1'] = myDRI.get(nut_group='child 24-59 month').protein
-    # dd['class2'] = myDRI.get(nut_group='child 6-9 yr').protein
-    # dd['class3'] = myDRI.get(nut_group='adolescent male').protein
-    # dd['class4'] = myDRI.get(nut_group='adolescent female').protein
-    # dd['class5'] = myDRI.get(nut_group='adult male').protein
-    # dd['class6'] = myDRI.get(nut_group='adult female').protein
-    # dd['class7'] = myDRI.get(nut_group='pregnant').protein
-    # dd['class8'] = myDRI.get(nut_group='lactating').protein
-    # context['myDRI_pr'] = dd
-    # dd = {}
-    # dd['class0'] = myDRI.get(nut_group='child 0-23 month').vita
-    # dd['class1'] = myDRI.get(nut_group='child 24-59 month').vita
-    # dd['class2'] = myDRI.get(nut_group='child 6-9 yr').vita
-    # dd['class3'] = myDRI.get(nut_group='adolescent male').vita
-    # dd['class4'] = myDRI.get(nut_group='adolescent female').vita
-    # dd['class5'] = myDRI.get(nut_group='adult male').vita
-    # dd['class6'] = myDRI.get(nut_group='adult female').vita
-    # dd['class7'] = myDRI.get(nut_group='pregnant').vita
-    # dd['class8'] = myDRI.get(nut_group='lactating').vita
-    # context['myDRI_va'] = dd
-    # dd = {}
-    # dd['class0'] = myDRI.get(nut_group='child 0-23 month').fe
-    # dd['class1'] = myDRI.get(nut_group='child 24-59 month').fe
-    # dd['class2'] = myDRI.get(nut_group='child 6-9 yr').fe
-    # dd['class3'] = myDRI.get(nut_group='adolescent male').fe
-    # dd['class4'] = myDRI.get(nut_group='adolescent female').fe
-    # dd['class5'] = myDRI.get(nut_group='adult male').fe
-    # dd['class6'] = myDRI.get(nut_group='adult female').fe
-    # dd['class7'] = myDRI.get(nut_group='pregnant').fe
-    # dd['class8'] = myDRI.get(nut_group='lactating').fe
-    # context['myDRI_fe'] = dd
 
     tmp_Param = SetURL(200, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
@@ -1217,10 +989,16 @@ class Person_DeleteView(LoginRequiredMixin, DeleteView):
 
 def registPerson(request):
   logger.info('registPerson')
-  # json_str = request.body.decode("utf-8")
   json_data = json.loads(request.body)
   nut_grp_list = ['child 0-23 month', 'child 24-59 month', 'child 6-9 yr', 'adolescent male', 'adolescent female',
                   'adult male', 'adult female', 'pregnant', 'lactating']
+
+  form = PersonListForm(json_data)
+  if (not form.is_valid()):
+    return JsonResponse({
+      'success': False,
+      'messages': form.errors
+    })
 
   for myrow in json_data['myJson']:
     # 最初に参照するキー（複数可）を指定する

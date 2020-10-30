@@ -99,6 +99,24 @@
       display: none;
     }
 
+    .title-name-position {
+      margin: auto;
+      white-space: nowrap;
+      padding-right: 15px;
+      padding-left: 15px;
+      max-width: 100%;
+    }
+
+    .title-item {
+      overflow: hidden;
+      height: 24px;
+    }
+
+    .title-item-desc-marque {
+      position: relative;
+      top: -7px;
+    }
+
   </style>
 
   <script type="text/javascript">
@@ -112,11 +130,19 @@
         x.toggleClass('show');
       }, time);
     }    // ---------------------
-
+    $(function () {
+      jQuery('.title-item').each(function (index, e) {
+        let elementHtml = $(e)[0];
+        if (elementHtml.scrollHeight > elementHtml.clientHeight || elementHtml.scrollWidth > elementHtml.clientWidth) {
+          let text = $(e).find('.title-item-main').text();
+          $(e).find('.title-item-main').html('<marquee>' + text + '</marquee>');
+          $(e).find('.title-item-desc').addClass('title-item-desc-marque');
+        }
+      });
+    });
     // --------loading画面の消去-------
     window.onload = function () {
       let spinner = document.getElementById('my-spinner');
-
       // .box に .loaded を追加してローディング表示を消す
       spinner.classList.add('loaded');
     }
@@ -223,27 +249,23 @@
 
 
   <div id="content" class="container mt-1">
-    <div class="container bg-success my-0 text-white text-right" style="max-width: 540px;">
-      <div class="row">
-        <div class="col">
-          person in charge:
-        </div>
-        <div class="col">
-          {{ myuser.first_name }},
-          {{ myuser.last_name }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          office / position:
-        </div>
-        <div class="col">
-          {{ myuser.profile.organization }},
-          {{ myuser.profile.title }}
-        </div>
-      </div>
-    </div>
+    {% if user.is_authenticated %}
+      <div class="container bg-success my-0 text-white" style="max-width: 540px;">
+        <div class="row text-right">
+          <div class="text-justify title-name-position">
+            <div class="title-item">
+              <span class="title-item-desc">person in charge: </span> <span
+                    class="title-item-main">{{ myuser.first_name }},{{ myuser.last_name }}</span>
+            </div>
+            <div class="title-item">
+              <span class="title-item-desc">office / position: </span><span
+                    class="title-item-main">{{ myuser.profile.organization }},{{ myuser.profile.title }}</span>
+            </div>
+          </div>
 
+        </div>
+      </div>
+    {% endif %}
     <div class="container my-0 py-0" style="max-width: 540px;">
       <div class="row mx-0 my-0 py-0">
         <div class="marquee">

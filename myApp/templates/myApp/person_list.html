@@ -84,36 +84,6 @@
        style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
     {% include "./person_list_child3.html" %}
 
-    {% comment %}
-    <!-- 3個分のタブ -->
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a href="#tab1_link" class="nav-link {% ifequal page 1 %}active{% endifequal %}" id="tab1"
-           data-toggle="tab">individual</a>
-      </li>
-      <li class="nav-item">
-        <a href="#tab2_link" class="nav-link {% ifequal page 2 %}active{% endifequal %}" id="tab2" data-toggle="tab">family</a>
-      </li>
-      <li class="nav-item">
-        <a href="#tab3_link" class="nav-link {% ifequal page 3 %}active{% endifequal %}" id="tab3"
-           data-toggle="tab">community</a>
-      </li>
-    </ul>
-
-    <!-- 写真部分 -->
-    <div class="tab-content">
-      <div id="tab1_link" class="tab-pane {% ifequal page 1 %}active{% endifequal %}">
-        {% include "./person_list_child1.html" %}
-      </div>
-      <div id="tab2_link" class="tab-pane {% ifequal page 2 %}active{% endifequal %}">
-        {% include "./person_list_child2.html" %}
-      </div>
-      <div id="tab3_link" class="tab-pane {% ifequal page 3 %}active{% endifequal %}">
-        {% include "./person_list_child3.html" %}
-      </div>
-    </div>
-{% endcomment %}
-
   </div>
 
   <style media="screen">
@@ -127,23 +97,53 @@
     input[type="number"]:disabled {
       background: #dddddd;
     }
+
+    .error {
+      border: 1px solid #de1b1b;
+    }
+
+    tr td div.text-center {
+      position: relative;
+    }
+
+    .tooltip-error {
+      display: none;
+      max-width: 200px;
+      background: black;
+      color: white;
+      padding: 2px 5px;
+      font-size: 13px;
+      z-index: 9999;
+      position: absolute;
+      top: 42%;
+      width: max-content;
+      margin-left: 4px;
+    }
+
+    .tooltip-error:before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      position: absolute;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-right: 8px solid black;
+      left: -6px;
+      top: 6px;
+    }
+
+    input.error:hover + span.tooltip-error {
+      display: inline;
+    }
   </style>
 
   <script type="text/javascript">
     $('[data-toggle="tooltip"]').tooltip();
 
-    //    let mytarget_scope_Sum ={{mytarget_scope_Sum}};
-
-    {% comment %}
-        let myDRI_en = {{ myDRI_en|safe }};
-        let myDRI_pr = {{ myDRI_pr|safe }};
-        let myDRI_va = {{ myDRI_va|safe }};
-        let myDRI_fe = {{ myDRI_fe|safe }};
-    {% endcomment %}
 
     var myPop = {{ myPop|safe }};
     var myCommunity = {{ myCommunity|safe }};
-    //    var myFamily = {{ myFamily|safe }};
     let url_tmp = window.location.href.split('/');
     url_tmp.pop();
     url_tmp.pop();
@@ -166,31 +166,29 @@
     //////////////////getTblData
     function getTblData_all() { //
       let d = [];
+      let dataPop = {};
+      $('input[type="number"]').prop('title', '');
       $('table.tbl_pop tr input ').each(function (i, myRow) {
+        $(myRow).removeClass('error');
+        $(myRow).next().remove();
         if ($(myRow).attr('nut_group_id') < 10) {
-          let dd = {};
           if (Number($(myRow).val()) > 0) {
-            dd['target_scope'] = Number($(myRow).attr('target_scope'));
+            let dd = {};
+            dd['target_scope'] = $(myRow).attr('target_scope');
             dd["myLocation"] = {{myLocation.id}};
             dd['myuser'] = {{ myuser.id }};
             dd['nut_group_id'] = $(myRow).attr('nut_group_id');
             dd['target_pop'] = $(myRow).val();
             d.push(dd);
           }
+        } else {
+          if ($(myRow).attr('nut_group_id')) {
+            dataPop['#' + $(myRow).attr('id')] = $(myRow).val();
+          }
         }
       });
 
-      {% comment %}
-            let dd = {};
-            dd['target_scope'] = "1";
-            dd["myLocation"] = {{myLocation.id}};
-            dd['myuser'] = {{ myuser.id }};
-            dd['nut_group_id'] = $('#inpNum_ind7').text();
-            dd['target_pop'] = "1";
-            d.push(dd);
-      {% endcomment %}
-
-      return {"myJson": d};
+      return {"myJson": d, "dataPop": dataPop};
     }
 
     //////////////////getTblData //// csrf_tokenの取得に+ myFamily.class7 + myFamily.class8使う//////////////
@@ -238,11 +236,27 @@
         contentType: 'application/JSON',
         dataType: 'JSON',
         scriptCharset: 'utf-8',
-        success: function (response) {
-          window.location.href = response.url;
+        success: function (res) {
+          if (res.success) {
+            return window.location.href = res.url;
+          }
+          let message = res.messages;
+          let forcusTab = false;
+          for (const prop in message) {
+            $(prop).addClass('error').after('<span class="tooltip-error">' + message[prop] + '</span>');
+            if (!forcusTab) {
+              if ($('#tab2_link ' + prop).length > 0) {
+                forcusTab = true;
+                $('#tab2').click();
+              } else if ($('#tab3_link ' + prop).length > 0) {
+                forcusTab = true;
+                $('#tab3').click();
+              }
+            }
+          }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          alert("fail");
+          alert("Application encountered unknown error in target population setting");
           console.log(jqXHR.responseText);
           console.log(jqXHR.status); //例：404
           console.log(textStatus); //例：error
@@ -253,76 +267,6 @@
       });
     }//////////////////sendJson//// scfript end/////////////////////
 
-    {% comment %}
-        //////////////////DRI合計
-        function sum_DRI(index_DRI) {
-          console.group('sum_DRI');
-          if (index_DRI === 1) {
-            let tmp_nut_class = $('#inpNum_ind7').text() - 1;
-            $('#inpNum_ind3').text(myDRI_en['class' + tmp_nut_class]);
-            $('#inpNum_ind4').text(myDRI_pr['class' + tmp_nut_class]);
-            $('#inpNum_ind5').text(myDRI_va['class' + tmp_nut_class]);
-            $('#inpNum_ind6').text(myDRI_fe['class' + tmp_nut_class]);
-          } else if (index_DRI === 2) {
-            let sum = 0;
-            let tmp_sum_en = 0;
-            let tmp_sum_pr = 0;
-            let tmp_sum_va = 0;
-            let tmp_sum_fe = 0;
-            $('.num_family2').each(function () {
-              let tmp_nut_class = Number($(this).attr('nut_group_id')) - 1;
-              let tmp_number = Number($(this).val());
-              sum += tmp_number;
-              tmp_sum_en += Number(myDRI_en['class' + String(tmp_nut_class)]) * tmp_number;
-              tmp_sum_pr += Number(myDRI_pr['class' + String(tmp_nut_class)]) * tmp_number;
-              tmp_sum_va += Number(myDRI_va['class' + String(tmp_nut_class)]) * tmp_number;
-              tmp_sum_fe += Number(myDRI_fe['class' + String(tmp_nut_class)]) * tmp_number;
-            });
-            $('#DRI2_en').text(tmp_sum_en.toLocaleString());
-            $('#DRI2_pr').text(tmp_sum_pr.toLocaleString());
-            $('#DRI2_va').text(tmp_sum_va.toLocaleString());
-            $('#DRI2_fe').text(tmp_sum_fe.toLocaleString());
-            $('#size2').text(sum);
-          } else if (index_DRI === 3) {
-            let sum = 0;
-            let tmp_sum_en = 0;
-            let tmp_sum_pr = 0;
-            let tmp_sum_va = 0;
-            let tmp_sum_fe = 0;
-            $('.num_family3').each(function () {
-              let tmp_nut_class = Number($(this).attr('nut_group_id')) - 1;
-              let tmp_number = Number($(this).val());
-              sum += tmp_number;
-              tmp_sum_en += Number(myDRI_en['class' + String(tmp_nut_class)]) * tmp_number;
-              tmp_sum_pr += Number(myDRI_pr['class' + String(tmp_nut_class)]) * tmp_number;
-              tmp_sum_va += Number(myDRI_va['class' + String(tmp_nut_class)]) * tmp_number;
-              tmp_sum_fe += Number(myDRI_fe['class' + String(tmp_nut_class)]) * tmp_number;
-            });
-            $('#DRI3_en').text(tmp_sum_en.toLocaleString());
-            $('#DRI3_pr').text(tmp_sum_pr.toLocaleString());
-            $('#DRI3_va').text(tmp_sum_va.toLocaleString());
-            $('#DRI3_fe').text(tmp_sum_fe.toLocaleString());
-            $('#size3').text(sum);
-          }
-          console.groupEnd();
-        }
-    {% endcomment %}
-
-    //////////////////DRI合計
-
-    //////////////////合計----family
-    {% comment %}
-        $('.num_family2').on("input", function () {
-          let sum = 0;
-          $('.num_family2').each(function () {
-            sum += Number($(this).val())
-          });
-          $('#inpNum_fam9').val(sum);
-    //      $('#size2').text(sum);
-    //      sum_DRI(2);
-        });
-    {% endcomment %}
-
 
     //////////////////合計----community
     $('.num_family3').on("input", function () {
@@ -331,35 +275,50 @@
         sum += Number($(this).val());
       });
       console.log('changed:' + sum);
-//      sum_DRI(3);
       $("#inpNum9").val(sum);
     });
 
 
     $("#inpNum9").on("input", function () {
-      // Print entered value in a div box
-      $("#inpNum0").val(Math.round($(this).val() * myPop.class0 / 100));
-      $("#inpNum1").val(Math.round($(this).val() * myPop.class1 / 100));
-      $("#inpNum2").val(Math.round($(this).val() * myPop.class2 / 100));
-      $("#inpNum3").val(Math.round($(this).val() * myPop.class4 / 100));
-      $("#inpNum4").val(Math.round($(this).val() * myPop.class3 / 100));
-      $("#inpNum5").val(Math.round($(this).val() * myPop.class6 / 100));
-      $("#inpNum6").val(Math.round($(this).val() * myPop.class5 / 100));
-      $("#inpNum7").val(Math.round($(this).val() * (myPop.class3_p + myPop.class5_p) / 100));
-      $("#inpNum8").val(Math.round($(this).val() * (myPop.class3_l + myPop.class5_l) / 100));
-      sum_DRI(3);
+      let myPopChange = Object.assign({}, myPop);
+      let currentVal = $(this).val();
+      if (Number($(this).val()) < 0) {
+        currentVal = 0;
+      }
+      let popFloatVal = {};
+      let inputValNum = {};
+      myPopChange.class3 = myPop.class4;
+      myPopChange.class4 = myPop.class3;
+      myPopChange.class5 = myPop.class6;
+      myPopChange.class6 = myPop.class5;
+      myPopChange.class7 = myPop.class3_p + myPop.class5_p;
+      myPopChange.class8 = myPop.class3_l + myPop.class5_l;
+      let currentNum = 0;
+      for (let i = 0; i <= 8; i++) {
+        let valNum = parseInt(currentVal) * myPopChange['class' + i] / 100;
+        if (Math.floor(valNum) < 1) {
+          if (Math.round(valNum) === 1) {
+            popFloatVal['class' + i] = (valNum - Math.floor(valNum));
+          } else {
+            popFloatVal['class' + i] = (valNum - Math.floor(valNum)) * myPopChange['class' + i] / 100;
+          }
+        } else {
+          popFloatVal['class' + i] = (valNum - Math.floor(valNum)) * myPopChange['class' + i] / 100;
+        }
+        inputValNum['class' + i] = Math.floor(valNum);
+        currentNum += Math.floor(valNum);
+      }
+      let keyClassFloatSorted = Object.keys(popFloatVal).sort(function (a, b) {
+        return popFloatVal[b] - popFloatVal[a]
+      });
+      for (let index in keyClassFloatSorted) {
+        if (currentNum < parseInt(currentVal)) {
+          currentNum++;
+          inputValNum[keyClassFloatSorted[index]] += 1;
+        }
+        $("#inpNum" + keyClassFloatSorted[index].replace('class', '')).val(inputValNum[keyClassFloatSorted[index]]);
+      }
     });
-
-    {% comment %}
-        //////////////////個人targetの選択-----
-        $("#menu_items a ").click(function () {
-          console.log($(this).text());
-          $('#inpNum_ind1').text($(this).text());
-          $('#inpNum_ind7').text($(this).index() + 1);
-    //      sum_DRI(1);
-        });
-        //////////////////個人targetの選択-----
-    {% endcomment %}
 
     //////////////////Communityの選択方式の決定-----
     $('#chk-autoCalk').change(function () {
@@ -375,42 +334,6 @@
 
 
     //-----------initializationn -------
-    {% comment %}
-
-        let nut_class = [
-          'child 0-23 month',
-          'child 24-59 month',
-          'child 6-9 yr',
-          'adolescent boy',
-          'adolescent girl',
-          'adult male',
-          'adult female',
-          'pregnant',
-          'lactaning',
-        ];
-
-        try {
-          let index_nut = nut_class.indexOf($('#inpNum_ind1').text()) || 0;
-          $("#menu_items a ").prop('selectedIndex', index_nut);
-          $('#inpNum_ind7').text(index_nut + 1);
-        } catch (e) {
-          console.error(e);
-        }
-
-        // Print initial value in a div box
-        $("#inpNum_fam0").val(myFamily.class0);
-        $("#inpNum_fam1").val(myFamily.class1);
-        $("#inpNum_fam2").val(myFamily.class2);
-        $("#inpNum_fam3").val(myFamily.class3);
-        $("#inpNum_fam4").val(myFamily.class4);
-        $("#inpNum_fam5").val(myFamily.class5);
-        $("#inpNum_fam6").val(myFamily.class6);
-        $("#inpNum_fam7").val(myFamily.class7);
-        $("#inpNum_fam8").val(myFamily.class8);
-        let tmp = myFamily.class0 + myFamily.class1 + myFamily.class2 + myFamily.class3 + myFamily.class4
-                + myFamily.class5 + myFamily.class6 + myFamily.class7 + myFamily.class8;
-        $("#inpNum_fam9").val(tmp);
-    {% endcomment %}
 
     // Print initial value in a div box
     $("#inpNum0").val(myCommunity.class0);
@@ -425,10 +348,6 @@
     tmp = myCommunity.class0 + myCommunity.class1 + myCommunity.class2 + myCommunity.class3 + myCommunity.class4
             + myCommunity.class5 + myCommunity.class6 + myCommunity.class7 + myCommunity.class8;
     $("#inpNum9").val(tmp);
-
-    //    sum_DRI(1);
-    //    sum_DRI(2);
-    //    sum_DRI(3);
 
     //-----------initializationn -------
 
