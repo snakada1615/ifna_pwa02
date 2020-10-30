@@ -2195,7 +2195,6 @@
     //////////////////getTblData
     function getTblData() {
       console.group('getTblData');
-      console.error('here');
       let d = [];
       $('.selected_crops_tbl').each(function (i, myTbl) {
         $(myTbl).children('tbody').children('tr').each(function (j, myRow) {
@@ -2285,10 +2284,10 @@
         dataType: 'JSON',
         scriptCharset: 'utf-8',
         success: function (response) {
-          window.location.href = response.url;
+          location.reload();
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          alert("fail");
+          alert("Application encountered unknown error in target population setting");
           console.log(jqXHR.responseText);
           console.log(jqXHR.status); //例：404
           console.log(textStatus); //例：error
