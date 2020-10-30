@@ -88,7 +88,7 @@
         </div>
 
 
-        <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;">
+        <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0 card-content-data" style="max-width: 560px;">
           <div hidden id="season_count"></div>
           <div class="mod-tbl">
             <table id="tbl_season" class="mytable-season">
@@ -148,7 +148,7 @@
           </div>
         </div>
 
-        <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0" style="max-width: 560px;">
+        <div class="card border-primary bg-info col-12 mt-2 py-0 px-0 mx-0 card-content-data" style="max-width: 560px;">
           <div class="mod-tbl">
             <table id="tbl_crop_selected" class="mytable">
               <thead>
@@ -394,6 +394,16 @@
       color: yellow;
     }
 
+    #tbl_season tr td, #tbl_crop_selected tr:nth-child(even) {
+      font-size: 0;
+      height: 28px;
+    }
+
+    .card-content-data {
+      height: auto;
+      flex: none;
+    }
+
   </style>
 
   <script type="text/javascript">
@@ -603,8 +613,8 @@
         let end_mon = season_tmp["end" + String(j + 1)];
         cr += '<div class="row season-row">';
         cr += '<div class="col-2 text-center col_season">' + $mySeason[j].text() + '</div>';
-        cr += '<div class="col-2 text-center col_start">' + month_name[start_mon - 1] + '</div>';
-        cr += '<div class="col-2 text-center col_end">' + month_name[end_mon - 1] + '</div>';
+        cr += '<div class="col-2 text-center col_start" month="' + start_mon + '">' + month_name[start_mon - 1] + '</div>';
+        cr += '<div class="col-2 text-center col_end" month="' + end_mon + '">' + month_name[end_mon - 1] + '</div>';
         cr += '<div class="col-6">';
         cr += '<div class="dropdown">';
         cr += '<button type="button" class="btn btn-light dropdown-toggle" id="' + 'dropdownMenuButton' + String(j + 1) + '" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
@@ -631,6 +641,8 @@
     //    convert month range into month list   -------------------------------
     function month_conv(start1, end1) {
       let tmp = [];
+      start1 = parseInt(start1);
+      end1 = parseInt(end1);
       if (start1 < end1) {
         for (var i = start1; i < end1 + 1; i++) {
           tmp.push(i);
@@ -743,31 +755,27 @@
 
       let season = {};
       let $myrow = $Tbl_season.children('tbody').children('tr');
-      const season_0 = $myrow.children('td').eq(0).text();
+      //const season_0 = $myrow.children('td').eq(0).text();
 
       for (var j = 0; j < 12; j++) {
         season_curr = $myrow.children('td').eq(j).text();
         console.log('season_curr=' + season_curr + 'season_prev=' + season_prev);
         if (season_curr !== season_prev) {
-          season_count++;
           season_prev = season_curr;
+          if (season_count !== 0) {
+            season["end" + String(season_count)] = String(j)
+          }
+          season_count++;
           season["start" + String(season_count)] = String(j + 1);
-          if (j > 0) {
-            season["end" + String(season_count - 1)] = String(j);
+          if (j === 11) {
+            season["end" + String(season_count)] = String(j + 1);
           }
-
-        }
-        if (j === 11) {
-          if (season_curr !== season_0) {
-            season["end" + String(season_count)] = "12"
-          } else {
-            season["start1"] = season["start" + String(season_count)];
-            delete season["start" + String(season_count)];
-            season_count--;
-          }
+        } else if (j === 11) {
+          season["end" + String(season_count)] = "12"
         }
       }
       season["season_count"] = season_count;
+      $('#season_count').text(season_count);
       return season
     };
 
@@ -1072,13 +1080,13 @@
           };
           let rowNum = Number($("#myrow_tmp").text()) / 2;
           $('.container_crop_avail').find('.season-row').each(function (index_r, myRow) {
-            const mon_start = month_name.indexOf($(myRow).find('.col_start').text()) + 1;
-            const mon_end = month_name.indexOf($(myRow).find('.col_end').text()) + 1;
-            const avail_val = crop_avail_num[$(myRow).find('.dropdown-toggle').text()] || 0;
+            const mon_start = $(myRow).find('.col_start').attr('month');
+            const mon_end = $(myRow).find('.col_end').attr('month');
+            const avail_val = crop_avail_num[$(myRow).find('.dropdown-toggle').text()];
             const monthes = month_conv(Number(mon_start), Number(mon_end));
-            console.error('mon_start');
-            console.error(mon_start);
-
+            if (avail_val === undefined) {
+              return;
+            }
             $.each(monthes, function (index_c, value) {
               console.log('x:' + value + ', y:' + rowNum + ', avail_val:' + avail_val);
               mySelectMonth.setCellColor(value - 1, rowNum, avail_val)
@@ -1107,6 +1115,9 @@
             const season_tmp = mySeason.getSeason();
             console.log(crop_tmp);
             console.log(season_tmp);
+            if (season_tmp.season_count > 4) {
+              return alert('Number of season is limited up to four');
+            }
             Season_Avail(crop_tmp, season_tmp, myrow);
 
             $('#myModal02').modal('show');
@@ -1146,6 +1157,7 @@
               console.log('(' + mycol + ', ' + myrow + '), ' + 'です');
               break;
           }
+          mySeason.getSeason();
         });
 
         //////////////////get data from table
@@ -1184,18 +1196,25 @@
           month["myLocation"] = {{myLocation}};
           month["season_count"] = mySeason.getSeason().season_count;
           $.each($mySeason, function (index, value) {
-            month["season_name" + String(index+1)] = value.text();
+            month["season_name" + String(index + 1)] = value.text();
           });
           season.push(month);
           res1.season = season;
+          res1.myLocation = {{myLocation}};
 
           return res1;
         }
 
         //////////////send crop list to django////
         $("#btn_save").click(function () {
+          if (mySeason.getSeason().season_count > 4) {
+            return alert('Number of season is limited up to four');
+          }
           let hostUrl = myRoot + 'registCropAvail/';
           let mydat = getTblData();
+          if (!checkSeasonMatch()) {
+            return alert('Season definition is invalid. Please check');
+          }
           console.log(hostUrl);
           Set_CRSF();
           sendJson(mydat, hostUrl);
@@ -1216,6 +1235,34 @@
             }
           }
           return cookieValue;
+        }
+
+        function checkSeasonMatch() {
+          let season = mySeason.getSeason();
+          let season_count = season['season_count'];
+          for (let i = 1; i <= season_count; i++) {
+            let start = parseInt(season['start' + i]);
+            let end = parseInt(season['end' + i]);
+            let hasError = false;
+            $myTbl.children('tbody').children('tr').each(function (index, myRow) {
+              if (index % 2 == 1) {
+                let lastVal = null;
+                for (let j = start; j <= end; j++) {
+                  let currentVal = $(this).children('td').eq(j - 1).text();
+                  if (lastVal == null) {
+                    lastVal = currentVal;
+                  } else if (currentVal != lastVal) {
+                    hasError = true;
+                    break;
+                  }
+                }
+              }
+            });
+            if (hasError) {
+              return false;
+            }
+          }
+          return true;
         }
 
         function csrfSafeMethod(method) {
@@ -1248,7 +1295,7 @@
               window.location.href = response.url;
             },
             error: function (jqXHR, textStatus, errorThrown) {
-              alert("fail");
+              alert("Application encountered unknown error in target population setting");
               console.log(jqXHR.responseText);
               console.log(jqXHR.status); //例：404
               console.log(textStatus); //例：error
@@ -1262,6 +1309,7 @@
         //////////////////sendJson//// scfript end///////////////////
         const mySelectMonth = new Cell_MultiSelect(-1, 0, 1, 2);
         const mySeason = new Season_MultiSelect(-1, 0, 1, 2);
+        mySeason.getSeason();
 
       }// ---------- initComplete finish here --------------
     });

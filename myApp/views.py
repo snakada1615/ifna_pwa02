@@ -701,6 +701,11 @@ def registCropAvail(request):
   tmp_myLocation_id = 0
   tmp_newcrop_list = []
 
+  dict_date_avaiable = {'selected_status': 0}
+  for j in range(1, 13):
+    dict_date_avaiable['m%d_avail' % (j)] = 0
+  Crop_SubNational.objects.filter(myLocation_id=json_data['myLocation']).update(**dict_date_avaiable)
+
   logger.info('registCropAvail開始')
   for myrow in json_data['myJson']:
     newcrop = {}
