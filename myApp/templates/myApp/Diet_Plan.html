@@ -335,7 +335,7 @@
               </div>
               <label for="new_portion" class="col-sm-4 col-form-label">new value (g)</label>
               <div class="col-sm-8">
-                <input type="number" class="form-control" id="new_portion" placeholder="ex.) 50..">
+                <input type="number" max="10000" class="form-control" id="new_portion" placeholder="ex.) 50..">
               </div>
             </div>
           </form>
@@ -356,7 +356,7 @@
   <script id="template_Tab" type="text/x-custom-template">
     <div class="row d-flex">
       <div class="col-2">
-        <a class="btn mt-2 my-0 py-0 btn-sm btn_car_prev class-myNum" href="#"
+        <a class="btn mt-2 my-0 py-0 btn-sm btn_car_prev class-myNum"
            style="background-color:#ADC757;">prev</a>
         <div class="dropdown my-1 ">
           <button type="button dropdown-filter"
@@ -374,7 +374,7 @@
         <div class="font-weight-bold row justify-content-center align-self-center title_diet class-mypage"></div>
       </div>
       <div class="col-2">
-        <a class="btn mt-2 my-0 py-0 btn-sm btn_car_next class-myNum" href="#"
+        <a class="btn mt-2 my-0 py-0 btn-sm btn_car_next class-myNum"
            style="background-color:#ADC757;">next</a>
       </div>
     </div>
@@ -887,6 +887,10 @@
       color: black;
     }
 
+    .item-selected {
+      background: #ccc;
+    }
+
     /* checkboxの選択時の色 */
     .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
       background-color: red;
@@ -903,6 +907,7 @@
     // グローバル変数の作成
     //    const myRange = [101, 102, 103, 104, 201, 202, 203, 204,
     //      301, 302, 303, 304];
+    var MAX_VAL_PORTION = 10000;
     const target_name = [
       'child 6-23 month',
       'child 24-59 month',
@@ -1052,7 +1057,7 @@
 
 
     //////////////// initialize Food_grp_filter /////
-    $('.myfilter-item').append('<a class="dropdown-item" href="#">--show all--</a>');
+    $('.myfilter-item').append('<a class="dropdown-item item-selected" href="#">--show all--</a>');
     $.each(myFoodGrp, function (index, val) {
       $('.myfilter-item').append('<a class="dropdown-item" href="#">' + val + '</a>');
     });
@@ -1214,20 +1219,6 @@
           myArray.splice(index, 1);
         }
       });
-      {% comment %}
-            let del_index = -1;
-            const found = this.crops.find(function (ele, i) {
-              if (ele.food_item_id === Number(food_item_id)) {
-                del_index = i;
-                console.log('food_item_id(' + ele.food_item_id + ')を削除します');
-              }
-            });
-            if (del_index > -1) {
-              this.crops.splice(del_index, 1);
-              console.log(del_index + '番目の要素を削除しました');
-              console.log('food_item_id(' + food_item_id + ')の作物選択を解除しました');
-            }
-      {% endcomment %}
       console.groupEnd();
       return del_index;
     };
@@ -1877,12 +1868,21 @@
       }
       console.groupEnd();
     };
+
+    Crop_individual.prototype.setDataShare = function (data) {
+      this.data.share_prod_buy = data.share_prod_buy;
+      this.data.count_buy = data.count_buy;
+      this.data.count_prod = data.count_prod;
+      this.setPie_img(data.share_prod_buy);
+    };
+
     Crop_individual.prototype.setPie_img = function (i_share) {
       if (i_share === 99) {
         i_share = 0;
       } else if (i_share === 100) {
         i_share = 10;
       }
+      i_share = 10 - i_share;
       let h = "/static/img/pie_" + String(i_share) + ".png";
       console.log('prod/buy shareを' + i_share + 'に設定します');
       this.dom_img_pie.attr('src', h);
@@ -1899,7 +1899,7 @@
         let new_weight = portion_size * count_all;
 
         if (current_sum + new_weight - current_vol > max_vol) {
-          alert('total volume offood exceeded daily6 consumption limit.\n' +
+          alert('total volume offood exceeded daily consumption limit.\n' +
                   'please re-adjust volume of each food item so that total volume fit within ' + max_vol + 'g');
           return false;
         }
@@ -1998,12 +1998,16 @@
       console.group('Crop_Share.getData');
       let myShare = Number(this.dom_BR_share.children("option:selected").val());
       this.crop.share_prod_buy = myShare;
-      let cou = this.crop.count_prod + this.crop.count_share;
+      let cou = this.crop.count_prod + this.crop.count_buy;
       this.crop.count_prod = Math.trunc(myShare * cou / 10);
       this.crop.count_buy = cou - this.crop.count_prod;
       console.groupEnd();
       return this.crop;
     };
+
+    myfood_share['modal'].on('hide.bs.modal', function () {
+      myfood_volume['modal'].modal('show');
+    });///
 
     //---------
 
@@ -2170,10 +2174,9 @@
       console.group('#change_share1.click');
       let myNum_tmp = myfood_volume['modal'].attr('myNum');//テーブル番号の取得
       let crop = myCrop_share.getData();
-      console.log(crop);
       console.log('count_p=' + crop.count_prod + ', count_b= ' + crop.count_buy + ', myShare=' + crop.share_prod_buy);
-      myCrop_individual[myNum_tmp].setData(crop);   //Crop_individualのdata更新
-      myCrop[myNum_tmp].setData_Crop(crop);          //Crop_selectedのdata更新
+      myCrop_individual[myNum_tmp].setDataShare(crop);
+      myCrop[myNum_tmp].setDataDraw_Crop(crop);          //Crop_selectedのdata更新
       myfood_volume['modal'].attr('myNum', myNum_tmp); //table番号の記録
       myfood_volume['modal'].modal('show');
       myfood_share['modal'].modal('hide');
@@ -2349,7 +2352,6 @@
     });
 
     //  lst_monthを配列に組み込む -----------
-    console.log($('.lst_month').length)
     $('.lst_month').each(function () {
       let num_tbl = $(this).attr('myNum');
       myCrop[num_tbl].dom_lst_month = $(this);
@@ -2385,7 +2387,6 @@
       let tmp_dat = myCrop[num_tbl];
 
       myCrop[num_tbl].month = Number(myCrop[num_tbl].dom_lst_month.text());
-      console.log(Number(myCrop[num_tbl].dom_lst_month.text()));
       myCrop[num_tbl].season = season12['m' + myCrop[num_tbl].month + '_season'];
       myCrop[num_tbl].season_length = season_length[myCrop[num_tbl].season];
       myCrop[num_tbl].dom_btn_add.attr('myNum', num_tbl);
