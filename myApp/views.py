@@ -307,9 +307,11 @@ class Location_ListView(LoginRequiredMixin, ListView):
   model = Location
   context_object_name = "mylist"
   template_name = 'myApp/Location_list.html'
+  num_loc = 0
 
   def get_queryset(self):
     queryset = super().get_queryset().filter(created_by=self.request.user)
+    self.num_loc = queryset.count()
     return queryset
 
   def get_context_data(self, **kwargs):
@@ -328,7 +330,10 @@ class Location_ListView(LoginRequiredMixin, ListView):
     context["mark_text"] = tmp_Param['guide_text']
     context["stepid"] = tmp_Param['stepid']
 
-    #    context['myParam'] = json_str
+    context['count_loc'] = self.num_loc
+    logger.info("self.num_loc")
+    logger.info(self.num_loc)
+
     return context
 
 
@@ -1237,15 +1242,11 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     myFCT_list = list(FCT.objects.values())
     tmp_ref01 = list(Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).values())
 
+    context["crop_ind_count"] = tmp01.count()
+
     d = []
     for i in myRange:
       tmp02_list = [d for d in tmp01_list if d['id_table'] == i]
-      # tmp02 = tmp01_list
-      # tmp02_list = tmp02.values_list('pk', flat=True)
-      # tmp02_list = list(tmp02_list)
-      #      tmp02_key_list = []
-      #      for tmp01_item in tmp01_list:
-      #        tmp02_key_list.append(tmp01_item['id'])
       tmp02_key_list = [d['id'] for d in tmp02_list]
       logger.info('tmp02_list=')
       logger.info(tmp02_key_list)
@@ -1380,63 +1381,6 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     context['dri_list_va'] = tmp_va_by_class
     context['dri_list_fe'] = tmp_fe_by_class
     context['dri_list_vo'] = tmp_vo_by_class
-    #
-    # tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
-    # tmp_e = 0
-    # tmp_p = 0
-    # tmp_v = 0
-    # tmp_f = 0
-    # tmp_vol = 0
-    # if len(tmp_nut_group1) > 0:
-    #   for tmp in tmp_nut_group1:
-    #     tmp_e += tmp.myDRI.energy
-    #     tmp_p += tmp.myDRI.protein
-    #     tmp_v += tmp.myDRI.vita
-    #     tmp_f += tmp.myDRI.fe
-    #     tmp_vol += tmp.myDRI.max_vol
-    # context['dri_e1'] = tmp_e
-    # context['dri_p1'] = tmp_p
-    # context['dri_v1'] = tmp_v
-    # context['dri_f1'] = tmp_f
-    # context['dri_vol1'] = tmp_vol
-    #
-    # tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
-    # tmp_e = 0
-    # tmp_p = 0
-    # tmp_v = 0
-    # tmp_f = 0
-    # tmp_vol = 0
-    # if len(tmp_nut_group2) > 0:
-    #   for tmp in tmp_nut_group2:
-    #     tmp_e += tmp.myDRI.energy * tmp.target_pop
-    #     tmp_p += tmp.myDRI.protein * tmp.target_pop
-    #     tmp_v += tmp.myDRI.vita * tmp.target_pop
-    #     tmp_f += tmp.myDRI.fe * tmp.target_pop
-    #     tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
-    # context['dri_e2'] = tmp_e
-    # context['dri_p2'] = tmp_p
-    # context['dri_v2'] = tmp_v
-    # context['dri_f2'] = tmp_f
-    # context['dri_vol2'] = tmp_vol
-    #
-    # tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
-    # tmp_e = 0
-    # tmp_p = 0
-    # tmp_v = 0
-    # tmp_f = 0
-    # tmp_vol = 0
-    # if len(tmp_nut_group3) > 0:
-    #   for tmp in tmp_nut_group3:
-    #     tmp_e += tmp.myDRI.energy * tmp.target_pop
-    #     tmp_p += tmp.myDRI.protein * tmp.target_pop
-    #     tmp_v += tmp.myDRI.vita * tmp.target_pop
-    #     tmp_f += tmp.myDRI.fe * tmp.target_pop
-    #     tmp_vol += tmp.myDRI.max_vol * tmp.target_pop
-    # context['dri_e3'] = tmp_e
-    # context['dri_p3'] = tmp_p
-    # context['dri_v3'] = tmp_v
-    # context['dri_f3'] = tmp_f
-    # context['dri_vol3'] = tmp_vol
 
     ########### send number of season   ###########
     tmp = Season.objects.filter(myLocation=self.kwargs['myLocation'])[0]

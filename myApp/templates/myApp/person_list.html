@@ -351,6 +351,10 @@
             + Number($("#inpNum6").val()) + Number($("#inpNum7").val()) + Number($("#inpNum8").val());
     $("#inpNum9").val(tmp);
 
+    if (tmp == 0) {
+      $('#page_next').addClass('disabled');
+    }
+
     //-----------initializationn -------
 
   </script>

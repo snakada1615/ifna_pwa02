@@ -469,6 +469,11 @@
             }
     );
 
+    //作物が一個も選択されていなければ先に進めない
+    if (Json_Crop_Selected.length == 0){
+      $('#page_next').addClass('disabled');
+    }
+
     //------------------------
     getHTML_param = function () {
       var url_tmp = window.location.href.split('/');

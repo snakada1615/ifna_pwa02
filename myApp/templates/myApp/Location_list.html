@@ -16,7 +16,7 @@
       <div class="col-2 my-0 px-1">
 				<span>
 					<a class="btn btn-info badge text-wrap" href="{% url  'Location_create' %}">add new</a>
-          {% if mylist.count > 0 %}
+          {% if mylist.count > 1 %}
             <a id="btn_show" class="btn btn-info badge text-white">select</a>
           {% endif %}
 				</span>
@@ -133,6 +133,13 @@
 
   <!------------------------------------------------------------->
   <script type="text/javascript">
+    var count_loc = {{ count_loc }};
+    console.log('count_loc=' + count_loc);
+
+    if (count_loc == 0) {
+      $('#page_next').addClass('disabled');
+    }
+
     //////////////open dialog////
     $("#btn_show").click(function () {
       if (!$(this).is('[disabled=disabled]')) {

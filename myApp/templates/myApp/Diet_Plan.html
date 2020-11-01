@@ -1035,8 +1035,18 @@
     var json_crop_local_org = {{mylist_available|safe}};
     var json_crop_selected_org = {{mylist_selected|safe}};
     var json_crop_name = {{mylist_local_name|safe}};
+    var crop_selected_count = {{crop_ind_count }};
+    console.error('crop_selected_count');
+    console.error(crop_selected_count);
     console.error('json_crop_selected_org');
     console.error(json_crop_selected_org);
+
+    //
+    //作物が一個も選択されていなければ先に進めない
+    if (crop_selected_count == 0){
+      $('#page_next').addClass('disabled');
+    }
+
 
     let url_tmp = window.location.href.split('/');
     let tmp1 = url_tmp[url_tmp.length - 2];
