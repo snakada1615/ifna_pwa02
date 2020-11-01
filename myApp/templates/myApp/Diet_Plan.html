@@ -19,16 +19,17 @@
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
   <!-------------title--------------------------->
+  <div id="stepid" hidden>{{ stepid }}</div>
   <div class="container" aria-live="polite" aria-atomic="true" style="max-width: 540px; position: relative;">
 
     <div class="container" style="max-width: 540px;">
       <div class="row">
         {% include "./_dialog01.html" %}
         <div class="col-2 my-0 px-3">
-          {% if myStep == 400 %}
+          {% if stepid == 400 %}
             <img src="{% static 'img/no4.png' %}" alt="number 4">
-          {% elif myStep == 700 %}
-            <img src="{% static 'img/no7.png' %}" alt="number 4">
+          {% elif stepid == 700 %}
+            <img src="{% static 'img/no7.png' %}" alt="number 7">
           {% endif %}
         </div>
         <div class="col-8 my-0 px-1">
@@ -41,7 +42,7 @@
           <div class="row">
             <div class="col-12">
               <span>
-              <a class="btn btn-warning mt-2 my-0 py-0 btn-sm" mynum="100" id="btn_save_crop" href='#'>save</a>
+              <a class="btn btn-warning mt-2 my-0 py-0 btn-sm pointer_hand" mynum="100" id="btn_save_crop" >save</a>
             </span>
             </div>
           </div>
@@ -206,7 +207,7 @@
 
             <!-- モーダルの設定 change diet volume (Individual/Family用)----------------------------->
             <div id="toggle_visible_individual">
-              <span>*consumption target (1 portion=): <a href="#" id="btn_change_portion"></a>g</span>
+              <span>*consumption target (1 portion=): <a class="pointer_hand" id="btn_change_portion"></a>g</span>
 
               <div class="row pl-4">
                 <div class="column-11">
@@ -356,7 +357,7 @@
   <script id="template_Tab" type="text/x-custom-template">
     <div class="row d-flex">
       <div class="col-2">
-        <a class="btn mt-2 my-0 py-0 btn-sm btn_car_prev class-myNum"
+        <a class="btn mt-2 my-0 py-0 btn-sm btn_car_prev class-myNum pointer_hand"
            style="background-color:#ADC757;">prev</a>
         <div class="dropdown my-1 ">
           <button type="button dropdown-filter"
@@ -374,7 +375,7 @@
         <div class="font-weight-bold row justify-content-center align-self-center title_diet class-mypage"></div>
       </div>
       <div class="col-2">
-        <a class="btn mt-2 my-0 py-0 btn-sm btn_car_next class-myNum"
+        <a class="btn mt-2 my-0 py-0 btn-sm btn_car_next class-myNum pointer_hand"
            style="background-color:#ADC757;">next</a>
       </div>
     </div>
@@ -892,6 +893,11 @@
     }
 
     /* checkboxの選択時の色 */
+    .pointer_hand{
+        cursor: pointer;
+    }
+
+    /* checkboxの選択時の色 */
     .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
       background-color: red;
     }
@@ -1057,9 +1063,9 @@
 
 
     //////////////// initialize Food_grp_filter /////
-    $('.myfilter-item').append('<a class="dropdown-item item-selected" href="#">--show all--</a>');
+    $('.myfilter-item').append('<a class="dropdown-item item-selected pointer_hand">--show all--</a>');
     $.each(myFoodGrp, function (index, val) {
-      $('.myfilter-item').append('<a class="dropdown-item" href="#">' + val + '</a>');
+      $('.myfilter-item').append('<a class="dropdown-item pointer_hand">' + val + '</a>');
     });
 
     //////////////// change common name -> local name/////

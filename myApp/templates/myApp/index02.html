@@ -1,7 +1,7 @@
 {% extends 'myApp/_base.html' %}
 {% load static %}
 {% block content %}
-
+  <div id="stepid" hidden>{{ stepid }}</div>
   <div class="container text-white" style="max-width: 540px;">
     <div id="accordion2">
       <div class="card border-primary bg-info col-12 mt-2 mb-2 py-0" style="max-width: 540px;">
@@ -195,39 +195,6 @@
       // .box に .loaded を追加してローディング表示を消す
       spinner.classList.add('loaded');
 
-      var DATA = JSON.parse('{{ myParam|safe }}');
-      console.log(DATA);
-
-      {% comment %}      document.getElementById('btn02').classList.add("disabled");
-            document.getElementById('btn04').classList.add("disabled");
-            document.getElementById('btn05').classList.add("disabled");
-            document.getElementById('btn06').classList.add("disabled");
-            document.getElementById('btn07').classList.add("disabled");
-
-            if (DATA.myLocation > 0) {
-              document.getElementById('btn02').classList.remove("disabled");
-              var myURL = '/crop_select/' + DATA.myCountryName + '/' + DATA.myLocation + '/';
-              document.getElementById('btn02').href = myURL;
-              if (DATA.myCrop != "0") {
-                document.getElementById('btn04').classList.remove("disabled");
-                var myURL = '/person/list/' + DATA.myLocation + '/1/';
-                document.getElementById('btn04').href = myURL;
-                document.getElementById('btn07').classList.remove("disabled");
-                var myURL = '/index04/';
-                document.getElementById('btn07').href = myURL;
-      //          console.log(DATA.myTarget);
-                if (DATA.myTarget > 0) {
-                  document.getElementById('btn05').classList.remove("disabled");
-                  var myURL = '/Diet1/' + DATA.myLocation + '/';
-                  document.getElementById('btn05').href = myURL;
-                  if (DATA.myDiet > 0) {
-                    document.getElementById('btn06').classList.remove("disabled");
-                    var myURL = '/Output_list/' + DATA.myLocation + '/';
-                    document.getElementById('btn06').href = myURL;
-                  }
-                }
-              }
-            }{% endcomment %}
     }
 
   </script>

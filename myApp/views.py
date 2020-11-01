@@ -232,6 +232,7 @@ class Trial_View(TemplateView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -251,6 +252,7 @@ class IndexView(TemplateView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -293,6 +295,7 @@ class IndexView02(LoginRequiredMixin, TemplateView):  # todo myCountyNameの設�
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     context['myParam'] = json_str
     context['myuser'] = self.request.user
@@ -323,6 +326,7 @@ class Location_ListView(LoginRequiredMixin, ListView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     #    context['myParam'] = json_str
     return context
@@ -436,6 +440,7 @@ class Location_CreateView(LoginRequiredMixin, CreateView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -674,15 +679,12 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
 
     stepid = myUser.profile.stepid
     newstep = 0
-    if stepid in [100, 200, 300, 400]:
+    if int(stepid) <= 300:
       newstep = 300
-    elif stepid in [500, 600, 700]:
+    else:
       newstep = 600
-
-    logger.info(stepid)
-    logger.info(newstep)
-
     tmp_Param = SetURL(newstep, self.request.user)
+
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -690,7 +692,7 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
-    context['stepid'] = newstep
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -803,7 +805,8 @@ class Person_ListView(LoginRequiredMixin, ListView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
 
-    context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
+    myLoc = Location.objects.get(id=self.kwargs['myLocation'])
+    context['myLocation'] = myLoc
     context['myuser'] = self.request.user
     context['page'] = self.kwargs['page']
 
@@ -860,8 +863,11 @@ class Person_ListView(LoginRequiredMixin, ListView):
 
     context['myCommunity'] = dd1
 
+    if myLoc.country == 'ETH':  # エチオピア限定の暫定措置
+      tmp_Param = SetURL(200, self.request.user)
+    else:
+      tmp_Param = SetURL(200, self.request.user)
 
-    tmp_Param = SetURL(200, self.request.user)
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -869,6 +875,7 @@ class Person_ListView(LoginRequiredMixin, ListView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -1052,7 +1059,8 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
-    context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
+    myLoc = Location.objects.get(id=self.kwargs['myLocation'])
+    context['myLocation'] = myLoc
     myseason = Season.objects.get(myLocation=self.kwargs['myLocation'])
     context['season_count'] = myseason.season_count
     tmp_nut_group = Person.objects.filter(
@@ -1303,9 +1311,15 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
-    context['myStep'] = 400
 
-    tmp_Param = SetURL(400, self.request.user)
+    stepid = self.request.user.profile.stepid
+    newstep = 0
+    if int(stepid) <= 400:
+      newstep = 400
+    else:
+      newstep = 700
+    tmp_Param = SetURL(newstep, self.request.user)
+
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -1313,6 +1327,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -1639,6 +1654,7 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -1807,6 +1823,7 @@ class Output1(LoginRequiredMixin, TemplateView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -1915,6 +1932,7 @@ class Output2(LoginRequiredMixin, TemplateView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -1966,6 +1984,7 @@ class Output3(LoginRequiredMixin, TemplateView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -2047,6 +2066,7 @@ class Output4(LoginRequiredMixin, TemplateView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -2071,6 +2091,7 @@ class Output_list(LoginRequiredMixin, TemplateView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -2170,6 +2191,7 @@ class Crop_Feas_CreateView(LoginRequiredMixin, CreateView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -2240,7 +2262,7 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['myLocation_name'] = Location.objects.get(id=self.request.user.profile.myLocation).name
 
     if Location.objects.get(id=self.request.user.profile.myLocation).country == 'ETH':  # エチオピア限定の暫定措置
-      tmp_Param = SetURL(501, self.request.user)
+      tmp_Param = SetURL(500, self.request.user)
     else:
       tmp_Param = SetURL(701, self.request.user)
 
@@ -2251,6 +2273,7 @@ class Crop_Feas_ListView(LoginRequiredMixin, ListView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     context["mylist_available"] = []
 
@@ -2367,6 +2390,7 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -2398,6 +2422,7 @@ class FCT_ListView(LoginRequiredMixin, ListView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -2442,6 +2467,7 @@ class IndexView04(LoginRequiredMixin, TemplateView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     return context
 
@@ -2466,6 +2492,7 @@ class Crop_Name_ListView(LoginRequiredMixin, ListView):
     context['nav_link3'] = tmp_Param['forward_URL']
     context['nav_text3'] = tmp_Param['forward_Title']
     context["mark_text"] = tmp_Param['guide_text']
+    context["stepid"] = tmp_Param['stepid']
 
     context['myuser'] = self.request.user
     context['myCountryName'] = self.kwargs['myCountryName']
@@ -2678,7 +2705,7 @@ def SetURL(stepid, myUser):
     guide_text = 'Here, you set year-round availailibty of selected food item'
     try:
       back_URL = reverse_lazy("crop_feas_list")
-      forward_URL = reverse_lazy("diet2", kwargs={'myLocation': myLocation})
+      forward_URL = reverse_lazy("diet1", kwargs={'myLocation': myLocation})
     except:
       logger.error('無効な値を参照しています')
 
@@ -2712,7 +2739,7 @@ def SetURL(stepid, myUser):
     forward_Title = ""
     guide_text = 'please select output you want to check'
     try:
-      back_URL = reverse_lazy("diet2", kwargs={'myLocation': myLocation})
+      back_URL = reverse_lazy("diet1", kwargs={'myLocation': myLocation})
     except:
       logger.error('無効な値を参照しています')
 
@@ -2728,7 +2755,7 @@ def SetURL(stepid, myUser):
       logger.error('無効な値を参照しています')
 
   elif stepid == 501:
-    back_Title = "step5"
+    back_Title = "step4"
     main_Title = "step5/8"
     forward_Title = ""
     guide_text = 'you can explore to introduce new food crop in target area'

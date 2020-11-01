@@ -7,6 +7,7 @@
         rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
+  <div id="stepid" hidden>{{ stepid }}</div>
   <div class="container" style="max-width: 540px;">
     <div class="row">
       <div class="col-2 my-0 px-3">
@@ -336,17 +337,18 @@
     //-----------initializationn -------
 
     // Print initial value in a div box
-    $("#inpNum0").val(myCommunity.class0);
-    $("#inpNum1").val(myCommunity.class1);
-    $("#inpNum2").val(myCommunity.class2);
-    $("#inpNum3").val(myCommunity.class3);
-    $("#inpNum4").val(myCommunity.class4);
-    $("#inpNum5").val(myCommunity.class5);
-    $("#inpNum6").val(myCommunity.class6);
-    $("#inpNum7").val(myCommunity.class7);
-    $("#inpNum8").val(myCommunity.class8);
-    tmp = myCommunity.class0 + myCommunity.class1 + myCommunity.class2 + myCommunity.class3 + myCommunity.class4
-            + myCommunity.class5 + myCommunity.class6 + myCommunity.class7 + myCommunity.class8;
+    $("#inpNum0").val(myCommunity.class0 || 0);
+    $("#inpNum1").val(myCommunity.class1 || 0);
+    $("#inpNum2").val(myCommunity.class2 || 0);
+    $("#inpNum3").val(myCommunity.class3 || 0);
+    $("#inpNum4").val(myCommunity.class4 || 0);
+    $("#inpNum5").val(myCommunity.class5 || 0);
+    $("#inpNum6").val(myCommunity.class6 || 0);
+    $("#inpNum7").val(myCommunity.class7 || 0);
+    $("#inpNum8").val(myCommunity.class8 || 0);
+    tmp = Number($("#inpNum0").val()) + Number($("#inpNum1").val()) + Number($("#inpNum2").val())
+            + Number($("#inpNum3").val()) + Number($("#inpNum4").val()) + Number($("#inpNum5").val())
+            + Number($("#inpNum6").val()) + Number($("#inpNum7").val()) + Number($("#inpNum8").val());
     $("#inpNum9").val(tmp);
 
     //-----------initializationn -------
