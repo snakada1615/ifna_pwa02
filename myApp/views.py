@@ -1673,72 +1673,82 @@ class Output1(LoginRequiredMixin, TemplateView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
-    tmp_nut_group = Person.objects.filter(
-      myLocation=self.kwargs['myLocation'])
-    context['nutrient_target'] = tmp_nut_group[0].nut_group
+    # tmp_nut_group = Person.objects.filter(
+    #  myLocation=self.kwargs['myLocation'])
+    tmp_nut_group1 = Person.objects.filter(myLocation=self.kwargs['myLocation']).values_list('nut_group', 'target_scope'
+                                                                                             ).order_by('nut_group').distinct()
+    tmp_nut_group2 = {}
+    for a, b in tmp_nut_group1:
+      tmp_id = str((int(b) + 1) * 100)
+      tmp_nut_group2[tmp_id] = a
+
+    #    tmp_nut_group2 = list(tmp_nut_group2)
+    #context['nutrient_target'] =  # tmp_nut_group[0].nut_group
+    context['nutrient_target2'] = tmp_nut_group2
 
     month_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
                    'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
     tmp_seasons = Season.objects.get(myLocation_id=self.kwargs['myLocation'])
     month = []
-    season_name = []
+    season_name = {}
     season_field = ['season_name4', 'season_name1', 'season_name2', 'season_name3']
     for tmp in month_field:
       s_val = getattr(tmp_seasons, tmp)
       if s_val not in month:
         month.append(s_val)
     for tmp2 in month:
-      season_name.append(getattr(tmp_seasons, season_field[tmp2]))
+      tmp3 = str(tmp2 + 1)
+      season_name[tmp3] = getattr(tmp_seasons, season_field[tmp2])
     context["season_name"] = season_name
 
-    tmp_nut_group1 = tmp_nut_group.filter(target_scope=1)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    for tmp in tmp_nut_group1:
-      tmp_e += tmp.myDRI.energy
-      tmp_p += tmp.myDRI.protein
-      tmp_v += tmp.myDRI.vita
-      tmp_f += tmp.myDRI.fe
-    context['dri_e1'] = tmp_e
-    context['dri_p1'] = tmp_p
-    context['dri_v1'] = tmp_v
-    context['dri_f1'] = tmp_f
-
-    tmp_nut_group2 = tmp_nut_group.filter(target_scope=2)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    for tmp in tmp_nut_group2:
-      tmp_e += tmp.myDRI.energy
-      tmp_p += tmp.myDRI.protein
-      tmp_v += tmp.myDRI.vita
-      tmp_f += tmp.myDRI.fe
-    context['dri_e2'] = tmp_e
-    context['dri_p2'] = tmp_p
-    context['dri_v2'] = tmp_v
-    context['dri_f2'] = tmp_f
-
-    tmp_nut_group3 = tmp_nut_group.filter(target_scope=3)
-    tmp_e = 0
-    tmp_p = 0
-    tmp_v = 0
-    tmp_f = 0
-    for tmp in tmp_nut_group3:
-      tmp_e += tmp.myDRI.energy
-      tmp_p += tmp.myDRI.protein
-      tmp_v += tmp.myDRI.vita
-      tmp_f += tmp.myDRI.fe
-    context['dri_e3'] = tmp_e
-    context['dri_p3'] = tmp_p
-    context['dri_v3'] = tmp_v
-    context['dri_f3'] = tmp_f
+    # #tmp_nut_group1 =  # tmp_nut_group.filter(target_scope=1)
+    # tmp_e = 0
+    # tmp_p = 0
+    # tmp_v = 0
+    # tmp_f = 0
+    # for tmp in tmp_nut_group1:
+    #   tmp_e += tmp.myDRI.energy
+    #   tmp_p += tmp.myDRI.protein
+    #   tmp_v += tmp.myDRI.vita
+    #   tmp_f += tmp.myDRI.fe
+    # context['dri_e1'] = tmp_e
+    # context['dri_p1'] = tmp_p
+    # context['dri_v1'] = tmp_v
+    # context['dri_f1'] = tmp_f
+    #
+    # tmp_nut_group2 =  # tmp_nut_group.filter(target_scope=2)
+    # tmp_e = 0
+    # tmp_p = 0
+    # tmp_v = 0
+    # tmp_f = 0
+    # for tmp in tmp_nut_group2:
+    #   tmp_e += tmp.myDRI.energy
+    #   tmp_p += tmp.myDRI.protein
+    #   tmp_v += tmp.myDRI.vita
+    #   tmp_f += tmp.myDRI.fe
+    # context['dri_e2'] = tmp_e
+    # context['dri_p2'] = tmp_p
+    # context['dri_v2'] = tmp_v
+    # context['dri_f2'] = tmp_f
+    #
+    # tmp_nut_group3 =  # tmp_nut_group.filter(target_scope=3)
+    # tmp_e = 0
+    # tmp_p = 0
+    # tmp_v = 0
+    # tmp_f = 0
+    # for tmp in tmp_nut_group3:
+    #   tmp_e += tmp.myDRI.energy
+    #   tmp_p += tmp.myDRI.protein
+    #   tmp_v += tmp.myDRI.vita
+    #   tmp_f += tmp.myDRI.fe
+    # context['dri_e3'] = tmp_e
+    # context['dri_p3'] = tmp_p
+    # context['dri_v3'] = tmp_v
+    # context['dri_f3'] = tmp_f
 
     # send selected crop by community ######
     # --------------------create 16 Crop_individual-------------------------
-    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).filter(target_scope=1)
+    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation'])
     d = []
     if tmp01.count() > 0:
       for tmp02 in tmp01:
