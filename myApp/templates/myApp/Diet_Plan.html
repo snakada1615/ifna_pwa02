@@ -2,12 +2,14 @@
 {% load static %}
 {% block content %}
 
+{% comment %}
   <script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}"
         media="screen">
   <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}"
         media="screen">
+{% endcomment %}
   <script type="text/javascript"
           src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
   <script type="text/javascript" src="{% static 'js/jquery.barrating.min.js' %}"></script>
@@ -104,7 +106,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>Crop_Selected.setData_Crop:
     </div>
 
 
@@ -1657,6 +1659,7 @@
     };
 
 
+{% comment %}
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////
     ///////   ここから下のDatatablesは、今後使わない
@@ -1810,6 +1813,7 @@
     ///////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+{% endcomment %}
 
     /////    create object setup "Crop_Selected"   -------------------------------
     function Crop_individual(num_tbl) {
@@ -2461,7 +2465,7 @@
     }
 
 
-    Crop_available.data().hello("test desu");
+//    Crop_available.data().hello("test desu");
 
     //---tabの切替処理-------------
     let activeTab = $('#myTabs a').filter('.active');
