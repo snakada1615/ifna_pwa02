@@ -1318,7 +1318,10 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     if int(stepid) <= 400:
       newstep = 400
     else:
-      newstep = 700
+      if myLoc.country == 'ETH':  # エチオピア限定の暫定措置
+        newstep = 700
+      else:
+        newstep = 701
     tmp_Param = SetURL(newstep, self.request.user)
 
     context['nav_link1'] = tmp_Param['back_URL']
@@ -1989,7 +1992,7 @@ class Output4(LoginRequiredMixin, TemplateView):
     context["mylist_selected"] = d
 
     # --------------------create populationl-------------------------
-    tmp01 = Person.objects.filter(myLocation_id=self.kwargs['myLocation']).filter(target_scope=3)
+    tmp01 = Person.objects.filter(myLocation_id=self.kwargs['myLocation'])
     if tmp01.count() > 0:
       dd = {}
       for tmp02 in tmp01:
@@ -2763,18 +2766,6 @@ def SetURL(stepid, myUser):
     guide_text = 'please select output you want to check'
     try:
       back_URL = reverse_lazy("crop_feas_list")
-    except:
-      logger.error('無効な値を参照しています')
-
-  elif stepid == 814:
-    back_Title = "step8"
-    main_Title = "output4"
-    forward_Title = ""
-    guide_text = 'this is nutrient balance for target group'
-    try:
-      back_URL = reverse_lazy("output_list",
-                              kwargs={'myLocation': myLocation})
-      forward_URL = ""
     except:
       logger.error('無効な値を参照しています')
 
