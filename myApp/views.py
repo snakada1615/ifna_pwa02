@@ -684,7 +684,7 @@ class CropSelect(LoginRequiredMixin, TemplateView):  # Query数を削減
 
     stepid = myUser.profile.stepid
     newstep = 0
-    if int(stepid) <= 300:
+    if int(stepid) <= 400:
       newstep = 300
     else:
       newstep = 600
@@ -1315,7 +1315,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
 
     stepid = self.request.user.profile.stepid
     newstep = 0
-    if int(stepid) <= 400:
+    if int(stepid) <= 600:
       newstep = 400
     else:
       if myLoc.country == 'ETH':  # エチオピア限定の暫定措置
@@ -1682,24 +1682,84 @@ class Output1(LoginRequiredMixin, TemplateView):
       tmp_id = str((int(b) + 1) * 100)
       tmp_nut_group2[tmp_id] = a
 
-    #    tmp_nut_group2 = list(tmp_nut_group2)
-    #context['nutrient_target'] =  # tmp_nut_group[0].nut_group
     context['nutrient_target2'] = tmp_nut_group2
+
+    tmp_nut_group = Person.objects.filter(
+      myLocation=self.kwargs['myLocation']).select_related('myDRI')
+    context['nutrient_target'] = tmp_nut_group[0].nut_group
+    nut_group_list = [
+      'child 0-23 month',
+      'child 24-59 month',
+      'child 6-9 yr',
+      'adolescent male',
+      'adolescent female',
+      'adult male',
+      'adult female',
+      'pregnant',
+      'lactating',
+      'adult',
+      'adolescent pregnant',
+      'adolescent lact',
+      'adolescent all',
+    ]
+
+    tmp_dri = DRI.objects.all()
+
 
     month_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
                    'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
     tmp_seasons = Season.objects.get(myLocation_id=self.kwargs['myLocation'])
     month = []
-    season_name = {}
+    season_name = []
     season_field = ['season_name4', 'season_name1', 'season_name2', 'season_name3']
-    for tmp in month_field:
-      s_val = getattr(tmp_seasons, tmp)
-      if s_val not in month:
-        month.append(s_val)
-    for tmp2 in month:
-      tmp3 = str(tmp2 + 1)
-      season_name[tmp3] = getattr(tmp_seasons, season_field[tmp2])
-    context["season_name"] = season_name
+
+    tmp_dri = DRI.objects.all()
+    # tmp_group_list = list(tmp_dri.values_list('nut_group', flat=True))
+    tmp_dri_count = len(nut_group_list)
+    tmp_en_by_class = [-1] * tmp_dri_count
+    tmp_pr_by_class = [-1] * tmp_dri_count
+    tmp_va_by_class = [-1] * tmp_dri_count
+    tmp_fe_by_class = [-1] * tmp_dri_count
+    tmp_vo_by_class = [-1] * tmp_dri_count
+    for mydri in tmp_dri:
+      logger.info(mydri.nut_group)
+      index = nut_group_list.index(mydri.nut_group)
+      logger.info(index)
+      tmp_en_by_class[index] = mydri.energy
+      tmp_pr_by_class[index] = mydri.protein
+      tmp_va_by_class[index] = mydri.vita
+      tmp_fe_by_class[index] = mydri.fe
+      tmp_vo_by_class[index] = mydri.max_vol
+    context['dri_list_en'] = tmp_en_by_class
+    context['dri_list_pr'] = tmp_pr_by_class
+    context['dri_list_va'] = tmp_va_by_class
+    context['dri_list_fe'] = tmp_fe_by_class
+    context['dri_list_vo'] = tmp_vo_by_class
+
+    # queryの簡素化検討
+    tmp_scope = list(
+      tmp_nut_group.values_list('target_scope', flat=True).order_by(
+        'target_scope').distinct())
+    context['myTarget'] = tmp_scope
+
+    myseason = []
+    myRange = []
+    tmp = Season.objects.filter(myLocation=self.kwargs['myLocation'])[0]
+    tmpdat = str(getattr(tmp, 'season_count'))
+    for i in range(int(tmpdat)):
+      myseason.append(i + 1)
+      for scope in tmp_scope:
+        myRange.append(i + 1 + (int(scope) + 1) * 100)
+    logger.info('myRange=')
+    logger.info(myRange)
+
+    context['season_list'] = myseason
+
+    season_name.append(str(getattr(tmp, 'season_name1')))
+    season_name.append(str(getattr(tmp, 'season_name2')))
+    season_name.append(str(getattr(tmp, 'season_name3')))
+    season_name.append(str(getattr(tmp, 'season_name4')))
+    context['season_name'] = season_name
 
     # #tmp_nut_group1 =  # tmp_nut_group.filter(target_scope=1)
     # tmp_e = 0

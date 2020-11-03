@@ -57,142 +57,147 @@
   </div>
 
 
-  <div class="container-fluid" style="max-width: 580px;">
-    {% for key1, value1 in nutrient_target2.items %}
-      <div class="card border-info border-5 rounded col-12 mt-2 py-1"
-           style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
-        <div class="text-dark">Target group: {{ value1 }}</div>
-        <div class="card-body py-0 px-0">
-          {% for key2, value2 in season_name.items %}
-            <div class="card border-success border-5 rounded col-12 mt-2 py-1"
-                 style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
-              <div class="card-body py-0 px-0">
-                <div class="text-dark">Season: {{ value2 }}</div>
-
-                <p class="card-title text-dark my-1">
-                  <span style="color:red">■</span>: less than 50%,
-                  <span style="color:orange">■</span>: 50-100%,
-                  <span style="color:green">■</span>: over 100%
-                </p>
-
-                <table border="1" class="table table-striped selected_crops_tbl" myNum={{ key1|add:key2 }}>
-                  <tr>
-                    <th>name</th>
-                    <th>En</th>
-                    <th>Pr</th>
-                    <th>Va</th>
-                    <th>Fe</th>
-                    <th>Wt</th>
-                  </tr>
-                  <tr>
-                    <td>total</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </table>
-
-                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
-                  <div class="col-3">
-                    <label class="text-dark" for="rating_en">Energy</label>
-                  </div>
-                  <div class="col-2">
-                    <div class="text-dark lbl_target_en" myNum={{ forloop.counter|add:500 }}></div>
-                  </div>
-                  <div class="col-7">
-                    <select class="rating_DRI rating_en" myNum={{ forloop.counter|add:500 }}>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
-                  <div class="col-3">
-                    <label class="text-dark" for="rating_pr">Protein</label>
-                  </div>
-                  <div class="col-2">
-                    <div class="text-dark lbl_target_pr" myNum={{ forloop.counter|add:500 }}></div>
-                  </div>
-                  <div class="col-7">
-                    <select class="rating_DRI rating_pr" myNum={{ forloop.counter|add:500 }}>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-row no-gutters my-0" style="height:30px;">
-                  <div class="col-3">
-                    <label class="text-dark" for="rating_va">VitA</label>
-                  </div>
-                  <div class="col-2">
-                    <div class="text-dark lbl_target_va" myNum={{ forloop.counter|add:500 }}></div>
-                  </div>
-                  <div class="col-7">
-                    <select class="rating_DRI rating_va" myNum={{ forloop.counter|add:500 }}>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-row no-gutters my-0" style="height:30px;">
-                  <div class="col-3">
-                    <label class="text-dark " for="rating_fe">Iron</label>
-                  </div>
-                  <div class="col-2">
-                    <div class="text-dark lbl_target_fe" myNum={{ forloop.counter|add:500 }}></div>
-                  </div>
-                  <div class="col-7">
-                    <select class="rating_DRI rating_fe" myNum={{ forloop.counter|add:500 }}>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    {% endfor %}
+  <div id="result_box1" class="container-fluid" style="max-width: 580px;">
   </div>
+
+  <!-- ここから 季節毎のtable用テンプレート ----------------------------->
+  <script id="template_season" type="text/x-custom-template">
+    <div class="card border-success border-5 rounded col-12 mt-2 py-1 card_season class_myNum"
+         style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+      <div class="card-body py-0 px-0">
+        <div class="text-dark season_title"></div>
+
+        <p class="card-title text-dark my-1">
+          <span style="color:red">■</span>: less than 50%,
+          <span style="color:orange">■</span>: 50-100%,
+          <span style="color:green">■</span>: over 100%
+        </p>
+
+        <table border="1" class="table table-striped selected_crops_tbl class_myNum">
+          <tr>
+            <th>name</th>
+            <th>En</th>
+            <th>Pr</th>
+            <th>Va</th>
+            <th>Fe</th>
+            <th>Wt</th>
+          </tr>
+          <tr>
+            <td>total</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+
+        <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+          <div class="col-3">
+            <label class="text-dark" for="rating_en">Energy</label>
+          </div>
+          <div class="col-2">
+            <div class="text-dark lbl_target_en class_myNum"></div>
+          </div>
+          <div class="col-7">
+            <select class="rating_DRI rating_en class_myNum">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+          <div class="col-3">
+            <label class="text-dark" for="rating_pr">Protein</label>
+          </div>
+          <div class="col-2">
+            <div class="text-dark lbl_target_pr class_myNum"></div>
+          </div>
+          <div class="col-7">
+            <select class="rating_DRI rating_pr class_myNum">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row no-gutters my-0" style="height:30px;">
+          <div class="col-3">
+            <label class="text-dark" for="rating_va">VitA</label>
+          </div>
+          <div class="col-2">
+            <div class="text-dark lbl_target_va class_myNum"></div>
+          </div>
+          <div class="col-7">
+            <select class="rating_DRI rating_va class_myNum">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row no-gutters my-0" style="height:30px;">
+          <div class="col-3">
+            <label class="text-dark " for="rating_fe">Iron</label>
+          </div>
+          <div class="col-2">
+            <div class="text-dark lbl_target_fe class_myNum"></div>
+          </div>
+          <div class="col-7">
+            <select class="rating_DRI rating_fe class_myNum">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </script>
+
+  <!-- ここから target枠のテンプレート ----------------------------->
+  <script id="template_target" type="text/x-custom-template">
+    <div class="card border-info border-5 rounded col-12 mt-2 py-1"
+         style="max-width: 540px; color:#24535F ;background-color:#e9ecef;">
+      <div class="text-dark target_group"></div>
+      <div class="card-body py-0 px-0 result_box2">
+      </div>
+    </div>
+
+  </script>
 
   <!------------------------------------------------------------->
   <style media="screen">
@@ -209,31 +214,40 @@
     var myLocation = '';
     var myRoot = '';
     var json_crop_selected = {{mylist_selected|safe}};
-    var nutrient_target2 = {{nutrient_target2|safe}};
     var seasons = {{season_name|safe}};
+    var season_list = {{ season_list|safe }};
+    var season_name = {{ season_name|safe }};
     var target_en = [];
     var target_pr = [];
     var target_va = [];
     var target_fe = [];
-
+    var dri_target_en = {{ dri_list_en|safe }};
+    var dri_target_pr = {{ dri_list_pr|safe }};
+    var dri_target_va = {{ dri_list_va|safe }};
+    var dri_target_fe = {{ dri_list_fe|safe }};
+    var dri_target_vol = {{ dri_list_vo|safe }};
+    var myTarget = {{ myTarget|safe }};
+    var myRange = [];
+    var template_Box = $('#template_target').html();
+    var template_Table = $('#template_season').html();
     console.error(json_crop_selected);
     console.error(seasons);
-    console.error(nutrient_target2);
-
-{% comment %}
-    target_en[1] = {{dri_e1}};
-    target_pr[1] = {{dri_p1}};
-    target_va[1] = {{dri_v1}};
-    target_fe[1] = {{dri_f1}};
-    target_en[2] = {{dri_e2}};
-    target_pr[2] = {{dri_p2}};
-    target_va[2] = {{dri_v2}};
-    target_fe[2] = {{dri_f2}};
-    target_en[3] = {{dri_e3}};
-    target_pr[3] = {{dri_p3}};
-    target_va[3] = {{dri_v3}};
-    target_fe[3] = {{dri_f3}};
-{% endcomment %}
+    //    console.error(nutrient_target2);
+    const target_name = [
+      'child 6-23 month',
+      'child 24-59 month',
+      'child 6-9 yr',
+      'adolescent male',
+      'adolescent female',
+      'adult male',
+      'adult female',
+      'pregnant',
+      'lactating',
+      'adult',
+      'adolescent pregnant',
+      'adolescent lact',
+      'adolescent all'
+    ];
 
     let url_tmp = window.location.href.split('/');
     let tmp1 = url_tmp[url_tmp.length - 2];
@@ -242,26 +256,48 @@
     url_tmp.pop();
     myRoot = url_tmp.join("/") + '/';
     var myLocation_id = tmp1;
+
+    ////////////////////////////////////////////////////
+    // タブ、テーブルのhtml追加
+    ////////////////////////////////////////////////////
+    $.each(myTarget, function (index1, val1) {
+      let cr = '';
+      // タブを追加する
+      let myBox = $('#result_box1').append(template_Box);
+
+      $.each(myBox.find('.target_group'), function (index2, val2) {
+        if (!($(val2).text())) {
+          $(val2).text('Target: ' + target_name[Number(val1)]);
+          $.each(season_list, function (index3, val3) {
+            let myBox2 = $(val2).append(template_Table);
+
+            // テーブル番号の取得
+            let tbl_num2 = Number(val3) + (Number(val1) + 1) * 100;
+            myRange.push(tbl_num2);
+            console.log(tbl_num2);
+
+            // 追加されたtableに季節情報、テーブル番号を追加
+            $.each(myBox2.find('.card_season'), function (index4, val4) {
+              if (!(val4.hasAttribute('myNum'))) {
+                $(val4).attr('myNum', tbl_num2);
+                $(val4).find('.season_title').text('Season: ' + season_name[index3]);
+              }
+            });
+
+          })
+        }
+      });
+    });
+    ////////////////////////////////////////////////////
+    // タブ、テーブルのhtml追加ここまで
+    ////////////////////////////////////////////////////
+
+
     //////////////// star rating/////
     $(function () {
       $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
     });
     ////////////////////////////////
-{% comment %}
-    $('.lbl_target_en[myNum^=4]').text(target_en[1].toFixed(0));
-    $('.lbl_target_pr[myNum^=4]').text(target_pr[1].toFixed(0));
-    $('.lbl_target_va[myNum^=4]').text(target_va[1].toFixed(0));
-    $('.lbl_target_fe[myNum^=4]').text(target_fe[1].toFixed(0));
-    $('.lbl_target_en[myNum^=5]').text(target_en[2].toFixed(0));
-    $('.lbl_target_pr[myNum^=5]').text(target_pr[2].toFixed(0));
-    $('.lbl_target_va[myNum^=5]').text(target_va[2].toFixed(0));
-    $('.lbl_target_fe[myNum^=5]').text(target_fe[2].toFixed(0));
-    $('.lbl_target_en[myNum^=3]').text(target_en[3].toFixed(0));
-    $('.lbl_target_pr[myNum^=3]').text(target_pr[3].toFixed(0));
-    $('.lbl_target_va[myNum^=3]').text(target_va[3].toFixed(0));
-    $('.lbl_target_fe[myNum^=3]').text(target_fe[3].toFixed(0));
-{% endcomment %}
-    /////////////////////////////
     //////////////////////////////////// ////////set cell color////////////////
     function SetCellColor(i_cell, i_target) {
       let res = '';
@@ -303,7 +339,7 @@
         sum_va += Number($(myRow).children('td').eq(3).text());
         sum_fe += Number($(myRow).children('td').eq(4).text());
       });
-      target_scope = Math.trunc((id_table - 300) / 100);
+      target_scope = Math.trunc(id_table / 100);
 
       cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[target_scope]) +
               SetCellColor(Math.round(sum_pr), target_pr[target_scope]) +
@@ -363,7 +399,6 @@
     // initialize all table (selected_table)
     for (var i = 0; i < json_crop_selected.length; i++) {
       data = json_crop_selected[i];
-      console.log(data);
       if (data.myLocation === Number(myLocation_id)) {
         let cr = '';
         cr += '<tr>';
@@ -374,7 +409,7 @@
         cr += '<td>' + Math.round(data.FE * data.total_weight / 100, 1) + '</td>';
         cr += '<td>' + data.total_weight + '</td>';
         cr += '</tr>';
-        DrawSelected_addRow(Number(data.myid_tbl) + 300, cr);
+        DrawSelected_addRow(Number(data.myid_tbl), cr);
 //        $('.lst_month[myNum=' + (Number(data.myid_tbl) + 300) + ']').html(data.month);
       }
     }
