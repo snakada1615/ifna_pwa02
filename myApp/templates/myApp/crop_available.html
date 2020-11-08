@@ -470,7 +470,7 @@
     );
 
     //作物が一個も選択されていなければ先に進めない
-    if (Json_Crop_Selected.length == 0){
+    if (Json_Crop_Selected.length == 0) {
       $('#page_next').addClass('disabled');
     }
 
@@ -622,28 +622,40 @@
       $("#myrow_tmp").text(myrow);
       //tableに表示するためのデータ作成
       $myTbl.find(".season-row").remove();
+      $myTbl.find(".legend-row").remove();
       for (var j = 0; j < season_tmp.season_count; j++) {
         let start_mon = season_tmp["start" + String(j + 1)];
         let end_mon = season_tmp["end" + String(j + 1)];
+        let myName = 'radio_option' + j;
         cr += '<div class="row season-row">';
         cr += '<div class="col-2 text-center col_season">' + $mySeason[j].text() + '</div>';
         cr += '<div class="col-2 text-center col_start" month="' + start_mon + '">' + month_name[start_mon - 1] + '</div>';
         cr += '<div class="col-2 text-center col_end" month="' + end_mon + '">' + month_name[end_mon - 1] + '</div>';
         cr += '<div class="col-6">';
-        cr += '<div class="dropdown">';
-        cr += '<button type="button" class="btn btn-light dropdown-toggle" id="' + 'dropdownMenuButton' + String(j + 1) + '" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-        cr += 'availability</button>';
-        cr += '<div class="dropdown-menu" aria-labelledby="' + 'dropdownMenuButton' + String(j + 1) + '">';
-        cr += '<button class="dropdown-item" type="button">whole season</button>';
 
-        cr += '<button class="dropdown-item" type="button">more than half season</button>';
-        cr += '<button class="dropdown-item" type="button">less than half season</button>';
-        cr += '<button class="dropdown-item" type="button">not available</a>';
-        cr += '</div>';
-        cr += '</div>';
+        cr += '<form class="form-check form-check-inline form-inline d-flex justify-content-between">';
+        cr += '  <input class="form-check-input" type="radio" name=' + myName + ' value="1">';
+        cr += '  <label class="form-check-label mr-3 ml-0">A</label>';
+        cr += '  <input class="form-check-input" type="radio" name=' + myName + ' value="2">';
+        cr += '  <label class="form-check-label mr-3 ml-0">B</label>';
+        cr += '  <input class="form-check-input" type="radio" name=' + myName + ' value="3">';
+        cr += '  <label class="form-check-label mr-3 ml-0">C</label>';
+        cr += '  <input class="form-check-input" type="radio" name=' + myName + ' value="0">';
+        cr += '  <label class="form-check-label mr-3 ml-0">D</label>';
+        cr += '</form>';
+
         cr += '</div>';
         cr += '</div>';
       }
+
+      cr += '<div class="row legend-row">';
+      cr += '<div class="col bg-info text-white">';
+      cr += '<div>A: whole season</div>';
+      cr += '<div>B: more than half season</div>';
+      cr += '<div>C: less than half season</div>';
+      cr += '<div>D: not available</div>';
+      cr += '</div>';
+
       $myTbl.append(cr);
       //console.log(cr);
       $('#myModal02Label').text('Availability of ' + crop_name);
@@ -1096,7 +1108,7 @@
           $('.container_crop_avail').find('.season-row').each(function (index_r, myRow) {
             const mon_start = $(myRow).find('.col_start').attr('month');
             const mon_end = $(myRow).find('.col_end').attr('month');
-            const avail_val = crop_avail_num[$(myRow).find('.dropdown-toggle').text()];
+            const avail_val = $(myRow).find('.form-check-input:checked').val();
             const monthes = month_conv(Number(mon_start), Number(mon_end));
             if (avail_val === undefined) {
               return;
