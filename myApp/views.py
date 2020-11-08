@@ -1321,7 +1321,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
       if myLoc.country == 'ETH':  # エチオピア限定の暫定措置
         newstep = 700
       else:
-        newstep = 701
+        newstep = 700
     tmp_Param = SetURL(newstep, self.request.user)
 
     context['nav_link1'] = tmp_Param['back_URL']
@@ -2745,7 +2745,7 @@ def SetURL(stepid, myUser):
     forward_Title = "step8"
     guide_text = 'Here, you examine feasibility of NDF you are going to introduce'
     try:
-      back_URL = reverse_lazy("diet1", kwargs={'myLocation': myLocation})
+      back_URL = reverse_lazy("crop_select", kwargs={'myLocation': myLocation})
       forward_URL = reverse_lazy("output_list", kwargs={'myLocation': myLocation})
     except:
       logger.error('無効な値を参照しています')
