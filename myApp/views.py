@@ -1321,7 +1321,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
       if myLoc.country == 'ETH':  # エチオピア限定の暫定措置
         newstep = 700
       else:
-        newstep = 700
+        newstep = 400
     tmp_Param = SetURL(newstep, self.request.user)
 
     context['nav_link1'] = tmp_Param['back_URL']
@@ -1760,51 +1760,6 @@ class Output1(LoginRequiredMixin, TemplateView):
     season_name.append(str(getattr(tmp, 'season_name3')))
     season_name.append(str(getattr(tmp, 'season_name4')))
     context['season_name'] = season_name
-
-    # #tmp_nut_group1 =  # tmp_nut_group.filter(target_scope=1)
-    # tmp_e = 0
-    # tmp_p = 0
-    # tmp_v = 0
-    # tmp_f = 0
-    # for tmp in tmp_nut_group1:
-    #   tmp_e += tmp.myDRI.energy
-    #   tmp_p += tmp.myDRI.protein
-    #   tmp_v += tmp.myDRI.vita
-    #   tmp_f += tmp.myDRI.fe
-    # context['dri_e1'] = tmp_e
-    # context['dri_p1'] = tmp_p
-    # context['dri_v1'] = tmp_v
-    # context['dri_f1'] = tmp_f
-    #
-    # tmp_nut_group2 =  # tmp_nut_group.filter(target_scope=2)
-    # tmp_e = 0
-    # tmp_p = 0
-    # tmp_v = 0
-    # tmp_f = 0
-    # for tmp in tmp_nut_group2:
-    #   tmp_e += tmp.myDRI.energy
-    #   tmp_p += tmp.myDRI.protein
-    #   tmp_v += tmp.myDRI.vita
-    #   tmp_f += tmp.myDRI.fe
-    # context['dri_e2'] = tmp_e
-    # context['dri_p2'] = tmp_p
-    # context['dri_v2'] = tmp_v
-    # context['dri_f2'] = tmp_f
-    #
-    # tmp_nut_group3 =  # tmp_nut_group.filter(target_scope=3)
-    # tmp_e = 0
-    # tmp_p = 0
-    # tmp_v = 0
-    # tmp_f = 0
-    # for tmp in tmp_nut_group3:
-    #   tmp_e += tmp.myDRI.energy
-    #   tmp_p += tmp.myDRI.protein
-    #   tmp_v += tmp.myDRI.vita
-    #   tmp_f += tmp.myDRI.fe
-    # context['dri_e3'] = tmp_e
-    # context['dri_p3'] = tmp_p
-    # context['dri_v3'] = tmp_v
-    # context['dri_f3'] = tmp_f
 
     # send selected crop by community ######
     # --------------------create 16 Crop_individual-------------------------
@@ -2745,7 +2700,7 @@ def SetURL(stepid, myUser):
     forward_Title = "step8"
     guide_text = 'Here, you examine feasibility of NDF you are going to introduce'
     try:
-      back_URL = reverse_lazy("crop_select", kwargs={'myLocation': myLocation})
+      back_URL = reverse_lazy("diet1", kwargs={'myLocation': myLocation})
       forward_URL = reverse_lazy("output_list", kwargs={'myLocation': myLocation})
     except:
       logger.error('無効な値を参照しています')
