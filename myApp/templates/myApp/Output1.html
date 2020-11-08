@@ -230,9 +230,8 @@
     var myRange = [];
     var template_Box = $('#template_target').html();
     var template_Table = $('#template_season').html();
-    console.error(json_crop_selected);
-    console.error(seasons);
     //    console.error(nutrient_target2);
+    console.error(dri_target_en);
     const target_name = [
       'child 6-23 month',
       'child 24-59 month',
@@ -274,12 +273,12 @@
             // テーブル番号の取得
             let tbl_num2 = Number(val3) + (Number(val1) + 1) * 100;
             myRange.push(tbl_num2);
-            console.log(tbl_num2);
 
             // 追加されたtableに季節情報、テーブル番号を追加
             $.each(myBox2.find('.card_season'), function (index4, val4) {
               if (!(val4.hasAttribute('myNum'))) {
                 $(val4).attr('myNum', tbl_num2);
+                $(val4).find('.class_myNum').attr('myNum', tbl_num2);
                 $(val4).find('.season_title').text('Season: ' + season_name[index3]);
               }
             });
@@ -341,33 +340,33 @@
       });
       target_scope = Math.trunc(id_table / 100);
 
-      cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), target_en[target_scope]) +
-              SetCellColor(Math.round(sum_pr), target_pr[target_scope]) +
-              SetCellColor(Math.round(sum_va), target_va[target_scope]) +
-              SetCellColor(Math.round(sum_fe), target_fe[target_scope]) + '<td></td><td class="tableItem_hide"><' +
+      cr += '<tr><td>total</td>' + SetCellColor(Math.round(sum_en), dri_target_en[target_scope]) +
+              SetCellColor(Math.round(sum_pr), dri_target_pr[target_scope]) +
+              SetCellColor(Math.round(sum_va), dri_target_va[target_scope]) +
+              SetCellColor(Math.round(sum_fe), dri_target_fe[target_scope]) + '<td></td><td class="tableItem_hide"><' +
               '/td><td class="tableItem_hide"></td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
               '</td><td class="tableItem_hide"></td></tr>';
       $myTable.append(cr);
 
-      let rate_en = Math.round(sum_en * 10 / target_en[target_scope]);
+      let rate_en = Math.round(sum_en * 10 / dri_target_en[target_scope]);
       if (rate_en > 10) {
         rate_en = 10
       } else if (rate_en < 1) {
         rate_en = 1
       }
-      let rate_pr = Math.round(sum_pr * 10 / target_pr[target_scope]);
+      let rate_pr = Math.round(sum_pr * 10 / dri_target_pr[target_scope]);
       if (rate_pr > 10) {
         rate_pr = 10
       } else if (rate_pr < 1) {
         rate_pr = 1
       }
-      let rate_va = Math.round(sum_va * 10 / target_va[target_scope]);
+      let rate_va = Math.round(sum_va * 10 / dri_target_va[target_scope]);
       if (rate_va > 10) {
         rate_va = 10
       } else if (rate_va < 1) {
         rate_va = 1
       }
-      let rate_fe = Math.round(sum_fe * 10 / target_fe[target_scope]);
+      let rate_fe = Math.round(sum_fe * 10 / dri_target_fe[target_scope]);
       if (rate_fe > 10) {
         rate_fe = 10
       } else if (rate_fe < 1) {
@@ -399,7 +398,7 @@
     // initialize all table (selected_table)
     for (var i = 0; i < json_crop_selected.length; i++) {
       data = json_crop_selected[i];
-      if (data.myLocation === Number(myLocation_id)) {
+      if (data.myid_tbl > 0) {
         let cr = '';
         cr += '<tr>';
         cr += '<td>' + data.name + '</td>';

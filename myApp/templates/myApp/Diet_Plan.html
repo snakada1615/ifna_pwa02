@@ -1315,18 +1315,6 @@
       delRow.remove();
       console.error(this.dom_tbl_Crop.find('tbody tr'));
 
-      {% comment %}
-            this.dom_tbl_Crop.find('tbody tr').each(function (j, myRow) {
-              if ($(myRow).children('td').eq(7).text() === String(food_item_id)) { // 指定行が存在した場合
-                del_flag = j;
-              }
-            });
-
-            if (del_flag > -1) {
-              this.dom_tbl_Crop.find('tbody tr').eq(del_flag).remove()
-            }
-            console.groupEnd();
-      {% endcomment %}
       return del_flag;
     };
     Crop_Selected.prototype._drawRaw_eraseLast = function () { //今後使わないので廃止
