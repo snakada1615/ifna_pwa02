@@ -1315,7 +1315,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
 
     stepid = self.request.user.profile.stepid
     newstep = 0
-    if int(stepid) <= 600:
+    if int(stepid) < 600:
       newstep = 400
     else:
       if myLoc.country == 'ETH':  # エチオピア限定の暫定措置
@@ -1336,12 +1336,13 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     return context
 
 
-class Diet_Plan2(LoginRequiredMixin, TemplateView):
-  template_name = "myApp/Diet_Plan.html"
+class Diet_instant(LoginRequiredMixin, TemplateView):
+  template_name = "myApp/Diet_instant.html"
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
-    context['myLocation'] = Location.objects.get(id=self.kwargs['myLocation'])
+    myLoc = Location.objects.get(id=self.kwargs['myLocation'])
+    context['myLocation'] = myLoc
     myseason = Season.objects.get(myLocation=self.kwargs['myLocation'])
     context['season_count'] = myseason.season_count
     tmp_nut_group = Person.objects.filter(
@@ -1354,7 +1355,7 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
       'adolescent male',
       'adolescent female',
       'adult male',
-      'adult female'
+      'adult female',
       'pregnant',
       'lactating',
       'adult',
@@ -1364,15 +1365,16 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     ]
 
     tmp_dri = DRI.objects.all()
-    tmp_en_by_class = [-1] * 30
-    tmp_pr_by_class = [-1] * 30
-    tmp_va_by_class = [-1] * 30
-    tmp_fe_by_class = [-1] * 30
-    tmp_vo_by_class = [-1] * 30
-    tmp_group_list = list(tmp_dri.values_list('nut_group', flat=True))
+    # tmp_group_list = list(tmp_dri.values_list('nut_group', flat=True))
+    tmp_dri_count = len(nut_group_list)
+    tmp_en_by_class = [-1] * tmp_dri_count
+    tmp_pr_by_class = [-1] * tmp_dri_count
+    tmp_va_by_class = [-1] * tmp_dri_count
+    tmp_fe_by_class = [-1] * tmp_dri_count
+    tmp_vo_by_class = [-1] * tmp_dri_count
     for mydri in tmp_dri:
       logger.info(mydri.nut_group)
-      index = tmp_group_list.index(mydri.nut_group)
+      index = nut_group_list.index(mydri.nut_group)
       logger.info(index)
       tmp_en_by_class[index] = mydri.energy
       tmp_pr_by_class[index] = mydri.protein
@@ -1517,15 +1519,11 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     myFCT_list = list(FCT.objects.values())
     tmp_ref01 = list(Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).values())
 
+    context["crop_ind_count"] = tmp01.count()
+
     d = []
     for i in myRange:
       tmp02_list = [d for d in tmp01_list if d['id_table'] == i]
-      # tmp02 = tmp01_list
-      # tmp02_list = tmp02.values_list('pk', flat=True)
-      # tmp02_list = list(tmp02_list)
-      #      tmp02_key_list = []
-      #      for tmp01_item in tmp01_list:
-      #        tmp02_key_list.append(tmp01_item['id'])
       tmp02_key_list = [d['id'] for d in tmp02_list]
       logger.info('tmp02_list=')
       logger.info(tmp02_key_list)
@@ -1591,9 +1589,18 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     context["mylist_selected"] = d
 
     context['myuser'] = self.request.user
-    context['myStep'] = 700
 
-    tmp_Param = SetURL(700, self.request.user)
+    stepid = self.request.user.profile.stepid
+    newstep = 0
+    if int(stepid) <= 600:
+      newstep = 400
+    else:
+      if myLoc.country == 'ETH':  # エチオピア限定の暫定措置
+        newstep = 700
+      else:
+        newstep = 400
+    tmp_Param = SetURL(newstep, self.request.user)
+
     context['nav_link1'] = tmp_Param['back_URL']
     context['nav_text1'] = tmp_Param['back_Title']
     context['nav_link2'] = tmp_Param['main_URL']
@@ -1604,7 +1611,6 @@ class Diet_Plan2(LoginRequiredMixin, TemplateView):
     context["stepid"] = tmp_Param['stepid']
 
     return context
-
 
 def delete_TableRec(request, tblName):
   myTable = apps.get_app_config('myApp').get_model(tblName)
@@ -1763,25 +1769,33 @@ class Output1(LoginRequiredMixin, TemplateView):
 
     # send selected crop by community ######
     # --------------------create 16 Crop_individual-------------------------
-    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation'])
+    tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
+    tmp01_list = list(tmp01.values())
+    myFCT_list = list(FCT.objects.values())
+
     d = []
-    if tmp01.count() > 0:
-      for tmp02 in tmp01:
+    if len(tmp01_list) > 0:
+      for tmp02 in tmp01_list:
         dd = {}
-        dd["name"] = tmp02.myFCT.Food_name
-        dd["Energy"] = tmp02.myFCT.Energy
-        dd["Protein"] = tmp02.myFCT.Protein
-        dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
-        dd["FE"] = tmp02.myFCT.FE
-        dd["target_scope"] = tmp02.target_scope
-        dd["food_item_id"] = tmp02.myFCT.food_item_id
-        dd["portion_size"] = tmp02.portion_size
-        dd["total_weight"] = tmp02.total_weight
-        dd["count_prod"] = tmp02.count_prod
-        dd["count_buy"] = tmp02.count_buy
-        dd["month"] = tmp02.month
-        dd["myLocation"] = tmp02.myLocation_id
-        dd["myid_tbl"] = tmp02.id_table
+        tmp_FCT = {}
+        for myFCT_item in myFCT_list:
+          if myFCT_item['food_item_id'] == tmp02['myFCT_id']:
+            tmp_FCT.update(myFCT_item)
+        dd["Food_grp"] = tmp_FCT['Food_grp_unicef']
+        dd["name"] = tmp_FCT['Food_name']
+        dd["Energy"] = tmp_FCT['Energy']
+        dd["Protein"] = tmp_FCT['Protein']
+        dd["VITA_RAE"] = tmp_FCT['VITA_RAE']
+        dd["FE"] = tmp_FCT['FE']
+        dd["target_scope"] = tmp02['target_scope']
+        dd["food_item_id"] = tmp_FCT['food_item_id']
+        dd["portion_size"] = tmp02['portion_size']
+        dd["total_weight"] = tmp02['total_weight']
+        dd["count_prod"] = tmp02['count_prod']
+        dd["count_buy"] = tmp02['count_buy']
+        dd["month"] = tmp02['month']
+        dd["myLocation"] = tmp02['myLocation_id']
+        dd["myid_tbl"] = tmp02['id_table']
         d.append(dd)
     context["mylist_selected"] = d
 
@@ -1985,35 +1999,42 @@ class Output4(LoginRequiredMixin, TemplateView):
     # send selected crop by community ######
     # --------------------create 16 Crop_individual-------------------------
     tmp01 = Crop_Individual.objects.filter(myLocation_id=self.kwargs['myLocation'])
+    tmp01_list = list(tmp01.values())
+    myFCT_list = list(FCT.objects.values())
     # myRange = [301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312]
     d = []
     food_list = {}
 
     tmp02 = tmp01.filter(target_scope=3)
-    if tmp01.count() != 0:
-      for tmp03 in tmp01:
-        found = get_key_from_value(food_list, str(tmp03.myFCT.food_item_id) + "_" + str(tmp03.month))
+    if len(tmp01_list) > 0:
+      for tmp03 in tmp01_list:
+        found = get_key_from_value(food_list, str(tmp03['myFCT_id']) + "_" + str(tmp03['month']))
         if found != None:
-          d[found]["total_weight"] += tmp03.total_weight
+          d[found]["total_weight"] += tmp03['total_weight']
 
         else:
           dd = {}
-          dd["name"] = tmp03.myFCT.Food_name
-          dd["Energy"] = tmp03.myFCT.Energy
-          dd["Protein"] = tmp03.myFCT.Protein
-          dd["VITA_RAE"] = tmp03.myFCT.VITA_RAE
-          dd["FE"] = tmp03.myFCT.FE
-          dd["target_scope"] = tmp03.target_scope
-          dd["food_item_id"] = tmp03.myFCT.food_item_id
-          dd["portion_size"] = tmp03.portion_size
-          dd["total_weight"] = tmp03.total_weight
-          dd["count_prod"] = tmp03.count_prod
-          dd["count_buy"] = tmp03.count_buy
-          dd["month"] = tmp03.month
-          dd["myLocation"] = tmp03.myLocation_id
-          dd["myid_tbl"] = tmp03.id_table
+          tmp_FCT = {}
+          for myFCT_item in myFCT_list:
+            if myFCT_item['food_item_id'] == tmp03['myFCT_id']:
+              tmp_FCT.update(myFCT_item)
+
+          dd["name"] = tmp_FCT['Food_name']
+          dd["Energy"] = tmp_FCT['Energy']
+          dd["Protein"] = tmp_FCT['Protein']
+          dd["VITA_RAE"] = tmp_FCT['VITA_RAE']
+          dd["FE"] = tmp_FCT['FE']
+          dd["target_scope"] = tmp03['target_scope']
+          dd["food_item_id"] = tmp_FCT['food_item_id']
+          dd["portion_size"] = tmp03['portion_size']
+          dd["total_weight"] = tmp03['total_weight']
+          dd["count_prod"] = tmp03['count_prod']
+          dd["count_buy"] = tmp03['count_buy']
+          dd["month"] = tmp03['month']
+          dd["myLocation"] = tmp03['myLocation_id']
+          dd["myid_tbl"] = tmp03['id_table']
           d.append(dd)
-          food_list[len(d) - 1] = str(tmp03.myFCT.food_item_id) + "_" + str(tmp03.month)
+          food_list[len(d) - 1] = str(tmp03['myFCT_id']) + "_" + str(tmp03['month'])
     context["mylist_selected"] = d
 
     # --------------------create populationl-------------------------
