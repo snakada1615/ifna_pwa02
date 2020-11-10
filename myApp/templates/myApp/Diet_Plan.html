@@ -1094,7 +1094,7 @@
         this.dom_myRating_pr = '';
         this.dom_myRating_va = '';
         this.dom_myRating_fe = '';
-        this.dom_btn_add = '';
+//        this.dom_btn_add = '';
         this.dom_lst_month = '';
         this.dom_tbl_Crop = '';
         this.dom_PFC = {};
@@ -1108,7 +1108,7 @@
     }
 
     /**
-     * setdata -> render data
+     * setDataDraw_Crop: (1)setdata -> (2)render data
      * @param {lsit of crop} crop_data
      */
     Crop_Selected.prototype.setDataDraw_Crop = function (crop_data) {
@@ -1183,6 +1183,10 @@
       console.groupEnd();
       return res;
     };
+    /**
+     *
+     *
+     */
     Crop_Selected.prototype._delCrop = function (food_item_id) {
       console.group('Crop_Selected._delCrop:');
       let del_index = -1;
@@ -2141,11 +2145,11 @@
       myCrop[num_tbl].dom_tbl_Crop = $(this);
     });
 
-    //  btn_add_crop_**を配列に組み込む -----------
+{% comment %}    //  btn_add_crop_**を配列に組み込む -----------
     $('.btn_add_crop').each(function () {
       let num_tbl = $(this).attr('myNum');
       myCrop[num_tbl].dom_btn_add = $(this);
-    });
+    });{% endcomment %}
 
     //  lst_monthを配列に組み込む -----------
     $('.lst_month').each(function () {
@@ -2185,7 +2189,7 @@
       myCrop[num_tbl].month = Number(myCrop[num_tbl].dom_lst_month.text());
       myCrop[num_tbl].season = season12['m' + myCrop[num_tbl].month + '_season'];
       myCrop[num_tbl].season_length = season_length[myCrop[num_tbl].season];
-      myCrop[num_tbl].dom_btn_add.attr('myNum', num_tbl);
+//      myCrop[num_tbl].dom_btn_add.attr('myNum', num_tbl);
     }
 
     //  lbl_target_**を配列に組み込む -----------
