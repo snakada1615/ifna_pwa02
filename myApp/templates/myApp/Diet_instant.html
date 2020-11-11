@@ -915,7 +915,7 @@
       //タブ,carouselにtbl_num1を設定
       const tbl_num1 = (Number(val1) + 1) * 100;
       $.each(tmp_tab.find('.btn_car_prev, .btn_car_next, .carousel, .myfilter-item'), function (index4, val4) {
-        if (!(val4.hasAttribute('myNum'))) {
+        if (!(val4.hasAttribute('myNum'))) {`nakada`
           $(val4).attr('myNum', tbl_num1);
         }
       });
