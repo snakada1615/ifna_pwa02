@@ -1336,18 +1336,18 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
     return context
 
 
-class Diet_instant(LoginRequiredMixin, TemplateView):
+class Diet_instant(TemplateView):
   template_name = "myApp/Diet_instant.html"
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
-    myLoc = Location.objects.get(id=self.kwargs['myLocation'])
-    context['myLocation'] = myLoc
-    myseason = Season.objects.get(myLocation=self.kwargs['myLocation'])
-    context['season_count'] = myseason.season_count
-    tmp_nut_group = Person.objects.filter(
-      myLocation=self.kwargs['myLocation']).select_related('myDRI')
-    context['nutrient_target'] = tmp_nut_group[0].nut_group
+    # myLoc = Location.objects.get(id=self.kwargs['myLocation'])
+    # context['myLocation'] = myLoc
+    # myseason = Season.objects.get(myLocation=self.kwargs['myLocation'])
+    # context['season_count'] = myseason.season_count
+    # tmp_nut_group = Person.objects.filter(
+    #   myLocation=self.kwargs['myLocation']).select_related('myDRI')
+    # context['nutrient_target'] = tmp_nut_group[0].nut_group
     nut_group_list = [
       'child 0-23 month',
       'child 24-59 month',
@@ -1387,106 +1387,107 @@ class Diet_instant(LoginRequiredMixin, TemplateView):
     context['dri_list_fe'] = tmp_fe_by_class
     context['dri_list_vo'] = tmp_vo_by_class
 
-    ########### send number of season   ###########
-    tmp = Season.objects.filter(myLocation=self.kwargs['myLocation'])[0]
-    season_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
-                    'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
-    month_text = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
-                  'Dec']
-    mydat = {}
-    myseason = []
-    season_name = []
-    month_season1 = {}
-    month_season2 = {}
-    month_season1_text = {}
-    month_season2_text = {}
-    prev_dat = -1
-    myRange = []
-    season_index = 0
-    for myindex, myfield in enumerate(season_field):
-      tmpdat = str(getattr(tmp, myfield))
-      mydat[myfield] = tmpdat
-      if prev_dat != tmpdat:  # 各シーズンの最初と最後の月を記録
-        season_index += 1
-        month_season1[season_index] = (myindex + 1)
-        if season_index > 0:
-          month_season2[season_index - 1] = myindex
-        prev_dat = tmpdat
-      if myindex == 11:  # 最終月の処理
-        month_season2[season_index] = 12  # 最後の季節を12月で締める
-        if mydat['m1_season'] == mydat['m12_season']:  # 季節が年をまたいでいる場合の処理
-          month_season1[1] = month_season1[season_index]
-          del month_season1[season_index]
-          del month_season2[season_index]
+    # ########### send number of season   ###########
+    # tmp = Season.objects.filter(myLocation=self.kwargs['myLocation'])[0]
+    # season_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
+    #                 'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
+    # month_text = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
+    #               'Dec']
+    # mydat = {}
+    # myseason = []
+    # season_name = []
+    # month_season1 = {}
+    # month_season2 = {}
+    # month_season1_text = {}
+    # month_season2_text = {}
+    # prev_dat = -1
+    # myRange = []
+    # season_index = 0
+    # for myindex, myfield in enumerate(season_field):
+    #   tmpdat = str(getattr(tmp, myfield))
+    #   mydat[myfield] = tmpdat
+    #   if prev_dat != tmpdat:  # 各シーズンの最初と最後の月を記録
+    #     season_index += 1
+    #     month_season1[season_index] = (myindex + 1)
+    #     if season_index > 0:
+    #       month_season2[season_index - 1] = myindex
+    #     prev_dat = tmpdat
+    #   if myindex == 11:  # 最終月の処理
+    #     month_season2[season_index] = 12  # 最後の季節を12月で締める
+    #     if mydat['m1_season'] == mydat['m12_season']:  # 季節が年をまたいでいる場合の処理
+    #       month_season1[1] = month_season1[season_index]
+    #       del month_season1[season_index]
+    #       del month_season2[season_index]
+    #
+    # context["season"] = mydat
+    # context["month_season_start"] = month_season1
+    # context["month_season_end"] = month_season2
 
-    context["season"] = mydat
-    context["month_season_start"] = month_season1
-    context["month_season_end"] = month_season2
+    # for myindex, mymonth in month_season1.items():
+    #   month_season1_text[myindex] = month_text[mymonth - 1]
+    # for myindex, mymonth in month_season2.items():
+    #   month_season2_text[myindex] = month_text[mymonth - 1]
+    # context["month_season_start_text"] = month_season1_text
+    # context["month_season_end_text"] = month_season2_text
 
-    for myindex, mymonth in month_season1.items():
-      month_season1_text[myindex] = month_text[mymonth - 1]
-    for myindex, mymonth in month_season2.items():
-      month_season2_text[myindex] = month_text[mymonth - 1]
-    context["month_season_start_text"] = month_season1_text
-    context["month_season_end_text"] = month_season2_text
-
-    # queryの簡素化検討
-    tmp_scope = list(
-      tmp_nut_group.values_list('target_scope', flat=True).order_by(
-        'target_scope').distinct())
-    context['myTarget'] = tmp_scope
-
-    tmpdat = str(getattr(tmp, 'season_count'))
-    for i in range(int(tmpdat)):
-      myseason.append(i + 1)
-      for scope in tmp_scope:
-        myRange.append(i + 1 + (int(scope) + 1) * 100)
-    logger.info('myRange=')
-    logger.info(myRange)
-
-    context['season_list'] = myseason
-
-    season_name.append(str(getattr(tmp, 'season_name1')))
-    season_name.append(str(getattr(tmp, 'season_name2')))
-    season_name.append(str(getattr(tmp, 'season_name3')))
-    season_name.append(str(getattr(tmp, 'season_name4')))
-    context['season_name'] = season_name
+    # # queryの簡素化検討
+    # tmp_scope = list(
+    #   tmp_nut_group.values_list('target_scope', flat=True).order_by(
+    #     'target_scope').distinct())
+    # context['myTarget'] = tmp_scope
+    #
+    # tmpdat = str(getattr(tmp, 'season_count'))
+    # for i in range(int(tmpdat)):
+    #   myseason.append(i + 1)
+    #   for scope in tmp_scope:
+    #     myRange.append(i + 1 + (int(scope) + 1) * 100)
+    # logger.info('myRange=')
+    # logger.info(myRange)
+    #
+    # context['season_list'] = myseason
+    #
+    # season_name.append(str(getattr(tmp, 'season_name1')))
+    # season_name.append(str(getattr(tmp, 'season_name2')))
+    # season_name.append(str(getattr(tmp, 'season_name3')))
+    # season_name.append(str(getattr(tmp, 'season_name4')))
+    # context['season_name'] = season_name
 
     #######################################################
 
     # send selected crop by community ######
-    tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
+    #tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
+    tmp01 = FCT.objects.all()
     d = []
     for tmp02 in tmp01:
       dd = {}
-      dd["selected_status"] = tmp02.selected_status
-      dd["Food_grp"] = tmp02.myFCT.Food_grp_unicef
-      dd["Food_name"] = tmp02.myFCT.Food_name
-      dd["Energy"] = tmp02.myFCT.Energy
-      dd["Protein"] = tmp02.myFCT.Protein
-      dd["VITA_RAE"] = tmp02.myFCT.VITA_RAE
-      dd["FE"] = tmp02.myFCT.FE
+      dd["selected_status"] = 0
+      dd["Food_grp"] = tmp02.Food_grp_unicef
+      dd["Food_name"] = tmp02.Food_name
+      dd["Energy"] = tmp02.Energy
+      dd["Protein"] = tmp02.Protein
+      dd["VITA_RAE"] = tmp02.VITA_RAE
+      dd["FE"] = tmp02.FE
       dd["Weight"] = 0
-      dd["food_item_id"] = tmp02.myFCT.food_item_id
-      dd["portion_size"] = tmp02.myFCT.portion_size_init
+      dd["food_item_id"] = tmp02.food_item_id
+      dd["portion_size"] = tmp02.portion_size_init
       dd["count_buy"] = 0
       dd["count_prod"] = 0
-      dd["portion_size"] = tmp02.myFCT.portion_size_init
-      dd["m1"] = tmp02.m1_avail
-      dd["m2"] = tmp02.m2_avail
-      dd["m3"] = tmp02.m3_avail
-      dd["m4"] = tmp02.m4_avail
-      dd["m5"] = tmp02.m5_avail
-      dd["m6"] = tmp02.m6_avail
-      dd["m7"] = tmp02.m7_avail
-      dd["m8"] = tmp02.m8_avail
-      dd["m9"] = tmp02.m9_avail
-      dd["m10"] = tmp02.m10_avail
-      dd["m11"] = tmp02.m11_avail
-      dd["m12"] = tmp02.m12_avail
-      dd["myLocation"] = tmp02.myLocation_id
-      dd["Fat"] = tmp02.myFCT.Fat
-      dd["Carbohydrate"] = tmp02.myFCT.Carbohydrate
+      dd["portion_size"] = tmp02.portion_size_init
+      dd["m1"] = 0
+      dd["m2"] = 0
+      dd["m3"] = 0
+      dd["m4"] = 0
+      dd["m5"] = 0
+      dd["m6"] = 0
+      dd["m7"] = 0
+      dd["m8"] = 0
+      dd["m9"] = 0
+      dd["m10"] = 0
+      dd["m11"] = 0
+      dd["m12"] = 0
+      dd["myLocation"] = 0
+      dd["Fat"] = tmp02.Fat
+      dd["Carbohydrate"] = tmp02.Carbohydrate
       d.append(dd)
     context["mylist_available"] = d
 
@@ -1514,15 +1515,16 @@ class Diet_instant(LoginRequiredMixin, TemplateView):
 
     context['myuser'] = self.request.user
 
-    stepid = self.request.user.profile.stepid
-    newstep = 0
-    if int(stepid) <= 600:
-      newstep = 400
-    else:
-      if myLoc.country == 'ETH':  # エチオピア限定の暫定措置
-        newstep = 700
-      else:
-        newstep = 400
+    # stepid = self.request.user.profile.stepid
+    # newstep = 0
+    # if int(stepid) <= 600:
+    #   newstep = 400
+    # else:
+    #   if myLoc.country == 'ETH':  # エチオピア限定の暫定措置
+    #     newstep = 700
+    #   else:
+    #     newstep = 400
+    newstep = 400
     tmp_Param = SetURL(newstep, self.request.user)
 
     context['nav_link1'] = tmp_Param['back_URL']
