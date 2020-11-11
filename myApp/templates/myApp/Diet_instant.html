@@ -856,8 +856,6 @@
     $('[data-toggle="tooltip"]').tooltip();
 
     // グローバル変数の作成
-    //    const myRange = [101, 102, 103, 104, 201, 202, 203, 204,
-    //      301, 302, 303, 304];
     var MAX_VAL_PORTION = 10000;
     const target_name = [
       'child 6-23 month',
@@ -881,7 +879,8 @@
     var season_name_by_index = {{ month_season_start_text|safe }};
     var season_start_month = {{ month_season_start|safe }};
     var myFoodGrp = {{ mylist_Food_grp|safe }};
-    var myTarget = {{ myTarget|safe }};
+    var myTarget = [101];
+//    var myTarget = {{ myTarget|safe }};
     var dri_target_en = {{ dri_list_en|safe }};
     var dri_target_pr = {{ dri_list_pr|safe }};
     var dri_target_va = {{ dri_list_va|safe }};
@@ -978,20 +977,7 @@
     var myLocation = '';
     var myRoot = '';
     var json_crop_local_org = {{mylist_available|safe}};
-    var json_crop_selected_org = {{mylist_selected|safe}};
     var json_crop_name = {{mylist_local_name|safe}};
-    var crop_selected_count = {{crop_ind_count }};
-    console.error('crop_selected_count');
-    console.error(crop_selected_count);
-    console.error('json_crop_selected_org');
-    console.error(json_crop_selected_org);
-
-    //
-    //作物が一個も選択されていなければ先に進めない
-    if (crop_selected_count == 0){
-      $('#page_next').addClass('disabled');
-    }
-
 
     let url_tmp = window.location.href.split('/');
     let tmp1 = url_tmp[url_tmp.length - 2];
@@ -1025,7 +1011,6 @@
     //////////////// change common name -> local name/////
     let index = {};
     let json_crop_local = [];
-    let json_crop_selected = [];
     json_crop_name.forEach(token => index[token.food_item_id] = token);
     json_crop_local_org.forEach(token => {
       if (index[token.food_item_id]) {
@@ -1034,15 +1019,6 @@
       }
       json_crop_local.push(token);
     });
-    json_crop_selected_org.forEach(token => {
-      if (index[token.food_item_id]) {
-        token.Food_grp = index[token.food_item_id].Food_grp;
-        token.Food_name = index[token.food_item_id].Food_name;
-      }
-      json_crop_selected.push(token);
-    });
-    console.log('初期選択品目の一覧：');
-    console.log(json_crop_selected);
     console.log('初期利用可能品目の一覧：');
     console.log(json_crop_local);
     //---------------------------------------------
@@ -1561,30 +1537,6 @@
 
       console.groupEnd();
     };
-    Crop_Selected.prototype._getPFC = function (food_item_id) {
-      console.group('Crop_Selected:_getPFC');
-      const crop = json_crop_local.filter(function (element) {
-        return element.food_item_id === Number(food_item_id);
-      });
-
-      let carbo = 0;
-      let prot = 0;
-      let fat = 0;
-
-      try {
-        console.log(crop[0].Food_name + 'のPFCバランスをチェックします');
-        // console.log(crop[0]);
-        carbo = crop[0].Carbohydrate || 0;
-        prot = crop[0].Protein || 0;
-        fat = crop[0].Fat || 0;
-      } catch (e) {
-        console.error(e);
-        console.error('該当作物が見つかりません');
-      }
-      console.groupEnd();
-      return {carbo: carbo, prot: prot, fat: fat}
-    };
-
 
     Crop_Selected.prototype.myfilter = function (key) {
       console.log('Crop_Selected.myfilterにFilter(' + key + ')を適用します');
@@ -2142,12 +2094,6 @@
       myCrop[num_tbl].dom_tbl_Crop = $(this);
     });
 
-    //  btn_add_crop_**を配列に組み込む -----------
-    $('.btn_add_crop').each(function () {
-      let num_tbl = $(this).attr('myNum');
-      myCrop[num_tbl].dom_btn_add = $(this);
-    });
-
     //  lst_monthを配列に組み込む -----------
     $('.lst_month').each(function () {
       let num_tbl = $(this).attr('myNum');
@@ -2233,66 +2179,8 @@
       //  myCrop[num_tbl].myfilter(myFoodGrp[1]);
     }
 
-    for (var i = 0; i < json_crop_selected.length; i++) {
-      data = json_crop_selected[i];
-      if (data.myLocation === Number(myLocation_id)) {
-        //let num_tbl = data.num_tbl;
-        myCrop[data.num_tbl].setData_Crop(data);
-      }
-    }
-
-
 //    Crop_available.data().hello("test desu");
 
-    //---tabの切替処理-------------
-    let activeTab = $('#myTabs a').filter('.active');
-
-    $('#myTabs a').click(function (e) {
-      e.preventDefault();
-
-      activeTab.removeClass('active');
-      $(activeTab.attr('href')).removeClass('active');
-
-      activeTab = $(this);
-
-      activeTab.addClass("active");
-      $(activeTab.attr('href')).addClass('active');
-
-      let num_tab = Number($(this).attr('href').replace('#tab_', ''));
-      $('#current_tab').text(num_tab + 1);
-
-      //tab切り替え時に一度（next）をクリックする
-      $('.btn_car_next[myNum = ' + ((num_tab + 1) * 100) + ']').click();
-    });
-    //---tabの切替処理-------------
-
-    //---carouselの切替処理-------------
-    $('.btn_car_prev').click(function () {
-      let num_table1 = Number($(this).attr('myNum'));
-      let tmp_car = $('.carousel[myNum=' + num_table1 + ']');
-      let tmp_car_active = tmp_car.find('.carousel-item').siblings('.active');
-
-      $(tmp_car).carousel('prev');
-
-      let num_table2 = Number($(tmp_car_active).attr('myNum')) - 1;
-      if ((num_table2 % 100) == 0) {
-        num_table2 = Math.trunc(num_table2 / 100) * 100 + season_list[season_list.length - 1];
-      }
-      $('#current_page').text(num_table2);
-    });
-    $('.btn_car_next').click(function () {
-      let num_table1 = Number($(this).attr('myNum'));
-      let tmp_car = $('.carousel[myNum=' + num_table1 + ']');
-      let tmp_car_active = tmp_car.find('.carousel-item').siblings('.active');
-
-      $(tmp_car).carousel('next');
-
-      let num_table2 = Number($(tmp_car_active).attr('myNum')) + 1;
-      if ((num_table2 % 100) > season_list[season_list.length - 1]) {
-        num_table2 = Math.trunc(num_table2 / 100) * 100 + 1;
-      }
-      $('#current_page').text(num_table2);
-    });
 
     $(window).on("load", function () {
       // Handler when all assets (including images) are loaded
@@ -2304,8 +2192,6 @@
       //tablesorterの初期化
       $('.selected_crops_tbl').tablesorter();
 
-      //最初のタブをactivate？
-      $('#myTabs').find('.nav-link a:first').tab('show');
     });
 
   </script>

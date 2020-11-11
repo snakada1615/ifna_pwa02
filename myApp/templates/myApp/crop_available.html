@@ -665,6 +665,12 @@
 
     ////////////////////////////////////////////////////////////////////////
     //    convert month range into month list   -------------------------------
+    /**
+     *
+     * @param start1
+     * @param end1
+     * @returns {[]}
+     */
     function month_conv(start1, end1) {
       let tmp = [];
       start1 = parseInt(start1);
@@ -688,7 +694,14 @@
 
     ////////////////////////////////////////////////////////////////////////
     //    object setup "Season_MultiSelect"   -------------------------------
-
+    /**
+     *
+     * @param selected_status
+     * @param start_x
+     * @param start_y
+     * @param color
+     * @constructor
+     */
     function Season_MultiSelect(selected_status, start_x, start_y, color) {
       if (selected_status != 0 && selected_status != 1) {
         this.selected_status = -1;
@@ -702,6 +715,10 @@
       console.log(this.getAll());
     }
 
+    /**
+     *
+     * @param color
+     */
     Season_MultiSelect.prototype.setBaseColor = function (color) {
       if (![0, 1, 2, 3].includes(color)) {
         color = 0;
@@ -709,6 +726,11 @@
       this.color = color;
       this.selected_status = 0;
     };
+    /**
+     *
+     * @param x
+     * @param y
+     */
     Season_MultiSelect.prototype.setStart = function (x, y) {
       this.start_x = x;
       this.start_y = y;
@@ -718,6 +740,11 @@
       console.log('オブジェクトのsetStartを設定しました');
       console.log(this.getAll());
     };
+    /**
+     *
+     * @param x
+     * @param y
+     */
     Season_MultiSelect.prototype.setGoal = function (x, y) {
       if (this.selected_status === 1) {
         if (y != this.start_y) {
