@@ -2029,14 +2029,10 @@
         myCrop[myRange[i]].drawTable();
       }
       //tablesorterの初期化
-      $('.selected_crops_tbl').tablesorter()
-      {% comment %}
-            $('.selected_crops_tbl')
-                    .tablesorter()
-                    .tablesorterPager({
-                      container: $(".pager"),
-                    });
-      {% endcomment %}
+      $('.selected_crops_tbl').tablesorter({
+        widthFixed: true,
+        widgets: ["filter"]
+      });
       //まずfiltering
       myCrop[tbl_num2].myfilter(myFoodGrp[1]);
       $(".myfilter").text(myFoodGrp[1]);

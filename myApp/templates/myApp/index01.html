@@ -63,16 +63,18 @@
 					</div>
 				</div>
       </div>
+{% comment %}
 			<div class="col-6 col-md-4 px-1">
 				<div class="card bg-info h-100" style="flex-direction: row;">
 					<div class="card img-thumbnail bg-info">
 						<div class="card-body py-2 px-2">
-							<p class="card-text">Nutrient Calc</p>
-							<a class="btn btn-warning m-auto btn-block" href="{% url 'diet_instant' %}">instant mode</a>
+							<p class="card-text">trial</p>
+							<a class="btn btn-warning m-auto btn-block" href="{% url 'diet_instant' %}">demo ver.</a>
 						</div>
 					</div>
 				</div>
       </div>
+{% endcomment %}
       <div class="col-md-4 px-1"></div>
       {% if not user.is_authenticated %}
 			<div class="col-6 col-md-4 px-1">
