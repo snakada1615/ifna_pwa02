@@ -1442,19 +1442,16 @@ class Diet_instant(TemplateView):
     context["mylist_Food_grp"] = new_Food_grp
 
 
-    context['myuser'] = self.request.user
+    #context['myuser'] = self.request.user
 
-    newstep = 1000;
-    tmp_Param = SetURL(newstep, self.request.user)
-
-    context['nav_link1'] = tmp_Param['back_URL']
-    context['nav_text1'] = tmp_Param['back_Title']
-    context['nav_link2'] = tmp_Param['main_URL']
-    context['nav_text2'] = tmp_Param['main_Title']
-    context['nav_link3'] = tmp_Param['forward_URL']
-    context['nav_text3'] = tmp_Param['forward_Title']
-    context["mark_text"] = tmp_Param['guide_text']
-    context["stepid"] = tmp_Param['stepid']
+    context['nav_link1'] = reverse_lazy("index01")
+    context['nav_text1'] = "menu"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "instant mode"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
+    context["mark_text"] = 'diet nutrition calculator'
+    context["stepid"] = 1000
 
     return context
 
