@@ -1341,13 +1341,6 @@ class Diet_instant(TemplateView):
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
-    # myLoc = Location.objects.get(id=self.kwargs['myLocation'])
-    # context['myLocation'] = myLoc
-    # myseason = Season.objects.get(myLocation=self.kwargs['myLocation'])
-    # context['season_count'] = myseason.season_count
-    # tmp_nut_group = Person.objects.filter(
-    #   myLocation=self.kwargs['myLocation']).select_related('myDRI')
-    # context['nutrient_target'] = tmp_nut_group[0].nut_group
     nut_group_list = [
       'child 0-23 month',
       'child 24-59 month',
@@ -1387,70 +1380,6 @@ class Diet_instant(TemplateView):
     context['dri_list_fe'] = tmp_fe_by_class
     context['dri_list_vo'] = tmp_vo_by_class
 
-    # ########### send number of season   ###########
-    # tmp = Season.objects.filter(myLocation=self.kwargs['myLocation'])[0]
-    # season_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
-    #                 'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
-    # month_text = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
-    #               'Dec']
-    # mydat = {}
-    # myseason = []
-    # season_name = []
-    # month_season1 = {}
-    # month_season2 = {}
-    # month_season1_text = {}
-    # month_season2_text = {}
-    # prev_dat = -1
-    # myRange = []
-    # season_index = 0
-    # for myindex, myfield in enumerate(season_field):
-    #   tmpdat = str(getattr(tmp, myfield))
-    #   mydat[myfield] = tmpdat
-    #   if prev_dat != tmpdat:  # 各シーズンの最初と最後の月を記録
-    #     season_index += 1
-    #     month_season1[season_index] = (myindex + 1)
-    #     if season_index > 0:
-    #       month_season2[season_index - 1] = myindex
-    #     prev_dat = tmpdat
-    #   if myindex == 11:  # 最終月の処理
-    #     month_season2[season_index] = 12  # 最後の季節を12月で締める
-    #     if mydat['m1_season'] == mydat['m12_season']:  # 季節が年をまたいでいる場合の処理
-    #       month_season1[1] = month_season1[season_index]
-    #       del month_season1[season_index]
-    #       del month_season2[season_index]
-    #
-    # context["season"] = mydat
-    # context["month_season_start"] = month_season1
-    # context["month_season_end"] = month_season2
-
-    # for myindex, mymonth in month_season1.items():
-    #   month_season1_text[myindex] = month_text[mymonth - 1]
-    # for myindex, mymonth in month_season2.items():
-    #   month_season2_text[myindex] = month_text[mymonth - 1]
-    # context["month_season_start_text"] = month_season1_text
-    # context["month_season_end_text"] = month_season2_text
-
-    # # queryの簡素化検討
-    # tmp_scope = list(
-    #   tmp_nut_group.values_list('target_scope', flat=True).order_by(
-    #     'target_scope').distinct())
-    # context['myTarget'] = tmp_scope
-    #
-    # tmpdat = str(getattr(tmp, 'season_count'))
-    # for i in range(int(tmpdat)):
-    #   myseason.append(i + 1)
-    #   for scope in tmp_scope:
-    #     myRange.append(i + 1 + (int(scope) + 1) * 100)
-    # logger.info('myRange=')
-    # logger.info(myRange)
-    #
-    # context['season_list'] = myseason
-    #
-    # season_name.append(str(getattr(tmp, 'season_name1')))
-    # season_name.append(str(getattr(tmp, 'season_name2')))
-    # season_name.append(str(getattr(tmp, 'season_name3')))
-    # season_name.append(str(getattr(tmp, 'season_name4')))
-    # context['season_name'] = season_name
 
     #######################################################
 
@@ -1515,16 +1444,7 @@ class Diet_instant(TemplateView):
 
     context['myuser'] = self.request.user
 
-    # stepid = self.request.user.profile.stepid
-    # newstep = 0
-    # if int(stepid) <= 600:
-    #   newstep = 400
-    # else:
-    #   if myLoc.country == 'ETH':  # エチオピア限定の暫定措置
-    #     newstep = 700
-    #   else:
-    #     newstep = 400
-    newstep = 400
+    newstep = 1000;
     tmp_Param = SetURL(newstep, self.request.user)
 
     context['nav_link1'] = tmp_Param['back_URL']
@@ -2738,6 +2658,16 @@ def SetURL(stepid, myUser):
     guide_text = 'please select output you want to check'
     try:
       back_URL = reverse_lazy("crop_feas_list")
+    except:
+      logger.error('無効な値を参照しています')
+
+  elif stepid == 1000:
+    back_Title = "menu"
+    main_Title = "instant mode"
+    forward_Title = ""
+    guide_text = 'diet nutrition calculator'
+    try:
+      back_URL = reverse_lazy("index01")
     except:
       logger.error('無効な値を参照しています')
 

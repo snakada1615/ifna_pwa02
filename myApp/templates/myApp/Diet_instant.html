@@ -4,6 +4,11 @@
 
   <script type="text/javascript"
           src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/extras/jquery.tablesorter.pager.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/jquery.tablesorter.pager.min.css"
+        rel="stylesheet">
+
   <script type="text/javascript" src="{% static 'js/jquery.barrating.min.js' %}"></script>
   <link rel="stylesheet" href="{% static 'css/fontawesome-apple.css' %}">
   <link rel="stylesheet" href="{% static 'css/bars-1to10.css' %}">
@@ -19,27 +24,11 @@
     <div class="container" style="max-width: 540px;">
       <div class="row">
         {% include "./_dialog01.html" %}
-        <div class="col-2 my-0 px-3">
-          {% if stepid == 400 %}
-            <img src="{% static 'img/no4.png' %}" alt="number 4">
-          {% elif stepid == 700 %}
-            <img src="{% static 'img/no7.png' %}" alt="number 7">
-          {% endif %}
-        </div>
-        <div class="col-8 my-0 px-1">
+        <div class="col my-0 px-1">
           <h5>
-            Diet planning for
+            Nutritient calculator (instant version)
             {{ myLocation.name }}
           </h5>
-        </div>
-        <div class="col-2 my-0 px-3">
-          <div class="row">
-            <div class="col-12">
-              <span>
-              <a class="btn btn-warning mt-2 my-0 py-0 btn-sm pointer_hand" mynum="100" id="btn_save_crop">save</a>
-            </span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -66,6 +55,10 @@
             </div>
             <div class="card-body py-0 px-0 target_info">
             </div>
+            <div hidden id="target_en"></div>
+            <div hidden id="target_pr"></div>
+            <div hidden id="target_va"></div>
+            <div hidden id="target_fe"></div>
           </div>
         </div>
       </div>
@@ -74,7 +67,7 @@
 
     <div id="container_tab_all" class="container border-secondary py-1 my-1 px-0"
          style="max-width: 540px; background-color:#F3F3F3;border-width: 2px;">
-      <div class="text-center text-white bg-info">target group</div>
+      <div class="text-center text-white bg-info">Commodity list</div>
       <!-- タブの移動先指定 -->
       <div id="tabContent">
       </div>
@@ -360,368 +353,22 @@
                         title="you can add/edit food item for selected month here"></span>
                 </div>
 
-                <p class="card-title text-dark my-1 pl-1">
-                  <span>cell color: seasonal availability</span>
-                  <span data-toggle="tooltip" style="color:#cce5ff" title="less than 50%">■■ </span>
-                  <span data-toggle="tooltip" style="color:#F6B0DC" title="more than 50%"> ■■ </span>
-                  <span data-toggle="tooltip" style="color:#E93EAA" title="100%"> ■■ </span>
-                </p>
-                <p class="card-title text-dark my-1 pl-1">
-                  <span>text color: nutrition satisfication</span>
-                  <span data-toggle="tooltip" style="color:red" title="less than 50%">■■ </span>
-                  <span data-toggle="tooltip" style="color:orange" title="50-100%"> ■■ </span>
-                  <span data-toggle="tooltip" style="color:green" title="over 100%"> ■■ </span>
-                </p>
+                {% comment %}
+                <div class="pager">
+                  <button type='button' class='first'>&lt;&lt;</button>
+                  <button type='button' class='prev'>&lt;</button>
 
-              </div>
+                  <span class="pagedisplay" value=""/>
+                  <input type="text" class="pagedisplay"/>
 
-              <!-- ここから 栄養バランスの評価 ----------------------------->
+                  <button type='button' class='next'>&gt;</button>
+                  <button type='button' class='last'>&gt;&gt;</button>
 
-              <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
-               border-width: 2px;">
-                <div class="card-header bg-info text-white p-1 mb-2">
-                  nutrient balance (daily total)
-                  <span class="fb fb-help" data-toggle="tooltip"
-                        title="nutrient balance of selected diet combination"></span>
-                </div>
-
-                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
-                  <div class="col-3">
-                    <label class="text-dark" for="rating_en">Energy</label>
-                  </div>
-                  <div class="col-2">
-                    <div class="text-dark lbl_target_en class-myNum"></div>
-                  </div>
-                  <div class="col-7">
-                    <select class="rating_DRI rating_en class-myNum">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
-                  <div class="col-3">
-                    <label class="text-dark" for="rating_pr">Protein</label>
-                  </div>
-                  <div class="col-2">
-                    <div class="text-dark lbl_target_pr class-myNum"></div>
-                  </div>
-                  <div class="col-7">
-                    <select class="rating_DRI rating_pr class-myNum">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-row no-gutters my-0" style="height:30px;">
-                  <div class="col-3">
-                    <label class="text-dark" for="rating_va">VitA</label>
-                  </div>
-                  <div class="col-2">
-                    <div class="text-dark lbl_target_va class-myNum"></div>
-                  </div>
-                  <div class="col-7">
-                    <select class="rating_DRI rating_va class-myNum">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-row no-gutters my-0" style="height:30px;">
-                  <div class="col-3">
-                    <label class="text-dark " for="rating_fe">Iron</label>
-                  </div>
-                  <div class="col-2">
-                    <div class="text-dark lbl_target_fe class-myNum"></div>
-                  </div>
-                  <div class="col-7">
-                    <select class="rating_DRI rating_fe class-myNum">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row no-gutters my-0 py-0" style="height:30px;">
-                  <div class="col-3 text-dark">Target group</div>
-                </div>
-
-              </div>
-
-              <!-- ここから Dietary Diversityの評価 ----------------------------->
-
-              <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
-               border-width: 2px;">
-                <div class="card-header bg-info text-white p-1 mb-2">
-                  <span>Dietary diversity</span>
-                  <span class="fb fb-help" data-toggle="tooltip" data-html="true"
-                        title="combination of <b>over three type of food group</b> is recommended"></span>
-                </div>
-                <div class="card-body bg-white py-0 my-0 px-1">
-                  <div class="row">
-                    <div class="col">
-                      <fieldset disabled>
-                        <div class="form-check custom-control custom-checkbox">
-                          <input class="form-check-input diversity_check class-myNum custom-control-input"
-                                 index_Food_grp="1" type="checkbox"
-                                 value="">
-                          <label class="form-check-label custom-control-label"
-                                 for="diversity_check1">
-                            Grains, roots and tubers
-                          </label>
-                        </div>
-                        <div class="form-check custom-control custom-checkbox">
-                          <input class="form-check-input diversity_check class-myNum custom-control-input"
-                                 index_Food_grp="2"
-                                 type="checkbox" value="">
-                          <label class="form-check-label custom-control-label"
-                                 for="diversity_check2">
-                            Legumes and nuts
-                          </label>
-                        </div>
-                        <div class="form-check custom-control custom-checkbox">
-                          <input class="form-check-input diversity_check class-myNum custom-control-input"
-                                 index_Food_grp="3" type="checkbox"
-                                 value="">
-                          <label class="form-check-label custom-control-label"
-                                 for="diversity_check3">
-                            Dairy products
-                          </label>
-                        </div>
-                        <div class="form-check custom-control custom-checkbox">
-                          <input class="form-check-input diversity_check class-myNum custom-control-input"
-                                 index_Food_grp="4" type="checkbox"
-                                 value="">
-                          <label class="form-check-label custom-control-label"
-                                 for="diversity_check4">
-                            Flesh foods
-                          </label>
-                        </div>
-                        <div class="form-check custom-control custom-checkbox">
-                          <input class="form-check-input diversity_check class-myNum custom-control-input"
-                                 index_Food_grp="5" type="checkbox"
-                                 value=""
-                          >
-                          <label class="form-check-label custom-control-label"
-                                 for="diversity_check5">
-                            Eggs
-                          </label>
-                        </div>
-                        <div class="form-check custom-control custom-checkbox">
-                          <input class="form-check-input diversity_check class-myNum custom-control-input"
-                                 index_Food_grp="6" type="checkbox"
-                                 value="">
-                          <label class="form-check-label custom-control-label"
-                                 for="diversity_check6">
-                            Vitamin A rich fruits and Vegetable
-                          </label>
-                        </div>
-                        <div class="form-check custom-control custom-checkbox">
-                          <input class="form-check-input diversity_check class-myNum custom-control-input"
-                                 index_Food_grp="7" type="checkbox"
-                                 value="">
-                          <label class="form-check-label custom-control-label"
-                                 for="diversity_check7">
-                            Other fruits and vegetables
-                          </label>
-                        </div>
-                      </fieldset>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- ここから PFCバランスの評価 ----------------------------->
-
-              <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
-               border-width: 2px;">
-                <div class="card-header bg-info text-white p-1 mb-2">
-                  Macro nutrient balance
-                  <span class="fb fb-help" data-toggle="tooltip" data-html="true"
-                        title="<div>recommended PFC balance </div><div>Carbohydrates: 45-65%</div>
-                                  <div>Protein: 10-35%</div><div>Fat: 20-35%</div>"></span>
-                </div>
-                <div class="card-body py-0 my-0 px-1">
-                  <div class="row">
-                    <div class="col-4">
-                      Carbohydrate:
-                    </div>
-                    <div class="col-4 PFC class-myNum" index_Food_grp="1">
-                    </div>
-                  </div>
-                  <div class="row py-0 my-0">
-                    <div class="col-4">
-                      Protain:
-                    </div>
-                    <div class="col-4 PFC class-myNum" index_Food_grp="2">
-                    </div>
-                  </div>
-                  <div class="row py-0 my-0">
-                    <div class="col-4">
-                      Fat:
-                    </div>
-                    <div class="col-4 PFC class-myNum" index_Food_grp="3">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- ここから 入手先の評価 ----------------------------->
-
-              <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
-               border-width: 2px;">
-                <div class="card-header bg-info text-white p-1 mb-2">
-                  Source of Food
-                  <span class="fb fb-help" data-toggle="tooltip" data-html="true"
-                        title="<div>sourcing food from farm/market?</div>"></span>
-                </div>
-                <div class="card-body py-0 my-0 px-1">
-                  <div class="row py-0 my-0">
-                    <div class="col">
-                      <label for=" share_Prod_Buy"
-                             class="label_Prod_Buy class-myNum">share (
-                        <span style="color: #cc1111">buy</span> /
-                        <span style="color: #5bc0de">production</span>):
-                      </label>
-                      <span class="fb fb-help" data-toggle="tooltip"
-                            title="Tooltip message"></span>
-                    </div>
-                  </div>
-                  <div class="row py-0 my-0">
-                    <div class="col">
-                      <select class="share_Prod_Buy class-myNum">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </script>
-  <!-- templateここまで ----------------------------->
-
-  <!-- ここから Carouselのテンプレート ----------------------------->
-  <script id="template_Carousel" type="text/x-custom-template">
-{% comment %}
-    <div class="carousel-instant2 class-myNum">
-      <div class="card border-success border-5 rounded col-12 mt-2 py-2"
-           style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
-        <div class="row">
-          <div class="col-12">
-            <div class="card-body py-0 px-0 ">
-              <div class="card border-success bg-white rounded col-12 px-1 py-1 my-1" style="color:#24535F ;background-color:#D9ECDC;
-               border-width: 2px;">
-                <div class="card-header bg-info text-white p-1 d-flex">
-                  <div class="card-header bg-info text-white mr-auto p-2">Diet plan:</div>
-                  <div class="p-2"><input type="checkbox" data-toggle="toggle" data-on="unhide 0"
-                                          class="hide_zero class-myNum" data-off="hide 0"
-                                          data-width="100"
-                                          data-size="xs"></div>
-                </div>
-
-                <!-- この下に季節毎のテーブルが挿入される ----------------------------->
-                <table border="1"
-                       class="table table-fixed-100 table-success selected_crops_tbl mt-2 class-myNum">
-                  <thead style="font-style: italic;background-color: #c0c0c0">
-                  <th>
-                    name:
-                  </th>
-                  <th>En</th>
-                  <th>Pr</th>
-                  <th>Va</th>
-                  <th>Fe</th>
-                  <th>Wt</th>
-                  <th class="tableItem_hide">id</th>
-                  <th class="tableItem_hide">food_item_id</th>
-                  <th class="tableItem_hide">portion_size</th>
-                  <th class="tableItem_hide">count_prod</th>
-                  <th class="tableItem_hide">count_buy</th>
-                  <th class="tableItem_hide">En0</th>
-                  <th class="tableItem_hide">Pr0</th>
-                  <th class="tableItem_hide">Va0</th>
-                  <th class="tableItem_hide">Fe0</th>
-                  <th class="tableItem_hide">share</th>
-                  <th class="tableItem_hide">Food_grp</th>
-                  <th class="tableItem_hide">Mon_avail</th>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                    <td>total</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                  </tr>
-                  </tfoot>
-                </table>
-                <div hidden
-                     class="btn_add_crop btn btn-block btn-secondary text-dark mt-0 my-0 py-0 btn-sm class-myNum"
-                     style="background-color:#ADC757;">add food item
-                  <span class="fb fb-help" data-toggle="tooltip"
-                        title="you can add/edit food item for selected month here"></span>
+                  <select class="pagesize">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                  </select>
                 </div>
 
                 <p class="card-title text-dark my-1 pl-1">
@@ -730,291 +377,290 @@
                   <span data-toggle="tooltip" style="color:#F6B0DC" title="more than 50%"> ■■ </span>
                   <span data-toggle="tooltip" style="color:#E93EAA" title="100%"> ■■ </span>
                 </p>
-                <p class="card-title text-dark my-1 pl-1">
-                  <span>text color: nutrition satisfication</span>
-                  <span data-toggle="tooltip" style="color:red" title="less than 50%">■■ </span>
-                  <span data-toggle="tooltip" style="color:orange" title="50-100%"> ■■ </span>
-                  <span data-toggle="tooltip" style="color:green" title="over 100%"> ■■ </span>
-                </p>
-
-              </div>
-
-              <!-- ここから 栄養バランスの評価 ----------------------------->
-
-              <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
-               border-width: 2px;">
-                <div class="card-header bg-info text-white p-1 mb-2">
-                  nutrient balance (daily total)
-                  <span class="fb fb-help" data-toggle="tooltip"
-                        title="nutrient balance of selected diet combination"></span>
-                </div>
-
-                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
-                  <div class="col-3">
-                    <label class="text-dark" for="rating_en">Energy</label>
-                  </div>
-                  <div class="col-2">
-                    <div class="text-dark lbl_target_en class-myNum"></div>
-                  </div>
-                  <div class="col-7">
-                    <select class="rating_DRI rating_en class-myNum">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
-                  <div class="col-3">
-                    <label class="text-dark" for="rating_pr">Protein</label>
-                  </div>
-                  <div class="col-2">
-                    <div class="text-dark lbl_target_pr class-myNum"></div>
-                  </div>
-                  <div class="col-7">
-                    <select class="rating_DRI rating_pr class-myNum">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-row no-gutters my-0" style="height:30px;">
-                  <div class="col-3">
-                    <label class="text-dark" for="rating_va">VitA</label>
-                  </div>
-                  <div class="col-2">
-                    <div class="text-dark lbl_target_va class-myNum"></div>
-                  </div>
-                  <div class="col-7">
-                    <select class="rating_DRI rating_va class-myNum">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-row no-gutters my-0" style="height:30px;">
-                  <div class="col-3">
-                    <label class="text-dark " for="rating_fe">Iron</label>
-                  </div>
-                  <div class="col-2">
-                    <div class="text-dark lbl_target_fe class-myNum"></div>
-                  </div>
-                  <div class="col-7">
-                    <select class="rating_DRI rating_fe class-myNum">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row no-gutters my-0 py-0" style="height:30px;">
-                  <div class="col-3 text-dark">Target group</div>
-                </div>
-
-              </div>
-
-              <!-- ここから Dietary Diversityの評価 ----------------------------->
-
-              <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
-               border-width: 2px;">
-                <div class="card-header bg-info text-white p-1 mb-2">
-                  <span>Dietary diversity</span>
-                  <span class="fb fb-help" data-toggle="tooltip" data-html="true"
-                        title="combination of <b>over three type of food group</b> is recommended"></span>
-                </div>
-                <div class="card-body bg-white py-0 my-0 px-1">
-                  <div class="row">
-                    <div class="col">
-                      <fieldset disabled>
-                        <div class="form-check custom-control custom-checkbox">
-                          <input class="form-check-input diversity_check class-myNum custom-control-input"
-                                 index_Food_grp="1" type="checkbox"
-                                 value="">
-                          <label class="form-check-label custom-control-label"
-                                 for="diversity_check1">
-                            Grains, roots and tubers
-                          </label>
-                        </div>
-                        <div class="form-check custom-control custom-checkbox">
-                          <input class="form-check-input diversity_check class-myNum custom-control-input"
-                                 index_Food_grp="2"
-                                 type="checkbox" value="">
-                          <label class="form-check-label custom-control-label"
-                                 for="diversity_check2">
-                            Legumes and nuts
-                          </label>
-                        </div>
-                        <div class="form-check custom-control custom-checkbox">
-                          <input class="form-check-input diversity_check class-myNum custom-control-input"
-                                 index_Food_grp="3" type="checkbox"
-                                 value="">
-                          <label class="form-check-label custom-control-label"
-                                 for="diversity_check3">
-                            Dairy products
-                          </label>
-                        </div>
-                        <div class="form-check custom-control custom-checkbox">
-                          <input class="form-check-input diversity_check class-myNum custom-control-input"
-                                 index_Food_grp="4" type="checkbox"
-                                 value="">
-                          <label class="form-check-label custom-control-label"
-                                 for="diversity_check4">
-                            Flesh foods
-                          </label>
-                        </div>
-                        <div class="form-check custom-control custom-checkbox">
-                          <input class="form-check-input diversity_check class-myNum custom-control-input"
-                                 index_Food_grp="5" type="checkbox"
-                                 value=""
-                          >
-                          <label class="form-check-label custom-control-label"
-                                 for="diversity_check5">
-                            Eggs
-                          </label>
-                        </div>
-                        <div class="form-check custom-control custom-checkbox">
-                          <input class="form-check-input diversity_check class-myNum custom-control-input"
-                                 index_Food_grp="6" type="checkbox"
-                                 value="">
-                          <label class="form-check-label custom-control-label"
-                                 for="diversity_check6">
-                            Vitamin A rich fruits and Vegetable
-                          </label>
-                        </div>
-                        <div class="form-check custom-control custom-checkbox">
-                          <input class="form-check-input diversity_check class-myNum custom-control-input"
-                                 index_Food_grp="7" type="checkbox"
-                                 value="">
-                          <label class="form-check-label custom-control-label"
-                                 for="diversity_check7">
-                            Other fruits and vegetables
-                          </label>
-                        </div>
-                      </fieldset>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- ここから PFCバランスの評価 ----------------------------->
-
-              <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
-               border-width: 2px;">
-                <div class="card-header bg-info text-white p-1 mb-2">
-                  Macro nutrient balance
-                  <span class="fb fb-help" data-toggle="tooltip" data-html="true"
-                        title="<div>recommended PFC balance </div><div>Carbohydrates: 45-65%</div>
-                                  <div>Protein: 10-35%</div><div>Fat: 20-35%</div>"></span>
-                </div>
-                <div class="card-body py-0 my-0 px-1">
-                  <div class="row">
-                    <div class="col-4">
-                      Carbohydrate:
-                    </div>
-                    <div class="col-4 PFC class-myNum" index_Food_grp="1">
-                    </div>
-                  </div>
-                  <div class="row py-0 my-0">
-                    <div class="col-4">
-                      Protain:
-                    </div>
-                    <div class="col-4 PFC class-myNum" index_Food_grp="2">
-                    </div>
-                  </div>
-                  <div class="row py-0 my-0">
-                    <div class="col-4">
-                      Fat:
-                    </div>
-                    <div class="col-4 PFC class-myNum" index_Food_grp="3">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- ここから 入手先の評価 ----------------------------->
-
-              <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
-               border-width: 2px;">
-                <div class="card-header bg-info text-white p-1 mb-2">
-                  Source of Food
-                  <span class="fb fb-help" data-toggle="tooltip" data-html="true"
-                        title="<div>sourcing food from farm/market?</div>"></span>
-                </div>
-                <div class="card-body py-0 my-0 px-1">
-                  <div class="row py-0 my-0">
-                    <div class="col">
-                      <label for=" share_Prod_Buy"
-                             class="label_Prod_Buy class-myNum">share (
-                        <span style="color: #cc1111">buy</span> /
-                        <span style="color: #5bc0de">production</span>):
-                      </label>
-                      <span class="fb fb-help" data-toggle="tooltip"
-                            title="Tooltip message"></span>
-                    </div>
-                  </div>
-                  <div class="row py-0 my-0">
-                    <div class="col">
-                      <select class="share_Prod_Buy class-myNum">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 {% endcomment %}
+
+                <p class="card-title text-dark my-1 pl-1">
+                  <span>text color: nutrition satisfication</span>
+                  <span data-toggle="tooltip" style="color:red" title="less than 50%">■■ </span>
+                  <span data-toggle="tooltip" style="color:orange" title="50-100%"> ■■ </span>
+                  <span data-toggle="tooltip" style="color:green" title="over 100%"> ■■ </span>
+                </p>
+
+              </div>
+
+              <!-- ここから 栄養バランスの評価 ----------------------------->
+
+              <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
+               border-width: 2px;">
+                <div class="card-header bg-info text-white p-1 mb-2">
+                  nutrient balance (daily total)
+                  <span class="fb fb-help" data-toggle="tooltip"
+                        title="nutrient balance of selected diet combination"></span>
+                </div>
+
+                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_en">Energy</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_en class-myNum"></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_en class-myNum">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_pr">Protein</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_pr class-myNum"></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_pr class-myNum">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark" for="rating_va">VitA</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_va class-myNum"></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_va class-myNum">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row no-gutters my-0" style="height:30px;">
+                  <div class="col-3">
+                    <label class="text-dark " for="rating_fe">Iron</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="text-dark lbl_target_fe class-myNum"></div>
+                  </div>
+                  <div class="col-7">
+                    <select class="rating_DRI rating_fe class-myNum">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row no-gutters my-0 py-0" style="height:30px;">
+                  <div class="col text-dark"><span>Target group: </span><span
+                          class="lbl_target_name class-myNum text-info"></span></div>
+                </div>
+
+              </div>
+
+              <!-- ここから Dietary Diversityの評価 ----------------------------->
+
+              <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
+               border-width: 2px;">
+                <div class="card-header bg-info text-white p-1 mb-2">
+                  <span>Dietary diversity</span>
+                  <span class="fb fb-help" data-toggle="tooltip" data-html="true"
+                        title="combination of <b>over three type of food group</b> is recommended"></span>
+                </div>
+                <div class="card-body bg-white py-0 my-0 px-1">
+                  <div class="row">
+                    <div class="col">
+                      <fieldset disabled>
+                        <div class="form-check custom-control custom-checkbox">
+                          <input class="form-check-input diversity_check class-myNum custom-control-input"
+                                 index_Food_grp="1" type="checkbox"
+                                 value="">
+                          <label class="form-check-label custom-control-label"
+                                 for="diversity_check1">
+                            Grains, roots and tubers
+                          </label>
+                        </div>
+                        <div class="form-check custom-control custom-checkbox">
+                          <input class="form-check-input diversity_check class-myNum custom-control-input"
+                                 index_Food_grp="2"
+                                 type="checkbox" value="">
+                          <label class="form-check-label custom-control-label"
+                                 for="diversity_check2">
+                            Legumes and nuts
+                          </label>
+                        </div>
+                        <div class="form-check custom-control custom-checkbox">
+                          <input class="form-check-input diversity_check class-myNum custom-control-input"
+                                 index_Food_grp="3" type="checkbox"
+                                 value="">
+                          <label class="form-check-label custom-control-label"
+                                 for="diversity_check3">
+                            Dairy products
+                          </label>
+                        </div>
+                        <div class="form-check custom-control custom-checkbox">
+                          <input class="form-check-input diversity_check class-myNum custom-control-input"
+                                 index_Food_grp="4" type="checkbox"
+                                 value="">
+                          <label class="form-check-label custom-control-label"
+                                 for="diversity_check4">
+                            Flesh foods
+                          </label>
+                        </div>
+                        <div class="form-check custom-control custom-checkbox">
+                          <input class="form-check-input diversity_check class-myNum custom-control-input"
+                                 index_Food_grp="5" type="checkbox"
+                                 value=""
+                          >
+                          <label class="form-check-label custom-control-label"
+                                 for="diversity_check5">
+                            Eggs
+                          </label>
+                        </div>
+                        <div class="form-check custom-control custom-checkbox">
+                          <input class="form-check-input diversity_check class-myNum custom-control-input"
+                                 index_Food_grp="6" type="checkbox"
+                                 value="">
+                          <label class="form-check-label custom-control-label"
+                                 for="diversity_check6">
+                            Vitamin A rich fruits and Vegetable
+                          </label>
+                        </div>
+                        <div class="form-check custom-control custom-checkbox">
+                          <input class="form-check-input diversity_check class-myNum custom-control-input"
+                                 index_Food_grp="7" type="checkbox"
+                                 value="">
+                          <label class="form-check-label custom-control-label"
+                                 for="diversity_check7">
+                            Other fruits and vegetables
+                          </label>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ここから PFCバランスの評価 ----------------------------->
+
+              <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
+               border-width: 2px;">
+                <div class="card-header bg-info text-white p-1 mb-2">
+                  Macro nutrient balance
+                  <span class="fb fb-help" data-toggle="tooltip" data-html="true"
+                        title="<div>recommended PFC balance </div><div>Carbohydrates: 45-65%</div>
+                                  <div>Protein: 10-35%</div><div>Fat: 20-35%</div>"></span>
+                </div>
+                <div class="card-body py-0 my-0 px-1">
+                  <div class="row">
+                    <div class="col-4">
+                      Carbohydrate:
+                    </div>
+                    <div class="col-4 PFC class-myNum" index_Food_grp="1">
+                    </div>
+                  </div>
+                  <div class="row py-0 my-0">
+                    <div class="col-4">
+                      Protain:
+                    </div>
+                    <div class="col-4 PFC class-myNum" index_Food_grp="2">
+                    </div>
+                  </div>
+                  <div class="row py-0 my-0">
+                    <div class="col-4">
+                      Fat:
+                    </div>
+                    <div class="col-4 PFC class-myNum" index_Food_grp="3">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ここから 入手先の評価 ----------------------------->
+
+              <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
+               border-width: 2px;">
+                <div class="card-header bg-info text-white p-1 mb-2">
+                  Source of Food
+                  <span class="fb fb-help" data-toggle="tooltip" data-html="true"
+                        title="<div>sourcing food from farm/market?</div>"></span>
+                </div>
+                <div class="card-body py-0 my-0 px-1">
+                  <div class="row py-0 my-0">
+                    <div class="col">
+                      <label for=" share_Prod_Buy"
+                             class="label_Prod_Buy class-myNum">share (
+                        <span style="color: #cc1111">buy</span> /
+                        <span style="color: #5bc0de">production</span>):
+                      </label>
+                      <span class="fb fb-help" data-toggle="tooltip"
+                            title="Tooltip message"></span>
+                    </div>
+                  </div>
+                  <div class="row py-0 my-0">
+                    <div class="col">
+                      <select class="share_Prod_Buy class-myNum">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </script>
   <!-- templateここまで ----------------------------->
-
-
-
 
   <style media="screen">
     /* set common variable */
@@ -1197,8 +843,8 @@
     var dri_target_va = {{ dri_list_va|safe }};
     var dri_target_fe = {{ dri_list_fe|safe }};
     var dri_target_vol = {{ dri_list_vo|safe }};
+    var tbl_num2 = 0;
     var template_Tab = $('#template_Tab').html();
-//    var template_Carousel = $('#template_Carousel').html();
     var myRange = [];
     //    var season_length = {};
     //    var season_length2 = {};
@@ -1211,7 +857,7 @@
       $.each(season_list, function (index2, val2) {
         let tmp_tab = $('#tabContent').append(template_Tab);
         // テーブル番号の取得
-        const tbl_num2 = Number(val2) + (Number(val1) + 1) * 100;
+        tbl_num2 = Number(val2) + (Number(val1) + 1) * 100;
         myRange.push(tbl_num2);
 
         // 追加されたカルーセルに季節情報、テーブル番号を追加
@@ -1225,7 +871,6 @@
             $(val3).find('.class-myNum').attr('myNum', tbl_num2);
           }
         });
-        //tmp_tab2.find('.class-myNum').forEach()attr('myNum', tbl_num2);
       });
     });
     ////////////////////////////////////////////////////
@@ -1234,8 +879,6 @@
 
     console.error('myRange');
     console.error(myRange);
-    //    console.error('season12');
-    //    console.error(season12);
     console.error('dri_target_en');
     console.error(dri_target_en);
 
@@ -1268,7 +911,6 @@
     myfood_portion['modal'] = $('#Modal_Portion');
     myfood_portion['save'] = $('#btn_set_portion');
 
-
     //////////////// initialize Food_grp_filter /////
     $('.myfilter-item').append('<a class="dropdown-item item-selected pointer_hand">--show all--</a>');
     $.each(myFoodGrp, function (index, val) {
@@ -1276,9 +918,8 @@
     });
 
     //////////////// initialize Food_grp_filter /////
-    $('.myfilter_target_menu').append('<a class="dropdown-item item-selected pointer_hand">--show all--</a>');
     $.each(target_name, function (index, val) {
-      if (index < 8) {
+      if (index < 9) {
         $('.myfilter_target_menu').append('<a class="dropdown-item pointer_hand">' + val + '</a>');
       }
     });
@@ -1342,6 +983,7 @@
         this.dom_lbl_target_pr = '';
         this.dom_lbl_target_va = '';
         this.dom_lbl_target_fe = '';
+        this.dom_lbl_target_name = '';
         this.dom_myRating_en = '';
         this.dom_myRating_pr = '';
         this.dom_myRating_va = '';
@@ -1578,11 +1220,17 @@
       let cr = '';
       cr += '<tr>';
       cr += '<td>' + add_data.name + '</td>';
+      cr += '<td>' + add_data.Energy + '</td>';
+      cr += '<td>' + add_data.Protein  + '</td>';
+      cr += '<td>' + add_data.VITA_RAE  + '</td>';
+      cr += '<td>' + add_data.FE + '</td>';
+{% comment %}
       cr += '<td>' + Math.round(add_data.Energy * add_data.total_weight / 100, 1) + '</td>';
       cr += '<td>' + Math.round(add_data.Protein * add_data.total_weight / 100, 1) + '</td>';
       cr += '<td>' + Math.round(add_data.VITA_RAE * add_data.total_weight / 100, 1) + '</td>';
       cr += '<td>' + Math.round(add_data.FE * add_data.total_weight / 100, 1) + '</td>';
-      cr += '<td>' + add_data.total_weight + '</td>';
+{% endcomment %}
+      cr += '<td class="text-danger">' + add_data.total_weight + '</td>';
       cr += '<td class="tableItem_hide"></td>';
       cr += '<td class="tableItem_hide">' + add_data.food_item_id + '</td>';
       cr += '<td class="tableItem_hide">' + add_data.portion_size + '</td>';
@@ -1834,8 +1482,20 @@
       return this.crops
     };
 
+    Crop_Selected.prototype.setTarget = function (t_en, t_pr, t_va, t_fe) {
+      let res = false;
+      if (t_en >= 0 && t_pr >= 0 && t_va >= 0 && t_fe >= 0) {
+        this.target_en = t_en;
+        this.target_pr = t_pr;
+        this.target_va = t_va;
+        this.target_fe = t_fe;
+        res = true;
+      }
+      return res;
+    };
 
-    /////    create object setup "Crop_Selected"   -------------------------------
+
+    /////    create object setup "Crop_individual"   -------------------------------
     /**
      * object of single crop
      * @param num_tbl
@@ -1939,42 +1599,28 @@
       let max_vol = Number(dri_target_vol[this.data.target_scope]);
       let portion_size = this.data.portion_size;
 
-      if (this.num_tbl < 10000) { // individual/familyとcommunityで計算方法を切り替える #todo 後できちんと修正
-        let count_all = Number(this.dom_br_count.children("option:selected").val());
-        let new_weight = portion_size * count_all;
+      let count_all = Number(this.dom_br_count.children("option:selected").val());
+      let new_weight = portion_size * count_all;
 
-        if (current_sum + new_weight - current_vol > max_vol) {
-          alert('total volume offood exceeded daily consumption limit.\n' +
-                  'please re-adjust volume of each food item so that total volume fit within ' + max_vol + 'g');
-          return false;
-        }
-
-        let share_prod_buy_tmp = Number(this.data.share_prod_buy);
-        if (share_prod_buy_tmp === 100) {
-          share_prod_buy_tmp = 10;
-        }
-        if (share_prod_buy_tmp === 99) {
-          share_prod_buy_tmp = 0;
-        }
-        let count_prod = Math.trunc(count_all * share_prod_buy_tmp / 10);
-        let count_buy = count_all - count_prod;
-        this.data.count_prod = count_prod;
-        this.data.count_buy = count_buy;
-        this.data.total_weight = new_weight;
-
-      } else {                        // individual/familyとcommunityで計算方法を切り替える
-        let new_weight = Number($('#food_weight_community').val()) * 1000;  //g --> kg への変換
-        if (current_sum + new_weight - current_vol > max_vol) {
-          alert('total volume offood exceeded daily consumption limit.\n' +
-                  'please re-adjust volume of each food item so that total volume fit within ' +
-                  String(max_vol / 1000) + 'kg');
-          return false;
-        }
-        let share_prod_buy_tmp = 10;
-        this.data.total_weight = new_weight;
-        this.data.count_prod = Math.trunc(new_weight / portion_size);
-        this.data.count_buy = 0;
+      if (current_sum + new_weight - current_vol > max_vol) {
+        alert('total volume offood exceeded daily consumption limit.\n' +
+                'please re-adjust volume of each food item so that total volume fit within ' + max_vol + 'g');
+        return false;
       }
+
+      let share_prod_buy_tmp = Number(this.data.share_prod_buy);
+      if (share_prod_buy_tmp === 100) {
+        share_prod_buy_tmp = 10;
+      }
+      if (share_prod_buy_tmp === 99) {
+        share_prod_buy_tmp = 0;
+      }
+      let count_prod = Math.trunc(count_all * share_prod_buy_tmp / 10);
+      let count_buy = count_all - count_prod;
+      this.data.count_prod = count_prod;
+      this.data.count_buy = count_buy;
+      this.data.total_weight = new_weight;
+
       console.log(this.data.name + 'を更新します');
       console.log(this.data);
       console.groupEnd();
@@ -2063,6 +1709,8 @@
 //      let tmp_mon = Number(tblNum % 100);
 //      tblNum = 100 * Math.trunc(tblNum / 100) + (tblNum % 4);
       console.log('tblNum:' + tblNum);
+      $(".myfilter").text(x);
+      $(".myfilter").val(x);
 //      console.log('season:' + season_name[tmp_mon]);
       myCrop[String(tblNum)].myfilter(x);
     });
@@ -2070,10 +1718,49 @@
     ////////// select target ////////////
     $(".myfilter_target_menu a").click(function () {
       let x = $(this).text();
+      let index_tmp = target_name.indexOf(x);
+      let t_en = dri_target_en[index_tmp];
+      let t_pr = dri_target_pr[index_tmp];
+      let t_va = dri_target_va[index_tmp];
+      let t_fe = dri_target_fe[index_tmp];
+      $('#target_en').text(t_en);
+      $('#target_pr').text(t_pr);
+      $('#target_va').text(t_va);
+      $('#target_fe').text(t_fe);
+
       cr = '';
+      cr += '<div class="row"><div class="col text-info">';
       cr += x;
+      cr += '</div></div>';
+      cr += '<div class="row border"><div class="col-4">';
+      cr += 'energy';
+      cr += '</div><div class="col-8">';
+      cr += t_en;
+      cr += '</div></div>';
+      cr += '<div class="row border"><div class="col-4">';
+      cr += 'protein';
+      cr += '</div><div class="col-8">';
+      cr += t_pr;
+      cr += '</div></div>';
+      cr += '<div class="row border"><div class="col-4">';
+      cr += 'vit-A';
+      cr += '</div><div class="col-8">';
+      cr += t_va;
+      cr += '</div></div>';
+      cr += '<div class="row border"><div class="col-4">';
+      cr += 'iron';
+      cr += '</div><div class="col-8">';
+      cr += t_fe;
+      cr += '</div></div>';
       $('.target_info').text('');
-      $('.target_info').append(x);
+      $('.target_info').append(cr);
+      myCrop[tbl_num2].setTarget(t_en, t_pr, t_va, t_fe);
+      myCrop[tbl_num2].dom_lbl_target_en.text(t_en);
+      myCrop[tbl_num2].dom_lbl_target_pr.text(t_pr);
+      myCrop[tbl_num2].dom_lbl_target_va.text(t_va);
+      myCrop[tbl_num2].dom_lbl_target_fe.text(t_fe);
+      myCrop[tbl_num2].dom_lbl_target_name.text(x);
+      myCrop[tbl_num2]._SetBarrating();
     });
 
     ////////// hide/unhide ////////////
@@ -2268,15 +1955,17 @@
     });
 
     //  テーブルごとのmonthを配列に組み込む -----------
-    for (let i in myRange) {
-      let num_tbl = myRange[i];
-      let tmp_dat = myCrop[num_tbl];
+    {% comment %}
+        for (let i in myRange) {
+          let num_tbl = myRange[i];
+          let tmp_dat = myCrop[num_tbl];
 
-      //myCrop[num_tbl].month = Number(myCrop[num_tbl].dom_lst_month.text());
-      //myCrop[num_tbl].season = season12['m' + myCrop[num_tbl].month + '_season'];
-      //myCrop[num_tbl].season_length = season_length[myCrop[num_tbl].season];
-      //myCrop[num_tbl].dom_btn_add.attr('myNum', num_tbl);
-    }
+          //myCrop[num_tbl].month = Number(myCrop[num_tbl].dom_lst_month.text());
+          //myCrop[num_tbl].season = season12['m' + myCrop[num_tbl].month + '_season'];
+          //myCrop[num_tbl].season_length = season_length[myCrop[num_tbl].season];
+          //myCrop[num_tbl].dom_btn_add.attr('myNum', num_tbl);
+        }
+    {% endcomment %}
 
     //  lbl_target_**を配列に組み込む -----------
     $('.lbl_target_en').each(function () {
@@ -2306,6 +1995,13 @@
       myCrop[num_tbl].dom_lbl_target_fe = $(this);
       $(this).text(dri_target_fe[scope].toFixed(0));
     });
+
+    $('.lbl_target_name').each(function () {
+      let num_tbl = $(this).attr('myNum');
+      let scope = Math.trunc(num_tbl / 100);
+      myCrop[num_tbl].dom_lbl_target_name = $(this);
+      $(this).text(dri_target_fe[scope].toFixed(0));
+    });
     //-------------
 
     //初期データの読み込み
@@ -2333,9 +2029,20 @@
         myCrop[myRange[i]].drawTable();
       }
       //tablesorterの初期化
-      $('.selected_crops_tbl').tablesorter();
+      $('.selected_crops_tbl').tablesorter()
+      {% comment %}
+            $('.selected_crops_tbl')
+                    .tablesorter()
+                    .tablesorterPager({
+                      container: $(".pager"),
+                    });
+      {% endcomment %}
       //まずfiltering
-      myCrop[num_tbl].myfilter(myFoodGrp[1]);
+      myCrop[tbl_num2].myfilter(myFoodGrp[1]);
+      $(".myfilter").text(myFoodGrp[1]);
+      $(".myfilter").val(myFoodGrp[1]);
+
+      //$('.myfilter_target_menu').val(3);
 
     });
 
