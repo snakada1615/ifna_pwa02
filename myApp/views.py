@@ -256,6 +256,23 @@ class IndexView(TemplateView):
 
     return context
 
+class Index10(TemplateView):
+  template_name = "myApp/index10.html"
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+
+    context['nav_link1'] = ''
+    context['nav_text1'] = ''
+    context['nav_link2'] = ''
+    context['nav_text2'] = 'NFA tool demo. version'
+    context['nav_link3'] = ''
+    context['nav_text3'] = ''
+    context["mark_text"] = 'This is quick trial mode of NFA tool'
+    context["stepid"] = -10
+
+    return context
+
 
 class Under_Construction_View(TemplateView):
   template_name = "myApp/under_construction.html"
@@ -1444,7 +1461,7 @@ class Diet_instant(TemplateView):
 
     #context['myuser'] = self.request.user
 
-    context['nav_link1'] = reverse_lazy("index01")
+    context['nav_link1'] = reverse_lazy("index10")
     context['nav_text1'] = "menu"
     context['nav_link2'] = ""
     context['nav_text2'] = "instant mode"
@@ -2358,7 +2375,7 @@ class Crop_Feas2_ListView(LoginRequiredMixin, ListView):
     context = super().get_context_data(**kwargs)
     context['isUpdate'] = 0
 
-    context['nav_link1'] = reverse_lazy("index01")
+    context['nav_link1'] = reverse_lazy("index10")
     context['nav_text1'] = "menu"
     context['nav_link2'] = ""
     context['nav_text2'] = "feasibility check"

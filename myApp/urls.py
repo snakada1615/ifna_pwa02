@@ -14,7 +14,7 @@ from .views import CropSelect, registCropAvail, Trial_View, Diet_Plan1, update_p
 from .views import Crop_Feas_CreateView, Crop_Feas_ListView, Crop_Feas_DeleteView, Crop_Feas_UpdateView
 from .views import FCT_ListView, FCT_UpdateView, FCT_CreateView, IndexView04, Crop_Name_ListView, Crop_Name_CreateView
 from .views import Crop_Name_UpdateView, Diet_instant, Crop_Feas2_CreateView, Crop_Feas2_ListView,Crop_Feas2_DeleteView
-from .views import Crop_Feas2_UpdateView
+from .views import Crop_Feas2_UpdateView, Index10
 
 #from .views import Crop_Name_UpdateView, Diet_Plan2
 
@@ -27,6 +27,7 @@ urlpatterns = [
   path('index01/', IndexView.as_view(), name='index01'),
   path('index02/', IndexView02.as_view(), name='index02'),
   path('index04/', IndexView04.as_view(), name='index04'),
+  path('index10/', Index10.as_view(), name='index10'),
   path('construction/', Under_Construction_View.as_view(), name='construction'),
   path('aboutNFA/', aboutNFA.as_view(), name='aboutnfa'),
   path('login/', auth_views.LoginView.as_view(template_name='myApp/login.html'), name='login'),
