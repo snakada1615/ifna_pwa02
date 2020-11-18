@@ -2350,7 +2350,7 @@ class Crop_Feas2_CreateView(CreateView):
     return context
 
 
-class Crop_Feas2_ListView(LoginRequiredMixin, ListView):
+class Crop_Feas2_ListView( ListView):
   context_object_name = "mylist"
   template_name = 'myApp/Crop_Feas2_list.html'
 
@@ -2389,7 +2389,7 @@ class Crop_Feas2_ListView(LoginRequiredMixin, ListView):
     return context
 
 
-class Crop_Feas2_DeleteView(LoginRequiredMixin, DeleteView):  # todo これをmodal dialogueにする
+class Crop_Feas2_DeleteView( DeleteView):  # todo これをmodal dialogueにする
   model = Crop_Feasibility_instant
   template_name = 'myApp/Crop_Feas2_confirm_delete.html'
   success_url = reverse_lazy('crop_feas2_list')
