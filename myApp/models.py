@@ -404,6 +404,174 @@ class Crop_Feasibility(models.Model):
     on_delete=models.CASCADE
   )
 
+class Crop_Feasibility_instant(models.Model):
+  choices_ascending = (
+    (0, 'no'),
+    (1, 'maybe no'),
+    (2, 'maybe yes'),
+    (3, 'yes'),
+  )
+  choices_descending = (
+    (3, 'no'),
+    (2, 'maybe no'),
+    (1, 'maybe yes'),
+    (0, 'yes'),
+  )
+  choices_availability = (
+    (0, '0-3 mon'),
+    (1, '4-6 mon'),
+    (2, '7-9 mon'),
+    (3, '10-12 mon'),
+  )
+  choices_non_availability = (
+    (0, '10-12 mon'),
+    (1, '7-9 mon'),
+    (2, '4-6 mon'),
+    (3, '0-3 mon'),
+  )
+  choices_DRI_realistic = (
+    (0, 'no for all'),
+    (1, 'no for most target grp'),
+    (2, 'yes for most target grp'),
+    (3, 'yes for all'),
+  )
+  choices_social_barrier = (
+    (3, 'no for all'),
+    (2, 'no for most target grp'),
+    (1, 'yes for most target grp'),
+    (0, 'yes for all'),
+  )
+  choices_prod_skill = (
+    (1, 'no'),
+    (2, 'maybe no'),
+    (3, 'maybe yes'),
+    (4, 'yes'),
+  )
+  choices_tech_service = (
+    (1, 'no'),
+    (2, 'maybe no'),
+    (3, 'maybe yes'),
+    (4, 'yes / there is no need for it since beneficiaries already have enough skill'),
+  )
+  choices_workload = (
+    (1, 'no'),
+    (2, 'maybe no'),
+    (3, 'maybe yes'),
+    (4, 'yes'),
+  )
+  choices_invest_fixed = (
+    (1, 'no'),
+    (2, 'maybe no'),
+    (3, 'maybe yes'),
+    (4, 'yes'),
+  )
+  choices_invest_variable = (
+    (1, 'no'),
+    (2, 'maybe no'),
+    (3, 'maybe yes'),
+    (4, 'yes'),
+  )
+  myFCT = models.ForeignKey(
+    FCT,
+    to_field='food_item_id',
+    default=436,
+    on_delete=models.CASCADE
+  )
+  feas_DRI_e = models.IntegerField(
+    verbose_name='feas_DRI',
+    choices=choices_ascending,
+    default=0,
+  )
+  feas_DRI_p = models.IntegerField(
+    verbose_name='feas_DRI_p',
+    choices=choices_ascending,
+    default=0,
+  )
+  feas_DRI_a = models.IntegerField(
+    verbose_name='feas_DRI_a',
+    choices=choices_ascending,
+    default=0,
+  )
+  feas_DRI_f = models.IntegerField(
+    verbose_name='feas_DRI_f',
+    choices=choices_ascending,
+    default=0,
+  )
+  feas_soc_acceptable = models.IntegerField(
+    verbose_name='feas_social_wo',
+    choices=choices_descending,
+    default=0,
+  )
+  feas_soc_acceptable_wo = models.IntegerField(
+    verbose_name='feas_social_wo',
+    choices=choices_descending,
+    default=0,
+  )
+  feas_soc_acceptable_c5 = models.IntegerField(
+    verbose_name='feas_social_c5',
+    choices=choices_descending,
+    default=0,
+  )
+  feas_prod_skill = models.IntegerField(
+    verbose_name='feas_prod_skill',
+    choices=choices_ascending,
+    default=0,
+  )
+  feas_workload = models.IntegerField(
+    verbose_name='feas_workload',
+    choices=choices_descending,
+    default=0,
+  )
+  feas_tech_service = models.IntegerField(
+    verbose_name='feas_tech_service',
+    choices=choices_tech_service,
+    default=0,
+  )
+  feas_invest_fixed = models.IntegerField(
+    verbose_name='feas_invest_fixed',
+    choices=choices_descending,
+    default=0,
+  )
+  feas_invest_variable = models.IntegerField(
+    verbose_name='feas_invest_variable',
+    choices=choices_descending,
+    default=0,
+  )
+  feas_availability_non = models.IntegerField(
+    verbose_name='feas_availability_non',
+    choices=choices_non_availability,
+    default=0,
+  )
+  feas_availability_prod = models.IntegerField(
+    verbose_name='feas_availability_prod',
+    choices=choices_availability,
+    default=0,
+  )
+  feas_affordability = models.IntegerField(
+    verbose_name='feas_affordability',
+    choices=choices_ascending,
+    default=0,
+  )
+  feas_storability = models.IntegerField(
+    verbose_name='feas_storability',
+    choices=choices_ascending,
+    default=0,
+  )
+  crop_score = models.IntegerField(
+    verbose_name='crop_score',
+    default=0,
+  )
+  created_at = models.DateTimeField(
+    verbose_name='record_date',
+    auto_now_add=True
+  )
+  created_by = models.CharField(
+    max_length=200,
+    verbose_name='name',
+    default='',
+    blank = False
+  )
+
 
 class Crop_National(models.Model):
   myFCT = models.ForeignKey(

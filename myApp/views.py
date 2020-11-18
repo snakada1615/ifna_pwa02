@@ -22,9 +22,9 @@ from django.core import serializers
 from django.http.response import JsonResponse
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from .forms import LocationForm, Person_Form, UserForm, ProfileForm, Crop_Feas_Form, PersonListForm
-from .forms import UserCreateForm, FCTForm, Crop_Name_Form
+from .forms import UserCreateForm, FCTForm, Crop_Name_Form, Crop_Feas2_Form
 
-from .models import Location, Countries, Crop_National, Crop_SubNational
+from .models import Location, Countries, Crop_National, Crop_SubNational, Crop_Feasibility_instant
 from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person, Pop, Crop_Name, Season
 
 # for user registration
@@ -2235,6 +2235,252 @@ class Crop_Feas_UpdateView(LoginRequiredMixin, UpdateView):
     form.instance.created_by = self.request.user
     form.instance.myLocation = Location.objects.get(id=self.request.user.profile.myLocation)
     return super(Crop_Feas_UpdateView, self).form_valid(form)
+
+
+class Crop_Feas2_CreateView(CreateView):
+  model = Crop_Feasibility_instant
+  form_class = Crop_Feas2_Form
+  template_name = 'myApp/Crop_Feas2_form.html'
+  success_url = reverse_lazy('index01')
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+
+    nut_group_list = [
+      'child 0-23 month',
+      'child 24-59 month',
+      'child 6-9 yr',
+      'adolescent male',
+      'adolescent female',
+      'adult male',
+      'adult female',
+      'pregnant',
+      'lactating',
+      'adult',
+      'adolescent pregnant',
+      'adolescent lact',
+      'adolescent all',
+    ]
+    context['isUpdate'] = 0
+
+    tmp_dri = DRI.objects.all()
+    # tmp_group_list = list(tmp_dri.values_list('nut_group', flat=True))
+    tmp_dri_count = len(nut_group_list)
+    tmp_en_by_class = [-1] * tmp_dri_count
+    tmp_pr_by_class = [-1] * tmp_dri_count
+    tmp_va_by_class = [-1] * tmp_dri_count
+    tmp_fe_by_class = [-1] * tmp_dri_count
+    tmp_vo_by_class = [-1] * tmp_dri_count
+    for mydri in tmp_dri:
+      logger.info(mydri.nut_group)
+      index = nut_group_list.index(mydri.nut_group)
+      logger.info(index)
+      tmp_en_by_class[index] = mydri.energy
+      tmp_pr_by_class[index] = mydri.protein
+      tmp_va_by_class[index] = mydri.vita
+      tmp_fe_by_class[index] = mydri.fe
+      tmp_vo_by_class[index] = mydri.max_vol
+    context['dri_list_en'] = tmp_en_by_class
+    context['dri_list_pr'] = tmp_pr_by_class
+    context['dri_list_va'] = tmp_va_by_class
+    context['dri_list_fe'] = tmp_fe_by_class
+    context['dri_list_vo'] = tmp_vo_by_class
+
+    # send non-available crop in the original list ######
+    available_list = []
+
+    tmp01 = FCT.objects.all()
+    d = []
+    for tmp02 in tmp01:
+      dd = {}
+      dd["selected_status"] = 0
+      dd["Food_grp"] = tmp02.Food_grp_unicef
+      dd["Food_name"] = tmp02.Food_name
+      dd["Energy"] = tmp02.Energy
+      dd["Protein"] = tmp02.Protein
+      dd["VITA_RAE"] = tmp02.VITA_RAE
+      dd["FE"] = tmp02.FE
+      dd["Weight"] = 0
+      dd["food_item_id"] = tmp02.food_item_id
+      dd["portion_size"] = tmp02.portion_size_init
+      dd["count_buy"] = 0
+      dd["count_prod"] = 0
+      dd["m1"] = 0
+      dd["m2"] = 0
+      dd["m3"] = 0
+      dd["m4"] = 0
+      dd["m5"] = 0
+      dd["m6"] = 0
+      dd["m7"] = 0
+      dd["m8"] = 0
+      dd["m9"] = 0
+      dd["m10"] = 0
+      dd["m11"] = 0
+      dd["m12"] = 0
+      # dd["myLocation"] = tmp02.myLocation_id
+      d.append(dd)
+
+    context["mylist_available"] = d
+
+    context['nav_link1'] = reverse_lazy("crop_feas2_list")
+    context['nav_text1'] = "list"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "feasibility check"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
+    context["mark_text"] = 'quick feasibility assessment'
+    context["stepid"] = 1000
+    return context
+
+
+class Crop_Feas2_ListView(LoginRequiredMixin, ListView):
+  context_object_name = "mylist"
+  template_name = 'myApp/Crop_Feas2_list.html'
+
+  def get_queryset(self):
+    tmp0 = Crop_Feasibility_instant.objects.all()
+    score_nut = []
+    score_soc = []
+    score_tec = []
+    score_inv = []
+    score_sus = []
+    for tmp1 in tmp0:
+      score_nut.append(round(tmp1.feas_DRI_e * 10 / 3))
+      score_soc.append(round((tmp1.feas_soc_acceptable + tmp1.feas_soc_acceptable_wo + tmp1.feas_soc_acceptable_c5 +
+                              tmp1.feas_affordability) * 10 / 12))
+      score_tec.append(round((tmp1.feas_prod_skill + tmp1.feas_workload + tmp1.feas_tech_service) * 10 / 12))
+      score_inv.append(round((tmp1.feas_invest_fixed + tmp1.feas_invest_variable) * 10 / 8))
+      score_sus.append(round((tmp1.feas_availability_prod + tmp1.feas_storability) * 10 / 6))
+    tmp1 = zip(tmp0, score_nut, score_inv, score_soc, score_sus, score_tec)
+    return tmp1
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['isUpdate'] = 0
+
+    context['nav_link1'] = reverse_lazy("index01")
+    context['nav_text1'] = "menu"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "feasibility check"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
+    context["mark_text"] = 'quick feasibility assessment'
+    context["stepid"] = 1000
+
+    context["mylist_available"] = []
+
+    return context
+
+
+class Crop_Feas2_DeleteView(LoginRequiredMixin, DeleteView):  # todo これをmodal dialogueにする
+  model = Crop_Feasibility_instant
+  template_name = 'myApp/Crop_Feas2_confirm_delete.html'
+  success_url = reverse_lazy('crop_feas2_list')
+
+
+class Crop_Feas2_UpdateView(UpdateView):
+  model = Crop_Feasibility_instant
+  form_class = Crop_Feas2_Form
+  template_name = 'myApp/Crop_Feas2_form.html'
+  success_url = reverse_lazy('crop_feas2_list')
+
+  def get_initial(self):
+    return {
+      'crop_name': Crop_Feasibility_instant.objects.get(id=self.kwargs['pk']).myFCT.Food_name,
+      'crop_name_id': Crop_Feasibility_instant.objects.get(id=self.kwargs['pk']).myFCT.food_item_id
+    }
+
+  def get_context_data(self, **kwargs):  # todo 無意味なcrop_listの送信をやめる
+    context = super().get_context_data(**kwargs)
+    context['isUpdate'] = 1
+    context['crop_name'] = Crop_Feasibility_instant.objects.get(id=self.kwargs['pk']).myFCT.Food_name
+    context['crop_name_id'] = Crop_Feasibility_instant.objects.get(id=self.kwargs['pk']).myFCT.food_item_id
+    context['crop_en'] = Crop_Feasibility_instant.objects.get(id=self.kwargs['pk']).myFCT.Energy
+    context['crop_pr'] = Crop_Feasibility_instant.objects.get(id=self.kwargs['pk']).myFCT.Protein
+    context['crop_va'] = Crop_Feasibility_instant.objects.get(id=self.kwargs['pk']).myFCT.VITA_RAE
+    context['crop_fe'] = Crop_Feasibility_instant.objects.get(id=self.kwargs['pk']).myFCT.FE
+
+    nut_group_list = [
+      'child 0-23 month',
+      'child 24-59 month',
+      'child 6-9 yr',
+      'adolescent male',
+      'adolescent female',
+      'adult male',
+      'adult female',
+      'pregnant',
+      'lactating',
+      'adult',
+      'adolescent pregnant',
+      'adolescent lact',
+      'adolescent all',
+    ]
+
+    tmp_dri = DRI.objects.all()
+    # tmp_group_list = list(tmp_dri.values_list('nut_group', flat=True))
+    tmp_dri_count = len(nut_group_list)
+    tmp_en_by_class = [-1] * tmp_dri_count
+    tmp_pr_by_class = [-1] * tmp_dri_count
+    tmp_va_by_class = [-1] * tmp_dri_count
+    tmp_fe_by_class = [-1] * tmp_dri_count
+    tmp_vo_by_class = [-1] * tmp_dri_count
+    for mydri in tmp_dri:
+      logger.info(mydri.nut_group)
+      index = nut_group_list.index(mydri.nut_group)
+      logger.info(index)
+      tmp_en_by_class[index] = mydri.energy
+      tmp_pr_by_class[index] = mydri.protein
+      tmp_va_by_class[index] = mydri.vita
+      tmp_fe_by_class[index] = mydri.fe
+      tmp_vo_by_class[index] = mydri.max_vol
+    context['dri_list_en'] = tmp_en_by_class
+    context['dri_list_pr'] = tmp_pr_by_class
+    context['dri_list_va'] = tmp_va_by_class
+    context['dri_list_fe'] = tmp_fe_by_class
+    context['dri_list_vo'] = tmp_vo_by_class
+
+    tmp01 = FCT.objects.all()
+    d = []
+    for tmp02 in tmp01:
+      dd = {}
+      dd["selected_status"] = 0
+      dd["Food_grp"] = tmp02.Food_grp_unicef
+      dd["Food_name"] = tmp02.Food_name
+      dd["Energy"] = tmp02.Energy
+      dd["Protein"] = tmp02.Protein
+      dd["VITA_RAE"] = tmp02.VITA_RAE
+      dd["FE"] = tmp02.FE
+      dd["Weight"] = 0
+      dd["food_item_id"] = tmp02.food_item_id
+      dd["portion_size"] = tmp02.portion_size_init
+      dd["count_buy"] = 0
+      dd["count_prod"] = 0
+      dd["m1"] = 0
+      dd["m2"] = 0
+      dd["m3"] = 0
+      dd["m4"] = 0
+      dd["m5"] = 0
+      dd["m6"] = 0
+      dd["m7"] = 0
+      dd["m8"] = 0
+      dd["m9"] = 0
+      dd["m10"] = 0
+      dd["m11"] = 0
+      dd["m12"] = 0
+      # dd["myLocation"] = tmp02.myLocation_id
+      d.append(dd)
+    context["mylist_available"] = d
+
+    context['nav_link1'] = reverse_lazy("crop_feas2_list")
+    context['nav_text1'] = "list"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "feasibility check"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
+    context["mark_text"] = 'quick feasibility assessment'
+    context["stepid"] = 1000
+
+    return context
 
 
 class FCT_ListView(LoginRequiredMixin, ListView):

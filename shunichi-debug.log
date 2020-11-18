@@ -5931,3 +5931,1650 @@ INFO [views.py-registPerson-1070] registPerson
 INFO [views.py-get_context_data-662] myApp.Crop_Name.myCountryName
 INFO [views.py-get_context_data-712] 200
 INFO [views.py-get_context_data-713] 300
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Maize, yellow, grit, degermed
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Maize, yellow, grit, degermed
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Maize, yellow, grit, degermed
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [views.py-get_context_data-2303] child 0-23 month
+INFO [views.py-get_context_data-2305] 0
+INFO [views.py-get_context_data-2303] child 24-59 month
+INFO [views.py-get_context_data-2305] 1
+INFO [views.py-get_context_data-2303] child 6-9 yr
+INFO [views.py-get_context_data-2305] 2
+INFO [views.py-get_context_data-2303] adolescent female
+INFO [views.py-get_context_data-2305] 4
+INFO [views.py-get_context_data-2303] adolescent male
+INFO [views.py-get_context_data-2305] 3
+INFO [views.py-get_context_data-2303] adult
+INFO [views.py-get_context_data-2305] 9
+INFO [views.py-get_context_data-2303] adolescent pregnant
+INFO [views.py-get_context_data-2305] 10
+INFO [views.py-get_context_data-2303] pregnant
+INFO [views.py-get_context_data-2305] 7
+INFO [views.py-get_context_data-2303] adolescent lact
+INFO [views.py-get_context_data-2305] 11
+INFO [views.py-get_context_data-2303] lactating
+INFO [views.py-get_context_data-2305] 8
+INFO [views.py-get_context_data-2303] adolescent all
+INFO [views.py-get_context_data-2305] 12
+INFO [views.py-get_context_data-2303] adult male
+INFO [views.py-get_context_data-2305] 5
+INFO [views.py-get_context_data-2303] adult female
+INFO [views.py-get_context_data-2305] 6
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Maize, yellow, grit, degermed
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [views.py-get_context_data-2303] child 0-23 month
+INFO [views.py-get_context_data-2305] 0
+INFO [views.py-get_context_data-2303] child 24-59 month
+INFO [views.py-get_context_data-2305] 1
+INFO [views.py-get_context_data-2303] child 6-9 yr
+INFO [views.py-get_context_data-2305] 2
+INFO [views.py-get_context_data-2303] adolescent female
+INFO [views.py-get_context_data-2305] 4
+INFO [views.py-get_context_data-2303] adolescent male
+INFO [views.py-get_context_data-2305] 3
+INFO [views.py-get_context_data-2303] adult
+INFO [views.py-get_context_data-2305] 9
+INFO [views.py-get_context_data-2303] adolescent pregnant
+INFO [views.py-get_context_data-2305] 10
+INFO [views.py-get_context_data-2303] pregnant
+INFO [views.py-get_context_data-2305] 7
+INFO [views.py-get_context_data-2303] adolescent lact
+INFO [views.py-get_context_data-2305] 11
+INFO [views.py-get_context_data-2303] lactating
+INFO [views.py-get_context_data-2305] 8
+INFO [views.py-get_context_data-2303] adolescent all
+INFO [views.py-get_context_data-2305] 12
+INFO [views.py-get_context_data-2303] adult male
+INFO [views.py-get_context_data-2305] 5
+INFO [views.py-get_context_data-2303] adult female
+INFO [views.py-get_context_data-2305] 6
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Maize, yellow, grit, degermed
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [views.py-get_context_data-2303] child 0-23 month
+INFO [views.py-get_context_data-2305] 0
+INFO [views.py-get_context_data-2303] child 24-59 month
+INFO [views.py-get_context_data-2305] 1
+INFO [views.py-get_context_data-2303] child 6-9 yr
+INFO [views.py-get_context_data-2305] 2
+INFO [views.py-get_context_data-2303] adolescent female
+INFO [views.py-get_context_data-2305] 4
+INFO [views.py-get_context_data-2303] adolescent male
+INFO [views.py-get_context_data-2305] 3
+INFO [views.py-get_context_data-2303] adult
+INFO [views.py-get_context_data-2305] 9
+INFO [views.py-get_context_data-2303] adolescent pregnant
+INFO [views.py-get_context_data-2305] 10
+INFO [views.py-get_context_data-2303] pregnant
+INFO [views.py-get_context_data-2305] 7
+INFO [views.py-get_context_data-2303] adolescent lact
+INFO [views.py-get_context_data-2305] 11
+INFO [views.py-get_context_data-2303] lactating
+INFO [views.py-get_context_data-2305] 8
+INFO [views.py-get_context_data-2303] adolescent all
+INFO [views.py-get_context_data-2305] 12
+INFO [views.py-get_context_data-2303] adult male
+INFO [views.py-get_context_data-2305] 5
+INFO [views.py-get_context_data-2303] adult female
+INFO [views.py-get_context_data-2305] 6
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Maize, yellow, grit, degermed
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [views.py-get_context_data-2303] child 0-23 month
+INFO [views.py-get_context_data-2305] 0
+INFO [views.py-get_context_data-2303] child 24-59 month
+INFO [views.py-get_context_data-2305] 1
+INFO [views.py-get_context_data-2303] child 6-9 yr
+INFO [views.py-get_context_data-2305] 2
+INFO [views.py-get_context_data-2303] adolescent female
+INFO [views.py-get_context_data-2305] 4
+INFO [views.py-get_context_data-2303] adolescent male
+INFO [views.py-get_context_data-2305] 3
+INFO [views.py-get_context_data-2303] adult
+INFO [views.py-get_context_data-2305] 9
+INFO [views.py-get_context_data-2303] adolescent pregnant
+INFO [views.py-get_context_data-2305] 10
+INFO [views.py-get_context_data-2303] pregnant
+INFO [views.py-get_context_data-2305] 7
+INFO [views.py-get_context_data-2303] adolescent lact
+INFO [views.py-get_context_data-2305] 11
+INFO [views.py-get_context_data-2303] lactating
+INFO [views.py-get_context_data-2305] 8
+INFO [views.py-get_context_data-2303] adolescent all
+INFO [views.py-get_context_data-2305] 12
+INFO [views.py-get_context_data-2303] adult male
+INFO [views.py-get_context_data-2305] 5
+INFO [views.py-get_context_data-2303] adult female
+INFO [views.py-get_context_data-2305] 6
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Maize, yellow, grit, degermed
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [views.py-get_context_data-2303] child 0-23 month
+INFO [views.py-get_context_data-2305] 0
+INFO [views.py-get_context_data-2303] child 24-59 month
+INFO [views.py-get_context_data-2305] 1
+INFO [views.py-get_context_data-2303] child 6-9 yr
+INFO [views.py-get_context_data-2305] 2
+INFO [views.py-get_context_data-2303] adolescent female
+INFO [views.py-get_context_data-2305] 4
+INFO [views.py-get_context_data-2303] adolescent male
+INFO [views.py-get_context_data-2305] 3
+INFO [views.py-get_context_data-2303] adult
+INFO [views.py-get_context_data-2305] 9
+INFO [views.py-get_context_data-2303] adolescent pregnant
+INFO [views.py-get_context_data-2305] 10
+INFO [views.py-get_context_data-2303] pregnant
+INFO [views.py-get_context_data-2305] 7
+INFO [views.py-get_context_data-2303] adolescent lact
+INFO [views.py-get_context_data-2305] 11
+INFO [views.py-get_context_data-2303] lactating
+INFO [views.py-get_context_data-2305] 8
+INFO [views.py-get_context_data-2303] adolescent all
+INFO [views.py-get_context_data-2305] 12
+INFO [views.py-get_context_data-2303] adult male
+INFO [views.py-get_context_data-2305] 5
+INFO [views.py-get_context_data-2303] adult female
+INFO [views.py-get_context_data-2305] 6
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Maize, yellow, grit, degermed
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [views.py-get_context_data-2304] child 0-23 month
+INFO [views.py-get_context_data-2306] 0
+INFO [views.py-get_context_data-2304] child 24-59 month
+INFO [views.py-get_context_data-2306] 1
+INFO [views.py-get_context_data-2304] child 6-9 yr
+INFO [views.py-get_context_data-2306] 2
+INFO [views.py-get_context_data-2304] adolescent female
+INFO [views.py-get_context_data-2306] 4
+INFO [views.py-get_context_data-2304] adolescent male
+INFO [views.py-get_context_data-2306] 3
+INFO [views.py-get_context_data-2304] adult
+INFO [views.py-get_context_data-2306] 9
+INFO [views.py-get_context_data-2304] adolescent pregnant
+INFO [views.py-get_context_data-2306] 10
+INFO [views.py-get_context_data-2304] pregnant
+INFO [views.py-get_context_data-2306] 7
+INFO [views.py-get_context_data-2304] adolescent lact
+INFO [views.py-get_context_data-2306] 11
+INFO [views.py-get_context_data-2304] lactating
+INFO [views.py-get_context_data-2306] 8
+INFO [views.py-get_context_data-2304] adolescent all
+INFO [views.py-get_context_data-2306] 12
+INFO [views.py-get_context_data-2304] adult male
+INFO [views.py-get_context_data-2306] 5
+INFO [views.py-get_context_data-2304] adult female
+INFO [views.py-get_context_data-2306] 6
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Maize, yellow, grit, degermed
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [views.py-get_context_data-2304] child 0-23 month
+INFO [views.py-get_context_data-2306] 0
+INFO [views.py-get_context_data-2304] child 24-59 month
+INFO [views.py-get_context_data-2306] 1
+INFO [views.py-get_context_data-2304] child 6-9 yr
+INFO [views.py-get_context_data-2306] 2
+INFO [views.py-get_context_data-2304] adolescent female
+INFO [views.py-get_context_data-2306] 4
+INFO [views.py-get_context_data-2304] adolescent male
+INFO [views.py-get_context_data-2306] 3
+INFO [views.py-get_context_data-2304] adult
+INFO [views.py-get_context_data-2306] 9
+INFO [views.py-get_context_data-2304] adolescent pregnant
+INFO [views.py-get_context_data-2306] 10
+INFO [views.py-get_context_data-2304] pregnant
+INFO [views.py-get_context_data-2306] 7
+INFO [views.py-get_context_data-2304] adolescent lact
+INFO [views.py-get_context_data-2306] 11
+INFO [views.py-get_context_data-2304] lactating
+INFO [views.py-get_context_data-2306] 8
+INFO [views.py-get_context_data-2304] adolescent all
+INFO [views.py-get_context_data-2306] 12
+INFO [views.py-get_context_data-2304] adult male
+INFO [views.py-get_context_data-2306] 5
+INFO [views.py-get_context_data-2304] adult female
+INFO [views.py-get_context_data-2306] 6
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Maize, yellow, grit, degermed
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [views.py-get_context_data-2304] child 0-23 month
+INFO [views.py-get_context_data-2306] 0
+INFO [views.py-get_context_data-2304] child 24-59 month
+INFO [views.py-get_context_data-2306] 1
+INFO [views.py-get_context_data-2304] child 6-9 yr
+INFO [views.py-get_context_data-2306] 2
+INFO [views.py-get_context_data-2304] adolescent female
+INFO [views.py-get_context_data-2306] 4
+INFO [views.py-get_context_data-2304] adolescent male
+INFO [views.py-get_context_data-2306] 3
+INFO [views.py-get_context_data-2304] adult
+INFO [views.py-get_context_data-2306] 9
+INFO [views.py-get_context_data-2304] adolescent pregnant
+INFO [views.py-get_context_data-2306] 10
+INFO [views.py-get_context_data-2304] pregnant
+INFO [views.py-get_context_data-2306] 7
+INFO [views.py-get_context_data-2304] adolescent lact
+INFO [views.py-get_context_data-2306] 11
+INFO [views.py-get_context_data-2304] lactating
+INFO [views.py-get_context_data-2306] 8
+INFO [views.py-get_context_data-2304] adolescent all
+INFO [views.py-get_context_data-2306] 12
+INFO [views.py-get_context_data-2304] adult male
+INFO [views.py-get_context_data-2306] 5
+INFO [views.py-get_context_data-2304] adult female
+INFO [views.py-get_context_data-2306] 6
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Sorghum, flour, degermed
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [views.py-get_context_data-2304] child 0-23 month
+INFO [views.py-get_context_data-2306] 0
+INFO [views.py-get_context_data-2304] child 24-59 month
+INFO [views.py-get_context_data-2306] 1
+INFO [views.py-get_context_data-2304] child 6-9 yr
+INFO [views.py-get_context_data-2306] 2
+INFO [views.py-get_context_data-2304] adolescent female
+INFO [views.py-get_context_data-2306] 4
+INFO [views.py-get_context_data-2304] adolescent male
+INFO [views.py-get_context_data-2306] 3
+INFO [views.py-get_context_data-2304] adult
+INFO [views.py-get_context_data-2306] 9
+INFO [views.py-get_context_data-2304] adolescent pregnant
+INFO [views.py-get_context_data-2306] 10
+INFO [views.py-get_context_data-2304] pregnant
+INFO [views.py-get_context_data-2306] 7
+INFO [views.py-get_context_data-2304] adolescent lact
+INFO [views.py-get_context_data-2306] 11
+INFO [views.py-get_context_data-2304] lactating
+INFO [views.py-get_context_data-2306] 8
+INFO [views.py-get_context_data-2304] adolescent all
+INFO [views.py-get_context_data-2306] 12
+INFO [views.py-get_context_data-2304] adult male
+INFO [views.py-get_context_data-2306] 5
+INFO [views.py-get_context_data-2304] adult female
+INFO [views.py-get_context_data-2306] 6
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Sorghum, flour, degermed
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [views.py-get_context_data-2304] child 0-23 month
+INFO [views.py-get_context_data-2306] 0
+INFO [views.py-get_context_data-2304] child 24-59 month
+INFO [views.py-get_context_data-2306] 1
+INFO [views.py-get_context_data-2304] child 6-9 yr
+INFO [views.py-get_context_data-2306] 2
+INFO [views.py-get_context_data-2304] adolescent female
+INFO [views.py-get_context_data-2306] 4
+INFO [views.py-get_context_data-2304] adolescent male
+INFO [views.py-get_context_data-2306] 3
+INFO [views.py-get_context_data-2304] adult
+INFO [views.py-get_context_data-2306] 9
+INFO [views.py-get_context_data-2304] adolescent pregnant
+INFO [views.py-get_context_data-2306] 10
+INFO [views.py-get_context_data-2304] pregnant
+INFO [views.py-get_context_data-2306] 7
+INFO [views.py-get_context_data-2304] adolescent lact
+INFO [views.py-get_context_data-2306] 11
+INFO [views.py-get_context_data-2304] lactating
+INFO [views.py-get_context_data-2306] 8
+INFO [views.py-get_context_data-2304] adolescent all
+INFO [views.py-get_context_data-2306] 12
+INFO [views.py-get_context_data-2304] adult male
+INFO [views.py-get_context_data-2306] 5
+INFO [views.py-get_context_data-2304] adult female
+INFO [views.py-get_context_data-2306] 6
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Wheat, bran
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [views.py-get_context_data-2304] child 0-23 month
+INFO [views.py-get_context_data-2306] 0
+INFO [views.py-get_context_data-2304] child 24-59 month
+INFO [views.py-get_context_data-2306] 1
+INFO [views.py-get_context_data-2304] child 6-9 yr
+INFO [views.py-get_context_data-2306] 2
+INFO [views.py-get_context_data-2304] adolescent female
+INFO [views.py-get_context_data-2306] 4
+INFO [views.py-get_context_data-2304] adolescent male
+INFO [views.py-get_context_data-2306] 3
+INFO [views.py-get_context_data-2304] adult
+INFO [views.py-get_context_data-2306] 9
+INFO [views.py-get_context_data-2304] adolescent pregnant
+INFO [views.py-get_context_data-2306] 10
+INFO [views.py-get_context_data-2304] pregnant
+INFO [views.py-get_context_data-2306] 7
+INFO [views.py-get_context_data-2304] adolescent lact
+INFO [views.py-get_context_data-2306] 11
+INFO [views.py-get_context_data-2304] lactating
+INFO [views.py-get_context_data-2306] 8
+INFO [views.py-get_context_data-2304] adolescent all
+INFO [views.py-get_context_data-2306] 12
+INFO [views.py-get_context_data-2304] adult male
+INFO [views.py-get_context_data-2306] 5
+INFO [views.py-get_context_data-2304] adult female
+INFO [views.py-get_context_data-2306] 6
+INFO [views.py-get_context_data-2304] child 0-23 month
+INFO [views.py-get_context_data-2306] 0
+INFO [views.py-get_context_data-2304] child 24-59 month
+INFO [views.py-get_context_data-2306] 1
+INFO [views.py-get_context_data-2304] child 6-9 yr
+INFO [views.py-get_context_data-2306] 2
+INFO [views.py-get_context_data-2304] adolescent female
+INFO [views.py-get_context_data-2306] 4
+INFO [views.py-get_context_data-2304] adolescent male
+INFO [views.py-get_context_data-2306] 3
+INFO [views.py-get_context_data-2304] adult
+INFO [views.py-get_context_data-2306] 9
+INFO [views.py-get_context_data-2304] adolescent pregnant
+INFO [views.py-get_context_data-2306] 10
+INFO [views.py-get_context_data-2304] pregnant
+INFO [views.py-get_context_data-2306] 7
+INFO [views.py-get_context_data-2304] adolescent lact
+INFO [views.py-get_context_data-2306] 11
+INFO [views.py-get_context_data-2304] lactating
+INFO [views.py-get_context_data-2306] 8
+INFO [views.py-get_context_data-2304] adolescent all
+INFO [views.py-get_context_data-2306] 12
+INFO [views.py-get_context_data-2304] adult male
+INFO [views.py-get_context_data-2306] 5
+INFO [views.py-get_context_data-2304] adult female
+INFO [views.py-get_context_data-2306] 6
+INFO [views.py-get_context_data-2304] child 0-23 month
+INFO [views.py-get_context_data-2306] 0
+INFO [views.py-get_context_data-2304] child 24-59 month
+INFO [views.py-get_context_data-2306] 1
+INFO [views.py-get_context_data-2304] child 6-9 yr
+INFO [views.py-get_context_data-2306] 2
+INFO [views.py-get_context_data-2304] adolescent female
+INFO [views.py-get_context_data-2306] 4
+INFO [views.py-get_context_data-2304] adolescent male
+INFO [views.py-get_context_data-2306] 3
+INFO [views.py-get_context_data-2304] adult
+INFO [views.py-get_context_data-2306] 9
+INFO [views.py-get_context_data-2304] adolescent pregnant
+INFO [views.py-get_context_data-2306] 10
+INFO [views.py-get_context_data-2304] pregnant
+INFO [views.py-get_context_data-2306] 7
+INFO [views.py-get_context_data-2304] adolescent lact
+INFO [views.py-get_context_data-2306] 11
+INFO [views.py-get_context_data-2304] lactating
+INFO [views.py-get_context_data-2306] 8
+INFO [views.py-get_context_data-2304] adolescent all
+INFO [views.py-get_context_data-2306] 12
+INFO [views.py-get_context_data-2304] adult male
+INFO [views.py-get_context_data-2306] 5
+INFO [views.py-get_context_data-2304] adult female
+INFO [views.py-get_context_data-2306] 6
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Mung bean / Masho
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [views.py-get_context_data-2304] child 0-23 month
+INFO [views.py-get_context_data-2306] 0
+INFO [views.py-get_context_data-2304] child 24-59 month
+INFO [views.py-get_context_data-2306] 1
+INFO [views.py-get_context_data-2304] child 6-9 yr
+INFO [views.py-get_context_data-2306] 2
+INFO [views.py-get_context_data-2304] adolescent female
+INFO [views.py-get_context_data-2306] 4
+INFO [views.py-get_context_data-2304] adolescent male
+INFO [views.py-get_context_data-2306] 3
+INFO [views.py-get_context_data-2304] adult
+INFO [views.py-get_context_data-2306] 9
+INFO [views.py-get_context_data-2304] adolescent pregnant
+INFO [views.py-get_context_data-2306] 10
+INFO [views.py-get_context_data-2304] pregnant
+INFO [views.py-get_context_data-2306] 7
+INFO [views.py-get_context_data-2304] adolescent lact
+INFO [views.py-get_context_data-2306] 11
+INFO [views.py-get_context_data-2304] lactating
+INFO [views.py-get_context_data-2306] 8
+INFO [views.py-get_context_data-2304] adolescent all
+INFO [views.py-get_context_data-2306] 12
+INFO [views.py-get_context_data-2304] adult male
+INFO [views.py-get_context_data-2306] 5
+INFO [views.py-get_context_data-2304] adult female
+INFO [views.py-get_context_data-2306] 6
+INFO [views.py-get_context_data-2304] child 0-23 month
+INFO [views.py-get_context_data-2306] 0
+INFO [views.py-get_context_data-2304] child 24-59 month
+INFO [views.py-get_context_data-2306] 1
+INFO [views.py-get_context_data-2304] child 6-9 yr
+INFO [views.py-get_context_data-2306] 2
+INFO [views.py-get_context_data-2304] adolescent female
+INFO [views.py-get_context_data-2306] 4
+INFO [views.py-get_context_data-2304] adolescent male
+INFO [views.py-get_context_data-2306] 3
+INFO [views.py-get_context_data-2304] adult
+INFO [views.py-get_context_data-2306] 9
+INFO [views.py-get_context_data-2304] adolescent pregnant
+INFO [views.py-get_context_data-2306] 10
+INFO [views.py-get_context_data-2304] pregnant
+INFO [views.py-get_context_data-2306] 7
+INFO [views.py-get_context_data-2304] adolescent lact
+INFO [views.py-get_context_data-2306] 11
+INFO [views.py-get_context_data-2304] lactating
+INFO [views.py-get_context_data-2306] 8
+INFO [views.py-get_context_data-2304] adolescent all
+INFO [views.py-get_context_data-2306] 12
+INFO [views.py-get_context_data-2304] adult male
+INFO [views.py-get_context_data-2306] 5
+INFO [views.py-get_context_data-2304] adult female
+INFO [views.py-get_context_data-2306] 6
+INFO [views.py-get_context_data-334] self.num_loc
+INFO [views.py-get_context_data-335] 2
+INFO [views.py-get_context_data-334] self.num_loc
+INFO [views.py-get_context_data-335] 2
+INFO [views.py-change_location-2738] Profileを更新しました
+INFO [views.py-get_context_data-334] self.num_loc
+INFO [views.py-get_context_data-335] 2
+INFO [views.py-create_user_profile-360] ユーザー情報を作成します
+ERROR [views.py-create_user_profile-350] 新ユーザーsnakadaが作成されました
+INFO [views.py-get_context_data-334] self.num_loc
+INFO [views.py-get_context_data-335] 0
+INFO [views.py-Init_Crop_SubNational-520] Profileを更新しました
+INFO [views.py-Init_Crop_SubNational-569] Afar
+INFO [views.py-Init_Crop_SubNational-571] これからCrop＿SubNationalを追加していきます
+INFO [views.py-Init_Crop_SubNational-573] Crop＿Nationalの中に該当品目が存在しています
+INFO [views.py-Init_Crop_SubNational-581] 全ての該当品目をCrop_SubNationalに書き込みました!
+INFO [views.py-Init_Crop_SubNational-594] これからSeasonの構成、初期値を追加していきます
+INFO [views.py-Init_Crop_SubNational-599] Seasonの書込み終了
+INFO [views.py-get_context_data-334] self.num_loc
+INFO [views.py-get_context_data-335] 1
+INFO [views.py-get_context_data-2304] child 0-23 month
+INFO [views.py-get_context_data-2306] 0
+INFO [views.py-get_context_data-2304] child 24-59 month
+INFO [views.py-get_context_data-2306] 1
+INFO [views.py-get_context_data-2304] child 6-9 yr
+INFO [views.py-get_context_data-2306] 2
+INFO [views.py-get_context_data-2304] adolescent female
+INFO [views.py-get_context_data-2306] 4
+INFO [views.py-get_context_data-2304] adolescent male
+INFO [views.py-get_context_data-2306] 3
+INFO [views.py-get_context_data-2304] adult
+INFO [views.py-get_context_data-2306] 9
+INFO [views.py-get_context_data-2304] adolescent pregnant
+INFO [views.py-get_context_data-2306] 10
+INFO [views.py-get_context_data-2304] pregnant
+INFO [views.py-get_context_data-2306] 7
+INFO [views.py-get_context_data-2304] adolescent lact
+INFO [views.py-get_context_data-2306] 11
+INFO [views.py-get_context_data-2304] lactating
+INFO [views.py-get_context_data-2306] 8
+INFO [views.py-get_context_data-2304] adolescent all
+INFO [views.py-get_context_data-2306] 12
+INFO [views.py-get_context_data-2304] adult male
+INFO [views.py-get_context_data-2306] 5
+INFO [views.py-get_context_data-2304] adult female
+INFO [views.py-get_context_data-2306] 6
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Chick peas, white
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [views.py-get_context_data-2304] child 0-23 month
+INFO [views.py-get_context_data-2306] 0
+INFO [views.py-get_context_data-2304] child 24-59 month
+INFO [views.py-get_context_data-2306] 1
+INFO [views.py-get_context_data-2304] child 6-9 yr
+INFO [views.py-get_context_data-2306] 2
+INFO [views.py-get_context_data-2304] adolescent female
+INFO [views.py-get_context_data-2306] 4
+INFO [views.py-get_context_data-2304] adolescent male
+INFO [views.py-get_context_data-2306] 3
+INFO [views.py-get_context_data-2304] adult
+INFO [views.py-get_context_data-2306] 9
+INFO [views.py-get_context_data-2304] adolescent pregnant
+INFO [views.py-get_context_data-2306] 10
+INFO [views.py-get_context_data-2304] pregnant
+INFO [views.py-get_context_data-2306] 7
+INFO [views.py-get_context_data-2304] adolescent lact
+INFO [views.py-get_context_data-2306] 11
+INFO [views.py-get_context_data-2304] lactating
+INFO [views.py-get_context_data-2306] 8
+INFO [views.py-get_context_data-2304] adolescent all
+INFO [views.py-get_context_data-2306] 12
+INFO [views.py-get_context_data-2304] adult male
+INFO [views.py-get_context_data-2306] 5
+INFO [views.py-get_context_data-2304] adult female
+INFO [views.py-get_context_data-2306] 6
+INFO [forms.py-clean-367] 1
+INFO [forms.py-clean-368] Mung bean / Masho
+INFO [forms.py-clean-370] crop_name
+INFO [forms.py-clean-370] crop_name_id
+INFO [forms.py-clean-370] feas_DRI_e
+INFO [forms.py-clean-370] feas_soc_acceptable
+INFO [forms.py-clean-370] feas_soc_acceptable_wo
+INFO [forms.py-clean-370] feas_soc_acceptable_c5
+INFO [forms.py-clean-370] feas_prod_skill
+INFO [forms.py-clean-370] feas_workload
+INFO [forms.py-clean-370] feas_tech_service
+INFO [forms.py-clean-370] feas_invest_fixed
+INFO [forms.py-clean-370] feas_invest_variable
+INFO [forms.py-clean-370] feas_availability_prod
+INFO [forms.py-clean-370] feas_affordability
+INFO [forms.py-clean-370] feas_storability
+INFO [forms.py-clean-370] crop_score
+INFO [forms.py-clean-370] myFCT
+INFO [views.py-get_context_data-2304] child 0-23 month
+INFO [views.py-get_context_data-2306] 0
+INFO [views.py-get_context_data-2304] child 24-59 month
+INFO [views.py-get_context_data-2306] 1
+INFO [views.py-get_context_data-2304] child 6-9 yr
+INFO [views.py-get_context_data-2306] 2
+INFO [views.py-get_context_data-2304] adolescent female
+INFO [views.py-get_context_data-2306] 4
+INFO [views.py-get_context_data-2304] adolescent male
+INFO [views.py-get_context_data-2306] 3
+INFO [views.py-get_context_data-2304] adult
+INFO [views.py-get_context_data-2306] 9
+INFO [views.py-get_context_data-2304] adolescent pregnant
+INFO [views.py-get_context_data-2306] 10
+INFO [views.py-get_context_data-2304] pregnant
+INFO [views.py-get_context_data-2306] 7
+INFO [views.py-get_context_data-2304] adolescent lact
+INFO [views.py-get_context_data-2306] 11
+INFO [views.py-get_context_data-2304] lactating
+INFO [views.py-get_context_data-2306] 8
+INFO [views.py-get_context_data-2304] adolescent all
+INFO [views.py-get_context_data-2306] 12
+INFO [views.py-get_context_data-2304] adult male
+INFO [views.py-get_context_data-2306] 5
+INFO [views.py-get_context_data-2304] adult female
+INFO [views.py-get_context_data-2306] 6
+INFO [forms.py-clean-363] 1
+INFO [forms.py-clean-364] Mung bean / Masho
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [views.py-get_context_data-2299] child 0-23 month
+INFO [views.py-get_context_data-2301] 0
+INFO [views.py-get_context_data-2299] child 24-59 month
+INFO [views.py-get_context_data-2301] 1
+INFO [views.py-get_context_data-2299] child 6-9 yr
+INFO [views.py-get_context_data-2301] 2
+INFO [views.py-get_context_data-2299] adolescent female
+INFO [views.py-get_context_data-2301] 4
+INFO [views.py-get_context_data-2299] adolescent male
+INFO [views.py-get_context_data-2301] 3
+INFO [views.py-get_context_data-2299] adult
+INFO [views.py-get_context_data-2301] 9
+INFO [views.py-get_context_data-2299] adolescent pregnant
+INFO [views.py-get_context_data-2301] 10
+INFO [views.py-get_context_data-2299] pregnant
+INFO [views.py-get_context_data-2301] 7
+INFO [views.py-get_context_data-2299] adolescent lact
+INFO [views.py-get_context_data-2301] 11
+INFO [views.py-get_context_data-2299] lactating
+INFO [views.py-get_context_data-2301] 8
+INFO [views.py-get_context_data-2299] adolescent all
+INFO [views.py-get_context_data-2301] 12
+INFO [views.py-get_context_data-2299] adult male
+INFO [views.py-get_context_data-2301] 5
+INFO [views.py-get_context_data-2299] adult female
+INFO [views.py-get_context_data-2301] 6
+INFO [forms.py-clean-363] 1
+INFO [forms.py-clean-364] Faba bean
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [views.py-get_context_data-2299] child 0-23 month
+INFO [views.py-get_context_data-2301] 0
+INFO [views.py-get_context_data-2299] child 24-59 month
+INFO [views.py-get_context_data-2301] 1
+INFO [views.py-get_context_data-2299] child 6-9 yr
+INFO [views.py-get_context_data-2301] 2
+INFO [views.py-get_context_data-2299] adolescent female
+INFO [views.py-get_context_data-2301] 4
+INFO [views.py-get_context_data-2299] adolescent male
+INFO [views.py-get_context_data-2301] 3
+INFO [views.py-get_context_data-2299] adult
+INFO [views.py-get_context_data-2301] 9
+INFO [views.py-get_context_data-2299] adolescent pregnant
+INFO [views.py-get_context_data-2301] 10
+INFO [views.py-get_context_data-2299] pregnant
+INFO [views.py-get_context_data-2301] 7
+INFO [views.py-get_context_data-2299] adolescent lact
+INFO [views.py-get_context_data-2301] 11
+INFO [views.py-get_context_data-2299] lactating
+INFO [views.py-get_context_data-2301] 8
+INFO [views.py-get_context_data-2299] adolescent all
+INFO [views.py-get_context_data-2301] 12
+INFO [views.py-get_context_data-2299] adult male
+INFO [views.py-get_context_data-2301] 5
+INFO [views.py-get_context_data-2299] adult female
+INFO [views.py-get_context_data-2301] 6
+INFO [forms.py-clean-362] 1
+INFO [forms.py-clean-363] Faba bean
+INFO [forms.py-clean-365] crop_name
+INFO [forms.py-clean-365] crop_name_id
+INFO [forms.py-clean-365] feas_DRI_e
+INFO [forms.py-clean-365] feas_soc_acceptable
+INFO [forms.py-clean-365] feas_soc_acceptable_wo
+INFO [forms.py-clean-365] feas_soc_acceptable_c5
+INFO [forms.py-clean-365] feas_prod_skill
+INFO [forms.py-clean-365] feas_workload
+INFO [forms.py-clean-365] feas_tech_service
+INFO [forms.py-clean-365] feas_invest_fixed
+INFO [forms.py-clean-365] feas_invest_variable
+INFO [forms.py-clean-365] feas_availability_prod
+INFO [forms.py-clean-365] feas_affordability
+INFO [forms.py-clean-365] feas_storability
+INFO [forms.py-clean-365] crop_score
+INFO [forms.py-clean-365] myFCT
+INFO [views.py-get_context_data-2275] child 0-23 month
+INFO [views.py-get_context_data-2277] 0
+INFO [views.py-get_context_data-2275] child 24-59 month
+INFO [views.py-get_context_data-2277] 1
+INFO [views.py-get_context_data-2275] child 6-9 yr
+INFO [views.py-get_context_data-2277] 2
+INFO [views.py-get_context_data-2275] adolescent female
+INFO [views.py-get_context_data-2277] 4
+INFO [views.py-get_context_data-2275] adolescent male
+INFO [views.py-get_context_data-2277] 3
+INFO [views.py-get_context_data-2275] adult
+INFO [views.py-get_context_data-2277] 9
+INFO [views.py-get_context_data-2275] adolescent pregnant
+INFO [views.py-get_context_data-2277] 10
+INFO [views.py-get_context_data-2275] pregnant
+INFO [views.py-get_context_data-2277] 7
+INFO [views.py-get_context_data-2275] adolescent lact
+INFO [views.py-get_context_data-2277] 11
+INFO [views.py-get_context_data-2275] lactating
+INFO [views.py-get_context_data-2277] 8
+INFO [views.py-get_context_data-2275] adolescent all
+INFO [views.py-get_context_data-2277] 12
+INFO [views.py-get_context_data-2275] adult male
+INFO [views.py-get_context_data-2277] 5
+INFO [views.py-get_context_data-2275] adult female
+INFO [views.py-get_context_data-2277] 6
+INFO [forms.py-clean-362] 1
+INFO [forms.py-clean-363] Chick peas, white
+INFO [forms.py-clean-365] crop_name
+INFO [forms.py-clean-365] crop_name_id
+INFO [forms.py-clean-365] feas_DRI_e
+INFO [forms.py-clean-365] feas_soc_acceptable
+INFO [forms.py-clean-365] feas_soc_acceptable_wo
+INFO [forms.py-clean-365] feas_soc_acceptable_c5
+INFO [forms.py-clean-365] feas_prod_skill
+INFO [forms.py-clean-365] feas_workload
+INFO [forms.py-clean-365] feas_tech_service
+INFO [forms.py-clean-365] feas_invest_fixed
+INFO [forms.py-clean-365] feas_invest_variable
+INFO [forms.py-clean-365] feas_availability_prod
+INFO [forms.py-clean-365] feas_affordability
+INFO [forms.py-clean-365] feas_storability
+INFO [forms.py-clean-365] crop_score
+INFO [forms.py-clean-365] myFCT
+INFO [views.py-get_context_data-2275] child 0-23 month
+INFO [views.py-get_context_data-2277] 0
+INFO [views.py-get_context_data-2275] child 24-59 month
+INFO [views.py-get_context_data-2277] 1
+INFO [views.py-get_context_data-2275] child 6-9 yr
+INFO [views.py-get_context_data-2277] 2
+INFO [views.py-get_context_data-2275] adolescent female
+INFO [views.py-get_context_data-2277] 4
+INFO [views.py-get_context_data-2275] adolescent male
+INFO [views.py-get_context_data-2277] 3
+INFO [views.py-get_context_data-2275] adult
+INFO [views.py-get_context_data-2277] 9
+INFO [views.py-get_context_data-2275] adolescent pregnant
+INFO [views.py-get_context_data-2277] 10
+INFO [views.py-get_context_data-2275] pregnant
+INFO [views.py-get_context_data-2277] 7
+INFO [views.py-get_context_data-2275] adolescent lact
+INFO [views.py-get_context_data-2277] 11
+INFO [views.py-get_context_data-2275] lactating
+INFO [views.py-get_context_data-2277] 8
+INFO [views.py-get_context_data-2275] adolescent all
+INFO [views.py-get_context_data-2277] 12
+INFO [views.py-get_context_data-2275] adult male
+INFO [views.py-get_context_data-2277] 5
+INFO [views.py-get_context_data-2275] adult female
+INFO [views.py-get_context_data-2277] 6
+INFO [forms.py-clean-362] 1
+INFO [forms.py-clean-363] Chick peas, white
+ERROR [forms.py-clean-364] now these are outputs
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [views.py-get_context_data-2275] child 0-23 month
+INFO [views.py-get_context_data-2277] 0
+INFO [views.py-get_context_data-2275] child 24-59 month
+INFO [views.py-get_context_data-2277] 1
+INFO [views.py-get_context_data-2275] child 6-9 yr
+INFO [views.py-get_context_data-2277] 2
+INFO [views.py-get_context_data-2275] adolescent female
+INFO [views.py-get_context_data-2277] 4
+INFO [views.py-get_context_data-2275] adolescent male
+INFO [views.py-get_context_data-2277] 3
+INFO [views.py-get_context_data-2275] adult
+INFO [views.py-get_context_data-2277] 9
+INFO [views.py-get_context_data-2275] adolescent pregnant
+INFO [views.py-get_context_data-2277] 10
+INFO [views.py-get_context_data-2275] pregnant
+INFO [views.py-get_context_data-2277] 7
+INFO [views.py-get_context_data-2275] adolescent lact
+INFO [views.py-get_context_data-2277] 11
+INFO [views.py-get_context_data-2275] lactating
+INFO [views.py-get_context_data-2277] 8
+INFO [views.py-get_context_data-2275] adolescent all
+INFO [views.py-get_context_data-2277] 12
+INFO [views.py-get_context_data-2275] adult male
+INFO [views.py-get_context_data-2277] 5
+INFO [views.py-get_context_data-2275] adult female
+INFO [views.py-get_context_data-2277] 6
+INFO [forms.py-clean-362] 1
+INFO [forms.py-clean-363] Mung bean / Masho
+ERROR [forms.py-clean-364] now these are outputs
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [views.py-get_context_data-2275] child 0-23 month
+INFO [views.py-get_context_data-2277] 0
+INFO [views.py-get_context_data-2275] child 24-59 month
+INFO [views.py-get_context_data-2277] 1
+INFO [views.py-get_context_data-2275] child 6-9 yr
+INFO [views.py-get_context_data-2277] 2
+INFO [views.py-get_context_data-2275] adolescent female
+INFO [views.py-get_context_data-2277] 4
+INFO [views.py-get_context_data-2275] adolescent male
+INFO [views.py-get_context_data-2277] 3
+INFO [views.py-get_context_data-2275] adult
+INFO [views.py-get_context_data-2277] 9
+INFO [views.py-get_context_data-2275] adolescent pregnant
+INFO [views.py-get_context_data-2277] 10
+INFO [views.py-get_context_data-2275] pregnant
+INFO [views.py-get_context_data-2277] 7
+INFO [views.py-get_context_data-2275] adolescent lact
+INFO [views.py-get_context_data-2277] 11
+INFO [views.py-get_context_data-2275] lactating
+INFO [views.py-get_context_data-2277] 8
+INFO [views.py-get_context_data-2275] adolescent all
+INFO [views.py-get_context_data-2277] 12
+INFO [views.py-get_context_data-2275] adult male
+INFO [views.py-get_context_data-2277] 5
+INFO [views.py-get_context_data-2275] adult female
+INFO [views.py-get_context_data-2277] 6
+INFO [forms.py-clean-362] 1
+INFO [forms.py-clean-363] Mung bean / Masho
+ERROR [forms.py-clean-364] now these are outputs
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [views.py-get_context_data-2275] child 0-23 month
+INFO [views.py-get_context_data-2277] 0
+INFO [views.py-get_context_data-2275] child 24-59 month
+INFO [views.py-get_context_data-2277] 1
+INFO [views.py-get_context_data-2275] child 6-9 yr
+INFO [views.py-get_context_data-2277] 2
+INFO [views.py-get_context_data-2275] adolescent female
+INFO [views.py-get_context_data-2277] 4
+INFO [views.py-get_context_data-2275] adolescent male
+INFO [views.py-get_context_data-2277] 3
+INFO [views.py-get_context_data-2275] adult
+INFO [views.py-get_context_data-2277] 9
+INFO [views.py-get_context_data-2275] adolescent pregnant
+INFO [views.py-get_context_data-2277] 10
+INFO [views.py-get_context_data-2275] pregnant
+INFO [views.py-get_context_data-2277] 7
+INFO [views.py-get_context_data-2275] adolescent lact
+INFO [views.py-get_context_data-2277] 11
+INFO [views.py-get_context_data-2275] lactating
+INFO [views.py-get_context_data-2277] 8
+INFO [views.py-get_context_data-2275] adolescent all
+INFO [views.py-get_context_data-2277] 12
+INFO [views.py-get_context_data-2275] adult male
+INFO [views.py-get_context_data-2277] 5
+INFO [views.py-get_context_data-2275] adult female
+INFO [views.py-get_context_data-2277] 6
+INFO [forms.py-clean-362] 1
+INFO [forms.py-clean-363] Mung bean / Masho
+ERROR [forms.py-clean-364] now these are outputs
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [views.py-get_context_data-2275] child 0-23 month
+INFO [views.py-get_context_data-2277] 0
+INFO [views.py-get_context_data-2275] child 24-59 month
+INFO [views.py-get_context_data-2277] 1
+INFO [views.py-get_context_data-2275] child 6-9 yr
+INFO [views.py-get_context_data-2277] 2
+INFO [views.py-get_context_data-2275] adolescent female
+INFO [views.py-get_context_data-2277] 4
+INFO [views.py-get_context_data-2275] adolescent male
+INFO [views.py-get_context_data-2277] 3
+INFO [views.py-get_context_data-2275] adult
+INFO [views.py-get_context_data-2277] 9
+INFO [views.py-get_context_data-2275] adolescent pregnant
+INFO [views.py-get_context_data-2277] 10
+INFO [views.py-get_context_data-2275] pregnant
+INFO [views.py-get_context_data-2277] 7
+INFO [views.py-get_context_data-2275] adolescent lact
+INFO [views.py-get_context_data-2277] 11
+INFO [views.py-get_context_data-2275] lactating
+INFO [views.py-get_context_data-2277] 8
+INFO [views.py-get_context_data-2275] adolescent all
+INFO [views.py-get_context_data-2277] 12
+INFO [views.py-get_context_data-2275] adult male
+INFO [views.py-get_context_data-2277] 5
+INFO [views.py-get_context_data-2275] adult female
+INFO [views.py-get_context_data-2277] 6
+INFO [forms.py-clean-362] 1
+INFO [forms.py-clean-363] Faba bean
+ERROR [forms.py-clean-364] now these are outputs
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [forms.py-clean-366] created_by
+INFO [forms.py-clean-362] 1
+INFO [forms.py-clean-363] Faba bean
+ERROR [forms.py-clean-364] now these are outputs
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [forms.py-clean-366] created_by
+INFO [forms.py-clean-362] 1
+INFO [forms.py-clean-363] Mung bean / Masho
+ERROR [forms.py-clean-364] now these are outputs
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [forms.py-clean-366] created_by
+INFO [views.py-get_queryset-2355] snakada
+INFO [views.py-get_queryset-2356] 1
+INFO [forms.py-clean-362] 1
+INFO [forms.py-clean-363] Mung bean / Masho
+ERROR [forms.py-clean-364] now these are outputs
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [views.py-get_context_data-2275] child 0-23 month
+INFO [views.py-get_context_data-2277] 0
+INFO [views.py-get_context_data-2275] child 24-59 month
+INFO [views.py-get_context_data-2277] 1
+INFO [views.py-get_context_data-2275] child 6-9 yr
+INFO [views.py-get_context_data-2277] 2
+INFO [views.py-get_context_data-2275] adolescent female
+INFO [views.py-get_context_data-2277] 4
+INFO [views.py-get_context_data-2275] adolescent male
+INFO [views.py-get_context_data-2277] 3
+INFO [views.py-get_context_data-2275] adult
+INFO [views.py-get_context_data-2277] 9
+INFO [views.py-get_context_data-2275] adolescent pregnant
+INFO [views.py-get_context_data-2277] 10
+INFO [views.py-get_context_data-2275] pregnant
+INFO [views.py-get_context_data-2277] 7
+INFO [views.py-get_context_data-2275] adolescent lact
+INFO [views.py-get_context_data-2277] 11
+INFO [views.py-get_context_data-2275] lactating
+INFO [views.py-get_context_data-2277] 8
+INFO [views.py-get_context_data-2275] adolescent all
+INFO [views.py-get_context_data-2277] 12
+INFO [views.py-get_context_data-2275] adult male
+INFO [views.py-get_context_data-2277] 5
+INFO [views.py-get_context_data-2275] adult female
+INFO [views.py-get_context_data-2277] 6
+INFO [forms.py-clean-362] 1
+INFO [forms.py-clean-363] Mung bean / Masho
+ERROR [forms.py-clean-364] now these are outputs
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [views.py-get_context_data-2275] child 0-23 month
+INFO [views.py-get_context_data-2277] 0
+INFO [views.py-get_context_data-2275] child 24-59 month
+INFO [views.py-get_context_data-2277] 1
+INFO [views.py-get_context_data-2275] child 6-9 yr
+INFO [views.py-get_context_data-2277] 2
+INFO [views.py-get_context_data-2275] adolescent female
+INFO [views.py-get_context_data-2277] 4
+INFO [views.py-get_context_data-2275] adolescent male
+INFO [views.py-get_context_data-2277] 3
+INFO [views.py-get_context_data-2275] adult
+INFO [views.py-get_context_data-2277] 9
+INFO [views.py-get_context_data-2275] adolescent pregnant
+INFO [views.py-get_context_data-2277] 10
+INFO [views.py-get_context_data-2275] pregnant
+INFO [views.py-get_context_data-2277] 7
+INFO [views.py-get_context_data-2275] adolescent lact
+INFO [views.py-get_context_data-2277] 11
+INFO [views.py-get_context_data-2275] lactating
+INFO [views.py-get_context_data-2277] 8
+INFO [views.py-get_context_data-2275] adolescent all
+INFO [views.py-get_context_data-2277] 12
+INFO [views.py-get_context_data-2275] adult male
+INFO [views.py-get_context_data-2277] 5
+INFO [views.py-get_context_data-2275] adult female
+INFO [views.py-get_context_data-2277] 6
+INFO [forms.py-clean-362] 1
+INFO [forms.py-clean-363] Mung bean / Masho
+ERROR [forms.py-clean-364] now these are outputs
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [views.py-get_context_data-2275] child 0-23 month
+INFO [views.py-get_context_data-2277] 0
+INFO [views.py-get_context_data-2275] child 24-59 month
+INFO [views.py-get_context_data-2277] 1
+INFO [views.py-get_context_data-2275] child 6-9 yr
+INFO [views.py-get_context_data-2277] 2
+INFO [views.py-get_context_data-2275] adolescent female
+INFO [views.py-get_context_data-2277] 4
+INFO [views.py-get_context_data-2275] adolescent male
+INFO [views.py-get_context_data-2277] 3
+INFO [views.py-get_context_data-2275] adult
+INFO [views.py-get_context_data-2277] 9
+INFO [views.py-get_context_data-2275] adolescent pregnant
+INFO [views.py-get_context_data-2277] 10
+INFO [views.py-get_context_data-2275] pregnant
+INFO [views.py-get_context_data-2277] 7
+INFO [views.py-get_context_data-2275] adolescent lact
+INFO [views.py-get_context_data-2277] 11
+INFO [views.py-get_context_data-2275] lactating
+INFO [views.py-get_context_data-2277] 8
+INFO [views.py-get_context_data-2275] adolescent all
+INFO [views.py-get_context_data-2277] 12
+INFO [views.py-get_context_data-2275] adult male
+INFO [views.py-get_context_data-2277] 5
+INFO [views.py-get_context_data-2275] adult female
+INFO [views.py-get_context_data-2277] 6
+INFO [forms.py-clean-362] 1
+INFO [forms.py-clean-363] Mung bean / Masho
+ERROR [forms.py-clean-364] now these are outputs
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [views.py-get_context_data-2275] child 0-23 month
+INFO [views.py-get_context_data-2277] 0
+INFO [views.py-get_context_data-2275] child 24-59 month
+INFO [views.py-get_context_data-2277] 1
+INFO [views.py-get_context_data-2275] child 6-9 yr
+INFO [views.py-get_context_data-2277] 2
+INFO [views.py-get_context_data-2275] adolescent female
+INFO [views.py-get_context_data-2277] 4
+INFO [views.py-get_context_data-2275] adolescent male
+INFO [views.py-get_context_data-2277] 3
+INFO [views.py-get_context_data-2275] adult
+INFO [views.py-get_context_data-2277] 9
+INFO [views.py-get_context_data-2275] adolescent pregnant
+INFO [views.py-get_context_data-2277] 10
+INFO [views.py-get_context_data-2275] pregnant
+INFO [views.py-get_context_data-2277] 7
+INFO [views.py-get_context_data-2275] adolescent lact
+INFO [views.py-get_context_data-2277] 11
+INFO [views.py-get_context_data-2275] lactating
+INFO [views.py-get_context_data-2277] 8
+INFO [views.py-get_context_data-2275] adolescent all
+INFO [views.py-get_context_data-2277] 12
+INFO [views.py-get_context_data-2275] adult male
+INFO [views.py-get_context_data-2277] 5
+INFO [views.py-get_context_data-2275] adult female
+INFO [views.py-get_context_data-2277] 6
+INFO [forms.py-clean-362] 1
+INFO [forms.py-clean-363] Mung bean / Masho
+ERROR [forms.py-clean-364] now these are outputs
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [views.py-get_context_data-2275] child 0-23 month
+INFO [views.py-get_context_data-2277] 0
+INFO [views.py-get_context_data-2275] child 24-59 month
+INFO [views.py-get_context_data-2277] 1
+INFO [views.py-get_context_data-2275] child 6-9 yr
+INFO [views.py-get_context_data-2277] 2
+INFO [views.py-get_context_data-2275] adolescent female
+INFO [views.py-get_context_data-2277] 4
+INFO [views.py-get_context_data-2275] adolescent male
+INFO [views.py-get_context_data-2277] 3
+INFO [views.py-get_context_data-2275] adult
+INFO [views.py-get_context_data-2277] 9
+INFO [views.py-get_context_data-2275] adolescent pregnant
+INFO [views.py-get_context_data-2277] 10
+INFO [views.py-get_context_data-2275] pregnant
+INFO [views.py-get_context_data-2277] 7
+INFO [views.py-get_context_data-2275] adolescent lact
+INFO [views.py-get_context_data-2277] 11
+INFO [views.py-get_context_data-2275] lactating
+INFO [views.py-get_context_data-2277] 8
+INFO [views.py-get_context_data-2275] adolescent all
+INFO [views.py-get_context_data-2277] 12
+INFO [views.py-get_context_data-2275] adult male
+INFO [views.py-get_context_data-2277] 5
+INFO [views.py-get_context_data-2275] adult female
+INFO [views.py-get_context_data-2277] 6
+INFO [forms.py-clean-362] 13
+INFO [forms.py-clean-363] Haricot beans, white
+ERROR [forms.py-clean-364] now these are outputs
+INFO [forms.py-clean-366] crop_name
+INFO [forms.py-clean-366] crop_name_id
+INFO [forms.py-clean-366] feas_DRI_e
+INFO [forms.py-clean-366] feas_soc_acceptable
+INFO [forms.py-clean-366] feas_soc_acceptable_wo
+INFO [forms.py-clean-366] feas_soc_acceptable_c5
+INFO [forms.py-clean-366] feas_prod_skill
+INFO [forms.py-clean-366] feas_workload
+INFO [forms.py-clean-366] feas_tech_service
+INFO [forms.py-clean-366] feas_invest_fixed
+INFO [forms.py-clean-366] feas_invest_variable
+INFO [forms.py-clean-366] feas_availability_prod
+INFO [forms.py-clean-366] feas_affordability
+INFO [forms.py-clean-366] feas_storability
+INFO [forms.py-clean-366] crop_score
+INFO [forms.py-clean-366] myFCT
+INFO [forms.py-clean-366] created_by
+INFO [views.py-get_context_data-2429] child 0-23 month
+INFO [views.py-get_context_data-2431] 0
+INFO [views.py-get_context_data-2429] child 24-59 month
+INFO [views.py-get_context_data-2431] 1
+INFO [views.py-get_context_data-2429] child 6-9 yr
+INFO [views.py-get_context_data-2431] 2
+INFO [views.py-get_context_data-2429] adolescent female
+INFO [views.py-get_context_data-2431] 4
+INFO [views.py-get_context_data-2429] adolescent male
+INFO [views.py-get_context_data-2431] 3
+INFO [views.py-get_context_data-2429] adult
+INFO [views.py-get_context_data-2431] 9
+INFO [views.py-get_context_data-2429] adolescent pregnant
+INFO [views.py-get_context_data-2431] 10
+INFO [views.py-get_context_data-2429] pregnant
+INFO [views.py-get_context_data-2431] 7
+INFO [views.py-get_context_data-2429] adolescent lact
+INFO [views.py-get_context_data-2431] 11
+INFO [views.py-get_context_data-2429] lactating
+INFO [views.py-get_context_data-2431] 8
+INFO [views.py-get_context_data-2429] adolescent all
+INFO [views.py-get_context_data-2431] 12
+INFO [views.py-get_context_data-2429] adult male
+INFO [views.py-get_context_data-2431] 5
+INFO [views.py-get_context_data-2429] adult female
+INFO [views.py-get_context_data-2431] 6
+INFO [views.py-get_context_data-2429] child 0-23 month
+INFO [views.py-get_context_data-2431] 0
+INFO [views.py-get_context_data-2429] child 24-59 month
+INFO [views.py-get_context_data-2431] 1
+INFO [views.py-get_context_data-2429] child 6-9 yr
+INFO [views.py-get_context_data-2431] 2
+INFO [views.py-get_context_data-2429] adolescent female
+INFO [views.py-get_context_data-2431] 4
+INFO [views.py-get_context_data-2429] adolescent male
+INFO [views.py-get_context_data-2431] 3
+INFO [views.py-get_context_data-2429] adult
+INFO [views.py-get_context_data-2431] 9
+INFO [views.py-get_context_data-2429] adolescent pregnant
+INFO [views.py-get_context_data-2431] 10
+INFO [views.py-get_context_data-2429] pregnant
+INFO [views.py-get_context_data-2431] 7
+INFO [views.py-get_context_data-2429] adolescent lact
+INFO [views.py-get_context_data-2431] 11
+INFO [views.py-get_context_data-2429] lactating
+INFO [views.py-get_context_data-2431] 8
+INFO [views.py-get_context_data-2429] adolescent all
+INFO [views.py-get_context_data-2431] 12
+INFO [views.py-get_context_data-2429] adult male
+INFO [views.py-get_context_data-2431] 5
+INFO [views.py-get_context_data-2429] adult female
+INFO [views.py-get_context_data-2431] 6
+INFO [views.py-get_context_data-2429] child 0-23 month
+INFO [views.py-get_context_data-2431] 0
+INFO [views.py-get_context_data-2429] child 24-59 month
+INFO [views.py-get_context_data-2431] 1
+INFO [views.py-get_context_data-2429] child 6-9 yr
+INFO [views.py-get_context_data-2431] 2
+INFO [views.py-get_context_data-2429] adolescent female
+INFO [views.py-get_context_data-2431] 4
+INFO [views.py-get_context_data-2429] adolescent male
+INFO [views.py-get_context_data-2431] 3
+INFO [views.py-get_context_data-2429] adult
+INFO [views.py-get_context_data-2431] 9
+INFO [views.py-get_context_data-2429] adolescent pregnant
+INFO [views.py-get_context_data-2431] 10
+INFO [views.py-get_context_data-2429] pregnant
+INFO [views.py-get_context_data-2431] 7
+INFO [views.py-get_context_data-2429] adolescent lact
+INFO [views.py-get_context_data-2431] 11
+INFO [views.py-get_context_data-2429] lactating
+INFO [views.py-get_context_data-2431] 8
+INFO [views.py-get_context_data-2429] adolescent all
+INFO [views.py-get_context_data-2431] 12
+INFO [views.py-get_context_data-2429] adult male
+INFO [views.py-get_context_data-2431] 5
+INFO [views.py-get_context_data-2429] adult female
+INFO [views.py-get_context_data-2431] 6
+INFO [views.py-get_context_data-2429] child 0-23 month
+INFO [views.py-get_context_data-2431] 0
+INFO [views.py-get_context_data-2429] child 24-59 month
+INFO [views.py-get_context_data-2431] 1
+INFO [views.py-get_context_data-2429] child 6-9 yr
+INFO [views.py-get_context_data-2431] 2
+INFO [views.py-get_context_data-2429] adolescent female
+INFO [views.py-get_context_data-2431] 4
+INFO [views.py-get_context_data-2429] adolescent male
+INFO [views.py-get_context_data-2431] 3
+INFO [views.py-get_context_data-2429] adult
+INFO [views.py-get_context_data-2431] 9
+INFO [views.py-get_context_data-2429] adolescent pregnant
+INFO [views.py-get_context_data-2431] 10
+INFO [views.py-get_context_data-2429] pregnant
+INFO [views.py-get_context_data-2431] 7
+INFO [views.py-get_context_data-2429] adolescent lact
+INFO [views.py-get_context_data-2431] 11
+INFO [views.py-get_context_data-2429] lactating
+INFO [views.py-get_context_data-2431] 8
+INFO [views.py-get_context_data-2429] adolescent all
+INFO [views.py-get_context_data-2431] 12
+INFO [views.py-get_context_data-2429] adult male
+INFO [views.py-get_context_data-2431] 5
+INFO [views.py-get_context_data-2429] adult female
+INFO [views.py-get_context_data-2431] 6
+INFO [views.py-get_context_data-2429] child 0-23 month
+INFO [views.py-get_context_data-2431] 0
+INFO [views.py-get_context_data-2429] child 24-59 month
+INFO [views.py-get_context_data-2431] 1
+INFO [views.py-get_context_data-2429] child 6-9 yr
+INFO [views.py-get_context_data-2431] 2
+INFO [views.py-get_context_data-2429] adolescent female
+INFO [views.py-get_context_data-2431] 4
+INFO [views.py-get_context_data-2429] adolescent male
+INFO [views.py-get_context_data-2431] 3
+INFO [views.py-get_context_data-2429] adult
+INFO [views.py-get_context_data-2431] 9
+INFO [views.py-get_context_data-2429] adolescent pregnant
+INFO [views.py-get_context_data-2431] 10
+INFO [views.py-get_context_data-2429] pregnant
+INFO [views.py-get_context_data-2431] 7
+INFO [views.py-get_context_data-2429] adolescent lact
+INFO [views.py-get_context_data-2431] 11
+INFO [views.py-get_context_data-2429] lactating
+INFO [views.py-get_context_data-2431] 8
+INFO [views.py-get_context_data-2429] adolescent all
+INFO [views.py-get_context_data-2431] 12
+INFO [views.py-get_context_data-2429] adult male
+INFO [views.py-get_context_data-2431] 5
+INFO [views.py-get_context_data-2429] adult female
+INFO [views.py-get_context_data-2431] 6
+INFO [views.py-get_context_data-2428] child 0-23 month
+INFO [views.py-get_context_data-2430] 0
+INFO [views.py-get_context_data-2428] child 24-59 month
+INFO [views.py-get_context_data-2430] 1
+INFO [views.py-get_context_data-2428] child 6-9 yr
+INFO [views.py-get_context_data-2430] 2
+INFO [views.py-get_context_data-2428] adolescent female
+INFO [views.py-get_context_data-2430] 4
+INFO [views.py-get_context_data-2428] adolescent male
+INFO [views.py-get_context_data-2430] 3
+INFO [views.py-get_context_data-2428] adult
+INFO [views.py-get_context_data-2430] 9
+INFO [views.py-get_context_data-2428] adolescent pregnant
+INFO [views.py-get_context_data-2430] 10
+INFO [views.py-get_context_data-2428] pregnant
+INFO [views.py-get_context_data-2430] 7
+INFO [views.py-get_context_data-2428] adolescent lact
+INFO [views.py-get_context_data-2430] 11
+INFO [views.py-get_context_data-2428] lactating
+INFO [views.py-get_context_data-2430] 8
+INFO [views.py-get_context_data-2428] adolescent all
+INFO [views.py-get_context_data-2430] 12
+INFO [views.py-get_context_data-2428] adult male
+INFO [views.py-get_context_data-2430] 5
+INFO [views.py-get_context_data-2428] adult female
+INFO [views.py-get_context_data-2430] 6
+INFO [views.py-get_context_data-2428] child 0-23 month
+INFO [views.py-get_context_data-2430] 0
+INFO [views.py-get_context_data-2428] child 24-59 month
+INFO [views.py-get_context_data-2430] 1
+INFO [views.py-get_context_data-2428] child 6-9 yr
+INFO [views.py-get_context_data-2430] 2
+INFO [views.py-get_context_data-2428] adolescent female
+INFO [views.py-get_context_data-2430] 4
+INFO [views.py-get_context_data-2428] adolescent male
+INFO [views.py-get_context_data-2430] 3
+INFO [views.py-get_context_data-2428] adult
+INFO [views.py-get_context_data-2430] 9
+INFO [views.py-get_context_data-2428] adolescent pregnant
+INFO [views.py-get_context_data-2430] 10
+INFO [views.py-get_context_data-2428] pregnant
+INFO [views.py-get_context_data-2430] 7
+INFO [views.py-get_context_data-2428] adolescent lact
+INFO [views.py-get_context_data-2430] 11
+INFO [views.py-get_context_data-2428] lactating
+INFO [views.py-get_context_data-2430] 8
+INFO [views.py-get_context_data-2428] adolescent all
+INFO [views.py-get_context_data-2430] 12
+INFO [views.py-get_context_data-2428] adult male
+INFO [views.py-get_context_data-2430] 5
+INFO [views.py-get_context_data-2428] adult female
+INFO [views.py-get_context_data-2430] 6
+INFO [views.py-get_context_data-2428] child 0-23 month
+INFO [views.py-get_context_data-2430] 0
+INFO [views.py-get_context_data-2428] child 24-59 month
+INFO [views.py-get_context_data-2430] 1
+INFO [views.py-get_context_data-2428] child 6-9 yr
+INFO [views.py-get_context_data-2430] 2
+INFO [views.py-get_context_data-2428] adolescent female
+INFO [views.py-get_context_data-2430] 4
+INFO [views.py-get_context_data-2428] adolescent male
+INFO [views.py-get_context_data-2430] 3
+INFO [views.py-get_context_data-2428] adult
+INFO [views.py-get_context_data-2430] 9
+INFO [views.py-get_context_data-2428] adolescent pregnant
+INFO [views.py-get_context_data-2430] 10
+INFO [views.py-get_context_data-2428] pregnant
+INFO [views.py-get_context_data-2430] 7
+INFO [views.py-get_context_data-2428] adolescent lact
+INFO [views.py-get_context_data-2430] 11
+INFO [views.py-get_context_data-2428] lactating
+INFO [views.py-get_context_data-2430] 8
+INFO [views.py-get_context_data-2428] adolescent all
+INFO [views.py-get_context_data-2430] 12
+INFO [views.py-get_context_data-2428] adult male
+INFO [views.py-get_context_data-2430] 5
+INFO [views.py-get_context_data-2428] adult female
+INFO [views.py-get_context_data-2430] 6

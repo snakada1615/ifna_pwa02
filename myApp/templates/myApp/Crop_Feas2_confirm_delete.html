@@ -1,0 +1,21 @@
+{% extends "myApp/_base.html" %}
+<!--  -->
+{% block content %}
+<div class="container" style="max-width: 540px;">
+    <h2 class="text-center">Delete data</h2>
+    <p>Deta will be deleted. Are you OK?</p>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-12">
+                <div class="float-right">
+                  <a class="btn btn-outline-secondary" href="{% url 'crop_feas2_list' %}">return</a>
+                  <input type="submit" class="btn btn-outline-secondary" value="delete" name="confirm_delete"  />
+                </div>
+            </div>
+        </div>
+        {% include "myApp/Crop_Feas2_card.html" %}
+    </form>
+</div>
+{% endblock %}

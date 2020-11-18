@@ -13,7 +13,9 @@ from .views import initTable, delete_TableRec, registDiet, Output1, Output2, Out
 from .views import CropSelect, registCropAvail, Trial_View, Diet_Plan1, update_profile
 from .views import Crop_Feas_CreateView, Crop_Feas_ListView, Crop_Feas_DeleteView, Crop_Feas_UpdateView
 from .views import FCT_ListView, FCT_UpdateView, FCT_CreateView, IndexView04, Crop_Name_ListView, Crop_Name_CreateView
-from .views import Crop_Name_UpdateView, Diet_instant
+from .views import Crop_Name_UpdateView, Diet_instant, Crop_Feas2_CreateView, Crop_Feas2_ListView,Crop_Feas2_DeleteView
+from .views import Crop_Feas2_UpdateView
+
 #from .views import Crop_Name_UpdateView, Diet_Plan2
 
 from django.contrib import admin
@@ -40,6 +42,10 @@ urlpatterns = [
   path('Crop_Feas_List/', Crop_Feas_ListView.as_view(), name='crop_feas_list'),
   path('Crop_Feas/delete/<int:pk>/', Crop_Feas_DeleteView.as_view(), name='crop_feas_delete'),
   path('Crop_Feas/update/<int:pk>/', Crop_Feas_UpdateView.as_view(), name='crop_feas_update'),
+  path('Crop_Feas2_List/', Crop_Feas2_ListView.as_view(), name='crop_feas2_list'),
+  path('Crop_Feas2_Create/', Crop_Feas2_CreateView.as_view(), name='crop_feas2_create'),
+  path('Crop_Feas2/update/<int:pk>/', Crop_Feas2_UpdateView.as_view(), name='crop_feas2_update'),
+  path('Crop_Feas2/delete/<int:pk>/', Crop_Feas2_DeleteView.as_view(), name='crop_feas2_delete'),
   path('registCropAvail/', views.registCropAvail, name='regist_crop_avail'),
   path('person/list/<int:myLocation>/<int:page>/', Person_ListView.as_view(), name='person_list'),
   path('person/create/<int:myLocation>/<int:mytarget_scope>/', Person_CreateView.as_view(), name='person_create'),

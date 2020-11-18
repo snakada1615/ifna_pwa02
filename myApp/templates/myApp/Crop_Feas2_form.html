@@ -1,0 +1,513 @@
+{% extends "myApp/_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <script type="text/javascript" src="{% static 'DataTables/js/jquery.dataTables.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/jquery.dataTables.min.css' %}"
+          media="screen">
+    <script type="text/javascript" src="{% static 'DataTables/js/dataTables.select.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'DataTables/css/select.dataTables.min.css' %}"
+          media="screen">
+    <script type="text/javascript" src="{% static 'js/jquery.barrating.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/bars-1to10.css' %}">
+
+    <input type="hidden" id="isupdate" value="{{ isUpdate }}"/>
+    {{ form.certifications.errors }}
+    <div class="container" style="max-width: 540px;">
+        <form method="post" id="myform">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-2 my-0 px-3">
+                </div>
+                <div class="col-8 my-0 px-1">
+                    <h5 class="text-center">Add new crop</h5>
+                </div>
+                <div class="col-2 my-0 px-1">
+				<span>
+          <button id="btn_save" type="submit" class="btn btn-warning text-dark mt-2 my-0 py-0 btn-sm">save</button>
+				</span>
+                </div>
+            </div>
+            <div class="card border-success bg-light col-12 my-2 py-1">
+                <div class="card border-success col-12 my-1 px-0"
+                     style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+                    <div class="card-header bg-info text-white mx-0 px-1 my-0 py-0">
+                        Editor:
+                    </div>
+                    <div class="card-body mx-1 px-1 my-0 py-0">
+                        <span>{{ form.created_by|as_crispy_field }}</span>
+                    </div>
+                </div>
+                <div class="card border-success col-12 my-1 px-0"
+                     style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+                    <div class="card-header bg-info text-white mx-0 px-1 my-0 py-0">
+                        Selected Crop:
+                    </div>
+                    <div class="card-body mx-1 px-1 my-0 py-0">
+                        {% ifequal isUpdate 0 %}
+                            <a id="btn_add" class="btn btn-sm btn-success my-2 btn-block" href="#">add new crop</a>
+                        {% endifequal %}
+                        {{ form.crop_name|as_crispy_field }}
+                        {{ form.crop_name_id|as_crispy_field }}
+                        {{ form.crop_score|as_crispy_field }}
+                        {{ form.myFCT|as_crispy_field }}
+                    </div>
+                </div>
+
+                <div class="card border-success col-12  my-1 px-0"
+                     style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+                    <div class="card-header bg-info text-white mx-0 px-1 my-0 py-0">
+                        Nutrient balance
+                    </div>
+
+                    <div class="card-body mx-1 px-1 my-0 py-0">
+                        <div class="row">
+                            <div class="col">Nutrient satisfaction per 100g serving</div>
+                        </div>
+                        <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+                            <div class="col-3">
+                                <label class="text-dark" for="rating_en">Energy</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="text-dark lbl_target_en" myNum="1"></div>
+                            </div>
+                            <div class="col-7">
+                                <select class="rating_DRI rating_en" myNum="1">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row no-gutters my-0 py-0" style="height:30px;">
+                            <div class="col-3">
+                                <label class="text-dark" for="rating_pr">Protein</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="text-dark lbl_target_pr" myNum="1"></div>
+                            </div>
+                            <div class="col-7">
+                                <select class="rating_DRI rating_pr" myNum="1">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row no-gutters my-0" style="height:30px;">
+                            <div class="col-3">
+                                <label class="text-dark" for="rating_va">VitA</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="text-dark lbl_target_va" myNum="1"></div>
+                            </div>
+                            <div class="col-7">
+                                <select class="rating_DRI rating_va" myNum="1" }>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row no-gutters my-0" style="height:30px;">
+                            <div class="col-3">
+                                <label class="text-dark " for="rating_fe">Iron</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="text-dark lbl_target_fe" myNum="1"></div>
+                            </div>
+                            <div class="col-7">
+                                <select class="rating_DRI rating_fe" myNum="1">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row no-gutters my-0 py-0" style="height:30px;">
+                            <div class="col-3 text-dark">Target group</div>
+                            <div class="col-5 text-dark">{{ nutrient_target }}</div>
+                        </div>
+
+                        <hr>
+
+                        {{ form.feas_DRI_e|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="card border-success col-12 my-1 px-0"
+                     style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+                    <div class="card-header bg-info text-white mx-0 px-1 my-0 py-0">
+                        Socioeconomic aspect
+                    </div>
+                    <div class="card-body mx-1 px-1 my-0 py-0">
+                        {{ form.feas_soc_acceptable|as_crispy_field }}
+                        {{ form.feas_soc_acceptable_wo|as_crispy_field }}
+                        {{ form.feas_soc_acceptable_c5|as_crispy_field }}
+                        {{ form.feas_affordability|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="card border-success col-12 my-1 px-0"
+                     style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+                    <div class="card-header bg-info text-white mx-0 px-1 my-0 py-0">
+                        Production skill
+                    </div>
+                    <div class="card-body mx-1 px-1 my-0 py-0">
+                        {{ form.feas_prod_skill|as_crispy_field }}
+                        {{ form.feas_workload|as_crispy_field }}
+                        {{ form.feas_tech_service|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="card border-success col-12 my-1 px-0"
+                     style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+                    <div class="card-header bg-info text-white mx-0 px-1 my-0 py-0">
+                        Required investment
+                    </div>
+                    <div class="card-body mx-1 px-1 my-0 py-0">
+                        {{ form.feas_invest_fixed|as_crispy_field }}
+                        {{ form.feas_invest_variable|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="card border-success col-12 my-1 px-0"
+                     style="max-width: 540px; color:#24535F ;background-color:#D9ECDC;">
+                    <div class="card-header bg-info text-white mx-0 px-1 my-0 py-0">
+                        Year round availability
+                    </div>
+                    <div class="card-body mx-1 px-1 my-0 py-0">
+                        {{ form.feas_availability_prod|as_crispy_field }}
+                        {{ form.feas_storability|as_crispy_field }}
+                    </div>
+                </div>
+        </form>
+    </div>
+
+    <!-- モーダルの設定 ----------------------------->
+    <div class="modal fade" id="dlg_crop" tabindex="-1" role="dialog" aria-labelledby="dlg_crop_Label">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark" id="dlg_crop_Label">Add New Crop</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-dark">
+                    <div class="my-2" id="myFilter">Food group:
+                    </div>
+                    <table id="tbl_crop_all" class="table-sm" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Group</th>
+                            <th>Name</th>
+                            <th class="tableItem_hide">id</th>
+                        </tr>
+                        </thead>
+
+                        <tfoot>
+                        <tr>
+                            <th>Group</th>
+                            <th>Group</th>
+                            <th class="tableItem_hide">id</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <a id="btn_exit01" class="close btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm"
+                       data-dismiss="modal" aria-label="close">close</a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-------------------------------------->
+    <!-- モーダルの設定 local crop ----------------------------->
+    <div class="modal fade" id="Modal_localCrop1" mynum="0" tabindex="-1" role="dialog"
+         aria-labelledby="Modal_localCropLabel">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add/remove food item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                        <span class="text-danger" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-dark">
+                    <div class="my-2" id="myFilter1">Food group:
+                    </div>
+                    <table id="localCrop1" style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th>s</th>
+                            <th>Name</th>
+                            <th>En</th>
+                            <th>Pr</th>
+                            <th>VA</th>
+                            <th>Fe</th>
+                            <th>c</th>
+                        </tr>
+                        </thead>
+
+                        <tfoot>
+                        <tr>
+                            <th>s</th>
+                            <th>Name</th>
+                            <th>En</th>
+                            <th>Pr</th>
+                            <th>VA</th>
+                            <th>Fe</th>
+                            <th>c</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <a id="btn_exit01" class="btn btn-outline-secondary text-dark mt-2 my-0 py-0 btn-sm"
+                       data-dismiss="modal">close</a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-------------------------------------->
+
+    <style media="screen">
+        /* 行または列の非表示*/
+        .tableItem_hide {
+            display: none;
+        }
+
+        /* fontawsomeの書式*/
+        .fb-help {
+            color: green;
+        }
+
+    </style>
+
+
+    <script type="text/javascript">
+        var json_crop_local = "{{mylist_available|safe}}";
+
+        let tmp = $('#isupdate').val();
+        if (tmp != 1) {
+            json_crop_local = json_crop_local.replace(/'/g, '"'); //datatablseは single quote を受け付けないため
+            json_crop_local = JSON.parse(json_crop_local);
+        }
+        console.log(json_crop_local)
+        var dri_target_en = {{ dri_list_en|safe }};
+        var dri_target_pr = {{ dri_list_pr|safe }};
+        var dri_target_va = {{ dri_list_va|safe }};
+        var dri_target_fe = {{ dri_list_fe|safe }};
+        var dri_target_vol = {{ dri_list_vo|safe }};
+
+
+        $('.lbl_target_en').text(dri_target_en[1].toFixed(0));
+        $('.lbl_target_pr').text(dri_target_pr[1].toFixed(0));
+        $('.lbl_target_va').text(dri_target_va[1].toFixed(0));
+        $('.lbl_target_fe').text(dri_target_fe[1].toFixed(0));
+
+        $('.rating_DRI').barrating({theme: 'bars-1to10', showSelectedRating: false, readonly: true}); // set barrating
+        $('.rating_DRI').barrating('set', 0); // set barrating
+
+        $(document).ready(function () {
+            ////////////////  install mytable_all  ////////////
+            var Crop_available = $('#localCrop1').DataTable({
+                "data": json_crop_local,
+                "pageLength": 20,
+                "select": 'single',
+                "columns": [
+                    {
+                        "data": "selected_status"
+                    }, {
+                        "data": "Food_name"
+                    }, {
+                        "data": "Energy"
+                    }, {
+                        "data": "Protein"
+                    }, {
+                        "data": "VITA_RAE"
+                    }, {
+                        "data": "FE"
+                    }, {
+                        "data": "Food_grp"
+                    }, {
+                        "data": "Weight"
+                    }, {
+                        "data": "portion_size"
+                    }, {
+                        "data": "m1"
+                    }, {
+                        "data": "m2"
+                    }, {
+                        "data": "m3"
+                    }, {
+                        "data": "m4"
+                    }, {
+                        "data": "m5"
+                    }, {
+                        "data": "m6"
+                    }, {
+                        "data": "m7"
+                    }, {
+                        "data": "m8"
+                    }, {
+                        "data": "m9"
+                    }, {
+                        "data": "m10"
+                    }, {
+                        "data": "m11"
+                    }, {
+                        "data": "m12"
+                    }, {
+                        "data": "food_item_id"
+                    }, {
+                        "data": "count_prod"
+                    }, {
+                        "data": "count_buy"
+                    }
+                ],
+
+                "columnDefs": [
+                    {
+                        targets: [
+                            1, 2, 3, 4, 5
+                        ],
+                        visible: true
+                    }, {
+                        targets: '_all',
+                        bVisible: false
+                    }, {
+                        "orderSequence": ["desc"],
+                        "targets": [2]
+                    }, {
+                        "orderSequence": ["desc"],
+                        "targets": [3]
+                    }, {
+                        "orderSequence": ["desc"],
+                        "targets": [4]
+                    }, {
+                        "orderSequence": ["desc"],
+                        "targets": [5]
+                    }
+                ],
+
+                "initComplete": function (settings, json) {
+                    // ////add filtering dropdown list
+                    this.api().columns([6]).every(function () {
+                        var column = this;
+                        var select = $('<select style="border: 1px grey double;"><option value=""></option></select>').appendTo($('#myFilter1')).on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                            column.search(
+                                val
+                                    ? '^' + val + '$'
+                                    : '',
+                                true,
+                                false
+                            ).draw();
+                        });
+                        column.data().unique().sort().each(function (d, j) {
+                            select.append('<option value="' + d + '">' + d + '</option>');
+                        });
+                    });
+                    $('#localCrop1 tbody').on('click', 'tr', function () {
+                        $(this).toggleClass('selected');
+                        if ($(this).hasClass('selected')) {
+                            mydata = Crop_available.row(this).data();
+                            $('#id_crop_name').val(mydata['Food_name']);
+                            $('#id_crop_name').attr('readonly', true);
+                            $('#id_crop_name_id').val(mydata['food_item_id']);
+                            $('#id_crop_name_id').attr('readonly', true);
+                            SetBarrating(mydata['Energy'], mydata['Protein'], mydata['VITA_RAE'], mydata['FE']);
+                        }
+                    })
+
+                },
+            });
+
+
+            //---------SetBarrating----------
+            function SetBarrating(en, pr, va, fe) {
+                console.group('SetBarrating:');
+                let rate_en = Math.round(en * 10 / dri_target_en[1][1]);
+                if (rate_en > 10) {
+                    rate_en = 10;
+                } else if (rate_en < 1) {
+                    rate_en = 1;
+                }
+                let rate_pr = Math.round(pr * 10 / dri_target_pr[1]);
+                if (rate_pr > 10) {
+                    rate_pr = 10;
+                } else if (rate_pr < 1) {
+                    rate_pr = 1;
+                }
+                let rate_va = Math.round(va * 10 / dri_target_va[1]);
+                if (rate_va > 10) {
+                    rate_va = 10;
+                } else if (rate_va < 1) {
+                    rate_va = 1;
+                }
+                let rate_fe = Math.round(fe * 10 / dri_target_fe[1]);
+                if (rate_fe > 10) {
+                    rate_fe = 10;
+                } else if (rate_fe < 1) {
+                    rate_fe = 1;
+                }
+                $('.rating_en').barrating('set', rate_en); // set barrating
+                $('.rating_pr').barrating('set', rate_pr); // set barrating
+                $('.rating_va').barrating('set', rate_va); // set barrating
+                $('.rating_fe').barrating('set', rate_fe); // set barrating
+                console.groupEnd();
+            }
+
+
+            //---------crop selection event----------
+            $('#btn_add').click(function () {
+                $('#Modal_localCrop1').modal('show');
+            });
+            //---------if crop update----------
+            if ({{ isUpdate }}) {
+                $('#id_crop_name').val("{{ crop_name }}");
+                $('#id_crop_name').attr('readonly', true);
+                $('#id_crop_name_id').val("{{ crop_name_id }}");
+                $('#id_crop_name_id').attr('readonly', true);
+                SetBarrating("{{ crop_en }}", "{{ crop_pr }}", "{{ crop_va }}", "{{ crop_fe }}");
+                console.error({{ crop_en }});
+            }
+        })//-----document.ready()-----------
+
+
+    </script>
+{% endblock %}
+
