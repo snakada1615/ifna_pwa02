@@ -2241,7 +2241,7 @@ class Crop_Feas2_CreateView(CreateView):
   model = Crop_Feasibility_instant
   form_class = Crop_Feas2_Form
   template_name = 'myApp/Crop_Feas2_form.html'
-  success_url = reverse_lazy('index01')
+  success_url = reverse_lazy('crop_feas2_list')
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
