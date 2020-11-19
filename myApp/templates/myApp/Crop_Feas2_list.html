@@ -31,7 +31,7 @@
         <div class="card border-0 my-2" style="background-color: #ECECEC">
           <div class="card-body py-2">
             <span class="text-danger">red colored text </span>indicates that feasibility is not good enough to be
-                adopted for the target area <span class="text-info">{{ myLocation_name }}
+            adopted for the target area <span class="text-info">{{ myLocation_name }}
             </span>
           </div>
         </div>
@@ -210,7 +210,7 @@
         <hr>
         <div class="row">
           <div class="col-5 text-info">
-              editor: <span>{{ crop.created_by }}</span>
+            editor: <span>{{ crop.created_by }}</span>
           </div>
         </div>
         <hr>
@@ -239,6 +239,8 @@
       console.log($(this).closest('.bar').find('.score_val').text())
     });
 
+    //set home link
+    $('#nav_link0').attr('href', "{% url 'index10' %}")
   </script>
 
 
