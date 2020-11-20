@@ -14,7 +14,7 @@ from .views import CropSelect, registCropAvail, Trial_View, Diet_Plan1, update_p
 from .views import Crop_Feas_CreateView, Crop_Feas_ListView, Crop_Feas_DeleteView, Crop_Feas_UpdateView
 from .views import FCT_ListView, FCT_UpdateView, FCT_CreateView, IndexView04, Crop_Name_ListView, Crop_Name_CreateView
 from .views import Crop_Name_UpdateView, Diet_instant, Crop_Feas2_CreateView, Crop_Feas2_ListView,Crop_Feas2_DeleteView
-from .views import Crop_Feas2_UpdateView, Index10
+from .views import Crop_Feas2_UpdateView, Index10, Diet_instant_ListView
 
 #from .views import Crop_Name_UpdateView, Diet_Plan2
 
@@ -54,8 +54,10 @@ urlpatterns = [
   path('person/delete/<int:myLocation>/<int:pk>/<int:mytarget_scope>/', Person_DeleteView.as_view(), name='person_delete'),
   path('registPerson/', views.registPerson, name='regist_person'),
   path('Diet1/<int:myLocation>/', Diet_Plan1.as_view(), name='diet1'),
-  path('Diet_instant/', Diet_instant.as_view(), name='diet_instant'),
+  path('Diet_instant/<int:recepi_id>', Diet_instant.as_view(), name='diet_instant'),
+  path('Diet_instant_list', Diet_instant_ListView.as_view(), name='diet_instant_list'),
   path('registDiet/', views.registDiet, name='regist_diet'),
+  path('registDiet2/', views.registDiet2, name='regist_diet2'),
   path('delete_TableRec/<str:tblName>/', views.delete_TableRec, name='delete_TableRec'),
   path('initTable/', initTable.as_view(), name='initTable'),
   path('Output1/<int:myLocation>/', Output1.as_view(), name='output1'),

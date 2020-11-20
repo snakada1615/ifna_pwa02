@@ -1,0 +1,47 @@
+{% extends 'myApp/_base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container" style="max-width: 540px;">
+    <div class="card border-success col-12 my-2 py-0"
+         style="max-width: 540px; color:#24535F ;background-color:#D9ECDC; border-width: 2px;">
+      <div class="row">
+        <div class="col-12">
+          <table id="tbl_crops" class="table table-striped">
+            <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>timestanp</th>
+            </tr>
+            </thead>
+            <tbody>
+            <div>
+              add new
+              <span>
+                  <a class="btn my-0 btn-warning btn-sm align-middle badge"
+                     href="{% url 'diet_instant'  recepi_id=0 %}">add</a>
+              </span>
+            </div>
+            {% for myCrop in mylist %}
+              <tr>
+                <td>
+                  <a class="btn my-0 btn-info btn-sm align-middle badge"
+                     href="{% url 'diet_instant'  recepi_id=myCrop.recepi_id %}">edit</a>
+                </td>
+                <td>{{ myCrop.myName }}</td>
+                <td>{{ myCrop.created_at }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+            <div class="row">
+              <div class="col-12">
+              </div>
+            </div>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

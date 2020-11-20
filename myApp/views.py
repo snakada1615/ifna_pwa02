@@ -9,7 +9,7 @@ from django.apps import apps
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
-# from django.db.models import Max  # 集計関数の追加
+from django.db.models import Max  # 集計関数の追加
 # from django.db.models import Count, Case, When, IntegerField  # 集計関数の追加
 
 # import re
@@ -25,7 +25,7 @@ from .forms import LocationForm, Person_Form, UserForm, ProfileForm, Crop_Feas_F
 from .forms import UserCreateForm, FCTForm, Crop_Name_Form, Crop_Feas2_Form
 
 from .models import Location, Countries, Crop_National, Crop_SubNational, Crop_Feasibility_instant
-from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person, Pop, Crop_Name, Season
+from .models import FCT, DRI, Crop_Feasibility, Crop_Individual, Person, Pop, Crop_Name, Season, Crop_Individual_instant
 
 # for user registration
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -1374,6 +1374,8 @@ class Diet_instant(TemplateView):
       'adolescent all',
     ]
 
+    context['recepi_id'] = self.kwargs['recepi_id']
+
     tmp_dri = DRI.objects.all()
     # tmp_group_list = list(tmp_dri.values_list('nut_group', flat=True))
     tmp_dri_count = len(nut_group_list)
@@ -1391,6 +1393,7 @@ class Diet_instant(TemplateView):
       tmp_va_by_class[index] = mydri.vita
       tmp_fe_by_class[index] = mydri.fe
       tmp_vo_by_class[index] = mydri.max_vol
+    context['dri_list_en'] = tmp_en_by_class
     context['dri_list_en'] = tmp_en_by_class
     context['dri_list_pr'] = tmp_pr_by_class
     context['dri_list_va'] = tmp_va_by_class
@@ -1413,7 +1416,7 @@ class Diet_instant(TemplateView):
       dd["Protein"] = tmp02.Protein
       dd["VITA_RAE"] = tmp02.VITA_RAE
       dd["FE"] = tmp02.FE
-      dd["Weight"] = 0
+      dd["total_weight"] = 0
       dd["food_item_id"] = tmp02.food_item_id
       dd["portion_size"] = tmp02.portion_size_init
       dd["count_buy"] = 0
@@ -1458,6 +1461,53 @@ class Diet_instant(TemplateView):
     context["mylist_local_name"] = d
     context["mylist_Food_grp"] = new_Food_grp
 
+######## 現在選択されている作物をDiet_plan_formに送る
+
+    d = []
+    tmp01 = Crop_Individual_instant.objects.filter(recepi_id=self.kwargs['recepi_id'])
+    myFCT_list = list(FCT.objects.values())
+    myName = ''
+
+    for tmp02 in tmp01:
+      dd = {}
+      tmp_FCT = {}
+      for myFCT_item in myFCT_list:
+        if myFCT_item['food_item_id'] == tmp02.myFCT_id:
+          tmp_FCT.update(myFCT_item)
+      myName = tmp02.myName
+      dd["selected_status"] = 1
+      dd["Food_grp"] = tmp_FCT['Food_grp_unicef']
+      dd["name"] = tmp_FCT['Food_name']
+      dd["Energy"] = tmp_FCT['Energy']
+      dd["Protein"] = tmp_FCT['Protein']
+      dd["VITA_RAE"] = tmp_FCT['VITA_RAE']
+      dd["FE"] = tmp_FCT['FE']
+      dd["total_weight"] = tmp02.total_weight
+      dd["food_item_id"] = tmp_FCT['food_item_id']
+      dd["portion_size"] = tmp02.portion_size
+      dd["count_buy"] = tmp02.count_buy
+      dd["count_prod"] = tmp02.count_prod
+      dd["m1"] = 0
+      dd["m2"] = 0
+      dd["m3"] = 0
+      dd["m4"] = 0
+      dd["m5"] = 0
+      dd["m6"] = 0
+      dd["m7"] = 0
+      dd["m8"] = 0
+      dd["m9"] = 0
+      dd["m10"] = 0
+      dd["m11"] = 0
+      dd["m12"] = 0
+      dd["myLocation"] = 0
+      dd["Fat"] = tmp_FCT['Fat']
+      dd["Carbohydrate"] = tmp_FCT['Carbohydrate']
+      d.append(dd)
+    context["mylist_selected"] = d
+    context['myName'] = myName
+
+    #######
+
 
     #context['myuser'] = self.request.user
 
@@ -1471,6 +1521,30 @@ class Diet_instant(TemplateView):
     context["stepid"] = 1000
 
     return context
+
+class Diet_instant_ListView(ListView):
+  template_name = 'myApp/diet_instant_list.html'  # この行でテンプレート指定
+  context_object_name = 'mylist'
+  model = Crop_Individual_instant
+
+  # def get_queryset(self):
+  #   queryset = Crop_Individual_instant.objects.all().values_list('recepi_id', 'myName', 'created_at').order_by('recepi_id').distinct()
+  #   return queryset
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+
+    context['nav_link1'] = reverse_lazy("index10")
+    context['nav_text1'] = "menu"
+    context['nav_link2'] = ""
+    context['nav_text2'] = "instant mode"
+    context['nav_link3'] = ""
+    context['nav_text3'] = ""
+    context["mark_text"] = 'diet nutrition calculator'
+    context["stepid"] = 1000
+
+    return context
+
 
 def delete_TableRec(request, tblName):
   myTable = apps.get_app_config('myApp').get_model(tblName)
@@ -1527,6 +1601,40 @@ def registDiet(request):
 
   myURL = reverse_lazy('diet1',
                        kwargs={'myLocation': request.user.profile.myLocation})
+  return JsonResponse({
+    'success': True,
+    'url': myURL,
+  })
+
+def registDiet2(request):
+  # json_str = request.body.decode("utf-8")
+  json_data = json.loads(request.body)
+  tmp_myLocation_id = 0
+  # tmp_newcrop_list = []
+
+  recepi_num = json_data['myJson'][0]['recepi_id']
+  if recepi_num == 0:
+    try:
+      recepi_num = int(Crop_Individual_instant.objects.all().aggregate(Max('recepi_id'))['recepi_id__max']) + 1
+    except:
+      recepi_num = 1
+  else:
+    Crop_Individual_instant.objects.filter(recepi_id=recepi_num).delete()
+
+  for myrow in json_data['myJson']:
+    Crop_Individual_instant.objects.create(
+      myFCT=FCT.objects.get(food_item_id=int(myrow['food_item_id'])),
+      total_weight=int(myrow['total_weight']),
+      portion_size=int(myrow['portion_size']),
+      count_prod=int(myrow['count_prod']),
+      count_buy=int(myrow['count_buy']),
+      share_prod_buy=int(myrow['share_prod_buy']),
+      target_scope=int(myrow['target_scope']),
+      myName = myrow['myName'],
+      recepi_id = recepi_num
+    )
+
+  myURL = reverse_lazy('diet_instant', kwargs={'recepi_id':recepi_num})
   return JsonResponse({
     'success': True,
     'url': myURL,

@@ -719,6 +719,49 @@ class Crop_Individual(models.Model):  #
     default=5,
   )
 
+class Crop_Individual_instant(models.Model):  #
+  myFCT = models.ForeignKey(
+    FCT,
+    to_field='food_item_id',
+    default=436,
+    on_delete=models.CASCADE
+  )
+  target_scope = models.IntegerField(
+    verbose_name='target_scope',
+    default=0,
+  )
+  portion_size = models.IntegerField(
+    default=10,
+  )
+  total_weight = models.IntegerField(
+    default=0,
+  )
+  count_prod = models.IntegerField(
+    verbose_name='count_prod',
+    default=0,
+  )
+  count_buy = models.IntegerField(
+    verbose_name='count_buy',
+    default=0,
+  )
+  created_at = models.DateTimeField(
+    verbose_name='record_date',
+    auto_now_add=True
+  )
+  myName = models.CharField(
+    verbose_name='myName',
+    max_length=200,
+    default='',
+  )
+  share_prod_buy = models.IntegerField(
+    verbose_name='share_prod_buy',
+    default=5,
+  )
+  recepi_id = models.IntegerField(
+    verbose_name='recepi_id',
+    default=0,
+  )
+
 
 class Person(models.Model):
   Nut_GROUP = (
