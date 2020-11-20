@@ -12,25 +12,25 @@
             <tr>
               <th>id</th>
               <th>name</th>
-              <th>timestanp</th>
+              <th>recepi_id</th>
             </tr>
             </thead>
             <tbody>
             <div>
-              add new
+              add new ->
               <span>
-                  <a class="btn my-0 btn-warning btn-sm align-middle badge"
-                     href="{% url 'diet_instant'  recepi_id=0 %}">add</a>
+                  <a class="btn my-0 btn-warning btn-sm align-middle badge px-2"
+                     href="{% url 'diet_instant'  recepi_id=0 %}">add new recepi</a>
               </span>
             </div>
             {% for myCrop in mylist %}
               <tr>
                 <td>
                   <a class="btn my-0 btn-info btn-sm align-middle badge"
-                     href="{% url 'diet_instant'  recepi_id=myCrop.recepi_id %}">edit</a>
+                     href="{% url 'diet_instant'  recepi_id=myCrop.0 %}">edit</a>
                 </td>
-                <td>{{ myCrop.myName }}</td>
-                <td>{{ myCrop.created_at }}</td>
+                <td>{{ myCrop.1 }}</td>
+                <td>{{ myCrop.0 }}</td>
               </tr>
             {% endfor %}
             </tbody>

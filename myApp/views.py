@@ -9,7 +9,7 @@ from django.apps import apps
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
-from django.db.models import Max  # 集計関数の追加
+from django.db.models import Count, Max  # 集計関数の追加
 # from django.db.models import Count, Case, When, IntegerField  # 集計関数の追加
 
 # import re
@@ -255,6 +255,7 @@ class IndexView(TemplateView):
     context["stepid"] = tmp_Param['stepid']
 
     return context
+
 
 class Index10(TemplateView):
   template_name = "myApp/index10.html"
@@ -1400,11 +1401,10 @@ class Diet_instant(TemplateView):
     context['dri_list_fe'] = tmp_fe_by_class
     context['dri_list_vo'] = tmp_vo_by_class
 
-
     #######################################################
 
     # send selected crop by community ######
-    #tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
+    # tmp01 = Crop_SubNational.objects.filter(myLocation_id=self.kwargs['myLocation']).select_related('myFCT')
     tmp01 = FCT.objects.all()
     d = []
     for tmp02 in tmp01:
@@ -1461,7 +1461,7 @@ class Diet_instant(TemplateView):
     context["mylist_local_name"] = d
     context["mylist_Food_grp"] = new_Food_grp
 
-######## 現在選択されている作物をDiet_plan_formに送る
+    ######## 現在選択されている作物をDiet_plan_formに送る
 
     d = []
     tmp01 = Crop_Individual_instant.objects.filter(recepi_id=self.kwargs['recepi_id'])
@@ -1508,8 +1508,7 @@ class Diet_instant(TemplateView):
 
     #######
 
-
-    #context['myuser'] = self.request.user
+    # context['myuser'] = self.request.user
 
     context['nav_link1'] = reverse_lazy("index10")
     context['nav_text1'] = "menu"
@@ -1522,14 +1521,16 @@ class Diet_instant(TemplateView):
 
     return context
 
+
 class Diet_instant_ListView(ListView):
   template_name = 'myApp/diet_instant_list.html'  # この行でテンプレート指定
   context_object_name = 'mylist'
   model = Crop_Individual_instant
 
-  # def get_queryset(self):
-  #   queryset = Crop_Individual_instant.objects.all().values_list('recepi_id', 'myName', 'created_at').order_by('recepi_id').distinct()
-  #   return queryset
+  def get_queryset(self):
+    queryset = Crop_Individual_instant.objects.all().values_list('recepi_id', 'myName').order_by('recepi_id').annotate(
+      num=Count('recepi_id'))
+    return queryset
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
@@ -1606,6 +1607,7 @@ def registDiet(request):
     'url': myURL,
   })
 
+
 def registDiet2(request):
   # json_str = request.body.decode("utf-8")
   json_data = json.loads(request.body)
@@ -1630,11 +1632,11 @@ def registDiet2(request):
       count_buy=int(myrow['count_buy']),
       share_prod_buy=int(myrow['share_prod_buy']),
       target_scope=int(myrow['target_scope']),
-      myName = myrow['myName'],
-      recepi_id = recepi_num
+      myName=myrow['myName'],
+      recepi_id=recepi_num
     )
 
-  myURL = reverse_lazy('diet_instant', kwargs={'recepi_id':recepi_num})
+  myURL = reverse_lazy('diet_instant', kwargs={'recepi_id': recepi_num})
   return JsonResponse({
     'success': True,
     'url': myURL,
@@ -1650,7 +1652,8 @@ class Output1(LoginRequiredMixin, TemplateView):
     # tmp_nut_group = Person.objects.filter(
     #  myLocation=self.kwargs['myLocation'])
     tmp_nut_group1 = Person.objects.filter(myLocation=self.kwargs['myLocation']).values_list('nut_group', 'target_scope'
-                                                                                             ).order_by('nut_group').distinct()
+                                                                                             ).order_by(
+      'nut_group').distinct()
     tmp_nut_group2 = {}
     for a, b in tmp_nut_group1:
       tmp_id = str((int(b) + 1) * 100)
@@ -1678,7 +1681,6 @@ class Output1(LoginRequiredMixin, TemplateView):
     ]
 
     tmp_dri = DRI.objects.all()
-
 
     month_field = ['m1_season', 'm2_season', 'm3_season', 'm4_season', 'm5_season', 'm6_season',
                    'm7_season', 'm8_season', 'm9_season', 'm10_season', 'm11_season', 'm12_season']
@@ -2458,7 +2460,7 @@ class Crop_Feas2_CreateView(CreateView):
     return context
 
 
-class Crop_Feas2_ListView( ListView):
+class Crop_Feas2_ListView(ListView):
   context_object_name = "mylist"
   template_name = 'myApp/Crop_Feas2_list.html'
 
@@ -2497,7 +2499,7 @@ class Crop_Feas2_ListView( ListView):
     return context
 
 
-class Crop_Feas2_DeleteView( DeleteView):  # todo これをmodal dialogueにする
+class Crop_Feas2_DeleteView(DeleteView):  # todo これをmodal dialogueにする
   model = Crop_Feasibility_instant
   template_name = 'myApp/Crop_Feas2_confirm_delete.html'
   success_url = reverse_lazy('crop_feas2_list')
