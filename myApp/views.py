@@ -1510,7 +1510,7 @@ class Diet_instant(TemplateView):
 
     # context['myuser'] = self.request.user
 
-    context['nav_link1'] = reverse_lazy("index10")
+    context['nav_link1'] = reverse_lazy("diet_instant_list")
     context['nav_text1'] = "menu"
     context['nav_link2'] = ""
     context['nav_text2'] = "instant mode"
@@ -1636,7 +1636,7 @@ def registDiet2(request):
       recepi_id=recepi_num
     )
 
-  myURL = reverse_lazy('diet_instant', kwargs={'recepi_id': recepi_num})
+  myURL = reverse_lazy('diet_instant_list')
   return JsonResponse({
     'success': True,
     'url': myURL,
