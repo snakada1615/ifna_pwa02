@@ -9,6 +9,8 @@ from django.apps import apps
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
+from django.views.decorators.csrf import csrf_exempt
+
 from django.db.models import Count, Max  # 集計関数の追加
 # from django.db.models import Count, Case, When, IntegerField  # 集計関数の追加
 
@@ -1353,7 +1355,7 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
 
     return context
 
-
+@csrf_exempt
 class Diet_instant(TemplateView):
   template_name = "myApp/Diet_instant.html"
 
