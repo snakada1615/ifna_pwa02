@@ -10,6 +10,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 from django.db.models import Count, Max  # 集計関数の追加
 # from django.db.models import Count, Case, When, IntegerField  # 集計関数の追加
@@ -1355,9 +1356,12 @@ class Diet_Plan1(LoginRequiredMixin, TemplateView):
 
     return context
 
-@csrf_exempt
 class Diet_instant(TemplateView):
   template_name = "myApp/Diet_instant.html"
+
+  # @method_decorator(csrf_exempt)
+  # def dispatch(self, *args, **kwargs):
+  #   return super(Diet_instant, self).dispatch(*args, **kwargs)
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
@@ -1630,6 +1634,7 @@ def registDiet(request):
   })
 
 
+@csrf_exempt
 def registDiet2(request):
   # json_str = request.body.decode("utf-8")
   json_data = json.loads(request.body)
