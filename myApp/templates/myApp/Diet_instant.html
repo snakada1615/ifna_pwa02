@@ -159,14 +159,17 @@
             <!-- モーダルの設定 change diet volume (Communituy専用)----------------------------->
             <div id="toggle_visible_comm">
               <div class="form-group">
-                <label for="food_weight_community">Weight in kg:</label>
+                <label for="food_weight_community">daily supply in g:</label>
                 <input type="number" class="form-control" id="food_weight_community">
               </div>
             </div>
+            <!-- モーダルの設定 change diet volume (Communituy専用)----------------------------->
 
             <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">close</button>
             <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_weight1">change value
             </button>
+            <span class="p-2"><input type="checkbox" data-toggle="toggle" data-on="use value" data-off="use portion"
+                                    data-width="100" data-size="xs" id="toggle_portion"></span>
           </div>
         </div>
         <!-- /.modal-content -->
@@ -1528,6 +1531,7 @@
       if (found) {
         this.num_tbl = num_tbl;
         this.data = {};
+        this.draw_portion = false;
 
         //関連DOM要素の指定 lbl_target_en
         this.dom_tbl = myTbl_food_Setweight;
@@ -1572,13 +1576,13 @@
       this.dom_br_count.barrating('set', count_all); //摂取量の設定
       this.setPie_img(data.share_prod_buy); //Buy＿Prod _shaeの設定
 
-//      if (data.num_tbl < 10000) { // individual/familyとcommunityで表示を切り替える #todo 後できちんと修正
+      if (this.draw_portion) { // individual/familyとcommunityで表示を切り替える #todo 後できちんと修正
         $('#toggle_visible_individual').show();
         $('#toggle_visible_comm').hide();
-//      } else {
-//        $('#toggle_visible_individual').hide();
-//        $('#toggle_visible_comm').show();
-//      }
+      } else {
+        $('#toggle_visible_individual').hide();
+        $('#toggle_visible_comm').show();
+      }
 
       console.groupEnd();
     };
@@ -1641,27 +1645,40 @@
       let max_vol = Number(dri_target_vol[this.data.target_scope]);
       let portion_size = this.data.portion_size;
 
-      let count_all = Number(this.dom_br_count.children("option:selected").val());
-      let new_weight = portion_size * count_all;
+      if (this.draw_portion) {
+        let count_all = Number(this.dom_br_count.children("option:selected").val());
+        let new_weight = portion_size * count_all;
 
-      if (current_sum + new_weight - current_vol > max_vol) {
-        alert('total volume offood exceeded daily consumption limit.\n' +
-                'please re-adjust volume of each food item so that total volume fit within ' + max_vol + 'g');
-        return false;
-      }
+        if (current_sum + new_weight - current_vol > max_vol) {
+          alert('total volume offood exceeded daily consumption limit.\n' +
+                  'please re-adjust volume of each food item so that total volume fit within ' + max_vol + 'g');
+          return false;
+        }
 
-      let share_prod_buy_tmp = Number(this.data.share_prod_buy);
-      if (share_prod_buy_tmp === 100) {
-        share_prod_buy_tmp = 10;
+        let share_prod_buy_tmp = Number(this.data.share_prod_buy);
+        if (share_prod_buy_tmp === 100) {
+          share_prod_buy_tmp = 10;
+        }
+        if (share_prod_buy_tmp === 99) {
+          share_prod_buy_tmp = 0;
+        }
+        let count_prod = Math.trunc(count_all * share_prod_buy_tmp / 10);
+        let count_buy = count_all - count_prod;
+        this.data.count_prod = count_prod;
+        this.data.count_buy = count_buy;
+        this.data.total_weight = new_weight;
+      } else {
+        let new_weight = Number($('#food_weight_community').val())
+        if (current_sum + new_weight - current_vol > max_vol) {
+          alert('total volume offood exceeded daily consumption limit.\n' +
+                  'please re-adjust volume of each food item so that total volume fit within ' + max_vol + 'g');
+          return false;
+        }
+        let share_prod_buy_tmp = 10;
+        this.data.total_weight = new_weight;
+        this.data.count_prod = Math.trunc(new_weight / portion_size);
+        this.data.count_buy = 0;
       }
-      if (share_prod_buy_tmp === 99) {
-        share_prod_buy_tmp = 0;
-      }
-      let count_prod = Math.trunc(count_all * share_prod_buy_tmp / 10);
-      let count_buy = count_all - count_prod;
-      this.data.count_prod = count_prod;
-      this.data.count_buy = count_buy;
-      this.data.total_weight = new_weight;
 
       console.log(this.data.name + 'を更新します');
       console.log(this.data);
@@ -1832,6 +1849,17 @@
       }
     });
 
+
+    //////////////////draw portion////#
+    $('#toggle_portion').on("change", function () {
+      if ($(this).prop('checked')) {
+        $('#toggle_visible_individual').show();
+        $('#toggle_visible_comm').hide();
+      } else {
+        $('#toggle_visible_individual').hide();
+        $('#toggle_visible_comm').show();
+      }
+    });
 
     //////////////////set food volume////#
     $(".selected_crops_tbl tbody").on("click", "td", function () {
