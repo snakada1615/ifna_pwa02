@@ -1546,6 +1546,26 @@ class Diet_instant_ListView(ListView):
 
     return context
 
+class Diet_instant_delete_confirm(TemplateView):
+  template_name = "myApp/diet_instant_confirm_delete.html"
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    rec = Crop_Individual_instant.objects.filter(recepi_id=self.kwargs['recepi_id']).first()
+    context['recepi_id'] = rec.recepi_id
+    context['myName'] = rec.myName
+    context['created_at'] = rec.created_at
+
+    return context
+
+
+
+def delete_Diet_instant(request, recepi_id):
+  Crop_Individual_instant.objects.filter(recepi_id=recepi_id).delete()
+  success_url = reverse_lazy('diet_instant_list')
+  return HttpResponseRedirect(success_url)
+
+
 
 def delete_TableRec(request, tblName):
   myTable = apps.get_app_config('myApp').get_model(tblName)

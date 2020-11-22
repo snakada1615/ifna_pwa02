@@ -1,0 +1,21 @@
+{% extends "myApp/_base.html" %}
+<!--  -->
+{% block content %}
+<div class="container" style="max-width: 540px;">
+    <h2 class="text-center">Delete data</h2>
+    <p>Deta will be deleted. Are you OK?</p>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-12">
+                <div class="float-right">
+                  <a class="btn btn-outline-secondary" href="{% url 'diet_instant_list' %}">return</a>
+                  <a class="btn btn-outline-secondary" href="{% url 'delete_diet_instant' recepi_id=recepi_id %}">delete</a>
+                </div>
+            </div>
+        </div>
+        {% include "myApp/diet_instant_card.html" %}
+    </form>
+</div>
+{% endblock %}

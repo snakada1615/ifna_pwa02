@@ -10,8 +10,9 @@
           <table id="tbl_crops" class="table table-striped">
             <thead>
             <tr>
-              <th>id</th>
-              <th>name</th>
+              <th>edit</th>
+              <th>del</th>
+              <th>editor</th>
               <th>recepi_id</th>
             </tr>
             </thead>
@@ -28,6 +29,10 @@
                 <td>
                   <a class="btn my-0 btn-info btn-sm align-middle badge"
                      href="{% url 'diet_instant'  recepi_id=myCrop.0 %}">edit</a>
+                </td>
+                <td>
+                  <a class="btn my-0 btn-info btn-sm align-middle badge"
+                     href="{% url 'diet_instant_delete_confirm'  recepi_id=myCrop.0 %}">del</a>
                 </td>
                 <td>{{ myCrop.1 }}</td>
                 <td>{{ myCrop.0 }}</td>
