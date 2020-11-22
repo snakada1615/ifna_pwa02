@@ -150,17 +150,8 @@
                   </select>
                 </div>
                 <div class="column-1">
-              <span class="fb fb-help d-inline" data-toggle="tooltip"
-                    title="set volume of food by changing the number of apple icon below"></span>
+                  <span class="badge badge-warning pointer_hand" id="set_weight_zero">set zero</span>
                 </div>
-              </div>
-
-              <div>*share (
-                <span style="color: #5bc0de">production</span> /
-                <span style="color: #cc1111">buy</span>):
-                <img id="BR_buy_prod_pie_img" src="#" style="width: 30px" alt="">
-                <span class="fb fb-help" data-toggle="tooltip"
-                      title="you can set buy or produce"></span>
               </div>
 
             </div>
@@ -1623,6 +1614,26 @@
       console.log('prod/buy shareを' + i_share + 'に設定します');
       this.dom_img_pie.attr('src', h);
     };
+    $('#set_weight_zero').click(function () {
+
+    });
+    Crop_individual.prototype.setZero_FoodWt = function () {
+      this.dom_tbl.find('tr').eq(1).children('td').eq(1).text(0);
+      this.dom_tbl.find('tr').eq(1).children('td').eq(2).text(0);
+      this.dom_tbl.find('tr').eq(1).children('td').eq(3).text(0);
+      this.dom_tbl.find('tr').eq(1).children('td').eq(4).text(0);
+      this.dom_tbl.find('tr').eq(1).children('td').eq(5).text(0);
+      this.dom_tbl.find('tr').eq(1).children('td').eq(6).text(0);
+      this.dom_tbl.find('tr').eq(1).children('td').eq(7).text(0);
+      this.dom_tbl.find('tr').eq(1).children('td').eq(8).text(0);
+      this.dom_btn_por.text(0); //ポーションサイズ設定
+      this.data.portion_size = 0;
+      this.data.total_weight = 0;
+      this.data.count_prod = 0;
+      this.data.count_buy = 0;
+      this.data.total_weight = 0;
+      this.dom_br_count.barrating('set', 1); //摂取量の設定
+    };
     Crop_individual.prototype.getData_FoodWt = function () {
       console.group('Crop_individual:getData_FoodWt');
       let current_sum = Number(this.dom_modal.attr('sum_vol'));
@@ -1744,6 +1755,12 @@
       $(".myfilter").val(x);
 //      console.log('season:' + season_name[tmp_mon]);
       myCrop[String(tblNum)].myfilter(x);
+    });
+
+    ////////// set Zero value ////////////
+    $("#set_weight_zero").click(function () {
+      let tblNum = 101;
+      myCrop_individual[String(tblNum)].setZero_FoodWt();
     });
 
     ////////// select target ////////////
