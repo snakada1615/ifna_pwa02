@@ -1532,6 +1532,7 @@ class Diet_instant_ListView(ListView):
   template_name = 'myApp/diet_instant_list.html'  # この行でテンプレート指定
   context_object_name = 'mylist'
   model = Crop_Individual_instant
+  paginate_by = 4
 
   def get_queryset(self):
     queryset = Crop_Individual_instant.objects.all().values_list('recepi_id', 'myName').order_by('recepi_id').annotate(
