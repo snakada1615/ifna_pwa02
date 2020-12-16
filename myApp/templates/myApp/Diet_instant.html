@@ -5,9 +5,16 @@
   <script type="text/javascript"
           src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
   <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.widgets.min.js"></script>
+  <script type="text/javascript"
           src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/extras/jquery.tablesorter.pager.min.js"></script>
+
   <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/jquery.tablesorter.pager.min.css"
         rel="stylesheet">
+
+
+
+
 
   <script type="text/javascript" src="{% static 'js/jquery.barrating.min.js' %}"></script>
   <link rel="stylesheet" href="{% static 'css/fontawesome-apple.css' %}">
@@ -265,7 +272,7 @@
   <!-- ここから Tabのテンプレート ----------------------------->
   <script id="template_Tab" type="text/x-custom-template">
     <div class="row d-flex">
-      <div class="col-10">
+      <div class="col-8">
         <div class="dropdown my-1 ">
           <button type="button dropdown-filter"
                   class="btn btn-sm btn-secondary dropdown-toggle myfilter class-mypage"
@@ -277,6 +284,10 @@
           <div class="dropdown-menu myfilter-item class-myNum">
           </div>
         </div>
+      </div>
+      <div class="col-2">
+        <input class="search" type="search" placeholder="Food Group" data-column="all">
+        <input class="search" type="search" placeholder="Food item" data-column="0">
       </div>
       <div class="col-2">
         <a class="btn btn-warning mt-2 my-0 py-0 btn-sm pointer_hand" id="btn_save_crop" >save</a>
@@ -300,7 +311,7 @@
                 </div>
 
                 <!-- この下に季節毎のテーブルが挿入される ----------------------------->
-                <table border="1"
+                <table border="1" id="myTalbe01"
                        class="table table-fixed-100 table-success selected_crops_tbl mt-2 class-myNum">
                   <thead style="font-style: italic;background-color: #c0c0c0">
                   <th>
@@ -321,7 +332,7 @@
                   <th class="tableItem_hide">Va0</th>
                   <th class="tableItem_hide">Fe0</th>
                   <th class="tableItem_hide">share</th>
-                  <th class="tableItem_hide">Food_grp</th>
+                  <th class="tableItem_hide filter-select filter-onlyAvail">Food_grp</th>
                   <th class="tableItem_hide">Mon_avail</th>
                   </thead>
                   <tbody>
@@ -334,18 +345,18 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
-                    <th class="tableItem_hide"></th>
+                    <td class="tableItem_hide"></td>
+                    <td class="tableItem_hide"></td>
+                    <td class="tableItem_hide"></td>
+                    <td class="tableItem_hide"></td>
+                    <td class="tableItem_hide"></td>
+                    <td class="tableItem_hide"></td>
+                    <td class="tableItem_hide"></td>
+                    <td class="tableItem_hide"></td>
+                    <td class="tableItem_hide"></td>
+                    <td class="tableItem_hide"></td>
+                    <td class="tableItem_hide"></td>
+                    <td class="tableItem_hide"></td>
                   </tr>
                   </tfoot>
                 </table>
@@ -2207,11 +2218,21 @@
         console.log(myRange[i]);
         myCrop[myRange[i]].drawTable();
       }
+//      console.log($('.selected_crops_tbl')[0].innerHTML);
       //tablesorterの初期化
-      $('.selected_crops_tbl').tablesorter({
-        widthFixed: true,
-        widgets: ["filter"]
+      $('#myTalbe01').tablesorter({
+        widgets: ["filter"],
+        widgetOptions : {
+          // use the filter_external option OR use bindSearch function (below)
+          // to bind external filters.
+
+          filter_external : '.search',
+          filter_columnFilters: false,
+          filter_reset: '.reset'
+        }
       });
+      //$.tablesorter.filter.bindSearch( $myTable, $('.search') );
+
       //まずfiltering
       myCrop[tbl_num2].myfilter(myFoodGrp[1]);
       $(".myfilter").text(myFoodGrp[1]);
