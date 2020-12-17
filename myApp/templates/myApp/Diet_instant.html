@@ -1368,25 +1368,26 @@
     };
     Crop_Selected.prototype._SetBarrating = function () {
       console.group('Crop_Selected._SetBarrating:');
-      let rate_en = Math.round(this.sum_en * 10 / this.target_en);
+      // rate_** confirm if the total nutrient supply satisfy 30% of nutrient requrement
+      let rate_en = Math.round(this.sum_en * 30 / this.target_en);
       if (rate_en > 10) {
         rate_en = 10;
       } else if (rate_en < 1) {
         rate_en = 1;
       }
-      let rate_pr = Math.round(this.sum_pr * 10 / this.target_pr);
+      let rate_pr = Math.round(this.sum_pr * 30 / this.target_pr);
       if (rate_pr > 10) {
         rate_pr = 10;
       } else if (rate_pr < 1) {
         rate_pr = 1;
       }
-      let rate_va = Math.round(this.sum_va * 10 / this.target_va);
+      let rate_va = Math.round(this.sum_va * 30 / this.target_va);
       if (rate_va > 10) {
         rate_va = 10;
       } else if (rate_va < 1) {
         rate_va = 1;
       }
-      let rate_fe = Math.round(this.sum_fe * 10 / this.target_fe);
+      let rate_fe = Math.round(this.sum_fe * 30 / this.target_fe);
       if (rate_fe > 10) {
         rate_fe = 10;
       } else if (rate_fe < 1) {
