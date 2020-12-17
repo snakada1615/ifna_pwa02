@@ -319,7 +319,7 @@
               <div class="card border-success bg-white rounded col-12 px-1 py-1 my-1" style="color:#24535F ;background-color:#D9ECDC;
                border-width: 2px;">
                 <div class="card-header bg-info text-white p-1 d-flex">
-                  <div class="card-header bg-info text-white mr-auto p-2">Diet plan:</div>
+                  <div class="card-header bg-info text-white mr-auto p-2">Food composition table:</div>
                   <div class="p-2"><input type="checkbox" data-toggle="toggle" data-on="unhide 0"
                                           class="hide_zero class-myNum" data-off="hide 0"
                                           data-width="100"
@@ -337,7 +337,7 @@
                   <th>Pr</th>
                   <th>Va</th>
                   <th>Fe</th>
-                  <th>Wt</th>
+                  <th class="tableItem_hide">Wt</th>
                   <th class="tableItem_hide">id</th>
                   <th class="tableItem_hide">food_item_id</th>
                   <th class="tableItem_hide">portion_size</th>
@@ -360,7 +360,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td class="tableItem_hide"></td>
                     <td class="tableItem_hide"></td>
                     <td class="tableItem_hide"></td>
                     <td class="tableItem_hide"></td>
@@ -410,13 +410,40 @@
               </div>
 
               <!-- ここから 栄養バランスの評価 ----------------------------->
-
               <div class="card rounded border-success col-12 px-1 py-1 mt-3" style="color:#24535F ;background-color:#D9ECDC;
                border-width: 2px;">
                 <div class="card-header bg-info text-white p-1 mb-2">
                   nutrient balance (daily total)
                   <span class="fb fb-help" data-toggle="tooltip"
                         title="nutrient balance of selected diet combination"></span>
+                </div>
+
+                <div>
+                  <table>
+                <table border="1" class="table table-fixed-100 table-success mt-2 table-striped" id="tbl_menu">
+                    <thead style="font-style: italic;background-color: #c0c0c0">
+                      <th>
+                        name:
+                      </th>
+                      <th>En</th>
+                      <th>Pr</th>
+                      <th>Va</th>
+                      <th>Fe</th>
+                      <th>Wt</th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot class="bg-light">
+                      <th>
+                        total
+                      </th>
+                      <th>0</th>
+                      <th>0</th>
+                      <th>0</th>
+                      <th>0</th>
+                      <th>0</th>
+                    </tfoot>
+                  </table>
                 </div>
 
                 <div class="form-row no-gutters my-0 py-0" style="height:30px;">
@@ -1311,7 +1338,7 @@
             cr += '<td>' + Math.round(add_data.VITA_RAE * add_data.total_weight / 100, 1) + '</td>';
             cr += '<td>' + Math.round(add_data.FE * add_data.total_weight / 100, 1) + '</td>';
       {% endcomment %}
-      cr += '<td class="text-danger">' + add_data.total_weight + '</td>';
+      cr += '<td class="tableItem_hide">' + add_data.total_weight + '</td>';
       cr += '<td class="tableItem_hide"></td>';
       cr += '<td class="tableItem_hide">' + add_data.food_item_id + '</td>';
       cr += '<td class="tableItem_hide">' + add_data.portion_size + '</td>';
@@ -1342,7 +1369,8 @@
               this._setCellColor(Math.round(this.sum_pr), dri_target_pr[target_scope]) +
               this._setCellColor(Math.round(this.sum_va), dri_target_va[target_scope]) +
               this._setCellColor(Math.round(this.sum_fe), dri_target_fe[target_scope]) +
-              '<td>' + this.sum_vol + '</td><td class="tableItem_hide"><' + '/td><td class="tableItem_hide">' +
+              '<td class="tableItem_hide">' + this.sum_vol + '</td><td class="tableItem_hide"><' +
+              '/td><td class="tableItem_hide">' +
               '</td><td class="tableItem_hide"></td><td class="tableItem_hide">' +
               '</td><td class="tableItem_hide"></td><td class="tableItem_hide"></td>' +
               '<td class="tableItem_hide"></td><td class="tableItem_hide"></td>' +
@@ -1949,6 +1977,7 @@
 
       myfood_volume['modal'].modal('hide');
       console.groupEnd();
+      drawNewMenu(myCrop[myNum_tmp].getCrops())
     });
 
     ////////////////// change month
@@ -2129,6 +2158,43 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    function drawNewMenu(dat){
+      console.log('drawNewMenu')
+      $table = $('#tbl_menu tbody');
+      $table.children('tr').remove();
+      let cr = '';
+      let en_total = 0;
+      let pr_total = 0;
+      let fe_total = 0;
+      let va_total = 0;
+      $.each( dat, function( key, mycrop ) {
+        if (mycrop.total_weight>0){
+          cr += '<tr>';
+          cr += '<td>' + mycrop.name + '</td>';
+          cr += '<td>' + Math.round(mycrop.Energy * mycrop.total_weight / 100, 1) + '</td>';
+          cr += '<td>' + Math.round(mycrop.Protein * mycrop.total_weight / 100, 1) + '</td>';
+          cr += '<td>' + Math.round(mycrop.VITA_RAE * mycrop.total_weight / 100, 1) + '</td>';
+          cr += '<td>' + Math.round(mycrop.FE * mycrop.total_weight / 100, 1) + '</td>';
+          cr += '<td>' + mycrop.total_weight + '</td>';
+          cr += '</tr>';
+          en_total += Math.round(mycrop.Energy * mycrop.total_weight / 100, 1);
+          pr_total += Math.round(mycrop.Protein * mycrop.total_weight / 100, 1);
+          va_total += Math.round(mycrop.VITA_RAE * mycrop.total_weight / 100, 1);
+          fe_total += Math.round(mycrop.FE * mycrop.total_weight / 100, 1);
+        }
+      });
+      $table.append(cr);
+      $('#tbl_menu tfoot tr').remove();
+      $('#tbl_menu tfoot').append(
+        '<tr><td>total</td>' +
+              '<td>' + en_total + '</td>' +
+              '<td>' + pr_total + '</td>' +
+              '<td>' + va_total + '</td>' +
+              '<td>' + fe_total + '</td>' +
+              '<td></td></tr>'
+      );
+    }
+
     let myCrop = {};
     for (let i in myRange) {
       myCrop[myRange[i]] = new Crop_Selected(myRange[i]);
@@ -2265,18 +2331,13 @@
         console.log(myRange[i]);
         myCrop[myRange[i]].drawTable();
       }
-//      console.log($('.selected_crops_tbl')[0].innerHTML);
       //tablesorterの初期化
       $('#myTalbe01').tablesorter({
         widgets: ["filter"],
         widgetOptions: {
-          // use the filter_external option OR use bindSearch function (below)
-          // to bind external filters.
-
           filter_external: '.search',
           filter_columnFilters: false,
           filter_reset: '.reset'
-
         }
       }).tablesorterPager({
         container: $(".pager"),
