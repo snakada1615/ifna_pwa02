@@ -77,7 +77,7 @@
           Editor:
         </div>
         <div class="card-body mx-0 px-1 my-0 py-2">
-          Name: <input type="text"  id="editor_name" value="{{ myName }}" {% if myName %}disabled{% endif %}>
+          Name: <input type="text" id="editor_name" value="{{ myName }}" {% if myName %}disabled{% endif %}>
         </div>
       </div>
     </div>
@@ -176,7 +176,7 @@
             <button type="button" class="btn btn-primary mt-2" mynum="0" id="change_weight1">change value
             </button>
             <span class="p-2"><input type="checkbox" data-toggle="toggle" data-on="use value" data-off="use portion"
-                                    data-width="100" data-size="xs" id="toggle_portion"></span>
+                                     data-width="100" data-size="xs" id="toggle_portion"></span>
           </div>
         </div>
         <!-- /.modal-content -->
@@ -272,7 +272,8 @@
   <!-- ここから Tabのテンプレート ----------------------------->
   <script id="template_Tab" type="text/x-custom-template">
     <div class="row d-flex">
-      <div class="col-8">
+      <div class="col-6">
+        {% comment %}
         <div class="dropdown my-1 ">
           <button type="button dropdown-filter"
                   class="btn btn-sm btn-secondary dropdown-toggle myfilter class-mypage"
@@ -284,15 +285,30 @@
           <div class="dropdown-menu myfilter-item class-myNum">
           </div>
         </div>
-      </div>
-      <div class="col-2">
-        <input class="search" type="search" placeholder="Food Group" data-column="all">
-        <input class="search" type="search" placeholder="Food item" data-column="0">
-      </div>
-      <div class="col-2">
-        <a class="btn btn-warning mt-2 my-0 py-0 btn-sm pointer_hand" id="btn_save_crop" >save</a>
+      {% endcomment %}
+
+      Food group<select class="search" data-column="all">
+        <option value="">All</option>
+        <option value="Grains, roots and tubers ">Grains, roots and tubers </option>
+        <option value="Legumes and nuts ">Legumes and nuts </option>
+        <option value="Vitamin A rich fruits and Vegetable ">Vitamin A rich fruits and Vegetable </option>
+        <option value="Other fruits and vegetables ">Other fruits and vegetables </option>
+        <option value="Flesh foods ">Flesh foods </option>
+        <option value="Dairy products ">Dairy products </option>
+        <option value="Eggs">Eggs</option>
+        <option value="non-category">non-category</option>
+      </select>
       </div>
     </div>
+    <div class="row d-flex">
+      <div class="col-8">
+        <input class="search" type="search" placeholder="Food name" data-column="0">
+      </div>
+      <div class="col-4">
+        <a class="btn btn-warning mt-2 my-0 py-0 btn-sm pointer_hand" id="btn_save_crop">save</a>
+      </div>
+    </div>
+
 
     <div class="carousel-instant2 class-myNum">
       <div class="card border-success border-5 rounded col-12 mt-2 py-2"
@@ -791,6 +807,18 @@
     .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
       background-color: red;
     }
+
+    /* rows hidden by filtering (needed for child rows) */
+    .tablesorter .filtered {
+      display: none;
+    }
+
+    /* ajax error row */
+    .tablesorter .tablesorter-errorRow td {
+      text-align: center;
+      cursor: pointer;
+      background-color: #e6bf99;
+    }
   </style>
 
 
@@ -905,7 +933,7 @@
     ////////////////////////
     ///バリデーション
     ////////////////////////
-    function checkName(){
+    function checkName() {
       const name = $('#editor_name').val();
       const target = $('#myscope').text();
       let weight = 0;
@@ -917,12 +945,12 @@
         id: 1,
         message: 'valid'
       };
-      if(name.length < 8 && name.length > 0){
+      if (name.length < 8 && name.length > 0) {
         res.id = 2,
-        res.message ='length of "name" should be more than 8 characters'
+                res.message = 'length of "name" should be more than 8 characters'
       } else if (name.length == 0) {
         res.id = 3,
-        res.message ='"name" field is reqired'
+                res.message = '"name" field is reqired'
       }
       if (target == '') {
         res.id += 10;
@@ -1257,15 +1285,15 @@
       cr += '<tr>';
       cr += '<td>' + add_data.name + '</td>';
       cr += '<td>' + add_data.Energy + '</td>';
-      cr += '<td>' + add_data.Protein  + '</td>';
-      cr += '<td>' + add_data.VITA_RAE  + '</td>';
+      cr += '<td>' + add_data.Protein + '</td>';
+      cr += '<td>' + add_data.VITA_RAE + '</td>';
       cr += '<td>' + add_data.FE + '</td>';
-{% comment %}
-      cr += '<td>' + Math.round(add_data.Energy * add_data.total_weight / 100, 1) + '</td>';
-      cr += '<td>' + Math.round(add_data.Protein * add_data.total_weight / 100, 1) + '</td>';
-      cr += '<td>' + Math.round(add_data.VITA_RAE * add_data.total_weight / 100, 1) + '</td>';
-      cr += '<td>' + Math.round(add_data.FE * add_data.total_weight / 100, 1) + '</td>';
-{% endcomment %}
+      {% comment %}
+            cr += '<td>' + Math.round(add_data.Energy * add_data.total_weight / 100, 1) + '</td>';
+            cr += '<td>' + Math.round(add_data.Protein * add_data.total_weight / 100, 1) + '</td>';
+            cr += '<td>' + Math.round(add_data.VITA_RAE * add_data.total_weight / 100, 1) + '</td>';
+            cr += '<td>' + Math.round(add_data.FE * add_data.total_weight / 100, 1) + '</td>';
+      {% endcomment %}
       cr += '<td class="text-danger">' + add_data.total_weight + '</td>';
       cr += '<td class="tableItem_hide"></td>';
       cr += '<td class="tableItem_hide">' + add_data.food_item_id + '</td>';
@@ -2222,21 +2250,23 @@
       //tablesorterの初期化
       $('#myTalbe01').tablesorter({
         widgets: ["filter"],
-        widgetOptions : {
+        widgetOptions: {
           // use the filter_external option OR use bindSearch function (below)
           // to bind external filters.
 
-          filter_external : '.search',
+          filter_external: '.search',
           filter_columnFilters: false,
           filter_reset: '.reset'
+
         }
       });
-      //$.tablesorter.filter.bindSearch( $myTable, $('.search') );
 
-      //まずfiltering
-      myCrop[tbl_num2].myfilter(myFoodGrp[1]);
-      $(".myfilter").text(myFoodGrp[1]);
-      $(".myfilter").val(myFoodGrp[1]);
+      {% comment %}
+            //まずfiltering
+            myCrop[tbl_num2].myfilter(myFoodGrp[1]);
+            $(".myfilter").text(myFoodGrp[1]);
+            $(".myfilter").val(myFoodGrp[1]);
+      {% endcomment %}
 
       //set home link
       $('#nav_link0').attr('href', "{% url 'index10' %}")
