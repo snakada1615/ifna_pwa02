@@ -271,8 +271,8 @@
 
   <!-- ここから Tabのテンプレート ----------------------------->
   <script id="template_Tab" type="text/x-custom-template">
-    <div class="row d-flex">
-      <div class="col-6">
+    <div class="row d-flex my-0">
+      <div class="col-6 ml-3">
         {% comment %}
         <div class="dropdown my-1 ">
           <button type="button dropdown-filter"
@@ -300,12 +300,12 @@
       </select>
       </div>
     </div>
-    <div class="row d-flex">
-      <div class="col-8">
+    <div class="row d-flex my-0">
+      <div class="col-8 ml-3">
         <input class="search" type="search" placeholder="Food name" data-column="0">
       </div>
-      <div class="col-4">
-        <a class="btn btn-warning mt-2 my-0 py-0 btn-sm pointer_hand" id="btn_save_crop">save</a>
+      <div class="col-3">
+        <a class="btn btn-warning btn-sm pointer_hand" id="btn_save_crop">save</a>
       </div>
     </div>
 
@@ -1638,6 +1638,7 @@
       } else {
         $('#toggle_visible_individual').hide();
         $('#toggle_visible_comm').show();
+        $('#food_weight_community').val(data.total_weight);
       }
 
       console.groupEnd();
