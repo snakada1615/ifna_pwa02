@@ -287,14 +287,14 @@
         </div>
       {% endcomment %}
 
-      Food group<select class="search" data-column="all">
+        Food group<select class="search" data-column="all">
         <option value="">All</option>
-        <option value="Grains, roots and tubers ">Grains, roots and tubers </option>
-        <option value="Legumes and nuts ">Legumes and nuts </option>
-        <option value="Vitamin A rich fruits and Vegetable ">Vitamin A rich fruits and Vegetable </option>
-        <option value="Other fruits and vegetables ">Other fruits and vegetables </option>
-        <option value="Flesh foods ">Flesh foods </option>
-        <option value="Dairy products ">Dairy products </option>
+        <option value="Grains, roots and tubers ">Grains, roots and tubers</option>
+        <option value="Legumes and nuts ">Legumes and nuts</option>
+        <option value="Vitamin A rich fruits and Vegetable ">Vitamin A rich fruits and Vegetable</option>
+        <option value="Other fruits and vegetables ">Other fruits and vegetables</option>
+        <option value="Flesh foods ">Flesh foods</option>
+        <option value="Dairy products ">Dairy products</option>
         <option value="Eggs">Eggs</option>
         <option value="non-category">non-category</option>
       </select>
@@ -389,6 +389,23 @@
                   <span data-toggle="tooltip" style="color:orange" title="50-100%"> ■■ </span>
                   <span data-toggle="tooltip" style="color:green" title="over 100%"> ■■ </span>
                 </p>
+
+                <!-- pager用の表示 ----------------------------->
+                <div class="pager">
+                  <button type='button' class='first'>&lt;&lt;</button>
+                  <button type='button' class='prev'>&lt;</button>
+
+                  <span class="pagedisplay" value=""/>
+
+                  <button type='button' class='next'>&gt;</button>
+                  <button type='button' class='last'>&gt;&gt;</button>
+
+                  <select class="pagesize">
+                    <option value="10">30</option>
+                    <option value="20">50</option>
+                    <option value="30">100</option>
+                  </select>
+                </div>
 
               </div>
 
@@ -2259,14 +2276,11 @@
           filter_reset: '.reset'
 
         }
+      }).tablesorterPager({
+        container: $(".pager"),
+        size: 30,  //<==表示させたい行数を指定
       });
 
-      {% comment %}
-            //まずfiltering
-            myCrop[tbl_num2].myfilter(myFoodGrp[1]);
-            $(".myfilter").text(myFoodGrp[1]);
-            $(".myfilter").val(myFoodGrp[1]);
-      {% endcomment %}
 
       //set home link
       $('#nav_link0').attr('href', "{% url 'index10' %}")
