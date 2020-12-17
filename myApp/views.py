@@ -2491,9 +2491,10 @@ class Crop_Feas2_CreateView(CreateView):
 class Crop_Feas2_ListView(ListView):
   context_object_name = "mylist"
   template_name = 'myApp/Crop_Feas2_list.html'
+  paginate_by = 5
 
   def get_queryset(self):
-    tmp0 = Crop_Feasibility_instant.objects.all()
+    tmp0 = Crop_Feasibility_instant.objects.all().order_by('-created_at')
     score_nut = []
     score_soc = []
     score_tec = []
@@ -2506,7 +2507,7 @@ class Crop_Feas2_ListView(ListView):
       score_tec.append(round((tmp1.feas_prod_skill + tmp1.feas_workload + tmp1.feas_tech_service) * 10 / 12))
       score_inv.append(round((tmp1.feas_invest_fixed + tmp1.feas_invest_variable) * 10 / 8))
       score_sus.append(round((tmp1.feas_availability_prod + tmp1.feas_storability) * 10 / 6))
-    tmp1 = zip(tmp0, score_nut, score_inv, score_soc, score_sus, score_tec)
+    tmp1 = list(zip(tmp0, score_nut, score_inv, score_soc, score_sus, score_tec))
     return tmp1
 
   def get_context_data(self, **kwargs):

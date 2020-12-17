@@ -227,6 +227,31 @@
   </div>
   </div>
   {% endfor %}
+{% if is_paginated %}
+  <nav aria-label="...">
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+        </li>
+      {% endif %}
+      {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+          <li class="page-item active">
+            <a class="page-link" href="?page={{ i }}">{{ i }}<span class="sr-only">{{ i }}</span></a>
+          </li>
+        {% else %}
+          <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
 </div>
 
   <script type="text/javascript">
@@ -236,7 +261,7 @@
     mybar.each(function () {
       let rating = Number($(this).closest('.bar').find('.score_val').text());
       $(this).barrating('set', rating);
-      console.log($(this).closest('.bar').find('.score_val').text())
+      //console.log($(this).closest('.bar').find('.score_val').text())
     });
 
     //set home link
