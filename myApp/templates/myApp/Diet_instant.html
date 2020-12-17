@@ -297,7 +297,9 @@
                 <option value="Eggs">Eggs</option>
                 <option value="non-category">non-category</option>
               </select>
-                Food name:<input class="search pb-1 ml-1" type="search" placeholder="Food name" data-column="0">
+                <div>
+                  Food name:<input class="search pb-1 ml-1" type="search" placeholder="Food name" data-column="0">
+                </div>
               </div>
             </div>
           </div>
@@ -1115,7 +1117,7 @@
       console.group('Crop_Selected.setData_fromAvailable:');
       let res = false;
       if (drawFlag) {       //rowの追加
-                            //データセットの作成1:buy_prod_share設定
+        //データセットの作成1:buy_prod_share設定
         let tmp_share = 5;
         let tmp_val = Number(mydata['m' + myCrop[num_tbl].month]);
         if (tmp_val == 2) {
